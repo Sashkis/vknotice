@@ -107,7 +107,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 });
 
 /**
- * Сохранение access_token и отправка Share ссылки
+ * Сохранение или удаление access_token и отправка Share ссылки
  */
 chrome.runtime.onConnect.addListener(function (port) {
 	if ('get_token' === port.name) {
@@ -118,6 +118,8 @@ chrome.runtime.onConnect.addListener(function (port) {
 		port.onMessage.addListener(function (shareOptions) {
 			port.postMessage(inf.getShareUrl(shareOptions));
 		});
+	} else if ('remove_token' == port.name) {
+		port.postMessage(inf.removeAccess());
 	}
 });
 
@@ -130,8 +132,8 @@ chrome.storage.onChanged.addListener(function(changes){
 	// Удаляем просмотренные alert'ти
 	if (changes.alerts) {
 		if (!changes.alerts.newValue) changes.alerts.newValue = {
-			'message':false,
-			'error':false
+			'message': false,
+			'error': false
 		};
 		inf.alerts = changes.alerts.newValue;
 	}

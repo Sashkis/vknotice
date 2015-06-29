@@ -287,7 +287,7 @@ function Informer (params) {
 	 */
 	this.removeAccess = function () {
 		this.api = {
-			'access_token': '_',
+			'access_token': 'not correct access_token', // Вставляем не правильный access_token чтобы избежать автоматической авторизации
 			'user_id': '',
 			'lang': 0,
 			'v': this.api.v

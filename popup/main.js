@@ -157,6 +157,14 @@ setTimeout(function () {
 			pop.loadShareUrl(function(url){
 				jQuery('#share').attr('href', url);
 			});
+
+			// Событие нажатия на кнопку выхода
+			jQuery('#logout').on('click', function () {
+				pop.CanUpDate = false;
+				chrome.runtime.connect({name: 'remove_token'});
+				location.reload();
+				return false;
+			});
 		}
 	});
 
