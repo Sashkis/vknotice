@@ -1,0 +1,75 @@
+{
+	"menu": {
+		"my":"Mein Profil",
+		"friends":"Meine Freunde",
+		"photos":"Meine Fotos",
+		"videos":"Meine Videos",
+		"audio":"Meine Musik",
+		"messages":"Meine Nachrichten",
+		"groups":"Meine Communities",
+		"feed":"Meine Neuigkeiten",
+		"notifications":"Mein Feedback",
+		"setings":"Meine Einstellungen"
+	},
+	"options":{
+		"audio":"Sound-Benachrichtigungen",
+		"showMessage":"Zeigt die Anzahl der Nachrichten",
+		"friends":"Zu berichten über die Anmeldungen der Freunde",
+		"photos":"Melden Markierungen auf den Fotos",
+		"videos":"Melden Erhebungen in Videoaufnahmen",
+		"messages":"Melden persönlichen Mitteilungen",
+		"groups":"Melden Einladung in die Community",
+		"notifications":"Melden Antworten"
+	},
+	"attr":{
+		"no_mess":"Hier werden Ihre persönlichen Nachrichten angezeigt.",
+		"share":"Mit Freunden teilen",
+		"markAsRead":"Markieren von Nachrichten als gelesen markieren",
+		"auth":"Autorisierung",
+		"logout":"Logout",
+		"add":"Akzeptieren",
+		"remove":"Ablehnen",
+		"request":"Senden Sie eine Anfrage",
+		"delete":"Entfernen",
+		"write":"Schreiben",
+		
+		"photo":"Foto",
+		"post":"Eintrag",
+		"gift":"Geschenk",
+		"sticker":"Sticker",
+		"location":"Karte",
+		"wall_reply":"Kommentar",
+		"attach":"Anlage",
+
+		"chat":"Gespräch",
+		"chat_photo_update":"Das Cover der Konversation geändert",
+		"chat_photo_remove":"Das Cover der Konversation gelöscht",
+		"chat_create":"Erstellen Gespräch",
+		"chat_title_update":"Den Namen der Konversation geändert",
+		"chat_invite_user":"Eingeladen Benutzer",
+		"chat_kick_user":"Entfernt Benutzer",
+
+		"fwd_mess":["weitergeleitete Nachricht Antworten","Weiterleitung von Nachrichten","Weiterleitung von Nachrichten"],
+		"setings":"Konfiguration"
+	},
+	"alerts":{
+		"review":"Helfen Sie uns besser zu werden",
+		"review_link":"Bewertungen",
+
+		"update_mess":"<br>Sponsor dieses Update ist",
+		"share":"Die Internet-Zeitschrift BardLine.info",
+		
+		"thank":"Danken Autor",
+		
+		"close":"Schließen",
+		"Войти":"Anmelden",
+		"credo":"Versuchen für Sie",
+
+		"connect_error":"Verbindung fehlgeschlagen",
+		"api_error":"Fehler beim Zugriff auf"
+	},
+	"global":{
+		"author":"Unsere Gruppe",
+		"title":"Informer VK"
+	}
+}

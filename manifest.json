@@ -1,0 +1,38 @@
+ {
+	"manifest_version": 2,
+	"name": "__MSG_extName__",
+	"description":"__MSG_extDesc__",
+	"short_name":"Vk notice",
+	"default_locale": "ru",
+	"version": "3.4.3",
+	"incognito": "split",
+	"developer": {
+		"name": "Александр Козак",
+		"url": "https://vk.com/id45421694"
+	},
+	"icons": {
+		"128": "img/icon128.png"
+	},
+	"background": {
+		"page":"background.html"
+	},
+	"permissions": [
+		"*://vk.com/",
+		"*://vk.com/*",
+		"*://*.vk.com/*",
+		"background",
+		"storage",
+		"alarms",
+		"tabs"
+	],
+	"content_scripts": [{
+      "matches": ["*://oauth.vk.com/blank.html"],
+      "js": ["get_token.js"]
+    }],
+	"browser_action": {
+		"default_title": "__MSG_extName__",
+		"default_icon": "img/icon38-off.png",
+		"default_popup": "popup/popup.html"
+	},
+	"web_accessible_resources": ["https://vk.com/js/al/emoji.js"]
+}

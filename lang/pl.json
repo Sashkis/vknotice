@@ -1,0 +1,75 @@
+{
+	"menu": {
+		"my":"Moja Strona",
+		"friends":"Moi Znajomi",
+		"photos":"Moje Zdjęcia",
+		"videos":"Moje Filmy",
+		"audio":"Moja Muzyka",
+		"messages":"Moje Wiadomości",
+		"groups":"Moje Grupy",
+		"feed":"Moje Odpowiedzi",
+		"notifications":"Moje Nowości",
+		"setings":"Moje Ustawienia"
+	},
+	"options":{
+		"audio":"Powiadomienia dźwiękowe",
+		"showMessage":"Wyświetlanie ilości postów",
+		"friends":"Poinformować o nowych znajomych",
+		"photos":"Poinformować o zdjęciach ze mną",
+		"videos":"Poinformować o wideo, ze mną",
+		"messages":"Poinformować o prywatnych wiadomościach",
+		"groups":"Poinformować o zaproszeniach w społeczności",
+		"notifications":"Poinformować o odpowiedziach"
+	},
+	"attr":{
+		"no_mess":"Tutaj będzie pojawiała się lista Twoich wiadomości.",
+		"share":"Podziel się z przyjaciółmi",
+		"markAsRead":"Oznacz wiadomości jako przeczytane",
+		"auth":"Login",
+		"logout":"Wyjście",
+		"add":"Akceptuj",
+		"remove":"Odrzucić",
+		"request":"Złożyć wniosek",
+		"delete":"Usunąć",
+		"write":"Napisz",
+		
+		"photo":"Zdjęcia",
+		"post":"Zapis",
+		"gift":"Prezent",
+		"sticker":"Naklejki",
+		"location":"Mapa",
+		"wall_reply":"Komentarz",
+		"attach":"Załącznik",
+
+		"chat":"Rozmowa",
+		"chat_photo_update":"Zaktualizował zdjęcie rozmowy",
+		"chat_photo_remove":"Usunął zdjęcie rozmowy",
+		"chat_create":"Stworzył rozmowę",
+		"chat_title_update":"Zmienił nazwę rozmowy",
+		"chat_invite_user":"Zaprosił użytkownika",
+		"chat_kick_user":"Zamknął użytkownika",
+
+		"fwd_mess":["wiadomość przekazywana","przesłanych dalej wiadomości","przesłanych dalej wiadomości"],
+		"setings":"Ustawienia"
+	},
+	"alerts":{
+		"review":"Pomóż nam stać się lepszym",
+		"review_link":"Zostaw komentarz",
+
+		"update_mess":"<br>A sponsorem tej aktualizacji jest",
+		"share":"Magazyn internetowy BardLine.info",
+
+		"thank":"Podziękować autora",
+
+		"close":"Zamknij",
+		"Войти":"Zalogować",
+		"credo":"Staramy się dla ciebie",
+
+		"connect_error":"Błąd połączenia",
+		"api_error":"Błąd dostępu"
+	},
+	"global":{
+		"author":"Nasza grupa",
+		"title":"Vk Informatorem"
+	}
+}
