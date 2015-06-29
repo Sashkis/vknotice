@@ -13,7 +13,7 @@
  * ----------------------------------------------------------------------------
  */
 'use strict';
-chrome.storage.local.get(['audio','showMessage','api','options','alerts','lastLoadAlert'],function(storage){
+chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert'], function (storage) {
 	window.inf = new Informer(storage);
 	inf.deamonStart(2000);
 	inf.callAPI('execute.getLang', {}, function (lang_code) {
@@ -56,14 +56,14 @@ chrome.runtime.onInstalled.addListener(function (details) {
 				'url': 'http://bardline.info/?' + jQuery.param({
 					utm_source: 'Browser Extension',
 					utm_medium: 'Информер Вконтакте',
-					utm_campaign: '3.4.3',
+					utm_campaign: chrome.app.getDetails().version,
 					utm_content: 'Текст'
 				}),
 				'imgLink':'http://bardline.info/?' + jQuery.param({
 					utm_source: 'Browser Extension',
 					utm_medium: 'Информер Вконтакте',
-					utm_campaign:'3.4.3',
-					utm_content:'Изображение'
+					utm_campaign: chrome.app.getDetails().version,
+					utm_content: 'Изображение'
 				})
 			}
 		});
@@ -73,21 +73,21 @@ chrome.runtime.onInstalled.addListener(function (details) {
 chrome.alarms.onAlarm.addListener(function (alarm) {
 	if (alarm.name === 'get_review') {
 		inf.saveAlert({
-			'header':'credo',
-			'footer':'close',
+			'header': 'credo',
+			'footer': 'close',
 			'body': {
-				'img':'https://vk.com/images/stickers/60/128.png',
-				'text' :'review',
-				'ancor':'review_link',
+				'img'  : 'https://vk.com/images/stickers/60/128.png',
+				'text' : 'review',
+				'ancor': 'review_link',
 				'url'  : inf.getExtUrl()
 			}
 		});
 	} else if (alarm.name === 'say_thanks') {
 		inf.saveAlert({
-			'header':'credo',
-			'footer':'close',
+			'header': 'credo',
+			'footer': 'close',
 			'body': {
-				'img': 'https://vk.com/images/stickers/75/128.png',
+				'img'  : 'https://vk.com/images/stickers/75/128.png',
 				'ancor': 'thank',
 				'url'  : inf.getShareUrl()
 			}
@@ -97,17 +97,17 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 			// 'header':'credo',
 			'footer': 'close',
 			'body': {
-				'img': 'https://vk.com/images/stickers/910/128.png',
-				'text': 'update_mess',
+				'img'  : 'https://vk.com/images/stickers/910/128.png',
+				'text' : 'update_mess',
 				'ancor': 'share',
-				'url': inf.getShareUrl()
+				'url'  : inf.getShareUrl()
 			}
 		});
 	}
 });
 
 /**
- * Сохранение и удадение access_token
+ * Сохранение access_token и отправка Share ссылки
  */
 chrome.runtime.onConnect.addListener(function (port) {
 	if ('get_token' === port.name) {
@@ -137,12 +137,16 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	// Изменение настроек аудио из popup
 	if (changes.audio) {
-		if (!changes.audio.newValue) changes.audio.newValue = true;
+		if (!changes.audio.newValue) {
+			changes.audio.newValue = true;
+		}
 		inf.audio = changes.audio.newValue;
 	}
 	// Изменение настроек аудио из popup
 	if (changes.showMessage) {
-		if (!changes.showMessage.newValue) changes.showMessage.newValue = false;
+		if (!changes.showMessage.newValue) {
+			changes.showMessage.newValue = false;
+		}
 		inf.showMessage = changes.showMessage.newValue;
 	}
 });

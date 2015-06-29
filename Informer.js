@@ -32,6 +32,7 @@ function Informer (params) {
 		},
 		'options': 'friends,photos,videos,messages,groups,notifications'
 	}, p;
+
 	/**
 	 * Применяем свойства по-умолчанию
 	 */
@@ -79,7 +80,7 @@ function Informer (params) {
 		this.setLang(lang_code);
 		
 		jQuery.getJSON('lang/' + this.abbrlang + '.json', function (translate) {
-			chrome.storage.local.set({ 'i18n': translate });
+			chrome.storage.local.set({'i18n': translate});
 		}).fail(function (jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
 		    console.error('Load translate failed: ' + err);
@@ -251,12 +252,14 @@ function Informer (params) {
 			i = 0,
 			s;
 		for (; i < len; i++) {
-			if (!seg[i]) { continue; }
+			if (!seg[i]) {
+				continue;
+			}
 			s = seg[i].split('=');
 			ret[s[0]] = s[1];
 		}
 		return ret;
-	}
+	};
 
 	/**
 	 * Сохраняет параметры доступа 
@@ -264,7 +267,7 @@ function Informer (params) {
 	 */
 	this.saveAccess = function (access_str) {
 		var auth = this.parseURL(access_str);
-		if (auth.error === undefined && auth.state !== undefined && auth.state == chrome.app.getDetails().id) {
+		if (auth.error === undefined && auth.state !== undefined && auth.state === chrome.app.getDetails().id) {
 			this.api.access_token = auth.access_token;
 			this.api.user_id = auth.user_id;
 			this.deamonStart();
@@ -273,7 +276,9 @@ function Informer (params) {
 				chrome.storage.local.set({'api': this.api});
 			}.bind(this));
 			return true;
-		} else return false;
+		} else {
+			return false;
+		}
 	};
 
 	/**
@@ -282,10 +287,10 @@ function Informer (params) {
 	 */
 	this.removeAccess = function () {
 		this.api = {
-			'access_token':'_',
-			'user_id':'',
+			'access_token': '_',
+			'user_id': '',
 			'lang': 0,
-			'v':this.api.v
+			'v': this.api.v
 		};
 		this.setCounters([]);
 		chrome.storage.local.remove(['api']);
@@ -302,16 +307,16 @@ function Informer (params) {
 				needSound = false, c;
 			for (c in counters) {
 				if (c !== 'messages') {
-					sum += counters[c];
+					sum += counters[c]-0;
 					needSound = true;
 				} else {
 					if (this.showMessage !== true) {
-						sum += counters[c];
+						sum += counters[c]-0;
 						needSound = true;
 					} else if (!!dialogs) {
 						for (var i = dialogs.length; i--;) {
-							if (dialogs[i].unread) {
-								sum += dialogs[i].unread;
+							if (!!dialogs[i].unread) {
+								sum += dialogs[i].unread-0;
 								if (dialogs[i].push_settings === undefined || dialogs[i].push_settings.sound !== 0 ) {
 									needSound = true;
 								};
@@ -324,10 +329,10 @@ function Informer (params) {
 				this.playSound();
 			}
 			if (sum > 999) {
-				chrome.browserAction.setBadgeText({ text: '999+' });
+				chrome.browserAction.setBadgeText({text: '999+'});
 			}
 			else if(sum > 0) {
-				chrome.browserAction.setBadgeText({ text: sum + '' });
+				chrome.browserAction.setBadgeText({text: sum + ''});
 			}
 			this.badge = sum;
 			return sum;
@@ -341,12 +346,12 @@ function Informer (params) {
 	/**
 	 * Воспроизводит звук 
 	 */
-	this.playSound = function (force) {
+	this.playSound = function () {
 		if(this.audio === true) {
 			chrome.tabs.query({
 				url: "*://vk.com/*"
 			}, function (tabs) {
-				if (tabs.length === 0 || force === true) {
+				if (tabs.length === 0) {
 					jQuery('#audio')[0].play();
 				}
 			});
@@ -378,7 +383,7 @@ function Informer (params) {
 	this.generateError = function (API) {
 		if (API) {
 			var alert = {
-				'header':'api_error',
+				'header': 'api_error',
 				'body': {
 					'text': API.error.error_code + '. ' + API.error.error_msg,
 					'ancor': 'Войти',
@@ -393,31 +398,32 @@ function Informer (params) {
 				alert.header = '';
 			} else if ([6, 9].indexOf(API.error.error_code) !== -1) {
 				if (this.deamonStop()) {
-					setTimeout(function(){
-						window,inf.deamonStart();
-					},60000);
+					setTimeout(function () {
+						window.inf.deamonStart();
+					}, 60000);
 				}
 				alert = false;
 			}
 		} else {
 			var alert = {
-				'body':{
-					'text': 'connect_error',
+				'body': {
+					'text': 'connect_error'
 				}
 			};
 		}
-		this.saveAlert(alert,'error');
+
+		this.saveAlert(alert, 'error');
 	};
 
 	this.getAuthUrl = function () {
 		return 'https://oauth.vk.com/authorize?' + jQuery.param({
-			'redirect_uri'	:'oauth.vk.com/blank.html',
-			'client_id'		:4682781,
-			'scope'			:'offline,friends,messages,notifications',
-			'response_type'	:'token',
-			'display'		:'popup',
-			'v'				:this.api.v,
-			'state'			:chrome.app.getDetails().id
+			'redirect_uri'	: 'oauth.vk.com/blank.html',
+			'client_id'		: 4682781,
+			'scope'			: 'offline,friends,messages,notifications',
+			'response_type'	: 'token',
+			'display'		: 'popup',
+			'v'				: this.api.v,
+			'state'			: chrome.app.getDetails().id
 		});
 	};
 		
@@ -430,10 +436,10 @@ function Informer (params) {
 		
 	this.getShareUrl = function (share_options) {
 		return 'https://vk.com/share.php?' + jQuery.param(jQuery.extend({
-			'url'			:'http://vk.com/note45421694_12011424',
-			'title'			:chrome.i18n.getMessage('extName'),
-			'description'	:chrome.i18n.getMessage('extDesc'),
-			'image'			:'https://pp.vk.me/c623120/v623120694/2c4a7/LIelD5vBXdg.jpg'
+			'url'			: 'http://vk.com/note45421694_12011424',
+			'title'			: chrome.i18n.getMessage('extName'),
+			'description'	: chrome.i18n.getMessage('extDesc'),
+			'image'			: 'https://pp.vk.me/c623120/v623120694/2c4a7/LIelD5vBXdg.jpg'
 		}, share_options));
 	};
 };
