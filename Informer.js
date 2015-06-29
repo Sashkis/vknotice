@@ -161,7 +161,7 @@ function Informer (params) {
 			// Ошибка
 			function (error, API) {
 				chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
-				console.error('Main Request fail', error, API);
+				console.error('Main Request fail', API);
 				if (!this.api.access_token) {
 					console.error('access_token is not specified');
 					this.setCounters([]);
