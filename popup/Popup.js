@@ -241,14 +241,14 @@ function Popup(params) {
 	};
 
 	this.builFriendsOnline = function () {
+		var friendsNode = jQuery(document.createDocumentFragment());
 		if (this.friends.length > 0) {
-			var friendsNode = [];
 			this.friends.forEach(function (user_id) {
 				var user = this.profiles[user_id];
-				friendsNode.push(jQuery('<figure>' + user.profileLink(user.ava() + '<i class="icon-cancel" title="' + this.geti18n('attr.delete') + '"></i><a title="' + this.geti18n('attr.write') + '" class="icon-pencil" target="_blank" href="' + VK + 'write' + user.id + '"></a><figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
+				friendsNode.append(jQuery('<figure>' + user.profileLink(user.ava().icon('cancel',{title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
 			}, this);
-			jQuery('#right').append(friendsNode);
 		}
+		jQuery('#right').html(friendsNode);
 	};
 
 	this.buildNewFriends = function (refresh) {

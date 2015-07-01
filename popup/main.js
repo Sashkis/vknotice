@@ -27,7 +27,8 @@ setTimeout(function () {
 			var $onlineUsers = 	jQuery('#right figure');
 			// Событине для удаления друга онлайн
 			$onlineUsers.on('click', '.icon-cancel', function () {
-				$user = jQuery(this).parents('figure');
+				var $user = jQuery(this).parents('figure');
+				// console.log( $user );
 				$user.addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
 				var user = $user.data();
 
@@ -179,10 +180,16 @@ setTimeout(function () {
 				pop.profiles[user.id] = user;
 			});
 		}
+		if(changes.friends !== undefined) {
+			if (!changes.friends.newValue) {
+				changes.friends.newValue = [];
+			}
+			pop.friends = changes.friends.newValue;
+			pop.builFriendsOnline();
+		}
 		if(changes.newfriends !== undefined && pop.CanUpDate === true) {
 			pop.newfriends = changes.newfriends.newValue;
 			pop.buildNewFriends(true);
-			pop.buildCustomScrollbar();
 		}
 		if(changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
 			for (var i = changes.dialogs.newValue.length; i--;) {
