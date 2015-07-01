@@ -33,40 +33,19 @@ chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'l
 /**
  * Установка сообщений
  */
+ // 86400000 - один день
 chrome.runtime.onInstalled.addListener(function (details) {
-	/**
-	 * При установке
-	 */
+	 
+	// При установке
 	if (details.reason === 'install') {
-		// chrome.alarms.create('say_thanks', {'when' : Date.now() + 604800000 });// Через 7 дней
-		chrome.alarms.create('update', {'when' : Date.now() + 345600000 });// Через 4 дня
-		chrome.alarms.create('get_review', {'when' : Date.now() + 864000000 }); // Через 10 дней
+		chrome.alarms.create('say_thanks', {'when' : Date.now() + 86400000*7 });// Через 7 дней
+		chrome.alarms.create('get_review', {'when' : Date.now() + 86400000*14 }); // Через 10 дней
 	}
-	/**
-	 * При обновлении
-	 */
+	 
+	// При обновлении
 	else if (details.reason === 'update') {
-		inf.saveAlert({
-			'header': '<style>#alert{background: #222;  color: rgba(255,255,255,0.5);} #alert a{color: rgba(255,255,255,0.7);} #alert a:hover{color: rgba(255,255,255,1);}</style>',
-			'footer': 'close',
-			'body': {
-				'img': 'http://bardline.info/wp-content/uploads/2014/02/Bard_site_logo_w.png',
-				'text': 'update_mess',
-				'ancor': 'share',
-				'url': 'http://bardline.info/?' + jQuery.param({
-					utm_source: 'Browser Extension',
-					utm_medium: 'Информер Вконтакте',
-					utm_campaign: chrome.app.getDetails().version,
-					utm_content: 'Текст'
-				}),
-				'imgLink':'http://bardline.info/?' + jQuery.param({
-					utm_source: 'Browser Extension',
-					utm_medium: 'Информер Вконтакте',
-					utm_campaign: chrome.app.getDetails().version,
-					utm_content: 'Изображение'
-				})
-			}
-		});
+		chrome.alarms.create('get_review', {'when' : Date.now()}); // Через 0 дней
+		chrome.alarms.create('say_thanks', {'when' : Date.now() + 86400000*14 });// Через 7 дней
 	}
 });
 		
@@ -76,9 +55,10 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 			'header': 'credo',
 			'footer': 'close',
 			'body': {
-				'img'  : 'https://vk.com/images/stickers/60/128.png',
+				'img'  : 'https://vk.com/images/stickers/707/128.png',
 				'text' : 'review',
 				'ancor': 'review_link',
+				'imgLink': inf.getExtUrl(),
 				'url'  : inf.getExtUrl()
 			}
 		});
@@ -87,20 +67,10 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 			'header': 'credo',
 			'footer': 'close',
 			'body': {
-				'img'  : 'https://vk.com/images/stickers/75/128.png',
+				'img'  : 'https://vk.com/images/stickers/709/128.png',
 				'ancor': 'thank',
-				'url'  : inf.getShareUrl()
-			}
-		});
-	} else if (alarm.name === 'update') {
-		inf.saveAlert({
-			// 'header':'credo',
-			'footer': 'close',
-			'body': {
-				'img'  : 'https://vk.com/images/stickers/910/128.png',
-				'text' : 'update_mess',
-				'ancor': 'share',
-				'url'  : inf.getShareUrl()
+				'url'  : inf.getShareUrl(),
+				'imgLink': inf.getShareUrl()
 			}
 		});
 	}
