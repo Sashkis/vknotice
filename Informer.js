@@ -400,7 +400,7 @@ function Informer (params) {
 				if (this.deamonStop()) {
 					setTimeout(function () {
 						window.inf.deamonStart();
-					}, 60000);
+					}, 15000);
 				}
 				alert = false;
 			}
