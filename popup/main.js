@@ -187,9 +187,9 @@ setTimeout(function () {
 			pop.friends = changes.friends.newValue;
 			pop.builFriendsOnline();
 		}
-		if(changes.newfriends !== undefined && pop.CanUpDate === true) {
+		if(changes.newfriends !== undefined) {
 			pop.newfriends = changes.newfriends.newValue;
-			pop.buildNewFriends(true);
+			pop.buildNewFriends();
 		}
 		if(changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
 			for (var i = changes.dialogs.newValue.length; i--;) {

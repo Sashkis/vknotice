@@ -14,11 +14,10 @@
  */
 function Popup(params) {
 	var defaults = {
-		'CanUpDate': true,
 		'audio': true,
 		'counter': [],
 		'friends': [],
-		'newmess': [],
+		'dialogs': [],
 		'newfriends': [],
 		'profiles': [],
 		'api': {
@@ -251,7 +250,7 @@ function Popup(params) {
 		jQuery('#right').html(frag);
 	};
 
-	this.buildNewFriends = function (refresh) {
+	this.buildNewFriends = function () {
 		var $newfriends = jQuery('#newfriends'),
 			frag = jQuery(document.createDocumentFragment());
 
@@ -385,6 +384,7 @@ function Popup(params) {
 		}
 
 		if (!this.i18n) {
+			console.error('i18n not init');
 			return obj[1];
 		}
 		if (this.i18n[obj[0]] && this.i18n[obj[0]][obj[1]]) {
