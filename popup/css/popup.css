@@ -436,12 +436,18 @@ figcaption span a:hover {text-decoration: underline;}
 	opacity: 0.5;
 }
 .emoji {
-   display: inline; 
-  width: 16px;
-  height: 16px;
-  vertical-align: top;
-  margin: 0px 1px;
+	display: inline; 
+	width: 16px;
+	height: 16px;
+	vertical-align: top;
+	margin: 0px 1px;
 }
+
+.emoji.sticker {
+	height: 32px;
+	width: auto;
+}
+
 #newmess .dialog a {display: inline;}
 #newmess .dialog a:hover {text-decoration: underline;}
 #newmess .dialog .ans {
