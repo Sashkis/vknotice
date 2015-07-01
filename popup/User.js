@@ -1,4 +1,38 @@
 function User (user_obj) {
+
+	var param;
+	if (typeof user_obj === 'number') {
+		// if (!window.pop.profiles[user_obj]) {
+		// 	console.warn('User not found ' + user_obj);
+		// 	window.isLoad = false;
+		// 	return window.pop.callAPI('users.get', {
+		// 		user_ids: user_obj,
+		// 		fields: 'status,photo_100,domain,online'
+		// 	}, function (API) {
+		// 		window.pop.profiles[user_obj] = new User(API[0]);
+		// 		console.log(window.pop.profiles[user_obj]);
+		// 		return window.pop.profiles[user_obj];
+		// 	}, function (error) {
+		// 		console.log(error);
+		// 	});
+		// 	var a = 0;
+		// 	while(!window.pop.profiles[user_obj] && ++a < 15000) {
+		// 		console.log(window.pop.profiles[user_obj]);
+		// 		// wait
+		// 	};
+		// }
+
+		if (window.pop.profiles[user_obj]) {
+			for (param in window.pop.profiles[user_obj]) {
+				this[param] = window.pop.profiles[user_obj][param];
+			};
+			return true;
+		} else {
+			user_obj = {};
+		}
+	}
+
+
 	var defaults = {
 		'id': 0,
 		'domain': '',
@@ -9,7 +43,7 @@ function User (user_obj) {
 		'online_mobile': 0,
 		'photo_100': 'img/camera_100.png',
 		'status': '',
-	}, VK = 'https://vk.com/', param;
+	}, VK = 'https://vk.com/';
 
 	/**
 	 * Применяем свойства по-умолчанию
@@ -21,12 +55,11 @@ function User (user_obj) {
 	this.name = this.first_name + ' ' + this.last_name;
 
 	this.profileLink = function (ancor, needOnlineMarker) {
-		if(!ancor) ancor = this.name;
-		if(needOnlineMarker === true && this.online === 1) var profileClass = 'profile online';
+		if (!ancor) ancor = this.name;
+		if (needOnlineMarker === true && this.online === 1) var profileClass = 'profile online';
 		else var profileClass = 'profile';
 		return ancor.link(VK + this.domain, {class: profileClass});
 	};
-
 
 	this.ava = function (options) {
 		options = jQuery.extend({

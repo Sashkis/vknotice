@@ -135,10 +135,10 @@ function Informer (params) {
 		this.callAPI('execute.getdata', {'options': this.options},
 			// Успешно
 			function (API) {
+				chrome.storage.local.set(API);
 				chrome.browserAction.setIcon({path: 'img/icon38.png'});
 				this.setCounters(API.counter, API.dialogs);
 				this.saveAlert(false, 'error');
-				chrome.storage.local.set(API);
 			},
 			// Ошибка
 			function (error, API) {
@@ -166,11 +166,11 @@ function Informer (params) {
 			delete options.lang;
 		}
 
-		jQuery.getJSON('https://api.vk.com/method/' + method, options)
+		return jQuery.getJSON('https://api.vk.com/method/' + method, options)
 			.done(function (API) {
 				if (API.response !== undefined) {
 					if (done !== undefined) {
-						done.call(this, API.response);
+						return done.call(this, API.response);
 					}
 				} else {
 					this.generateError(API);

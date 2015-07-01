@@ -134,7 +134,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 		switch(type) {
 			case 'compact' :  
 				var author = this.from_id || this.user_id,
-					user = window.pop.profiles[ author ];
+					user = new User(author);
 				messHtml += '<div class="compact">'+user.ava({size:25, title: true})+'</div>';
 			default : 
 				messHtml += '<message class="short"><span class="body">'+this.body+'</span></message>';

@@ -63,7 +63,7 @@ function Dialog (dialog_obj) {
 					html += this.messages[i].getHtml('compact');
 				}
 			}
-			var author = window.pop.profiles[this.id];
+			var author = new User(this.id);
 			return this.addHeader({
 				class: author.online === 1 ? 'online' : '',
 				photo: author.ava({size: 50}),
@@ -98,10 +98,10 @@ function Dialog (dialog_obj) {
 		this.chat_active = this.chat_active.slice(0,4);
 		
 		switch (this.chat_active.length) {
-			case 1 : return '<div class="ava group-photo">' + window.pop.profiles[this.chat_active[0]].ava({size:50}) + '</div>'; break;
-			case 2 : return '<div class="ava group-photo"><div class="ava-half">' + window.pop.profiles[this.chat_active[0]].ava({size:50}) + '</div><div class="ava-half">' + window.pop.profiles[this.chat_active[1]].ava({size:50}) + '</div></div>'; break;
-			case 3 : return '<div class="ava group-photo"><div class="ava-half">' + window.pop.profiles[this.chat_active[0]].ava({size:50}) + '</div><div class="ava-quarter">' + window.pop.profiles[this.chat_active[1]].ava({size:25}) + '</div><div class="ava-quarter">' + window.pop.profiles[this.chat_active[2]].ava({size:25}) + '</div></div>'; break;
-			case 4 : return '<div class="ava group-photo"><div class="ava-quarter">' + window.pop.profiles[this.chat_active[0]].ava({size:25}) + '</div><div class="ava-quarter">' + window.pop.profiles[this.chat_active[1]].ava({size:25}) + '</div><div class="ava-quarter">' + window.pop.profiles[this.chat_active[2]].ava({size:25}) + '</div><div class="ava-quarter">' + window.pop.profiles[this.chat_active[3]].ava({size:25}) + '</div></div>'; break;
+			case 1 : return '<div class="ava group-photo">' + new User(this.chat_active[0]).ava({size:50}) + '</div>'; break;
+			case 2 : return '<div class="ava group-photo"><div class="ava-half">' + new User(this.chat_active[0]).ava({size:50}) + '</div><div class="ava-half">' + new User(this.chat_active[1]).ava({size:50}) + '</div></div>'; break;
+			case 3 : return '<div class="ava group-photo"><div class="ava-half">' + new User(this.chat_active[0]).ava({size:50}) + '</div><div class="ava-quarter">' + new User(this.chat_active[1]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[2]).ava({size:25}) + '</div></div>'; break;
+			case 4 : return '<div class="ava group-photo"><div class="ava-quarter">' + new User(this.chat_active[0]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[1]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[2]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[3]).ava({size:25}) + '</div></div>'; break;
 		}
 	};
 

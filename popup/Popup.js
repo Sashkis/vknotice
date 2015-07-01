@@ -234,7 +234,7 @@ function Popup(params) {
 
 
 	this.setCurrentProfile = function () {
-		this.current = this.profiles[this.api.user_id];
+		this.current = new User(this.api.user_id-0);
 		jQuery('#my a.profile').attr('href', VK+this.current.domain);
 		jQuery('header').append(this.current.ava({'isLink':true, 'size':50}) + '<h1>'+this.current.profileLink() + '</h1><h2>' + window.Emoji.emojiToHTML(this.current.status) + '</h2>');
 	};
@@ -243,7 +243,7 @@ function Popup(params) {
 		var frag = jQuery(document.createDocumentFragment());
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
-				var user = this.profiles[user_id];
+				var user = new User(user_id);
 				frag.append(jQuery('<figure>' + user.profileLink(user.ava().icon('cancel',{title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
@@ -258,7 +258,7 @@ function Popup(params) {
 			var isRequests = this.counter.friends !== undefined;
 
 			this.newfriends.forEach(function (user_id) {
-				var user = this.profiles[user_id];
+				var user = new User(user_id);
 
 				if (isRequests) {
 					var cancelButton = ''.icon('cancel', {class: 'hovered', title: this.geti18n('attr.remove')});
