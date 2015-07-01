@@ -306,7 +306,7 @@ function Informer (params) {
 			var sum = 0,
 				needSound = false, c;
 			for (c in counters) {
-				if (c === 'messages' && this.showMessage === true && dialogs.length > 0) {
+				if (c === 'messages' && this.showMessage === true && !!dialogs) {
 					for (var i = dialogs.length; i--;) {
 						if (dialogs[i].unread > 0) {
 							sum += dialogs[i].unread-0;
