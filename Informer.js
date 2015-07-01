@@ -306,23 +306,18 @@ function Informer (params) {
 			var sum = 0,
 				needSound = false, c;
 			for (c in counters) {
-				if (c !== 'messages') {
-					sum += counters[c]-0;
-					needSound = true;
-				} else {
-					if (this.showMessage !== true) {
-						sum += counters[c]-0;
-						needSound = true;
-					} else if (!!dialogs) {
-						for (var i = dialogs.length; i--;) {
-							if (!!dialogs[i].unread) {
-								sum += dialogs[i].unread-0;
-								if (dialogs[i].push_settings === undefined || dialogs[i].push_settings.sound !== 0 ) {
-									needSound = true;
-								};
+				if (c === 'messages' && this.showMessage === true && dialogs.length > 0) {
+					for (var i = dialogs.length; i--;) {
+						if (dialogs[i].unread > 0) {
+							sum += dialogs[i].unread-0;
+							if (dialogs[i].push_settings === undefined || dialogs[i].push_settings.sound !== 0 ) {
+								needSound = true;
 							};
 						};
 					};
+				} else {
+					sum += counters[c]-0;
+					needSound = true;
 				};
 			};
 			if (sum > this.badge && needSound) {
@@ -330,10 +325,13 @@ function Informer (params) {
 			}
 			if (sum > 999) {
 				chrome.browserAction.setBadgeText({text: '999+'});
-			}
-			else if(sum > 0) {
+			} else if (sum > 0) {
 				chrome.browserAction.setBadgeText({text: sum + ''});
+			} else {
+				sum = 0;
+				chrome.browserAction.setBadgeText({text: ''});
 			}
+
 			this.badge = sum;
 			return sum;
 		} else {
