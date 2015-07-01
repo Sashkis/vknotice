@@ -60,7 +60,7 @@ setTimeout(function () {
 			var $newmess = jQuery('#newmess');
 
 			// Помечаем сообщения как прочитанные
-			$newmess.on('click','.markAsRead',function (event) {
+			$newmess.on('click', '.markAsRead', function (event) {
 				var $button = jQuery(this),
 					dialog = $button.parents('.dialog').data();
 				$button.addClass('icon-spin4 animate-spin');
@@ -68,18 +68,18 @@ setTimeout(function () {
 			});
 			
 			// Открытие поля для ответа
-			$newmess.on('click','.dialog',function (event) {
-				if (!$newmess.find('.dialog a, .dialog textarea').is( jQuery(event.toElement) ) ) {
+			$newmess.on('click', '.dialog', function (event) {
+				if (!$newmess.find('.dialog a, .dialog textarea').is(jQuery(event.toElement))) {
 					var $ans = jQuery(this).find('.ans');
 					if (!jQuery(this).hasClass('open')) {
 						$newmess.find('.open').removeClass('open').find('.ans').slideUp();
 
 						jQuery(this).addClass('open')
-						$ans.slideDown(function(){
+						$ans.slideDown(function () {
 							$newmess.mCustomScrollbar("scrollTo", $ans.parent('.dialog'));
-							setTimeout(function(){
+							setTimeout(function () {
 								$ans.find('textarea').focus();
-							},300);
+							}, 300);
 						});
 					} else {
 						jQuery(this).removeClass('open');
@@ -115,7 +115,6 @@ setTimeout(function () {
 				}, dialog);
 				dialog.jQ.find('.mess-container').html(answer.getHtml('compact'));
 			});
-
 
 			pop.show();	// Уберает предзагрущик
 
