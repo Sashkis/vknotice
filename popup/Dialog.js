@@ -88,13 +88,15 @@ function Dialog (dialog_obj) {
 	};
 
 	this.getGroupPhoto = function () {
-		// var group_photo = '';
+		if (this.photo_50) {
+			return '<div class="ava group-photo"><img src="' + this.photo_50 + '"></div>';
+		}
 		if (this.chat_active === undefined) {
 			this.chat_active = [ this.from_id ];
 		}
-		if (this.chat_active.length > 4) {
-			this.chat_active = this.chat_active.slice(0,4);
-		}
+
+		this.chat_active = this.chat_active.slice(0,4);
+		
 		switch (this.chat_active.length) {
 			case 1 : return '<div class="ava group-photo">' + window.pop.profiles[this.chat_active[0]].ava({size:50}) + '</div>'; break;
 			case 2 : return '<div class="ava group-photo"><div class="ava-half">' + window.pop.profiles[this.chat_active[0]].ava({size:50}) + '</div><div class="ava-half">' + window.pop.profiles[this.chat_active[1]].ava({size:50}) + '</div></div>'; break;
