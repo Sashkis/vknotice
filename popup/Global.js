@@ -27,7 +27,7 @@ String.prototype.icon = function (icon, attr) {
 	if (attr) {
 		var attr_str = '', a;
 		for (a in attr) {
-			if(a === 'class') icon += ' ' + attr.class;
+			if (a === 'class') icon += ' ' + attr.class;
 			else attr_str += (a + '="' + attr[a] + '"');
 		}
 	} else var attr_str = '';

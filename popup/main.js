@@ -17,7 +17,7 @@ setTimeout(function () {
 	chrome.storage.local.get(['alerts','showMessage','audio','counter','friends','dialogs','newfriends','profiles','api','i18n','options'], function (storage) {
 		window.pop = new Popup(storage);
 		// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
-		if( pop.buildAlert() ) {		// Строит уведомления
+		if (pop.buildAlert()) {		// Строит уведомления
 			pop.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
 
 			/**
@@ -42,7 +42,7 @@ setTimeout(function () {
 			// Событине для создания нового сообщения
 			$onlineUsers.on('click', '.icon-pencil', function () {
 				var user = jQuery(this).parents('figure').data();
-				if( jQuery('#newmess .dialog').is('.dialog-'+user.id) ){
+				if (jQuery('#newmess .dialog').is('.dialog-'+user.id)) {
 					jQuery('#messages .slide').trigger('click');
 					jQuery('#newmess .dialog-'+user.id).trigger('click');
 					return false;
@@ -102,13 +102,13 @@ setTimeout(function () {
 			});
 
 			// Событие когда сообщение прочитано
-			$newmess.on('onMarkAsRead', '.dialog', function(event, dialog) {
+			$newmess.on('onMarkAsRead', '.dialog', function (event, dialog) {
 				dialog.jQ.removeClass('dialog-unread');
 				dialog.jQ.find('.markAsRead').removeClass('icon-spin4 animate-spin');
 			});
 
 			// Событие когда ответ отправлен
-			$newmess.on('onSendAnswer', '.dialog', function(event, dialog, answer) {
+			$newmess.on('onSendAnswer', '.dialog', function (event, dialog, answer) {
 				answer = new Message({
 					body: answer,
 					user_id: window.pop.current.id,
@@ -154,7 +154,7 @@ setTimeout(function () {
 			pop.initOptions();			// Переключает настройки. Активирует событие переключения настроек
 
 			// Share ссылка
-			pop.loadShareUrl(function(url){
+			pop.loadShareUrl(function (url) {
 				jQuery('#share').attr('href', url);
 			});
 
@@ -169,28 +169,28 @@ setTimeout(function () {
 	});
 
 	chrome.storage.onChanged.addListener(function (changes) {
-		if(changes.counter !== undefined) {
-			pop.counter = changes.counter.newValue;
+		if (changes.counter !== undefined) {
+			pop.counter = changes.counter.newValue || [];
 		}
-		if(changes.profiles !== undefined) {
-			if(changes.profiles.newValue === undefined) changes.profiles.newValue = [];
-			changes.profiles.newValue.forEach(function(user){
+
+		if (changes.profiles !== undefined) {
+			if (changes.profiles.newValue === undefined) changes.profiles.newValue = [];
+			changes.profiles.newValue.forEach(function (user) {
 				user = new User(user);
 				pop.profiles[user.id] = user;
 			});
 		}
-		if(changes.friends !== undefined) {
-			if (!changes.friends.newValue) {
-				changes.friends.newValue = [];
-			}
-			pop.friends = changes.friends.newValue;
+
+		if (changes.friends !== undefined) {
+			pop.friends = changes.friends.newValue || [];
 			pop.builFriendsOnline();
 		}
-		if(changes.newfriends !== undefined) {
-			pop.newfriends = changes.newfriends.newValue;
+		if (changes.newfriends !== undefined) {
+			pop.newfriends = changes.newfriends.newValue || [];
 			pop.buildNewFriends();
 		}
-		if(changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
+
+		if (changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
 			for (var i = changes.dialogs.newValue.length; i--;) {
 				var dialog = new Dialog(changes.dialogs.newValue[i]);
 				if (pop.dialogs[dialog.id] !== undefined && pop.dialogs[dialog.id].hash() !== dialog.hash()) {
@@ -198,9 +198,9 @@ setTimeout(function () {
 				}
 			};
 		}
-		if(changes.alerts !== undefined) {
-			if(changes.alerts.newValue === undefined) changes.alerts.newValue = {error:false,message:false};
-			pop.alerts = changes.alerts.newValue;
+
+		if (changes.alerts !== undefined) {
+			pop.alerts = changes.alerts.newValue || {error :false, message: false};
 			pop.buildAlert();
 		}
 		

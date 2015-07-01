@@ -19,7 +19,7 @@ function Informer (params) {
 		'lastLoadAlert': 0,
 		'abbrlang': 'ru',
 		'audio': true,
-		'showMessage': true,
+		'showMessage': false,
 		'alerts': {
 			'message': false,
 			'error': false
@@ -143,7 +143,7 @@ function Informer (params) {
 			// Ошибка
 			function (error, API) {
 				chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
-				console.error('Main Request fail', API);
+				console.error('Main Request fail', error);
 				if (!this.api.access_token) {
 					console.error('access_token is not specified');
 					this.setCounters([]);
@@ -327,7 +327,7 @@ function Informer (params) {
 	 * Воспроизводит звук 
 	 */
 	this.playSound = function () {
-		if(this.audio === true) {
+		if (this.audio === true) {
 			chrome.tabs.query({
 				url: "*://vk.com/*"
 			}, function (tabs) {
@@ -408,7 +408,7 @@ function Informer (params) {
 	};
 		
 	this.getExtUrl = function () {
-		if(navigator.vendor === 'Opera Software ASA' || navigator.vendor === 'Yandex')
+		if (navigator.vendor === 'Opera Software ASA' || navigator.vendor === 'Yandex')
 			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
 		else
 			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';

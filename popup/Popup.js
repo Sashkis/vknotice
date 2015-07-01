@@ -278,7 +278,7 @@ function Popup(params) {
 	this.buildNewMess = function () {
 		var $newmess = jQuery('#newmess');
 
-		if(this.dialogs.length > 0) {
+		if (this.dialogs.length > 0) {
 			var frag = jQuery(document.createDocumentFragment()), 
 				dialogCash = [], i;
 			for (i = this.dialogs.length; i--;) {
@@ -307,7 +307,7 @@ function Popup(params) {
 			var type = 'message';
 		}
 
-		if(this.alerts[type].body.text === 'connect_error') {
+		if (this.alerts[type].body.text === 'connect_error') {
 			jQuery('body').addClass('grayscale');
 			return true;
 		} else {

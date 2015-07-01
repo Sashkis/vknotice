@@ -1,7 +1,7 @@
 function Dialog (dialog_obj) {
 	var VK = 'https://vk.com/';
 			
-	this.init = function(dialog_obj){
+	this.init = function (dialog_obj) {
 		for (var p in dialog_obj) {
 			if (p !== 'message') {
 				this[p] = dialog_obj[p];
@@ -18,14 +18,14 @@ function Dialog (dialog_obj) {
 			this.id = this.user_id;
 			this.url = VK + 'im?sel=' + this.id;
 		}
-		if(dialog_obj.message.length === 0) {
+		if (dialog_obj.message.length === 0) {
 			this.addMess(dialog_obj);
 		} else {
 			this.addMess(dialog_obj.message);
 		}
 	};
 
-	this.addMess = function(mess_array){
+	this.addMess = function (mess_array) {
 		if (mess_array.length === undefined) {
 			mess_array = [mess_array];
 		}
@@ -72,7 +72,7 @@ function Dialog (dialog_obj) {
 			});
 		} else {
 			for (i = this.messages.length; i--;) {
-				if (this.messages[i+1] == undefined || this.messages[i].from_id != this.messages[i+1].from_id) {
+				if (this.messages[i+1] === undefined || this.messages[i].from_id !== this.messages[i+1].from_id) {
 					html += this.messages[i].getHtml('compact');
 				} else {
 					html += this.messages[i].getHtml();
@@ -107,9 +107,9 @@ function Dialog (dialog_obj) {
 
 	this.getClass = function (custom) {
 		var dialogClass = 'dialog dialog-'+this.id;
-		if(this.unread !== undefined) dialogClass += ' dialog-unread';
-		if(this.out === 1) dialogClass += ' dialog-ansver';
-		if(this.isGroup) dialogClass += ' dialog-group';
+		if (!!this.unread) dialogClass += ' dialog-unread';
+		if (this.out === 1) dialogClass += ' dialog-ansver';
+		if (this.isGroup) dialogClass += ' dialog-group';
 		return dialogClass + ' ' + (custom || '');
 	};
 
@@ -123,7 +123,7 @@ function Dialog (dialog_obj) {
 
 
 	// Помечаем сообщения как прочитанные
-	this.markAsRead = function() {
+	this.markAsRead = function () {
 		var dialogCash = this,
 			message_ids = this.messages.map(function (mess) {
 				return mess.id;
@@ -138,12 +138,12 @@ function Dialog (dialog_obj) {
 	};
 
 	// Отправляем ответ
-	this.sendAnswer = function(text) {
+	this.sendAnswer = function (text) {
 		var dialogCash = this,
 			sendOptions = {
 				message: text
 			};
-		if(this.isGroup) {
+		if (this.isGroup) {
 			sendOptions.user_id = '';
 			sendOptions.chat_id = this.id;
 		} else {
@@ -159,7 +159,7 @@ function Dialog (dialog_obj) {
 	};
 
 	// Обновляем диалог по новым данным
-	this.update = function(dialog_obj) {
+	this.update = function (dialog_obj) {
 		var isOpen = this.jQ.hasClass('open');
 		delete this.unread;
 		this.init(dialog_obj);

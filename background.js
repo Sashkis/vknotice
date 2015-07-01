@@ -94,31 +94,21 @@ chrome.runtime.onConnect.addListener(function (port) {
 });
 
 
-chrome.storage.onChanged.addListener(function(changes){
+chrome.storage.onChanged.addListener(function (changes) {
 	// Изменение настроек уведомлений из popup
 	if (changes.options) {
-		inf.options = changes.options.newValue;
+		inf.options = changes.options.newValue || '';
 	}
 	// Удаляем просмотренные alert'ти
 	if (changes.alerts) {
-		if (!changes.alerts.newValue) changes.alerts.newValue = {
-			'message': false,
-			'error': false
-		};
-		inf.alerts = changes.alerts.newValue;
+		inf.alerts = changes.alerts.newValue || {'message': false, 'error': false};
 	}
 	// Изменение настроек аудио из popup
 	if (changes.audio) {
-		if (!changes.audio.newValue) {
-			changes.audio.newValue = true;
-		}
-		inf.audio = changes.audio.newValue;
+		changes.audio.newValue || true;
 	}
 	// Изменение настроек аудио из popup
 	if (changes.showMessage) {
-		if (!changes.showMessage.newValue) {
-			changes.showMessage.newValue = false;
-		}
-		inf.showMessage = changes.showMessage.newValue;
+		inf.showMessage = changes.showMessage.newValue || false;
 	}
 });

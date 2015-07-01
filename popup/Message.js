@@ -4,31 +4,31 @@ function Message (mess_obj, parentDialog, parentMessage) {
 		this[param] = mess_obj[param];
 	};
 
-	if(parentDialog) {
+	if (parentDialog) {
 		this.parentDialog = parentDialog;
 		this.url = parentDialog.url + '&msgid=' + this.id;
 	}
 
-	if(parentMessage) {
+	if (parentMessage) {
 		this.parentMessage = parentMessage;
 		this.url = parentMessage.url;
 	}
 
-	if(this.action) {
+	if (this.action) {
 		this.body = '<span class="system">'+window.pop.geti18n('attr.'+this.action)+'</span>';
 	} else if (this.body) {
 		this.body = this.body.escapeHtml();
 		
 		// Делаем ссылки кликабельными
 		this.body = this.body.replace(/((https?:\/\/)?([A-Za-z-_0-9]+(\.[A-Za-z-_0-9]+)+)(\/[^\s]*)*)/g, function (url) {
-			if(url.length > 30) {
+			if (url.length > 30) {
 				var ancor = url.substr(0,13)+'...'+url.substr(url.length-13)
 			} else {
 				var ancor = url;
 			}
 
 			if (url.search(/https?:\/\//) == -1) {
-				return ancor.link('http://'+url);
+				return ancor.link('http://' + url);
 			} else {
 				return ancor.link(url);
 			}
@@ -55,7 +55,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	// Добавляем код вложений
 	if (this.attachments) {
 		for (var i = this.attachments.length; i--;) {
-			if(typeof this.attachments[i] !== 'object' ) continue;
+			if (typeof this.attachments[i] !== 'object' ) continue;
 			
 			var type = this.attachments[i].type,
 				attach = this.attachments[i][type];
@@ -114,7 +114,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 
 	if (this.fwd_messages) {
 		var fwd_text = '';
-		if(this.parentMessage !== undefined){
+		if (this.parentMessage !== undefined) {
 			fwd_text = getCase(window.pop.geti18n('attr.fwd_mess'), this.fwd_messages.length).icon('chat').link(this.url);
 		} else {
 			for (var i = 0; i < this.fwd_messages.length; i++) {
