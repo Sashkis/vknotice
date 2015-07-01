@@ -130,24 +130,6 @@ function Informer (params) {
 
 	/**
 	 * Загружает информацию для информера
-	 * 
-	 * counter: Array
-	 * friends: Array
-	 * newfriends: Array
-	 * newmess: Array of Object
-	 *  	body: String
-	 *		date: timastamp
-	 *  	from_id: Int
-	 * profiles: Object
-	 * 		ids: Array
-	 * 	 	items: Array of Object
-	 *    	 	domain: String
-	 *			first_name: String
-	 *			id: Int
-	 *			last_name: String
-	 *			photo_100: String (url)
-	 *			status: String
-	 *		 	verified: bool
 	 */
 	this.mainRequest = function () {
 		this.callAPI('execute.getdata', {'options': this.options},

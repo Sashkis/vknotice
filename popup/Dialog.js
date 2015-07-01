@@ -89,7 +89,7 @@ function Dialog (dialog_obj) {
 
 	this.getGroupPhoto = function () {
 		if (this.photo_50) {
-			return '<div class="ava group-photo"><img src="' + this.photo_50 + '"></div>';
+			return '<div class="ava group-photo"><img src="' + this.photo_50 + '" widht="50" height="50"></div>';
 		}
 		if (this.chat_active === undefined) {
 			this.chat_active = [ this.from_id ];

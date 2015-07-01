@@ -55,7 +55,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	// Добавляем код вложений
 	if (this.attachments) {
 		for (var i = this.attachments.length; i--;) {
-			if(typeof this.attachments[i] === 'string' ) continue;
+			if(typeof this.attachments[i] !== 'object' ) continue;
 			
 			var type = this.attachments[i].type,
 				attach = this.attachments[i][type];
@@ -97,17 +97,19 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				case 'geo'	: 
 					attach.coordinates = attach.coordinates.split(' ');
 					attach.coordinates = (attach.coordinates[0]-0) + ',' + (attach.coordinates[1]-0);
-					this.attachments[i] = ('&nbsp;' + (attach.place ? attach.place.title : window.pop.geti18n('attr.location'))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0'); break;
+					this.attachments[i] = ('&nbsp;' + (attach.place ? attach.place.title : window.pop.geti18n('attr.location'))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
+				break;
 				// Стикеры
 				case 'sticker': 
-				this.attachments[i] = '<img class="emoji sticker" src="' + this.attachments[i].sticker.photo_64 + '" height="32">'; break;
+					this.attachments[i] = '<img class="emoji sticker" src="' + this.attachments[i].sticker.photo_64 + '" height="32">';
+				break;
 				
 				// Неподдерживаемое вложение
 				default	 : this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.attach')).icon('attach').link(this.url);
 			}
-
-			this.body += '<span class="attachments">' + this.attachments.join(' ') + '</span>';
 		};
+
+		this.body += '<span class="attachments">' + this.attachments.join(' ') + '</span>';
 	}
 
 	if (this.fwd_messages) {
