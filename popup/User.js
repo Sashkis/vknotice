@@ -30,10 +30,11 @@ function User (user_obj) {
 
 	this.ava = function (options) {
 		options = jQuery.extend({
+			'title': false,
 			'isLink': false,
 			'size': 100
 		}, options);
-		var imgHTML = '<img class="ava" src="' + this.photo_100 + '" width="' + options.size + '" height="' + options.size + '"/>';
+		var imgHTML = '<img class="ava" title="' + (options.title ? this.name : '') + '" src="' + this.photo_100 + '" width="' + options.size + '" height="' + options.size + '"/>';
 		if (options.isLink === true) return this.profileLink(imgHTML, true);
 		else return imgHTML;
 	}
