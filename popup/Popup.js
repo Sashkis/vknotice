@@ -241,25 +241,24 @@ function Popup(params) {
 	};
 
 	this.builFriendsOnline = function () {
-		var friendsNode = jQuery(document.createDocumentFragment());
+		var frag = jQuery(document.createDocumentFragment());
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = this.profiles[user_id];
-				friendsNode.append(jQuery('<figure>' + user.profileLink(user.ava().icon('cancel',{title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
+				frag.append(jQuery('<figure>' + user.profileLink(user.ava().icon('cancel',{title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
-		jQuery('#right').html(friendsNode);
+		jQuery('#right').html(frag);
 	};
 
 	this.buildNewFriends = function (refresh) {
-		var $newfriends = jQuery('#newfriends');
-		$newfriends.empty();
+		var $newfriends = jQuery('#newfriends'),
+			frag = jQuery(document.createDocumentFragment());
 
 		if (this.newfriends.length > 0) {
-			var isRequests = this.counter.friends !== undefined,
-				messNodes = [];
+			var isRequests = this.counter.friends !== undefined;
 
-			this.newfriends.forEach(function(user_id){
+			this.newfriends.forEach(function (user_id) {
 				var user = this.profiles[user_id];
 
 				if (isRequests) {
@@ -269,12 +268,12 @@ function Popup(params) {
 					var cancelButton = '';
 					var addButton    = ''.icon('ok', {class: 'hovered', title: this.geti18n('attr.request')});
 				}
-				messNodes.push( jQuery('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
+				frag.append(jQuery('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
 			}, this);
-			$newfriends.append(messNodes);
 		} else {
 			jQuery('#friends .slide').add($newfriends).removeClass('open'); // Закрыть панель новых друзей
 		}
+		$newfriends.html(frag);
 	};
 
 	this.buildNewMess = function () {
