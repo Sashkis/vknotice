@@ -55,11 +55,11 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 			'header': 'credo',
 			'footer': 'close',
 			'body': {
-				'img'  : 'https://vk.com/images/stickers/707/128.png',
-				'text' : 'review',
-				'ancor': 'review_link',
+				'img'	 : 'https://vk.com/images/stickers/707/128.png',
+				'text'	 : 'review',
+				'ancor'	 : 'review_link',
 				'imgLink': inf.getExtUrl(),
-				'url'  : inf.getExtUrl()
+				'url'	 : inf.getExtUrl()
 			}
 		});
 	} else if (alarm.name === 'say_thanks') {
@@ -67,9 +67,9 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 			'header': 'credo',
 			'footer': 'close',
 			'body': {
-				'img'  : 'https://vk.com/images/stickers/709/128.png',
-				'ancor': 'thank',
-				'url'  : inf.getShareUrl(),
+				'img'	 : 'https://vk.com/images/stickers/709/128.png',
+				'ancor'	 : 'thank',
+				'url'	 : inf.getShareUrl(),
 				'imgLink': inf.getShareUrl()
 			}
 		});
