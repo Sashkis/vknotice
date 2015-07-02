@@ -67,7 +67,7 @@ function Dialog (dialog_obj) {
 			return this.addHeader({
 				class: author.online === 1 ? 'online' : '',
 				photo: author.ava({size: 50}),
-				title: author.name,
+				title: author.name(),
 				messages: html
 			});
 		} else {

@@ -408,10 +408,11 @@ function Informer (params) {
 	};
 		
 	this.getExtUrl = function () {
-		if (navigator.vendor === 'Opera Software ASA' || navigator.vendor === 'Yandex')
+		if (/opera/i.test(navigator.userAgent) || /opr/i.test(navigator.userAgent) || /Yandex/i.test(navigator.userAgent) || /YaBrowser/i.test(navigator.userAgent)) {
 			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
-		else
+		} else {
 			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
+		}
 	};
 		
 	this.getShareUrl = function (share_options) {

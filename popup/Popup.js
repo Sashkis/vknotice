@@ -244,7 +244,7 @@ function Popup(params) {
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append(jQuery('<figure>' + user.profileLink(user.ava().icon('cancel',{title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
+				frag.append(jQuery('<figure>' + user.profileLink(user.ava().icon('cancel',{title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
 		jQuery('#right').html(frag);
