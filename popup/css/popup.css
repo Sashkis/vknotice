@@ -426,8 +426,11 @@ figcaption span a:hover {text-decoration: underline;}
 
 #newmess .name {
 	display: block;
-	font-weight: bold;
 	margin-bottom: 2px;
+}
+.dialog-100 .name {
+  color: #2E7B27;
+  font-weight: bold;
 }
 #newmess .body {color: #000;}
 #newmess .body [class^="icon-"]:before, #newmess .body [class*=" icon-"]:before {display: inline;}
