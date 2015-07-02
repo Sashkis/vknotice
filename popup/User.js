@@ -15,10 +15,11 @@ function User (user_obj) {
 			}, function (API) {
 				window.pop.profiles[user_obj.id] = new User(API[0]);
 			});
+			
 			user_obj = {
 				notLoaded: true,
 				id: user_obj,
-				domain: 'id'+user_obj
+				domain: 'id' + user_obj
 			};
 		}
 	}

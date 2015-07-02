@@ -4,7 +4,7 @@
 	"description":"__MSG_extDesc__",
 	"short_name":"Vk notice",
 	"default_locale": "ru",
-	"version": "3.4.7",
+	"version": "3.4.8",
 	"developer": {
 		"name": "Александр Козак",
 		"url": "https://vk.com/id45421694"
