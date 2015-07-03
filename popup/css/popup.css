@@ -432,6 +432,14 @@ figcaption span a:hover {text-decoration: underline;}
   color: #2E7B27;
   font-weight: bold;
 }
+.date {
+  font-weight: normal;
+  color: #999999;
+  font-size: 0.9em;
+}
+.dialog:hover .date {
+	color: #8795a5;
+}
 #newmess .body {color: #000;}
 #newmess .body [class^="icon-"]:before, #newmess .body [class*=" icon-"]:before {display: inline;}
 #newmess .body .system {

@@ -49,7 +49,7 @@ function Dialog (dialog_obj) {
 			title: window.pop.geti18n('attr.chat'),
 			messages: ''
 		}, options);
-		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + '</span><span class="mess-container">' + options.messages + '</span></div>';
+		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + ' <span class="date">' + new Date(this.date*1000).toStringVkFormat() + '</span></span><span class="mess-container">' + options.messages + '</span></div>';
 	};
 
 	this.getHtml = function () {

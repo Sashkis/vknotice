@@ -92,14 +92,23 @@ setTimeout(function () {
 			});
 
 			// Отправить сообщение
-			$newmess.on('keypress', 'textarea', function (eventObject) {
-				if (eventObject.which === 13 && eventObject.shiftKey === false ) {
-					jQuery(this).attr('disabled', 'disabled');
+			$newmess.on('submit', 'textarea', function (eventObject) {
+				// if (eventObject.which === 13 && eventObject.shiftKey === false ) {
+				// 	jQuery(this).attr('disabled', 'disabled');
 
-					var dialog = jQuery(this).parents('.dialog').data();
-					return !dialog.sendAnswer(jQuery(this).val());
-				}
+				// 	var dialog = jQuery(this).parents('.dialog').data();
+				// 	return !dialog.sendAnswer(jQuery(this).val());
+				// }
+				console.log('sub');
 			});
+			// $newmess.on('keypress', 'textarea', function (eventObject) {
+			// 	if (eventObject.which === 13 && eventObject.shiftKey === false ) {
+			// 		jQuery(this).attr('disabled', 'disabled');
+
+			// 		var dialog = jQuery(this).parents('.dialog').data();
+			// 		return !dialog.sendAnswer(jQuery(this).val());
+			// 	}
+			// });
 
 			// Событие когда сообщение прочитано
 			$newmess.on('onMarkAsRead', '.dialog', function (event, dialog) {
@@ -185,6 +194,7 @@ setTimeout(function () {
 			pop.friends = changes.friends.newValue || [];
 			pop.builFriendsOnline();
 		}
+
 		if (changes.newfriends !== undefined) {
 			pop.newfriends = changes.newfriends.newValue || [];
 			pop.buildNewFriends();

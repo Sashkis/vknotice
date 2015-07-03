@@ -5,12 +5,10 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	};
 
 	if (parentDialog) {
-		this.parentDialog = parentDialog;
 		this.url = parentDialog.url + '&msgid=' + this.id;
 	}
 
 	if (parentMessage) {
-		this.parentMessage = parentMessage;
 		this.url = parentMessage.url;
 	}
 
@@ -56,30 +54,30 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	if (this.attachments) {
 		for (var i = this.attachments.length; i--;) {
 			if (typeof this.attachments[i] !== 'object' ) continue;
-			
 			var type = this.attachments[i].type,
 				attach = this.attachments[i][type];
+				console.log(attach);
 			switch(type) {
 				// Изображение
 				case 'photo': 
-					var photo_url = '';
-					if 		(attach['photo_2560']!== undefined) photo_url = attach['photo_2560'];
-					else if (attach['photo_1280']!== undefined) photo_url = attach['photo_1280'];
-					else if (attach['photo_807'] !== undefined) photo_url = attach['photo_807'];
-					else if (attach['photo_604'] !== undefined) photo_url = attach['photo_604'];
-					else if (attach['photo_130'] !== undefined) photo_url = attach['photo_130'];
-					else if (attach['photo_75']  !== undefined) photo_url = attach['photo_75'];
-					else photo_url = this.url;
-					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.photo')).icon('camera').link(photo_url); 
+					attach.url = '';
+					if 		(attach['photo_2560']!== undefined) attach.url = attach['photo_2560'];
+					else if (attach['photo_1280']!== undefined) attach.url = attach['photo_1280'];
+					else if (attach['photo_807'] !== undefined) attach.url = attach['photo_807'];
+					else if (attach['photo_604'] !== undefined) attach.url = attach['photo_604'];
+					else if (attach['photo_130'] !== undefined) attach.url = attach['photo_130'];
+					else if (attach['photo_75']  !== undefined) attach.url = attach['photo_75'];
+					else attach.url = this.url;
+					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.photo')).icon('camera').link(attach.url); 
 				break;
 				// Подарок
 				case 'gift': 
-					var thumb_url = '';
-					if 		(attach['thumb_256']!== undefined) thumb_url = attach['thumb_256'];
-					else if (attach['thumb_96'] !== undefined) thumb_url = attach['thumb_96'];
-					else if (attach['thumb_48'] !== undefined) thumb_url = attach['thumb_48'];
-					else thumb_url = this.url;
-					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.gift')).icon('gift').link(thumb_url); 
+					attach.url = '';
+					if 		(attach['thumb_256']!== undefined) attach.url = attach['thumb_256'];
+					else if (attach['thumb_96'] !== undefined) attach.url = attach['thumb_96'];
+					else if (attach['thumb_48'] !== undefined) attach.url = attach['thumb_48'];
+					else attach.url = this.url;
+					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.gift')).icon('gift').link(attach.url); 
 				break;
 				// Пост
 				case 'wall' : this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.post')).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
@@ -109,16 +107,16 @@ function Message (mess_obj, parentDialog, parentMessage) {
 			}
 		};
 
-		this.body += '<span class="attachments">' + this.attachments.join(' ') + '</span>';
+		this.body += ' <span class="attachments">' + this.attachments.join(' ') + '</span>';
 	}
 
 	if (this.fwd_messages) {
 		var fwd_text = '';
-		if (this.parentMessage !== undefined) {
+		if (parentMessage !== undefined) {
 			fwd_text = getCase(window.pop.geti18n('attr.fwd_mess'), this.fwd_messages.length).icon('chat').link(this.url);
 		} else {
 			for (var i = 0; i < this.fwd_messages.length; i++) {
-				this.fwd_messages[i] = new Message(this.fwd_messages[i], this.parentDialog, this);
+				this.fwd_messages[i] = new Message(this.fwd_messages[i], parentDialog, this);
 				if ((this.fwd_messages[i-1] != undefined && this.fwd_messages[i-1].user_id == this.fwd_messages[i].user_id)) {
 					fwd_text += this.fwd_messages[i].getHtml();
 				} else {
@@ -126,18 +124,16 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				}
 			};
 		}
-		this.body += '<div class="fwd">'+fwd_text+'</div>';
+		this.body += ' <div class="fwd">' + fwd_text + '</div>';
 	}
 
 	this.getHtml = function (type) {
 		var messHtml = '';
 		switch(type) {
 			case 'compact' :  
-				var author = this.from_id || this.user_id,
-					user = new User(author);
-				messHtml += '<div class="compact">'+user.ava({size:25, title: true})+'</div>';
+				messHtml += '<div class="compact">' + new User(this.from_id || this.user_id).ava({size:25, title: true}) + '</div>';
 			default : 
-				messHtml += '<message class="short"><span class="body">'+this.body+'</span></message>';
+				messHtml += '<message class="short"><span class="body">' + this.body + '</span></message>';
 		}
 		return messHtml;
 	}

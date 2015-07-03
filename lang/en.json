@@ -71,5 +71,16 @@
 	"global":{
 		"author":"Our group",
 		"title":"Vk Informer"
+	},
+	"date": {
+		"at": "at",
+		"now":"just now",
+		"ago":"ago",
+		"today": "today",
+		"tomorrow": "tomorrow",
+		"seconds":["second", "seconds", "seconds"],		
+		"minutes": ["minute", "minutes", "minutes"],
+		"hours": ["hour", "hours", "hours"],
+		"months": ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
 	}
 }

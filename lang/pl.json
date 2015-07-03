@@ -71,5 +71,16 @@
 	"global":{
 		"author":"Nasza grupa",
 		"title":"Vk Informatorem"
+	},
+	"date": {
+		"at": "w",
+		"now":"tylko że",
+		"ago":"temu",
+		"today": "dziś",
+		"tomorrow": "wczoraj",
+		"seconds":["sekundę", "sekundy", "sekund"],		
+		"minutes": ["minutę", "minuty", "minut"],
+		"hours": ["godzinę", "godziny", "godzin"],
+		"months": ["sty", "lut", "mar", "kwi", "maj", "cze", "lip", "sie", "wrz", "paź", "lis", "gru"]
 	}
 }
