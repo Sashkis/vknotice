@@ -1,10 +1,10 @@
  {
 	"manifest_version": 2,
 	"name": "__MSG_extName__",
-	"description":"__MSG_extDesc__",
-	"short_name":"Vk notice",
+	"description": "__MSG_extDesc__",
+	"short_name": "Vk notice",
 	"default_locale": "ru",
-	"version": "3.4.8",
+	"version": "3.4.9",
 	"developer": {
 		"name": "Александр Козак",
 		"url": "https://vk.com/id45421694"
@@ -13,7 +13,7 @@
 		"128": "img/icon128.png"
 	},
 	"background": {
-		"page":"background.html"
+		"page": "background.html"
 	},
 	"permissions": [
 		"*://vk.com/",

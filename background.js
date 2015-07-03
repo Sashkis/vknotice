@@ -15,7 +15,7 @@
 'use strict';
 chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert'], function (storage) {
 	window.inf = new Informer(storage);
-	inf.deamonStart(2000);
+	inf.deamonStart();
 	inf.callAPI('execute.getLang', {}, function (lang_code) {
 		inf.loadTranslate(lang_code);
 		inf.addVisitor();
@@ -23,7 +23,7 @@ chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'l
 
 	// Загрузка alerts из ВК
 	setInterval(function () {
-		if (inf.deamonStatus) {
+		if (inf.isDeamonStarted) {
 			inf.loadAlerts();
 		}
 	}, 10800000); // 3 часа

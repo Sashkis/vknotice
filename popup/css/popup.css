@@ -1,17 +1,17 @@
 /* 
- * ----------------------------------------------------------------------------
- * Extension URI: https://vk.com/vknotice 
- * Author: Alex Kozack
- * Author URI: https://vk.com/alex.kozack
- * License: "THE BEER-WARE LICENSE" (Revision 42)
- * 
- * Copyright 2015 Alex Kozack (email: cawa-93@yandex.ru)
- * 
- * <cawa-93@yandex.ru> wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
- * ----------------------------------------------------------------------------
- */
+* ----------------------------------------------------------------------------
+* Extension URI: https://vk.com/vknotice 
+* Author: Alex Kozack
+* Author URI: https://vk.com/alex.kozack
+* License: "THE BEER-WARE LICENSE" (Revision 42)
+* 
+* Copyright 2015 Alex Kozack (email: cawa-93@yandex.ru)
+* 
+* <cawa-93@yandex.ru> wrote this file.  As long as you retain this notice you
+* can do whatever you want with this stuff. If we meet some day, and you think
+* this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
+* ----------------------------------------------------------------------------
+*/
 
 body {
 	color: #000;
@@ -20,17 +20,16 @@ body {
 	padding: 5px;
 	width: 459px;
 }
-
 body.grayscale {
 	-webkit-filter: grayscale(100%);
 }
-
 a {
 	color: #2B587A;
 	cursor: pointer;
 	text-decoration: none;
 }
-.wraper, #alert {
+.wraper,
+#alert {
 	background: rgba(255,255,255,.9) no-repeat center;
 	display: none;
 	height: 100%;
@@ -40,7 +39,9 @@ a {
 	width: 100%;
 	z-index: 15;
 }
-.wraper.show {display: block;}
+.wraper.show {
+	display: block;
+}
 .wraper div {
 	font-size: 120%;
 	padding-top: 25%;
@@ -50,31 +51,41 @@ a {
 	color: #2B587A;
 	font-size: 40px;
 }
-.wraper div a:hover {text-decoration: underline;}
-
- #alert {
- 	top: -100%;
- 	display: block;
- 	visibility: hidden;
-	transition:top .3s,visibility .3s;
- }
- #alert.show {
- 	visibility: visible;
- 	top: 0%;
- }
- div#alert.error {
-  background: #fff !important;
+.wraper div a:hover {
+	text-decoration: underline;
 }
- #alert ol,ul{
- 	margin:0;
- }
- #alert table { width: 100%; }
- #alert td {
- 	text-align: center;
- 	vertical-align: middle;
- }
-#alert thead td {height: 30px;}
-#alert tfoot td {height: 30px;}
+#alert {
+	top: -100%;
+	display: block;
+	visibility: hidden;
+	transition: top .3s,visibility .3s;
+
+}
+#alert.show {
+	visibility: visible;
+	top: 0%;
+
+}
+div#alert.error {
+	background: #fff !important;
+}
+ul,
+#alert ol {
+	margin: 0;
+}
+#alert table {
+	width: 100%;
+}
+#alert td {
+	text-align: center;
+	vertical-align: middle;
+}
+#alert thead td {
+	height: 30px;
+}
+#alert tfoot td {
+	height: 30px;
+}
 #alert tbody td {
 	height: 214px;
 	font-size: 120%;
@@ -83,35 +94,33 @@ a {
 #alert tfoot td a {
 	border-bottom: 1px dotted;
 }
-
 #alert tbody td img {
-  max-height: 128px;
-  /* width: auto; */
-  max-width: 80%;
+	max-height: 128px;
+	max-width: 80%;
 }
-
 .col_bg {
 	background: #E1E7ED;
 	overflow: hidden;
 	padding: 5px;
 }
-.hovered:hover {background: #BBC7D3 !important;   color: #2B587A !important;}
-
+.hovered:hover {
+	background: #BBC7D3 !important;
+	color: #2B587A !important;
+}
 .icon-spin4.animate-spin {
 	cursor: wait;
 }
-
 header {
 	height: 50px;
 }
 header h1 {
-	font-size: 15px; 
+	font-size: 15px;
 	margin: 5px 0 0;
 }
 header h2 {
-	font-size: 13px; 
+	font-size: 13px;
 	font-weight: normal;
-	margin:0;
+	margin: 0;
 	line-height: 1.2;
 }
 header img {
@@ -123,7 +132,8 @@ header small {
 	font-weight: 100;
 	opacity: .4;
 }
-#open_option,#share {
+#open_option,
+#share {
 	border-radius: 2px;
 	color: rgba(43, 88, 122, 0.5);
 	cursor: pointer;
@@ -132,8 +142,9 @@ header small {
 	padding: 8px 4px;
 	margin-left: 5px;
 }
-
-#open_option.open {color: #2B587A;}
+#open_option.open {
+	color: #2B587A;
+}
 #left,
 .right {
 	display: inline-block;
@@ -142,18 +153,21 @@ header small {
 }
 #left {
 	box-sizing: border-box;
-	font:menu;
+	font: menu;
 	padding-right: 8px;
 	width: 30%;
 }
-#right {padding-left: 0px;}
+#right {
+	padding-left: 0px;
+}
 .right {
 	height: 210px;
 	overflow: hidden;
 	padding-left: 8px;
 	width: 70%;
 }
-#right:empty, #newfriends:empty {
+#right:empty,
+#newfriends:empty {
 	background: url(../img/alone.jpg) no-repeat center, #fff;
 }
 menu {
@@ -190,20 +204,25 @@ menu {
 	transition: background-color 200ms linear, color 200ms linear;
 }
 #my .icon-cog {
-  float: right;
-  color: gray;
-  padding: 0;
-  text-align: center;
+	float: right;
+	color: gray;
+	padding: 0;
+	text-align: center;
 }
 #my .icon-cog:hover {
 	color: #67829E;
 }
 #my a.profile {
-  margin-right: 16px;
+	margin-right: 16px;
 }
-.slide.open {background-color: #597DA3 !important; color:#fff !important;}
-#right figure a{display: block;}
-#right figure{
+.slide.open {
+	background-color: #597DA3 !important;
+	color: #fff !important;
+}
+#right figure a {
+	display: block;
+}
+#right figure {
 	display: inline-block;
 	height: 100px;
 	margin: 0;
@@ -214,10 +233,15 @@ menu {
 	width: 100px;
 }
 #right figure:nth-of-type(2),
-#right figure:nth-of-type(5){margin-left: 10px;margin-right: 10px}
+#right figure:nth-of-type(5) {
+	margin-left: 10px;
+	margin-right: 10px
+}
 #right figure:nth-of-type(1),
 #right figure:nth-of-type(2),
-#right figure:nth-of-type(3) {margin-bottom: 10px}
+#right figure:nth-of-type(3) {
+	margin-bottom: 10px
+}
 #right figcaption {
 	background: rgba(0,0,0,.5);
 	bottom: -100%;
@@ -232,7 +256,8 @@ menu {
 	transition: bottom .3s;
 	width: 100%;
 }
-#right figure .icon-cancel, #right figure .icon-pencil {
+#right figure .icon-cancel,
+#right figure .icon-pencil {
 	background: rgba(0,0,0,.5);
 	color: #fff;
 	display: block;
@@ -242,18 +267,34 @@ menu {
 	position: absolute;
 	text-align: center;
 }
-#right figure .icon-cancel { right: -100%; transition:right .3s; }
-#right figure .icon-pencil { left:  -100%; transition:left  .3s; }
-#right figure:hover figcaption {bottom:0px;}
-#right figure:hover .icon-cancel { right: 0px; }
-#right figure:hover .icon-pencil { left:  0px; }
-
-#right figure.delete a { cursor: wait; }
-#right figure.delete .icon-cancel, #right figure.delete .icon-pencil, #right figure.delete figcaption { display:none; }
-
+#right figure .icon-cancel {
+	right: -100%;
+	transition: right .3s;
+}
+#right figure .icon-pencil {
+	left: -100%;
+	transition:left .3s;
+}
+#right figure:hover figcaption {
+	bottom: 0px;
+}
+#right figure:hover .icon-cancel {
+	right: 0px;
+}
+#right figure:hover .icon-pencil {
+	left: 0px;
+}
+#right figure.delete a {
+	cursor: wait;
+}
+#right figure.delete .icon-cancel,
+#right figure.delete .icon-pencil,
+#right figure.delete figcaption {
+	display: none;
+}
 #right figure.delete .wait i {
-	  position: absolute;
-  color: #fff;
+	position: absolute;
+	color: #fff;
 	background: none;
 	font-size: 30px;
 	left: 50%;
@@ -268,16 +309,16 @@ menu {
 	height: 100%;
 	width: 100%;
 }
-footer  {
+footer {
 	bottom: 0;
 	position: absolute;
 	width: 100%;
 }
-#logout,#dev {
+#logout,
+#dev {
 	display: inline-block;
 	text-align: center;
 }
-
 #logout {
 	width: 20px;
 }
@@ -294,11 +335,12 @@ footer  {
 	transition: right .5s;
 }
 .slider.open {
-	right: 5px; 
+	right: 5px;
 	z-index: 10;
 }
-
-#options {  padding: 8px 0 0 8px; }
+#options {
+	padding: 8px 0 0 8px;
+}
 .checkbox {
 	cursor: pointer;
 }
@@ -311,27 +353,40 @@ footer  {
 	margin-right: 5px;
 	line-height: 0.98;
 }
-
-.checkbox:hover div {color: rgba(43, 88, 122, 0.8);}
-.checkbox.on div {color: #2B587A;}
-.checkbox.on:hover div {color: rgba(43, 88, 122, 0.8);}
-
-.checkbox div:before { content: '\e801'; } /* '' */
-.checkbox.on div:before { content: '\e800'; } /* '' */
-
-#newfriends {overflow-y: auto;}
+.checkbox:hover div {
+	color: rgba(43, 88, 122, 0.8);
+}
+.checkbox.on div {
+	color: #2B587A;
+}
+.checkbox.on:hover div {
+	color: rgba(43, 88, 122, 0.8);
+}
+.checkbox div:before {
+	content: '\e801';
+}
+.checkbox.on div:before {
+	content: '\e800';
+}
+#newfriends {
+	overflow-y: auto;
+}
 #newfriends figure {
 	background: #E1E7ED;
 	margin: 0 0 8px;
-	overflow: hidden; 
-	padding: 5px; 
+	overflow: hidden;
+	padding: 5px;
 }
 #newfriends figcaption > a {
-	display: block; 
+	display: block;
 	font-weight: bold;
 }
-figcaption span {display: block;}
-figcaption span a:hover {text-decoration: underline;}
+figcaption span {
+	display: block;
+}
+figcaption span a:hover {
+	text-decoration: underline;
+}
 .ava {
 	float: left;
 	margin-right: 10px;
@@ -339,20 +394,18 @@ figcaption span a:hover {text-decoration: underline;}
 	background-size: 100% 100%;
 }
 #newfriends figure > i {
-  border-radius: 2px;
-  color: rgba(43, 88, 122, 0.5);
-  cursor: pointer;
-  float: right;
-  font-size: 30px;
-  padding: 8px 4px;
+	border-radius: 2px;
+	color: rgba(43, 88, 122, 0.5);
+	cursor: pointer;
+	float: right;
+	font-size: 30px;
+	padding: 8px 4px;
 }
-
 #newfriends figure > i.icon-spin4:hover {
-  background: none !important;
-  color: rgba(43, 88, 122, 0.5) !important;
-  cursor: wait;
+	background: none !important;
+	color: rgba(43, 88, 122, 0.5) !important;
+	cursor: wait;
 }
-
 #newmess {
 	overflow: auto;
 }
@@ -366,14 +419,16 @@ figcaption span a:hover {text-decoration: underline;}
 	vertical-align: middle;
 	opacity: .3;
 }
-#newmess .dialog {
-  display: block;
-  cursor: pointer;
-  overflow: hidden;
-  padding: 5px;
-  border-bottom: 1px solid #e4e8ed;
+.dialog {
+	display: block;
+	cursor: pointer;
+	overflow: hidden;
+	padding: 5px;
+	border-bottom: 1px solid #e4e8ed;
 }
-.dialog-unread, .dialog:hover, .dialog.open  {
+.dialog-unread,
+.dialog:hover,
+.dialog.open {
 	background: #edf1f5;
 	border-color: #DAE1E8;
 }
@@ -390,11 +445,11 @@ figcaption span a:hover {text-decoration: underline;}
 	top: 41px;
 	width: 10px;
 }
-#newmess .group-photo {
+.group-photo {
 	overflow: hidden;
 	background: none;
 }
-#newmess .ava-half {
+.ava-half {
 	margin: 0 4px 4px 0;
 	float: left;
 	width: 23px;
@@ -402,95 +457,98 @@ figcaption span a:hover {text-decoration: underline;}
 	overflow: hidden;
 	border-radius: 2px;
 }
-
-#newmess .ava-half > img {
+.ava-half > img {
 	margin: 0px -12px;
 }
-
-#newmess .ava-quarter {
+.ava-quarter {
 	margin: 0 4px 4px 0;
 	width: 23px;
 	height: 23px;
 	overflow: hidden;
 	border-radius: 2px;
 }
-
 .mess-container {
-  display: block;
-  margin-left: 60px;
+	display: block;
+	margin-left: 60px;
 }
-
-#newmess .dialog > div {
+.dialog > div {
 	word-break: break-word;
 }
-
-#newmess .name {
+.name {
 	display: block;
 	margin-bottom: 2px;
 }
 .dialog-100 .name {
-  color: #2E7B27;
-  font-weight: bold;
+	color: #2E7B27;
+	font-weight: bold;
 }
 .date {
-  font-weight: normal;
-  color: #999999;
-  font-size: 0.9em;
+	font-weight: normal;
+	color: #999999;
+	font-size: 0.9em;
 }
 .dialog:hover .date {
 	color: #8795a5;
 }
-#newmess .body {color: #000;}
-#newmess .body [class^="icon-"]:before, #newmess .body [class*=" icon-"]:before {display: inline;}
-#newmess .body .system {
+.body {
+	color: #000;
+}
+.body [class^="icon-"]:before,
+.body [class*=" icon-"]:before {
+	display: inline;
+}
+.body .system {
 	font-style: italic;
 	opacity: 0.5;
 }
 .emoji {
-	display: inline; 
+	display: inline;
 	width: 16px;
 	height: 16px;
 	vertical-align: top;
 	margin: 0px 1px;
 }
-
 .emoji.sticker {
 	height: 32px;
 	width: auto;
 }
-
-#newmess .dialog a {display: inline;}
-#newmess .dialog a:hover {text-decoration: underline;}
-#newmess .dialog .ans {
+.dialog a {
+	display: inline;
+}
+.dialog a:hover {
+	text-decoration: underline;
+}
+.dialog .ans {
 	clear: both;
 	padding-top: 5px;
 	display: none;
 }
-#newmess .fwd {
+.fwd {
 	padding-left: 5px;
 	border-left: 2px solid #C3D1E0;
-    overflow: hidden;
+	overflow: hidden;
 }
-
-#newmess .dialog-group .fwd, #newmess .fwd .fwd {
-  margin-left: 35px;
+.dialog-group .fwd,
+.fwd .fwd {
+	margin-left: 35px;
 }
-#newmess .dialog-out > message > .body > .fwd, #newmess .system > .fwd  {
-  padding-left: 0;
-  border-left: none;
-}
-#newmess .ans textarea {
+.ans textarea {
 	width: 100%;
 	box-sizing: border-box;
-	resize:vertical;
+	resize: vertical;
 	height: 100%;
-	overflow:hidden;
+	overflow: hidden;
 	border-color: #C3CBD4;
 	font: inherit;
 }
-#newmess .ans textarea:focus { outline: none; }
-#newmess .dialog:hover textarea {border-color: #8898A9;}
-#newmess a a:hover i::before, #newmess a a:hover::before {
+.ans textarea:focus {
+	outline: none;
+}
+.dialog:hover textarea {
+	border-color: #8898A9;
+}
+a a:hover i::before,
+a a:hover::before {
 	text-decoration: none;
 }
 i.markAsRead {
@@ -502,15 +560,21 @@ i.markAsRead {
 	display: none;
 }
 i.markAsRead:hover {
-  color: rgba(43, 88, 122, 1);
+	color: rgba(43, 88, 122, 1);
 }
 .dialog-unread i.markAsRead {
 	display: block;
 }
-.mCSB_scrollTools { width: 8px; right: -3px; }
-.mCSB_inside>.mCSB_container { margin-right: 0px; }
-.mCSB_outside+.mCSB_scrollTools { right: -7px; }
-
+.mCSB_scrollTools {
+	width: 8px;
+	right: -3px;
+}
+.mCSB_inside>.mCSB_container {
+	margin-right: 0px;
+}
+.mCSB_outside+.mCSB_scrollTools {
+	right: -7px;
+}
 #sendmess h3 {
 	color: #45688E;
 	line-height: 1.27em;
@@ -518,7 +582,6 @@ i.markAsRead:hover {
 	padding: 0;
 	font-size: 1.09em;
 }
-
 #uselect {
 	border: 1px solid #C0CAD5;
 	padding: 2px;
@@ -527,15 +590,21 @@ i.markAsRead:hover {
 	cursor: pointer;
 	max-height: 190px;
 }
-#uselect .users {display: none;}
-#uselect.open .users {display: block;}
+#uselect .users {
+	display: none;
+}
+#uselect.open .users {
+	display: block;
+}
 #uselect .user {
 	overflow: hidden;
 	padding: 2px;
 	border-top: 1px solid #C0CAD5;
 	white-space: nowrap;
 }
-#uselect #uselect_current {display: block;}
+#uselect #uselect_current {
+	display: block;
+}
 #uselect .default {
 	padding: 4px 6px 6px;
 	color: rgb(119, 119, 119);

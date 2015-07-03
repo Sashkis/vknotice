@@ -30,7 +30,8 @@ function Informer (params) {
 			'lang': 0,
 			'v': '5.34'
 		},
-		'options': 'friends,photos,videos,messages,groups,notifications'
+		'options': 'friends,photos,videos,messages,groups,notifications',
+		'isDeamonStarted': false
 	}, p;
 
 	/**
@@ -92,7 +93,7 @@ function Informer (params) {
 	 * @param  delay   Интервалы между запросами
 	 */
 	this.deamonStart = function (delay) {
-		if (this.isDeamonStarted()) {
+		if (this.isDeamonStarted) {
 			console.info('Daemon already running');
 			return false;
 		} else {
@@ -102,9 +103,9 @@ function Informer (params) {
                 delay = delay * 1000;
             }
 
+			this.isDeamonStarted = true;
+			this.mainRequest(delay);
 			console.info('Daemon running');
-			this.mainRequest();
-			this.interval = setInterval(this.mainRequest.bind(this), delay);
 			return true;
 		}
 	};
@@ -113,25 +114,19 @@ function Informer (params) {
 	 * Остановка демона 
 	 */
 	this.deamonStop = function () {
-		if (!this.isDeamonStarted()) {
+		if (!this.isDeamonStarted) {
 			console.info('Daemon already stoped');
 			return false;
 		}
-		clearInterval(this.interval);
-		this.interval = undefined;
+		this.isDeamonStarted = false;
 		console.info('Daemon stopped');
 		return true;
 	};
 
-	this.isDeamonStarted = function () {
-		return this.interval !== undefined;
-	};
-
-
 	/**
 	 * Загружает информацию для информера
 	 */
-	this.mainRequest = function () {
+	this.mainRequest = function (delay) {
 		this.callAPI('execute.getdata', {'options': this.options},
 			// Успешно
 			function (API) {
@@ -150,6 +145,14 @@ function Informer (params) {
 					chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
 					this.deamonStop();
 					window.open(this.getAuthUrl());
+				}
+			},
+			// Всегда
+			function () {
+				if (this.isDeamonStarted) {
+					setTimeout(function () {
+						window.inf.mainRequest(delay);
+					}, delay);
 				}
 			}
 		);
