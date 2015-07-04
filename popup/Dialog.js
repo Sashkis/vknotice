@@ -89,19 +89,21 @@ function Dialog (dialog_obj) {
 
 	this.getGroupPhoto = function () {
 		if (this.photo_50) {
-			return '<div class="ava group-photo"><img src="' + this.photo_50 + '" widht="50" height="50"></div>';
+			return '<div class="group-photo"><img class="ava ava-full" src="' + this.photo_50 + '" widht="50" height="50"></div>';
 		}
-		if (this.chat_active === undefined) {
-			this.chat_active = [ this.from_id ];
+		if (!this.chat_active) {
+			this.chat_active = [this.from_id];
 		}
 
-		this.chat_active = this.chat_active.slice(0,4);
-		
+		for (var i = this.chat_active.length; i--;) {
+			this.chat_active[i] = new User(this.chat_active[i]);
+		};
+
 		switch (this.chat_active.length) {
-			case 1 : return '<div class="ava group-photo">' + new User(this.chat_active[0]).ava({size:50}) + '</div>'; break;
-			case 2 : return '<div class="ava group-photo"><div class="ava-half">' + new User(this.chat_active[0]).ava({size:50}) + '</div><div class="ava-half">' + new User(this.chat_active[1]).ava({size:50}) + '</div></div>'; break;
-			case 3 : return '<div class="ava group-photo"><div class="ava-half">' + new User(this.chat_active[0]).ava({size:50}) + '</div><div class="ava-quarter">' + new User(this.chat_active[1]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[2]).ava({size:25}) + '</div></div>'; break;
-			case 4 : return '<div class="ava group-photo"><div class="ava-quarter">' + new User(this.chat_active[0]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[1]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[2]).ava({size:25}) + '</div><div class="ava-quarter">' + new User(this.chat_active[3]).ava({size:25}) + '</div></div>'; break;
+			case 1 : return '<div class="group-photo">' + this.chat_active[0].ava({size: 50}) + '</div>'; break;
+			case 2 : return '<div class="group-photo">' + this.chat_active[0].ava({size: 50, type: 'half'}) + this.chat_active[1].ava({size: 50, type: 'half'}) + '</div>'; break;
+			case 3 : return '<div class="group-photo">' + this.chat_active[0].ava({size: 50, type: 'half'}) + this.chat_active[1].ava({size: 23, type: 'quarter'}) + this.chat_active[2].ava({size: 23, type: 'quarter'}) + '</div>'; break;
+			case 4 : return '<div class="group-photo">' + this.chat_active[0].ava({size: 23, type: 'quarter'}) + this.chat_active[1].ava({size: 23, type: 'quarter'}) + this.chat_active[2].ava({size: 23, type: 'quarter'}) + this.chat_active[3].ava({size: 23, type: 'quarter'}) + '</div>'; break;
 		}
 	};
 

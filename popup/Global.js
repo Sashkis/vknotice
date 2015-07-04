@@ -34,30 +34,30 @@ String.prototype.icon = function (icon, attr) {
 };
 
 Date.prototype.toStringVkFormat = function () {
- 	var now = new Date();
- 		ago = (now.getTime() - this.getTime())/1000; // Количество секунд прошедших с момента публикации
- 	if(ago < 10) return window.pop.i18n.date.now;
- 	else if(ago < 60) return getCase(window.pop.i18n.date.seconds, Math.floor(ago)) + '&nbsp' + window.pop.i18n.date.ago;
- 	else if(ago < 3600) return getCase(window.pop.i18n.date.minutes, Math.floor(ago / 60)) + '&nbsp' + window.pop.i18n.date.ago
- 	else if(ago < 10800) return getCase(window.pop.i18n.date.hours, Math.floor(ago / 3600)) + '&nbsp' + window.pop.i18n.date.ago
- 	else {
- 		var h = this.getHours() < 10 ? '0' + this.getHours() : this.getHours(),
- 			m = this.getMinutes() < 10 ? '0' + this.getMinutes() : this.getMinutes();
-	 	if (ago < 86400) {
-	 		return window.pop.i18n.date.today + '&nbsp' + window.pop.i18n.date.at + '&nbsp' + h + ':' + m;
-	 	} else if(ago < 172800) {
-	 		return window.pop.i18n.date.tomorrow + '&nbsp' + window.pop.i18n.date.at + '&nbsp' + h + ':' + m;
-	 	} else {
-	 		var y = this.getFullYear() != now.getFullYear() ? '&nbsp' + this.getFullYear() : '';
-	 		return this.getDate() + '&nbsp' + window.pop.i18n.date.months[this.getMonth()] + y + '&nbsp' + window.pop.i18n.date.at + '&nbsp' + h + ':' + m;
-	 	}
- 	}
+	var now = new Date();
+		ago = (now.getTime() - this.getTime())/1000; // Количество секунд прошедших с момента публикации
+	if(ago < 10) return window.pop.i18n.date.now;
+	else if(ago < 60) return getCase(window.pop.i18n.date.seconds, Math.floor(ago)) + '&nbsp' + window.pop.i18n.date.ago;
+	else if(ago < 3600) return getCase(window.pop.i18n.date.minutes, Math.floor(ago / 60)) + '&nbsp' + window.pop.i18n.date.ago
+	else if(ago < 10800) return getCase(window.pop.i18n.date.hours, Math.floor(ago / 3600)) + '&nbsp' + window.pop.i18n.date.ago
+	else {
+		var h = this.getHours() < 10 ? '0' + this.getHours() : this.getHours(),
+			m = this.getMinutes() < 10 ? '0' + this.getMinutes() : this.getMinutes();
+		if (ago < 86400) {
+			return window.pop.i18n.date.today + '&nbsp' + window.pop.i18n.date.at + '&nbsp' + h + ':' + m;
+		} else if (ago < 172800) {
+			return window.pop.i18n.date.tomorrow + '&nbsp' + window.pop.i18n.date.at + '&nbsp' + h + ':' + m;
+		} else {
+			var y = this.getFullYear() != now.getFullYear() ? '&nbsp' + this.getFullYear() : '';
+			return this.getDate() + '&nbsp' + window.pop.i18n.date.months[this.getMonth()] + y + '&nbsp' + window.pop.i18n.date.at + '&nbsp' + h + ':' + m;
+		}
+	}
 };
 
 /**
  * Возвращает правильный падеж фразы
  * @param  array t массив фраз
- * @param  int 	 n число
+ * @param  int	n число
  * @return strind  строка вида "5 сообщений"
  */
 function getCase (t, n) {

@@ -14,7 +14,10 @@
  */
 
 function Informer (params) {
-	var defaults = {
+	/**
+	 * Применяем свойства по-умолчанию
+	 */
+	params = jQuery.extend(true, {
 		'badge': 0,
 		'lastLoadAlert': 0,
 		'abbrlang': 'ru',
@@ -32,13 +35,8 @@ function Informer (params) {
 		},
 		'options': 'friends,photos,videos,messages,groups,notifications',
 		'isDeamonStarted': false
-	}, p;
-
-	/**
-	 * Применяем свойства по-умолчанию
-	 */
-	params = jQuery.extend(true, defaults, params);
-	for (p in params) {
+	}, params);
+	for (var p in params) {
 		if (params.hasOwnProperty(p)) {
 			this[p] = params[p];
 		}

@@ -24,7 +24,12 @@ function User (user_obj) {
 		}
 	}
 
-	var defaults = {
+	var VK = 'https://vk.com/';
+
+	/**
+	 * Применяем свойства по-умолчанию
+	 */
+	user_obj = jQuery.extend({
 		'id': 0,
 		'domain': '',
 		'first_name': '',
@@ -34,12 +39,8 @@ function User (user_obj) {
 		'online_mobile': 0,
 		'photo_100': 'img/camera_100.png',
 		'status': '',
-	}, VK = 'https://vk.com/';
-
-	/**
-	 * Применяем свойства по-умолчанию
-	 */
-	user_obj = jQuery.extend(defaults, user_obj);
+		'notLoaded': false,
+	}, user_obj);
 	for (param in user_obj) {
 		if (param === 'status') {
 			this[param] = user_obj.status.escapeHtml();
@@ -56,9 +57,9 @@ function User (user_obj) {
 	this.profileLink = function (ancor, needOnlineMarker) {
 		this.upData();
 		if (!ancor) ancor = this.name();
-		if (needOnlineMarker === true && this.online === 1) var profileClass = 'profile online';
-		else var profileClass = 'profile';
-		return ancor.link(VK + this.domain, {class: profileClass});
+		// if (needOnlineMarker === true && this.online === 1) var profileClass = 'profile online';
+		// else var profileClass = 'profile';
+		return ancor.link(VK + this.domain, {class: 'profile'});
 	};
 
 	this.ava = function (options) {
@@ -66,9 +67,14 @@ function User (user_obj) {
 		options = jQuery.extend({
 			'title': false,
 			'isLink': false,
-			'size': 100
+			'size': 100,
+			'marker': true,
+			'type': 'full'
 		}, options);
-		var imgHTML = '<img class="ava" title="' + (options.title ? this.name() : '') + '" src="' + this.photo_100 + '" width="' + options.size + '" height="' + options.size + '"/>';
+
+		var onlineClass = (!!this.online && options.marker ? ' online' : '');
+			imgHTML = '<div class="ava ava-' + options.type + onlineClass + '"><img title="' + (options.title ? this.name() : '') + '" src="' + this.photo_100 + '" width="' + options.size + '" height="' + options.size + '"/></div>';
+
 		if (options.isLink === true) return this.profileLink(imgHTML, true);
 		else return imgHTML;
 	};

@@ -1,4 +1,5 @@
 function Message (mess_obj, parentDialog, parentMessage) {
+	console.log(mess_obj);
 	var VK = 'https://vk.com/', param;
 	for (param in mess_obj) {
 		this[param] = mess_obj[param];
@@ -13,14 +14,13 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	}
 
 	if (this.action) {
-		this.body = '<span class="system">'+window.pop.geti18n('attr.'+this.action)+'</span>';
+		this.body = '<span class="system">' + window.pop.geti18n('attr.' + this.action) + '</span>';
 	} else if (this.body) {
 		this.body = this.body.escapeHtml();
-		
 		// Делаем ссылки кликабельными
 		this.body = this.body.replace(/((https?:\/\/)?([A-Za-z-_0-9]+(\.[A-Za-z-_0-9]+)+)(\/[^\s]*)*)/g, function (url) {
 			if (url.length > 30) {
-				var ancor = url.substr(0,13)+'...'+url.substr(url.length-13)
+				var ancor = url.substr(0, 13) + '...' + url.substr(url.length - 13)
 			} else {
 				var ancor = url;
 			}
@@ -56,7 +56,6 @@ function Message (mess_obj, parentDialog, parentMessage) {
 			if (typeof this.attachments[i] !== 'object' ) continue;
 			var type = this.attachments[i].type,
 				attach = this.attachments[i][type];
-				console.log(attach);
 			switch(type) {
 				// Изображение
 				case 'photo': 
@@ -131,10 +130,9 @@ function Message (mess_obj, parentDialog, parentMessage) {
 		var messHtml = '';
 		switch(type) {
 			case 'compact' :  
-				messHtml += '<div class="compact">' + new User(this.from_id || this.user_id).ava({size:25, title: true}) + '</div>';
+				messHtml += '<div class="compact">' + new User(this.from_id || this.user_id).ava({size:25, title: true, marker: false}) + '</div>';
 			default : 
-				messHtml += '<message class="short"><span class="body">' + this.body + '</span></message>';
+				return messHtml += '<message class="short"><span class="body">' + this.body + '</span></message>';
 		}
-		return messHtml;
 	}
 }

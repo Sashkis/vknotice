@@ -269,6 +269,7 @@ menu {
 }
 #right figure .icon-cancel {
 	right: -100%;
+	z-index: 1;
 	transition: right .3s;
 }
 #right figure .icon-pencil {
@@ -387,7 +388,7 @@ figcaption span {
 figcaption span a:hover {
 	text-decoration: underline;
 }
-.ava {
+.ava img {
 	float: left;
 	margin-right: 10px;
 	background: url(../img/camera_100.png);
@@ -432,6 +433,44 @@ figcaption span a:hover {
 	background: #edf1f5;
 	border-color: #DAE1E8;
 }
+.group-photo {
+	overflow: hidden;
+	background: none;
+	float: left;
+	margin-right: 10px;
+	width: 50px;
+}
+.ava-half {
+	width: 23px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 2px;
+	
+}
+.ava-half > img {
+	margin: 0px -12px;
+}
+.group-photo .ava-half {
+	margin: 0 4px 0 0;
+	float: left;
+}
+.group-photo .ava-half:nth-of-type(2) {
+	margin-right: 0;
+}
+.ava-quarter {
+	width: 23px;
+	height: 23px;
+	overflow: hidden;
+	border-radius: 2px;
+	
+}
+.group-photo .ava-quarter {
+	margin: 0 4px 4px 0;
+}
+.group-photo .ava-quarter:nth-of-type(3),
+.group-photo .ava-quarter:nth-of-type(4) {
+	margin-bottom: 0;
+}
 .online {
 	position: relative;
 }
@@ -445,26 +484,16 @@ figcaption span a:hover {
 	top: 41px;
 	width: 10px;
 }
-.group-photo {
-	overflow: hidden;
-	background: none;
+.ava-half.online:before {
+	left: 14px;
 }
-.ava-half {
-	margin: 0 4px 4px 0;
-	float: left;
-	width: 23px;
-	height: 50px;
-	overflow: hidden;
-	border-radius: 2px;
-}
-.ava-half > img {
-	margin: 0px -12px;
-}
-.ava-quarter {
-	margin: 0 4px 4px 0;
-	width: 23px;
-	height: 23px;
-	overflow: hidden;
+.ava-quarter.online:before {
+	top: 17px;
+	left: 17px;
+	width: 4px;
+	height: 4px;
+	border: 1px solid #EEE;
+	background: #8fa9c7;
 	border-radius: 2px;
 }
 .mess-container {
@@ -487,6 +516,8 @@ figcaption span a:hover {
 	color: #999999;
 	font-size: 0.9em;
 }
+.dialog.open .date,
+.dialog-unread .date,
 .dialog:hover .date {
 	color: #8795a5;
 }

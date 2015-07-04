@@ -93,22 +93,21 @@ setTimeout(function () {
 
 			// Отправить сообщение
 			$newmess.on('submit', 'textarea', function (eventObject) {
-				// if (eventObject.which === 13 && eventObject.shiftKey === false ) {
-				// 	jQuery(this).attr('disabled', 'disabled');
+				if (eventObject.which === 13 && eventObject.shiftKey === false ) {
+					jQuery(this).attr('disabled', 'disabled');
 
-				// 	var dialog = jQuery(this).parents('.dialog').data();
-				// 	return !dialog.sendAnswer(jQuery(this).val());
-				// }
-				console.log('sub');
+					var dialog = jQuery(this).parents('.dialog').data();
+					return !dialog.sendAnswer(jQuery(this).val());
+				}
 			});
-			// $newmess.on('keypress', 'textarea', function (eventObject) {
-			// 	if (eventObject.which === 13 && eventObject.shiftKey === false ) {
-			// 		jQuery(this).attr('disabled', 'disabled');
+			$newmess.on('keypress', 'textarea', function (eventObject) {
+				if (eventObject.which === 13 && eventObject.shiftKey === false ) {
+					jQuery(this).attr('disabled', 'disabled');
 
-			// 		var dialog = jQuery(this).parents('.dialog').data();
-			// 		return !dialog.sendAnswer(jQuery(this).val());
-			// 	}
-			// });
+					var dialog = jQuery(this).parents('.dialog').data();
+					return !dialog.sendAnswer(jQuery(this).val());
+				}
+			});
 
 			// Событие когда сообщение прочитано
 			$newmess.on('onMarkAsRead', '.dialog', function (event, dialog) {
@@ -133,7 +132,7 @@ setTimeout(function () {
 			pop.buildNewFriends();
 			var $newfriends = jQuery('#newfriends');
 			// Принять или отклонить заявку в друзья
-			$newfriends.on('click','i',function () {
+			$newfriends.on('click', 'i', function () {
 				window.pop.CanUpDate = false;
 				var $button = jQuery(this),
 					$parent = $button.parent('figure'),

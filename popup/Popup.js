@@ -13,29 +13,27 @@
  * ----------------------------------------------------------------------------
  */
 function Popup(params) {
-	var defaults = {
+	var VK = 'https://vk.com/', p;
+	/**
+	 * Применяем свойства по-умолчанию
+	 */
+	params = jQuery.extend(true, {
 		'audio': true,
 		'counter': [],
 		'friends': [],
 		'dialogs': [],
 		'newfriends': [],
 		'profiles': [],
+		'options': 'friends,photos,videos,messages,groups,notifications',
 		'api': {
 			'access_token': '',
 			'user_id': '',
 			'lang': 0,
 			'v': '5.34'
 		},
-		'options': 'friends,photos,videos,messages,groups,notifications'
-	}, VK = 'https://vk.com/', param;
-
-
-	/**
-	 * Применяем свойства по-умолчанию
-	 */
-	params = jQuery.extend(true, defaults, params);
-	for (param in params) {
-		this[param] = params[param];
+	}, params);
+	for (p in params) {
+		this[p] = params[p];
 	}
 
 	var profCash = this.profiles;
@@ -244,7 +242,7 @@ function Popup(params) {
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append(jQuery('<figure>' + user.profileLink(user.ava().icon('cancel',{title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
+				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
 		jQuery('#right').html(frag);
