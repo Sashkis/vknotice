@@ -65,7 +65,6 @@ function Dialog (dialog_obj) {
 			}
 			var author = new User(this.id);
 			return this.addHeader({
-				class: author.online === 1 ? 'online' : '',
 				photo: author.ava({size: 50}),
 				title: author.name(),
 				messages: html

@@ -507,6 +507,7 @@ figcaption span a:hover {
 	display: block;
 	margin-bottom: 2px;
 }
+/* Диалог с Администрацией */
 .dialog-100 .name {
 	color: #2E7B27;
 	font-weight: bold;
@@ -605,38 +606,4 @@ i.markAsRead:hover {
 }
 .mCSB_outside+.mCSB_scrollTools {
 	right: -7px;
-}
-#sendmess h3 {
-	color: #45688E;
-	line-height: 1.27em;
-	margin: 0px;
-	padding: 0;
-	font-size: 1.09em;
-}
-#uselect {
-	border: 1px solid #C0CAD5;
-	padding: 2px;
-	position: relative;
-	overflow: visible !important;
-	cursor: pointer;
-	max-height: 190px;
-}
-#uselect .users {
-	display: none;
-}
-#uselect.open .users {
-	display: block;
-}
-#uselect .user {
-	overflow: hidden;
-	padding: 2px;
-	border-top: 1px solid #C0CAD5;
-	white-space: nowrap;
-}
-#uselect #uselect_current {
-	display: block;
-}
-#uselect .default {
-	padding: 4px 6px 6px;
-	color: rgb(119, 119, 119);
 }

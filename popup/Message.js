@@ -1,5 +1,4 @@
 function Message (mess_obj, parentDialog, parentMessage) {
-	console.log(mess_obj);
 	var VK = 'https://vk.com/', param;
 	for (param in mess_obj) {
 		this[param] = mess_obj[param];
@@ -18,20 +17,20 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	} else if (this.body) {
 		this.body = this.body.escapeHtml();
 		// Делаем ссылки кликабельными
-		this.body = this.body.replace(/((https?:\/\/)?([A-Za-z-_0-9]+(\.[A-Za-z-_0-9]+)+)(\/[^\s]*)*)/g, function (url) {
+		this.body = this.body.replace(/((https?:\/\/)?([\w-]+(\.[\w-]+)+)(\/[\w-]*)*(\.\w+)?)/ig, function (url) {
 			if (url.length > 30) {
 				var ancor = url.substr(0, 13) + '...' + url.substr(url.length - 13)
 			} else {
 				var ancor = url;
 			}
 
-			if (url.search(/https?:\/\//) == -1) {
+			if (/^https?:\/\//.test(url) === false) {
 				return ancor.link('http://' + url);
 			} else {
 				return ancor.link(url);
 			}
 		});
-		if (/^[A-Za-zА-Яа-яЁёЇїЄєҐґ0-9]$/.test(this.body.charAt(this.body.length - 1))) {
+		if (/[A-Za-zА-Яа-яЁёЇїЄєҐґ0-9]$/.test(this.body)) {
 			this.body += '.';
 		}
 		this.body = window.Emoji.emojiToHTML(this.body);
@@ -132,7 +131,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 			case 'compact' :  
 				messHtml += '<div class="compact">' + new User(this.from_id || this.user_id).ava({size:25, title: true, marker: false}) + '</div>';
 			default : 
-				return messHtml += '<message class="short"><span class="body">' + this.body + '</span></message>';
+				return messHtml += '<message class="short"><span class="body">' + this.body + '</span></message> ';
 		}
 	}
 }
