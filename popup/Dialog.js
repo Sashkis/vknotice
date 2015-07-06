@@ -52,7 +52,7 @@ function Dialog (dialog_obj) {
 		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + ' <span class="date">' + new Date(this.date*1000).toStringVkFormat() + '</span></span><span class="mess-container">' + options.messages + '</span></div>';
 	};
 
-	this.getHtml = function () {
+	this.getObj = function () {
 		var html = '', i;
 		if (!this.isGroup) {
 			for (i = this.messages.length; i--;) {
@@ -64,11 +64,11 @@ function Dialog (dialog_obj) {
 				}
 			}
 			var author = new User(this.id);
-			return this.addHeader({
+			return {
 				photo: author.ava({size: 50}),
 				title: author.name(),
 				messages: html
-			});
+			};
 		} else {
 			for (i = this.messages.length; i--;) {
 				if (this.messages[i+1] === undefined || this.messages[i].from_id !== this.messages[i+1].from_id) {
@@ -77,12 +77,12 @@ function Dialog (dialog_obj) {
 					html += this.messages[i].getHtml();
 				}
 			}
-			return this.addHeader({
+			return {
 				class: 'group',
 				photo: this.getGroupPhoto(),
 				title: this.title,
 				messages: html
-			});
+			};
 		};
 	};
 
@@ -91,12 +91,13 @@ function Dialog (dialog_obj) {
 			return '<div class="group-photo"><img class="ava ava-full" src="' + this.photo_50 + '" widht="50" height="50"></div>';
 		}
 		if (!this.chat_active) {
-			this.chat_active = [this.from_id];
+			this.chat_active = [new User(this.user_id)];
+		} else {
+			this.chat_active = this.chat_active.slice(0,4);
+			for (var i = this.chat_active.length; i--;) {
+				this.chat_active[i] = new User(this.chat_active[i]);
+			};
 		}
-
-		for (var i = this.chat_active.length; i--;) {
-			this.chat_active[i] = new User(this.chat_active[i]);
-		};
 
 		switch (this.chat_active.length) {
 			case 1 : return '<div class="group-photo">' + this.chat_active[0].ava({size: 50}) + '</div>'; break;
@@ -107,7 +108,7 @@ function Dialog (dialog_obj) {
 	};
 
 	this.getClass = function (custom) {
-		var dialogClass = 'dialog dialog-'+this.id;
+		var dialogClass = 'dialog';
 		if (!!this.unread) dialogClass += ' dialog-unread';
 		if (this.out === 1) dialogClass += ' dialog-ansver';
 		if (this.isGroup) dialogClass += ' dialog-group';
@@ -115,9 +116,8 @@ function Dialog (dialog_obj) {
 	};
 
 	this.construct = function () {
-		var dialogClass = this.getClass();
-		this.jQ = jQuery(''.link(this.url, {class: dialogClass}));
-		this.jQ.html((this.getHtml() + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.pop.geti18n('attr.markAsRead')}));
+		this.jQ = jQuery(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
+		this.jQ.html((this.addHeader(this.getObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.pop.geti18n('attr.markAsRead')}));
 		this.jQ.data(this);
 		return this.jQ;
 	};
@@ -165,22 +165,21 @@ function Dialog (dialog_obj) {
 		delete this.unread;
 		this.init(dialog_obj);
 		this.jQ.removeAttr('class').addClass(this.getClass(isOpen ? 'open' : ''));
-		this.jQ.find('.header').remove();
-		this.jQ.find('.ans').before(this.getHtml());
+		this.jQ.find('.mess-container').html(this.getObj().messages);
 		this.jQ.data(this);
 	};
 
 	this.hash = function () {
 		var summ = 0, i,
 			message_ids = this.messages.map(function (mess) {
-				return mess.id;
+				return mess.id - 0;
 			});
 
 		for (i = message_ids.length; i--;) {
 			summ += message_ids[i];
 		};
 
-		return this.id + summ;
+		return this.id - 0 + summ;
 	};
 
 	this.init(dialog_obj);

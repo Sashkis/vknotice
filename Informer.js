@@ -42,7 +42,7 @@ function Informer (params) {
 		}
 	}
 	/**
-	 * Установка кода языка 
+	 * Установка кода языка
 	 * @param  {[int]}	  lang_code	  [код языка]
 	 * @return {[string]}			  [буквенный еквивалент языка]
 	 */
@@ -85,7 +85,7 @@ function Informer (params) {
 		    console.error('Load translate failed: ' + err);
 		});
 	};
-    
+
 	/**
 	 * Запуск демона 
 	 * @param  delay   Интервалы между запросами

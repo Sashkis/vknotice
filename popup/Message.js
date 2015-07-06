@@ -57,7 +57,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				attach = this.attachments[i][type];
 			switch(type) {
 				// Изображение
-				case 'photo': 
+				case 'photo':
 					attach.url = '';
 					if 		(attach['photo_2560']!== undefined) attach.url = attach['photo_2560'];
 					else if (attach['photo_1280']!== undefined) attach.url = attach['photo_1280'];
@@ -69,7 +69,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.photo')).icon('camera').link(attach.url); 
 				break;
 				// Подарок
-				case 'gift': 
+				case 'gift':
 					attach.url = '';
 					if 		(attach['thumb_256']!== undefined) attach.url = attach['thumb_256'];
 					else if (attach['thumb_96'] !== undefined) attach.url = attach['thumb_96'];
@@ -90,7 +90,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				// Ссылка
 				case 'link'	: this.attachments[i] = ('&nbsp;' + attach.title).icon('link').link(attach.url); break;
 				// Карта
-				case 'geo'	: 
+				case 'geo':
 					attach.coordinates = attach.coordinates.split(' ');
 					attach.coordinates = (attach.coordinates[0]-0) + ',' + (attach.coordinates[1]-0);
 					this.attachments[i] = ('&nbsp;' + (attach.place ? attach.place.title : window.pop.geti18n('attr.location'))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
@@ -111,7 +111,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	if (this.fwd_messages) {
 		var fwd_text = '';
 		if (parentMessage !== undefined) {
-			fwd_text = getCase(window.pop.geti18n('attr.fwd_mess'), this.fwd_messages.length).icon('chat').link(this.url);
+			fwd_text = getCase(this.fwd_messages.length, window.pop.geti18n('attr.fwd_mess')).icon('chat').link(this.url);
 		} else {
 			for (var i = 0; i < this.fwd_messages.length; i++) {
 				this.fwd_messages[i] = new Message(this.fwd_messages[i], parentDialog, this);
@@ -128,10 +128,10 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	this.getHtml = function (type) {
 		var messHtml = '';
 		switch(type) {
-			case 'compact' :  
+			case 'compact':
 				messHtml += '<div class="compact">' + new User(this.from_id || this.user_id).ava({size:25, title: true, marker: false}) + '</div>';
 			default : 
 				return messHtml += '<message class="short"><span class="body">' + this.body + '</span></message> ';
 		}
-	}
+	};
 }

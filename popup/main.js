@@ -42,9 +42,9 @@ setTimeout(function () {
 			// Событине для создания нового сообщения
 			$onlineUsers.on('click', '.icon-pencil', function () {
 				var user = jQuery(this).parents('figure').data();
-				if (jQuery('#newmess .dialog').is('.dialog-'+user.id)) {
+				if (jQuery('#newmess .dialog').is('#dialog-' + user.id)) {
 					jQuery('#messages .slide').trigger('click');
-					jQuery('#newmess .dialog-'+user.id).trigger('click');
+					jQuery('#newmess #dialog-' + user.id).trigger('click');
 					return false;
 				}
 			});

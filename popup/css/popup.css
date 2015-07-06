@@ -99,7 +99,7 @@ ul,
 	max-width: 80%;
 }
 .col_bg {
-	background: #E1E7ED;
+	background: #E9EDF1;
 	overflow: hidden;
 	padding: 5px;
 }
@@ -112,6 +112,7 @@ ul,
 }
 header {
 	height: 50px;
+	color: #71869B;
 }
 header h1 {
 	font-size: 15px;
@@ -499,6 +500,7 @@ figcaption span a:hover {
 .mess-container {
 	display: block;
 	margin-left: 60px;
+	overflow: hidden;
 }
 .dialog > div {
 	word-break: break-word;
@@ -508,7 +510,7 @@ figcaption span a:hover {
 	margin-bottom: 2px;
 }
 /* Диалог с Администрацией */
-.dialog-100 .name {
+#dialog-100 .name {
 	color: #2E7B27;
 	font-weight: bold;
 }
@@ -570,14 +572,11 @@ figcaption span a:hover {
 	resize: vertical;
 	height: 100%;
 	overflow: hidden;
-	border-color: #C3CBD4;
+	border: 1px solid #C0CAD5;
 	font: inherit;
 }
 .ans textarea:focus {
 	outline: none;
-}
-.dialog:hover textarea {
-	border-color: #8898A9;
 }
 a a:hover i::before,
 a a:hover::before {

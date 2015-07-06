@@ -277,7 +277,7 @@ function Popup(params) {
 		var $newmess = jQuery('#newmess');
 
 		if (this.dialogs.length > 0) {
-			var frag = jQuery(document.createDocumentFragment()), 
+			var frag = jQuery(document.createDocumentFragment()),
 				dialogCash = [], i;
 			for (i = this.dialogs.length; i--;) {
 				dialogCash.push(new Dialog(this.dialogs[i]));
