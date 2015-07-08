@@ -14,7 +14,7 @@
  */
 'use strict';
 setTimeout(function () {
-	chrome.storage.local.get(['alerts','showMessage','audio','counter','friends','dialogs','newfriends','profiles','api','i18n','options'], function (storage) {
+	chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'options'], function (storage) {
 		window.pop = new Popup(storage);
 		// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
 		if (pop.buildAlert()) {		// Строит уведомления
@@ -32,7 +32,7 @@ setTimeout(function () {
 				$user.addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
 				var user = $user.data();
 
-				user.addOrDel('delete',function () {
+				user.addOrDel('delete', function () {
 					$user.remove();
 					console.info('User deleted');
 				});
@@ -117,11 +117,10 @@ setTimeout(function () {
 
 			// Событие когда ответ отправлен
 			$newmess.on('onSendAnswer', '.dialog', function (event, dialog, answer) {
-				answer = new Message({
+				dialog.jQ.find('.mess-container').html(new Message({
 					body: answer,
 					user_id: window.pop.current.id,
-				}, dialog);
-				dialog.jQ.find('.mess-container').html(answer.getHtml('compact'));
+				}, dialog).getHtml('compact'));
 			});
 
 			pop.show();	// Уберает предзагрущик

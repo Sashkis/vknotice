@@ -34,7 +34,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 		}
 		this.attachments.push({
 			type: 'geo',
-			geo:	this.geo
+			geo: this.geo
 		});
 		delete this.geo;
 	}
@@ -49,7 +49,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				// Изображение
 				case 'photo':
 					attach.url = '';
-					if 		(attach['photo_2560'])	attach.url = attach['photo_2560'];
+					if		(attach['photo_2560'])	attach.url = attach['photo_2560'];
 					else if (attach['photo_1280'])	attach.url = attach['photo_1280'];
 					else if (attach['photo_807'])	attach.url = attach['photo_807'];
 					else if (attach['photo_604'])	attach.url = attach['photo_604'];
@@ -61,7 +61,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				// Подарок
 				case 'gift':
 					attach.url = '';
-					if 		(attach['thumb_256'])	attach.url = attach['thumb_256'];
+					if		(attach['thumb_256'])	attach.url = attach['thumb_256'];
 					else if (attach['thumb_96'])	attach.url = attach['thumb_96'];
 					else if (attach['thumb_48'])	attach.url = attach['thumb_48'];
 					else attach.url = this.url;

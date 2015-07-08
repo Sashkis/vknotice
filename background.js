@@ -38,16 +38,16 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	 
 	// При установке
 	if (details.reason === 'install') {
-		chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 7 });// Через 7 дней
-		chrome.alarms.create('get_review', {'when': Date.now() + 86400000 * 14 }); // Через 10 дней
+		chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 7});// Через 7 дней
+		chrome.alarms.create('get_review', {'when': Date.now() + 86400000}); // Через 10 дней
 	}
 	 
 	// При обновлении
-	else if (details.reason === 'update') {
-		chrome.storage.local.remove('newmess');
-		chrome.alarms.create('get_review', {'when': Date.now()}); // Через 0 дней
-		chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 14 });// Через 7 дней
-	}
+	// else if (details.reason === 'update') {
+	// 	chrome.storage.local.remove('newmess');
+	// 	chrome.alarms.create('get_review', {'when': Date.now()}); // Через 0 дней
+	// 	chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 14 });// Через 7 дней
+	// }
 });
 		
 chrome.alarms.onAlarm.addListener(function (alarm) {

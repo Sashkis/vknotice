@@ -93,7 +93,7 @@ function Dialog (dialog_obj) {
 		if (!this.chat_active) {
 			this.chat_active = [new User(this.user_id)];
 		} else {
-			this.chat_active = this.chat_active.slice(0,4);
+			this.chat_active = this.chat_active.slice(0, 4);
 			for (var i = this.chat_active.length; i--;) {
 				this.chat_active[i] = new User(this.chat_active[i]);
 			};

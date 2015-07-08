@@ -78,7 +78,7 @@
 		"ago":"alt",
 		"today": "heute",
 		"tomorrow": "gestern",
-		"seconds":["sekunde", "sekunden", "sekunden"],		
+		"seconds":["sekunde", "sekunden", "sekunden"],
 		"minutes": ["minute", "minuten", "minuten"],
 		"hours": ["stunde", "stunden", "stunden"],
 		"months": ["jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug", "sen", "okt", "nov", "dez"]
