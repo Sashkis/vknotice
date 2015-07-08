@@ -56,7 +56,7 @@ setTimeout(function () {
 			/**
 			 * Генерирует новые сообщения
 			 */
-			pop.buildNewMess();
+			pop.buildDialogs();
 			var $newmess = jQuery('#newmess');
 
 			// Помечаем сообщения как прочитанные

@@ -15,24 +15,14 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	if (this.action) {
 		this.body = '<span class="system">' + window.pop.geti18n('attr.' + this.action) + '</span>';
 	} else if (this.body) {
-		this.body = this.body.escapeHtml();
-		// Делаем ссылки кликабельными
-		this.body = this.body.replace(/((https?:\/\/)?([\w-]+(\.[\w-]+)+)(\/[\w-]*)*(\.\w+)?)/ig, function (url) {
-			if (url.length > 30) {
-				var ancor = url.substr(0, 13) + '...' + url.substr(url.length - 13)
-			} else {
-				var ancor = url;
-			}
-
-			if (/^https?:\/\//.test(url) === false) {
-				return ancor.link('http://' + url);
-			} else {
-				return ancor.link(url);
+		this.body = this.body.linkify({
+			format: function (value, type) {
+				if (type === 'url' && value.length > 40) {
+					value = value.substr(0, 40) + '…';
+				}
+				return value;
 			}
 		});
-		if (/[A-Za-zА-Яа-яЁёЇїЄєҐґ0-9]$/.test(this.body)) {
-			this.body += '.';
-		}
 		this.body = window.Emoji.emojiToHTML(this.body);
 		this.body += ' ';
 	}
@@ -44,7 +34,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 		}
 		this.attachments.push({
 			type: 'geo',
-			geo:  this.geo
+			geo:	this.geo
 		});
 		delete this.geo;
 	}
@@ -52,28 +42,28 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	// Добавляем код вложений
 	if (this.attachments) {
 		for (var i = this.attachments.length; i--;) {
-			if (typeof this.attachments[i] !== 'object' ) continue;
+			if (typeof this.attachments[i] !== 'object') continue;
 			var type = this.attachments[i].type,
 				attach = this.attachments[i][type];
 			switch(type) {
 				// Изображение
 				case 'photo':
 					attach.url = '';
-					if 		(attach['photo_2560']!== undefined) attach.url = attach['photo_2560'];
-					else if (attach['photo_1280']!== undefined) attach.url = attach['photo_1280'];
-					else if (attach['photo_807'] !== undefined) attach.url = attach['photo_807'];
-					else if (attach['photo_604'] !== undefined) attach.url = attach['photo_604'];
-					else if (attach['photo_130'] !== undefined) attach.url = attach['photo_130'];
-					else if (attach['photo_75']  !== undefined) attach.url = attach['photo_75'];
+					if 		(attach['photo_2560'])	attach.url = attach['photo_2560'];
+					else if (attach['photo_1280'])	attach.url = attach['photo_1280'];
+					else if (attach['photo_807'])	attach.url = attach['photo_807'];
+					else if (attach['photo_604'])	attach.url = attach['photo_604'];
+					else if (attach['photo_130'])	attach.url = attach['photo_130'];
+					else if (attach['photo_75'])	attach.url = attach['photo_75'];
 					else attach.url = this.url;
 					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.photo')).icon('camera').link(attach.url); 
 				break;
 				// Подарок
 				case 'gift':
 					attach.url = '';
-					if 		(attach['thumb_256']!== undefined) attach.url = attach['thumb_256'];
-					else if (attach['thumb_96'] !== undefined) attach.url = attach['thumb_96'];
-					else if (attach['thumb_48'] !== undefined) attach.url = attach['thumb_48'];
+					if 		(attach['thumb_256'])	attach.url = attach['thumb_256'];
+					else if (attach['thumb_96'])	attach.url = attach['thumb_96'];
+					else if (attach['thumb_48'])	attach.url = attach['thumb_48'];
 					else attach.url = this.url;
 					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.gift')).icon('gift').link(attach.url); 
 				break;

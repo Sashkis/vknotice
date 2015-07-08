@@ -242,7 +242,7 @@ function Popup(params) {
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.geti18n('attr.delete')}) + ''.link(VK + 'write' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
+				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.geti18n('attr.delete')}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
 		jQuery('#right').html(frag);
@@ -273,7 +273,7 @@ function Popup(params) {
 		$newfriends.html(frag);
 	};
 
-	this.buildNewMess = function () {
+	this.buildDialogs = function () {
 		var $newmess = jQuery('#newmess');
 
 		if (this.dialogs.length > 0) {
@@ -287,7 +287,7 @@ function Popup(params) {
 				this.dialogs[dialogCash[i].id] = dialogCash[i];
 				this.dialogs[dialogCash[i].id].construct().prependTo(frag);
 			};
-			$newmess.append(frag);
+			$newmess.html(frag);
 		}
 	};
 
@@ -309,6 +309,7 @@ function Popup(params) {
 			jQuery('body').addClass('grayscale');
 			return true;
 		} else {
+			jQuery('body').removeClass('grayscale');
 			// Инициализация
 			var header = '<thead><tr><td></td></tr></thead>',
 				footer = '',
