@@ -128,6 +128,10 @@ function Informer (params) {
 		this.callAPI('execute.getdata', {'options': this.options},
 			// Успешно
 			function (API) {
+				if (API.system.lastAlertId > this.lastLoadAlert) {
+					inf.loadAlerts();
+				}
+				delete API.system;
 				chrome.storage.local.set(API);
 				chrome.browserAction.setIcon({path: 'img/icon38.png'});
 				this.setCounters(API.counter, API.dialogs);

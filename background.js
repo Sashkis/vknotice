@@ -20,14 +20,6 @@ chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'l
 		inf.loadTranslate(lang_code);
 		inf.addVisitor();
 	});
-
-	// Загрузка alerts из ВК
-	setInterval(function () {
-		if (inf.isDeamonStarted) {
-			inf.loadAlerts();
-		}
-	}, 10800000); // 3 часа
-
 });
 
 /**
@@ -39,7 +31,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	// При установке
 	if (details.reason === 'install') {
 		chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 7});// Через 7 дней
-		chrome.alarms.create('get_review', {'when': Date.now() + 86400000}); // Через 10 дней
+		chrome.alarms.create('get_review', {'when': Date.now() + 86400000}); // Через 1 день
 	}
 	 
 	// При обновлении
