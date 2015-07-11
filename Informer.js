@@ -336,9 +336,15 @@ function Informer (params) {
 			chrome.tabs.query({
 				url: "*://vk.com/*"
 			}, function (tabs) {
-				if (tabs.length === 0) {
-					jQuery('#audio')[0].play();
+				if (tabs.length > 0) {
+					for (var i = tabs.length; i--;) {
+						if (!/.*:\/\/vk.com\/(?:login.php.*)?$/i.test(tabs[i].url)) {
+							return false;
+						}
+					};
 				}
+				jQuery('#audio')[0].play();
+				return true;
 			});
 		}
 	};
