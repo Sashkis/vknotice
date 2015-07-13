@@ -50,8 +50,10 @@ setTimeout(function () {
 			});
 
 
-			pop.builCounters();			// Выстраивает счетчики в меню
-			pop.initSlide();			// Активирует события для слайдов
+			pop.builCounters();		// Выстраивает счетчики в меню
+			pop.loadTranslate();		// Переводим интерфейс
+			pop.show();				// Уберает предзагрущик
+			pop.initSlide();		// Активирует события для слайдов
 
 			/**
 			 * Генерирует новые сообщения
@@ -123,7 +125,6 @@ setTimeout(function () {
 				}, dialog).getHtml('compact'));
 			});
 
-			pop.show();	// Уберает предзагрущик
 
 			/**
 			 * Генерирует новые заявки в друзья
@@ -155,7 +156,6 @@ setTimeout(function () {
 			});
 
 			pop.buildCustomScrollbar(); // Инициализирует плагн для скрола
-			pop.loadTranslate();		// Переводим интерфейс
 
 			pop.addVisitor();			// Делает запрос в ВК к методу статистики
 			pop.initOptions();			// Переключает настройки. Активирует событие переключения настроек

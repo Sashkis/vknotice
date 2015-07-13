@@ -93,6 +93,7 @@ function Popup(params) {
 			}
 		}, options);
 		jQuery("#newmess, #newfriends").mCustomScrollbar(options);
+		jQuery('#newmess #mCSB_2_container').attr('no_mess', this.geti18n('attr.no_mess'));
 	};
 
 
@@ -116,8 +117,6 @@ function Popup(params) {
 		jQuery('#options .checkbox').each(function (i, el) {
 			jQuery(el).find(".i18n").text(this.geti18n(jQuery(el).attr('name'), 'options'));
 		}.bind(this));
-		// Опции
-		jQuery('#newmess #mCSB_2_container').attr('no_mess', this.geti18n('attr.no_mess'));
 	};
 
 
@@ -220,14 +219,6 @@ function Popup(params) {
 	 */
 	this.show = function () {
 		jQuery('.wraper.show').removeClass('show');
-		if (this.counter.messages) {
-			jQuery('#messages .counter').click();	
-			if (jQuery('#newmess .dialog-unread').length === 1) {
-				jQuery('#newmess .dialog-unread').click();
-			}
-		} else if (this.counter.friends) {
-			jQuery('#friends .counter').click();
-		}
 	};
 
 
@@ -288,6 +279,10 @@ function Popup(params) {
 				this.dialogs[dialogCash[i].id].construct().prependTo(frag);
 			};
 			$newmess.html(frag);
+
+			if ($newmess.find('.dialog-unread').length > 0) {
+				jQuery('#messages .slide').trigger('click');
+			}
 		}
 	};
 
