@@ -17,8 +17,10 @@ setTimeout(function () {
 	chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'options'], function (storage) {
 		window.pop = new Popup(storage);
 		// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
-		if (pop.buildAlert()) {		// Строит уведомления
+		if (pop.buildAlert()) {			// Строит уведомления
 			pop.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
+			pop.loadTranslate();		// Переводим интерфейс
+			pop.show();					// Уберает предзагрущик
 
 			/**
 			 * Генерирует 6 друзей онлайн
@@ -51,8 +53,6 @@ setTimeout(function () {
 
 
 			pop.builCounters();		// Выстраивает счетчики в меню
-			pop.loadTranslate();		// Переводим интерфейс
-			pop.show();				// Уберает предзагрущик
 			pop.initSlide();		// Активирует события для слайдов
 
 			/**

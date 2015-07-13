@@ -167,8 +167,7 @@ header small {
 	padding-left: 8px;
 	width: 70%;
 }
-#right:empty,
-#newfriends:empty {
+#right:empty {
 	background: url(../img/alone.jpg) no-repeat center, #fff;
 }
 menu {
@@ -411,8 +410,10 @@ figcaption span a:hover {
 #newmess {
 	overflow: auto;
 }
-#newmess #mCSB_2_container:empty::before {
-	content: attr(no_mess);
+#newmess #mCSB_2_container:empty::before,
+#newmess:empty::before,
+#newfriends:empty {
+	content: attr(data-before);
 	font-size: 15px;
 	text-align: center;
 	display: table-cell;
