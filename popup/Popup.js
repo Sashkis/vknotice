@@ -265,7 +265,7 @@ function Popup(params) {
 		$newfriends.html(frag);
 	};
 
-	this.buildDialogs = function () { df
+	this.buildDialogs = function () {
 		var $newmess = jQuery('#newmess');
 
 		if (this.dialogs.length > 0) {
@@ -279,7 +279,7 @@ function Popup(params) {
 				this.dialogs[dialogCash[i].id] = dialogCash[i];
 				this.dialogs[dialogCash[i].id].construct().prependTo(frag);
 			};
-			// $newmess.html(frag);
+			$newmess.html(frag);
 
 			if ($newmess.find('.dialog-unread').length > 0) {
 				jQuery('#messages .slide').trigger('click');

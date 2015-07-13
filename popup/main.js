@@ -13,20 +13,21 @@
  * ----------------------------------------------------------------------------
  */
 'use strict';
-setTimeout(function () {
-	chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'options'], function (storage) {
-		window.pop = new Popup(storage);
-		// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
-		if (pop.buildAlert()) {			// Строит уведомления
-			pop.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
-			pop.loadTranslate();		// Переводим интерфейс
-			pop.show();					// Уберает предзагрущик
+chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'options'], function (storage) {
+	window.pop = new Popup(storage);
+	// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
+	if (pop.buildAlert()) {			// Строит уведомления
+		pop.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
+		pop.loadTranslate();		// Переводим интерфейс
+		pop.show();					// Уберает предзагрущик
 
-			/**
-			 * Генерирует 6 друзей онлайн
-			 */
+		/**
+		 * Генерирует 6 друзей онлайн
+		 */
+		try {
 			pop.builFriendsOnline();
 			var $onlineUsers = 	jQuery('#right figure');
+
 			// Событине для удаления друга онлайн
 			$onlineUsers.on('click', '.icon-cancel', function () {
 				var $user = jQuery(this).parents('figure');
@@ -50,14 +51,19 @@ setTimeout(function () {
 					return false;
 				}
 			});
+		} catch (error) {
+			console.error(error);
+			jQuery('#right').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + pop.geti18n('attr.error') + '</b></div>');
+		}
 
 
-			pop.builCounters();		// Выстраивает счетчики в меню
-			pop.initSlide();		// Активирует события для слайдов
+		pop.builCounters();		// Выстраивает счетчики в меню
+		pop.initSlide();		// Активирует события для слайдов
 
-			/**
-			 * Генерирует новые сообщения
-			 */
+		/**
+		 * Генерирует новые сообщения
+		 */
+		try {
 			pop.buildDialogs();
 			var $newmess = jQuery('#newmess');
 
@@ -124,11 +130,16 @@ setTimeout(function () {
 					user_id: window.pop.current.id,
 				}, dialog).getHtml('compact'));
 			});
+		} catch (error) {
+			console.error(error.stack);
+			jQuery('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + pop.geti18n('attr.error') + '</b></div>');
+		}
 
 
-			/**
-			 * Генерирует новые заявки в друзья
-			 */
+		/**
+		 * Генерирует новые заявки в друзья
+		 */
+		try {
 			pop.buildNewFriends();
 			var $newfriends = jQuery('#newfriends');
 			// Принять или отклонить заявку в друзья
@@ -154,64 +165,66 @@ setTimeout(function () {
 					}
 				);
 			});
-
-			pop.buildCustomScrollbar(); // Инициализирует плагн для скрола
-
-			pop.addVisitor();			// Делает запрос в ВК к методу статистики
-			pop.initOptions();			// Переключает настройки. Активирует событие переключения настроек
-
-			// Share ссылка
-			pop.loadShareUrl(function (url) {
-				jQuery('#share').attr('href', url);
-			});
-
-			// Событие нажатия на кнопку выхода
-			jQuery('#logout').on('click', function () {
-				pop.CanUpDate = false;
-				chrome.runtime.connect({name: 'remove_token'});
-				location.reload();
-				return false;
-			});
-		}
-	});
-
-	chrome.storage.onChanged.addListener(function (changes) {
-		if (changes.counter !== undefined) {
-			pop.counter = changes.counter.newValue || [];
+		} catch (error) {
+			console.error(error);
+			jQuery('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + pop.geti18n('attr.error') + '</b></div>');
 		}
 
-		if (changes.profiles !== undefined) {
-			if (changes.profiles.newValue === undefined) changes.profiles.newValue = [];
-			changes.profiles.newValue.forEach(function (user) {
-				user = new User(user);
-				pop.profiles[user.id] = user;
-			});
-		}
+		pop.buildCustomScrollbar(); // Инициализирует плагн для скрола
+		pop.addVisitor();			// Делает запрос в ВК к методу статистики
+		pop.initOptions();			// Переключает настройки. Активирует событие переключения настроек
 
-		if (changes.friends !== undefined) {
-			pop.friends = changes.friends.newValue || [];
-			pop.builFriendsOnline();
-		}
+		// Share ссылка
+		pop.loadShareUrl(function (url) {
+			jQuery('#share').attr('href', url);
+		});
 
-		if (changes.newfriends !== undefined) {
-			pop.newfriends = changes.newfriends.newValue || [];
-			pop.buildNewFriends();
-		}
+		// Событие нажатия на кнопку выхода
+		jQuery('#logout').on('click', function () {
+			pop.CanUpDate = false;
+			chrome.runtime.connect({name: 'remove_token'});
+			location.reload();
+			return false;
+		});
+	}
+});
 
-		if (changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
-			for (var i = changes.dialogs.newValue.length; i--;) {
-				var dialog = new Dialog(changes.dialogs.newValue[i]);
-				if (pop.dialogs[dialog.id] !== undefined && pop.dialogs[dialog.id].hash() !== dialog.hash()) {
-					pop.dialogs[dialog.id].update(changes.dialogs.newValue[i]);
-				}
-			};
-		}
+chrome.storage.onChanged.addListener(function (changes) {
+	if (changes.counter !== undefined) {
+		pop.counter = changes.counter.newValue || [];
+	}
 
-		if (changes.alerts !== undefined) {
-			pop.alerts = changes.alerts.newValue || {error :false, message: false};
-			pop.buildAlert();
-		}
-		
-		pop.builCounters();
-	});
-},0);
+	if (changes.profiles !== undefined) {
+		if (changes.profiles.newValue === undefined) changes.profiles.newValue = [];
+		changes.profiles.newValue.forEach(function (user) {
+			user = new User(user);
+			pop.profiles[user.id] = user;
+		});
+	}
+
+	if (changes.friends !== undefined) {
+		pop.friends = changes.friends.newValue || [];
+		pop.builFriendsOnline();
+	}
+
+	if (changes.newfriends !== undefined) {
+		pop.newfriends = changes.newfriends.newValue || [];
+		pop.buildNewFriends();
+	}
+
+	if (changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
+		for (var i = changes.dialogs.newValue.length; i--;) {
+			var dialog = new Dialog(changes.dialogs.newValue[i]);
+			if (pop.dialogs[dialog.id] !== undefined && pop.dialogs[dialog.id].hash() !== dialog.hash()) {
+				pop.dialogs[dialog.id].update(changes.dialogs.newValue[i]);
+			}
+		};
+	}
+
+	if (changes.alerts !== undefined) {
+		pop.alerts = changes.alerts.newValue || {error :false, message: false};
+		pop.buildAlert();
+	}
+	
+	pop.builCounters();
+});

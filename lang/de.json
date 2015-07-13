@@ -23,7 +23,7 @@
 	},
 	"attr":{
 		"no_mess":"Hier werden Ihre persönlichen Nachrichten angezeigt.",
-		"error":"Ein unbekannter Fehler ist aufgetreten. Bitte informieren Sie die Entwickler.",
+		"error":"Bitte informieren Sie die Entwickler.",
 		"share":"Mit Freunden teilen",
 		"markAsRead":"Markieren von Nachrichten als gelesen markieren",
 		"auth":"Autorisierung",

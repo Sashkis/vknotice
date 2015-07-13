@@ -23,7 +23,7 @@
 	},
 	"attr":{
 		"no_mess":"Tutaj będzie pojawiała się lista Twoich wiadomości.",
-		"error":"Wystąpił nieznany błąd. Proszę zgłoś.",
+		"error":"Proszę zgłoś.",
 		"share":"Podziel się z przyjaciółmi",
 		"markAsRead":"Oznacz wiadomości jako przeczytane",
 		"auth":"Login",

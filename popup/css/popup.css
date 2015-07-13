@@ -412,7 +412,8 @@ figcaption span a:hover {
 }
 #newmess #mCSB_2_container:empty::before,
 #newmess:empty::before,
-#newfriends:empty {
+#newfriends:empty,
+.error {
 	content: attr(data-before);
 	font-size: 15px;
 	text-align: center;

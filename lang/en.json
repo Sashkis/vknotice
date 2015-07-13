@@ -23,7 +23,7 @@
 	},
 	"attr":{
 		"no_mess":"Your private messages will be displayed here.",
-		"error":"An unknown error occurred. Please inform the developers.",
+		"error":"Please inform the developers.",
 		"share":"Share with friends",
 		"markAsRead":"To mark messages as read",
 		"auth":"Login",
