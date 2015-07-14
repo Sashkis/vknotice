@@ -95,7 +95,7 @@ window.Popup = {
 			}
 		}, options);
 		jQuery("#newmess, #newfriends").mCustomScrollbar(options);
-		jQuery('#newmess #mCSB_2_container').attr('data-before', this.geti18n('attr.no_mess'));
+		jQuery('#newmess #mCSB_2_container').attr('data-before', this.i18n.attr.no_mess);
 	},
 
 
@@ -104,13 +104,13 @@ window.Popup = {
 	 */
 	loadTranslate: function () {
 		// Кнопка share
-		jQuery('#share').attr('title', this.geti18n('attr.share'));
+		jQuery('#share').attr('title', this.i18n.attr.share);
 		// Кнопка опций
-		jQuery('#open_option').attr('title', this.geti18n('attr.setings'));
+		jQuery('#open_option').attr('title', this.i18n.attr.setings);
 		// Ссылка автора
-		jQuery('#dev').text(this.geti18n('global.author'));
+		jQuery('#dev').text(this.i18n.global.author);
 		// Ссылка для выхода
-		jQuery('#logout').attr('title', this.geti18n('attr.logout'));
+		jQuery('#logout').attr('title', this.i18n.attr.logout);
 		// Меню
 		jQuery('#left li').each(function (i, el) {
 			jQuery(el).find(".i18n").text(this.geti18n(jQuery(el).attr('id'), 'menu'));
@@ -120,7 +120,7 @@ window.Popup = {
 			jQuery(el).find(".i18n").text(this.geti18n(jQuery(el).attr('name'), 'options'));
 		}.bind(this));
 
-		jQuery('#newmess, #newfriends').attr('data-before', this.geti18n('attr.error'));
+		jQuery('#newmess, #newfriends').attr('data-before', this.i18n.attr.error);
 	},
 
 
@@ -236,7 +236,7 @@ window.Popup = {
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.geti18n('attr.delete')}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
+				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.i18n.attr.delete}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
 		jQuery('#right').html(frag);
@@ -253,11 +253,11 @@ window.Popup = {
 				var user = new User(user_id);
 
 				if (isRequests) {
-					var cancelButton = ''.icon('cancel', {class: 'hovered', title: this.geti18n('attr.remove')});
-					var addButton    = ''.icon('ok', {class: 'hovered', title: this.geti18n('attr.add')});
+					var cancelButton = ''.icon('cancel', {class: 'hovered', title: this.i18n.attr.remove});
+					var addButton    = ''.icon('ok', {class: 'hovered', title: this.i18n.attr.add});
 				} else {
 					var cancelButton = '';
-					var addButton    = ''.icon('ok', {class: 'hovered', title: this.geti18n('attr.request')});
+					var addButton    = ''.icon('ok', {class: 'hovered', title: this.i18n.attr.request});
 				}
 				frag.append(jQuery('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
 			}, this);

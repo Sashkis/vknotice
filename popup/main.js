@@ -16,10 +16,10 @@
 chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'options'], function (storage) {
 	Popup.init(storage);
 	// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
-	if (Popup.buildAlert()) {			// Строит уведомления
+	if (Popup.buildAlert()) {		// Строит уведомления
 		Popup.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
 		Popup.loadTranslate();		// Переводим интерфейс
-		Popup.show();					// Уберает предзагрущик
+		Popup.show();				// Уберает предзагрущик
 
 		/**
 		 * Генерирует 6 друзей онлайн
@@ -53,7 +53,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 		} catch (error) {
 			console.error(error);
-			jQuery('#right').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.geti18n('attr.error') + '</b></div>');
+			jQuery('#right').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.i18n.attr.error + '</b></div>');
 		}
 
 
@@ -132,7 +132,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 		} catch (error) {
 			console.error(error.stack);
-			jQuery('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.geti18n('attr.error') + '</b></div>');
+			jQuery('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.i18n.attr.error + '</b></div>');
 		}
 
 
@@ -167,7 +167,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 		} catch (error) {
 			console.error(error);
-			jQuery('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.geti18n('attr.error') + '</b></div>');
+			jQuery('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.i18n.attr.error + '</b></div>');
 		}
 
 		Popup.buildCustomScrollbar(); // Инициализирует плагн для скрола

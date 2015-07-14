@@ -46,7 +46,7 @@ function Dialog (dialog_obj) {
 		options = jQuery.extend({
 			class: '',
 			photo: '',
-			title: window.Popup.geti18n('attr.chat'),
+			title: window.Popup.i18n.attr.chat,
 			messages: ''
 		}, options);
 		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + ' <span class="date">' + new Date(this.date*1000).toStringVkFormat() + '</span></span><span class="mess-container">' + options.messages + '</span></div>';
@@ -117,7 +117,7 @@ function Dialog (dialog_obj) {
 
 	this.construct = function () {
 		this.jQ = jQuery(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
-		this.jQ.html((this.addHeader(this.getObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.geti18n('attr.markAsRead')}));
+		this.jQ.html((this.addHeader(this.getObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.i18n.attr.markAsRead}));
 		this.jQ.data(this);
 		return this.jQ;
 	};
