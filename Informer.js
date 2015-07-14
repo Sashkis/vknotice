@@ -13,40 +13,42 @@
  * ----------------------------------------------------------------------------
  */
 
-function Informer (params) {
+window.Informer = {
 	/**
 	 * Применяем свойства по-умолчанию
 	 */
-	params = jQuery.extend(true, {
-		'badge': 0,
-		'lastLoadAlert': 0,
-		'abbrlang': 'ru',
-		'audio': true,
-		'showMessage': false,
-		'alerts': {
-			'message': false,
-			'error': false
-		},
-		'api': {
-			'access_token': '',
-			'user_id': '',
-			'lang': 0,
-			'v': '5.34'
-		},
-		'options': 'friends,photos,videos,messages,groups,notifications',
-		'isDeamonStarted': false
-	}, params);
-	for (var p in params) {
-		if (params.hasOwnProperty(p)) {
-			this[p] = params[p];
+	init: function (params) {
+		params = jQuery.extend(true, {
+			'badge': 0,
+			'lastLoadAlert': 0,
+			'abbrlang': 'ru',
+			'audio': true,
+			'showMessage': false,
+			'alerts': {
+				'message': false,
+				'error': false
+			},
+			'api': {
+				'access_token': '',
+				'user_id': '',
+				'lang': 0,
+				'v': '5.34'
+			},
+			'options': 'friends,photos,videos,messages,groups,notifications',
+			'isDeamonStarted': false
+		}, params);
+		for (var p in params) {
+			if (params.hasOwnProperty(p)) {
+				this[p] = params[p];
+			}
 		}
-	}
+	},
 	/**
 	 * Установка кода языка
 	 * @param  {[int]}	  lang_code	  [код языка]
 	 * @return {[string]}			  [буквенный еквивалент языка]
 	 */
-	this.setLang = function (lang_code) {
+	setLang: function (lang_code) {
 		if (lang_code === 0 || lang_code === 97 || lang_code === 100 || lang_code === 777) { // Русский
 			this.api.lang = 0;
 			this.abbrlang = 'ru';
@@ -66,13 +68,13 @@ function Informer (params) {
 			this.api.lang = 3;
 			this.abbrlang = 'en';
 		}
-	};
+	},
 
 	/**
 	 * Загрузка перевода 
 	 * @param  int	  lang_code	  код языка
 	 */
-	this.loadTranslate = function (lang_code) {
+	loadTranslate: function (lang_code) {
 		if (lang_code === undefined) {
             lang_code = this.api.lang;
         }
@@ -84,13 +86,13 @@ function Informer (params) {
 		    var err = textStatus + ", " + error;
 		    console.error('Load translate failed: ' + err);
 		});
-	};
+	},
 
 	/**
 	 * Запуск демона 
 	 * @param  delay   Интервалы между запросами
 	 */
-	this.deamonStart = function (delay) {
+	deamonStart: function (delay) {
 		if (this.isDeamonStarted) {
 			console.info('Daemon already running');
 			return false;
@@ -106,12 +108,12 @@ function Informer (params) {
 			console.info('Daemon running');
 			return true;
 		}
-	};
+	},
 
     /**
 	 * Остановка демона 
 	 */
-	this.deamonStop = function () {
+	deamonStop: function () {
 		if (!this.isDeamonStarted) {
 			console.info('Daemon already stoped');
 			return false;
@@ -119,17 +121,17 @@ function Informer (params) {
 		this.isDeamonStarted = false;
 		console.info('Daemon stopped');
 		return true;
-	};
+	},
 
 	/**
 	 * Загружает информацию для информера
 	 */
-	this.mainRequest = function (delay) {
+	mainRequest: function (delay) {
 		this.callAPI('execute.getdata', {'options': this.options},
 			// Успешно
 			function (API) {
 				if (API.system.lastAlertId > this.lastLoadAlert) {
-					inf.loadAlerts();
+					Informer.loadAlerts();
 				}
 				delete API.system;
 				chrome.storage.local.set(API);
@@ -153,18 +155,18 @@ function Informer (params) {
 			function () {
 				if (this.isDeamonStarted) {
 					setTimeout(function () {
-						window.inf.mainRequest(delay);
+						window.Informer.mainRequest(delay);
 					}, delay);
 				}
 			}
 		);
-	};
+	},
 	
 	/**
 	 * Обращение у ВК API 
 	 * @param  {[string]}	method [метод API]
 	 */
-	this.callAPI = function (method, options, done, fail, always) {
+	callAPI: function (method, options, done, fail, always) {
 		options = jQuery.extend(this.api, options);
 		
 		if (method === 'execute.getLang') {
@@ -195,19 +197,19 @@ function Informer (params) {
 					always.call(this);
 				}
 			}.bind(this));
-	};
+	},
 	
 	/**
 	 * Вызывает метод статистики 
 	 */
-	this.addVisitor = function () {
+	addVisitor: function () {
 		this.callAPI('stats.trackVisitor');
-	};
+	},
 
 	/**
 	 * Загружает и устанавливает сообщения 
 	 */
-	this.loadAlerts = function () {
+	loadAlerts: function () {
 		this.callAPI('execute.getAlerts', {
 			'lang': this.abbrlang,
 			'lastAlert': this.lastLoadAlert
@@ -218,7 +220,7 @@ function Informer (params) {
 				this.saveAlert(loaded[0].alert);
 			}
 		});
-	};
+	},
 
 	/**
 	 * Парсит строку access_token
@@ -231,7 +233,7 @@ function Informer (params) {
 	 * 	state = chrome.app.getDetails().id || undefined
 	 * }
 	 */
-	this.parseURL = function (url) {
+	parseURL: function (url) {
 		url = url.replace('#', '');
 		var ret = {},
 			seg = url.split('&'),
@@ -246,13 +248,13 @@ function Informer (params) {
 			ret[s[0]] = s[1];
 		}
 		return ret;
-	};
+	},
 
 	/**
 	 * Сохраняет параметры доступа 
 	 * Возвращает TRUE в случае успешного сохранения
 	 */
-	this.saveAccess = function (access_str) {
+	saveAccess: function (access_str) {
 		var auth = this.parseURL(access_str);
 		if (auth.error === undefined && auth.state !== undefined && auth.state === chrome.app.getDetails().id) {
 			this.api.access_token = auth.access_token;
@@ -266,13 +268,13 @@ function Informer (params) {
 		} else {
 			return false;
 		}
-	};
+	},
 
 	/**
 	 * Удаляет параметры доступа 
 	 * Возвращает TRUE в случае успешного сохранения
 	 */
-	this.removeAccess = function () {
+	removeAccess: function () {
 		this.api = {
 			'access_token': 'not correct access_token', // Вставляем не правильный access_token чтобы избежать автоматической авторизации
 			'user_id': '',
@@ -282,13 +284,13 @@ function Informer (params) {
 		this.setCounters([]);
 		chrome.storage.local.remove(['api']);
 		return true;
-	};
+	},
 
 	/**
 	 * Вычисляет и выводит бейдж 
 	 * friends,photos,videos,messages,groups,notifications
 	 */
-	this.setCounters = function (counters, dialogs) {
+	setCounters: function (counters, dialogs) {
 		if (counters.length === undefined) {
 			var sum = 0,
 				needSound = false, c;
@@ -326,12 +328,12 @@ function Informer (params) {
 			chrome.browserAction.setBadgeText({text: ''});
 			return 0;
 		}
-	};
+	},
 	
 	/**
 	 * Воспроизводит звук 
 	 */
-	this.playSound = function () {
+	playSound: function () {
 		if (this.audio === true) {
 			chrome.tabs.query({
 				url: "*://vk.com/*"
@@ -347,7 +349,7 @@ function Informer (params) {
 				return true;
 			});
 		}
-	};
+	},
 
 	/**
 	 * Сохраняет всплывающее сообщение 
@@ -361,17 +363,17 @@ function Informer (params) {
 	 * 		footer 	: String
 	 * }
 	 */
-	this.saveAlert = function (alert_obj, type) {
+	saveAlert: function (alert_obj, type) {
 		if (type !== 'error') {
 			this.alerts.message = alert_obj;
 		} else {
 			this.alerts.error = alert_obj;
 		}
 		chrome.storage.local.set({'alerts': this.alerts});
-	}
+	},
 
 
-	this.generateError = function (API) {
+	generateError: function (API) {
 		if (API) {
 			var alert = {
 				'header': 'api_error',
@@ -390,7 +392,7 @@ function Informer (params) {
 			} else if ([6, 9].indexOf(API.error.error_code) !== -1) {
 				if (this.deamonStop()) {
 					setTimeout(function () {
-						window.inf.deamonStart();
+						window.Informer.deamonStart();
 					}, 15000);
 				}
 				alert = false;
@@ -404,9 +406,9 @@ function Informer (params) {
 		}
 
 		this.saveAlert(alert, 'error');
-	};
+	},
 
-	this.getAuthUrl = function () {
+	getAuthUrl: function () {
 		return 'https://oauth.vk.com/authorize?' + jQuery.param({
 			'redirect_uri'	: 'oauth.vk.com/blank.html',
 			'client_id'		: 4682781,
@@ -416,22 +418,22 @@ function Informer (params) {
 			'v'				: this.api.v,
 			'state'			: chrome.app.getDetails().id
 		});
-	};
+	},
 		
-	this.getExtUrl = function () {
+	getExtUrl: function () {
 		if (/opera/i.test(navigator.userAgent) || /opr/i.test(navigator.userAgent) || /Yandex/i.test(navigator.userAgent) || /YaBrowser/i.test(navigator.userAgent)) {
 			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
 		} else {
 			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
 		}
-	};
+	},
 		
-	this.getShareUrl = function (share_options) {
+	getShareUrl: function (share_options) {
 		return 'https://vk.com/share.php?' + jQuery.param(jQuery.extend({
 			'url'			: 'http://vk.com/note45421694_12011424',
 			'title'			: chrome.i18n.getMessage('extName'),
 			'description'	: chrome.i18n.getMessage('extDesc'),
 			'image'			: 'https://pp.vk.me/c623120/v623120694/2c4a7/LIelD5vBXdg.jpg'
 		}, share_options));
-	};
+	},
 };

@@ -14,18 +14,18 @@
  */
 'use strict';
 chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'options'], function (storage) {
-	window.pop = new Popup(storage);
+	Popup.init(storage);
 	// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
-	if (pop.buildAlert()) {			// Строит уведомления
-		pop.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
-		pop.loadTranslate();		// Переводим интерфейс
-		pop.show();					// Уберает предзагрущик
+	if (Popup.buildAlert()) {			// Строит уведомления
+		Popup.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
+		Popup.loadTranslate();		// Переводим интерфейс
+		Popup.show();					// Уберает предзагрущик
 
 		/**
 		 * Генерирует 6 друзей онлайн
 		 */
 		try {
-			pop.builFriendsOnline();
+			Popup.builFriendsOnline();
 			var $onlineUsers = 	jQuery('#right figure');
 
 			// Событине для удаления друга онлайн
@@ -53,18 +53,18 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 		} catch (error) {
 			console.error(error);
-			jQuery('#right').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + pop.geti18n('attr.error') + '</b></div>');
+			jQuery('#right').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.geti18n('attr.error') + '</b></div>');
 		}
 
 
-		pop.builCounters();		// Выстраивает счетчики в меню
-		pop.initSlide();		// Активирует события для слайдов
+		Popup.builCounters();		// Выстраивает счетчики в меню
+		Popup.initSlide();		// Активирует события для слайдов
 
 		/**
 		 * Генерирует новые сообщения
 		 */
 		try {
-			pop.buildDialogs();
+			Popup.buildDialogs();
 			var $newmess = jQuery('#newmess');
 
 			// Помечаем сообщения как прочитанные
@@ -127,12 +127,12 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			$newmess.on('onSendAnswer', '.dialog', function (event, dialog, answer) {
 				dialog.jQ.find('.mess-container').html(new Message({
 					body: answer,
-					user_id: window.pop.current.id,
+					user_id: window.Popup.current.id,
 				}, dialog).getHtml('compact'));
 			});
 		} catch (error) {
 			console.error(error.stack);
-			jQuery('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + pop.geti18n('attr.error') + '</b></div>');
+			jQuery('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.geti18n('attr.error') + '</b></div>');
 		}
 
 
@@ -140,11 +140,11 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		 * Генерирует новые заявки в друзья
 		 */
 		try {
-			pop.buildNewFriends();
+			Popup.buildNewFriends();
 			var $newfriends = jQuery('#newfriends');
 			// Принять или отклонить заявку в друзья
 			$newfriends.on('click', 'i', function () {
-				window.pop.CanUpDate = false;
+				window.Popup.CanUpDate = false;
 				var $button = jQuery(this),
 					$parent = $button.parent('figure'),
 					user    = $parent.data(),
@@ -160,28 +160,28 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 					null,
 					// Всегда
 					function () {
-						window.pop.CanUpDate = true;
+						window.Popup.CanUpDate = true;
 						$button.removeClass('icon-spin4 animate-spin');
 					}
 				);
 			});
 		} catch (error) {
 			console.error(error);
-			jQuery('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + pop.geti18n('attr.error') + '</b></div>');
+			jQuery('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.geti18n('attr.error') + '</b></div>');
 		}
 
-		pop.buildCustomScrollbar(); // Инициализирует плагн для скрола
-		pop.addVisitor();			// Делает запрос в ВК к методу статистики
-		pop.initOptions();			// Переключает настройки. Активирует событие переключения настроек
+		Popup.buildCustomScrollbar(); // Инициализирует плагн для скрола
+		Popup.addVisitor();			// Делает запрос в ВК к методу статистики
+		Popup.initOptions();			// Переключает настройки. Активирует событие переключения настроек
 
 		// Share ссылка
-		pop.loadShareUrl(function (url) {
+		Popup.loadShareUrl(function (url) {
 			jQuery('#share').attr('href', url);
 		});
 
 		// Событие нажатия на кнопку выхода
 		jQuery('#logout').on('click', function () {
-			pop.CanUpDate = false;
+			Popup.CanUpDate = false;
 			chrome.runtime.connect({name: 'remove_token'});
 			location.reload();
 			return false;
@@ -191,40 +191,40 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 chrome.storage.onChanged.addListener(function (changes) {
 	if (changes.counter !== undefined) {
-		pop.counter = changes.counter.newValue || [];
+		Popup.counter = changes.counter.newValue || [];
 	}
 
 	if (changes.profiles !== undefined) {
 		if (changes.profiles.newValue === undefined) changes.profiles.newValue = [];
 		changes.profiles.newValue.forEach(function (user) {
 			user = new User(user);
-			pop.profiles[user.id] = user;
+			Popup.profiles[user.id] = user;
 		});
 	}
 
 	if (changes.friends !== undefined) {
-		pop.friends = changes.friends.newValue || [];
-		pop.builFriendsOnline();
+		Popup.friends = changes.friends.newValue || [];
+		Popup.builFriendsOnline();
 	}
 
 	if (changes.newfriends !== undefined) {
-		pop.newfriends = changes.newfriends.newValue || [];
-		pop.buildNewFriends();
+		Popup.newfriends = changes.newfriends.newValue || [];
+		Popup.buildNewFriends();
 	}
 
 	if (changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
 		for (var i = changes.dialogs.newValue.length; i--;) {
 			var dialog = new Dialog(changes.dialogs.newValue[i]);
-			if (pop.dialogs[dialog.id] !== undefined && pop.dialogs[dialog.id].hash() !== dialog.hash()) {
-				pop.dialogs[dialog.id].update(changes.dialogs.newValue[i]);
+			if (Popup.dialogs[dialog.id] !== undefined && Popup.dialogs[dialog.id].hash() !== dialog.hash()) {
+				Popup.dialogs[dialog.id].update(changes.dialogs.newValue[i]);
 			}
 		};
 	}
 
 	if (changes.alerts !== undefined) {
-		pop.alerts = changes.alerts.newValue || {error :false, message: false};
-		pop.buildAlert();
+		Popup.alerts = changes.alerts.newValue || {error :false, message: false};
+		Popup.buildAlert();
 	}
 	
-	pop.builCounters();
+	Popup.builCounters();
 });

@@ -13,7 +13,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	}
 
 	if (this.action) {
-		this.body = '<span class="system">' + window.pop.geti18n('attr.' + this.action) + '</span>';
+		this.body = '<span class="system">' + window.Popup.geti18n('attr.' + this.action) + '</span>';
 	} else if (this.body) {
 		this.body = this.body.linkify({
 			format: function (value, type) {
@@ -56,7 +56,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['photo_130'])	attach.url = attach['photo_130'];
 					else if (attach['photo_75'])	attach.url = attach['photo_75'];
 					else attach.url = this.url;
-					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.photo')).icon('camera').link(attach.url); 
+					this.attachments[i] = ('&nbsp;' + window.Popup.geti18n('attr.photo')).icon('camera').link(attach.url); 
 				break;
 				// Подарок
 				case 'gift':
@@ -65,12 +65,12 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['thumb_96'])	attach.url = attach['thumb_96'];
 					else if (attach['thumb_48'])	attach.url = attach['thumb_48'];
 					else attach.url = this.url;
-					this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.gift')).icon('gift').link(attach.url); 
+					this.attachments[i] = ('&nbsp;' + window.Popup.geti18n('attr.gift')).icon('gift').link(attach.url); 
 				break;
 				// Пост
-				case 'wall' : this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.post')).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
+				case 'wall' : this.attachments[i] = ('&nbsp;' + window.Popup.geti18n('attr.post')).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
 				// Комментарий
-				case 'wall_reply' : this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.wall_reply')).icon('chat').link(VK + 'wall' + attach.owner_id + '_' + attach.post_id + '?reply=' + attach.id); break;
+				case 'wall_reply' : this.attachments[i] = ('&nbsp;' + window.Popup.geti18n('attr.wall_reply')).icon('chat').link(VK + 'wall' + attach.owner_id + '_' + attach.post_id + '?reply=' + attach.id); break;
 				// Аудиозапись
 				case 'audio': this.attachments[i] = ('&nbsp;' + attach.artist.bold() + '&nbsp;–&nbsp;' + attach.title).icon('music').link(VK + 'audio' + attach.owner_id + '_' + attach.id); break;
 				// Видеозапись
@@ -83,7 +83,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				case 'geo':
 					attach.coordinates = attach.coordinates.split(' ');
 					attach.coordinates = (attach.coordinates[0]-0) + ',' + (attach.coordinates[1]-0);
-					this.attachments[i] = ('&nbsp;' + (attach.place ? attach.place.title : window.pop.geti18n('attr.location'))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
+					this.attachments[i] = ('&nbsp;' + (attach.place ? attach.place.title : window.Popup.geti18n('attr.location'))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
 				break;
 				// Стикеры
 				case 'sticker': 
@@ -91,7 +91,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				break;
 				
 				// Неподдерживаемое вложение
-				default	 : this.attachments[i] = ('&nbsp;' + window.pop.geti18n('attr.attach')).icon('attach').link(this.url);
+				default	 : this.attachments[i] = ('&nbsp;' + window.Popup.geti18n('attr.attach')).icon('attach').link(this.url);
 			}
 		};
 
@@ -101,7 +101,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	if (this.fwd_messages) {
 		var fwd_text = '';
 		if (parentMessage !== undefined) {
-			fwd_text = getCase(this.fwd_messages.length, window.pop.geti18n('attr.fwd_mess')).icon('chat').link(this.url);
+			fwd_text = getCase(this.fwd_messages.length, window.Popup.geti18n('attr.fwd_mess')).icon('chat').link(this.url);
 		} else {
 			for (var i = 0; i < this.fwd_messages.length; i++) {
 				this.fwd_messages[i] = new Message(this.fwd_messages[i], parentDialog, this);

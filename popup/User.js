@@ -2,18 +2,18 @@ function User (user_obj) {
 
 	var param;
 	if (typeof user_obj === 'number') {
-		if (window.pop.profiles[user_obj]) {
-			for (param in window.pop.profiles[user_obj]) {
-				this[param] = window.pop.profiles[user_obj][param];
+		if (window.Popup.profiles[user_obj]) {
+			for (param in window.Popup.profiles[user_obj]) {
+				this[param] = window.Popup.profiles[user_obj][param];
 			};
 			return true;
 		} else {
 			console.warn('User not loaded: ' + user_obj);
-			window.pop.callAPI('users.get', {
+			window.Popup.callAPI('users.get', {
 				user_ids: user_obj,
 				fields: 'status,photo_100,domain,online'
 			}, function (API) {
-				window.pop.profiles[user_obj.id] = new User(API[0]);
+				window.Popup.profiles[user_obj.id] = new User(API[0]);
 			});
 			
 			user_obj = {
@@ -81,13 +81,13 @@ function User (user_obj) {
 
 	this.addOrDel = function (method, done, fail, always) {
 		this.upData();
-		window.pop.callAPI('friends.' + method, {'user_id': this.id}, done, fail, always);
+		window.Popup.callAPI('friends.' + method, {'user_id': this.id}, done, fail, always);
 	};
 
 	this.upData = function () {
-		if (this.notLoaded && window.pop.profiles[this.id]) {
-			for (param in window.pop.profiles[this.id]) {
-				this[param] = window.pop.profiles[this.id][param];
+		if (this.notLoaded && window.Popup.profiles[this.id]) {
+			for (param in window.Popup.profiles[this.id]) {
+				this[param] = window.Popup.profiles[this.id][param];
 			};
 			this.notLoaded = false;
 		}

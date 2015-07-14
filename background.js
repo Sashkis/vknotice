@@ -14,11 +14,11 @@
  */
 'use strict';
 chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert'], function (storage) {
-	window.inf = new Informer(storage);
-	inf.deamonStart();
-	inf.callAPI('execute.getLang', {}, function (lang_code) {
-		inf.loadTranslate(lang_code);
-		inf.addVisitor();
+	Informer.init(storage);
+	Informer.deamonStart();
+	Informer.callAPI('execute.getLang', {}, function (lang_code) {
+		Informer.loadTranslate(lang_code);
+		Informer.addVisitor();
 	});
 });
 
@@ -44,26 +44,26 @@ chrome.runtime.onInstalled.addListener(function (details) {
 		
 chrome.alarms.onAlarm.addListener(function (alarm) {
 	if (alarm.name === 'get_review') {
-		inf.saveAlert({
+		Informer.saveAlert({
 			'header': 'credo',
 			'footer': 'close',
 			'body': {
 				'img'	 : 'https://vk.com/images/stickers/707/128.png',
 				'text'	 : 'review',
 				'ancor'	 : 'review_link',
-				'imgLink': inf.getExtUrl(),
-				'url'	 : inf.getExtUrl()
+				'imgLink': Informer.getExtUrl(),
+				'url'	 : Informer.getExtUrl()
 			}
 		});
 	} else if (alarm.name === 'say_thanks') {
-		inf.saveAlert({
+		Informer.saveAlert({
 			'header': 'credo',
 			'footer': 'close',
 			'body': {
 				'img'	 : 'https://vk.com/images/stickers/709/128.png',
 				'ancor'	 : 'thank',
-				'url'	 : inf.getShareUrl(),
-				'imgLink': inf.getShareUrl()
+				'url'	 : Informer.getShareUrl(),
+				'imgLink': Informer.getShareUrl()
 			}
 		});
 	}
@@ -75,14 +75,14 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 chrome.runtime.onConnect.addListener(function (port) {
 	if ('get_token' === port.name) {
 		port.onMessage.addListener(function (access) {
-			port.postMessage(inf.saveAccess(access));
+			port.postMessage(Informer.saveAccess(access));
 		});
 	} else if ('getShareUrl' === port.name) {
 		port.onMessage.addListener(function (shareOptions) {
-			port.postMessage(inf.getShareUrl(shareOptions));
+			port.postMessage(Informer.getShareUrl(shareOptions));
 		});
 	} else if ('remove_token' == port.name) {
-		port.postMessage(inf.removeAccess());
+		port.postMessage(Informer.removeAccess());
 	}
 });
 
@@ -90,11 +90,11 @@ chrome.runtime.onConnect.addListener(function (port) {
 chrome.storage.onChanged.addListener(function (changes) {
 	// Изменение настроек уведомлений из popup
 	if (changes.options) {
-		inf.options = changes.options.newValue || '';
+		Informer.options = changes.options.newValue || '';
 	}
 	// Удаляем просмотренные alert'ти
 	if (changes.alerts) {
-		inf.alerts = changes.alerts.newValue || {'message': false, 'error': false};
+		Informer.alerts = changes.alerts.newValue || {'message': false, 'error': false};
 	}
 	// Изменение настроек аудио из popup
 	if (changes.audio) {
@@ -102,6 +102,6 @@ chrome.storage.onChanged.addListener(function (changes) {
 	}
 	// Изменение настроек аудио из popup
 	if (changes.showMessage) {
-		inf.showMessage = changes.showMessage.newValue || false;
+		Informer.showMessage = changes.showMessage.newValue || false;
 	}
 });

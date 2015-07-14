@@ -46,7 +46,7 @@ function Dialog (dialog_obj) {
 		options = jQuery.extend({
 			class: '',
 			photo: '',
-			title: window.pop.geti18n('attr.chat'),
+			title: window.Popup.geti18n('attr.chat'),
 			messages: ''
 		}, options);
 		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + ' <span class="date">' + new Date(this.date*1000).toStringVkFormat() + '</span></span><span class="mess-container">' + options.messages + '</span></div>';
@@ -59,7 +59,7 @@ function Dialog (dialog_obj) {
 				if (this.messages[i].out === 0) {
 					html += this.messages[i].getHtml();
 				} else {
-					this.messages[i].from_id = window.pop.current.id;
+					this.messages[i].from_id = window.Popup.current.id;
 					html += this.messages[i].getHtml('compact');
 				}
 			}
@@ -117,7 +117,7 @@ function Dialog (dialog_obj) {
 
 	this.construct = function () {
 		this.jQ = jQuery(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
-		this.jQ.html((this.addHeader(this.getObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.pop.geti18n('attr.markAsRead')}));
+		this.jQ.html((this.addHeader(this.getObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.geti18n('attr.markAsRead')}));
 		this.jQ.data(this);
 		return this.jQ;
 	};
@@ -129,7 +129,7 @@ function Dialog (dialog_obj) {
 			message_ids = this.messages.map(function (mess) {
 				return mess.id;
 			});
-		window.pop.callAPI('messages.markAsRead', {
+		window.Popup.callAPI('messages.markAsRead', {
 			message_ids: message_ids,
 			user_id: ''
 		}, function () {
@@ -151,7 +151,7 @@ function Dialog (dialog_obj) {
 			sendOptions.user_id = this.id;
 			sendOptions.chat_id = '';
 		}
-		window.pop.callAPI('messages.send', sendOptions, function () {
+		window.Popup.callAPI('messages.send', sendOptions, function () {
 			dialogCash.jQ.find('textarea').val('').removeAttr('disabled').focus();
 			dialogCash.jQ.trigger('onSendAnswer', [dialogCash, text]).trigger('onMarkAsRead', dialogCash);
 		});

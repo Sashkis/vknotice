@@ -12,42 +12,44 @@
  * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
  * ----------------------------------------------------------------------------
  */
-function Popup(params) {
-	var VK = 'https://vk.com/', p;
+var VK = 'https://vk.com/';
+window.Popup = {
 	/**
 	 * Применяем свойства по-умолчанию
 	 */
-	params = jQuery.extend(true, {
-		'audio': true,
-		'counter': [],
-		'friends': [],
-		'dialogs': [],
-		'newfriends': [],
-		'profiles': [],
-		'options': 'friends,photos,videos,messages,groups,notifications',
-		'api': {
-			'access_token': '',
-			'user_id': '',
-			'lang': 0,
-			'v': '5.34'
-		},
-	}, params);
-	for (p in params) {
-		this[p] = params[p];
-	}
+	init: function (params) {
+		params = jQuery.extend(true, {
+			'audio': true,
+			'counter': [],
+			'friends': [],
+			'dialogs': [],
+			'newfriends': [],
+			'profiles': [],
+			'options': 'friends,photos,videos,messages,groups,notifications',
+			'api': {
+				'access_token': '',
+				'user_id': '',
+				'lang': 0,
+				'v': '5.34'
+			},
+		}, params);
+		for (var p in params) {
+			this[p] = params[p];
+		}
 
-	var profCash = this.profiles;
-	this.profiles = [];
-	profCash.forEach(function (user_obj) {
-		var user = new User(user_obj);
-		this.profiles[user.id] = user;
-	}, this);
+		var profCash = this.profiles;
+		this.profiles = [];
+		profCash.forEach(function (user_obj) {
+			var user = new User(user_obj);
+			this.profiles[user.id] = user;
+		}, this);
+	},
 
 	/**
 	 * Обращение у ВК API 
 	 * @param  {[string]}	method [метод API]
 	 */
-	this.callAPI = function (method, options, done, fail, always) {
+	callAPI: function (method, options, done, fail, always) {
 		options = jQuery.extend(this.api, options);
 
 		jQuery.getJSON('https://api.vk.com/method/' + method, options)
@@ -72,13 +74,13 @@ function Popup(params) {
 					always.call(this);
 				}
 			}.bind(this));
-	};
+	},
 	
 
 	/**
 	 * Инициализирует плагин для скролбара 
 	 */
-	this.buildCustomScrollbar = function (options) {
+	buildCustomScrollbar: function (options) {
 		options = jQuery.extend(true, {
 			axis: 'y',
 			autoHideScrollbar: true,
@@ -94,13 +96,13 @@ function Popup(params) {
 		}, options);
 		jQuery("#newmess, #newfriends").mCustomScrollbar(options);
 		jQuery('#newmess #mCSB_2_container').attr('data-before', this.geti18n('attr.no_mess'));
-	};
+	},
 
 
 	/**
 	 * Применяет перевод 
 	 */
-	this.loadTranslate = function () {
+	loadTranslate: function () {
 		// Кнопка share
 		jQuery('#share').attr('title', this.geti18n('attr.share'));
 		// Кнопка опций
@@ -119,25 +121,25 @@ function Popup(params) {
 		}.bind(this));
 
 		jQuery('#newmess, #newfriends').attr('data-before', this.geti18n('attr.error'));
-	};
+	},
 
 
 	/**
 	 * Активирует слайд-блоки 
 	 */
-	this.initSlide = function () {
+	initSlide: function () {
 		jQuery('.slide').on('click', function () {
 			var target = jQuery(this).attr('data-target');
 			jQuery('.slider.open').add('.slide.open').add(this).add(target).toggleClass('open');
 			return false;
 		});
-	};
+	},
 
 
 	/**
 	 * Активирует опции 
 	 */
-	this.initOptions = function () {
+	initOptions: function () {
 		// Опция аудио
 		if (this.audio === true) {
 			jQuery('#sysAudio').addClass('on');
@@ -174,21 +176,21 @@ function Popup(params) {
 			popup.options = new_options;
 			chrome.storage.local.set({'options': new_options });
 		});
-	};
+	},
 
 
 	/**
 	 * Вызывает метод статистики 
 	 */
-	this.addVisitor = function () {
+	addVisitor: function () {
 		this.callAPI('stats.trackVisitor');
-	};
+	},
 
 
 	/**
 	 * Счетчики 
 	 */
-	this.builCounters = function () {
+	builCounters: function () {
 		jQuery('#left .counter').text(function (index, value) {
 			if (jQuery(this).attr('data-target') === '#newmess') {
 				return '+';
@@ -213,23 +215,23 @@ function Popup(params) {
 				}
 			}
 		}
-	};
+	},
 
 	/**
 	 * Удаляет предзагрущик 
 	 */
-	this.show = function () {
+	show: function () {
 		jQuery('.wraper.show').removeClass('show');
-	};
+	},
 
 
-	this.setCurrentProfile = function () {
+	setCurrentProfile: function () {
 		this.current = new User(this.api.user_id-0);
 		jQuery('#my a.profile').attr('href', VK+this.current.domain);
 		jQuery('header').append(this.current.ava({'isLink':true, 'size':50}) + '<h1>'+this.current.profileLink() + '</h1><h2>' + window.Emoji.emojiToHTML(this.current.status) + '</h2>');
-	};
+	},
 
-	this.builFriendsOnline = function () {
+	builFriendsOnline: function () {
 		var frag = jQuery(document.createDocumentFragment());
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
@@ -238,9 +240,9 @@ function Popup(params) {
 			}, this);
 		}
 		jQuery('#right').html(frag);
-	};
+	},
 
-	this.buildNewFriends = function () {
+	buildNewFriends: function () {
 		var $newfriends = jQuery('#newfriends'),
 			frag = jQuery(document.createDocumentFragment());
 
@@ -263,9 +265,9 @@ function Popup(params) {
 			jQuery('#friends .slide').add($newfriends).removeClass('open'); // Закрыть панель новых друзей
 		}
 		$newfriends.html(frag);
-	};
+	},
 
-	this.buildDialogs = function () {
+	buildDialogs: function () {
 		var $newmess = jQuery('#newmess');
 
 		if (this.dialogs.length > 0) {
@@ -287,13 +289,13 @@ function Popup(params) {
 
 
 		}
-	};
+	},
 
 
 	/**
 	 * Всплывающее сообщение
 	 */
-	this.buildAlert = function () {
+	buildAlert: function () {
 		if (this.alerts === undefined || (this.alerts.error === false && this.alerts.message === false)) {
 			return true;
 		}
@@ -370,10 +372,10 @@ function Popup(params) {
 			}.bind(this));
 			return isSuccess;
 		}
-	};
+	},
 
 
-	this.geti18n = function (text, obj) {
+	geti18n: function (text, obj) {
 		if (!obj) {
 			var obj = text.split('.');
 		} else {
@@ -390,13 +392,13 @@ function Popup(params) {
 			console.error('Undefined translate: ' + obj[0] + '.' + obj[1]);
 			return obj[1];
 		}
-	};
+	},
 
 
-	this.loadShareUrl = function (callback, shareOptions) {
+	loadShareUrl: function (callback, shareOptions) {
 		var port = chrome.runtime.connect({name: 'getShareUrl'});
 		port.postMessage(shareOptions);
 		port.onMessage.addListener(callback);
 		return true;
-	};
+	},
 }
