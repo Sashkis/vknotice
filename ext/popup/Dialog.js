@@ -165,7 +165,14 @@ function Dialog (dialog_obj) {
 		delete this.unread;
 		this.init(dialog_obj);
 		this.jQ.removeAttr('class').addClass(this.getClass(isOpen ? 'open' : ''));
-		this.jQ.find('.mess-container').html(this.getObj().messages);
+		this.jQ.find('.mess-container').html(this.getObj().messages).linkify({
+			format: function (value, type) {
+				if (type === 'url' && value.length > 40) {
+					value = value.substr(0, 40) + '…';
+				}
+				return value;
+			}
+		});
 		this.jQ.data(this);
 	};
 

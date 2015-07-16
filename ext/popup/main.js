@@ -26,12 +26,11 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		 */
 		try {
 			Popup.builFriendsOnline();
-			var $onlineUsers = 	jQuery('#right figure');
+			var $onlineUsers = jQuery('#right figure');
 
 			// Событине для удаления друга онлайн
 			$onlineUsers.on('click', '.icon-cancel', function () {
 				var $user = jQuery(this).parents('figure');
-				// console.log( $user );
 				$user.addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
 				var user = $user.data();
 
@@ -57,7 +56,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		}
 
 
-		Popup.builCounters();		// Выстраивает счетчики в меню
+		Popup.builCounters();	// Выстраивает счетчики в меню
 		Popup.initSlide();		// Активирует события для слайдов
 
 		/**
@@ -100,20 +99,13 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 
 			// Отправить сообщение
-			$newmess.on('submit', 'textarea', function (eventObject) {
-				if (eventObject.which === 13 && eventObject.shiftKey === false ) {
-					jQuery(this).attr('disabled', 'disabled');
-
-					var dialog = jQuery(this).parents('.dialog').data();
-					return !dialog.sendAnswer(jQuery(this).val());
-				}
-			});
-			$newmess.on('keypress', 'textarea', function (eventObject) {
-				if (eventObject.which === 13 && eventObject.shiftKey === false ) {
-					jQuery(this).attr('disabled', 'disabled');
-
-					var dialog = jQuery(this).parents('.dialog').data();
-					return !dialog.sendAnswer(jQuery(this).val());
+			$newmess.on('keypress', 'textarea', function (event) {
+				if (event.keyCode === 13 && !event.ctrlKey && !event.shiftKey) {
+					if (this.value) {
+						jQuery(this).attr('disabled', 'disabled');
+						jQuery(this).parents('.dialog').data().sendAnswer(this.value);
+					}
+					return false;
 				}
 			});
 
@@ -170,8 +162,8 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			jQuery('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.i18n.attr.error + '</b></div>');
 		}
 
-		Popup.buildCustomScrollbar(); // Инициализирует плагн для скрола
-		Popup.addVisitor();			// Делает запрос в ВК к методу статистики
+		Popup.buildCustomScrollbar();	// Инициализирует плагн для скрола
+		Popup.addVisitor();				// Делает запрос в ВК к методу статистики
 		Popup.initOptions();			// Переключает настройки. Активирует событие переключения настроек
 
 		// Share ссылка

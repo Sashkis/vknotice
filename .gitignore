@@ -1,0 +1,24 @@
+# ---- ФАЙЛЫ ----
+# Игнорирование по типу файла, будут игнорироваться в АБСОЛЮТНО всех директориях
+# Например /files/data.zip, /server.log, /uploads/users/data/info.xls
+*.zip
+/Project-file.sublime-project
+/Project-file.sublime-workspace
+/Архив
+# ---- ДИРЕКТОРИИ ----
+# Игнорирование всех файлов и папок ТОЛЬКО в конкретной директории(включая поддиректории и файлы в них)
+# Например /images/user.jpg, /images/company/logo.png
+# НЕ БУДУТ проигнорированы файлы и папки /prod/images/user.jpg
+/images/*
+/cache/*
+/node_modules/*
+/Архив/*
+/ext/bower_components/*
+/build/*
+# ---- РАЗНОЕ ----
+# Исключение из игнорирования
+# Игнорирование ВСЕХ файлов и папок внутри директории /secret,
+/fontello/*
+!/fontello/config.json
+/img/*
+!/img/*.xcf

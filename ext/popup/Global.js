@@ -34,7 +34,7 @@ String.prototype.icon = function (icon, attr) {
 };
 
 Date.prototype.toStringVkFormat = function () {
-	var now = new Date();
+	var now = new Date(),
 		ago = (now.getTime() - this.getTime())/1000; // Количество секунд прошедших с момента публикации
 	if(ago < 10) return window.Popup.i18n.date.now;
 	else if(ago < 60) return getCase(Math.floor(ago), window.Popup.i18n.date.seconds) + '&nbsp' + window.Popup.i18n.date.ago;

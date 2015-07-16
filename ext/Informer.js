@@ -130,8 +130,8 @@ window.Informer = {
 		this.callAPI('execute.getdata', {'options': this.options},
 			// Успешно
 			function (API) {
-				if (API.system.lastAlertId > this.lastLoadAlert) {
-					Informer.loadAlerts();
+				if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
+					this.loadAlerts();
 				}
 				delete API.system;
 				chrome.storage.local.set(API);

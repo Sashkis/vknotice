@@ -287,7 +287,14 @@ window.Popup = {
 				jQuery('#messages .slide').trigger('click');
 			}
 
-
+			$newmess.find('.body').linkify({
+				format: function (value, type) {
+					if (type === 'url' && value.length > 40) {
+						value = value.substr(0, 40) + '…';
+					}
+					return value;
+				}
+			});
 		}
 	},
 
@@ -359,9 +366,6 @@ window.Popup = {
 			}
 			var $alert = jQuery('#alert'),
 				isSuccess = type !== 'error';
-			if (!isSuccess) {
-				$alert.addClass('error');
-			}
 			$alert.find('table').html(header + text + footer);
 			$alert.addClass('show');
 

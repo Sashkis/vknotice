@@ -15,14 +15,6 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	if (this.action) {
 		this.body = '<span class="system">' + window.Popup.geti18n(this.action, 'attr') + '</span>';
 	} else if (this.body) {
-		this.body = this.body.linkify({
-			format: function (value, type) {
-				if (type === 'url' && value.length > 40) {
-					value = value.substr(0, 40) + '…';
-				}
-				return value;
-			}
-		});
 		this.body = window.Emoji.emojiToHTML(this.body);
 		this.body += ' ';
 	}

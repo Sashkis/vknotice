@@ -1,0 +1,28 @@
+{
+  "name": "Информер Вконтакте",
+  "version": "3.4.11",
+  "authors": [
+    "Alex Kozack <cawa-93@yandex.ru>"
+  ],
+  "description": "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!",
+  "main": "ext/*",
+  "keywords": [
+    "ВК",
+    "Вконтакте"
+  ],
+  "license": "MIT",
+  "homepage": "https://vk.com/vknotice",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "ext/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery-linkify": "git://github.com/SoapBox/linkifyjs.git#~1.1.7",
+    "jquery": "~2.1.4",
+    "malihu-custom-scrollbar-plugin": "~3.0.9"
+  }
+}

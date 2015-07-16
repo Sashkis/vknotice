@@ -72,7 +72,7 @@ function User (user_obj) {
 			'type': 'full'
 		}, options);
 
-		var onlineClass = (!!this.online && options.marker ? ' online' : '');
+		var onlineClass = (!!this.online && options.marker ? ' online' : ''),
 			imgHTML = '<div class="ava ava-' + options.type + onlineClass + '"><img title="' + (options.title ? this.name() : '') + '" src="' + this.photo_100 + '" width="' + options.size + '" height="' + options.size + '"/></div>';
 
 		if (options.isLink === true) return this.profileLink(imgHTML, true);

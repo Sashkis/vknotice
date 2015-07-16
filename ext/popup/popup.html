@@ -14,10 +14,14 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
+	<!-- @import min.css -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+	<!-- endbower -->
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/animation.css">
-	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" href="css/popup.css">
+	<!-- @import /min.css -->
 </head>
 <body>
 	<div class="wraper show"><div><i class="icon-spin4 animate-spin"></i></div></div>
@@ -131,16 +135,20 @@
 		<div id="newfriends" class="slider right" data-before="An unknown error occurred. Please inform the developers."></div>
 		<div id="newmess" class="slider right" data-before="An unknown error occurred. Please inform the developers."></div>
 	</div>
-	<script src="../jquery-2.1.4.min.js"></script>
-	<script src="plugins/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="plugins/linkify.min.js"></script>
-	<script src="plugins/linkify-string.min.js"></script>
+	<!-- @import min.js -->
+	<!-- bower:js -->
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../bower_components/jQuery-linkify/dist/jquery.linkify.js"></script>
+	<script src="../bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+	<!-- endbower -->
 	<script src="Global.js"></script>
-	<script src="plugins/Emoji.js"></script>
+	<script src="Emoji.js"></script>
 	<script src="Message.js"></script>
 	<script src="Dialog.js"></script>
 	<script src="User.js"></script>
 	<script src="Popup.js"></script>
 	<script src="main.js"></script>
+	<!-- @import /min.js -->
 </body>
 </html>
