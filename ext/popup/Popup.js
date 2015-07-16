@@ -12,6 +12,7 @@
  * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
  * ----------------------------------------------------------------------------
  */
+console.log('Popup');
 var VK = 'https://vk.com/';
 window.Popup = {
 	/**
