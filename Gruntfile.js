@@ -85,6 +85,7 @@ module.exports = function(grunt) {
 					config: 'fontello/config.json',
 					fonts : 'ext/popup/font/',
 					styles: 'ext/popup/css/',
+					exclude: ['fontello-codes.css', 'fontello-embedded.css', 'fontello-ie7.css', 'fontello-ie7-codes.css']
 				}
 			},
 			fontello: {

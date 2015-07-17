@@ -1,18 +1,3 @@
-/* 
- * ----------------------------------------------------------------------------
- * Extension URI: https://vk.com/vknotice 
- * Author: Alex Kozack
- * Author URI: https://vk.com/alex.kozack
- * License: "THE BEER-WARE LICENSE" (Revision 42)
- * 
- * Copyright 2015 Alex Kozack (email: cawa-93@yandex.ru)
- * 
- * <cawa-93@yandex.ru> wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
- * ----------------------------------------------------------------------------
- */
-console.log('Popup');
 var VK = 'https://vk.com/';
 window.Popup = {
 	/**
@@ -304,6 +289,7 @@ window.Popup = {
 	 * Всплывающее сообщение
 	 */
 	buildAlert: function () {
+		jQuery('body').removeClass('grayscale');
 		if (this.alerts === undefined || (this.alerts.error === false && this.alerts.message === false)) {
 			return true;
 		}
@@ -317,7 +303,6 @@ window.Popup = {
 			jQuery('body').addClass('grayscale');
 			return true;
 		} else {
-			jQuery('body').removeClass('grayscale');
 			// Инициализация
 			var header = '<thead><tr><td></td></tr></thead>',
 				footer = '',
@@ -339,7 +324,7 @@ window.Popup = {
 				if (this.alerts[type].body.img) {
 					image = '<img src="' + this.alerts[type].body.img + '">';
 					if (this.alerts[type].body.imgLink) {
-						image = '<a href="' + this.alerts[type].body.imgLink + '" target="_blank" class="imgLink">' + image + '</a>';
+						image = image.link(this.alerts[type].body.imgLink, {class: 'imgLink'});
 					}
 					image += '<br>';
 				} else {
@@ -358,27 +343,25 @@ window.Popup = {
 				if (this.alerts[type].body.ancor) {
 					link = this.geti18n(this.alerts[type].body.ancor, 'alerts');
 					if (link) {
-						link = '<b><a target="_blank" href="' + this.alerts[type].body.url + '">' + link + '</a></b>';
+						link = link.link(this.alerts[type].body.url).bold();
 					} else {
 						link = '';
 					}
 				}
 				text = '<tbody><tr><td>' + image + text + link + '</td></tr></tbody>';
 			}
-			var $alert = jQuery('#alert'),
-				isSuccess = type !== 'error';
-			$alert.find('table').html(header + text + footer);
-			$alert.addClass('show');
+			var $alert = jQuery('#alert');	
+			$alert.find('table').addClass('show').html(header + text + footer);
 
-			$alert.on('click', 'a', function () {
+			$alert.once('click', 'a', function () {
 				$alert.removeClass('show');
 				this.alerts[type] = false;
 				chrome.storage.local.set({'alerts': this.alerts});
 			}.bind(this));
-			return isSuccess;
+
+			return type !== 'error';
 		}
 	},
-
 
 	geti18n: function (text, obj) {
 		if (!obj) {
@@ -398,7 +381,6 @@ window.Popup = {
 			return obj[1];
 		}
 	},
-
 
 	loadShareUrl: function (callback, shareOptions) {
 		var port = chrome.runtime.connect({name: 'getShareUrl'});
