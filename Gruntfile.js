@@ -118,7 +118,12 @@ module.exports = function(grunt) {
 					'ext/popup/popup.html': 'ext/popup/popup.html'
 				}
 			}
-		}
+		},
+		'json-minify': {
+			build: {
+				files: 'build/**/*.json'
+			}
+}
 			
 	});
 
@@ -128,6 +133,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-csso');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks('grunt-json-minify');
 	grunt.loadNpmTasks('grunt-string-replace');
 	grunt.loadNpmTasks('grunt-zip');
 
@@ -135,6 +141,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-wiredep');
 
 	// 4. Указываем, какие задачи выполняются, когда мы вводим «grunt» в терминале
-	grunt.registerTask('default', ['copy', 'bower_concat', 'uglify', 'csso', 'string-replace', 'htmlmin:build', 'zip']);
+	grunt.registerTask('default', ['copy', 'bower_concat', 'uglify', 'csso', 'json-minify', 'string-replace', 'htmlmin:build', 'zip']);
 	grunt.registerTask('update', ['fontello', 'wiredep']);
 };
