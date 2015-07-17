@@ -1,17 +1,3 @@
-/* 
- * Extension URI: https://vk.com/vknotice 
- * Author: Alex Kozack
- * Author URI: https://vk.com/alex.kozack
- * License: "THE BEER-WARE LICENSE" (Revision 42)
- * 
- * Copyright 2015 Alex Kozack (email: cawa-93@yandex.ru)
- * 
- * <cawa-93@yandex.ru> wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
- */
-console.log('Informer');
-
 window.Informer = {
 	/**
 	 * Применяем свойства по-умолчанию
@@ -34,7 +20,8 @@ window.Informer = {
 				'v': '5.34'
 			},
 			'options': 'friends,photos,videos,messages,groups,notifications',
-			'isDeamonStarted': false
+			'isDeamonStarted': false,
+			'iconSufix': '.i18n'
 		}, params);
 		for (var p in params) {
 			if (params.hasOwnProperty(p)) {
@@ -49,23 +36,23 @@ window.Informer = {
 	 */
 	setLang: function (lang_code) {
 		if (lang_code === 0 || lang_code === 97 || lang_code === 100 || lang_code === 777) { // Русский
-			this.api.lang = 0;
 			this.abbrlang = 'ru';
+			return this.api.lang = 0;
 		} else if (lang_code === 1) { // Украинский
-			this.api.lang = 1;
 			this.abbrlang = 'uk';
+			return this.api.lang = 1;
 		} else if (lang_code === 2 || lang_code === 114) { // Белоруский
-			this.api.lang = 2;
 			this.abbrlang = 'be';
+			return this.api.lang = 2;
 		} else if (lang_code === 6) { // Немецкий
-			this.api.lang = 6;
 			this.abbrlang = 'de';
+			return this.api.lang = 6;
 		} else if (lang_code === 15) { // Польский
-			this.api.lang = 15;
 			this.abbrlang = 'pl';
+			return this.api.lang = 15;
 		} else { // Английский (По-умолчанию)
-			this.api.lang = 3;
 			this.abbrlang = 'en';
+			return this.api.lang = 3;
 		}
 	},
 
@@ -74,16 +61,16 @@ window.Informer = {
 	 * @param  int	  lang_code	  код языка
 	 */
 	loadTranslate: function (lang_code) {
-		if (lang_code === undefined) {
-            lang_code = this.api.lang;
-        }
-		this.setLang(lang_code);
+		if (this.setLang(lang_code || this.api.lang) < 3) {
+			this.iconSufix = '';
+		} else {
+			this.iconSufix = '.i18n';
+		};
 		
 		jQuery.getJSON('lang/' + this.abbrlang + '.json', function (translate) {
 			chrome.storage.local.set({'i18n': translate});
 		}).fail(function (jqxhr, textStatus, error) {
-		    var err = textStatus + ", " + error;
-		    console.error('Load translate failed: ' + err);
+		    console.error('Load translate failed: ' + textStatus + ", " + error);
 		});
 	},
 
@@ -134,13 +121,13 @@ window.Informer = {
 				}
 				delete API.system;
 				chrome.storage.local.set(API);
-				chrome.browserAction.setIcon({path: 'img/icon38.png'});
+				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '.png'});
 				this.setCounters(API.counter, API.dialogs);
 				this.saveAlert(false, 'error');
 			},
 			// Ошибка
 			function (error, API) {
-				chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
+				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
 				console.error('Main Request fail', error);
 				if (!this.api.access_token) {
 					console.error('access_token is not specified');
@@ -255,18 +242,17 @@ window.Informer = {
 	 */
 	saveAccess: function (access_str) {
 		var auth = this.parseURL(access_str);
-		if (auth.error === undefined && auth.state !== undefined && auth.state === chrome.app.getDetails().id) {
-			this.api.access_token = auth.access_token;
-			this.api.user_id = auth.user_id;
-			this.deamonStart();
-			this.callAPI('execute.getLang', {}, function (lang_code) {
-				this.loadTranslate(lang_code);
-				chrome.storage.local.set({'api': this.api});
-			}.bind(this));
-			return true;
-		} else {
+		if (auth.error !== undefined || auth.state !== chrome.app.getDetails().id) {
 			return false;
 		}
+		this.api.access_token = auth.access_token;
+		this.api.user_id = auth.user_id;
+		this.deamonStart();
+		this.callAPI('execute.getLang', {}, function (lang_code) {
+			this.loadTranslate(lang_code);
+			chrome.storage.local.set({'api': this.api});
+		}.bind(this));
+		return true;
 	},
 
 	/**
@@ -409,7 +395,7 @@ window.Informer = {
 
 	getAuthUrl: function () {
 		return 'https://oauth.vk.com/authorize?' + jQuery.param({
-			'redirect_uri'	: 'oauth.vk.com/blank.html',
+			'redirect_uri'	: 'https://oauth.vk.com/blank.html.',
 			'client_id'		: 4682781,
 			'scope'			: 'offline,friends,messages,notifications',
 			'response_type'	: 'token',
@@ -420,7 +406,7 @@ window.Informer = {
 	},
 		
 	getExtUrl: function () {
-		if (/opera/i.test(navigator.userAgent) || /opr/i.test(navigator.userAgent) || /Yandex/i.test(navigator.userAgent) || /YaBrowser/i.test(navigator.userAgent)) {
+		if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
 		} else {
 			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
