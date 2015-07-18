@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 		uglify: {
 			popup: {
 				files: {
-					'build/popup/popup.min.js': ['.cache/bower-concat.js', 'ext/popup/Emoji.js', 'ext/popup/*.js']
+					'build/popup/popup.min.js': ['.cache/bower-concat.js', 'ext/popup/*.js']
 				}
 			},
 			background: {

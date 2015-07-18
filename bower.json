@@ -24,5 +24,6 @@
     "jQuery-linkify": "git://github.com/SoapBox/linkifyjs.git#~1.1.7",
     "jquery": "~2.1.4",
     "malihu-custom-scrollbar-plugin": "~3.0.9"
-  }
+  },
+  "devDependencies": {}
 }
