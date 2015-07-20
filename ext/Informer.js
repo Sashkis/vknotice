@@ -12,7 +12,7 @@
  * @property {Object} 	alerts 			Объект сообщения
  * @property {Object} 	api 			Объект API
  */
-Informer = {
+var Informer = {
 	/**
 	 * Применяем свойства по-умолчанию
 	 * @param {Object} params Данные загруженные из chrome.storage

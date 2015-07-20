@@ -4,7 +4,7 @@ var VK = 'https://vk.com/';
  * Popup
  * @class
  */
-Popup = {
+var Popup = {
 
 	/**
 	 * Инициализирует свойства Popup
