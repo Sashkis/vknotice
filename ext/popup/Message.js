@@ -1,3 +1,10 @@
+/**
+ * Класс сообщения
+ * @constructor
+ * @param {Object} mess_obj Объект сообщения загруженный через API
+ * @param {Dialog} parentDialog  Объект родительского диалога
+ * @param {Message} parentMessage Объект родительского сообщения
+ */
 function Message (mess_obj, parentDialog, parentMessage) {
 	var VK = 'https://vk.com/', param;
 	for (param in mess_obj) {
@@ -107,6 +114,11 @@ function Message (mess_obj, parentDialog, parentMessage) {
 		this.body += ' <div class="fwd">' + fwd_text + '</div>';
 	}
 
+	/**
+	 * Возвращает сгенерированный код сообщения
+	 * @param  {String} type Формат сообщения
+	 * @return {String}      HTML code
+	 */
 	this.getHtml = function (type) {
 		var messHtml = '';
 		switch(type) {

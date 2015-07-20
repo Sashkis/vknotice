@@ -1,7 +1,14 @@
 var VK = 'https://vk.com/';
-window.Popup = {
+
+/**
+ * Popup
+ * @class
+ */
+Popup = {
+
 	/**
-	 * Применяем свойства по-умолчанию
+	 * Инициализирует свойства Popup
+	 * @param  {Object} params Параметры из chrome.storage
 	 */
 	init: function (params) {
 		params = jQuery.extend(true, {
@@ -24,16 +31,21 @@ window.Popup = {
 		}
 
 		var profCash = this.profiles;
-		this.profiles = [];
+		this.profiles = {};
 		profCash.forEach(function (user_obj) {
 			var user = new User(user_obj);
 			this.profiles[user.id] = user;
 		}, this);
+		this.profiles.length = profCash.length;
 	},
 
 	/**
-	 * Обращение у ВК API 
-	 * @param  {[string]}	method [метод API]
+	 * Ображение к API Вконтакте
+	 * @param  {String}   method  Метод к которому ображаемся
+	 * @param  {Object}   options Параметры передаваемые в API ВК
+	 * @param  {Function} done    Функция выполнемая в случае успешного выполнения метода
+	 * @param  {Function} fail    Функция выполнемая в случае ошибки выполнения метода
+	 * @param  {Function} always  Функция выполнемая всегда
 	 */
 	callAPI: function (method, options, done, fail, always) {
 		options = jQuery.extend(this.api, options);
@@ -65,6 +77,7 @@ window.Popup = {
 
 	/**
 	 * Инициализирует плагин для скролбара 
+	 * @param  {Object} options Опции передаваемые для плагина mCustomScrollbar
 	 */
 	buildCustomScrollbar: function (options) {
 		options = jQuery.extend(true, {
@@ -86,7 +99,7 @@ window.Popup = {
 
 
 	/**
-	 * Применяет перевод 
+	 * Применяет перевод
 	 */
 	loadTranslate: function () {
 		// Кнопка share
@@ -111,7 +124,7 @@ window.Popup = {
 
 
 	/**
-	 * Активирует слайд-блоки 
+	 * Активирует слайд-блоки
 	 */
 	initSlide: function () {
 		jQuery('.slide').on('click', function () {
@@ -123,7 +136,7 @@ window.Popup = {
 
 
 	/**
-	 * Активирует опции 
+	 * Активирует опции. Назначает события для переключения опций.
 	 */
 	initOptions: function () {
 		// Опция аудио
@@ -141,10 +154,9 @@ window.Popup = {
 		});
 
 		// Опции уведомлений
-		var popup = this;
 		// Инициализация
 		jQuery('.api_opt').each(function (i, el) {
-			if (popup.options.indexOf(jQuery(el).attr('name')) >= 0) {
+			if (window.Popup.options.indexOf(jQuery(el).attr('name')) >= 0) {
 				jQuery(el).addClass('on');
 			} else {
 				jQuery(el).addClass('off');
@@ -159,14 +171,14 @@ window.Popup = {
 				new_options += jQuery(el).attr('name') + ',';
 			});
 			// Сохранение нового значения
-			popup.options = new_options;
+			window.Popup.options = new_options;
 			chrome.storage.local.set({'options': new_options });
 		});
 	},
 
 
 	/**
-	 * Вызывает метод статистики 
+	 * Обращается к методу статистики 
 	 */
 	addVisitor: function () {
 		this.callAPI('stats.trackVisitor');
@@ -174,7 +186,7 @@ window.Popup = {
 
 
 	/**
-	 * Счетчики 
+	 * Вставляет счетчики в меню 
 	 */
 	builCounters: function () {
 		jQuery('#left .counter').text(function (index, value) {
@@ -205,29 +217,41 @@ window.Popup = {
 
 	/**
 	 * Удаляет предзагрущик 
+	 * @return {jQuery} .wraper
 	 */
 	show: function () {
-		jQuery('.wraper.show').removeClass('show');
+		return jQuery('.wraper.show').removeClass('show');
 	},
 
-
+	/**
+	 * Инициализирует активный профиль. Вставляет информацию о провиле
+	 * @return {jQuery} header
+	 */
 	setCurrentProfile: function () {
 		this.current = new User(this.api.user_id-0);
 		jQuery('#my a.profile').attr('href', VK+this.current.domain);
 		jQuery('header').append(this.current.ava({'isLink':true, 'size':50}) + '<h1>'+this.current.profileLink() + '</h1><h2>' + window.Emoji.emojiToHTML(this.current.status) + '</h2>');
 	},
 
+	/**
+	 * Строит 7 друзей онлайн. Седьмой скрыт.
+	 * @return {jQuery} #right
+	 */
 	builFriendsOnline: function () {
 		var frag = jQuery(document.createDocumentFragment());
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.i18n.attr.delete}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name() + '</figcaption>') + '</figure>').data(user));
+				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.i18n.attr.delete}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
-		jQuery('#right').html(frag);
+		return jQuery('#right').html(frag);
 	},
 
+	/**
+	 * Строит заявки в друзья
+	 * @return {jQuery} #newfriends
+	 */
 	buildNewFriends: function () {
 		var $newfriends = jQuery('#newfriends'),
 			frag = jQuery(document.createDocumentFragment());
@@ -253,6 +277,10 @@ window.Popup = {
 		$newfriends.html(frag);
 	},
 
+	/**
+	 * Строит диалоги. Если есть не активные диалоги - открывает панель диалогов. 
+	 * @return {jQuery} #newmess
+	 */
 	buildDialogs: function () {
 		var $newmess = jQuery('#newmess');
 
@@ -267,6 +295,7 @@ window.Popup = {
 				this.dialogs[dialogCash[i].id] = dialogCash[i];
 				this.dialogs[dialogCash[i].id].construct().prependTo(frag);
 			};
+
 			$newmess.html(frag);
 
 			if ($newmess.find('.dialog-unread').length > 0) {
@@ -282,11 +311,13 @@ window.Popup = {
 				}
 			});
 		}
+
+		return $newmess;
 	},
 
-
 	/**
-	 * Всплывающее сообщение
+	 * Строит Всплывающее сообщение
+	 * @return {Boolean} Загружено ли сообщение об ошибке. TRUE - Просто сообщение. FALSE - Была ошибка.
 	 */
 	buildAlert: function () {
 		jQuery('body').removeClass('grayscale');
@@ -363,6 +394,16 @@ window.Popup = {
 		}
 	},
 
+	/**
+	 * Возвращает строку перевода
+	 * @param  {String} text Строка для перевода.
+	 * @example
+	 * // Popup.geti18n("menu.setings");
+	 * @param  {String} obj  Объект в котором искать строку. В случае, если в @param text он не указан
+	 * @example
+	 * // Popup.geti18n("setings", "menu");
+	 * @return {String}      Строка перевода или строка поиска, если перевод не найден.
+	 */
 	geti18n: function (text, obj) {
 		if (!obj) {
 			var obj = text.split('.');
@@ -382,6 +423,12 @@ window.Popup = {
 		}
 	},
 
+	/**
+	 * Загружает ссылку "Поделится Вконтакте"
+	 * @param  {Function} callback     Функция для обработки ссылки
+	 * @param  {Object}   shareOptions Параметры ссылки "Поделится""
+	 * @return {String}                URL
+	 */
 	loadShareUrl: function (callback, shareOptions) {
 		var port = chrome.runtime.connect({name: 'getShareUrl'});
 		port.postMessage(shareOptions);

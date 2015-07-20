@@ -1,6 +1,23 @@
+/**
+ * Объект диалога
+ * @class
+ * @param {Object} dialog_obj Объект диалога загруженный через API
+ * @property {String} body 				Текст последнего сообщения
+ * @property {Number} date				Дата последнего сообщения
+ * @property {Number} id				ID последнего сообщения
+ * @property {Array.Message} message 	Массив объектов сообщений
+ * @property {Number} out				1 - Исходящее, 0 - Входящее последнее сообщение
+ * @property {Number} read_state 		1 - Сообщение прочитано
+ * @property {String} title				Заголовок диалога
+ * @property {Number} user_id			ID собеседника
+ */
 function Dialog (dialog_obj) {
 	var VK = 'https://vk.com/';
-			
+	/**
+	 * Инициализирует диалог
+	 * @param {Object} dialog_obj 		Объект диалога загруженный через API
+	 * @see Dialog
+	 */
 	this.init = function (dialog_obj) {
 		for (var p in dialog_obj) {
 			if (p !== 'message') {
@@ -25,6 +42,11 @@ function Dialog (dialog_obj) {
 		}
 	};
 
+	/**
+	 * Добавляет одно или несколько сообщений в диалог
+	 * @param {Array.Object|Object} mess_array Объект или Массив объектов сообщений загруженных через API
+	 * @return {Boolean} TRUE в случае успешного выполнения
+	 */
 	this.addMess = function (mess_array) {
 		if (mess_array.length === undefined) {
 			mess_array = [mess_array];
@@ -41,7 +63,14 @@ function Dialog (dialog_obj) {
 		return true;
 	};
 
-	
+	/**
+	 * Генерирует шапку диалога
+	 * @param {Object} options 			Опции заголовка
+	 * @param {String} options.class 	атрибут Class для шапки
+	 * @param {String} options.photo 	Фото
+	 * @param {String} options.title 	Текст заголовка
+	 * @param {String} options.messages Текст сообщений
+	 */
 	this.addHeader = function (options) {
 		options = jQuery.extend({
 			class: '',
@@ -52,7 +81,12 @@ function Dialog (dialog_obj) {
 		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + ' <span class="date">' + new Date(this.date*1000).toStringVkFormat() + '</span></span><span class="mess-container">' + options.messages + '</span></div>';
 	};
 
-	this.getObj = function () {
+	/**
+	 * Генерирует объект для шапки диалога
+	 * @see addHeader
+	 * @return {Object} Объект для шапки диалога
+	 */
+	this.getHeaderObj = function () {
 		var html = '', i;
 		if (!this.isGroup) {
 			for (i = this.messages.length; i--;) {
@@ -66,7 +100,7 @@ function Dialog (dialog_obj) {
 			var author = new User(this.id);
 			return {
 				photo: author.ava({size: 50}),
-				title: author.name(),
+				title: author.name,
 				messages: html
 			};
 		} else {
@@ -86,6 +120,10 @@ function Dialog (dialog_obj) {
 		};
 	};
 
+	/**
+	 * Генерирует код групового фото
+	 * @return {String} HTML код
+	 */
 	this.getGroupPhoto = function () {
 		if (this.photo_50) {
 			return '<div class="group-photo"><img class="ava ava-full" src="' + this.photo_50 + '" widht="50" height="50"></div>';
@@ -107,6 +145,11 @@ function Dialog (dialog_obj) {
 		}
 	};
 
+	/**
+	 * Генерирует классы для диалога
+	 * @param  {String} custom Дополнительный класс
+	 * @return {String}        Строка классов
+	 */
 	this.getClass = function (custom) {
 		var dialogClass = 'dialog';
 		if (!!this.unread) dialogClass += ' dialog-unread';
@@ -115,15 +158,22 @@ function Dialog (dialog_obj) {
 		return dialogClass + ' ' + (custom || '');
 	};
 
+	/**
+	 * Создаёт DOM елемент диалога.
+	 * @return {jQuery} Данный диалог
+	 */
 	this.construct = function () {
 		this.jQ = jQuery(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
-		this.jQ.html((this.addHeader(this.getObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.i18n.attr.markAsRead}));
+		this.jQ.html((this.addHeader(this.getHeaderObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.i18n.attr.markAsRead}));
 		this.jQ.data(this);
 		return this.jQ;
 	};
 
 
-	// Помечаем сообщения как прочитанные
+	/**
+	 * Помечает все сообщения в диалоге как прочитанные
+	 * @return {Boolean} TRUE в случае успешного выполнения
+	 */
 	this.markAsRead = function () {
 		var dialogCash = this,
 			message_ids = this.messages.map(function (mess) {
@@ -138,7 +188,10 @@ function Dialog (dialog_obj) {
 		return true;
 	};
 
-	// Отправляем ответ
+	/**
+	 * Отправляет сообщение в диалог
+	 * @param  {String} text Текст ответа
+	 */
 	this.sendAnswer = function (text) {
 		var dialogCash = this,
 			sendOptions = {
@@ -155,17 +208,19 @@ function Dialog (dialog_obj) {
 			dialogCash.jQ.find('textarea').val('').removeAttr('disabled').focus();
 			dialogCash.jQ.trigger('onSendAnswer', [dialogCash, text]).trigger('onMarkAsRead', dialogCash);
 		});
-
-		return true;
 	};
 
-	// Обновляем диалог по новым данным
+	/**
+	 * Обновляет данные в диалоге
+	 * @param  {Object} dialog_obj Объект диалога загруженный через API
+	 * @return {jQuery}            Данный диалог
+	 */
 	this.update = function (dialog_obj) {
 		var isOpen = this.jQ.hasClass('open');
 		delete this.unread;
 		this.init(dialog_obj);
 		this.jQ.removeAttr('class').addClass(this.getClass(isOpen ? 'open' : ''));
-		this.jQ.find('.mess-container').html(this.getObj().messages).linkify({
+		this.jQ.find('.mess-container').html(this.getHeaderObj().messages).linkify({
 			format: function (value, type) {
 				if (type === 'url' && value.length > 40) {
 					value = value.substr(0, 40) + '…';
@@ -173,9 +228,12 @@ function Dialog (dialog_obj) {
 				return value;
 			}
 		});
-		this.jQ.data(this);
+		return this.jQ.data(this);
 	};
 
+	/**
+	 * @return {Number} Цифровая подпись диалога
+	 */
 	this.hash = function () {
 		var summ = 0, i,
 			message_ids = this.messages.map(function (mess) {

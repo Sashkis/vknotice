@@ -1,3 +1,7 @@
+/**
+ * Екранирует HTML
+ * @return {String} Преобразованная строка
+ */
 String.prototype.escapeHtml = function () {
 	var map = {
 		'&': '&amp;',
@@ -9,6 +13,12 @@ String.prototype.escapeHtml = function () {
 	return this.replace(/[&<>"']/g, function (m) { return map[m]; });
 };
 
+/**
+ * Превращает текст в ссылку
+ * @param  {String} url  
+ * @param  {Object} attr
+ * @return {String}      HTML
+ */
 String.prototype.link = function (url, attr) {
 	if (!url) {
 		url = 'http://vk.com/';
@@ -22,6 +32,12 @@ String.prototype.link = function (url, attr) {
 	return '<a href="' + url + '" target="_blank" ' + attr_str + '>' + this + '</a>';
 };
 
+/**
+ * Добавлает к строке HTML код иконки
+ * @param  {String} icon 
+ * @param  {Object} attr 
+ * @return {String}       HTML
+ */
 String.prototype.icon = function (icon, attr) {
 	if (attr) {
 		var attr_str = '', a;
@@ -33,6 +49,10 @@ String.prototype.icon = function (icon, attr) {
 	return '<i class="icon-' + icon + '" ' + attr_str + '></i>' + this;
 };
 
+/**
+ * Формат даты Вконтакте
+ * @return {String}
+ */
 Date.prototype.toStringVkFormat = function () {
 	var now = new Date(),
 		ago = (now.getTime() - this.getTime())/1000; // Количество секунд прошедших с момента публикации
@@ -56,9 +76,11 @@ Date.prototype.toStringVkFormat = function () {
 
 /**
  * Возвращает правильный падеж фразы
- * @param  array t массив фраз
- * @param  int	n число
- * @return strind  строка вида "5 сообщений"
+ * @param  {Array}	t массив фраз
+ * @param  {Number}	n число
+ * @example
+ * getCase(5, [слово, слова, слов]); // "5 слов"
+ * @return {String}   строка
  */
 function getCase (number, words) {
 	return number!=0? number + '&nbsp' + words[number%10==1&&number%100!=11?0:number%10>=2&&number%10<=4&&(number%100<10||number%100>=20)?1:2] : "";

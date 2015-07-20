@@ -1,6 +1,21 @@
-window.Informer = {
+/**
+ * @class
+ * @type {Object}
+ * @property {String} 	abbrlang 		Символьный код языка
+ * @property {Boolean} 	audio 			Звуковые оповещения
+ * @property {Number} 	badge 			Число для бейджа
+ * @property {Number} 	delay 			Интервалы между запросами
+ * @property {String} 	iconSufix 		Суфикс для иконки
+ * @property {Number} 	lastLoadAlert 	Последнее загруженное сообщение
+ * @property {String} 	options 		Опции
+ * @property {Boolean} 	showMessage 	Показывать число сообщений а не диалогов
+ * @property {Object} 	alerts 			Объект сообщения
+ * @property {Object} 	api 			Объект API
+ */
+Informer = {
 	/**
 	 * Применяем свойства по-умолчанию
+	 * @param {Object} params Данные загруженные из chrome.storage
 	 */
 	init: function (params) {
 		params = jQuery.extend(true, {
@@ -20,7 +35,6 @@ window.Informer = {
 				'v': '5.34'
 			},
 			'options': 'friends,photos,videos,messages,groups,notifications',
-			'isDeamonStarted': false,
 			'iconSufix': '.i18n'
 		}, params);
 		for (var p in params) {
@@ -29,10 +43,11 @@ window.Informer = {
 			}
 		}
 	},
+	
 	/**
 	 * Установка кода языка
-	 * @param  {[int]}	  lang_code	  [код языка]
-	 * @return {[string]}			  [буквенный еквивалент языка]
+	 * @param  {Number}	lang_code	Код установленного языка
+	 * @return {Number}				Код загруженного языка
 	 */
 	setLang: function (lang_code) {
 		if (lang_code === 0 || lang_code === 97 || lang_code === 100 || lang_code === 777) { // Русский
@@ -58,7 +73,7 @@ window.Informer = {
 
 	/**
 	 * Загрузка перевода 
-	 * @param  int	  lang_code	  код языка
+	 * @param  {Number}	  lang_code	  Код языка для загрузки
 	 */
 	loadTranslate: function (lang_code) {
 		if (this.setLang(lang_code || this.api.lang) < 3) {
@@ -76,21 +91,16 @@ window.Informer = {
 
 	/**
 	 * Запуск демона 
-	 * @param  delay   Интервалы между запросами
+	 * @param  	{Number}	delay	Интервалы между запросами
+	 * @returns {Boolean} 			Был ли демон запущен
 	 */
 	deamonStart: function (delay) {
-		if (this.isDeamonStarted) {
+		if (this.delay) {
 			console.info('Daemon already running');
 			return false;
 		} else {
-			if (!delay) {
-                delay = 2000;
-            } else if (delay < 1000) {
-                delay = delay * 1000;
-            }
-
-			this.isDeamonStarted = true;
-			this.mainRequest(delay);
+			this.delay = delay;
+			this.mainRequest();
 			console.info('Daemon running');
 			return true;
 		}
@@ -98,21 +108,23 @@ window.Informer = {
 
     /**
 	 * Остановка демона 
+	 * @returns {Boolean} 	Был ли демон остановлен
 	 */
 	deamonStop: function () {
-		if (!this.isDeamonStarted) {
+		if (!this.delay) {
 			console.info('Daemon already stoped');
 			return false;
 		}
-		this.isDeamonStarted = false;
+		this.delay = false;
 		console.info('Daemon stopped');
 		return true;
 	},
 
 	/**
 	 * Загружает информацию для информера
+	 * Выполняет основной запрос
 	 */
-	mainRequest: function (delay) {
+	mainRequest: function () {
 		this.callAPI('execute.getdata', {'options': this.options},
 			// Успешно
 			function (API) {
@@ -139,10 +151,10 @@ window.Informer = {
 			},
 			// Всегда
 			function () {
-				if (this.isDeamonStarted) {
+				if (this.delay) {
 					setTimeout(function () {
-						window.Informer.mainRequest(delay);
-					}, delay);
+						window.Informer.mainRequest();
+					}, this.delay);
 				}
 			}
 		);
@@ -150,7 +162,11 @@ window.Informer = {
 	
 	/**
 	 * Обращение у ВК API 
-	 * @param  {[string]}	method [метод API]
+	 * @param  {String}   method  Метод API
+	 * @param  {[type]}   options Параметры запроса
+	 * @param  {Function} done    Ajax callback
+	 * @param  {Function}   fail    Ajax callback
+	 * @param  {Function}   always  Ajax callback
 	 */
 	callAPI: function (method, options, done, fail, always) {
 		options = jQuery.extend(this.api, options);
@@ -159,7 +175,7 @@ window.Informer = {
 			delete options.lang;
 		}
 
-		return jQuery.getJSON('https://api.vk.com/method/' + method, options)
+		jQuery.getJSON('https://api.vk.com/method/' + method, options)
 			.done(function (API) {
 				if (API.response !== undefined) {
 					if (done !== undefined) {
@@ -210,14 +226,8 @@ window.Informer = {
 
 	/**
 	 * Парсит строку access_token
-	 * @param  string	url access_token
-	 * @return object     	объект содержащий параметры доступа
-	 * {
-	 * 	access_token,
-	 * 	user_id,
-	 * 	expires_in = 0
-	 * 	state = chrome.app.getDetails().id || undefined
-	 * }
+	 * @param 	{String}	url access_token
+	 * @returns {{access_token: String, user_id: Number, expires_in: 0, state: String}}     	объект содержащий параметры доступа
 	 */
 	parseURL: function (url) {
 		url = url.replace('#', '');
@@ -238,7 +248,8 @@ window.Informer = {
 
 	/**
 	 * Сохраняет параметры доступа 
-	 * Возвращает TRUE в случае успешного сохранения
+	 * @param 	{String}	access_str	Строка содержащая access_token
+	 * @return	{Boolean}				TRUE в случае успешного сохранения
 	 */
 	saveAccess: function (access_str) {
 		var auth = this.parseURL(access_str);
@@ -257,7 +268,7 @@ window.Informer = {
 
 	/**
 	 * Удаляет параметры доступа 
-	 * Возвращает TRUE в случае успешного сохранения
+	 * @returns {Boolean} TRUE в случае успешного сохранения
 	 */
 	removeAccess: function () {
 		this.api = {
@@ -274,6 +285,8 @@ window.Informer = {
 	/**
 	 * Вычисляет и выводит бейдж 
 	 * friends,photos,videos,messages,groups,notifications
+	 * @param {Object} counters Объект содержащий счетчики
+	 * @param {Object} dialogs 	Объект диалоги
 	 */
 	setCounters: function (counters, dialogs) {
 		if (counters.length === undefined) {
@@ -338,15 +351,16 @@ window.Informer = {
 
 	/**
 	 * Сохраняет всплывающее сообщение 
-	 * alert_obj {	
-	 *		header	: String
-	 * 		body 	: {
-	 * 			text,
-	 * 			url,
-	 * 			ancor 
-	 * 		}
-	 * 		footer 	: String
-	 * }
+	 * @param {String} type 					Тип сообщения 
+	 * @param {Object} alert_obj 				Объект сообщения 
+	 * @param {String} alert_obj.header 		Текст заголовока 
+	 * @param {String} alert_obj.footer 		Текст ссылки "закрыть"
+	 * @param {Object} alert_obj.body 			Объект тела 
+	 * @param {String} alert_obj.body.text 		Текст тела 
+	 * @param {String} alert_obj.body.url 		Адрес ссылки 
+	 * @param {String} alert_obj.body.ancor 	Текст ссылки 
+	 * @param {String} alert_obj.body.img 		Адрес изображения 
+	 * @param {String} alert_obj.body.imgLink 	Ссылка изображения 
 	 */
 	saveAlert: function (alert_obj, type) {
 		if (type !== 'error') {
@@ -357,7 +371,10 @@ window.Informer = {
 		chrome.storage.local.set({'alerts': this.alerts});
 	},
 
-
+	/**
+	 * Генерирует и сохраняет объект сообщения
+	 * @param  {Object} API Закруженный ответ Вконтакте
+	 */
 	generateError: function (API) {
 		if (API) {
 			var alert = {
@@ -393,6 +410,9 @@ window.Informer = {
 		this.saveAlert(alert, 'error');
 	},
 
+	/**
+	 * @return {String} URL для авторизации
+	 */
 	getAuthUrl: function () {
 		return 'https://oauth.vk.com/authorize?' + jQuery.param({
 			'redirect_uri'	: 'https://oauth.vk.com/blank.html.',
@@ -404,7 +424,10 @@ window.Informer = {
 			'state'			: chrome.app.getDetails().id
 		});
 	},
-		
+	
+	/**
+	 * @return {String} URL на страницу расширения
+	 */
 	getExtUrl: function () {
 		if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
@@ -412,7 +435,11 @@ window.Informer = {
 			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
 		}
 	},
-		
+	
+	/**
+	 * @param  {Object} share_options Параметры для ссылки
+	 * @return {String}               URL ссылки для "поделится"
+	 */
 	getShareUrl: function (share_options) {
 		return 'https://vk.com/share.php?' + jQuery.param(jQuery.extend({
 			'url'			: 'http://vk.com/note45421694_12011424',

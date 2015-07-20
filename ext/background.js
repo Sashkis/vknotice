@@ -1,7 +1,7 @@
 'use strict';
 chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert'], function (storage) {
 	Informer.init(storage);
-	Informer.deamonStart();
+	Informer.deamonStart(2000);
 	Informer.callAPI('execute.getLang', {}, function (lang_code) {
 		Informer.loadTranslate(lang_code);
 		Informer.addVisitor();
