@@ -43,7 +43,7 @@ Informer = {
 			}
 		}
 	},
-	
+
 	/**
 	 * Установка кода языка
 	 * @param  {Number}	lang_code	Код установленного языка
@@ -76,7 +76,10 @@ Informer = {
 	 * @param  {Number}	  lang_code	  Код языка для загрузки
 	 */
 	loadTranslate: function (lang_code) {
-		if (this.setLang(lang_code || this.api.lang) < 3) {
+		if (lang_code === undefined) {
+			lang_code = this.api.lang;
+		}
+		if (this.setLang(lang_code) < 3) {
 			this.iconSufix = '';
 		} else {
 			this.iconSufix = '.i18n';
@@ -106,7 +109,7 @@ Informer = {
 		}
 	},
 
-    /**
+	/**
 	 * Остановка демона 
 	 * @returns {Boolean} 	Был ли демон остановлен
 	 */
@@ -162,14 +165,20 @@ Informer = {
 	
 	/**
 	 * Обращение у ВК API 
-	 * @param  {String}   method  Метод API
-	 * @param  {[type]}   options Параметры запроса
-	 * @param  {Function} done    Ajax callback
+	 * @param  {String}   	method  Метод API
+	 * @param  {Object}   	options Параметры запроса
+	 * @param  {Function} 	done    Ajax callback
 	 * @param  {Function}   fail    Ajax callback
 	 * @param  {Function}   always  Ajax callback
 	 */
 	callAPI: function (method, options, done, fail, always) {
-		options = jQuery.extend(this.api, options);
+		if (options === undefined) {
+			options = {};
+		}
+		options.access_token = this.api.access_token;
+		options.user_id = this.api.user_id;
+		options.lang = this.api.lang;
+		options.v = this.api.v;
 		
 		if (method === 'execute.getLang') {
 			delete options.lang;

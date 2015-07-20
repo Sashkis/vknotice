@@ -21,11 +21,10 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	}
 	 
 	// При обновлении
-	// else if (details.reason === 'update') {
-	// 	chrome.storage.local.remove('newmess');
-	// 	chrome.alarms.create('get_review', {'when': Date.now()}); // Через 0 дней
-	// 	chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 14 });// Через 7 дней
-	// }
+	else if (details.reason === 'update') {
+		chrome.storage.local.remove('api');
+		location.reload();
+	}
 });
 		
 chrome.alarms.onAlarm.addListener(function (alarm) {
