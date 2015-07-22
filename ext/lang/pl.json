@@ -9,9 +9,22 @@
 		"groups":"Moje Grupy",
 		"feed":"Moje Odpowiedzi",
 		"notifications":"Moje Nowości",
-		"setings":"Moje Ustawienia"
+		"comments":"Moje Komentarze"
+	},
+	"dropdown":{
+		"faq":"Zadaj pytanie",
+		"offer":"Zostawić oferta",
+		"error":"Zgłoś błąd",
+		"share":"Poleć znajomemu",
+		"review":"napisz recenzję",
+		"settings":"Ustawienia",
+		"logout":"Wyjście"
 	},
 	"options":{
+		"title":{
+			"noty":"Ustawienia powiadomień",
+			"ext":"Ustawienia Informator"
+		},
 		"audio":"Powiadomienia dźwiękowe",
 		"showMessage":"Wyświetlanie ilości postów",
 		"friends":"Poinformować o nowych znajomych",
@@ -19,7 +32,8 @@
 		"videos":"Poinformować o wideo, ze mną",
 		"messages":"Poinformować o prywatnych wiadomościach",
 		"groups":"Poinformować o zaproszeniach w społeczności",
-		"notifications":"Poinformować o odpowiedziach"
+		"notifications":"Poinformować o odpowiedziach",
+		"comments":"Informować o nowych komentarzach"
 	},
 	"attr":{
 		"no_mess":"Tutaj będzie pojawiała się lista Twoich wiadomości.",
@@ -70,8 +84,7 @@
 		"api_error":"Błąd dostępu"
 	},
 	"global":{
-		"author":"Nasza grupa",
-		"title":"Vk Informatorem"
+		"title":"Informatorem"
 	},
 	"date": {
 		"at": "w",

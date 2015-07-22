@@ -1,5 +1,5 @@
 'use strict';
-chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert'], function (storage) {
+chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert', 'openComment', 'loadComment'], function (storage) {
 	Informer.init(storage);
 	Informer.deamonStart(2000);
 	Informer.callAPI('execute.getLang', {}, function (lang_code) {
@@ -17,9 +17,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	// При установке
 	if (details.reason === 'install') {
 		chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 7});// Через 7 дней
-		chrome.alarms.create('get_review', {'when': Date.now() + 86400000}); // Через 1 день
+		chrome.alarms.create('get_review', {'when': Date.now() + 900000}); // Через 15 хвилин
 	}
-	 
+
+	// chrome.storage.local.set({
+	// 	'openComment': parseInt( new Date().getTime()/1000)
+	// });
 	// При обновлении
 	else if (details.reason === 'update') {
 		chrome.storage.local.remove('api');
@@ -83,10 +86,30 @@ chrome.storage.onChanged.addListener(function (changes) {
 	}
 	// Изменение настроек аудио из popup
 	if (changes.audio) {
-		changes.audio.newValue || true;
+		if (changes.audio.newValue === undefined) {
+			changes.audio.newValue = false;
+		}
+		Informer.audio = changes.audio.newValue;
 	}
 	// Изменение настроек аудио из popup
 	if (changes.showMessage) {
-		Informer.showMessage = changes.showMessage.newValue || false;
+		if (changes.showMessage.newValue === undefined) {
+			changes.showMessage.newValue = false;
+		}
+		Informer.showMessage = changes.showMessage.newValue;
+	}
+	// Изменение настроек аудио из popup
+	if (changes.loadComment) {
+		if (changes.loadComment.newValue === undefined) {
+			changes.loadComment.newValue = 1;
+		}
+		Informer.loadComment = changes.loadComment.newValue;
+	}
+	// Изменение настроек аудио из popup
+	if (changes.openComment !== undefined) {		
+		if (changes.openComment.newValue === undefined) {
+			changes.openComment.newValue = 0;
+		}
+		Informer.openComment = changes.openComment.newValue;
 	}
 });

@@ -6,8 +6,6 @@
 	<!-- bower:css -->
 	<link rel="stylesheet" href="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
 	<!-- endbower -->
-	<link rel="stylesheet" href="css/fontello.css">
-	<link rel="stylesheet" href="css/animation.css">
 	<link rel="stylesheet" href="css/popup.css">
 	<!-- @import /min.css -->
 </head>
@@ -15,113 +13,89 @@
 	<div class="wraper show"><div><i class="icon-spin4 animate-spin"></i></div></div>
 	<div id="alert"><table></table></div>
 	<div class="container">
-		<header class="col_bg">
-			<i id="open_option" class="hovered slide icon-cog" title="Settings" data-target="#options"></i>
-			<a id="share" class="col_bg hovered icon-share" title="Share the project" href="https://vk.com/share.php?url=http%3A%2F%2Fvk.com%2Fnote45421694_12011424&title=%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B5%D1%80+%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5&description=%D0%9E%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82+%D0%BA%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE+%D0%BD%D0%B5%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D0%BD%D0%BD%D1%8B%D1%85+%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9+%D0%B8+%D0%BF%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D0%B5%D1%82+%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B8%D1%82%D1%8C+%D0%BD%D0%B5+%D0%B7%D0%B0%D1%85%D0%BE%D0%B4%D1%8F+%D0%B2+%D0%92%D0%9A!&image=https%3A%2F%2Fpp.vk.me%2Fc623120%2Fv623120694%2F2c4a7%2FLIelD5vBXdg.jpg" target="_blank"></a>
+		<header>
+		<a class="navbar-brand" target="_blank" href="https://vk.com/vknotice">Информер</a>
+		<span class="dropdown navbar-right">
+			<a class="profile"></a>
+			<ul class="dropdown-menu">
+				<li><a target="_blank" href="https://vk.com/page-90041499_50788371" data-i18n="faq" >Ask question</a></li>
+				<li><a target="_blank" href="https://vk.com/topic-90041499_31898043" data-i18n="offer" >Leave offer</a></li>
+				<li><a target="_blank" href="https://vk.com/topic-90041499_31898034" data-i18n="error" >Report error</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a target="_blank" href="https://vk.com/share.php?url=http%3A%2F%2Fvk.com%2Fnote45421694_12011424&title=%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B5%D1%80+%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5&description=%D0%9E%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82+%D0%BA%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE+%D0%BD%D0%B5%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D0%BD%D0%BD%D1%8B%D1%85+%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9+%D0%B8+%D0%BF%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D0%B5%D1%82+%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B8%D1%82%D1%8C+%D0%BD%D0%B5+%D0%B7%D0%B0%D1%85%D0%BE%D0%B4%D1%8F+%D0%B2+%D0%92%D0%9A!&image=https%3A%2F%2Fpp.vk.me%2Fc623120%2Fv623120694%2F2c4a7%2FLIelD5vBXdg.jpg" data-i18n="share" >Tell your friends</a></li>
+				<li><a target="_blank" href="https://chrome.google.com/webstore/detail/%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B5%D1%80-%D0%B2%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5/jlokilojbcmfijbgbioojlnhejhnikhn" data-i18n="review" >Leave a review</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a target="_blank" data-i18n="settings" >Settings</a></li>
+				<li><a data-i18n="logout" >Logout</a></li>
+			</ul>
+		</span>
+
+			<!-- <i id="open_option" class="hovered slide icon-cog" title="Settings" data-target="#options"></i>
+			<a id="share" class="col_bg hovered icon-share" title="Share the project" href=" target="_blank"></a> -->
 		</header>
-		<div id="left">
-			<menu>
-				<li id="my">
-					<a href="https://vk.com/edit" class="icon-cog"  target="_blank"></a>
-					<a class="profile" href="http://vk.com/" target="_blank">
-						<span class="i18n">My Profile</span>
-					</a>
-				</li>
-				<li id="friends">
-					<a href="https://vk.com/friends" target="_blank">
-						<span class="i18n">My Friends</span>
-						<span class="hovered slide counter" data-target="#newfriends"></span>
-					</a>
-				</li>
-				<li id="photos">
-					<a href="https://vk.com/albums" target="_blank">
-						<span class="i18n">My Photos</span>
-						<span class="counter"></span>
-					</a>
-				</li>
-				<li id="videos">
-					<a href="https://vk.com/video" target="_blank">
-						<span class="i18n">My Videos</span>
-						<span class="counter"></span>
-					</a>
-				</li>
-				<li id="audio">
-					<a href="https://vk.com/audio" target="_blank">
-						<span class="i18n">My Music</span>
-					</a>
-				</li>
-				<li id="messages">
-					<a href="https://vk.com/im" target="_blank">
-						<span class="i18n">My Messages</span>
-						<span class="hovered slide counter" data-target="#newmess"></span>
-					</a>
-				</li>
-				<li id="groups">
-					<a href="https://vk.com/groups" target="_blank">
-						<span class="i18n">My Communities</span>
-						<span class="counter"></span>
-					</a>
-				</li>
-				<li id="feed">
-					<a href="https://vk.com/feed" target="_blank">
-						<span class="i18n">My News</span>
-						<span class="counter"></span>
-					</a>
-				</li>
-				<li id="notifications">
-					<a href="https://vk.com/feed?section=notifications" target="_blank">
-						<span class="i18n">My Feedback</span>
-						<span class="counter"></span>
-					</a>
-				</li>
-				<li id="setings">
-					<a href="https://vk.com/settings" target="_blank">
-						<span class="i18n">My Settings</span>
-					</a>
-				</li>
-			</menu>
-		</div><!--
-	 --><div id="right" class="right"></div>
-		<div id="options" class="slider right">
-			<div class="checkbox api_opt" name="friends" >
-				<div></div>
-				<span class="i18n">Report on applications friend</span>
-			</div>
-			<div class="checkbox api_opt" name="photos">
-				<div></div>
-				<span class="i18n">Report on the marks on the photo</span>
-			</div>
-			<div class="checkbox api_opt" name="videos">
-				<div></div>
-				<span class="i18n">Report on grades in the video</span>
-			</div>
-			<div class="checkbox api_opt" name="messages">
-				<div></div>
-				<span class="i18n">Report on personal messages</span>
-			</div>
-			<div class="checkbox api_opt" name="groups">
-				<div></div>
-				<span class="i18n">Report on invitation to the communities</span>
-			</div>
-			<div class="checkbox api_opt" name="notifications">
-				<div></div>
-				<span class="i18n">Report on replies</span>
-			</div>
-			<div id="sysAudio" class="checkbox sys_opt" name="audio">
-				<div></div>
-				<span class="i18n">Sound notifications</span>
-			</div>
-			<div id="sysShowMessage" class="checkbox sys_opt" name="showMessage">
-				<div></div>
-				<span class="i18n">Show message</span>
-			</div>
-			<footer>
-				<a id="dev" class="col_bg hovered" target="_blank" href="https://vk.com/vknotice">Our group</a>
-				<a id="logout" class="col_bg hovered icon-logout" title="Logout"></a>
-			</footer>
-		</div>
-		<div id="newfriends" class="slider right" data-before="An unknown error occurred. Please inform the developers."></div>
-		<div id="newmess" class="slider right" data-before="An unknown error occurred. Please inform the developers."></div>
+		<menu id="menu" class="panel">
+			<li id="my">
+				<a class="profile" href="http://vk.com/" target="_blank">
+					<span class="i18n">My Profile</span>
+				</a>
+			</li>
+			<li id="friends">
+				<a href="https://vk.com/friends" target="_blank">
+					<span class="i18n">My Friends</span>
+					<span class="hovered slide counter" data-target="#newfriends"></span>
+				</a>
+			</li>
+			<li id="photos">
+				<a href="https://vk.com/albums" target="_blank">
+					<span class="i18n">My Photos</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="videos">
+				<a href="https://vk.com/video" target="_blank">
+					<span class="i18n">My Videos</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="audio">
+				<a href="https://vk.com/audio" target="_blank">
+					<span class="i18n">My Music</span>
+				</a>
+			</li>
+			<li id="messages">
+				<a href="https://vk.com/im" target="_blank">
+					<span class="i18n">My Messages</span>
+					<span class="hovered slide counter" data-target="#newmess"></span>
+				</a>
+			</li>
+			<li id="groups">
+				<a href="https://vk.com/groups" target="_blank">
+					<span class="i18n">My Communities</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="feed">
+				<a href="https://vk.com/feed" target="_blank">
+					<span class="i18n">My News</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="notifications">
+				<a href="https://vk.com/feed?section=notifications" target="_blank">
+					<span class="i18n">My Feedback</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="comments">
+				<a href="https://vk.com/feed?section=comments" target="_blank">
+					<span class="i18n">My comments</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+		</menu><!--
+	 --><div id="friends-online" class="slider panel open"></div>
+		<div id="newfriends" class="slider panel" data-before="An unknown error occurred. Please inform the developers."></div>
+		<div id="newmess" class="slider panel" data-before="An unknown error occurred. Please inform the developers."></div>
 	</div>
 	<!-- @import min.js -->
 	<!-- bower:js -->

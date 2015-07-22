@@ -4,7 +4,8 @@
 	"description": "__MSG_extDesc__",
 	"short_name": "Vk notice",
 	"default_locale": "ru",
-	"version": "3.4.13",
+	"version": "4.0.0",
+	"options_page": "options/index.html",
 	"developer": {
 		"name": "Александр Козак",
 		"url": "https://vk.com/id45421694"
@@ -27,6 +28,9 @@
 	"content_scripts": [{
       "matches": ["*://oauth.vk.com/blank.html"],
       "js": ["get_token.js"]
+    },{
+      "matches": ["*://vk.com/feed?section=comments"],
+      "js": ["comment.js"]
     }],
 	"browser_action": {
 		"default_title": "__MSG_extName__",

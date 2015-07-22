@@ -9,9 +9,22 @@
 		"groups":"Meine Communities",
 		"feed":"Meine Neuigkeiten",
 		"notifications":"Mein Feedback",
-		"setings":"Meine Einstellungen"
+		"comments":"Meine Kommentare"
+	},
+	"dropdown":{
+		"faq":"die Frage",
+		"offer":"Lassen Angebot",
+		"error":"Fehler Melden",
+		"share":"Teilen",
+		"review":"Feedback",
+		"settings":"Einstellungen",
+		"logout":"Beenden"
 	},
 	"options":{
+		"title":{
+			"noty":"Die Einstellungen für Benachrichtigungen",
+			"ext":"Einstellungen Informer"
+		},
 		"audio":"Sound-Benachrichtigungen",
 		"showMessage":"Zeigt die Anzahl der Nachrichten",
 		"friends":"Zu berichten über die Anmeldungen der Freunde",
@@ -19,7 +32,8 @@
 		"videos":"Melden Erhebungen in Videoaufnahmen",
 		"messages":"Melden persönlichen Mitteilungen",
 		"groups":"Melden Einladung in die Community",
-		"notifications":"Melden Antworten"
+		"notifications":"Melden Antworten",
+		"comments":"Berichten über neue Kommentare"
 	},
 	"attr":{
 		"no_mess":"Hier werden Ihre persönlichen Nachrichten angezeigt.",
@@ -70,8 +84,7 @@
 		"api_error":"Fehler beim Zugriff auf"
 	},
 	"global":{
-		"author":"Unsere Gruppe",
-		"title":"Informer VK"
+		"title":"Informer"
 	},
 	"date":{
 		"at": "um",

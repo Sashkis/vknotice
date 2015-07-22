@@ -34,6 +34,8 @@ var Informer = {
 				'lang': 0,
 				'v': '5.34'
 			},
+			'loadComment':1,
+			'openComment':0,
 			'options': 'friends,photos,videos,messages,groups,notifications',
 			'iconSufix': '.i18n'
 		}, params);
@@ -128,7 +130,12 @@ var Informer = {
 	 * Выполняет основной запрос
 	 */
 	mainRequest: function () {
-		this.callAPI('execute.getdata', {'options': this.options},
+		var opts = {
+			'options': this.options,
+			'loadComment': this.loadComment,
+			'openComment': this.openComment,
+		};
+		this.callAPI('execute.getdata_beta', opts,
 			// Успешно
 			function (API) {
 				if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
@@ -183,7 +190,6 @@ var Informer = {
 		if (method === 'execute.getLang') {
 			delete options.lang;
 		}
-
 		jQuery.getJSON('https://api.vk.com/method/' + method, options)
 			.done(function (API) {
 				if (API.response !== undefined) {
@@ -191,6 +197,7 @@ var Informer = {
 						return done.call(this, API.response);
 					}
 				} else {
+					console.error('Api error', API);
 					this.generateError(API);
 					if (fail !== undefined) {
 						fail.call(this, {'status': API.error.error_code, 'msg': API.error.error_msg}, API);
@@ -267,7 +274,7 @@ var Informer = {
 		}
 		this.api.access_token = auth.access_token;
 		this.api.user_id = auth.user_id;
-		this.deamonStart();
+		this.deamonStart(2000);
 		this.callAPI('execute.getLang', {}, function (lang_code) {
 			this.loadTranslate(lang_code);
 			chrome.storage.local.set({'api': this.api});
@@ -280,14 +287,17 @@ var Informer = {
 	 * @returns {Boolean} TRUE в случае успешного сохранения
 	 */
 	removeAccess: function () {
+		this.deamonStop();
 		this.api = {
-			'access_token': 'not correct access_token', // Вставляем не правильный access_token чтобы избежать автоматической авторизации
+			// Вставляем не правильный access_token чтобы избежать автоматической авторизации
+			'access_token': 'not correct access_token',
 			'user_id': '',
 			'lang': 0,
 			'v': this.api.v
 		};
+		this.generateError({error: {error_code: 5}});
 		this.setCounters([]);
-		chrome.storage.local.remove(['api']);
+		chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api']);
 		return true;
 	},
 
@@ -306,7 +316,7 @@ var Informer = {
 					for (var i = dialogs.length; i--;) {
 						if (dialogs[i].unread > 0) {
 							sum += dialogs[i].unread-0;
-							if (dialogs[i].push_settings === undefined || dialogs[i].push_settings.sound !== 0 ) {
+							if (dialogs[i].push_settings === undefined || dialogs[i].push_settings.sound !== 0) {
 								needSound = true;
 							};
 						};
@@ -415,7 +425,6 @@ var Informer = {
 				}
 			};
 		}
-
 		this.saveAlert(alert, 'error');
 	},
 
@@ -426,7 +435,7 @@ var Informer = {
 		return 'https://oauth.vk.com/authorize?' + jQuery.param({
 			'redirect_uri'	: 'https://oauth.vk.com/blank.html.',
 			'client_id'		: 4682781,
-			'scope'			: 'offline,friends,messages,notifications',
+			'scope'			: 'offline,friends,messages,notifications,wall',
 			'response_type'	: 'token',
 			'display'		: 'popup',
 			'v'				: this.api.v,

@@ -9,9 +9,22 @@
 		"groups":"My Communities",
 		"feed":"My News",
 		"notifications":"My Feedback",
-		"setings":"My Settings"
+		"comments":"My Comments"
+	},
+	"dropdown":{
+		"faq":"Ask question",
+		"offer":"Leave offer",
+		"error":"Report error",
+		"share":"Tell your friends",
+		"review":"Leave a review",
+		"settings":"Settings",
+		"logout":"Logout"
 	},
 	"options":{
+		"title":{
+			"noty":"Notification settings",
+			"ext":"Settings Informer"
+		},
 		"audio":"Sound notifications",
 		"showMessage":"Display the number of messages",
 		"friends":"Inform about new friends",
@@ -19,7 +32,8 @@
 		"videos":"Inform about videos with me",
 		"messages":"Inform about private messages",
 		"groups":"Inform about invitations to community",
-		"notifications":"Inform about replies"
+		"notifications":"Inform about replies",
+		"comments":"Inform about new comments"
 	},
 	"attr":{
 		"no_mess":"Your private messages will be displayed here.",
@@ -70,8 +84,7 @@
 		"api_error":"Access error"
 	},
 	"global":{
-		"author":"Our group",
-		"title":"Vk Informer"
+		"title":"Informer"
 	},
 	"date": {
 		"at": "at",

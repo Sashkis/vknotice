@@ -12,7 +12,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		 */
 		try {
 			Popup.builFriendsOnline();
-			var $onlineUsers = jQuery('#right figure');
+			var $onlineUsers = jQuery('#friends-online figure');
 
 			// Событине для удаления друга онлайн
 			$onlineUsers.on('click', '.icon-cancel', function () {
@@ -38,7 +38,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 		} catch (error) {
 			console.error(error);
-			jQuery('#right').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.i18n.attr.error + '</b></div>');
+			jQuery('#friends-online').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.i18n.attr.error + '</b></div>');
 		}
 
 
@@ -122,7 +122,6 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			var $newfriends = jQuery('#newfriends');
 			// Принять или отклонить заявку в друзья
 			$newfriends.on('click', 'i', function () {
-				window.Popup.CanUpDate = false;
 				var $button = jQuery(this),
 					$parent = $button.parent('figure'),
 					user    = $parent.data(),
@@ -138,7 +137,6 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 					null,
 					// Всегда
 					function () {
-						window.Popup.CanUpDate = true;
 						$button.removeClass('icon-spin4 animate-spin');
 					}
 				);
@@ -152,16 +150,27 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		Popup.addVisitor();				// Делает запрос в ВК к методу статистики
 		Popup.initOptions();			// Переключает настройки. Активирует событие переключения настроек
 
+		// Ссылка на страницу расширения
+		jQuery('[data-i18n="review"]').attr('href', Popup.getExtUrl());
+
+		// Ссылка на страницу настроек
+		jQuery('[data-i18n="settings"]').attr('href', 'chrome-extension://' + chrome.app.getDetails().id + '/options/index.html');
+
 		// Share ссылка
 		Popup.loadShareUrl(function (url) {
-			jQuery('#share').attr('href', url);
+			jQuery('[data-i18n="logout"]').attr('href', url);
 		});
 
 		// Событие нажатия на кнопку выхода
-		jQuery('#logout').on('click', function () {
-			Popup.CanUpDate = false;
-			chrome.runtime.connect({name: 'remove_token'});
-			location.reload();
+		jQuery('[data-i18n="logout"]').on('click', function () {
+			jQuery('.wraper').addClass('show');
+			var port = chrome.runtime.connect({name: 'remove_token'});
+			port.onMessage.addListener(function (isLogout) {
+				if (isLogout) {
+					location.reload();
+				}
+				jQuery('.wraper').removeClass('show');
+			});
 			return false;
 		});
 	}

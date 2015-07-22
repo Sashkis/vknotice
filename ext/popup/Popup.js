@@ -102,21 +102,13 @@ var Popup = {
 	 * Применяет перевод
 	 */
 	loadTranslate: function () {
-		// Кнопка share
-		jQuery('#share').attr('title', this.i18n.attr.share);
-		// Кнопка опций
-		jQuery('#open_option').attr('title', this.i18n.attr.setings);
-		// Ссылка автора
-		jQuery('#dev').text(this.i18n.global.author);
-		// Ссылка для выхода
-		jQuery('#logout').attr('title', this.i18n.attr.logout);
-		// Меню
-		jQuery('#left li').each(function (i, el) {
+		jQuery('.navbar-brand').text(this.i18n.global.title)
+		jQuery('#menu li').each(function (i, el) {
 			jQuery(el).find(".i18n").text(this.geti18n(jQuery(el).attr('id'), 'menu'));
 		}.bind(this));
-		// Опции
-		jQuery('#options .checkbox').each(function (i, el) {
-			jQuery(el).find(".i18n").text(this.geti18n(jQuery(el).attr('name'), 'options'));
+		// Системное меню
+		jQuery('.dropdown li a').each(function (i, el) {
+			jQuery(el).text(this.geti18n(jQuery(el).attr('data-i18n'), 'dropdown'));
 		}.bind(this));
 
 		jQuery('#newmess, #newfriends').attr('data-before', this.i18n.attr.error);
@@ -129,6 +121,9 @@ var Popup = {
 	initSlide: function () {
 		jQuery('.slide').on('click', function () {
 			var target = jQuery(this).attr('data-target');
+			if (target === '#' + jQuery('.slider.open').attr('id')) {
+				target = '#friends-online';
+			}
 			jQuery('.slider.open').add('.slide.open').add(this).add(target).toggleClass('open');
 			return false;
 		});
@@ -189,7 +184,7 @@ var Popup = {
 	 * Вставляет счетчики в меню 
 	 */
 	builCounters: function () {
-		jQuery('#left .counter').text(function (index, value) {
+		jQuery('#menu .counter').text(function (index, value) {
 			if (jQuery(this).attr('data-target') === '#newmess') {
 				return '+';
 			} else {
@@ -209,7 +204,7 @@ var Popup = {
 					this.counter[key] = summ;
 				}
 				if (this.counter[key] > 0) {
-					jQuery('#'+key+' span.counter').text('+'+this.counter[key]);
+					jQuery('#' + key + ' span.counter').text('+' + this.counter[key]);
 				}
 			}
 		}
@@ -230,7 +225,7 @@ var Popup = {
 	setCurrentProfile: function () {
 		this.current = new User(this.api.user_id-0);
 		jQuery('#my a.profile').attr('href', VK+this.current.domain);
-		jQuery('header').append(this.current.ava({'isLink':true, 'size':50}) + '<h1>'+this.current.profileLink() + '</h1><h2>' + window.Emoji.emojiToHTML(this.current.status) + '</h2>');
+		jQuery('header .profile').html(this.current.name + this.current.ava({'isLink':false, 'marker':false, 'size':50}));
 	},
 
 	/**
@@ -245,7 +240,7 @@ var Popup = {
 				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.i18n.attr.delete}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
-		return jQuery('#right').html(frag);
+		return jQuery('#friends-online').html(frag);
 	},
 
 	/**
@@ -257,18 +252,12 @@ var Popup = {
 			frag = jQuery(document.createDocumentFragment());
 
 		if (this.newfriends.length > 0) {
-			var isRequests = this.counter.friends !== undefined;
 
 			this.newfriends.forEach(function (user_id) {
-				var user = new User(user_id);
-
-				if (isRequests) {
-					var cancelButton = ''.icon('cancel', {class: 'hovered', title: this.i18n.attr.remove});
-					var addButton    = ''.icon('ok', {class: 'hovered', title: this.i18n.attr.add});
-				} else {
-					var cancelButton = '';
-					var addButton    = ''.icon('ok', {class: 'hovered', title: this.i18n.attr.request});
-				}
+				var user = new User(user_id),
+					cancelButton = ''.icon('cancel', {class: 'hovered', title: this.i18n.attr.remove}),
+					addButton    = ''.icon('ok', {class: 'hovered', title: this.i18n.attr.add});
+					
 				frag.append(jQuery('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
 			}, this);
 		} else {
@@ -298,7 +287,7 @@ var Popup = {
 
 			$newmess.html(frag);
 
-			if ($newmess.find('.dialog-unread').length > 0) {
+			if ($newmess.find('.dialog-unread').length > 0 && Popup.options.indexOf('messages') !== -1) {
 				jQuery('#messages .slide').trigger('click');
 			}
 
@@ -382,9 +371,9 @@ var Popup = {
 				text = '<tbody><tr><td>' + image + text + link + '</td></tr></tbody>';
 			}
 			var $alert = jQuery('#alert');	
-			$alert.find('table').addClass('show').html(header + text + footer);
+			$alert.addClass('show').find('table').html(header + text + footer);
 
-			$alert.once('click', 'a', function () {
+			$alert.one('click', 'a', function () {
 				$alert.removeClass('show');
 				this.alerts[type] = false;
 				chrome.storage.local.set({'alerts': this.alerts});
@@ -434,5 +423,16 @@ var Popup = {
 		port.postMessage(shareOptions);
 		port.onMessage.addListener(callback);
 		return true;
+	},
+
+	/**
+	 * @return {String} URL на страницу расширения
+	 */
+	getExtUrl: function () {
+		if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
+			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
+		} else {
+			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
+		}
 	},
 }

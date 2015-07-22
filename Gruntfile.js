@@ -10,6 +10,7 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'ext/', src: ['_locales/**', 'audio/**', 'img/**', 'lang/**', 'manifest.json', 'background.html'], dest: 'build/'},
 					{expand: true, cwd: 'ext/popup', src: ['font/**', 'img/**', 'popup.html'], dest: 'build/popup/'},
 					{expand: true, cwd: 'ext/bower_components/jquery/dist', src: ['jquery.min.js'], dest: 'build/popup/'},
+					{expand: true, cwd: 'ext/options', src: ['font/**', 'index.html'], dest: 'build/options/'},
 				],
 			},
 		},
@@ -30,7 +31,17 @@ module.exports = function(grunt) {
 			background: {
 				files: {
 					'build/background.min.js': ['ext/Informer.js', 'ext/background.js'],
-					'build/get_token.js': ['ext/get_token.js']
+				}
+			},
+			options_page: {
+				files: {
+					'build/options/main.min.js': ['ext/options/main.js'],
+				}
+			},
+			content: {
+				files: {
+					'build/get_token.js': ['ext/get_token.js'],
+					'build/comment.js': ['ext/comment.js']
 				}
 			}
 		},
@@ -41,6 +52,14 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'build/popup/css/popup.min.css': ['.cache/bower-concat.css', 'ext/popup/css/*.css']
+				}
+			},
+			options_page: {
+				options: {
+					report: 'gzip'
+				},
+				files: {
+					'build/options/css/style.min.css': ['ext/options/css/*.css']
 				}
 			},
 		},
@@ -70,6 +89,20 @@ module.exports = function(grunt) {
 					}]
 				}
 			},
+			options_page: {
+				files: {
+					'build/options/index.html': 'build/options/index.html'
+				},
+				options: {
+					replacements: [{
+						pattern: /<!-- @import min\.js -->(.|\n)*<!-- @import \/min\.js -->/gm,
+						replacement: '<script src="../popup/jquery.min.js"></script><script src="main.min.js"></script>'
+					},{
+						pattern: /<!-- @import min\.css -->(.|\n)*<!-- @import \/min\.css -->/gm,
+						replacement: '<link rel="stylesheet" href="css/style.min.css">'
+					}]
+				}
+			},
 		},
 		zip: {
 			build: {
@@ -85,6 +118,7 @@ module.exports = function(grunt) {
 					config: 'fontello/config.json',
 					fonts : 'ext/popup/font/',
 					styles: 'ext/popup/css/',
+					scss    : true,
 					exclude: ['fontello-codes.css', 'fontello-embedded.css', 'fontello-ie7.css', 'fontello-ie7-codes.css']
 				}
 			},
