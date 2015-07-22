@@ -420,6 +420,14 @@ header {
         width: 32px;
         height: 32px;
         -webkit-border-radius: 16px; }
+    header .profile .mark {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background-color: #fff;
+      border-radius: 10px;
+      vertical-align: middle;
+      margin-right: 5px; }
 
 .panel {
   padding: 10px;
@@ -433,7 +441,7 @@ header {
     right: -5px;
     position: relative;
     overflow: hidden;
-    height: 235px;
+    max-height: 235px;
     display: inline-block;
     position: absolute;
     left: 470px;
@@ -545,9 +553,6 @@ header {
     transition: bottom .3s;
     width: 100%; }
 
-#newmess {
-  padding: 0; }
-
 .slide.open {
   background-color: #597DA3 !important;
   color: #fff !important; }
@@ -558,8 +563,9 @@ header {
   #newfriends figure {
     overflow: hidden;
     margin: 0;
-    padding: 5px;
-    border-bottom: 1px solid #e4e8ed; }
+    padding: 5px; }
+    #newfriends figure + #newfriends figure {
+      border-top: 1px solid #e4e8ed; }
     #newfriends figure i {
       border-radius: 2px;
       color: rgba(43, 88, 122, 0.5);
@@ -596,7 +602,8 @@ header {
   opacity: .3; }
 
 #newmess {
-  overflow: auto; }
+  overflow: auto;
+  padding: 0; }
   #newmess .dialog {
     display: block;
     cursor: pointer;
@@ -685,7 +692,7 @@ header {
         height: 16px;
         vertical-align: top;
         margin: 0px 1px; }
-        #newmess .dialog .body .emoji .sticker {
+        #newmess .dialog .body .emoji.sticker {
           height: 32px;
           width: auto; }
     #newmess .dialog a {
@@ -714,14 +721,17 @@ header {
 .online {
   position: relative; }
   .online:before {
-    background: url(../img/UserOnlineMark.png);
     content: "";
     display: block;
-    height: 10px;
-    left: 41px;
+    height: 8px;
+    left: 42px;
     position: absolute;
-    top: 41px;
-    width: 10px; }
+    top: 42px;
+    width: 8px;
+    background-color: #86a2c4;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    border-radius: 10px; }
 
 .mCSB_scrollTools {
   width: 8px;

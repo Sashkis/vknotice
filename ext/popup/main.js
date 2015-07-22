@@ -148,7 +148,6 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 		Popup.buildCustomScrollbar();	// Инициализирует плагн для скрола
 		Popup.addVisitor();				// Делает запрос в ВК к методу статистики
-		Popup.initOptions();			// Переключает настройки. Активирует событие переключения настроек
 
 		// Ссылка на страницу расширения
 		jQuery('[data-i18n="review"]').attr('href', Popup.getExtUrl());

@@ -129,49 +129,6 @@ var Popup = {
 		});
 	},
 
-
-	/**
-	 * Активирует опции. Назначает события для переключения опций.
-	 */
-	initOptions: function () {
-		// Опция аудио
-		if (this.audio === true) {
-			jQuery('#sysAudio').addClass('on');
-		}
-		if (this.showMessage === true) {
-			jQuery('#sysShowMessage').addClass('on');
-		}
-		jQuery('.sys_opt').on('click', function () {
-			jQuery(this).toggleClass('on off');
-			var option = {};
-			option[jQuery(this).attr('name')] = jQuery(this).hasClass('on');
-			chrome.storage.local.set(option);
-		});
-
-		// Опции уведомлений
-		// Инициализация
-		jQuery('.api_opt').each(function (i, el) {
-			if (window.Popup.options.indexOf(jQuery(el).attr('name')) >= 0) {
-				jQuery(el).addClass('on');
-			} else {
-				jQuery(el).addClass('off');
-			}
-		});
-		
-		// Событие переключения
-		jQuery('.api_opt').on('click', function () {
-			jQuery(this).toggleClass('on off');
-			var new_options = '';
-			jQuery('.api_opt.on').each(function (i, el) {
-				new_options += jQuery(el).attr('name') + ',';
-			});
-			// Сохранение нового значения
-			window.Popup.options = new_options;
-			chrome.storage.local.set({'options': new_options });
-		});
-	},
-
-
 	/**
 	 * Обращается к методу статистики 
 	 */
@@ -204,7 +161,7 @@ var Popup = {
 					this.counter[key] = summ;
 				}
 				if (this.counter[key] > 0) {
-					jQuery('#' + key + ' span.counter').text('+' + this.counter[key]);
+					jQuery('#' + key + ' span.counter').text('+' + (this.counter[key] < 100 ? this.counter[key] : 99));
 				}
 			}
 		}
@@ -225,7 +182,8 @@ var Popup = {
 	setCurrentProfile: function () {
 		this.current = new User(this.api.user_id-0);
 		jQuery('#my a.profile').attr('href', VK+this.current.domain);
-		jQuery('header .profile').html(this.current.name + this.current.ava({'isLink':false, 'marker':false, 'size':50}));
+		var mark = this.current.online ? '<i class="mark"></i>' : '';
+		jQuery('header .profile').html(mark + this.current.name + this.current.ava({'isLink':false, 'marker':false, 'size':50}));
 	},
 
 	/**

@@ -153,6 +153,15 @@ header {
 				-webkit-border-radius: 16px;
 			}
 		}
+		.mark {
+			display: inline-block;
+			width: 4px;
+			height: 4px;
+			background-color: #fff;
+			border-radius: 10px;
+			vertical-align: middle;
+			margin-right: 5px;
+		}
 	}
 }
 
@@ -168,7 +177,7 @@ header {
 		right: -5px;
 		position: relative;
 		overflow: hidden;
-		height: 235px;
+		max-height: 235px;
 		display: inline-block;
 		position: absolute;
 		left: 470px;
@@ -324,7 +333,9 @@ header {
 		overflow: hidden;
 		margin: 0;
 		padding: 5px;
-		border-bottom: 1px solid #e4e8ed;
+		& + & {
+			border-top: 1px solid #e4e8ed;
+		}
 		i {
 			border-radius: 2px;
 			color: rgba(43, 88, 122, 0.5);
@@ -538,14 +549,17 @@ header {
 .online {
 	position: relative;
 	&:before {
-		background: url(../img/UserOnlineMark.png);
 		content: "";
 		display: block;
-		height: 10px;
-		left: 41px;
+		height: 8px;
+		left: 42px;
 		position: absolute;
-		top: 41px;
-		width: 10px;
+		top: 42px;
+		width: 8px;
+		background-color: rgb(134, 162, 196);
+		box-sizing: border-box;
+		border: 1px solid #fff;
+		border-radius: 10px;
 	}
 }
 
