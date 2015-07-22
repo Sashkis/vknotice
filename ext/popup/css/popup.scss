@@ -267,6 +267,10 @@ header {
 			padding: 2px;
 			position: absolute;
 			text-align: center;
+			opacity: 0.75;
+			&:hover {
+				opacity: 1;
+			}
 		}
 		.icon-cancel {
 			@extend %icon;
@@ -437,9 +441,6 @@ header {
 						left: 17px;
 						width: 4px;
 						height: 4px;
-						border: 1px solid #EEE;
-						background: #8fa9c7;
-						border-radius: 2px;
 					}
 				}
 			}

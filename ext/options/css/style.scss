@@ -8,20 +8,41 @@
   font-style: normal; }
 body {
 	color: #000;
-	font: normal 12px "Arial", sans-serif;
-	max-width: 600px;
+	font: normal 15px "Arial", sans-serif;
 	background: #f0f2f5;
-	width: 100%;
 	margin: 0 auto;
 	padding: 50px 10px;
+	  box-sizing: border-box;
+	@media (max-width:1000px) {
+		max-width: 600px;
+		width: 100%;
+	}
+}
+.wrapper {
+	width: 100%;
+	max-width: 865px;
+	margin: 0 auto
+}
+.news {
+	float: right;
+	@media (max-width:1000px) {
+		display: none;
+	}
+}
+
+.members {
+	@media (min-width:1000px) {
+		display: none;
+	}
 }
 
 .panel {
+	max-width: 600px;
 	padding: 0px;
 	background: #FFF;
 	box-shadow: 0 1px 2px rgba(6, 33, 63, 0.13);
 	color: #2b2f33;
-	margin-top: 20px;
+	margin-bottom: 20px;
 	box-sizing: border-box;
 	.header {
 		font-size: 19px;
@@ -36,7 +57,6 @@ body {
 label {
 	position: relative;
 	display: block;
-	font-size: 13px;
 	cursor: pointer;
 	input {
 		cursor: pointer;
@@ -60,6 +80,6 @@ label {
 	}
 }
 [class^="icon-"], [class*=" icon-"] {
-	font-size: 150%;
+	font-size: 1.5em;
 	vertical-align: middle;
 }

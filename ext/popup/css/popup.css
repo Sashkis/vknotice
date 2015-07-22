@@ -512,7 +512,10 @@ header {
       line-height: 15px;
       padding: 2px;
       position: absolute;
-      text-align: center; }
+      text-align: center;
+      opacity: 0.75; }
+      #friends-online figure .icon-cancel:hover, #friends-online figure .icon-pencil:hover {
+        opacity: 1; }
     #friends-online figure .icon-cancel {
       right: -100%;
       z-index: 1;
@@ -644,10 +647,7 @@ header {
           top: 17px;
           left: 17px;
           width: 4px;
-          height: 4px;
-          border: 1px solid #EEE;
-          background: #8fa9c7;
-          border-radius: 2px; }
+          height: 4px; }
   #newmess .dialog {
     /* Диалог с Администрацией */ }
     #newmess .dialog#dialog-100 .name {
