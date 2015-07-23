@@ -384,13 +384,16 @@ var Popup = {
 	},
 
 	/**
+	 * @param {Boolean} commentHash Ссылка на коментарии
 	 * @return {String} URL на страницу расширения
 	 */
-	getExtUrl: function () {
+	getExtUrl: function (commentHash) {
 		if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
-			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
+			commentHash = commentHash ? '#feedback-container' : '';
+			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin' + commentHash;
 		} else {
-			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
+			commentHash = commentHash ? '/reviews' : '';
+			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn' + commentHash;
 		}
 	},
 }

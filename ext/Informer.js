@@ -104,7 +104,7 @@ var Informer = {
 			console.info('Daemon already running');
 			return false;
 		} else {
-			this.delay = delay;
+			this.delay = delay || 2000;
 			this.mainRequest();
 			console.info('Daemon running');
 			return true;
@@ -138,6 +138,7 @@ var Informer = {
 		this.callAPI('execute.getdata_beta', opts,
 			// Успешно
 			function (API) {
+				console.log(API.counter);
 				if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
 					this.loadAlerts();
 				}
@@ -274,7 +275,7 @@ var Informer = {
 		}
 		this.api.access_token = auth.access_token;
 		this.api.user_id = auth.user_id;
-		this.deamonStart(2000);
+		this.deamonStart();
 		this.callAPI('execute.getLang', {}, function (lang_code) {
 			this.loadTranslate(lang_code);
 			chrome.storage.local.set({'api': this.api});
@@ -446,11 +447,13 @@ var Informer = {
 	/**
 	 * @return {String} URL на страницу расширения
 	 */
-	getExtUrl: function () {
+	getExtUrl: function (commentHash) {
 		if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
-			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
+			commentHash = commentHash ? '#feedback-container' : '';
+			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin' + commentHash;
 		} else {
-			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
+			commentHash = commentHash ? '/reviews' : '';
+			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn' + commentHash;
 		}
 	},
 	

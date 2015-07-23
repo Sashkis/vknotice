@@ -150,7 +150,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		Popup.addVisitor();				// Делает запрос в ВК к методу статистики
 
 		// Ссылка на страницу расширения
-		jQuery('[data-i18n="review"]').attr('href', Popup.getExtUrl());
+		jQuery('[data-i18n="review"]').attr('href', Popup.getExtUrl(true));
 
 		// Ссылка на страницу настроек
 		jQuery('[data-i18n="settings"]').attr('href', 'chrome-extension://' + chrome.app.getDetails().id + '/options/index.html');
