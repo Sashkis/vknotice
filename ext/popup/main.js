@@ -198,10 +198,10 @@ chrome.storage.onChanged.addListener(function (changes) {
 		Popup.builFriendsOnline();
 	}
 
-	// if (changes.newfriends !== undefined) {
-	// 	Popup.newfriends = changes.newfriends.newValue || [];
-	// 	Popup.buildNewFriends();
-	// }
+	if (changes.newfriends !== undefined) {
+		Popup.newfriends = changes.newfriends.newValue || [];
+		Popup.buildNewFriends();
+	}
 
 	if (changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
 		for (var i = changes.dialogs.newValue.length; i--;) {
