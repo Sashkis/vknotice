@@ -131,10 +131,15 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 				user.addOrDel(method,
 					// Успешно
 					function (API) {
-						$parent.slideUp();
+						$parent.slideUp(function(){
+							jQuery(this).remove();
+							if ($newfriends.find('figure').length === 0) {
+								jQuery('#friends .slide').trigger('click');
+							}
+						});
 					},
 					// Ошибка
-					null,
+					undefined,
 					// Всегда
 					function () {
 						$button.removeClass('icon-spin4 animate-spin');
@@ -193,10 +198,10 @@ chrome.storage.onChanged.addListener(function (changes) {
 		Popup.builFriendsOnline();
 	}
 
-	if (changes.newfriends !== undefined) {
-		Popup.newfriends = changes.newfriends.newValue || [];
-		Popup.buildNewFriends();
-	}
+	// if (changes.newfriends !== undefined) {
+	// 	Popup.newfriends = changes.newfriends.newValue || [];
+	// 	Popup.buildNewFriends();
+	// }
 
 	if (changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
 		for (var i = changes.dialogs.newValue.length; i--;) {

@@ -23,7 +23,7 @@ var Popup = {
 				'access_token': '',
 				'user_id': '',
 				'lang': 0,
-				'v': '5.34'
+				'v': '5.35'
 			},
 		}, params);
 		for (var p in params) {
@@ -374,7 +374,7 @@ var Popup = {
 	 * Загружает ссылку "Поделится Вконтакте"
 	 * @param  {Function} callback     Функция для обработки ссылки
 	 * @param  {Object}   shareOptions Параметры ссылки "Поделится""
-	 * @return {String}                URL
+	 * @return {Boolean}               TRUE
 	 */
 	loadShareUrl: function (callback, shareOptions) {
 		var port = chrome.runtime.connect({name: 'getShareUrl'});

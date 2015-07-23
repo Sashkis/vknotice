@@ -316,7 +316,8 @@
     transform: rotate(359deg); } }
 body {
   color: #000;
-  font: normal 12px "Arial", sans-serif;
+  font-size: 11px;
+  font-family: tahoma, arial, verdana, sans-serif;
   margin: 0;
   width: 459px;
   background: #f0f2f5; }
@@ -452,7 +453,6 @@ header {
 #menu {
   padding: 5px 0;
   box-sizing: border-box;
-  font: menu;
   width: 138px;
   float: left;
   list-style: none;
@@ -471,26 +471,30 @@ header {
       border-radius: 2px;
       color: #45688E;
       float: right;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: bold;
       line-height: 19px;
-      margin: 2px;
+      margin: 1px 2px 2px 1px;
       padding: 0 4px;
       transition: background-color 200ms linear, color 200ms linear; }
 
 #friends-online {
   padding: 11px 2px; }
   #friends-online:empty {
-    background: url(../img/alone.jpg) no-repeat center, #fff; }
+    background: url(../img/alone.jpg) no-repeat center, #fff;
+    min-height: 235px;
+    opacity: .3; }
   #friends-online figure {
     display: inline-block;
     height: 100px;
-    margin: 0 0 15px 0;
+    margin: 11px 0 0 0;
     overflow: hidden;
     position: relative;
     text-align: right;
     vertical-align: top;
     width: 100px; }
+    #friends-online figure:nth-of-type(1), #friends-online figure:nth-of-type(2), #friends-online figure:nth-of-type(3) {
+      margin-top: 0; }
     #friends-online figure:nth-of-type(2), #friends-online figure:nth-of-type(5) {
       margin-left: 4.5px;
       margin-right: 4.5px; }
@@ -566,9 +570,8 @@ header {
   #newfriends figure {
     overflow: hidden;
     margin: 0;
-    padding: 5px; }
-    #newfriends figure + #newfriends figure {
-      border-top: 1px solid #e4e8ed; }
+    padding: 5px;
+    border-bottom: 1px solid #e4e8ed; }
     #newfriends figure i {
       border-radius: 2px;
       color: rgba(43, 88, 122, 0.5);
@@ -612,10 +615,18 @@ header {
     cursor: pointer;
     overflow: hidden;
     padding: 5px;
-    border-bottom: 1px solid #e4e8ed; }
+    border-bottom: 1px solid #e4e8ed;
+    /* Диалог с Администрацией */ }
     #newmess .dialog.dialog-unread, #newmess .dialog.dialog:hover, #newmess .dialog.dialog.open {
       background: #edf1f5;
       border-color: #DAE1E8; }
+    #newmess .dialog#dialog-100 .name {
+      color: #2E7B27;
+      font-weight: bold; }
+    #newmess .dialog.dialog.open .date, #newmess .dialog.dialog-unread .date, #newmess .dialog:hover .date {
+      color: #8795a5; }
+    #newmess .dialog.dialog-unread .markAsRead {
+      display: block; }
     #newmess .dialog .group-photo {
       overflow: hidden;
       background: none;
@@ -648,24 +659,16 @@ header {
           left: 17px;
           width: 4px;
           height: 4px; }
-  #newmess .dialog {
-    /* Диалог с Администрацией */ }
-    #newmess .dialog#dialog-100 .name {
-      color: #2E7B27;
-      font-weight: bold; }
-    #newmess .dialog.dialog.open .date, #newmess .dialog.dialog-unread .date, #newmess .dialog:hover .date {
-      color: #8795a5; }
-    #newmess .dialog.dialog-unread .markAsRead {
-      display: block; }
     #newmess .dialog div {
       word-break: break-word; }
     #newmess .dialog .name {
       display: block;
-      margin-bottom: 2px; }
-    #newmess .dialog .date {
-      font-weight: normal;
-      color: #999999;
-      font-size: 0.9em; }
+      margin-bottom: 2px;
+      font-size: 11px; }
+      #newmess .dialog .name .date {
+        font-weight: normal;
+        color: #999999;
+        font-size: 0.9em; }
     #newmess .dialog .markAsRead {
       border-radius: 2px;
       color: rgba(43, 88, 122, 0.5);

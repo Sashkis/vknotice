@@ -32,7 +32,7 @@ var Informer = {
 				'access_token': '',
 				'user_id': '',
 				'lang': 0,
-				'v': '5.34'
+				'v': '5.35'
 			},
 			'loadComment':1,
 			'openComment':0,
