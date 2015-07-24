@@ -22,7 +22,10 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	if (this.action) {
 		this.body = '<span class="system">' + window.Popup.geti18n(this.action, 'attr') + '</span>';
 	} else if (this.body) {
-		this.body = window.Emoji.emojiToHTML(this.body);
+		this.body = this.body.escapeHtml();
+		if (this.emoji === 1) {
+			this.body = window.Emoji.emojiToHTML(this.body);
+		}
 		this.body += ' ';
 	}
 

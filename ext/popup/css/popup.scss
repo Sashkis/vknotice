@@ -405,6 +405,9 @@ header {
 			background: #edf1f5;
 			border-color: #DAE1E8;
 		}
+		&.dialog.open {
+			cursor: default;
+		}
 		/* Диалог с Администрацией */
 		&#dialog-100 .name {
 			color: #2E7B27;

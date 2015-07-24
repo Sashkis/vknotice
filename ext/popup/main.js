@@ -67,7 +67,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 					if (!jQuery(this).hasClass('open')) {
 						$newmess.find('.open').removeClass('open').find('.ans').slideUp();
 
-						jQuery(this).addClass('open')
+						jQuery(this).addClass('open').removeAttr('href');
 						$ans.slideDown(function () {
 							$newmess.mCustomScrollbar("scrollTo", $ans.parent('.dialog'));
 							setTimeout(function () {
@@ -75,7 +75,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 							}, 300);
 						});
 					} else {
-						jQuery(this).removeClass('open');
+						jQuery(this).removeClass('open').attr('href', jQuery(this).data('url'));
 						$ans.slideUp();
 					}
 					return false;

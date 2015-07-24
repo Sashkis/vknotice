@@ -620,6 +620,8 @@ header {
     #newmess .dialog.dialog-unread, #newmess .dialog.dialog:hover, #newmess .dialog.dialog.open {
       background: #edf1f5;
       border-color: #DAE1E8; }
+    #newmess .dialog.dialog.open {
+      cursor: default; }
     #newmess .dialog#dialog-100 .name {
       color: #2E7B27;
       font-weight: bold; }
