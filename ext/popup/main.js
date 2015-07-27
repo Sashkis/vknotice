@@ -106,7 +106,14 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 				dialog.jQ.find('.mess-container').html(new Message({
 					body: answer,
 					user_id: window.Popup.current.id,
-				}, dialog).getHtml('compact'));
+				}, dialog).getHtml('compact')).linkify({
+				format: function (value, type) {
+					if (type === 'url' && value.length > 40) {
+						value = value.substr(0, 40) + '…';
+					}
+					return value;
+				}
+			});
 			});
 		} catch (error) {
 			console.error(error.stack);
