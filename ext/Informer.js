@@ -17,7 +17,7 @@ var Informer = {
 	 * Применяем свойства по-умолчанию
 	 * @param {Object} params Данные загруженные из chrome.storage
 	 */
-	init(params) {
+	init: function (params) {
 		params = jQuery.extend(true, {
 			'badge': 0,
 			'lastLoadAlert': 0,
@@ -51,7 +51,7 @@ var Informer = {
 	 * @param  {Number}	lang_code	Код установленного языка
 	 * @return {Number}				Код загруженного языка
 	 */
-	setLang(lang_code) {
+	setLang: function (lang_code) {
 		if (lang_code === 0 || lang_code === 97 || lang_code === 100 || lang_code === 777) { // Русский
 			this.abbrlang = 'ru';
 			return this.api.lang = 0;
@@ -77,7 +77,7 @@ var Informer = {
 	 * Загрузка перевода 
 	 * @param  {Number}	  lang_code	  Код языка для загрузки
 	 */
-	loadTranslate(lang_code) {
+	loadTranslate: function (lang_code) {
 		if (lang_code === undefined) {
 			lang_code = this.api.lang;
 		}
@@ -99,7 +99,7 @@ var Informer = {
 	 * @param  	{Number}	delay	Интервалы между запросами
 	 * @returns {Boolean} 			Был ли демон запущен
 	 */
-	deamonStart(delay) {
+	deamonStart: function (delay) {
 		if (this.delay) {
 			console.info('Daemon already running');
 			return false;
@@ -115,7 +115,7 @@ var Informer = {
 	 * Остановка демона 
 	 * @returns {Boolean} 	Был ли демон остановлен
 	 */
-	deamonStop() {
+	deamonStop: function () {
 		if (!this.delay) {
 			console.info('Daemon already stoped');
 			return false;
@@ -129,7 +129,7 @@ var Informer = {
 	 * Загружает информацию для информера
 	 * Выполняет основной запрос
 	 */
-	mainRequest() {
+	mainRequest: function () {
 		var opts = {
 			'options': this.options,
 			'loadComment': this.loadComment,
@@ -178,7 +178,7 @@ var Informer = {
 	 * @param  {Function}   fail    Ajax callback
 	 * @param  {Function}   always  Ajax callback
 	 */
-	callAPI(method, options, done, fail, always) {
+	callAPI: function (method, options, done, fail, always) {
 		if (options === undefined) {
 			options = {};
 		}
@@ -220,14 +220,14 @@ var Informer = {
 	/**
 	 * Вызывает метод статистики 
 	 */
-	addVisitor() {
+	addVisitor: function () {
 		this.callAPI('stats.trackVisitor');
 	},
 
 	/**
 	 * Загружает и устанавливает сообщения 
 	 */
-	loadAlerts() {
+	loadAlerts: function () {
 		this.callAPI('execute.getAlerts', {
 			'lang': this.abbrlang,
 			'lastAlert': this.lastLoadAlert
@@ -245,7 +245,7 @@ var Informer = {
 	 * @param 	{String}	url access_token
 	 * @returns {{access_token: String, user_id: Number, expires_in: 0, state: String}}     	объект содержащий параметры доступа
 	 */
-	parseURL(url) {
+	parseURL: function (url) {
 		url = url.replace('#', '');
 		var ret = {},
 			seg = url.split('&'),
@@ -267,7 +267,7 @@ var Informer = {
 	 * @param 	{String}	access_str	Строка содержащая access_token
 	 * @return	{Boolean}				TRUE в случае успешного сохранения
 	 */
-	saveAccess(access_str) {
+	saveAccess: function (access_str) {
 		var auth = this.parseURL(access_str);
 		if (auth.error !== undefined || auth.state !== chrome.app.getDetails().id) {
 			return false;
@@ -286,7 +286,7 @@ var Informer = {
 	 * Удаляет параметры доступа 
 	 * @returns {Boolean} TRUE в случае успешного сохранения
 	 */
-	removeAccess() {
+	removeAccess: function () {
 		this.deamonStop();
 		this.api = {
 			// Вставляем не правильный access_token чтобы избежать автоматической авторизации
@@ -307,7 +307,7 @@ var Informer = {
 	 * @param {Object} counters Объект содержащий счетчики
 	 * @param {Object} dialogs 	Объект диалоги
 	 */
-	setCounters(counters, dialogs) {
+	setCounters: function (counters, dialogs) {
 		if (counters.length === undefined) {
 			var sum = 0,
 				needSound = false, c;
@@ -350,7 +350,7 @@ var Informer = {
 	/**
 	 * Воспроизводит звук 
 	 */
-	playSound() {
+	playSound: function () {
 		if (this.audio === true) {
 			chrome.tabs.query({
 				url: "*://vk.com/*"
@@ -381,7 +381,7 @@ var Informer = {
 	 * @param {String} alert_obj.body.img 		Адрес изображения 
 	 * @param {String} alert_obj.body.imgLink 	Ссылка изображения 
 	 */
-	saveAlert(alert_obj, type) {
+	saveAlert: function (alert_obj, type) {
 		if (type !== 'error') {
 			this.alerts.message = alert_obj;
 		} else {
@@ -394,7 +394,7 @@ var Informer = {
 	 * Генерирует и сохраняет объект сообщения
 	 * @param  {Object} API Закруженный ответ Вконтакте
 	 */
-	generateError(API) {
+	generateError: function (API) {
 		if (API) {
 			var alert = {
 				'header': 'api_error',
@@ -431,7 +431,7 @@ var Informer = {
 	/**
 	 * @return {String} URL для авторизации
 	 */
-	getAuthUrl() {
+	getAuthUrl: function () {
 		return 'https://oauth.vk.com/authorize?' + jQuery.param({
 			'redirect_uri'	: 'https://oauth.vk.com/blank.html.',
 			'client_id'		: 4682781,
@@ -446,7 +446,7 @@ var Informer = {
 	/**
 	 * @return {String} URL на страницу расширения
 	 */
-	getExtUrl(commentHash) {
+	getExtUrl: function (commentHash) {
 		if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 			commentHash = commentHash ? '#feedback-container' : '';
 			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin' + commentHash;
@@ -460,7 +460,7 @@ var Informer = {
 	 * @param  {Object} share_options Параметры для ссылки
 	 * @return {String}               URL ссылки для "поделится"
 	 */
-	getShareUrl(share_options) {
+	getShareUrl: function (share_options) {
 		return 'https://vk.com/share.php?' + jQuery.param(jQuery.extend({
 			'url'			: 'http://vk.com/note45421694_12011424',
 			'title'			: chrome.i18n.getMessage('extName'),
