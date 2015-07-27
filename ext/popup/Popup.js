@@ -250,7 +250,7 @@ var Popup = {
 			}
 
 			$newmess.find('.body').linkify({
-				format(value, type) {
+				format: function (value, type) {
 					if (type === 'url' && value.length > 40) {
 						value = value.substr(0, 40) + '…';
 					}
