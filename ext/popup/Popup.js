@@ -10,7 +10,7 @@ var Popup = {
 	 * Инициализирует свойства Popup
 	 * @param  {Object} params Параметры из chrome.storage
 	 */
-	init: function (params) {
+	init(params) {
 		params = jQuery.extend(true, {
 			'audio': true,
 			'counter': [],
@@ -47,7 +47,7 @@ var Popup = {
 	 * @param  {Function} fail    Функция выполнемая в случае ошибки выполнения метода
 	 * @param  {Function} always  Функция выполнемая всегда
 	 */
-	callAPI: function (method, options, done, fail, always) {
+	callAPI(method, options, done, fail, always) {
 		options = jQuery.extend(this.api, options);
 
 		jQuery.getJSON('https://api.vk.com/method/' + method, options)
@@ -79,7 +79,7 @@ var Popup = {
 	 * Инициализирует плагин для скролбара 
 	 * @param  {Object} options Опции передаваемые для плагина mCustomScrollbar
 	 */
-	buildCustomScrollbar: function (options) {
+	buildCustomScrollbar(options) {
 		options = jQuery.extend(true, {
 			axis: 'y',
 			autoHideScrollbar: true,
@@ -101,7 +101,7 @@ var Popup = {
 	/**
 	 * Применяет перевод
 	 */
-	loadTranslate: function () {
+	loadTranslate() {
 		jQuery('.navbar-brand').text(this.i18n.global.title)
 		jQuery('#menu li').each(function (i, el) {
 			jQuery(el).find(".i18n").text(this.geti18n(jQuery(el).attr('id'), 'menu'));
@@ -118,7 +118,7 @@ var Popup = {
 	/**
 	 * Активирует слайд-блоки
 	 */
-	initSlide: function () {
+	initSlide() {
 		jQuery('.slide').on('click', function () {
 			var target = jQuery(this).attr('data-target');
 			if (target === '#' + jQuery('.slider.open').attr('id')) {
@@ -132,7 +132,7 @@ var Popup = {
 	/**
 	 * Обращается к методу статистики 
 	 */
-	addVisitor: function () {
+	addVisitor() {
 		this.callAPI('stats.trackVisitor');
 	},
 
@@ -140,7 +140,7 @@ var Popup = {
 	/**
 	 * Вставляет счетчики в меню 
 	 */
-	builCounters: function () {
+	builCounters() {
 		jQuery('#menu .counter').text(function (index, value) {
 			if (jQuery(this).attr('data-target') === '#newmess') {
 				return '+';
@@ -171,7 +171,7 @@ var Popup = {
 	 * Удаляет предзагрущик 
 	 * @return {jQuery} .wraper
 	 */
-	show: function () {
+	show() {
 		return jQuery('.wraper.show').removeClass('show');
 	},
 
@@ -179,7 +179,7 @@ var Popup = {
 	 * Инициализирует активный профиль. Вставляет информацию о провиле
 	 * @return {jQuery} header
 	 */
-	setCurrentProfile: function () {
+	setCurrentProfile() {
 		this.current = new User(this.api.user_id-0);
 		jQuery('#my a.profile').attr('href', VK+this.current.domain);
 		var mark = this.current.online ? '<i class="mark"></i>' : '';
@@ -190,7 +190,7 @@ var Popup = {
 	 * Строит 7 друзей онлайн. Седьмой скрыт.
 	 * @return {jQuery} #right
 	 */
-	builFriendsOnline: function () {
+	builFriendsOnline() {
 		var frag = jQuery(document.createDocumentFragment());
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
@@ -205,7 +205,7 @@ var Popup = {
 	 * Строит заявки в друзья
 	 * @return {jQuery} #newfriends
 	 */
-	buildNewFriends: function () {
+	buildNewFriends() {
 		var $newfriends = jQuery('#newfriends'),
 			frag = jQuery(document.createDocumentFragment());
 
@@ -228,7 +228,7 @@ var Popup = {
 	 * Строит диалоги. Если есть не активные диалоги - открывает панель диалогов. 
 	 * @return {jQuery} #newmess
 	 */
-	buildDialogs: function () {
+	buildDialogs() {
 		var $newmess = jQuery('#newmess');
 
 		if (this.dialogs.length > 0) {
@@ -250,7 +250,7 @@ var Popup = {
 			}
 
 			$newmess.find('.body').linkify({
-				format: function (value, type) {
+				format(value, type) {
 					if (type === 'url' && value.length > 40) {
 						value = value.substr(0, 40) + '…';
 					}
@@ -266,7 +266,7 @@ var Popup = {
 	 * Строит Всплывающее сообщение
 	 * @return {Boolean} Загружено ли сообщение об ошибке. TRUE - Просто сообщение. FALSE - Была ошибка.
 	 */
-	buildAlert: function () {
+	buildAlert() {
 		jQuery('body').removeClass('grayscale');
 		if (this.alerts === undefined || (this.alerts.error === false && this.alerts.message === false)) {
 			return true;
@@ -351,7 +351,7 @@ var Popup = {
 	 * // Popup.geti18n("setings", "menu");
 	 * @return {String}      Строка перевода или строка поиска, если перевод не найден.
 	 */
-	geti18n: function (text, obj) {
+	geti18n(text, obj) {
 		if (!obj) {
 			var obj = text.split('.');
 		} else {
@@ -376,7 +376,7 @@ var Popup = {
 	 * @param  {Object}   shareOptions Параметры ссылки "Поделится""
 	 * @return {Boolean}               TRUE
 	 */
-	loadShareUrl: function (callback, shareOptions) {
+	loadShareUrl(callback, shareOptions) {
 		var port = chrome.runtime.connect({name: 'getShareUrl'});
 		port.postMessage(shareOptions);
 		port.onMessage.addListener(callback);
@@ -387,7 +387,7 @@ var Popup = {
 	 * @param {Boolean} commentHash Ссылка на коментарии
 	 * @return {String} URL на страницу расширения
 	 */
-	getExtUrl: function (commentHash) {
+	getExtUrl(commentHash) {
 		if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 			commentHash = commentHash ? '#feedback-container' : '';
 			return 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin' + commentHash;

@@ -29,7 +29,7 @@
       "matches": ["*://oauth.vk.com/blank.html"],
       "js": ["get_token.js"]
     },{
-      "matches": ["*://vk.com/feed?section=comments"],
+      "matches": ["*://vk.com/*"],
       "js": ["comment.js"]
     }],
 	"browser_action": {

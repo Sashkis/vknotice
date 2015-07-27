@@ -20,14 +20,11 @@ chrome.runtime.onInstalled.addListener(function (details) {
 		chrome.alarms.create('get_review', {'when': Date.now() + 900000}); // Через 15 хвилин
 	}
 
-	// chrome.storage.local.set({
-	// 	'openComment': parseInt( new Date().getTime()/1000)
-	// });
 	// При обновлении
-	else if (details.reason === 'update') {
-		chrome.storage.local.remove('api');
-		location.reload();
-	}
+	// else if (details.reason === 'update') {
+	// 	chrome.storage.local.remove('api');
+	// 	location.reload();
+	// }
 });
 		
 chrome.alarms.onAlarm.addListener(function (alarm) {
@@ -113,3 +110,13 @@ chrome.storage.onChanged.addListener(function (changes) {
 		Informer.openComment = changes.openComment.newValue;
 	}
 });
+
+
+chrome.tabs.onUpdated.addListener(save);
+chrome.tabs.onRemoved.addListener(save);
+
+function save (tabId, changeInfo, tab) {
+	console.log(tabId);
+	console.log(changeInfo);
+	console.log(tab);
+}
