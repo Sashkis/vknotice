@@ -110,13 +110,3 @@ chrome.storage.onChanged.addListener(function (changes) {
 		Informer.openComment = changes.openComment.newValue;
 	}
 });
-
-
-chrome.tabs.onUpdated.addListener(save);
-chrome.tabs.onRemoved.addListener(save);
-
-function save (tabId, changeInfo, tab) {
-	console.log(tabId);
-	console.log(changeInfo);
-	console.log(tab);
-}

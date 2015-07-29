@@ -90,7 +90,7 @@ var Informer = {
 		jQuery.getJSON('lang/' + this.abbrlang + '.json', function (translate) {
 			chrome.storage.local.set({'i18n': translate});
 		}).fail(function (jqxhr, textStatus, error) {
-		    console.error('Load translate failed: ' + textStatus + ", " + error);
+		    console.error('Load translate failed: ' + textStatus + ', ' + error);
 		});
 	},
 
@@ -135,7 +135,7 @@ var Informer = {
 			'loadComment': this.loadComment,
 			'openComment': this.openComment,
 		};
-		this.callAPI('execute.getdata_beta', opts,
+		this.callAPI('execute.getdata', opts,
 			// Успешно
 			function (API) {
 				if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
@@ -187,7 +187,7 @@ var Informer = {
 		options.lang = this.api.lang;
 		options.v = this.api.v;
 		
-		if (method === 'execute.getLang') {
+		if (method === 'execute.getLang' || method === 'execute.getAlerts') {
 			delete options.lang;
 		}
 		jQuery.getJSON('https://api.vk.com/method/' + method, options)
@@ -433,7 +433,7 @@ var Informer = {
 	 */
 	getAuthUrl: function () {
 		return 'https://oauth.vk.com/authorize?' + jQuery.param({
-			'redirect_uri'	: 'https://oauth.vk.com/blank.html.',
+			'redirect_uri'	: 'https://oauth.vk.com/blank.html',
 			'client_id'		: 4682781,
 			'scope'			: 'offline,friends,messages,notifications,wall',
 			'response_type'	: 'token',

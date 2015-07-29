@@ -239,7 +239,6 @@ function Dialog (dialog_obj) {
 			message_ids = this.messages.map(function (mess) {
 				return mess.id - 0;
 			});
-
 		for (i = message_ids.length; i--;) {
 			summ += message_ids[i];
 		};
