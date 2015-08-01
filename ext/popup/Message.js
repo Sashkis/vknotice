@@ -20,7 +20,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	}
 
 	if (this.action) {
-		this.body = '<span class="system">' + window.Popup.geti18n(this.action, 'attr') + '</span>';
+		this.body = '<span class="system">' + window.Popup.loc(this.action, true) + '</span>';
 	} else if (this.body) {
 		this.body = this.body.escapeHtml();
 		if (this.emoji === 1) {
@@ -43,10 +43,12 @@ function Message (mess_obj, parentDialog, parentMessage) {
 
 	// Добавляем код вложений
 	if (this.attachments) {
-		for (var i = this.attachments.length; i--;) {
-			if (typeof this.attachments[i] !== 'object') continue;
-			var type = this.attachments[i].type,
-				attach = this.attachments[i][type];
+		this.attachments = this.attachments.map(function (attach) {
+			if (typeof attach === 'string') {
+				return attach;
+			}
+			var type = attach.type,
+				attach = attach[type];
 			switch(type) {
 				// Изображение
 				case 'photo':
@@ -58,7 +60,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['photo_130'])	attach.url = attach['photo_130'];
 					else if (attach['photo_75'])	attach.url = attach['photo_75'];
 					else attach.url = this.url;
-					this.attachments[i] = ('&nbsp;' + window.Popup.i18n.attr.photo).icon('camera').link(attach.url); 
+					return ('&nbsp;' + window.Popup.loc('Photo', true)).icon('camera').link(attach.url); 
 				break;
 				// Подарок
 				case 'gift':
@@ -67,43 +69,42 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['thumb_96'])	attach.url = attach['thumb_96'];
 					else if (attach['thumb_48'])	attach.url = attach['thumb_48'];
 					else attach.url = this.url;
-					this.attachments[i] = ('&nbsp;' + window.Popup.i18n.attr.gift).icon('gift').link(attach.url); 
+					return ('&nbsp;' + window.Popup.loc('Gift', true)).icon('gift').link(attach.url); 
 				break;
 				// Пост
-				case 'wall' : this.attachments[i] = ('&nbsp;' + window.Popup.i18n.attr.post).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
+				case 'wall' : return ('&nbsp;' + window.Popup.loc('Post', true)).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
 				// Комментарий
-				case 'wall_reply' : this.attachments[i] = ('&nbsp;' + window.Popup.i18n.attr.wall_reply).icon('chat').link(VK + 'wall' + attach.owner_id + '_' + attach.post_id + '?reply=' + attach.id); break;
+				case 'wall_reply' : return ('&nbsp;' + window.Popup.loc('Comment', true)).icon('chat').link(VK + 'wall' + attach.owner_id + '_' + attach.post_id + '?reply=' + attach.id); break;
 				// Аудиозапись
-				case 'audio': this.attachments[i] = ('&nbsp;' + attach.artist.bold() + '&nbsp;–&nbsp;' + attach.title).icon('music').link(VK + 'audio' + attach.owner_id + '_' + attach.id); break;
+				case 'audio': return ('&nbsp;' + attach.artist.bold() + '&nbsp;–&nbsp;' + attach.title).icon('music').link(VK + 'audio' + attach.owner_id + '_' + attach.id); break;
 				// Видеозапись
-				case 'video': this.attachments[i] = ('&nbsp;' + attach.title).icon('video').link(VK + 'video' + attach.owner_id + '_' + attach.id); break;
+				case 'video': return ('&nbsp;' + attach.title).icon('video').link(VK + 'video' + attach.owner_id + '_' + attach.id); break;
 				// Документ
-				case 'doc'	: this.attachments[i] = ('&nbsp;' + attach.title).icon('doc').link(attach.url); break;
+				case 'doc'	: return ('&nbsp;' + attach.title).icon('doc').link(attach.url); break;
 				// Ссылка
-				case 'link'	: this.attachments[i] = ('&nbsp;' + attach.title).icon('link').link(attach.url); break;
+				case 'link'	: return ('&nbsp;' + attach.title).icon('link').link(attach.url); break;
 				// Карта
 				case 'geo':
 					attach.coordinates = attach.coordinates.split(' ');
 					attach.coordinates = (attach.coordinates[0]-0) + ',' + (attach.coordinates[1]-0);
-					this.attachments[i] = ('&nbsp;' + (attach.place ? attach.place.title : window.Popup.i18n.attr.location)).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
+					return ('&nbsp;' + (attach.place ? attach.place.title : window.Popup.loc('Map', true))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
 				break;
 				// Стикеры
 				case 'sticker': 
-					this.attachments[i] = '<img class="emoji sticker" src="' + this.attachments[i].sticker.photo_64 + '" height="32">';
+					return '<img class="emoji sticker" src="' + this.attachments[i].sticker.photo_64 + '" height="32">';
 				break;
 				
 				// Неподдерживаемое вложение
-				default	 : this.attachments[i] = ('&nbsp;' + window.Popup.i18n.attr.attach).icon('attach').link(this.url);
+				default	 : return ('&nbsp;' + window.Popup.loc('Attachment', true)).icon('attach').link(this.url);
 			}
-		};
-
+		});
 		this.body += ' <span class="attachments">' + this.attachments.join(' ') + '</span>';
 	}
 
 	if (this.fwd_messages) {
 		var fwd_text = '';
 		if (parentMessage !== undefined) {
-			fwd_text = getCase(this.fwd_messages.length, window.Popup.i18n.attr.fwd_mess).icon('chat').link(this.url);
+			fwd_text = getCase(this.fwd_messages.length, window.Popup.loc('forwarded messages', true)).icon('chat').link(this.url);
 		} else {
 			for (var i = 0; i < this.fwd_messages.length; i++) {
 				this.fwd_messages[i] = new Message(this.fwd_messages[i], parentDialog, this);

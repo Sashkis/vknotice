@@ -1,8 +1,11 @@
-chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'options':'friends,photos,videos,messages,groups,notifications', 'loadComment':1}, function (storage) {
-	jQuery('[data-loc]').each(function(index, el) {
-		jQuery(el).text(getTrans(jQuery(el).attr('data-loc')));
+chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'api':{}, 'options':'friends,photos,videos,messages,groups,notifications', 'loadComment':1}, function (storage) {
+	jQuery('[data-loc]').text(function () {
+		var text = $(this).text();
+		if (!!text && !!storage.i18n && storage.i18n[text] && storage.i18n[text][storage.api.lang] ) {
+			return storage.i18n[text][storage.api.lang];
+		}
 	});
-	console.log(storage);
+
 	storage.options = storage.options.split(',');
 
 	for (var i = 0; i < storage.options.length; i++) {
@@ -17,6 +20,7 @@ chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'options
 
 	// Событие переключения
 	jQuery('.panel').on('change', 'input', function () {
+		$(this).nextAll(".saveMess").animate({opacity: 0.5}, 300);
 		var new_options = '';
 		jQuery('.noty input:checked').each(function (i, el) {
 			var id = jQuery(el).attr('id');
@@ -31,20 +35,11 @@ chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'options
 			'audio': $('#audio').prop('checked'),
 			'loadComment': $('#comments').prop('checked') ? 1 : 0
 		};
-		console.log(save);
 		// Сохранение нового значения
-		chrome.storage.local.set(save);
+		chrome.storage.local.set(save, function () {
+			setTimeout(function(){
+				$(".saveMess").animate({opacity: 0}, 300);
+			},1000);
+		});
 	});
-
-	function getTrans(str) {
-		var transMap = str.split('.'), trans = storage.i18n;
-		for (var i = 0; i < transMap.length; i++) {
-			trans = trans[transMap[i]];
-		};
-		if (typeof trans === 'string') {
-			return trans;
-		} else {
-			return transMap[transMap.length - 1];
-		}
-	}
 });

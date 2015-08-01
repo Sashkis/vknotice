@@ -2,7 +2,7 @@
 chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert', 'openComment', 'loadComment'], function (storage) {
 	Informer.init(storage);
 	Informer.deamonStart();
-	Informer.callAPI('execute.getLang', {}, function (lang_code) {
+	Informer.callAPI('execute.getLang', {lang: null}, function (lang_code) {
 		Informer.loadTranslate(lang_code);
 		Informer.addVisitor();
 	});
@@ -30,23 +30,23 @@ chrome.runtime.onInstalled.addListener(function (details) {
 chrome.alarms.onAlarm.addListener(function (alarm) {
 	if (alarm.name === 'get_review') {
 		Informer.saveAlert({
-			'header': 'credo',
-			'footer': 'close',
+			'header': 'Try for you',
+			'footer': 'Close',
 			'body': {
 				'img'	 : 'https://vk.com/images/stickers/707/128.png',
-				'text'	 : 'review',
-				'ancor'	 : 'review_link',
+				'text'	 : 'Help us to become better',
+				'ancor'	 : 'Leave a review',
 				'imgLink': Informer.getExtUrl(),
 				'url'	 : Informer.getExtUrl()
 			}
 		});
 	} else if (alarm.name === 'say_thanks') {
 		Informer.saveAlert({
-			'header': 'credo',
-			'footer': 'close',
+			'header': 'Try for you',
+			'footer': 'Close',
 			'body': {
 				'img'	 : 'https://vk.com/images/stickers/709/128.png',
-				'ancor'	 : 'thank',
+				'ancor'	 : 'To thank the author',
 				'url'	 : Informer.getShareUrl(),
 				'imgLink': Informer.getShareUrl()
 			}

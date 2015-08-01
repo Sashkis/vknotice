@@ -94,7 +94,8 @@ var Popup = {
 			}
 		}, options);
 		jQuery("#newmess, #newfriends").mCustomScrollbar(options);
-		jQuery('#newmess #mCSB_2_container').attr('data-before', this.i18n.attr.no_mess);
+		jQuery('#newmess #mCSB_2_container').attr('data-before', this.loc("Your private messages will be displayed here.", true));
+		return true;
 	},
 
 
@@ -102,16 +103,15 @@ var Popup = {
 	 * Применяет перевод
 	 */
 	loadTranslate: function () {
-		jQuery('.navbar-brand').text(this.i18n.global.title)
-		jQuery('#menu li').each(function (i, el) {
-			jQuery(el).find(".i18n").text(this.geti18n(jQuery(el).attr('id'), 'menu'));
-		}.bind(this));
-		// Системное меню
-		jQuery('.dropdown li a').each(function (i, el) {
-			jQuery(el).text(this.geti18n(jQuery(el).attr('data-i18n'), 'dropdown'));
-		}.bind(this));
+		jQuery('#menu li .i18n, .navbar-brand, .dropdown li a').text(function () {
+			var title = Popup.loc($(this).text())
+			if (title) {
+				return title;
+			}
+		});
 
-		jQuery('#newmess, #newfriends').attr('data-before', this.i18n.attr.error);
+		jQuery('#newmess, #newfriends').attr('data-before', this.loc('Please inform the developers.', true));
+		return true;
 	},
 
 
@@ -119,7 +119,7 @@ var Popup = {
 	 * Активирует слайд-блоки
 	 */
 	initSlide: function () {
-		jQuery('.slide').on('click', function () {
+		return jQuery('.slide').on('click', function () {
 			var target = jQuery(this).attr('data-target');
 			if (target === '#' + jQuery('.slider.open').attr('id')) {
 				target = '#friends-online';
@@ -136,35 +136,27 @@ var Popup = {
 		this.callAPI('stats.trackVisitor');
 	},
 
-
 	/**
 	 * Вставляет счетчики в меню 
 	 */
-	builCounters: function () {
-		jQuery('#menu .counter').text(function (index, value) {
-			if (jQuery(this).attr('data-target') === '#newmess') {
-				return '+';
-			} else {
-				return '';
-			}
-		});
-
-		if (Object.prototype.toString.call(this.counter) !== '[object Array]') {
-			for (var key in this.counter) {
-				if (key === 'messages' && this.showMessage) {
-					var summ = 0, id;
-					for (id in this.dialogs) {
-						if (this.dialogs[id].unread) {
-							summ += this.dialogs[id].unread;
+	buildCounters: function () {
+		jQuery('#menu .counter').text(function () {
+			var key = jQuery(this).parents('li').attr('id');
+			
+			if (Popup.counter[key]) {
+				if (key === 'messages' && Popup.showMessage) {
+					Popup.counter[key] = 0;
+					for (var id in Popup.dialogs) {
+						if (Popup.dialogs[id].unread) {
+							Popup.counter[key] += Popup.dialogs[id].unread;
 						}
 					}
-					this.counter[key] = summ;
 				}
-				if (this.counter[key] > 0) {
-					jQuery('#' + key + ' span.counter').text('+' + (this.counter[key] < 100 ? this.counter[key] : 99));
-				}
+				return '+' + Math.min(Popup.counter[key], 99);
+			} else {
+				return key === 'messages' ? '+' : ''
 			}
-		}
+		});
 	},
 
 	/**
@@ -181,9 +173,8 @@ var Popup = {
 	 */
 	setCurrentProfile: function () {
 		this.current = new User(this.api.user_id-0);
-		jQuery('#my a.profile').attr('href', VK+this.current.domain);
-		var mark = this.current.online ? '<i class="mark"></i>' : '';
-		jQuery('header .profile').html(mark + this.current.name + this.current.ava({'isLink':false, 'marker':false, 'size':50}));
+		jQuery('#my a.profile').attr('href', VK + this.current.domain);
+		jQuery('header .profile').html((this.current.online ? '<i class="mark"></i>' : '') + this.current.name + this.current.ava({'isLink':false, 'marker':false, 'size':50}));
 	},
 
 	/**
@@ -195,7 +186,7 @@ var Popup = {
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.i18n.attr.delete}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
+				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.loc('Remove', true)}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
 		return jQuery('#friends-online').html(frag);
@@ -213,15 +204,16 @@ var Popup = {
 
 			this.newfriends.forEach(function (user_id) {
 				var user = new User(user_id),
-					cancelButton = ''.icon('cancel', {class: 'hovered', title: this.i18n.attr.remove}),
-					addButton    = ''.icon('ok', {class: 'hovered', title: this.i18n.attr.add});
+					cancelButton = ''.icon('cancel', {class: 'hovered', title: this.loc('Reject', true)}),
+					addButton    = ''.icon('ok', {class: 'hovered', title: this.loc('Accept', true)});
 					
 				frag.append(jQuery('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
 			}, this);
 		} else {
 			jQuery('#friends .slide').add($newfriends).removeClass('open'); // Закрыть панель новых друзей
 		}
-		$newfriends.html(frag);
+		
+		return $newfriends.html(frag);
 	},
 
 	/**
@@ -243,13 +235,7 @@ var Popup = {
 				this.dialogs[dialogCash[i].id].construct().prependTo(frag);
 			};
 
-			$newmess.html(frag);
-
-			if ($newmess.find('.dialog-unread').length > 0 && Popup.options.indexOf('messages') !== -1) {
-				jQuery('#messages .slide').trigger('click');
-			}
-
-			$newmess.find('.body').linkify({
+			$newmess.html(frag).find('.body').linkify({
 				format: function (value, type) {
 					if (type === 'url' && value.length > 40) {
 						value = value.substr(0, 40) + '…';
@@ -257,6 +243,10 @@ var Popup = {
 					return value;
 				}
 			});
+
+			if ($newmess.find('.dialog-unread').length > 0 && Popup.options.indexOf('messages') !== -1) {
+				jQuery('#messages .slide').trigger('click');
+			}
 		}
 
 		return $newmess;
@@ -289,12 +279,12 @@ var Popup = {
 				link   = '';
 			// Шапка
 			if (this.alerts[type].header) {
-				header = this.geti18n(this.alerts[type].header, 'alerts');
+				header = this.loc(this.alerts[type].header, true);
 				header = '<thead><tr><td>' + header + '</td></tr></thead>';
 			}
 			// Футер
 			if (this.alerts[type].footer) {
-				footer = this.geti18n(this.alerts[type].footer, 'alerts');
+				footer = this.loc(this.alerts[type].footer, true);
 				footer = '<tfoot><tr><td><a href="#">' + footer + '</a></td></tr></tfoot>';
 			}
 			// Изображение, Тело и ссылка
@@ -310,7 +300,7 @@ var Popup = {
 				}
 
 				if (this.alerts[type].body.text) {
-					text = this.geti18n(this.alerts[type].body.text, 'alerts');
+					text = this.loc(this.alerts[type].body.text, true);
 					if (text) {
 						text += '<br><br>';
 					} else {
@@ -319,7 +309,7 @@ var Popup = {
 				}
 
 				if (this.alerts[type].body.ancor) {
-					link = this.geti18n(this.alerts[type].body.ancor, 'alerts');
+					link = this.loc(this.alerts[type].body.ancor, true);
 					if (link) {
 						link = link.link(this.alerts[type].body.url).bold();
 					} else {
@@ -343,30 +333,25 @@ var Popup = {
 
 	/**
 	 * Возвращает строку перевода
-	 * @param  {String} text Строка для перевода.
-	 * @example
-	 * // Popup.geti18n("menu.setings");
-	 * @param  {String} obj  Объект в котором искать строку. В случае, если в @param text он не указан
-	 * @example
-	 * // Popup.geti18n("setings", "menu");
-	 * @return {String}      Строка перевода или строка поиска, если перевод не найден.
+	 * @param  {String}  text 		 Строка для перевода.
+	 * @param  {Boolean} isRequared  Возвращать строку или undefined
+	 * @return {String|undefined}	 Строка перевода или undefined.
 	 */
-	geti18n: function (text, obj) {
-		if (!obj) {
-			var obj = text.split('.');
+	loc: function (text, isRequared) {
+		if (isRequared) {
+			var def = text;
 		} else {
-			obj = [obj, text];
+			var def = undefined;
 		}
 
-		if (!this.i18n) {
-			console.error('i18n not init');
-			return obj[1];
+		if (!text || !this.i18n) {
+			return def;
 		}
-		if (this.i18n[obj[0]] && this.i18n[obj[0]][obj[1]]) {
-			return this.i18n[obj[0]][obj[1]];
+
+		if (this.i18n[text] && this.i18n[text][this.api.lang]) {
+			return this.i18n[text][this.api.lang];
 		} else {
-			console.error('Undefined translate: ' + obj[0] + '.' + obj[1]);
-			return obj[1];
+			return def;
 		}
 	},
 
@@ -395,5 +380,5 @@ var Popup = {
 			commentHash = commentHash ? '/reviews' : '';
 			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn' + commentHash;
 		}
-	},
-}
+	}
+};

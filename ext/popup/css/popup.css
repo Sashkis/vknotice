@@ -396,7 +396,7 @@ header {
     display: inline-block;
     padding: 0 10px 0 15px; }
     header .navbar-brand:hover, header span:hover {
-      background-color: #51759b; }
+      background-color: rgba(0, 0, 0, 0.06); }
     header .navbar-brand a, header span a {
       color: #fff; }
   header .navbar-brand {
@@ -407,10 +407,12 @@ header {
   header .navbar-right {
     float: right; }
   header .dropdown.open {
-    background-color: #4b6d94; }
+    background-color: rgba(0, 0, 0, 0.11); }
   header .dropdown .dropdown-menu {
     left: auto;
     right: 0; }
+    header .dropdown .dropdown-menu a:hover, header .dropdown .dropdown-menu a:focus {
+      background-color: rgba(86, 124, 164, 0.09); }
   header .profile {
     float: right; }
     header .profile .ava {
@@ -442,7 +444,7 @@ header {
     right: -5px;
     position: relative;
     overflow: hidden;
-    max-height: 235px;
+    max-height: 230px;
     display: inline-block;
     position: absolute;
     left: 470px;
@@ -465,21 +467,21 @@ header {
     line-height: 22px;
     padding: 0px 0px 0px 6px; }
     #menu a:hover {
-      background-color: #E1E7ED; }
+      background-color: rgba(86, 124, 164, 0.2); }
     #menu a .counter {
-      background: #D5DDE5;
+      background: rgba(86, 124, 164, 0.2);
       border-radius: 2px;
       color: #45688E;
       float: right;
       font-size: 10px;
       font-weight: bold;
       line-height: 19px;
-      margin: 1px 2px 2px 1px;
+      margin: 1.5px 2px 1.5px 1px;
       padding: 0 4px;
       transition: background-color 200ms linear, color 200ms linear; }
 
 #friends-online {
-  padding: 11px 2px; }
+  padding: 13px 2px; }
   #friends-online:empty {
     background: url(../img/alone.jpg) no-repeat center, #fff;
     min-height: 235px;
@@ -487,7 +489,7 @@ header {
   #friends-online figure {
     display: inline-block;
     height: 100px;
-    margin: 11px 0 0 0;
+    margin: 4.5px 0 0 0;
     overflow: hidden;
     position: relative;
     text-align: right;
@@ -498,6 +500,8 @@ header {
     #friends-online figure:nth-of-type(2), #friends-online figure:nth-of-type(5) {
       margin-left: 4.5px;
       margin-right: 4.5px; }
+    #friends-online figure:nth-of-type(7) {
+      display: none; }
     #friends-online figure:hover figcaption {
       bottom: 0px; }
     #friends-online figure:hover .icon-cancel {
@@ -561,7 +565,7 @@ header {
     width: 100%; }
 
 .slide.open {
-  background-color: #597DA3 !important;
+  background-color: #567ca4 !important;
   color: #fff !important; }
 
 #newfriends {
@@ -574,16 +578,16 @@ header {
     border-bottom: 1px solid #e4e8ed; }
     #newfriends figure i {
       border-radius: 2px;
-      color: rgba(43, 88, 122, 0.5);
+      color: rgba(86, 124, 164, 0.5);
       cursor: pointer;
       float: right;
       font-size: 30px;
       padding: 8px 4px; }
       #newfriends figure i:hover {
-        color: #2B587A; }
+        color: #567ca4; }
       #newfriends figure i.icon-spin4:hover {
         background: none !important;
-        color: rgba(43, 88, 122, 0.5) !important;
+        color: rgba(86, 124, 164, 0.5) !important;
         cursor: wait; }
   #newfriends figcaption a {
     display: block;
@@ -615,20 +619,26 @@ header {
     cursor: pointer;
     overflow: hidden;
     padding: 5px;
-    border-bottom: 1px solid #e4e8ed;
     /* Диалог с Администрацией */ }
-    #newmess .dialog.dialog-unread, #newmess .dialog.dialog:hover, #newmess .dialog.dialog.open {
-      background: #edf1f5;
-      border-color: #DAE1E8; }
+    #newmess .dialog + .dialog {
+      border-top: 1px solid rgba(86, 124, 164, 0.15); }
+    #newmess .dialog:hover, #newmess .dialog.open, #newmess .dialog.dialog-unread {
+      border-color: rgba(86, 124, 164, 0.22);
+      background: rgba(86, 124, 164, 0.1); }
+      #newmess .dialog:hover + .dialog, #newmess .dialog.open + .dialog, #newmess .dialog.dialog-unread + .dialog {
+        border-color: rgba(86, 124, 164, 0.3); }
+      #newmess .dialog:hover .date, #newmess .dialog.open .date, #newmess .dialog.dialog-unread .date {
+        color: #8795a5; }
     #newmess .dialog.dialog.open {
       cursor: default; }
     #newmess .dialog#dialog-100 .name {
       color: #2E7B27;
       font-weight: bold; }
-    #newmess .dialog.dialog.open .date, #newmess .dialog.dialog-unread .date, #newmess .dialog:hover .date {
-      color: #8795a5; }
     #newmess .dialog.dialog-unread .markAsRead {
       display: block; }
+    #newmess .dialog.dialog-ansver-unread .mess-container {
+      background-color: rgba(86, 124, 164, 0.1);
+      padding: 5px; }
     #newmess .dialog .group-photo {
       overflow: hidden;
       background: none;

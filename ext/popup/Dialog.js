@@ -75,7 +75,7 @@ function Dialog (dialog_obj) {
 		options = jQuery.extend({
 			class: '',
 			photo: '',
-			title: window.Popup.i18n.attr.chat,
+			title: window.Popup.loc('Chat'),
 			messages: ''
 		}, options);
 		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + ' <span class="date">' + new Date(this.date*1000).toStringVkFormat() + '</span></span><span class="mess-container">' + options.messages + '</span></div>';
@@ -153,7 +153,12 @@ function Dialog (dialog_obj) {
 	this.getClass = function (custom) {
 		var dialogClass = 'dialog';
 		if (!!this.unread) dialogClass += ' dialog-unread';
-		if (this.out === 1) dialogClass += ' dialog-ansver';
+		if (this.out === 1) {
+			dialogClass += ' dialog-ansver';
+			if (this.read_state === 0) {
+				dialogClass += ' dialog-ansver-unread';
+			}
+		}
 		if (this.isGroup) dialogClass += ' dialog-group';
 		return dialogClass + ' ' + (custom || '');
 	};
@@ -164,11 +169,10 @@ function Dialog (dialog_obj) {
 	 */
 	this.construct = function () {
 		this.jQ = jQuery(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
-		this.jQ.html((this.addHeader(this.getHeaderObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.i18n.attr.markAsRead}));
+		this.jQ.html((this.addHeader(this.getHeaderObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.loc('Mark as read', true)}));
 		this.jQ.data(this);
 		return this.jQ;
 	};
-
 
 	/**
 	 * Помечает все сообщения в диалоге как прочитанные
@@ -235,15 +239,9 @@ function Dialog (dialog_obj) {
 	 * @return {Number} Цифровая подпись диалога
 	 */
 	this.hash = function () {
-		var summ = 0, i,
-			message_ids = this.messages.map(function (mess) {
-				return mess.id - 0;
-			});
-		for (i = message_ids.length; i--;) {
-			summ += message_ids[i];
-		};
-
-		return this.id - 0 + summ;
+		return this.messages.reduce(function (sum, mesage) {
+			return sum + mesage.id;
+		}, this.id - 0);
 	};
 
 	this.init(dialog_obj);

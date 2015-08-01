@@ -3,6 +3,7 @@
 @import 'dropdowns';
 @import 'fontello';
 @import 'animation';
+$mainColor: #567ca4;
 body {
 	color: #000;
 	font-size: 11px;
@@ -110,7 +111,7 @@ a {
 header {
 	height: 50px;
 	color: #fff;
-	background: #567ca4;
+	background: $mainColor;
 	// overflow: hidden;
 	.navbar-brand, span {
 		color: #fff;
@@ -118,7 +119,7 @@ header {
 		display: inline-block;
 		padding: 0 10px 0 15px;
 		&:hover {
-			background-color: #51759b;
+			background-color: rgba(0, 0, 0, 0.06);
 		}
 		a {
 			color: #fff;
@@ -135,11 +136,14 @@ header {
 	}
 	.dropdown {
 		&.open {
-			background-color: #4b6d94;
+			background-color: rgba(0, 0, 0, 0.11);
 		}
 		.dropdown-menu {
 			left: auto;
 			right: 0;
+			a:hover, a:focus {
+				background-color: rgba($mainColor, 0.09);
+			}
 		}
 	}
 	.profile {
@@ -178,7 +182,7 @@ header {
 		right: -5px;
 		position: relative;
 		overflow: hidden;
-		max-height: 235px;
+		max-height: 230px;
 		display: inline-block;
 		position: absolute;
 		left: 470px;
@@ -205,17 +209,17 @@ header {
 		line-height: 22px;
 		padding: 0px 0px 0px 6px;
 		&:hover {
-			background-color: #E1E7ED;
+			background-color: rgba($mainColor, 0.2);
 		}
 		.counter {
-			background: #D5DDE5;
+			background: rgba($mainColor, 0.2);
 			border-radius: 2px;
 			color: #45688E;
 			float: right;
 			font-size: 10px;
 			font-weight: bold;
 			line-height: 19px;
-			margin: 1px 2px 2px 1px;
+			margin: 1.5px 2px 1.5px 1px;
 			padding: 0 4px;
 			transition: background-color 200ms linear, color 200ms linear;
 		}
@@ -223,7 +227,7 @@ header {
 }
 
 #friends-online {
-	padding: 11px 2px;
+	padding: 13px 2px;
 	&:empty {
 		background: url(../img/alone.jpg) no-repeat center, #fff;
 		min-height: 235px;
@@ -232,7 +236,7 @@ header {
 	figure {
 		display: inline-block;
 		height: 100px;
-		margin: 11px 0 0 0;
+		margin: 4.5px 0 0 0;
 		overflow: hidden;
 		position: relative;
 		text-align: right;
@@ -247,6 +251,9 @@ header {
 		&:nth-of-type(5) {
 			margin-left: 4.5px;
 			margin-right: 4.5px;
+		}
+		&:nth-of-type(7) {
+			display: none;
 		}
 		&:hover {
 			figcaption {
@@ -333,7 +340,7 @@ header {
 }
 
 .slide.open {
-	background-color: #597DA3 !important;
+	background-color: $mainColor !important;
 	color: #fff !important;
 }
 
@@ -347,17 +354,17 @@ header {
 		border-bottom: 1px solid #e4e8ed;
 		i {
 			border-radius: 2px;
-			color: rgba(43, 88, 122, 0.5);
+			color: rgba($mainColor, 0.5);
 			cursor: pointer;
 			float: right;
 			font-size: 30px;
 			padding: 8px 4px;
 			&:hover {
-				color: #2B587A;
+				color: $mainColor;
 			}
 			&.icon-spin4:hover {
 				background: none !important;
-				color: rgba(43, 88, 122, 0.5) !important;
+				color: rgba($mainColor, 0.5) !important;
 				cursor: wait;
 			}
 		}
@@ -398,12 +405,20 @@ header {
 		cursor: pointer;
 		overflow: hidden;
 		padding: 5px;
-		border-bottom: 1px solid #e4e8ed;
-		&.dialog-unread,
-		&.dialog:hover,
-		&.dialog.open {
-			background: #edf1f5;
-			border-color: #DAE1E8;
+		& + .dialog {
+			border-top: 1px solid rgba($mainColor, 0.15);
+		}
+		&:hover,
+		&.open,
+		&.dialog-unread {
+			& + .dialog {
+				border-color: rgba($mainColor, 0.3);
+			}
+			border-color: rgba($mainColor, 0.22);
+			background: rgba($mainColor, 0.1);
+			.date {
+				color: #8795a5;
+			}
 		}
 		&.dialog.open {
 			cursor: default;
@@ -413,16 +428,15 @@ header {
 			color: #2E7B27;
 			font-weight: bold;
 		}
-		&.dialog.open,
-		&.dialog-unread,
-		&:hover {
-			.date{
-				color: #8795a5;
-			}
-		}
 		&.dialog-unread {
 			.markAsRead {
 				display: block;
+			}
+		}
+		&.dialog-ansver-unread {
+			.mess-container {
+				background-color: rgba($mainColor, 0.1);
+				padding: 5px;
 			}
 		}
 		.group-photo {

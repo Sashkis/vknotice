@@ -1,0 +1,501 @@
+{
+	"My Profile":{
+		"0":"Моя Страница",
+		"1":"Моя Cторінка",
+		"2":"Мая Старонка",
+		"6":"Mein Profil",
+		"15":"Moja Strona"
+	},
+	"My Friends":{
+		"0":"Мои Друзья",
+		"1":"Мої Друзі",
+		"2":"Мае Сябры",
+		"6":"Meine Freunde",
+		"15":"Moi Znajomi"
+	},
+	"My Photos":{
+		"0":"Мои Фотографии",
+		"1":"Мої Фотографії",
+		"2":"Мае Фотаздымкі",
+		"6":"Meine Fotos",
+		"15":"Moje Zdjęcia"
+	},
+	"My Videos":{
+		"0":"Мои Видеозаписи",
+		"1":"Мої Відеозаписи",
+		"2":"Мае Відэазапісы",
+		"6":"Meine Videos",
+		"15":"Moje Filmy"
+	},
+	"My Music":{
+		"0":"Мои Аудиозаписи",
+		"1":"Мої Аудiозаписи",
+		"2":"Мае Аўдыязапісы",
+		"6":"Meine Musik",
+		"15":"Moja Muzyka"
+	},
+	"My Messages":{
+		"0":"Мои Сообщения",
+		"1":"Мої Повiдомлення",
+		"2":"Мае Паведамленні",
+		"6":"Meine Nachrichten",
+		"15":"Moje Wiadomości"
+	},
+	"My Communities":{
+		"0":"Мои Группы",
+		"1":"Мої Спільноти",
+		"2":"Мае Суполкі",
+		"6":"Meine Communities",
+		"15":"Moje Grupy"
+	},
+	"My News":{
+		"0":"Мои Новости",
+		"1":"Мої Новини",
+		"2":"Мае Навіны",
+		"6":"Meine Neuigkeiten",
+		"15":"Moje Odpowiedzi"
+	},
+	"My Feedback":{
+		"0":"Мои Ответы",
+		"1":"Мої Відповіді",
+		"2":"Мае Адказы",
+		"6":"Mein Feedback",
+		"15":"Moje Nowości"
+	},
+	"My Comments":{
+		"0":"Мои Комментарии",
+		"1":"Мої Коментарі",
+		"2":"Мае Каментары",
+		"6":"Meine Kommentare",
+		"15":"Moje Komentarze"
+	},
+
+
+
+	"Informer":{
+		"0":"Информер",
+		"1":"Інформер",
+		"2":"Інформар",
+		"6":"Informer",
+		"15":"Informatorem"
+	},
+	"Ask question":{
+		"0":"Задать вопрос",
+		"1":"Задати питання",
+		"2":"Задаць пытанне",
+		"6":"die Frage",
+		"15":"Zadaj pytanie"
+	},
+	"Leave offer":{
+		"0":"Оставить предложение",
+		"1":"Залишити пропозицію",
+		"2":"Пакінуць прапанову",
+		"6":"Lassen Angebot",
+		"15":"Zostawić oferta"
+	},
+	"Report error":{
+		"0":"Сообщить об ошибке",
+		"1":"Повідомити про помилку",
+		"2":"Паведаміць пра памылку",
+		"6":"Fehler Melden",
+		"15":"Zgłoś błąd"
+	},
+	"Tell your friends":{
+		"0":"Рассказать друзьям",
+		"1":"Розповісти друзям",
+		"2":"Распавесці сябрам",
+		"6":"Teilen",
+		"15":"Poleć znajomemu"
+	},
+	"Leave a review":{
+		"0":"Оставить отзыв",
+		"1":"Залишити відгук",
+		"2":"Пакінуць водгук",
+		"6":"Feedback",
+		"15":"napisz recenzję"
+	},
+	"Settings":{
+		"0":"Настройки",
+		"1":"Налаштування",
+		"2":"Налады",
+		"6":"Konfiguration",
+		"15":"Ustawienia"
+	},
+	"Logout":{
+		"0":"Выйти",
+		"1":"Вийти",
+		"2":"Выхад",
+		"6":"Logout",
+		"15":"Wyjście"
+	},
+
+
+
+	"Notification settings":{
+		"0":"Настройки уведомлений",
+		"1":"Налаштування сповіщень",
+		"2":"Налады апавяшчэнняў",
+		"6":"Die Einstellungen für Benachrichtigungen",
+		"15":"Ustawienia powiadomień"
+	},
+	"Settings Informer":{
+		"0":"Настройки Информера",
+		"1":"Налаштування Інформера",
+		"2":"Налады Інформэра",
+		"6":"Einstellungen Informer",
+		"15":"Ustawienia Informator"
+	},
+	"Inform about new friends":{
+		"0":"Сообщать о заявках в друзья",
+		"1":"Повідомляти про заявки в друзі",
+		"2":"Паведамляць аб заяўках у сябры",
+		"6":"Zu berichten über die Anmeldungen der Freunde",
+		"15":"Poinformować o nowych znajomych"
+	},
+	"Inform about photos with me":{
+		"0":"Сообщать об отметках на фотографиях",
+		"1":"Повідомляти про відмітки на фото",
+		"2":"Паведамляць аб адзнаках на фотаздымках",
+		"6":"Melden Markierungen auf den Fotos",
+		"15":"Poinformować o zdjęciach ze mną"
+	},
+	"Inform about videos with me":{
+		"0":"Сообщать об отметках в видеозаписях",
+		"1":"Повідомляти про відмітки у відео",
+		"2":"Паведамляць аб адзнаках у відэазапісах",
+		"6":"Melden Erhebungen in Videoaufnahmen",
+		"15":"Zgłaszać markierach w filmach"
+	},
+	"Inform about private messages":{
+		"0":"Сообщать о личных сообщениях",
+		"1":"Повідомляти про особисті повідомлення",
+		"2":"Паведамляць аб асабістых паведамленнях",
+		"6":"Melden persönlichen Mitteilungen",
+		"15":"Poinformować o prywatnych wiadomościach"
+	},
+	"Inform about invitations to community":{
+		"0":"Сообщать о приглашениях в группы",
+		"1":"Повідомляти про запрошення у групи",
+		"2":"Паведамляць аб запрашэнні ў супольнасці",
+		"6":"Melden Einladung in die Community",
+		"15":"Poinformować o zaproszeniach w społeczności"
+	},
+	"Inform about replies":{
+		"0":"Сообщать об ответах",
+		"1":"Повідомляти про відповіді",
+		"2":"Паведамляць аб адказах",
+		"6":"Melden Antworten",
+		"15":"Poinformować o odpowiedziach"
+	},
+	"Inform about new comments":{
+		"0":"Сообщать о новых комментариях",
+		"1":"Повідомляти про нові коментарі",
+		"2":"Паведамляць аб новых каментарах",
+		"6":"Berichten über neue Kommentare",
+		"15":"Informować o nowych komentarzach"
+	},
+
+	"Sound notifications":{
+		"0":"Звуковые уведомления",
+		"1":"Звукові сповіщення",
+		"2":"Sound-Benachrichtigungen",
+		"6":"Sound-Benachrichtigungen",
+		"15":"Powiadomienia dźwiękowe"
+	},
+	"Display the number of messages":{
+		"0":"Отображать количество сообщений",
+		"1":"Відображати кількість повідомлень",
+		"2":"Адлюстроўваць колькасць паведамленняў",
+		"6":"Zeigt die Anzahl der Nachrichten",
+		"15":"Wyświetlanie ilości postów"
+	},
+	"Save...":{
+		"0":"Сохранение...",
+		"1":"Збереження...",
+		"2":"Захаванне...",
+		"6":"Speichern...",
+		"15":"Zapisywanie..."
+	},
+
+
+
+	"Your private messages will be displayed here.":{
+		"0":"Здесь будет выводиться список Ваших сообщений.",
+		"1":"Тут буде виводитися список Ваших повідомлень.",
+		"2":"Тут будзе выводзіцца спіс Вашых паведамленняў.",
+		"6":"Hier werden Ihre persönlichen Nachrichten angezeigt.",
+		"15":"Tutaj będzie pojawiała się lista Twoich wiadomości."
+	},
+	"Please inform the developers.":{
+		"0":"Пожалуйста сообщите разработчикам.",
+		"1":"Будь ласка, повідомте розробників.",
+		"2":"Калі ласка паведаміце распрацоўнікам.",
+		"6":"Bitte informieren Sie die Entwickler.",
+		"15":"Proszę zgłoś."
+	},
+
+
+
+	"Mark as read":{
+		"0":"Пометить как прочитанные",
+		"1":"Позначити як прочитані",
+		"2":"Пазначыць як прачытаныя",
+		"6":"Markieren als gelesen markieren",
+		"15":"Oznacz jako przeczytane"
+	},
+	"Accept":{
+		"0":"Принять",
+		"1":"Прийняти",
+		"2":"Прыняць",
+		"6":"Akzeptieren",
+		"15":"Akceptuj"
+	},
+	"Reject":{
+		"0":"Отклонить",
+		"1":"Відхилити",
+		"2":"Адхіліць",
+		"6":"Ablehnen",
+		"15":"Odrzucić"
+	},
+	"Remove":{
+		"0":"Удалить",
+		"1":"Видалити",
+		"2":"Выдаліць",
+		"6":"Entfernen",
+		"15":"Usunąć"
+	},
+
+
+
+	"Photo":{
+		"0":"Фотография",
+		"1":"Фотографія",
+		"2":"Фатаграфія",
+		"6":"Foto",
+		"15":"Zdjęcia"
+	},
+	"Post":{
+		"0":"Запись",
+		"1":"Запис",
+		"2":"Запіс",
+		"6":"Eintrag",
+		"15":"Zapis"
+	},
+	"Gift":{
+		"0":"Подарок",
+		"1":"Подарунок",
+		"2":"Падарунак",
+		"6":"Geschenk",
+		"15":"Prezent"
+	},
+	"Sticker":{
+		"0":"Стикер",
+		"1":"Стікер",
+		"2":"Стыкер",
+		"6":"Sticker",
+		"15":"Naklejki"
+	},
+	"Map":{
+		"0":"Карта",
+		"1":"Карта",
+		"2":"Карта",
+		"6":"Karte",
+		"15":"Mapa"
+	},
+	"Comment":{
+		"0":"Комментарий",
+		"1":"Коментар",
+		"2":"Каментар",
+		"6":"Kommentar",
+		"15":"Komentarz"
+	},
+	"Attachment":{
+		"0":"Вложение",
+		"1":"Вкладення",
+		"2":"Ўкладанне",
+		"6":"Anlage",
+		"15":"Załącznik"
+	},
+	"forwarded messages":{
+		"3":["forwarded&nbsp;message","forwarded&nbsp;messages","forwarded&nbsp;messages"],
+		"0":["пересланное&nbsp;сообщение","пересланных&nbsp;сообщения","пересланных&nbsp;сообщений"],
+		"1":["переслане&nbsp;повідомлення","пересланих&nbsp;повідомлення","пересланих&nbsp;повідомлень"],
+		"2":["пересланное&nbsp;паведамленне","пераслаць&nbsp;паведамленні","пераслаць&nbsp;паведамленняў"],
+		"6":["weitergeleitete Nachricht Antworten","Weiterleitung von Nachrichten","Weiterleitung von Nachrichten"],
+		"15":["wiadomość przekazywana","przesłanych dalej wiadomości","przesłanych dalej wiadomości"]
+	},
+	"Chat":{
+		"0":"Беседа",
+		"1":"Бесіда",
+		"2":"Размова",
+		"6":"Gespräch",
+		"15":"Rozmowa"
+	},
+
+
+
+
+	"chat_photo_update":{
+		"3":"Changed conversation cover",
+		"0":"Обновил фотографию беседы",
+		"1":"Оновив фотографію бесіди",
+		"2":"Абнавіў фотаздымак размовы",
+		"6":"Das Cover der Konversation geändert",
+		"15":"Zaktualizował zdjęcie rozmowy"
+	},
+	"chat_photo_remove":{
+		"3":"Deleted conversation cover",
+		"0":"Удалил фотографию беседы",
+		"1":"Видалив фотографію бесіди",
+		"2":"Выдаліў фотаздымак размовы",
+		"6":"Das Cover der Konversation gelöscht",
+		"15":"Usunął zdjęcie rozmowy"
+	},
+	"chat_create":{
+		"3":"Create conversation",
+		"0":"Создал беседу",
+		"1":"Створив бесіду",
+		"2":"Стварыў размову",
+		"6":"Erstellen Gespräch",
+		"15":"Stworzył rozmowę"
+	},
+	"chat_title_update":{
+		"3":"Changed the conversation name",
+		"0":"Изменил название беседы",
+		"1":"Змінив назву бесіди",
+		"2":"Змяніў назву размовы",
+		"6":"Den Namen der Konversation geändert",
+		"15":"Zmienił nazwę rozmowy"
+	},
+	"chat_invite_user":{
+		"3":"Invited user",
+		"0":"Пригласил пользователя",
+		"1":"Запросив користувача",
+		"2":"Запрасіў карыстальніка",
+		"6":"Eingeladen Benutzer",
+		"15":"Zaprosił użytkownika"
+	},
+	"chat_kick_user":{
+		"3":"Kicked user",
+		"0":"Исключил пользователя",
+		"1":"Виключив користувача",
+		"2":"Выключыў карыстальніка",
+		"6":"Entfernt Benutzer",
+		"15":"Zamknął użytkownika"
+	},
+
+
+
+	"Help us to become better":{
+		"0":"Помогите нам стать лучше",
+		"1":"Допоможіть нам стати краще",
+		"2":"Дапамажыце нам стаць лепш",
+		"6":"Helfen Sie uns besser zu werden",
+		"15":"Pomóż nam stać się lepszym"
+	},
+	"To thank the author":{
+		"0":"Поблагодарить автора",
+		"1":"Подякувати автору",
+		"2":"Падзякаваць аўтара",
+		"6":"Danken Autor",
+		"15":"Podziękować autora"
+	},
+	"Close":{
+		"0":"Закрыть",
+		"1":"Закрити",
+		"2":"Зачыніць",
+		"6":"Schließen",
+		"15":"Zamknij"
+	},
+	"Try for you":{
+		"0":"Стараемся для вас",
+		"1":"Стараємося для вас",
+		"2":"Стараемся для вас",
+		"6":"Versuchen für Sie",
+		"15":"Staramy się dla ciebie"
+	},
+	"Access error":{
+		"0":"Ошибка доступа",
+		"1":"Помилка доступу",
+		"2":"Памылка доступу",
+		"6":"Fehler beim Zugriff auf",
+		"15":"Błąd dostępu"
+	},
+	"Login":{
+		"0":"Войти",
+		"1":"Увійти",
+		"2":"Увайсці",
+		"6":"Anmelden",
+		"15":"Zalogować"
+	},
+
+
+
+	"at":{
+		"0":"в",
+		"1":"о",
+		"2":"ў",
+		"6":"um",
+		"15":"w"
+	},
+	"just now":{
+		"0":"только что",
+		"1":"тільки що",
+		"2":"толькі што",
+		"6":"nur dass",
+		"15":"tylko że"
+	},
+	"ago":{
+		"0":"назад",
+		"1":"тому",
+		"2":"таму",
+		"6":"alt",
+		"15":"temu"
+	},
+	"today":{
+		"0":"сегодня",
+		"1":"сьогодні",
+		"2":"сення",
+		"6":"heute",
+		"15":"dziś"
+	},
+	"tomorrow":{
+		"0":"вчера",
+		"1":"вчора",
+		"2":"учора",
+		"6":"gestern",
+		"15":"wczoraj"
+	},
+	"seconds":{
+		"3":["second","seconds","seconds"],
+		"0":["секунду","секунды","секунд"],
+		"1":["секунду","секунди","секунд"],
+		"2":["секунду","секунды","секунд"],
+		"6":["sekunde","sekunden","sekunden"],
+		"15":["sekundę","sekundy","sekund"]
+	},
+	"minutes":{
+		"3":["minute","minutes","minutes"],
+		"0":["минуту","минуты","минут"],
+		"1":["хвилину","хвилини","хвилин"],
+		"2":["хвіліну","хвіліны","хвілін"],
+		"6":["minute","minuten","minuten"],
+		"15":["minutę","minuty","minut"]
+	},
+	"hours":{
+		"3":["hour","hours","hours"],
+		"0":["час","часа","часов"],
+		"1":["годину","години","годин"],
+		"2":["гадзіну","гадзіны","гадзін"],
+		"6":["stunde","stunden","stunden"],
+		"15":["godzinę","godziny","godzin"]
+	},
+	"mounths":{
+		"3":["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"],
+		"0":["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],
+		"1":["січ","лют","бер","кві","тра","чер","лип","сер","вер","жов","лис","гру"],
+		"2":["сту","лют","сак","май","май","чэр","ліп","жні","вер","кас","ліс","сне"],
+		"6":["jan","feb","mar","apr","mai","jun","jul","aug","sen","okt","nov","dez"],
+		"15":["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru"]
+	}
+}

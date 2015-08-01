@@ -143,7 +143,7 @@ function User (user_obj) {
 				this.jQ.data(this);
 			}
 			this.notLoaded = false;
-			console.log('User id' + user_id + ' was loaded');
+			console.info('User id' + user_id + ' was loaded');
 		}
 	};
 }
