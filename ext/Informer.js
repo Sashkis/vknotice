@@ -31,8 +31,7 @@ var Informer = {
 			'api': {
 				'access_token': '',
 				'user_id': '',
-				'lang': 0,
-				'v': '5.35'
+				'lang': 0
 			},
 			'loadComment':1,
 			'openComment':0,
@@ -44,6 +43,8 @@ var Informer = {
 				this[p] = params[p];
 			}
 		}
+
+		this.api.v = '5.35';
 	},
 
 	/**
@@ -87,10 +88,10 @@ var Informer = {
 			this.iconSufix = '.i18n';
 		};
 		
-		jQuery.getJSON('lang/' + this.abbrlang + '.json', function (translate) {
-			chrome.storage.local.set({'i18n': translate});
+		jQuery.getJSON('lang/i18n.json', function (translate) {
+			chrome.storage.local.set({'i18n': translate, 'api': Informer.api});
 		}).fail(function (jqxhr, textStatus, error) {
-		    console.error('Load translate failed: ' + textStatus + ', ' + error);
+		    console.error('Load translate failed: ' + textStatus + ', ' + error, jqxhr);
 		});
 	},
 
@@ -120,7 +121,7 @@ var Informer = {
 			console.info('Daemon already stoped');
 			return false;
 		}
-		this.delay = false;
+		this.delay = 0;
 		console.info('Daemon stopped');
 		return true;
 	},
@@ -130,12 +131,11 @@ var Informer = {
 	 * Выполняет основной запрос
 	 */
 	mainRequest: function () {
-		var opts = {
-			'options': this.options,
-			'loadComment': this.loadComment,
-			'openComment': this.openComment,
-		};
-		this.callAPI('execute.getdata', opts,
+		this.callAPI('execute.getdata', {
+				'options': this.options,
+				'loadComment': this.loadComment,
+				'openComment': this.openComment,
+			},
 			// Успешно
 			function (API) {
 				if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
@@ -161,11 +161,11 @@ var Informer = {
 			},
 			// Всегда
 			function () {
-				if (this.delay) {
-					setTimeout(function () {
+				setTimeout(function () {
+					if (window.Informer.delay) {
 						window.Informer.mainRequest();
-					}, this.delay);
-				}
+					}
+				}, this.delay);
 			}
 		);
 	},
