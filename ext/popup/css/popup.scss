@@ -266,6 +266,31 @@ header {
 				left: 0px;
 			}
 		}
+		&.delete {
+			a {
+				cursor: wait;
+			}
+			.icon-cancel, .icon-pencil, figcaption {
+				display: none;
+			}
+			.wait {
+				cursor: wait;
+				background: rgba(0,0,0,.5);
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				i {
+					position: absolute;
+					color: #fff;
+					background: none;
+					font-size: 30px;
+					left: 50%;
+					margin-left: -21px;
+					margin-top: -15px;
+					top: 50%;
+				}
+			}
+		} 
 		a {
 			display: block;
 		}
@@ -297,31 +322,6 @@ header {
 			left: -100%;
 			transition:left .3s;
 		}
-		.delete {
-			a {
-				cursor: wait;
-			}
-			.icon-cancel, .icon-pencil, figcaption {
-				display: none;
-			}
-			.wait {
-				cursor: wait;
-				background: rgba(0,0,0,.5);
-				position: absolute;
-				height: 100%;
-				width: 100%;
-				i {
-					position: absolute;
-					color: #fff;
-					background: none;
-					font-size: 30px;
-					left: 50%;
-					margin-left: -21px;
-					margin-top: -15px;
-					top: 50%;
-				}
-			}
-		} 
 	}
 	figcaption {
 		background: rgba(0,0,0,.5);

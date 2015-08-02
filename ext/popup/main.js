@@ -15,8 +15,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			// Событине для удаления друга онлайн
 			$onlineUsers.on('click', '.icon-cancel', function () {
-				var $user = jQuery(this).parents('figure');
-				$user.addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
+				var $user = jQuery(this).parents('figure').addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
 				var user = $user.data();
 
 				user.addOrDel('delete', function () {
@@ -185,29 +184,31 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 });
 
 chrome.storage.onChanged.addListener(function (changes) {
-	if (changes.counter !== undefined) {
+	if (!!changes.counter) {
 		Popup.counter = changes.counter.newValue || [];
 	}
 
-	if (changes.profiles !== undefined) {
-		if (changes.profiles.newValue === undefined) changes.profiles.newValue = [];
+	if (!!changes.profiles) {
+		if (changes.profiles.newValue === undefined) {
+			changes.profiles.newValue = [];
+		}
 		changes.profiles.newValue.forEach(function (user) {
 			user = new User(user);
 			Popup.profiles[user.id] = user;
 		});
 	}
 
-	if (changes.friends !== undefined) {
+	if (!!changes.friends) {
 		Popup.friends = changes.friends.newValue || [];
 		Popup.builFriendsOnline();
 	}
 
-	if (changes.newfriends !== undefined) {
+	if (!!changes.newfriends) {
 		Popup.newfriends = changes.newfriends.newValue || [];
 		Popup.buildNewFriends();
 	}
 
-	if (changes.dialogs !== undefined && changes.dialogs.newValue !== undefined) {
+	if (!!changes.dialogs && $.isArray(changes.dialogs.newValue)) {
 		for (var i = changes.dialogs.newValue.length; i--;) {
 			var dialog = new Dialog(changes.dialogs.newValue[i]);
 			if (Popup.dialogs[dialog.id] !== undefined && Popup.dialogs[dialog.id].hash() !== dialog.hash()) {
@@ -216,7 +217,7 @@ chrome.storage.onChanged.addListener(function (changes) {
 		};
 	}
 
-	if (changes.alerts !== undefined) {
+	if (!!changes.alerts) {
 		Popup.alerts = changes.alerts.newValue || {error :false, message: false};
 		Popup.buildAlert();
 	}

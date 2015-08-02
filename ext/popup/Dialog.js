@@ -19,11 +19,7 @@ function Dialog (dialog_obj) {
 	 * @see Dialog
 	 */
 	this.init = function (dialog_obj) {
-		for (var p in dialog_obj) {
-			if (p !== 'message') {
-				this[p] = dialog_obj[p];
-			}
-		}
+		jQuery.extend(this, dialog_obj);
 
 		this.messages = [];
 		this.isGroup  = this.chat_id !== undefined;

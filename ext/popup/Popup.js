@@ -11,7 +11,7 @@ var Popup = {
 	 * @param  {Object} params Параметры из chrome.storage
 	 */
 	init: function (params) {
-		params = jQuery.extend(true, {
+		jQuery.extend(true, this, {
 			'audio': true,
 			'counter': [],
 			'friends': [],
@@ -26,9 +26,10 @@ var Popup = {
 				'v': '5.35'
 			},
 		}, params);
-		for (var p in params) {
-			this[p] = params[p];
-		}
+		
+		$.ajaxSetup({
+			data: this.api,
+		});
 
 		var profCash = this.profiles;
 		this.profiles = {};
@@ -48,8 +49,6 @@ var Popup = {
 	 * @param  {Function} always  Функция выполнемая всегда
 	 */
 	callAPI: function (method, options, done, fail, always) {
-		options = jQuery.extend(this.api, options);
-
 		jQuery.getJSON('https://api.vk.com/method/' + method, options)
 			.done(function (API) {
 				if (API.response !== undefined) {
@@ -154,7 +153,7 @@ var Popup = {
 				}
 				return '+' + Math.min(Popup.counter[key], 99);
 			} else {
-				return key === 'messages' ? '+' : ''
+				return key === 'messages' ? '+' : '+'
 			}
 		});
 	},

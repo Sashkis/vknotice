@@ -18,7 +18,7 @@ var Informer = {
 	 * @param {Object} params Данные загруженные из chrome.storage
 	 */
 	init: function (params) {
-		params = jQuery.extend(true, {
+		jQuery.extend(true, this, {
 			'badge': 0,
 			'lastLoadAlert': 0,
 			'abbrlang': 'ru',
@@ -30,21 +30,22 @@ var Informer = {
 			},
 			'api': {
 				'access_token': '',
-				'user_id': '',
+				'user_id': null,
 				'lang': 0
 			},
 			'loadComment':1,
 			'openComment':0,
 			'options': 'friends,photos,videos,messages,groups,notifications',
+			'delay': 0,
 			'iconSufix': '.i18n'
 		}, params);
-		for (var p in params) {
-			if (params.hasOwnProperty(p)) {
-				this[p] = params[p];
-			}
-		}
 
 		this.api.v = '5.35';
+		this.api.user_id = this.api.user_id-0;
+		$.ajaxSetup({
+			data: this.api,
+		});
+		
 	},
 
 	/**
@@ -68,6 +69,12 @@ var Informer = {
 		} else if (lang_code === 15) { // Польский
 			this.abbrlang = 'pl';
 			return this.api.lang = 15;
+		} else if (lang_code === 54 || lang_code === 66) { // Румунский
+			this.abbrlang = 'ro';
+			return this.api.lang = 54;
+		} else if (lang_code === 61) { // Румунский
+			this.abbrlang = 'nl';
+			return this.api.lang = 61;
 		} else { // Английский (По-умолчанию)
 			this.abbrlang = 'en';
 			return this.api.lang = 3;
@@ -91,7 +98,7 @@ var Informer = {
 		jQuery.getJSON('lang/i18n.json', function (translate) {
 			chrome.storage.local.set({'i18n': translate, 'api': Informer.api});
 		}).fail(function (jqxhr, textStatus, error) {
-		    console.error('Load translate failed: ' + textStatus + ', ' + error, jqxhr);
+		    console.error('Load translate failed: ' + textStatus + ', ' + error);
 		});
 	},
 
@@ -179,17 +186,6 @@ var Informer = {
 	 * @param  {Function}   always  Ajax callback
 	 */
 	callAPI: function (method, options, done, fail, always) {
-		if (options === undefined) {
-			options = {};
-		}
-		options.access_token = this.api.access_token;
-		options.user_id = this.api.user_id;
-		options.lang = this.api.lang;
-		options.v = this.api.v;
-		
-		if (method === 'execute.getLang' || method === 'execute.getAlerts') {
-			delete options.lang;
-		}
 		jQuery.getJSON('https://api.vk.com/method/' + method, options)
 			.done(function (API) {
 				if (API.response !== undefined) {
@@ -308,7 +304,7 @@ var Informer = {
 	 * @param {Object} dialogs 	Объект диалоги
 	 */
 	setCounters: function (counters, dialogs) {
-		if (counters.length === undefined) {
+		if (jQuery.isPlainObject(counters) && !jQuery.isEmptyObject(counters)) {
 			var sum = 0,
 				needSound = false, c;
 			for (c in counters) {

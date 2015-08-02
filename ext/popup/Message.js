@@ -6,20 +6,18 @@
  * @param {Message} parentMessage Объект родительского сообщения
  */
 function Message (mess_obj, parentDialog, parentMessage) {
-	var VK = 'https://vk.com/', param;
-	for (param in mess_obj) {
-		this[param] = mess_obj[param];
-	};
+	var VK = 'https://vk.com/';
+	jQuery.extend(this, mess_obj)
 
-	if (parentDialog) {
+	if (!!parentDialog) {
 		this.url = parentDialog.url + '&msgid=' + this.id;
 	}
 
-	if (parentMessage) {
+	if (!!parentMessage) {
 		this.url = parentMessage.url;
 	}
 
-	if (this.action) {
+	if (!!this.action) {
 		this.body = '<span class="system">' + window.Popup.loc(this.action, true) + '</span>';
 	} else if (this.body) {
 		this.body = this.body.escapeHtml();
@@ -30,7 +28,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	}
 
 	// Добавляем код карту во вложения
-	if (this.geo) {
+	if (!!this.geo) {
 		if (this.attachments === undefined) {
 			this.attachments = [];
 		}
@@ -42,7 +40,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	}
 
 	// Добавляем код вложений
-	if (this.attachments) {
+	if (!!this.attachments) {
 		this.attachments = this.attachments.map(function (attach) {
 			if (typeof attach === 'string') {
 				return attach;

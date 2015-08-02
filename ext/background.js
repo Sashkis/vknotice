@@ -16,8 +16,11 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	 
 	// При установке
 	if (details.reason === 'install') {
-		chrome.alarms.create('say_thanks', {'when': Date.now() + 86400000 * 7});// Через 7 дней
-		chrome.alarms.create('get_review', {'when': Date.now() + 900000}); // Через 15 хвилин
+		chrome.alarms.create('say_thanks', {'when': $.now() + 86400000 * 7});// Через 7 дней
+		chrome.alarms.create('get_review', {'when': $.now() + 900000}); // Через 15 хвилин
+		chrome.storage.local.set({
+			'openComment': parseInt(new Date().getTime()/1000)
+		});
 	}
 
 	// При обновлении
@@ -73,37 +76,49 @@ chrome.runtime.onConnect.addListener(function (port) {
 
 
 chrome.storage.onChanged.addListener(function (changes) {
+	// Изменение API
+	if (!!changes.api) {
+		Informer.api = changes.api.newValue || {
+			// Вставляем не правильный access_token чтобы избежать автоматической авторизации
+			'access_token': 'not correct access_token',
+			'user_id': '',
+			'lang': 0,
+			'v': this.api.v
+		};
+		$.ajaxSetup({data: Informer.api});
+	}
+
 	// Изменение настроек уведомлений из popup
-	if (changes.options) {
+	if (!!changes.options) {
 		Informer.options = changes.options.newValue || '';
 	}
 	// Удаляем просмотренные alert'ти
-	if (changes.alerts) {
+	if (!!changes.alerts) {
 		Informer.alerts = changes.alerts.newValue || {'message': false, 'error': false};
 	}
 	// Изменение настроек аудио из popup
-	if (changes.audio) {
+	if (!!changes.audio) {
 		if (changes.audio.newValue === undefined) {
 			changes.audio.newValue = false;
 		}
 		Informer.audio = changes.audio.newValue;
 	}
 	// Изменение настроек аудио из popup
-	if (changes.showMessage) {
+	if (!!changes.showMessage) {
 		if (changes.showMessage.newValue === undefined) {
 			changes.showMessage.newValue = false;
 		}
 		Informer.showMessage = changes.showMessage.newValue;
 	}
 	// Изменение настроек аудио из popup
-	if (changes.loadComment) {
+	if (!!changes.loadComment) {
 		if (changes.loadComment.newValue === undefined) {
 			changes.loadComment.newValue = 1;
 		}
 		Informer.loadComment = changes.loadComment.newValue;
 	}
 	// Изменение настроек аудио из popup
-	if (changes.openComment !== undefined) {		
+	if (!!changes.openComment) {		
 		if (changes.openComment.newValue === undefined) {
 			changes.openComment.newValue = 0;
 		}

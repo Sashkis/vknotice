@@ -13,17 +13,15 @@
  * @property {Boolean}	online_mobile	Онлайн через мобильный
  * @property {String}	photo_100		URL аватара
  * @property {String}	status			Статус пользователя
+ * @property {Boolean}	notLoaded		Загружен ли пользователь
  */
 function User (user_obj) {
 
 	// Проверяем загружен ли искомый пользователь
-	var param;
 	if (typeof user_obj === 'number') {
 		var search_id = user_obj;
 		if (window.Popup.profiles[search_id]) {
-			for (param in window.Popup.profiles[search_id]) {
-				this[param] = window.Popup.profiles[search_id][param];
-			};
+			$.extend(this, window.Popup.profiles[search_id]);
 			return true;
 		} else {
 			console.warn('User not loaded: ' + search_id);
@@ -47,7 +45,7 @@ function User (user_obj) {
 	var VK = 'https://vk.com/';
 
 	// Применяем свойства по-умолчанию
-	user_obj = jQuery.extend({
+	jQuery.extend(this, {
 		'id': 0,
 		'domain': '',
 		'first_name': '',
@@ -59,13 +57,7 @@ function User (user_obj) {
 		'status': '',
 		'notLoaded': false,
 	}, user_obj);
-	for (param in user_obj) {
-		if (param === 'status') {
-			this[param] = user_obj.status.escapeHtml();
-		} else {
-			this[param] = user_obj[param];
-		}
-	}
+	this.status = this.status.escapeHtml();
 
 	/**
 	 * Полное Имя пользователя
@@ -136,10 +128,8 @@ function User (user_obj) {
 			user_id = this.id;
 		}
 		if (window.Popup.profiles[user_id]) {
-			for (param in window.Popup.profiles[user_id]) {
-				this[param] = window.Popup.profiles[user_id][param];
-			};
-			if(this.jQ) {
+			$.extend(this, window.Popup.profiles[user_id]);
+			if (this.jQ) {
 				this.jQ.data(this);
 			}
 			this.notLoaded = false;
