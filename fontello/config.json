@@ -1,5 +1,5 @@
 {
-	"name": "0a304c4f1656e95e42a7a07db9252c64",
+	"name": "17ddf5aaef843fedb5afacaa8082c2fd",
 	"css_prefix_text": "icon-",
 	"css_use_suffix": false,
 	"hinting": true,
@@ -22,6 +22,12 @@
 			"uid": "9ea0a737ccc45d6c510dcbae56058849",
 			"css": "music",
 			"code": 59400,
+			"src": "fontawesome"
+		},
+		{
+			"uid": "d73eceadda1f594cec0536087539afbf",
+			"css": "heart",
+			"code": 59404,
 			"src": "fontawesome"
 		},
 		{
@@ -61,6 +67,12 @@
 			"src": "fontawesome"
 		},
 		{
+			"uid": "4aad6bb50b02c18508aae9cbe14e784e",
+			"css": "share",
+			"code": 59406,
+			"src": "fontawesome"
+		},
+		{
 			"uid": "d35a1d35efeb784d1dc9ac18b9b6c2b6",
 			"css": "pencil",
 			"code": 59401,
@@ -82,6 +94,18 @@
 			"uid": "1b5a5d7b7e3c71437f5a26befdd045ed",
 			"css": "doc",
 			"code": 59403,
+			"src": "fontawesome"
+		},
+		{
+			"uid": "e99461abfef3923546da8d745372c995",
+			"css": "cog",
+			"code": 59394,
+			"src": "fontawesome"
+		},
+		{
+			"uid": "0d20938846444af8deb1920dc85a29fb",
+			"css": "logout",
+			"code": 59405,
 			"src": "fontawesome"
 		},
 		{
