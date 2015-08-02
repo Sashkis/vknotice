@@ -153,7 +153,7 @@ var Popup = {
 				}
 				return '+' + Math.min(Popup.counter[key], 99);
 			} else {
-				return key === 'messages' ? '+' : '+'
+				return key === 'messages' ? '+' : ''
 			}
 		});
 	},
