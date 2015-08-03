@@ -18,34 +18,42 @@ var Informer = {
 	 * @param {Object} params Данные загруженные из chrome.storage
 	 */
 	init: function (params) {
-		$.extend(true, this, {
-			'badge': 0,
-			'lastLoadAlert': 0,
-			'abbrlang': 'ru',
-			'audio': true,
-			'showMessage': false,
-			'alerts': {
-				'message': false,
-				'error': false
-			},
-			'api': {
-				'access_token': '',
-				'user_id': null,
-				'lang': 0
-			},
-			'loadComment':1,
-			'openComment':0,
-			'options': 'friends,photos,videos,messages,groups,notifications',
-			'delay': 0,
-			'iconSufix': '.i18n'
-		}, params);
+		if (!this.api) {
+			$.extend(true, this, {
+				'badge': 0,
+				'lastLoadAlert': 0,
+				'abbrlang': 'ru',
+				'audio': true,
+				'showMessage': false,
+				'alerts': {
+					'message': false,
+					'error': false
+				},
+				'api': {
+					'access_token': '',
+					'user_id': null,
+					'lang': 0
+				},
+				'loadComment':1,
+				'openComment':0,
+				'options': 'friends,photos,videos,messages,groups,notifications',
+				'delay': 0,
+				'iconSufix': '.i18n'
+			}, params);
 
-		this.api.v = '5.35';
-		this.api.user_id = this.api.user_id-0;
+			this.api.v = '5.35';
+			this.api.user_id = this.api.user_id-0;
+		} else {
+			$.extend(true, this, params);
+		}
 		$.ajaxSetup({
 			data: this.api,
 		});
-		
+		this.callAPI('execute.getLang', {lang: null}, function (lang_code) {
+			this.loadTranslate(lang_code);
+			this.deamonStart();
+			this.addVisitor();
+		});
 	},
 
 	/**
@@ -129,6 +137,7 @@ var Informer = {
 			return false;
 		}
 		this.delay = 0;
+		chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
 		console.info('Daemon stopped');
 		return true;
 	},
@@ -145,26 +154,21 @@ var Informer = {
 			},
 			// Успешно
 			function (API) {
-				if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
-					this.loadAlerts();
+				if (this.delay) {
+					if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
+						this.loadAlerts();
+					}
+					delete API.system;
+					chrome.storage.local.set(API);
+					chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '.png'});
+					this.setCounters(API.counter, API.dialogs);
+					this.saveAlert(false, 'error');
 				}
-				delete API.system;
-				chrome.storage.local.set(API);
-				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '.png'});
-				this.setCounters(API.counter, API.dialogs);
-				this.saveAlert(false, 'error');
 			},
 			// Ошибка
 			function (error, API) {
 				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
 				console.error('Main Request fail', error);
-				if (!this.api.access_token) {
-					console.error('access_token is not specified');
-					this.setCounters([]);
-					chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
-					this.deamonStop();
-					window.open(this.getAuthUrl());
-				}
 			},
 			// Всегда
 			function () {
@@ -193,7 +197,15 @@ var Informer = {
 						return done.call(this, API.response);
 					}
 				} else {
-					console.error('Api error', API);
+					if (!this.api.access_token) {
+						console.error('access_token is not specified');
+						this.setCounters([]);
+						chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
+						this.deamonStop();
+						window.open(this.getAuthUrl());
+					} else {
+						console.error('Api error', API);
+					}
 					this.generateError(API);
 					if (fail !== undefined) {
 						fail.call(this, {'status': API.error.error_code, 'msg': API.error.error_msg}, API);
@@ -268,14 +280,10 @@ var Informer = {
 		if (auth.error !== undefined || auth.state !== chrome.app.getDetails().id) {
 			return false;
 		}
-		this.api.access_token = auth.access_token;
-		this.api.user_id = auth.user_id;
-		$.ajaxSetup({data: this.api});
-		this.deamonStart();
-		this.callAPI('execute.getLang', {}, function (lang_code) {
-			this.loadTranslate(lang_code);
-			chrome.storage.local.set({'api': this.api});
-		}.bind(this));
+		this.init({api: {
+			access_token: auth.access_token,
+			user_id: auth.user_id
+		}});
 		return true;
 	},
 
@@ -285,13 +293,6 @@ var Informer = {
 	 */
 	removeAccess: function () {
 		this.deamonStop();
-		this.api = {
-			// Вставляем не правильный access_token чтобы избежать автоматической авторизации
-			'access_token': 'not correct access_token',
-			'user_id': '',
-			'lang': 0,
-			'v': this.api.v
-		};
 		this.generateError({error: {error_code: 5}});
 		this.setCounters([]);
 		chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api']);

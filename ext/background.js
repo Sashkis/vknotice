@@ -1,11 +1,6 @@
 'use strict';
 chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert', 'openComment', 'loadComment'], function (storage) {
 	Informer.init(storage);
-	Informer.deamonStart();
-	Informer.callAPI('execute.getLang', {lang: null}, function (lang_code) {
-		Informer.loadTranslate(lang_code);
-		Informer.addVisitor();
-	});
 });
 
 /**
@@ -83,7 +78,7 @@ chrome.storage.onChanged.addListener(function (changes) {
 			'access_token': 'not correct access_token',
 			'user_id': '',
 			'lang': 0,
-			'v': this.api.v
+			'v': Informer.api.v
 		};
 		$.ajaxSetup({data: Informer.api});
 	}
