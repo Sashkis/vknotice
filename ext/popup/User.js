@@ -45,7 +45,7 @@ function User (user_obj) {
 	var VK = 'https://vk.com/';
 
 	// Применяем свойства по-умолчанию
-	jQuery.extend(this, {
+	$.extend(this, {
 		'id': 0,
 		'domain': '',
 		'first_name': '',
@@ -88,7 +88,7 @@ function User (user_obj) {
 	 * @return {String} 					HTML
 	 */
 	this.ava = function (options) {
-		options = jQuery.extend({
+		options = $.extend({
 			'title': false,
 			'isLink': false,
 			'size': 100,

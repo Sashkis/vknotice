@@ -18,7 +18,7 @@ var Informer = {
 	 * @param {Object} params Данные загруженные из chrome.storage
 	 */
 	init: function (params) {
-		jQuery.extend(true, this, {
+		$.extend(true, this, {
 			'badge': 0,
 			'lastLoadAlert': 0,
 			'abbrlang': 'ru',
@@ -95,7 +95,7 @@ var Informer = {
 			this.iconSufix = '.i18n';
 		};
 		
-		jQuery.getJSON('lang/i18n.json', function (translate) {
+		$.getJSON('lang/i18n.json', function (translate) {
 			chrome.storage.local.set({'i18n': translate, 'api': Informer.api});
 		}).fail(function (jqxhr, textStatus, error) {
 		    console.error('Load translate failed: ' + textStatus + ', ' + error);
@@ -186,7 +186,7 @@ var Informer = {
 	 * @param  {Function}   always  Ajax callback
 	 */
 	callAPI: function (method, options, done, fail, always) {
-		jQuery.getJSON('https://api.vk.com/method/' + method, options)
+		$.getJSON('https://api.vk.com/method/' + method, options)
 			.done(function (API) {
 				if (API.response !== undefined) {
 					if (done !== undefined) {
@@ -270,6 +270,7 @@ var Informer = {
 		}
 		this.api.access_token = auth.access_token;
 		this.api.user_id = auth.user_id;
+		$.ajaxSetup({data: this.api});
 		this.deamonStart();
 		this.callAPI('execute.getLang', {}, function (lang_code) {
 			this.loadTranslate(lang_code);
@@ -304,7 +305,7 @@ var Informer = {
 	 * @param {Object} dialogs 	Объект диалоги
 	 */
 	setCounters: function (counters, dialogs) {
-		if (jQuery.isPlainObject(counters) && !jQuery.isEmptyObject(counters)) {
+		if ($.isPlainObject(counters) && !$.isEmptyObject(counters)) {
 			var sum = 0,
 				needSound = false, c;
 			for (c in counters) {
@@ -358,7 +359,7 @@ var Informer = {
 						}
 					};
 				}
-				jQuery('#audio')[0].play();
+				$('#audio')[0].play();
 				return true;
 			});
 		}
@@ -428,7 +429,7 @@ var Informer = {
 	 * @return {String} URL для авторизации
 	 */
 	getAuthUrl: function () {
-		return 'https://oauth.vk.com/authorize?' + jQuery.param({
+		return 'https://oauth.vk.com/authorize?' + $.param({
 			'redirect_uri'	: 'https://oauth.vk.com/blank.html',
 			'client_id'		: 4682781,
 			'scope'			: 'offline,friends,messages,notifications,wall',
@@ -457,7 +458,7 @@ var Informer = {
 	 * @return {String}               URL ссылки для "поделится"
 	 */
 	getShareUrl: function (share_options) {
-		return 'https://vk.com/share.php?' + jQuery.param(jQuery.extend({
+		return 'https://vk.com/share.php?' + $.param($.extend({
 			'url'			: 'http://vk.com/note45421694_12011424',
 			'title'			: chrome.i18n.getMessage('extName'),
 			'description'	: chrome.i18n.getMessage('extDesc'),

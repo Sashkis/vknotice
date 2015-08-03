@@ -7,7 +7,7 @@
  */
 function Message (mess_obj, parentDialog, parentMessage) {
 	var VK = 'https://vk.com/';
-	jQuery.extend(this, mess_obj)
+	$.extend(this, mess_obj)
 
 	if (!!parentDialog) {
 		this.url = parentDialog.url + '&msgid=' + this.id;
@@ -18,7 +18,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	}
 
 	if (!!this.action) {
-		this.body = '<span class="system">' + window.Popup.loc(this.action, true) + '</span>';
+		this.body = '<span class="system">' + window.Popup.loc(this.action) + '</span>';
 	} else if (this.body) {
 		this.body = this.body.escapeHtml();
 		if (this.emoji === 1) {
@@ -58,7 +58,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['photo_130'])	attach.url = attach['photo_130'];
 					else if (attach['photo_75'])	attach.url = attach['photo_75'];
 					else attach.url = this.url;
-					return ('&nbsp;' + window.Popup.loc('Photo', true)).icon('camera').link(attach.url); 
+					return ('&nbsp;' + window.Popup.loc('Photo')).icon('camera').link(attach.url); 
 				break;
 				// Подарок
 				case 'gift':
@@ -67,12 +67,12 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['thumb_96'])	attach.url = attach['thumb_96'];
 					else if (attach['thumb_48'])	attach.url = attach['thumb_48'];
 					else attach.url = this.url;
-					return ('&nbsp;' + window.Popup.loc('Gift', true)).icon('gift').link(attach.url); 
+					return ('&nbsp;' + window.Popup.loc('Gift')).icon('gift').link(attach.url); 
 				break;
 				// Пост
-				case 'wall' : return ('&nbsp;' + window.Popup.loc('Post', true)).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
+				case 'wall' : return ('&nbsp;' + window.Popup.loc('Post')).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
 				// Комментарий
-				case 'wall_reply' : return ('&nbsp;' + window.Popup.loc('Comment', true)).icon('chat').link(VK + 'wall' + attach.owner_id + '_' + attach.post_id + '?reply=' + attach.id); break;
+				case 'wall_reply' : return ('&nbsp;' + window.Popup.loc('Comment')).icon('chat').link(VK + 'wall' + attach.owner_id + '_' + attach.post_id + '?reply=' + attach.id); break;
 				// Аудиозапись
 				case 'audio': return ('&nbsp;' + attach.artist.bold() + '&nbsp;–&nbsp;' + attach.title).icon('music').link(VK + 'audio' + attach.owner_id + '_' + attach.id); break;
 				// Видеозапись
@@ -85,7 +85,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				case 'geo':
 					attach.coordinates = attach.coordinates.split(' ');
 					attach.coordinates = (attach.coordinates[0]-0) + ',' + (attach.coordinates[1]-0);
-					return ('&nbsp;' + (attach.place ? attach.place.title : window.Popup.loc('Map', true))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
+					return ('&nbsp;' + (attach.place ? attach.place.title : window.Popup.loc('Map'))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
 				break;
 				// Стикеры
 				case 'sticker': 
@@ -93,7 +93,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				break;
 				
 				// Неподдерживаемое вложение
-				default	 : return ('&nbsp;' + window.Popup.loc('Attachment', true)).icon('attach').link(this.url);
+				default	 : return ('&nbsp;' + window.Popup.loc('Attachment')).icon('attach').link(this.url);
 			}
 		});
 		this.body += ' <span class="attachments">' + this.attachments.join(' ') + '</span>';
@@ -102,7 +102,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 	if (this.fwd_messages) {
 		var fwd_text = '';
 		if (parentMessage !== undefined) {
-			fwd_text = getCase(this.fwd_messages.length, window.Popup.loc('forwarded messages', true)).icon('chat').link(this.url);
+			fwd_text = getCase(this.fwd_messages.length, window.Popup.loc('forwarded messages')).icon('chat').link(this.url);
 		} else {
 			for (var i = 0; i < this.fwd_messages.length; i++) {
 				this.fwd_messages[i] = new Message(this.fwd_messages[i], parentDialog, this);

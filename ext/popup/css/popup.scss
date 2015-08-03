@@ -404,6 +404,7 @@ header {
 		cursor: pointer;
 		overflow: hidden;
 		padding: 5px;
+		word-break: break-word;
 		& + .dialog {
 			border-top: 1px solid rgba($mainColor, 0.15);
 		}
@@ -418,9 +419,6 @@ header {
 			.date {
 				color: #8795a5;
 			}
-		}
-		&.dialog.open {
-			cursor: default;
 		}
 		/* Диалог с Администрацией */
 		&#dialog-100 .name {
@@ -482,9 +480,6 @@ header {
 					}
 				}
 			}
-		}
-		div {
-			word-break: break-word;
 		}
 		.name {
 			display: block;

@@ -19,7 +19,7 @@ function Dialog (dialog_obj) {
 	 * @see Dialog
 	 */
 	this.init = function (dialog_obj) {
-		jQuery.extend(this, dialog_obj);
+		$.extend(this, dialog_obj);
 
 		this.messages = [];
 		this.isGroup  = this.chat_id !== undefined;
@@ -68,7 +68,7 @@ function Dialog (dialog_obj) {
 	 * @param {String} options.messages Текст сообщений
 	 */
 	this.addHeader = function (options) {
-		options = jQuery.extend({
+		options = $.extend({
 			class: '',
 			photo: '',
 			title: window.Popup.loc('Chat'),
@@ -83,35 +83,32 @@ function Dialog (dialog_obj) {
 	 * @return {Object} Объект для шапки диалога
 	 */
 	this.getHeaderObj = function () {
-		var html = '', i;
 		if (!this.isGroup) {
-			for (i = this.messages.length; i--;) {
-				if (this.messages[i].out === 0) {
-					html += this.messages[i].getHtml();
-				} else {
-					this.messages[i].from_id = window.Popup.current.id;
-					html += this.messages[i].getHtml('compact');
-				}
-			}
 			var author = new User(this.id);
 			return {
 				photo: author.ava({size: 50}),
 				title: author.name,
-				messages: html
+				messages: this.messages.reduceRight(function (html, mess) {
+					if (mess.out === 0) {
+						return html + mess.getHtml();
+					} else {
+						mess.from_id = window.Popup.current.id;
+						return html + mess.getHtml('compact');
+					}
+				}, '')
 			};
 		} else {
-			for (i = this.messages.length; i--;) {
-				if (this.messages[i+1] === undefined || this.messages[i].from_id !== this.messages[i+1].from_id) {
-					html += this.messages[i].getHtml('compact');
-				} else {
-					html += this.messages[i].getHtml();
-				}
-			}
 			return {
 				class: 'group',
 				photo: this.getGroupPhoto(),
 				title: this.title,
-				messages: html
+				messages: this.messages.reduceRight(function (html, mess, i, arr) {
+					if (arr[i+1] === undefined || mess.from_id !== arr[i+1].from_id) {
+						return html + mess.getHtml('compact');
+					} else {
+						return html + mess.getHtml();
+					}
+				}, '')
 			};
 		};
 	};
@@ -161,11 +158,11 @@ function Dialog (dialog_obj) {
 
 	/**
 	 * Создаёт DOM елемент диалога.
-	 * @return {jQuery} Данный диалог
+	 * @return {$} Данный диалог
 	 */
 	this.construct = function () {
-		this.jQ = jQuery(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
-		this.jQ.html((this.addHeader(this.getHeaderObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.loc('Mark as read', true)}));
+		this.jQ = $(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
+		this.jQ.html((this.addHeader(this.getHeaderObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.loc('Mark as read')}));
 		this.jQ.data(this);
 		return this.jQ;
 	};
@@ -213,7 +210,7 @@ function Dialog (dialog_obj) {
 	/**
 	 * Обновляет данные в диалоге
 	 * @param  {Object} dialog_obj Объект диалога загруженный через API
-	 * @return {jQuery}            Данный диалог
+	 * @return {$}            Данный диалог
 	 */
 	this.update = function (dialog_obj) {
 		var isOpen = this.jQ.hasClass('open');

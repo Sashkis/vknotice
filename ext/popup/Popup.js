@@ -11,7 +11,7 @@ var Popup = {
 	 * @param  {Object} params Параметры из chrome.storage
 	 */
 	init: function (params) {
-		jQuery.extend(true, this, {
+		$.extend(true, this, {
 			'audio': true,
 			'counter': [],
 			'friends': [],
@@ -49,7 +49,7 @@ var Popup = {
 	 * @param  {Function} always  Функция выполнемая всегда
 	 */
 	callAPI: function (method, options, done, fail, always) {
-		jQuery.getJSON('https://api.vk.com/method/' + method, options)
+		$.getJSON('https://api.vk.com/method/' + method, options)
 			.done(function (API) {
 				if (API.response !== undefined) {
 					if (done !== undefined) {
@@ -79,7 +79,7 @@ var Popup = {
 	 * @param  {Object} options Опции передаваемые для плагина mCustomScrollbar
 	 */
 	buildCustomScrollbar: function (options) {
-		options = jQuery.extend(true, {
+		options = $.extend(true, {
 			axis: 'y',
 			autoHideScrollbar: true,
 			alwaysShowScrollbar: 0,
@@ -92,8 +92,8 @@ var Popup = {
 				scrollAmount: 61
 			}
 		}, options);
-		jQuery("#newmess, #newfriends").mCustomScrollbar(options);
-		jQuery('#newmess #mCSB_2_container').attr('data-before', this.loc("Your private messages will be displayed here.", true));
+		$("#newmess, #newfriends").mCustomScrollbar(options);
+		$('#newmess #mCSB_2_container').attr('data-before', this.loc("Your private messages will be displayed here.", true));
 		return true;
 	},
 
@@ -102,14 +102,18 @@ var Popup = {
 	 * Применяет перевод
 	 */
 	loadTranslate: function () {
-		jQuery('#menu li .i18n, .navbar-brand, .dropdown li a').text(function () {
-			var title = Popup.loc($(this).text())
-			if (title) {
+		$('#menu li .i18n, .navbar-brand, .dropdown li a').text(function (index, value) {
+			if (title = Popup.loc(value, false)) {
 				return title;
 			}
 		});
 
-		jQuery('#newmess, #newfriends').attr('data-before', this.loc('Please inform the developers.', true));
+		$('#newmess, #newfriends').attr('data-before', function (index, value) {
+			if (title = Popup.loc(value, false)) {
+				return title;
+			}
+		});
+
 		return true;
 	},
 
@@ -118,12 +122,12 @@ var Popup = {
 	 * Активирует слайд-блоки
 	 */
 	initSlide: function () {
-		return jQuery('.slide').on('click', function () {
-			var target = jQuery(this).attr('data-target');
-			if (target === '#' + jQuery('.slider.open').attr('id')) {
+		return $('.slide').on('click', function () {
+			var target = $(this).attr('data-target');
+			if (target === '#' + $('.slider.open').attr('id')) {
 				target = '#friends-online';
 			}
-			jQuery('.slider.open').add('.slide.open').add(this).add(target).toggleClass('open');
+			$('.slider.open').add('.slide.open').add(this).add(target).toggleClass('open');
 			return false;
 		});
 	},
@@ -139,8 +143,8 @@ var Popup = {
 	 * Вставляет счетчики в меню 
 	 */
 	buildCounters: function () {
-		jQuery('#menu .counter').text(function () {
-			var key = jQuery(this).parents('li').attr('id');
+		$('#menu .counter').text(function () {
+			var key = $(this).parents('li').attr('id');
 			
 			if (Popup.counter[key]) {
 				if (key === 'messages' && Popup.showMessage) {
@@ -160,44 +164,44 @@ var Popup = {
 
 	/**
 	 * Удаляет предзагрущик 
-	 * @return {jQuery} .wraper
+	 * @return {$} .wraper
 	 */
 	show: function () {
-		return jQuery('.wraper.show').removeClass('show');
+		return $('.wraper.show').removeClass('show');
 	},
 
 	/**
 	 * Инициализирует активный профиль. Вставляет информацию о провиле
-	 * @return {jQuery} header
+	 * @return {$} header
 	 */
 	setCurrentProfile: function () {
 		this.current = new User(this.api.user_id-0);
-		jQuery('#my a.profile').attr('href', VK + this.current.domain);
-		jQuery('header .profile').html((this.current.online ? '<i class="mark"></i>' : '') + this.current.name + this.current.ava({'isLink':false, 'marker':false, 'size':50}));
+		$('#my a.profile').attr('href', VK + this.current.domain);
+		$('header .profile').html((this.current.online ? '<i class="mark"></i>' : '') + this.current.name + this.current.ava({'isLink':false, 'marker':false, 'size':50}));
 	},
 
 	/**
 	 * Строит 7 друзей онлайн. Седьмой скрыт.
-	 * @return {jQuery} #right
+	 * @return {$} #right
 	 */
 	builFriendsOnline: function () {
-		var frag = jQuery(document.createDocumentFragment());
+		var frag = $(document.createDocumentFragment());
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append(jQuery('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.loc('Remove', true)}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
+				frag.append($('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.loc('Remove', true)}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
 			}, this);
 		}
-		return jQuery('#friends-online').html(frag);
+		return $('#friends-online').html(frag);
 	},
 
 	/**
 	 * Строит заявки в друзья
-	 * @return {jQuery} #newfriends
+	 * @return {$} #newfriends
 	 */
 	buildNewFriends: function () {
-		var $newfriends = jQuery('#newfriends'),
-			frag = jQuery(document.createDocumentFragment());
+		var $newfriends = $('#newfriends'),
+			frag = $(document.createDocumentFragment());
 
 		if (this.newfriends.length > 0) {
 
@@ -206,10 +210,10 @@ var Popup = {
 					cancelButton = ''.icon('cancel', {class: 'hovered', title: this.loc('Reject', true)}),
 					addButton    = ''.icon('ok', {class: 'hovered', title: this.loc('Accept', true)});
 					
-				frag.append(jQuery('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
+				frag.append($('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
 			}, this);
 		} else {
-			jQuery('#friends .slide').add($newfriends).removeClass('open'); // Закрыть панель новых друзей
+			$('#friends .slide').add($newfriends).removeClass('open'); // Закрыть панель новых друзей
 		}
 		
 		return $newfriends.html(frag);
@@ -217,13 +221,13 @@ var Popup = {
 
 	/**
 	 * Строит диалоги. Если есть не активные диалоги - открывает панель диалогов. 
-	 * @return {jQuery} #newmess
+	 * @return {$} #newmess
 	 */
 	buildDialogs: function () {
-		var $newmess = jQuery('#newmess');
+		var $newmess = $('#newmess');
 
 		if (this.dialogs.length > 0) {
-			var frag = jQuery(document.createDocumentFragment()),
+			var frag = $(document.createDocumentFragment()),
 				dialogCash = [], i;
 			for (i = this.dialogs.length; i--;) {
 				dialogCash.push(new Dialog(this.dialogs[i]));
@@ -244,7 +248,7 @@ var Popup = {
 			});
 
 			if ($newmess.find('.dialog-unread').length > 0 && Popup.options.indexOf('messages') !== -1) {
-				jQuery('#messages .slide').trigger('click');
+				$('#messages .slide').trigger('click');
 			}
 		}
 
@@ -256,7 +260,7 @@ var Popup = {
 	 * @return {Boolean} Загружено ли сообщение об ошибке. TRUE - Просто сообщение. FALSE - Была ошибка.
 	 */
 	buildAlert: function () {
-		jQuery('body').removeClass('grayscale');
+		$('body').removeClass('grayscale');
 		if (this.alerts === undefined || (this.alerts.error === false && this.alerts.message === false)) {
 			return true;
 		}
@@ -267,7 +271,7 @@ var Popup = {
 		}
 
 		if (this.alerts[type].body.text === 'connect_error') {
-			jQuery('body').addClass('grayscale');
+			$('body').addClass('grayscale');
 			return true;
 		} else {
 			// Инициализация
@@ -317,7 +321,7 @@ var Popup = {
 				}
 				text = '<tbody><tr><td>' + image + text + link + '</td></tr></tbody>';
 			}
-			var $alert = jQuery('#alert');	
+			var $alert = $('#alert');	
 			$alert.addClass('show').find('table').html(header + text + footer);
 
 			$alert.one('click', 'a', function () {
@@ -337,10 +341,10 @@ var Popup = {
 	 * @return {String|undefined}	 Строка перевода или undefined.
 	 */
 	loc: function (text, isRequared) {
-		if (isRequared) {
-			var def = text;
-		} else {
+		if (isRequared === false) {
 			var def = undefined;
+		} else {
+			var def = text;
 		}
 
 		if (!text || !this.i18n) {

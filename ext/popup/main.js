@@ -15,7 +15,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			// Событине для удаления друга онлайн
 			$onlineUsers.on('click', '.icon-cancel', function () {
-				var $user = jQuery(this).parents('figure').addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
+				var $user = $(this).parents('figure').addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
 				var user = $user.data();
 
 				user.addOrDel('delete', function () {
@@ -27,16 +27,16 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			// Событине для создания нового сообщения
 			$onlineUsers.on('click', '.icon-pencil', function () {
-				var user = jQuery(this).parents('figure').data();
-				if (jQuery('#newmess .dialog').is('#dialog-' + user.id)) {
-					jQuery('#messages .slide').trigger('click');
-					jQuery('#newmess #dialog-' + user.id).trigger('click');
+				var user = $(this).parents('figure').data();
+				if ($('#newmess .dialog').is('#dialog-' + user.id)) {
+					$('#messages .slide').trigger('click');
+					$('#newmess #dialog-' + user.id).trigger('click');
 					return false;
 				}
 			});
 		} catch (error) {
 			console.error(error);
-			jQuery('#friends-online').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.', true) + '</b></div>');
+			$('#friends-online').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.') + '</b></div>');
 		}
 
 
@@ -51,7 +51,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			// Помечаем сообщения как прочитанные
 			$newmess.on('click', '.markAsRead', function (event) {
-				var $button = jQuery(this),
+				var $button = $(this),
 					dialog = $button.parents('.dialog').data();
 				$button.addClass('icon-spin4 animate-spin');
 				return !dialog.markAsRead();
@@ -59,12 +59,12 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			
 			// Открытие поля для ответа
 			$newmess.on('click', '.dialog', function (event) {
-				if (!$newmess.find('.dialog a, .dialog textarea').is(jQuery(event.toElement))) {
-					var $ans = jQuery(this).find('.ans');
-					if (!jQuery(this).hasClass('open')) {
+				if (!$newmess.find('.dialog a, .dialog textarea').is($(event.toElement))) {
+					var $ans = $(this).find('.ans');
+					if (!$(this).hasClass('open')) {
 						$newmess.find('.open').removeClass('open').find('.ans').slideUp();
 
-						jQuery(this).addClass('open').removeAttr('href');
+						$(this).addClass('open');
 						$ans.slideDown(function () {
 							$newmess.mCustomScrollbar("scrollTo", $ans.parent('.dialog'));
 							setTimeout(function () {
@@ -72,12 +72,12 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 							}, 300);
 						});
 					} else {
-						jQuery(this).removeClass('open').attr('href', jQuery(this).data('url'));
+						$(this).removeClass('open');
 						$ans.slideUp();
 					}
 					return false;
 				} else {
-					return !$newmess.find('.dialog textarea').is(jQuery(event.toElement));
+					return !$newmess.find('.dialog textarea').is($(event.toElement));
 				}
 			});
 
@@ -85,8 +85,8 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			$newmess.on('keypress', 'textarea', function (event) {
 				if (event.keyCode === 13 && !event.ctrlKey && !event.shiftKey) {
 					if (this.value) {
-						jQuery(this).attr('disabled', 'disabled');
-						jQuery(this).parents('.dialog').data().sendAnswer(this.value);
+						$(this).attr('disabled', 'disabled');
+						$(this).parents('.dialog').data().sendAnswer(this.value);
 					}
 					return false;
 				}
@@ -114,7 +114,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 		} catch (error) {
 			console.error(error.stack);
-			jQuery('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.', true) + '</b></div>');
+			$('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.') + '</b></div>');
 		}
 
 
@@ -125,7 +125,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			var $newfriends = Popup.buildNewFriends();
 			// Принять или отклонить заявку в друзья
 			$newfriends.on('click', 'i', function () {
-				var $button = jQuery(this),
+				var $button = $(this),
 					$parent = $button.parent('figure'),
 					user    = $parent.data(),
 					method  = $button.hasClass('icon-cancel') ? 'delete' : 'add';
@@ -135,9 +135,9 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 					// Успешно
 					function (API) {
 						$parent.slideUp(function(){
-							jQuery(this).remove();
+							$(this).remove();
 							if ($newfriends.find('figure').length === 0) {
-								jQuery('#friends .slide').trigger('click');
+								$('#friends .slide').trigger('click');
 							}
 						});
 					},
@@ -151,32 +151,32 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			});
 		} catch (error) {
 			console.error(error);
-			jQuery('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.', true) + '</b></div>');
+			$('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.') + '</b></div>');
 		}
 
 		Popup.buildCustomScrollbar();	// Инициализирует плагн для скрола
 		Popup.addVisitor();				// Делает запрос в ВК к методу статистики
 
 		// Ссылка на страницу расширения
-		jQuery('.review').attr('href', Popup.getExtUrl(true));
+		$('.review').attr('href', Popup.getExtUrl(true));
 
 		// Ссылка на страницу настроек
-		jQuery('.settings').attr('href', 'chrome-extension://' + chrome.app.getDetails().id + '/options/index.html');
+		$('.settings').attr('href', 'chrome-extension://' + chrome.app.getDetails().id + '/options/index.html');
 
 		// Share ссылка
 		Popup.loadShareUrl(function (url) {
-			jQuery('.logout').attr('href', url);
+			$('.logout').attr('href', url);
 		});
 
 		// Событие нажатия на кнопку выхода
-		jQuery('.logout').on('click', function () {
-			jQuery('.wraper').addClass('show');
+		$('.logout').on('click', function () {
+			$('.wraper').addClass('show');
 			var port = chrome.runtime.connect({name: 'remove_token'});
 			port.onMessage.addListener(function (isLogout) {
 				if (isLogout) {
 					location.reload();
 				}
-				jQuery('.wraper').removeClass('show');
+				$('.wraper').removeClass('show');
 			});
 			return false;
 		});
