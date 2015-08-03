@@ -19,10 +19,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	}
 
 	// При обновлении
-	// else if (details.reason === 'update') {
-	// 	chrome.storage.local.remove('api');
-	// 	location.reload();
-	// }
+	else if (details.reason === 'update') {
+		chrome.storage.local.remove(['abbrlang']);
+	}
 });
 		
 chrome.alarms.onAlarm.addListener(function (alarm) {
@@ -77,10 +76,10 @@ chrome.storage.onChanged.addListener(function (changes) {
 			// Вставляем не правильный access_token чтобы избежать автоматической авторизации
 			'access_token': 'not correct access_token',
 			'user_id': '',
-			'lang': 0,
 			'v': Informer.api.v
 		};
 		$.ajaxSetup({data: Informer.api});
+		delete $.ajaxSettings.data.lang;
 	}
 
 	// Изменение настроек уведомлений из popup

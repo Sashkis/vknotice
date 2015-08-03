@@ -22,7 +22,6 @@ var Informer = {
 			$.extend(true, this, {
 				'badge': 0,
 				'lastLoadAlert': 0,
-				'abbrlang': 'ru',
 				'audio': true,
 				'showMessage': false,
 				'alerts': {
@@ -31,8 +30,7 @@ var Informer = {
 				},
 				'api': {
 					'access_token': '',
-					'user_id': null,
-					'lang': 0
+					'user_id': null
 				},
 				'loadComment':1,
 				'openComment':0,
@@ -40,16 +38,19 @@ var Informer = {
 				'delay': 0,
 				'iconSufix': '.i18n'
 			}, params);
-
-			this.api.v = '5.35';
-			this.api.user_id = this.api.user_id-0;
 		} else {
 			$.extend(true, this, params);
 		}
+		this.api.v = '5.35';
+		this.api.user_id -= 0;
 		$.ajaxSetup({
-			data: this.api,
+			data: {
+				access_token: this.api.access_token,
+				user_id: this.api.user_id,
+				v: this.api.v,
+			}
 		});
-		this.callAPI('execute.getLang', {lang: null}, function (lang_code) {
+		this.callAPI('execute.getLang', {}, function (lang_code) {
 			this.loadTranslate(lang_code);
 			this.deamonStart();
 			this.addVisitor();
@@ -62,30 +63,23 @@ var Informer = {
 	 * @return {Number}				Код загруженного языка
 	 */
 	setLang: function (lang_code) {
-		if (lang_code === 0 || lang_code === 97 || lang_code === 100 || lang_code === 777) { // Русский
-			this.abbrlang = 'ru';
-			return this.api.lang = 0;
-		} else if (lang_code === 1) { // Украинский
-			this.abbrlang = 'uk';
-			return this.api.lang = 1;
-		} else if (lang_code === 2 || lang_code === 114) { // Белоруский
-			this.abbrlang = 'be';
-			return this.api.lang = 2;
-		} else if (lang_code === 6) { // Немецкий
-			this.abbrlang = 'de';
-			return this.api.lang = 6;
-		} else if (lang_code === 15) { // Польский
-			this.abbrlang = 'pl';
-			return this.api.lang = 15;
-		} else if (lang_code === 54 || lang_code === 66) { // Румунский
-			this.abbrlang = 'ro';
-			return this.api.lang = 54;
-		} else if (lang_code === 61) { // Румунский
-			this.abbrlang = 'nl';
-			return this.api.lang = 61;
-		} else { // Английский (По-умолчанию)
-			this.abbrlang = 'en';
-			return this.api.lang = 3;
+		switch (lang_code) {
+			case 0: case 97: case 100: case 777:
+				return this.api.lang = 0;  // Русский
+			case 1:
+				return this.api.lang = 1;  // Украинский
+			case 2: case 114:
+				return this.api.lang = 2;  // Белоруский
+			case 6:
+				return this.api.lang = 6;  // Немецкий
+			case 15:
+				return this.api.lang = 15; // Польский
+			case 54: case 66:
+				return this.api.lang = 54; // Румунский
+			case 61:
+				return this.api.lang = 61; // Нидерландский
+			default:
+				return this.api.lang = 3;  // Английский
 		}
 	},
 
@@ -121,8 +115,8 @@ var Informer = {
 			return false;
 		} else {
 			this.delay = delay || 2000;
-			this.mainRequest();
 			console.info('Daemon running');
+			this.mainRequest();
 			return true;
 		}
 	},
@@ -230,22 +224,6 @@ var Informer = {
 	 */
 	addVisitor: function () {
 		this.callAPI('stats.trackVisitor');
-	},
-
-	/**
-	 * Загружает и устанавливает сообщения 
-	 */
-	loadAlerts: function () {
-		this.callAPI('execute.getAlerts', {
-			'lang': this.abbrlang,
-			'lastAlert': this.lastLoadAlert
-		}, function (loaded) {
-			if (loaded.length > 0) {
-				this.lastLoadAlert = loaded[0].id;
-				chrome.storage.local.set({'lastLoadAlert': loaded[0].id});
-				this.saveAlert(loaded[0].alert);
-			}
-		});
 	},
 
 	/**
@@ -367,6 +345,22 @@ var Informer = {
 	},
 
 	/**
+	 * Загружает и устанавливает сообщения 
+	 */
+	loadAlerts: function () {
+		this.callAPI('execute.getAlerts', {
+			'lang': this.api.lang,
+			'lastAlert': this.lastLoadAlert
+		}, function (loaded) {
+			if (!$.isEmptyObject(loaded.alert)) {
+				this.lastLoadAlert = loaded.id;
+				chrome.storage.local.set({'lastLoadAlert': loaded.id});
+				this.saveAlert(loaded.alert);
+			}
+		});
+	},
+
+	/**
 	 * Сохраняет всплывающее сообщение 
 	 * @param {String} type 					Тип сообщения 
 	 * @param {Object} alert_obj 				Объект сообщения 
@@ -380,11 +374,7 @@ var Informer = {
 	 * @param {String} alert_obj.body.imgLink 	Ссылка изображения 
 	 */
 	saveAlert: function (alert_obj, type) {
-		if (type !== 'error') {
-			this.alerts.message = alert_obj;
-		} else {
-			this.alerts.error = alert_obj;
-		}
+		this.alerts[type || 'message'] = alert_obj;
 		chrome.storage.local.set({'alerts': this.alerts});
 	},
 

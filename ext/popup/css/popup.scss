@@ -27,9 +27,8 @@ a {
 	left: 0;
 	top: 0;
 	width: 100%;
-	z-index: 15;
+	z-index: 50;
 	background: rgba(255,255,255,.9) no-repeat center;
-
 	&.show {
 		display: block;
 	}
@@ -58,7 +57,7 @@ a {
 	top: -100%;
 	display: block;
 	transition: top .3s;
-
+	
 	&.show {
 		top: 0%;
 	}
@@ -496,7 +495,7 @@ header {
 			color: rgba(43, 88, 122, 0.5);
 			float: right;
 			position: relative;
-			z-index: 100;
+			z-index: 20;
 			display: none;
 			&:hover {
 				color: rgba(43, 88, 122, 1);
