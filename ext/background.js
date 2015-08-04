@@ -1,5 +1,5 @@
 'use strict';
-chrome.storage.local.get(['audio', 'showMessage', 'api', 'options', 'alerts', 'lastLoadAlert', 'openComment', 'loadComment'], function (storage) {
+chrome.storage.local.get(['audio', 'showMessage', 'api', 'lang', 'options', 'alerts', 'lastLoadAlert', 'openComment', 'loadComment'], function (storage) {
 	Informer.init(storage);
 });
 
@@ -20,6 +20,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 	// При обновлении
 	else if (details.reason === 'update') {
+		chrome.storage.local.set({
+			api: {
+				access_token: Informer.api.access_token,
+				user_id: Informer.api.user_id,
+			}
+		});
 		chrome.storage.local.remove(['abbrlang']);
 	}
 });
@@ -79,9 +85,11 @@ chrome.storage.onChanged.addListener(function (changes) {
 			'v': Informer.api.v
 		};
 		$.ajaxSetup({data: Informer.api});
-		delete $.ajaxSettings.data.lang;
 	}
-
+	// Изменение Языка
+	if (!!changes.lang) {
+		Informer.iconSufix = changes.lang.newValue < 3 ? '' : '.i18n';
+	}
 	// Изменение настроек уведомлений из popup
 	if (!!changes.options) {
 		Informer.options = changes.options.newValue || '';

@@ -41,20 +41,29 @@ var Informer = {
 		} else {
 			$.extend(true, this, params);
 		}
+
+		// Удаляем не используемые параметры (Нужно для корректного обовления)
+		delete this.api.lang;
+
+		// Устанавливаем параметры для ajax
 		this.api.v = '5.35';
 		this.api.user_id -= 0;
+
 		$.ajaxSetup({
-			data: {
-				access_token: this.api.access_token,
-				user_id: this.api.user_id,
-				v: this.api.v,
-			}
+			data: this.api
 		});
-		this.callAPI('execute.getLang', {}, function (lang_code) {
-			this.loadTranslate(lang_code);
-			this.deamonStart();
+		chrome.storage.local.set({
+			api: this.api
+		});
+		// Устанавливаем иконку
+		this.iconSufix =  this.lang < 3 ? '' : '.i18n'
+
+
+		this.loadTranslate();
+		this.deamonStart();
+		if (this.api.access_token) {
 			this.addVisitor();
-		});
+		}
 	},
 
 	/**
@@ -62,43 +71,33 @@ var Informer = {
 	 * @param  {Number}	lang_code	Код установленного языка
 	 * @return {Number}				Код загруженного языка
 	 */
-	setLang: function (lang_code) {
+	getLangCode: function (lang_code) {
 		switch (lang_code) {
 			case 0: case 97: case 100: case 777:
-				return this.api.lang = 0;  // Русский
+				return 0;  // Русский
 			case 1:
-				return this.api.lang = 1;  // Украинский
+				return 1;  // Украинский
 			case 2: case 114:
-				return this.api.lang = 2;  // Белоруский
+				return 2;  // Белоруский
 			case 6:
-				return this.api.lang = 6;  // Немецкий
+				return 6;  // Немецкий
 			case 15:
-				return this.api.lang = 15; // Польский
+				return 15; // Польский
 			case 54: case 66:
-				return this.api.lang = 54; // Румунский
+				return 54; // Румунский
 			case 61:
-				return this.api.lang = 61; // Нидерландский
+				return 61; // Нидерландский
 			default:
-				return this.api.lang = 3;  // Английский
+				return 3;  // Английский
 		}
 	},
 
 	/**
 	 * Загрузка перевода 
-	 * @param  {Number}	  lang_code	  Код языка для загрузки
 	 */
-	loadTranslate: function (lang_code) {
-		if (lang_code === undefined) {
-			lang_code = this.api.lang;
-		}
-		if (this.setLang(lang_code) < 3) {
-			this.iconSufix = '';
-		} else {
-			this.iconSufix = '.i18n';
-		};
-		
+	loadTranslate: function () {
 		$.getJSON('lang/i18n.json', function (translate) {
-			chrome.storage.local.set({'i18n': translate, 'api': Informer.api});
+			chrome.storage.local.set({'i18n': translate});
 		}).fail(function (jqxhr, textStatus, error) {
 		    console.error('Load translate failed: ' + textStatus + ', ' + error);
 		});
@@ -153,6 +152,7 @@ var Informer = {
 						this.loadAlerts();
 					}
 					delete API.system;
+					API.lang = this.getLangCode(API.lang);
 					chrome.storage.local.set(API);
 					chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '.png'});
 					this.setCounters(API.counter, API.dialogs);
@@ -192,13 +192,13 @@ var Informer = {
 					}
 				} else {
 					if (!this.api.access_token) {
-						console.error('access_token is not specified');
+						console.error(method + ': access_token is not specified');
 						this.setCounters([]);
 						chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
 						this.deamonStop();
 						window.open(this.getAuthUrl());
 					} else {
-						console.error('Api error', API);
+						console.error(method + ': Api error', API);
 					}
 					this.generateError(API);
 					if (fail !== undefined) {
@@ -223,7 +223,10 @@ var Informer = {
 	 * Вызывает метод статистики 
 	 */
 	addVisitor: function () {
-		this.callAPI('stats.trackVisitor');
+		console.log('addVisitor');
+		this.callAPI('stats.trackVisitor', {}, function(){
+			console.log('add ok');
+		});
 	},
 
 	/**
@@ -453,7 +456,7 @@ var Informer = {
 			'url'			: 'http://vk.com/note45421694_12011424',
 			'title'			: chrome.i18n.getMessage('extName'),
 			'description'	: chrome.i18n.getMessage('extDesc'),
-			'image'			: 'https://pp.vk.me/c623120/v623120694/2c4a7/LIelD5vBXdg.jpg'
+			'image'			: 'https://pp.vk.me/c623729/v623729694/33226/hJOeXwJ9gSI.jpg'
 		}, share_options));
 	},
 };

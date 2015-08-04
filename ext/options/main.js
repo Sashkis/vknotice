@@ -1,8 +1,7 @@
-chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'api':{}, 'options':'friends,photos,videos,messages,groups,notifications', 'loadComment':1}, function (storage) {
-	$('[data-loc]').text(function () {
-		var text = $(this).text();
-		if (!!text && !!storage.i18n && storage.i18n[text] && storage.i18n[text][storage.api.lang] ) {
-			return storage.i18n[text][storage.api.lang];
+chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'api':{}, 'lang':0, 'options':'friends,photos,videos,messages,groups,notifications', 'loadComment':1}, function (storage) {
+	$('[data-loc]').text(function (i, text) {
+		if (!!text && !!storage.i18n && storage.i18n[text] && storage.i18n[text][storage.lang] ) {
+			return storage.i18n[text][storage.lang];
 		}
 	});
 
@@ -28,15 +27,13 @@ chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'api':{}
 				new_options +=  id + ',';
 			}
 		});
-
-		var save = {
+		// Сохранение нового значения
+		chrome.storage.local.set({
 			'options': new_options,
 			'showMessage': $('#showMessage').prop('checked'),
 			'audio': $('#audio').prop('checked'),
 			'loadComment': $('#comments').prop('checked') ? 1 : 0
-		};
-		// Сохранение нового значения
-		chrome.storage.local.set(save, function () {
+		}, function () {
 			setTimeout(function(){
 				$(".saveMess").animate({opacity: 0}, 300);
 			},1000);

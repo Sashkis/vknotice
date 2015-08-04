@@ -350,8 +350,8 @@ var Popup = {
 			return def;
 		}
 
-		if (this.i18n[text] && this.i18n[text][this.api.lang]) {
-			return this.i18n[text][this.api.lang];
+		if (this.i18n[text] && this.i18n[text][this.lang]) {
+			return this.i18n[text][this.lang];
 		} else {
 			return def;
 		}

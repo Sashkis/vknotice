@@ -1,5 +1,5 @@
 'use strict';
-chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'options'], function (storage) {
+chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'lang', 'options'], function (storage) {
 	Popup.init(storage);
 	// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
 	if (Popup.buildAlert()) {		// Строит уведомления
