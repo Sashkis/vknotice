@@ -363,11 +363,13 @@ var Popup = {
 	 * @param  {Object}   shareOptions Параметры ссылки "Поделится""
 	 * @return {Boolean}               TRUE
 	 */
-	loadShareUrl: function (callback, shareOptions) {
-		var port = chrome.runtime.connect({name: 'getShareUrl'});
-		port.postMessage(shareOptions);
-		port.onMessage.addListener(callback);
-		return true;
+	loadShareUrl: function (share_options) {
+		return 'https://vk.com/share.php?' + $.param($.extend({
+			'url'			: 'http://vk.com/note45421694_12011424',
+			'title'			: chrome.i18n.getMessage('extName'),
+			'description'	: chrome.i18n.getMessage('extDesc'),
+			'image'			: 'https://pp.vk.me/c623729/v623729694/33226/hJOeXwJ9gSI.jpg'
+		}, share_options));
 	},
 
 	/**

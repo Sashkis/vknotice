@@ -223,10 +223,7 @@ var Informer = {
 	 * Вызывает метод статистики 
 	 */
 	addVisitor: function () {
-		console.log('addVisitor');
-		this.callAPI('stats.trackVisitor', {}, function(){
-			console.log('add ok');
-		});
+		this.callAPI('stats.trackVisitor');
 	},
 
 	/**

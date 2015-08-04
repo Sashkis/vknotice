@@ -164,9 +164,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		$('.settings').attr('href', 'chrome-extension://' + chrome.app.getDetails().id + '/options/index.html');
 
 		// Share ссылка
-		Popup.loadShareUrl(function (url) {
-			$('.logout').attr('href', url);
-		});
+		$('.share').attr('href', Popup.loadShareUrl());
 
 		// Событие нажатия на кнопку выхода
 		$('.logout').on('click', function () {
