@@ -41,8 +41,8 @@ var Popup = {
 
 /**
 	 * Обращение у ВК API 
-	 * @param  {String}   	method  Метод API
-	 * @param  {Object}   	options Параметры запроса
+	 * @param  {String} 	method  Метод API
+	 * @param  {Object} 	options Параметры запроса
 	 * @see  http://api.jquery.com/jQuery.ajax
 	 */
 	callAPI: function (method, options) {
@@ -184,7 +184,7 @@ var Popup = {
 
 	/**
 	 * Удаляет предзагрущик 
-	 * @return {$} .wraper
+	 * @return {jQuery} .wraper
 	 */
 	show: function () {
 		return $('.wraper.show').removeClass('show');
@@ -192,7 +192,7 @@ var Popup = {
 
 	/**
 	 * Инициализирует активный профиль. Вставляет информацию о провиле
-	 * @return {$} header
+	 * @return {jQuery} header
 	 */
 	setCurrentProfile: function () {
 		this.current = new User(this.api.user_id-0);
@@ -202,7 +202,7 @@ var Popup = {
 
 	/**
 	 * Строит 7 друзей онлайн. Седьмой скрыт.
-	 * @return {$} #right
+	 * @return {jQuery} #right
 	 */
 	builFriendsOnline: function () {
 		var frag = $(document.createDocumentFragment());
@@ -217,7 +217,7 @@ var Popup = {
 
 	/**
 	 * Строит заявки в друзья
-	 * @return {$} #newfriends
+	 * @return {jQuery} #newfriends
 	 */
 	buildNewFriends: function () {
 		var $newfriends = $('#newfriends'),
@@ -241,7 +241,7 @@ var Popup = {
 
 	/**
 	 * Строит диалоги. Если есть не активные диалоги - открывает панель диалогов. 
-	 * @return {$} #newmess
+	 * @return {jQuery} #newmess
 	 */
 	buildDialogs: function () {
 		var $newmess = $('#newmess');
@@ -356,7 +356,7 @@ var Popup = {
 
 	/**
 	 * Возвращает строку перевода
-	 * @param  {String}  text 		 Строка для перевода.
+	 * @param  {String}  text		 Строка для перевода.
 	 * @param  {Boolean} isRequared  Возвращать строку или undefined
 	 * @return {String|undefined}	 Строка перевода или undefined.
 	 */
@@ -380,9 +380,9 @@ var Popup = {
 
 	/**
 	 * Загружает ссылку "Поделится Вконтакте"
-	 * @param  {Function} callback     Функция для обработки ссылки
-	 * @param  {Object}   shareOptions Параметры ссылки "Поделится""
-	 * @return {Boolean}               TRUE
+	 * @param  {Function} callback		Функция для обработки ссылки
+	 * @param  {Object}   shareOptions	Параметры ссылки "Поделится""
+	 * @return {Boolean}				TRUE
 	 */
 	loadShareUrl: function (share_options) {
 		return 'https://vk.com/share.php?' + $.param($.extend({

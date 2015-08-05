@@ -2,12 +2,12 @@
  * Объект диалога
  * @class
  * @param {Object} dialog_obj Объект диалога загруженный через API
- * @property {String} body 				Текст последнего сообщения
+ * @property {String} body				Текст последнего сообщения
  * @property {Number} date				Дата последнего сообщения
  * @property {Number} id				ID последнего сообщения
- * @property {Array.Message} message 	Массив объектов сообщений
+ * @property {Array.Message} message	Массив объектов сообщений
  * @property {Number} out				1 - Исходящее, 0 - Входящее последнее сообщение
- * @property {Number} read_state 		1 - Сообщение прочитано
+ * @property {Number} read_state		1 - Сообщение прочитано
  * @property {String} title				Заголовок диалога
  * @property {Number} user_id			ID собеседника
  */
@@ -15,7 +15,7 @@ function Dialog (dialog_obj) {
 	var VK = 'https://vk.com/';
 	/**
 	 * Инициализирует диалог
-	 * @param {Object} dialog_obj 		Объект диалога загруженный через API
+	 * @param {Object} dialog_obj		Объект диалога загруженный через API
 	 * @see Dialog
 	 */
 	this.init = function (dialog_obj) {
@@ -40,8 +40,8 @@ function Dialog (dialog_obj) {
 
 	/**
 	 * Добавляет одно или несколько сообщений в диалог
-	 * @param {Array.Object|Object} mess_array Объект или Массив объектов сообщений загруженных через API
-	 * @return {Boolean} TRUE в случае успешного выполнения
+	 * @param {Array.Object|Object} mess_array	Объект или Массив объектов сообщений загруженных через API
+	 * @return {Boolean} 						TRUE в случае успешного выполнения
 	 */
 	this.addMess = function (mess_array) {
 		if (mess_array.length === undefined) {
@@ -61,19 +61,19 @@ function Dialog (dialog_obj) {
 
 	/**
 	 * Генерирует шапку диалога
-	 * @param {Object} options 			Опции заголовка
-	 * @param {String} options.class 	атрибут Class для шапки
-	 * @param {String} options.photo 	Фото
-	 * @param {String} options.title 	Текст заголовка
+	 * @param {Object} options			Опции заголовка
+	 * @param {String} options.class	атрибут Class для шапки
+	 * @param {String} options.photo	Фото
+	 * @param {String} options.title	Текст заголовка
 	 * @param {String} options.messages Текст сообщений
 	 */
-	this.addHeader = function (options) {
-		options = $.extend({
+	this.addHeader = function () {
+		var options = $.extend({
 			class: '',
 			photo: '',
 			title: window.Popup.loc('Chat'),
 			messages: ''
-		}, options);
+		}, this.getHeaderObj());
 		return '<div class="header ' + options.class + '">' + options.photo + '<span class="name">' + options.title + ' <span class="date">' + new Date(this.date*1000).toStringVkFormat() + '</span></span><span class="mess-container">' + options.messages + '</span></div>';
 	};
 
@@ -140,8 +140,8 @@ function Dialog (dialog_obj) {
 
 	/**
 	 * Генерирует классы для диалога
-	 * @param  {String} custom Дополнительный класс
-	 * @return {String}        Строка классов
+	 * @param  {String} custom	Дополнительный класс
+	 * @return {String}			Строка классов
 	 */
 	this.getClass = function (custom) {
 		var dialogClass = 'dialog';
@@ -158,11 +158,11 @@ function Dialog (dialog_obj) {
 
 	/**
 	 * Создаёт DOM елемент диалога.
-	 * @return {$} Данный диалог
+	 * @return {jQuery} Данный диалог
 	 */
 	this.construct = function () {
 		this.jQ = $(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
-		this.jQ.html((this.addHeader(this.getHeaderObj()) + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.loc('Mark as read')}));
+		this.jQ.html((this.addHeader() + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.loc('Mark as read')}));
 		this.jQ.data(this);
 		return this.jQ;
 	};
@@ -215,8 +215,8 @@ function Dialog (dialog_obj) {
 
 	/**
 	 * Обновляет данные в диалоге
-	 * @param  {Object} dialog_obj Объект диалога загруженный через API
-	 * @return {$}            Данный диалог
+	 * @param  {Object} dialog_obj	Объект диалога загруженный через API
+	 * @return {jQuery}				Данный диалог
 	 */
 	this.update = function (dialog_obj) {
 		var isOpen = this.jQ.hasClass('open');

@@ -1,9 +1,9 @@
 /**
  * Класс сообщения
  * @constructor
- * @param {Object} mess_obj Объект сообщения загруженный через API
- * @param {Dialog} parentDialog  Объект родительского диалога
- * @param {Message} parentMessage Объект родительского сообщения
+ * @param {Object} mess_obj			Объект сообщения загруженный через API
+ * @param {Dialog} parentDialog 	Объект родительского диалога
+ * @param {Message} parentMessage	Объект родительского сообщения
  */
 function Message (mess_obj, parentDialog, parentMessage) {
 	var VK = 'https://vk.com/';

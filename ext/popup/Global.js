@@ -1,6 +1,6 @@
 /**
  * Екранирует HTML
- * @return {String} Преобразованная строка
+ * @return {String}	Преобразованная строка
  */
 String.prototype.escapeHtml = function () {
 	var map = {
@@ -15,9 +15,9 @@ String.prototype.escapeHtml = function () {
 
 /**
  * Превращает текст в ссылку
- * @param  {String} url  
- * @param  {Object} attr
- * @return {String}      HTML
+ * @param  {String}	url  
+ * @param  {Object}	attr
+ * @return {String}	HTML
  */
 String.prototype.link = function (url, attr) {
 	if (!url) {
@@ -34,9 +34,9 @@ String.prototype.link = function (url, attr) {
 
 /**
  * Добавлает к строке HTML код иконки
- * @param  {String} icon 
- * @param  {Object} attr 
- * @return {String}       HTML
+ * @param  {String}	icon 
+ * @param  {Object}	attr 
+ * @return {String}	HTML
  */
 String.prototype.icon = function (icon, attr) {
 	if (attr) {
@@ -61,7 +61,7 @@ Date.prototype.toStringVkFormat = function () {
 	else if (ago < 3600)  return getCase(Math.floor(ago/60),	window.Popup.loc('minutes')) + '&nbsp' + window.Popup.loc('ago');
 	else if (ago < 10800) return getCase(Math.floor(ago/3600),	window.Popup.loc('hours'))	 + '&nbsp' + window.Popup.loc('ago');
 	else {
-		var h = this.getHours()	  < 10 ? '0' + this.getHours() 	 : this.getHours(),
+		var h = this.getHours()	  < 10 ? '0' + this.getHours()	 : this.getHours(),
 			m = this.getMinutes() < 10 ? '0' + this.getMinutes() : this.getMinutes();
 		if (ago < 86400) {
 			return window.Popup.loc('today')	+ '&nbsp' + window.Popup.loc('at') + '&nbsp' + h + ':' + m;
@@ -76,11 +76,11 @@ Date.prototype.toStringVkFormat = function () {
 
 /**
  * Возвращает правильный падеж фразы
- * @param  {Array}	t массив фраз
- * @param  {Number}	n число
+ * @param  {Number}	number	число
+ * @param  {Array}	words	массив фраз
+ * @return {String}			строка
  * @example
  * getCase(5, [слово, слова, слов]); // "5 слов"
- * @return {String}   строка
  */
 function getCase (number, words) {
 	return number!=0? number + '&nbsp' + words[number%10==1&&number%100!=11?0:number%10>=2&&number%10<=4&&(number%100<10||number%100>=20)?1:2] : "";

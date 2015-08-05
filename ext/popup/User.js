@@ -82,13 +82,13 @@ function User (user_obj) {
 
 	/**
 	 * Генерирует аватар пользователя
-	 * @param  {Object}		options 		Параметры аватара
-	 * @param  {Boolean}	options.title 	Вставлять ли атрибут title
-	 * @param  {Boolean}	options.isLink 	Является ли аватар ссылкой
-	 * @param  {Number} 	options.size  	Размер квадратного аватара
-	 * @param  {Boolean}	options.marker 	Вставлять ли маркер "Онлайн"
-	 * @param  {String} 	options.type 	Тип аватара. Вставляется в атрибут class
-	 * @return {String} 					HTML
+	 * @param  {Object}		options			Параметры аватара
+	 * @param  {Boolean}	options.title	Вставлять ли атрибут title
+	 * @param  {Boolean}	options.isLink	Является ли аватар ссылкой
+	 * @param  {Number}		options.size 	Размер квадратного аватара
+	 * @param  {Boolean}	options.marker	Вставлять ли маркер "Онлайн"
+	 * @param  {String}		options.type	Тип аватара. Вставляется в атрибут class
+	 * @return {String}						HTML
 	 */
 	this.ava = function (options) {
 		options = $.extend({
@@ -108,8 +108,8 @@ function User (user_obj) {
 
 	/**
 	 * Добавляет или удаляет текущего пользователя из списка друзей
-	 * @param {String}   method Метод для отправки
-	 * @param {Function} options   Ajax options
+	 * @param {String}		method 	Метод для отправки
+	 * @param {Function}	options	Ajax options
 	 */
 	this.addOrDel = function (method, options) {
 		if (method !== 'add') {

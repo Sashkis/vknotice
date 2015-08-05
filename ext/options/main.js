@@ -1,4 +1,4 @@
-chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'api':{}, 'lang':0, 'options':'friends,photos,videos,messages,groups,notifications', 'loadComment':1}, function (storage) {
+chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'lang':0, 'options':'friends,photos,videos,messages,groups,notifications', 'loadComment':1}, function (storage) {
 	$('[data-loc]').text(function (i, text) {
 		if (!!text && !!storage.i18n && storage.i18n[text] && storage.i18n[text][storage.lang] ) {
 			return storage.i18n[text][storage.lang];

@@ -1,16 +1,16 @@
 /**
  * @class
  * @type {Object}
- * @property {String} 	abbrlang 		Символьный код языка
- * @property {Boolean} 	audio 			Звуковые оповещения
- * @property {Number} 	badge 			Число для бейджа
- * @property {Number} 	delay 			Интервалы между запросами
- * @property {String} 	iconSufix 		Суфикс для иконки
- * @property {Number} 	lastLoadAlert 	Последнее загруженное сообщение
- * @property {String} 	options 		Опции
- * @property {Boolean} 	showMessage 	Показывать число сообщений а не диалогов
- * @property {Object} 	alerts 			Объект сообщения
- * @property {Object} 	api 			Объект API
+ * @property {String}	abbrlang		Символьный код языка
+ * @property {Boolean}	audio			Звуковые оповещения
+ * @property {Number}	badge			Число для бейджа
+ * @property {Number}	delay			Интервалы между запросами
+ * @property {String}	iconSufix		Суфикс для иконки
+ * @property {Number}	lastLoadAlert	Последнее загруженное сообщение
+ * @property {String}	options			Опции
+ * @property {Boolean}	showMessage		Показывать число сообщений а не диалогов
+ * @property {Object}	alerts			Объект сообщения
+ * @property {Object}	api				Объект API
  */
 var Informer = {
 	/**
@@ -93,7 +93,7 @@ var Informer = {
 	},
 
 	/**
-	 * Загрузка перевода 
+	 * Загрузка перевода
 	 */
 	loadTranslate: function () {
 		$.getJSON('lang/i18n.json', function (translate) {
@@ -104,9 +104,9 @@ var Informer = {
 	},
 
 	/**
-	 * Запуск демона 
-	 * @param  	{Number}	delay	Интервалы между запросами
-	 * @returns {Boolean} 			Был ли демон запущен
+	 * Запуск демона
+	 * @param	{Number}	delay	Интервалы между запросами
+	 * @returns {Boolean}			Был ли демон запущен
 	 */
 	deamonStart: function (delay) {
 		if (this.delay) {
@@ -121,8 +121,8 @@ var Informer = {
 	},
 
 	/**
-	 * Остановка демона 
-	 * @returns {Boolean} 	Был ли демон остановлен
+	 * Остановка демона
+	 * @returns {Boolean}	Был ли демон остановлен
 	 */
 	deamonStop: function () {
 		if (!this.delay) {
@@ -145,7 +145,7 @@ var Informer = {
 				'options': this.options,
 				'loadComment': this.loadComment,
 				'openComment': this.openComment,
-			}, 
+			},
 			success: function (API) {
 				if (this.delay) {
 					if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
@@ -179,9 +179,9 @@ var Informer = {
 	},
 	
 	/**
-	 * Обращение у ВК API 
-	 * @param  {String}   	method  Метод API
-	 * @param  {Object}   	options Параметры запроса
+	 * Обращение у ВК API
+	 * @param  {String}	method	Метод API
+	 * @param  {Object}	options	Параметры запроса
 	 * @see  http://api.jquery.com/jQuery.ajax
 	 */
 	callAPI: function (method, options) {
@@ -233,7 +233,7 @@ var Informer = {
 	},
 	
 	/**
-	 * Вызывает метод статистики 
+	 * Вызывает метод статистики
 	 */
 	addVisitor: function () {
 		this.callAPI('stats.trackVisitor');
@@ -241,8 +241,8 @@ var Informer = {
 
 	/**
 	 * Парсит строку access_token
-	 * @param 	{String}	url access_token
-	 * @returns {{access_token: String, user_id: Number, expires_in: 0, state: String}}     	объект содержащий параметры доступа
+	 * @param	{String}	url access_token
+	 * @returns {{access_token: String, user_id: Number, expires_in: 0, state: String}}   	объект содержащий параметры доступа
 	 */
 	parseURL: function (url) {
 		url = url.replace('#', '');
@@ -262,8 +262,8 @@ var Informer = {
 	},
 
 	/**
-	 * Сохраняет параметры доступа 
-	 * @param 	{String}	access_str	Строка содержащая access_token
+	 * Сохраняет параметры доступа
+	 * @param	{String}	access_str	Строка содержащая access_token
 	 * @return	{Boolean}				TRUE в случае успешного сохранения
 	 */
 	saveAccess: function (access_str) {
@@ -279,7 +279,7 @@ var Informer = {
 	},
 
 	/**
-	 * Удаляет параметры доступа 
+	 * Удаляет параметры доступа
 	 * @returns {Boolean} TRUE в случае успешного сохранения
 	 */
 	removeAccess: function () {
@@ -291,10 +291,9 @@ var Informer = {
 	},
 
 	/**
-	 * Вычисляет и выводит бейдж 
-	 * friends,photos,videos,messages,groups,notifications
+	 * Вычисляет и выводит бейдж
 	 * @param {Object} counters Объект содержащий счетчики
-	 * @param {Object} dialogs 	Объект диалоги
+	 * @param {Object} dialogs	Объект диалоги
 	 */
 	setCounters: function (counters, dialogs) {
 		if ($.isPlainObject(counters) && !$.isEmptyObject(counters)) {
@@ -337,7 +336,7 @@ var Informer = {
 	},
 	
 	/**
-	 * Воспроизводит звук 
+	 * Воспроизводит звук
 	 */
 	playSound: function () {
 		if (this.audio === true) {
@@ -358,7 +357,7 @@ var Informer = {
 	},
 
 	/**
-	 * Загружает и устанавливает сообщения 
+	 * Загружает и устанавливает сообщения
 	 */
 	loadAlerts: function () {
 		this.callAPI('execute.getAlerts', {
@@ -377,17 +376,17 @@ var Informer = {
 	},
 
 	/**
-	 * Сохраняет всплывающее сообщение 
-	 * @param {String} type 					Тип сообщения 
-	 * @param {Object} alert_obj 				Объект сообщения 
-	 * @param {String} alert_obj.header 		Текст заголовока 
-	 * @param {String} alert_obj.footer 		Текст ссылки "закрыть"
-	 * @param {Object} alert_obj.body 			Объект тела 
-	 * @param {String} alert_obj.body.text 		Текст тела 
-	 * @param {String} alert_obj.body.url 		Адрес ссылки 
-	 * @param {String} alert_obj.body.ancor 	Текст ссылки 
-	 * @param {String} alert_obj.body.img 		Адрес изображения 
-	 * @param {String} alert_obj.body.imgLink 	Ссылка изображения 
+	 * Сохраняет всплывающее сообщение
+	 * @param {String} type						Тип сообщения
+	 * @param {Object} alert_obj				Объект сообщения
+	 * @param {String} alert_obj.header			Текст заголовока
+	 * @param {String} alert_obj.footer			Текст ссылки "закрыть"
+	 * @param {Object} alert_obj.body			Объект тела
+	 * @param {String} alert_obj.body.text		Текст тела
+	 * @param {String} alert_obj.body.url		Адрес ссылки
+	 * @param {String} alert_obj.body.ancor		Текст ссылки
+	 * @param {String} alert_obj.body.img		Адрес изображения
+	 * @param {String} alert_obj.body.imgLink	Ссылка изображения
 	 */
 	saveAlert: function (alert_obj, type) {
 		this.alerts[type || 'message'] = alert_obj;
@@ -396,11 +395,11 @@ var Informer = {
 
 	/**
 	 * Генерирует и сохраняет объект сообщения
-	 * @param  {Object} error 			Объект с информацией об ошибке
-	 * @param  {Object} error.type 		ajax|api
-	 * @param  {Object} error.code 		jqxhr.status|API.error.error_code
-	 * @param  {Object} error.msg 		jqxhr.statusText|API.error.error_msg
-	 * @param  {Object} error.status 	jqxhr.readyState|4 - Статус AJAX запроса
+	 * @param  {Object} error			Объект с информацией об ошибке
+	 * @param  {Object} error.type		ajax|api
+	 * @param  {Object} error.code		jqxhr.status|API.error.error_code
+	 * @param  {Object} error.msg		jqxhr.statusText|API.error.error_msg
+	 * @param  {Object} error.status	jqxhr.readyState|4 - Статус AJAX запроса
 	 */
 	generateError: function (error) {
 		if (error) {
@@ -465,8 +464,8 @@ var Informer = {
 	},
 	
 	/**
-	 * @param  {Object} share_options Параметры для ссылки
-	 * @return {String}               URL ссылки для "поделится"
+	 * @param  {Object} share_options	Параметры для ссылки
+	 * @return {String}					URL ссылки для "поделится"
 	 */
 	getShareUrl: function (share_options) {
 		return 'https://vk.com/share.php?' + $.param($.extend({
