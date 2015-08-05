@@ -18,9 +18,11 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 				var $user = $(this).parents('figure').addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
 				var user = $user.data();
 
-				user.addOrDel('delete', function () {
-					$user.remove();
-					console.info('User deleted');
+				user.addOrDel('delete', {
+					success: function () {
+						$user.remove();
+						console.info('User deleted');
+					}
 				});
 				return false;
 			});
@@ -131,9 +133,8 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 					method  = $button.hasClass('icon-cancel') ? 'delete' : 'add';
 
 				$button.addClass('icon-spin4 animate-spin');
-				user.addOrDel(method,
-					// Успешно
-					function (API) {
+				user.addOrDel(method, {
+					success: function (API) {
 						$parent.slideUp(function(){
 							$(this).remove();
 							if ($newfriends.find('figure').length === 0) {
@@ -141,13 +142,10 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 							}
 						});
 					},
-					// Ошибка
-					undefined,
-					// Всегда
-					function () {
+					complete: function () {
 						$button.removeClass('icon-spin4 animate-spin');
 					}
-				);
+				});
 			});
 		} catch (error) {
 			console.error(error);

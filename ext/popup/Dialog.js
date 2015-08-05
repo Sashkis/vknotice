@@ -172,15 +172,18 @@ function Dialog (dialog_obj) {
 	 * @return {Boolean} TRUE в случае успешного выполнения
 	 */
 	this.markAsRead = function () {
-		var dialogCash = this,
-			message_ids = this.messages.map(function (mess) {
+		var message_ids = this.messages.map(function (mess) {
 				return mess.id;
 			});
 		window.Popup.callAPI('messages.markAsRead', {
-			message_ids: message_ids,
-			user_id: ''
-		}, function () {
-			dialogCash.jQ.trigger('onMarkAsRead', dialogCash);
+			context: this,
+			data: {
+				message_ids: message_ids,
+				user_id: ''
+			}, 
+			success: function () {
+				this.jQ.trigger('onMarkAsRead', this);
+			}
 		});
 		return true;
 	};
@@ -190,8 +193,7 @@ function Dialog (dialog_obj) {
 	 * @param  {String} text Текст ответа
 	 */
 	this.sendAnswer = function (text) {
-		var dialogCash = this,
-			sendOptions = {
+		var sendOptions = {
 				message: text
 			};
 		if (this.isGroup) {
@@ -201,9 +203,13 @@ function Dialog (dialog_obj) {
 			sendOptions.user_id = this.id;
 			sendOptions.chat_id = '';
 		}
-		window.Popup.callAPI('messages.send', sendOptions, function () {
-			dialogCash.jQ.find('textarea').val('').removeAttr('disabled').focus();
-			dialogCash.jQ.trigger('onSendAnswer', [dialogCash, text]).trigger('onMarkAsRead', dialogCash);
+		window.Popup.callAPI('messages.send', {
+			context: this,
+			data: sendOptions, 
+			success: function () {
+				this.jQ.find('textarea').val('').removeAttr('disabled').focus();
+				this.jQ.trigger('onSendAnswer', [this, text]).trigger('onMarkAsRead', this);
+			}
 		});
 	};
 

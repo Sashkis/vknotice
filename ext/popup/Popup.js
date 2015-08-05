@@ -39,37 +39,58 @@ var Popup = {
 		this.profiles.length = profCash.length;
 	},
 
-	/**
-	 * Ображение к API Вконтакте
-	 * @param  {String}   method  Метод к которому ображаемся
-	 * @param  {Object}   options Параметры передаваемые в API ВК
-	 * @param  {Function} done    Функция выполнемая в случае успешного выполнения метода
-	 * @param  {Function} fail    Функция выполнемая в случае ошибки выполнения метода
-	 * @param  {Function} always  Функция выполнемая всегда
+/**
+	 * Обращение у ВК API 
+	 * @param  {String}   	method  Метод API
+	 * @param  {Object}   	options Параметры запроса
+	 * @see  http://api.jquery.com/jQuery.ajax
 	 */
-	callAPI: function (method, options, done, fail, always) {
-		$.getJSON('https://api.vk.com/method/' + method, options)
-			.done(function (API) {
-				if (API.response !== undefined) {
-					if (done !== undefined) {
-						done.call(this, API.response);
-					}
-				} else {
-					if (fail !== undefined) {
-						fail.call(this, API);
-					}
+	callAPI: function (method, options) {
+		if (typeof method !== 'string') {
+			options = method;
+			method = options.url;
+		} else if (options === undefined) {
+			options = {};
+		}
+
+		// Обработка удачного запроса
+		var successCash = options.success;
+		options.success = function (API) {
+			console.log('debug', API);
+			if (API.response !== undefined) {
+				if (successCash) {
+					successCash.call(this, API.response);
 				}
-			}.bind(this))
-			.fail(function () {
-				if (fail !== undefined) {
-					fail.call(this);
+			} else {
+				console.error(method + ' api error: ' + API.error.error_code + '. ' + API.error.error_msg);
+				this.generateError({
+					type: 'api',
+					code: API.error.error_code,
+					msg: API.error.error_msg,
+					status: 4
+				});
+				if (options.error[1]) {
+					options.error[1].call(this, API);
 				}
-			}.bind(this))
-			.always(function () {
-				if (always !== undefined) {
-					always.call(this);
-				}
-			}.bind(this));
+			}
+		};
+
+		// Обработка ошибки запроса
+		options.error = [function (jqxhr) {
+			this.generateError({
+				type: 'ajax',
+				code: jqxhr.status,
+				msg: jqxhr.statusText,
+				status: jqxhr.readyState
+			});
+			console.error(method + ' ajax error; readyState:' + jqxhr.readyState + '; status:' + jqxhr.status + '; statusText:' + jqxhr.statusText);
+		}, options.error];
+
+		$.ajax($.extend(true, {
+			url: 'https://api.vk.com/method/' + method,
+			context: this,
+			dataType: "json",
+		}, options));
 	},
 	
 

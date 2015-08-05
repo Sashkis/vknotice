@@ -141,12 +141,12 @@ var Informer = {
 	 */
 	mainRequest: function () {
 		this.callAPI('execute.getdata', {
+			data: {
 				'options': this.options,
 				'loadComment': this.loadComment,
 				'openComment': this.openComment,
-			},
-			// Успешно
-			function (API) {
+			}, 
+			success: function (API) {
 				if (this.delay) {
 					if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
 						this.loadAlerts();
@@ -159,64 +159,77 @@ var Informer = {
 					this.saveAlert(false, 'error');
 				}
 			},
-			// Ошибка
-			function (error, API) {
+			error: function (error, API) {
+				if (!this.api.access_token) {
+					this.setCounters([]);
+					chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
+					this.deamonStop();
+					window.open(this.getAuthUrl());
+				}
 				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
-				console.error('Main Request fail', error);
 			},
-			// Всегда
-			function () {
+			complete: function () {
 				setTimeout(function () {
 					if (window.Informer.delay) {
 						window.Informer.mainRequest();
 					}
 				}, this.delay);
 			}
-		);
+		});
 	},
 	
 	/**
 	 * Обращение у ВК API 
 	 * @param  {String}   	method  Метод API
 	 * @param  {Object}   	options Параметры запроса
-	 * @param  {Function} 	done    Ajax callback
-	 * @param  {Function}   fail    Ajax callback
-	 * @param  {Function}   always  Ajax callback
+	 * @see  http://api.jquery.com/jQuery.ajax
 	 */
-	callAPI: function (method, options, done, fail, always) {
-		$.getJSON('https://api.vk.com/method/' + method, options)
-			.done(function (API) {
-				if (API.response !== undefined) {
-					if (done !== undefined) {
-						return done.call(this, API.response);
-					}
-				} else {
-					if (!this.api.access_token) {
-						console.error(method + ': access_token is not specified');
-						this.setCounters([]);
-						chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
-						this.deamonStop();
-						window.open(this.getAuthUrl());
-					} else {
-						console.error(method + ': Api error', API);
-					}
-					this.generateError(API);
-					if (fail !== undefined) {
-						fail.call(this, {'status': API.error.error_code, 'msg': API.error.error_msg}, API);
-					}
+	callAPI: function (method, options) {
+		if (typeof method !== 'string') {
+			options = method;
+			method = options.url;
+		} else if (options === undefined) {
+			options = {};
+		}
+
+		// Обработка удачного запроса
+		var successCash = options.success;
+		options.success = function (API) {
+			console.log('debug', API);
+			if (API.response !== undefined) {
+				if (successCash) {
+					successCash.call(this, API.response);
 				}
-			}.bind(this))
-			.fail(function (jqxhr, textStatus, error) {
-				this.generateError();
-				if (fail !== undefined) {
-					fail.call(this, {'status': textStatus, 'msg': error });
+			} else {
+				console.error(method + ' api error: ' + API.error.error_code + '. ' + API.error.error_msg);
+				this.generateError({
+					type: 'api',
+					code: API.error.error_code,
+					msg: API.error.error_msg,
+					status: 4
+				});
+				if (options.error[1]) {
+					options.error[1].call(this, API);
 				}
-			}.bind(this))
-			.always(function () {
-				if (always !== undefined) {
-					always.call(this);
-				}
-			}.bind(this));
+			}
+		};
+
+		// Обработка ошибки запроса
+		options.error = [function (jqxhr) {
+			this.generateError({
+				type: 'ajax',
+				code: jqxhr.status,
+				msg: jqxhr.statusText,
+				status: jqxhr.readyState
+			});
+			console.error(method + ' ajax error; readyState:' + jqxhr.readyState + '; status:' + jqxhr.status + '; statusText:' + jqxhr.statusText);
+		}, options.error];
+
+		$.ajax($.extend(true, {
+			url: 'https://api.vk.com/method/' + method,
+			context: this,
+			dataType: "json",
+		}, options));
 	},
 	
 	/**
@@ -349,13 +362,16 @@ var Informer = {
 	 */
 	loadAlerts: function () {
 		this.callAPI('execute.getAlerts', {
-			'lang': this.api.lang,
-			'lastAlert': this.lastLoadAlert
-		}, function (loaded) {
-			if (!$.isEmptyObject(loaded.alert)) {
-				this.lastLoadAlert = loaded.id;
-				chrome.storage.local.set({'lastLoadAlert': loaded.id});
-				this.saveAlert(loaded.alert);
+			data:{
+				'lang': this.api.lang,
+				'lastAlert': this.lastLoadAlert
+			},
+			success: function (loaded) {
+				if (!$.isEmptyObject(loaded.alert)) {
+					this.lastLoadAlert = loaded.id;
+					chrome.storage.local.set({'lastLoadAlert': loaded.id});
+					this.saveAlert(loaded.alert);
+				}
 			}
 		});
 	},
@@ -380,14 +396,18 @@ var Informer = {
 
 	/**
 	 * Генерирует и сохраняет объект сообщения
-	 * @param  {Object} API Закруженный ответ Вконтакте
+	 * @param  {Object} error 			Объект с информацией об ошибке
+	 * @param  {Object} error.type 		ajax|api
+	 * @param  {Object} error.code 		jqxhr.status|API.error.error_code
+	 * @param  {Object} error.msg 		jqxhr.statusText|API.error.error_msg
+	 * @param  {Object} error.status 	jqxhr.readyState|4 - Статус AJAX запроса
 	 */
-	generateError: function (API) {
-		if (API) {
+	generateError: function (error) {
+		if (error) {
 			var alert = {
 				'header': 'api_error',
 				'body': {
-					'text': API.error.error_code + '. ' + API.error.error_msg,
+					'text': error.code + '. ' + error.msg,
 					'ancor': 'Войти',
 					'url': this.getAuthUrl()
 				}
@@ -395,10 +415,10 @@ var Informer = {
 			if (!this.api.access_token || !this.api.user_id) {
 				alert.body.text = '';
 				alert.header = '';
-			} else if ([5, 7, 15, 17, 113].indexOf(API.error.error_code) !== -1) {
+			} else if ($.inArray(error.code, [5, 7, 15, 17, 113]) !== -1) {
 				alert.body.text = '';
 				alert.header = '';
-			} else if ([6, 9].indexOf(API.error.error_code) !== -1) {
+			} else if ($.inArray(error.code, [6, 9]) !== -1) {
 				if (this.deamonStop()) {
 					setTimeout(function () {
 						window.Informer.deamonStart();

@@ -25,13 +25,16 @@ function User (user_obj) {
 			return true;
 		} else {
 			console.warn('User not loaded: ' + search_id);
-			var cacheThis = this;
 			window.Popup.callAPI('users.get', {
-				user_ids: search_id,
-				fields: 'status,photo_100,domain,online'
-			}, function (API) {
-				window.Popup.profiles[search_id] = new User(API[0]);
-				cacheThis.upData();
+				context: this,
+				data: {
+					user_ids: search_id,
+					fields: 'status,photo_100,domain,online'
+				}, 
+				success: function (API) {
+					window.Popup.profiles[search_id] = new User(API[0]);
+					this.upData();
+				}
 			});
 			
 			user_obj = {
@@ -106,15 +109,16 @@ function User (user_obj) {
 	/**
 	 * Добавляет или удаляет текущего пользователя из списка друзей
 	 * @param {String}   method Метод для отправки
-	 * @param {Function} done   Ajax Callback
-	 * @param {Function} fail   Ajax Callback
-	 * @param {Function} always Ajax Callback
+	 * @param {Function} options   Ajax options
 	 */
-	this.addOrDel = function (method, done, fail, always) {
+	this.addOrDel = function (method, options) {
 		if (method !== 'add') {
 			method = 'delete';
 		}
-		window.Popup.callAPI('friends.' + method, {'user_id': this.id}, done, fail, always);
+		options.data = {
+			user_id: this.id
+		};
+		window.Popup.callAPI('friends.' + method, options);
 	};
 
 	/**
