@@ -101,7 +101,7 @@ var Popup = {
 			}
 		}, options);
 		$("#newmess, #newfriends").mCustomScrollbar(options);
-		$('#newmess #mCSB_2_container').attr('data-before', this.loc("Your private messages will be displayed here.", true));
+		$('#newmess #mCSB_2_container').attr('data-before', this.loc("Your private messages will be displayed here."));
 		return true;
 	},
 
@@ -111,15 +111,11 @@ var Popup = {
 	 */
 	loadTranslate: function () {
 		$('#menu li .i18n, .navbar-brand, .dropdown li a').text(function (index, value) {
-			if (title = Popup.loc(value, false)) {
-				return title;
-			}
+			return Popup.loc(value, false);
 		});
 
 		$('#newmess, #newfriends').attr('data-before', function (index, value) {
-			if (title = Popup.loc(value, false)) {
-				return title;
-			}
+			return Popup.loc(value, false);
 		});
 
 		return true;

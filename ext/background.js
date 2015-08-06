@@ -83,7 +83,7 @@ chrome.storage.onChanged.addListener(function (changes) {
 	if (!!changes.lang) {
 		Informer.iconSufix = changes.lang.newValue < 3 ? '' : '.i18n';
 	}
-	// Изменение настроек уведомлений из popup
+	// Изменение настроек
 	if (!!changes.options) {
 		Informer.options = changes.options.newValue || '';
 	}
@@ -91,28 +91,28 @@ chrome.storage.onChanged.addListener(function (changes) {
 	if (!!changes.alerts) {
 		Informer.alerts = changes.alerts.newValue || {'message': false, 'error': false};
 	}
-	// Изменение настроек аудио из popup
+	// Изменение опции звуковых уведомлений
 	if (!!changes.audio) {
 		if (changes.audio.newValue === undefined) {
 			changes.audio.newValue = false;
 		}
 		Informer.audio = changes.audio.newValue;
 	}
-	// Изменение настроек аудио из popup
+	// Изменение опции "Показывать количество сообщений"
 	if (!!changes.showMessage) {
 		if (changes.showMessage.newValue === undefined) {
 			changes.showMessage.newValue = false;
 		}
 		Informer.showMessage = changes.showMessage.newValue;
 	}
-	// Изменение настроек аудио из popup
+	// Изменение опции "Показывать количество комментариев"
 	if (!!changes.loadComment) {
 		if (changes.loadComment.newValue === undefined) {
 			changes.loadComment.newValue = 1;
 		}
 		Informer.loadComment = changes.loadComment.newValue;
 	}
-	// Изменение настроек аудио из popup
+	// Изменение времени последнего посещения страницы комментариев
 	if (!!changes.openComment) {		
 		if (changes.openComment.newValue === undefined) {
 			changes.openComment.newValue = 0;

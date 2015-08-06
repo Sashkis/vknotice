@@ -106,7 +106,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 					body: answer,
 					user_id: window.Popup.current.id,
 				}, dialog).getHtml('compact')).find('.body').linkify({
-				format: function (value, type) {
+					format: function (value, type) {
 						if (type === 'url' && value.length > 40) {
 							value = value.substr(0, 40) + '…';
 						}

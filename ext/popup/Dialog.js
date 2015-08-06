@@ -124,10 +124,9 @@ function Dialog (dialog_obj) {
 		if (!this.chat_active) {
 			this.chat_active = [new User(this.user_id)];
 		} else {
-			this.chat_active = this.chat_active.slice(0, 4);
-			for (var i = this.chat_active.length; i--;) {
-				this.chat_active[i] = new User(this.chat_active[i]);
-			};
+			this.chat_active = this.chat_active.slice(0, 4).map(function (user_id) {
+				return new User(user_id);
+			});
 		}
 
 		switch (this.chat_active.length) {
@@ -144,7 +143,7 @@ function Dialog (dialog_obj) {
 	 * @return {String}			Строка классов
 	 */
 	this.getClass = function (custom) {
-		var dialogClass = 'dialog';
+		var dialogClass = (custom ? custom + '' : '') + 'dialog';
 		if (!!this.unread) dialogClass += ' dialog-unread';
 		if (this.out === 1) {
 			dialogClass += ' dialog-ansver';
@@ -153,7 +152,7 @@ function Dialog (dialog_obj) {
 			}
 		}
 		if (this.isGroup) dialogClass += ' dialog-group';
-		return dialogClass + ' ' + (custom || '');
+		return dialogClass;
 	};
 
 	/**

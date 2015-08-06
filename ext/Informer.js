@@ -56,14 +56,13 @@ var Informer = {
 			});
 		}
 
-
 		// Устанавливаем иконку
 		this.iconSufix =  this.lang < 3 ? '' : '.i18n'
 
-
 		this.loadTranslate();
 		this.deamonStart();
-		if (this.api.access_token) {
+
+		if (this.api.access_token && this.api.user_id) {
 			this.addVisitor();
 		}
 	},
@@ -414,7 +413,7 @@ var Informer = {
 	generateError: function (error) {
 		if (error.type === 'api') {
 			var alert = {
-				'header': 'api_error',
+				'header': 'Api Error',
 				'body': {
 					'text': error.code + '. ' + error.msg,
 					'ancor': 'Login',
