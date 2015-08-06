@@ -166,14 +166,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 		// Событие нажатия на кнопку выхода
 		$('.logout').on('click', function () {
-			$('.wraper').addClass('show');
-			var port = chrome.runtime.connect({name: 'remove_token'});
-			port.onMessage.addListener(function (isLogout) {
-				if (isLogout) {
-					location.reload();
-				}
-				$('.wraper').removeClass('show');
-			});
+			chrome.runtime.connect({name: 'remove_token'});
 			return false;
 		});
 	}
