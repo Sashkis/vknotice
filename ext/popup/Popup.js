@@ -39,10 +39,10 @@ var Popup = {
 		this.profiles.length = profCash.length;
 	},
 
-/**
-	 * Обращение у ВК API 
-	 * @param  {String} 	method  Метод API
-	 * @param  {Object} 	options Параметры запроса
+	/**
+	 * Обращение у ВК API
+	 * @param  {String}	method	Метод API
+	 * @param  {Object}	options	Параметры запроса
 	 * @see  http://api.jquery.com/jQuery.ajax
 	 */
 	callAPI: function (method, options) {
@@ -53,44 +53,32 @@ var Popup = {
 			options = {};
 		}
 
-		// Обработка удачного запроса
-		var successCash = options.success;
-		options.success = function (API) {
-			console.log('debug', API);
-			if (API.response !== undefined) {
-				if (successCash) {
-					successCash.call(this, API.response);
-				}
-			} else {
-				console.error(method + ' api error: ' + API.error.error_code + '. ' + API.error.error_msg);
-				this.generateError({
-					type: 'api',
-					code: API.error.error_code,
-					msg: API.error.error_msg,
-					status: 4
-				});
-				if (options.error[1]) {
-					options.error[1].call(this, API);
-				}
-			}
-		};
-
-		// Обработка ошибки запроса
-		options.error = [function (jqxhr) {
-			this.generateError({
-				type: 'ajax',
-				code: jqxhr.status,
-				msg: jqxhr.statusText,
-				status: jqxhr.readyState
-			});
-			console.error(method + ' ajax error; readyState:' + jqxhr.readyState + '; status:' + jqxhr.status + '; statusText:' + jqxhr.statusText);
-		}, options.error];
-
 		$.ajax($.extend(true, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
 			dataType: "json",
-		}, options));
+			data: this.api,
+			timeout: 10000
+		}, options))
+		// Обработка удачного запроса
+		.done(function (API) {
+			if (API.response !== undefined) {
+				if (options.done) {
+					options.done.call(this, API.response);
+				}
+			} else {
+				console.error(method + ' api error: ' + API.error.error_code + '. ' + API.error.error_msg);
+				if (options.fail) {
+					options.fail.call(this, API);
+				}
+			}
+		})
+		// Обработка ошибки запроса
+		.fail([function (jqxhr) {
+			console.error(method + ' ajax error; readyState:' + jqxhr.readyState + '; status:' + jqxhr.status + '; statusText:' + jqxhr.statusText);
+		}, options.fail])
+		// Всегда
+		.always(options.always);
 	},
 	
 
@@ -227,8 +215,8 @@ var Popup = {
 
 			this.newfriends.forEach(function (user_id) {
 				var user = new User(user_id),
-					cancelButton = ''.icon('cancel', {class: 'hovered', title: this.loc('Reject', true)}),
-					addButton    = ''.icon('ok', {class: 'hovered', title: this.loc('Accept', true)});
+					cancelButton = ''.icon('cancel', {class: 'hovered', title: this.loc('Reject')}),
+					addButton    = ''.icon('ok', {class: 'hovered', title: this.loc('Accept')});
 					
 				frag.append($('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
 			}, this);
@@ -281,7 +269,7 @@ var Popup = {
 	 */
 	buildAlert: function () {
 		$('body').removeClass('grayscale');
-		if (this.alerts === undefined || (this.alerts.error === false && this.alerts.message === false)) {
+		if (!this.alerts === undefined || (!this.alerts.error && !this.alerts.message)) {
 			return true;
 		}
 		if (this.alerts.error) {
@@ -302,13 +290,11 @@ var Popup = {
 				link   = '';
 			// Шапка
 			if (this.alerts[type].header) {
-				header = this.loc(this.alerts[type].header, true);
-				header = '<thead><tr><td>' + header + '</td></tr></thead>';
+				header = '<thead><tr><td>' + this.loc(this.alerts[type].header) + '</td></tr></thead>';
 			}
 			// Футер
 			if (this.alerts[type].footer) {
-				footer = this.loc(this.alerts[type].footer, true);
-				footer = '<tfoot><tr><td><a href="#">' + footer + '</a></td></tr></tfoot>';
+				footer = '<tfoot><tr><td><a href="#">' + this.loc(this.alerts[type].footer) + '</a></td></tr></tfoot>';
 			}
 			// Изображение, Тело и ссылка
 			if (this.alerts[type].body) {
@@ -323,7 +309,7 @@ var Popup = {
 				}
 
 				if (this.alerts[type].body.text) {
-					text = this.loc(this.alerts[type].body.text, true);
+					text = this.loc(this.alerts[type].body.text);
 					if (text) {
 						text += '<br><br>';
 					} else {
@@ -332,7 +318,7 @@ var Popup = {
 				}
 
 				if (this.alerts[type].body.ancor) {
-					link = this.loc(this.alerts[type].body.ancor, true);
+					link = this.loc(this.alerts[type].body.ancor);
 					if (link) {
 						link = link.link(this.alerts[type].body.url).bold();
 					} else {

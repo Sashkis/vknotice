@@ -40,21 +40,23 @@ var Informer = {
 			}, params);
 		} else {
 			$.extend(true, this, params);
+			chrome.storage.local.set({
+				api: this.api
+			});
 		}
-
-		// Удаляем не используемые параметры (Нужно для корректного обовления)
-		delete this.api.lang;
-
 		// Устанавливаем параметры для ajax
 		this.api.v = '5.35';
 		this.api.user_id -= 0;
 
-		$.ajaxSetup({
-			data: this.api
-		});
-		chrome.storage.local.set({
-			api: this.api
-		});
+		// Удаляем не используемые параметры (Нужно для корректного обовления)
+		if (this.api.lang !== undefined) {
+			delete this.api.lang;
+			chrome.storage.local.set({
+				api: this.api
+			});
+		}
+
+
 		// Устанавливаем иконку
 		this.iconSufix =  this.lang < 3 ? '' : '.i18n'
 
@@ -146,7 +148,16 @@ var Informer = {
 				'loadComment': this.loadComment,
 				'openComment': this.openComment,
 			},
-			success: function (API) {
+			beforeSend: function(jqXHR, settings) {
+				if (!this.api.access_token) {
+					this.setCounters([]);
+					chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
+					this.deamonStop();
+					window.open(this.getAuthUrl());
+					return false;
+				}
+			},
+			done: function (API) {
 				if (this.delay) {
 					if (!!API.system && API.system.lastAlertId > this.lastLoadAlert) {
 						this.loadAlerts();
@@ -159,16 +170,10 @@ var Informer = {
 					this.saveAlert(false, 'error');
 				}
 			},
-			error: function (error, API) {
-				if (!this.api.access_token) {
-					this.setCounters([]);
-					chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
-					this.deamonStop();
-					window.open(this.getAuthUrl());
-				}
+			fail: function () {
 				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
 			},
-			complete: function () {
+			always: function () {
 				setTimeout(function () {
 					if (window.Informer.delay) {
 						window.Informer.mainRequest();
@@ -192,13 +197,18 @@ var Informer = {
 			options = {};
 		}
 
+		$.ajax($.extend(true, {
+			url: 'https://api.vk.com/method/' + method,
+			context: this,
+			dataType: "json",
+			data: this.api,
+			timeout: 10000
+		}, options))
 		// Обработка удачного запроса
-		var successCash = options.success;
-		options.success = function (API) {
-			console.log('debug', API);
+		.done(function (API) {
 			if (API.response !== undefined) {
-				if (successCash) {
-					successCash.call(this, API.response);
+				if (options.done) {
+					options.done.call(this, API.response);
 				}
 			} else {
 				console.error(method + ' api error: ' + API.error.error_code + '. ' + API.error.error_msg);
@@ -208,14 +218,13 @@ var Informer = {
 					msg: API.error.error_msg,
 					status: 4
 				});
-				if (options.error[1]) {
-					options.error[1].call(this, API);
+				if (options.fail) {
+					options.fail.call(this, API);
 				}
 			}
-		};
-
+		})
 		// Обработка ошибки запроса
-		options.error = [function (jqxhr) {
+		.fail([function (jqxhr) {
 			this.generateError({
 				type: 'ajax',
 				code: jqxhr.status,
@@ -223,13 +232,9 @@ var Informer = {
 				status: jqxhr.readyState
 			});
 			console.error(method + ' ajax error; readyState:' + jqxhr.readyState + '; status:' + jqxhr.status + '; statusText:' + jqxhr.statusText);
-		}, options.error];
-
-		$.ajax($.extend(true, {
-			url: 'https://api.vk.com/method/' + method,
-			context: this,
-			dataType: "json",
-		}, options));
+		}, options.fail])
+		// Всегда
+		.always(options.always);
 	},
 	
 	/**
@@ -284,7 +289,12 @@ var Informer = {
 	 */
 	removeAccess: function () {
 		this.deamonStop();
-		this.generateError({error: {error_code: 5}});
+		this.generateError({
+			type: 'api',
+			code: 5,
+			msg: 'User authorization failed: no access_token passed',
+			status: 4
+		});
 		this.setCounters([]);
 		chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api']);
 		return true;
@@ -365,7 +375,7 @@ var Informer = {
 				'lang': this.api.lang,
 				'lastAlert': this.lastLoadAlert
 			},
-			success: function (loaded) {
+			done: function (loaded) {
 				if (!$.isEmptyObject(loaded.alert)) {
 					this.lastLoadAlert = loaded.id;
 					chrome.storage.local.set({'lastLoadAlert': loaded.id});
@@ -402,12 +412,12 @@ var Informer = {
 	 * @param  {Object} error.status	jqxhr.readyState|4 - Статус AJAX запроса
 	 */
 	generateError: function (error) {
-		if (error) {
+		if (error.type === 'api') {
 			var alert = {
 				'header': 'api_error',
 				'body': {
 					'text': error.code + '. ' + error.msg,
-					'ancor': 'Войти',
+					'ancor': 'Login',
 					'url': this.getAuthUrl()
 				}
 			};

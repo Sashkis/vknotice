@@ -20,12 +20,6 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 	// При обновлении
 	else if (details.reason === 'update') {
-		chrome.storage.local.set({
-			api: {
-				access_token: Informer.api.access_token,
-				user_id: Informer.api.user_id,
-			}
-		});
 		chrome.storage.local.remove(['abbrlang']);
 	}
 });
@@ -84,7 +78,6 @@ chrome.storage.onChanged.addListener(function (changes) {
 			'user_id': '',
 			'v': Informer.api.v
 		};
-		$.ajaxSetup({data: Informer.api});
 	}
 	// Изменение Языка
 	if (!!changes.lang) {

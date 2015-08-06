@@ -181,7 +181,7 @@ function Dialog (dialog_obj) {
 				message_ids: message_ids,
 				user_id: ''
 			}, 
-			success: function () {
+			done: function () {
 				this.jQ.trigger('onMarkAsRead', this);
 			}
 		});
@@ -206,9 +206,12 @@ function Dialog (dialog_obj) {
 		window.Popup.callAPI('messages.send', {
 			context: this,
 			data: sendOptions, 
-			success: function () {
-				this.jQ.find('textarea').val('').removeAttr('disabled').focus();
+			done: function () {
+				this.jQ.find('textarea').val('');
 				this.jQ.trigger('onSendAnswer', [this, text]).trigger('onMarkAsRead', this);
+			},
+			always: function () {
+				this.jQ.find('textarea').removeAttr('disabled').focus();
 			}
 		});
 	};

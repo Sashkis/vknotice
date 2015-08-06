@@ -31,7 +31,7 @@ function User (user_obj) {
 					user_ids: search_id,
 					fields: 'status,photo_100,domain,online'
 				}, 
-				success: function (API) {
+				done: function (API) {
 					window.Popup.profiles[search_id] = new User(API[0]);
 					this.upData();
 				}

@@ -19,7 +19,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 				var user = $user.data();
 
 				user.addOrDel('delete', {
-					success: function () {
+					done: function () {
 						$user.remove();
 						console.info('User deleted');
 					}
@@ -134,7 +134,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 				$button.addClass('icon-spin4 animate-spin');
 				user.addOrDel(method, {
-					success: function (API) {
+					done: function (API) {
 						$parent.slideUp(function(){
 							$(this).remove();
 							if ($newfriends.find('figure').length === 0) {
@@ -142,7 +142,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 							}
 						});
 					},
-					complete: function () {
+					always: function () {
 						$button.removeClass('icon-spin4 animate-spin');
 					}
 				});
