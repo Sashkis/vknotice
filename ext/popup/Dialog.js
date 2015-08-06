@@ -143,7 +143,7 @@ function Dialog (dialog_obj) {
 	 * @return {String}			Строка классов
 	 */
 	this.getClass = function (custom) {
-		var dialogClass = (custom ? custom + '' : '') + 'dialog';
+		var dialogClass = (custom ? custom + ' ' : '') + 'dialog';
 		if (!!this.unread) dialogClass += ' dialog-unread';
 		if (this.out === 1) {
 			dialogClass += ' dialog-ansver';
@@ -206,6 +206,7 @@ function Dialog (dialog_obj) {
 			context: this,
 			data: sendOptions, 
 			done: function () {
+				console.log('');
 				this.jQ.find('textarea').val('');
 				this.jQ.trigger('onSendAnswer', [this, text]).trigger('onMarkAsRead', this);
 			},
