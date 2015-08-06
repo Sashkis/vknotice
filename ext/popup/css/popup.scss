@@ -11,7 +11,7 @@ body {
 	margin: 0;
 	width: 459px; 
 	background: #f0f2f5;
-	.grayscale {
+	&.grayscale {
 		-webkit-filter: grayscale(100%);
 	}
 }
@@ -27,7 +27,7 @@ a {
 	left: 0;
 	top: 0;
 	width: 100%;
-	z-index: 50;
+	z-index: 1050;
 	background: rgba(255,255,255,.9) no-repeat center;
 	&.show {
 		display: block;
