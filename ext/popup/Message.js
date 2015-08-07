@@ -89,7 +89,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 				break;
 				// Стикеры
 				case 'sticker': 
-					return '<img class="emoji sticker" src="' + this.attachments[i].sticker.photo_64 + '" height="32">';
+					return '<img class="emoji sticker" src="' + attach.photo_64 + '" height="32">';
 				break;
 				
 				// Неподдерживаемое вложение
