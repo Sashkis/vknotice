@@ -36,7 +36,8 @@ var Informer = {
 				'openComment':0,
 				'options': 'friends,photos,videos,messages,groups,notifications',
 				'delay': 0,
-				'iconSufix': '.i18n'
+				'iconSufix': '.i18n',
+				'isStatPosted': false
 			}, params);
 		} else {
 			$.extend(true, this, params);
@@ -61,10 +62,6 @@ var Informer = {
 
 		this.loadTranslate();
 		this.deamonStart();
-
-		if (this.api.access_token && this.api.user_id) {
-			this.addVisitor();
-		}
 	},
 
 	/**
@@ -168,6 +165,10 @@ var Informer = {
 					this.setCounters(API.counter, API.dialogs);
 					this.saveAlert(false, 'error');
 				}
+
+				if (!this.isStatPosted) {
+					this.addVisitor();
+				}
 			},
 			fail: function () {
 				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
@@ -240,7 +241,11 @@ var Informer = {
 	 * Вызывает метод статистики
 	 */
 	addVisitor: function () {
-		this.callAPI('stats.trackVisitor');
+		this.callAPI('stats.trackVisitor', {
+			done: function (API) {
+				this.isStatPosted = API === 1;
+			}
+		});
 	},
 
 	/**
