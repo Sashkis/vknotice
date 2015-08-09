@@ -37,7 +37,9 @@ var Informer = {
 				'options': 'friends,photos,videos,messages,groups,notifications',
 				'delay': 0,
 				'iconSufix': '.i18n',
-				'isStatPosted': false
+				'StatPosted': $.Deferred(function (obj) {
+					obj.fail($.proxy(console, 'warn', 'Error Post Stat'));
+				})
 			}, params);
 		} else {
 			$.extend(true, this, params);
@@ -152,6 +154,8 @@ var Informer = {
 					window.open(this.getAuthUrl());
 					return false;
 				}
+
+				return !!this.delay;
 			},
 			done: function (API) {
 				if (this.delay) {
@@ -166,19 +170,17 @@ var Informer = {
 					this.saveAlert(false, 'error');
 				}
 
-				if (!this.isStatPosted) {
-					this.addVisitor();
+				if (this.StatPosted.state() === 'pending') {
+					setTimeout($.proxy(this, 'addVisitor'), 1000);
 				}
 			},
 			fail: function () {
 				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
 			},
-			always: function () {
-				setTimeout(function () {
-					if (window.Informer.delay) {
-						window.Informer.mainRequest();
-					}
-				}, this.delay);
+			always: function (jqxhr) {
+				if (jqxhr.statusText !== 'canceled') {
+					setTimeout($.proxy(this, 'mainRequest'), this.delay);
+				}
 			}
 		});
 	},
@@ -196,13 +198,13 @@ var Informer = {
 		} else if (options === undefined) {
 			options = {};
 		}
-
+		console.warn(method);
 		$.ajax($.extend(true, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
 			dataType: "json",
 			data: this.api,
-			timeout: 10000
+			timeout: 60000
 		}, options))
 		// Обработка удачного запроса
 		.done(function (API) {
@@ -212,7 +214,7 @@ var Informer = {
 				}
 			} else {
 				console.error(method + ' api error: ' + API.error.error_code + '. ' + API.error.error_msg);
-				this.generateError({
+				window.Informer.generateError({
 					type: 'api',
 					code: API.error.error_code,
 					msg: API.error.error_msg,
@@ -225,7 +227,7 @@ var Informer = {
 		})
 		// Обработка ошибки запроса
 		.fail([function (jqxhr) {
-			this.generateError({
+			window.Informer.generateError({
 				type: 'ajax',
 				code: jqxhr.status,
 				msg: jqxhr.statusText,
@@ -243,8 +245,12 @@ var Informer = {
 	addVisitor: function () {
 		this.callAPI('stats.trackVisitor', {
 			done: function (API) {
-				this.isStatPosted = API === 1;
-			}
+				if (API === 1) {
+					this.StatPosted.resolve();
+				} else {
+					this.StatPosted.reject();
+				}
+			},
 		});
 	},
 
@@ -315,14 +321,16 @@ var Informer = {
 				needSound = false, c;
 			for (c in counters) {
 				if (c === 'messages' && this.showMessage === true && !!dialogs) {
-					for (var i = dialogs.length; i--;) {
-						if (dialogs[i].unread > 0) {
-							sum += dialogs[i].unread-0;
-							if (dialogs[i].push_settings === undefined || dialogs[i].push_settings.sound !== 0) {
+					sum = dialogs.reduce(function (sum, dialog) {
+						if (dialog.unread) {
+							if (dialog.push_settings === undefined || dialog.push_settings.sound !== 0) {
 								needSound = true;
 							};
-						};
-					};
+							return sum + dialog.unread;
+						} else {
+							return sum;
+						}
+					}, sum);
 				} else {
 					sum += counters[c]-0;
 					needSound = true;
@@ -340,12 +348,10 @@ var Informer = {
 				chrome.browserAction.setBadgeText({text: ''});
 			}
 
-			this.badge = sum;
-			return sum;
+			return this.badge = sum;
 		} else {
-			this.badge = 0;
 			chrome.browserAction.setBadgeText({text: ''});
-			return 0;
+			return this.badge = 0;
 		}
 	},
 	
@@ -357,15 +363,11 @@ var Informer = {
 			chrome.tabs.query({
 				url: "*://vk.com/*"
 			}, function (tabs) {
-				if (tabs.length > 0) {
-					for (var i = tabs.length; i--;) {
-						if (!/.*:\/\/vk.com\/(?:login.php.*)?$/i.test(tabs[i].url)) {
-							return false;
-						}
-					};
-				}
-				$('#audio')[0].play();
-				return true;
+				if (tabs.every(function (tab) {
+					return /vk.com\/(?:login.*)?$/i.test(tab.url);
+				})) {
+					$('#audio')[0].play();
+				};
 			});
 		}
 	},

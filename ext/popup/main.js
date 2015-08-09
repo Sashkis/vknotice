@@ -69,9 +69,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 						$(this).addClass('open');
 						$ans.slideDown(function () {
 							$newmess.mCustomScrollbar("scrollTo", $ans.parent('.dialog'));
-							setTimeout(function () {
-								$ans.find('textarea').focus();
-							}, 300);
+							setTimeout($.proxy($ans.find('textarea'), 'focus'), 300);
 						});
 					} else {
 						$(this).removeClass('open');

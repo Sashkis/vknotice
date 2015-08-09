@@ -5,6 +5,12 @@ chrome.storage.local.get({'showMessage':false, 'audio':true, 'i18n':{}, 'lang':0
 		}
 	});
 
+	if (storage.lang < 3) {
+		$('#donate').html('<form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/checkout"><input type="hidden" name="data" value="eyJ2ZXJzaW9uIjozLCJwdWJsaWNfa2V5IjoiaTU4NDM5MzEwOTQ4IiwiYW1vdW50IjoiMTAwIiwiY3VycmVuY3kiOiJSVUIiLCJkZXNjcmlwdGlvbiI6ItCd0LAg0YDQsNC30LLQuNGC0LjQtSDQmNC90YTQvtGA0LzQtdGA0LAiLCJ0eXBlIjoiZG9uYXRlIiwibGFuZ3VhZ2UiOiJydSIsInBheV93YXkiOiJjYXJkLGxpcXBheSxkZWxheWVkLGludm9pY2UscHJpdmF0MjQifQ==" /><input type="hidden" name="signature" value="KqL70cSIpiTXOqJKFKKWJlkY3rc=" /><input type="image" src="https://static.liqpay.com/buttons/d6ru.png" name="btn_text" /></form>');
+	} else {
+		$('#donate').html('<form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/checkout"><input type="hidden" name="data" value="eyJ2ZXJzaW9uIjozLCJwdWJsaWNfa2V5IjoiaTU4NDM5MzEwOTQ4IiwiYW1vdW50IjoiMTAwIiwiY3VycmVuY3kiOiJSVUIiLCJkZXNjcmlwdGlvbiI6ItCd0LAg0YDQsNC30LLQuNGC0LjQtSDQmNC90YTQvtGA0LzQtdGA0LAiLCJ0eXBlIjoiZG9uYXRlIiwibGFuZ3VhZ2UiOiJlbiIsInBheV93YXkiOiJjYXJkLGxpcXBheSxkZWxheWVkLGludm9pY2UscHJpdmF0MjQifQ==" /><input type="hidden" name="signature" value="R06+DNg9YGFDKzv7jkSRoQCL3B0=" /><input type="image" src="https://static.liqpay.com/buttons/d6en.png" name="btn_text" /></form>');
+	}
+
 	storage.options = storage.options.split(',');
 
 	for (var i = 0; i < storage.options.length; i++) {
