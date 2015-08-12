@@ -20,7 +20,7 @@ function Dialog (dialog_obj) {
 	 */
 	this.init = function (dialog_obj) {
 		$.extend(this, dialog_obj);
-
+		delete this.message;
 		this.messages = [];
 		this.isGroup  = this.chat_id !== undefined;
 
@@ -31,10 +31,10 @@ function Dialog (dialog_obj) {
 			this.id = this.user_id;
 			this.url = VK + 'im?sel=' + this.id;
 		}
-		if (dialog_obj.message.length === 0) {
-			this.addMess(dialog_obj);
-		} else {
+		if ($.isArray(dialog_obj.message) && dialog_obj.message.length !== 0) {
 			this.addMess(dialog_obj.message);
+		} else {
+			this.addMess(dialog_obj);
 		}
 	};
 
@@ -44,7 +44,7 @@ function Dialog (dialog_obj) {
 	 * @return {Boolean} 						TRUE в случае успешного выполнения
 	 */
 	this.addMess = function (mess_array) {
-		if (mess_array.length === undefined) {
+		if (!$.isArray(mess_array)) {
 			mess_array = [mess_array];
 		}
 		for (var i = mess_array.length; i--;) {

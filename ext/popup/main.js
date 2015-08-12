@@ -100,6 +100,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			// Событие когда ответ отправлен
 			$newmess.on('onSendAnswer', '.dialog', function (event, dialog, answer) {
+				dialog.jQ.find('.date').text(Popup.loc('just now'));
 				dialog.jQ.addClass('dialog-ansver-unread').find('.mess-container').html(new Message({
 					body: answer,
 					user_id: window.Popup.current.id,

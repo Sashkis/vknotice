@@ -22,13 +22,9 @@ var Popup = {
 			'api': {
 				'access_token': '',
 				'user_id': '',
-				'v': '5.35'
+				'v': '5.36'
 			},
 		}, params);
-		
-		$.ajaxSetup({
-			data: this.api,
-		});
 
 		var profCash = this.profiles;
 		this.profiles = {};
