@@ -48,16 +48,8 @@ var Informer = {
 			});
 		}
 		// Устанавливаем параметры для ajax
-		this.api.v = '5.36';
+		this.api.v = '5.37';
 		this.api.user_id -= 0;
-
-		// Удаляем не используемые параметры (Нужно для корректного обовления)
-		if (this.api.lang !== undefined) {
-			delete this.api.lang;
-			chrome.storage.local.set({
-				api: this.api
-			});
-		}
 
 		// Устанавливаем иконку
 		this.iconSufix =  this.lang < 3 ? '' : '.i18n'
@@ -151,10 +143,8 @@ var Informer = {
 					this.setCounters([]);
 					chrome.storage.local.remove(['counter', 'friends', 'dialogs', 'newfriends', 'profiles']);
 					this.deamonStop();
-					window.open(this.getAuthUrl());
-					return false;
+					window.open(this.getAuthUrl(), 'VkAuth', 'menubar=no,toolbar=no,personalbar=no,directories=no,location=no,resizable=yes,scrollbars=yes,status=no,centerscreen,innerWidth=600');
 				}
-
 				return !!this.delay;
 			},
 			done: function (API) {
@@ -198,7 +188,6 @@ var Informer = {
 		} else if (options === undefined) {
 			options = {};
 		}
-		console.warn(method);
 		$.ajax($.extend(true, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
@@ -378,10 +367,11 @@ var Informer = {
 	loadAlerts: function () {
 		this.callAPI('execute.getAlerts', {
 			data:{
-				'lang': this.api.lang,
+				'lang': this.lang,
 				'lastAlert': this.lastLoadAlert
 			},
 			done: function (loaded) {
+				console.warn(loaded);
 				if (!$.isEmptyObject(loaded.alert)) {
 					this.lastLoadAlert = loaded.id;
 					chrome.storage.local.set({'lastLoadAlert': loaded.id});
@@ -435,9 +425,7 @@ var Informer = {
 				alert.header = '';
 			} else if ($.inArray(error.code, [6, 9]) !== -1) {
 				if (this.deamonStop()) {
-					setTimeout(function () {
-						window.Informer.deamonStart();
-					}, 15000);
+					setTimeout($.proxy(this, 'deamonStart'), 15000);
 				}
 				alert = false;
 			}
@@ -449,6 +437,7 @@ var Informer = {
 			};
 		}
 		this.saveAlert(alert, 'error');
+		return alert;
 	},
 
 	/**

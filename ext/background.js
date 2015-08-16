@@ -19,9 +19,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	}
 
 	// При обновлении
-	else if (details.reason === 'update') {
-		chrome.storage.local.remove(['abbrlang']);
-	}
+	// else if (details.reason === 'update') {
+	// 	chrome.storage.local.remove(['abbrlang']);
+	// }
 });
 		
 chrome.alarms.onAlarm.addListener(function (alarm) {
@@ -33,8 +33,8 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 				'img'	 : 'https://vk.com/images/stickers/707/128.png',
 				'text'	 : 'Help us to become better',
 				'ancor'	 : 'Leave a review',
-				'imgLink': Informer.getExtUrl(),
-				'url'	 : Informer.getExtUrl()
+				'imgLink': Informer.getExtUrl(true),
+				'url'	 : Informer.getExtUrl(true)
 			}
 		});
 	} else if (alarm.name === 'say_thanks') {

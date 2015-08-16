@@ -545,10 +545,13 @@ header {
 				resize: vertical;
 				height: 100%;
 				overflow: hidden;
-				border: 1px solid #C0CAD5;
+				border: 1px solid rgba($mainColor, 0.4);
 				font: inherit;
 				&:focus {
 					outline: none;
+				}
+				&.error {
+					border-color: rgba(255, 0, 0, 0.4);
 				}
 			}
 		}

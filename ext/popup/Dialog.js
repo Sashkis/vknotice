@@ -206,9 +206,11 @@ function Dialog (dialog_obj) {
 			context: this,
 			data: sendOptions, 
 			done: function () {
-				console.log('');
-				this.jQ.find('textarea').val('');
+				this.jQ.find('textarea').val('').removeClass('error');
 				this.jQ.trigger('onSendAnswer', [this, text]).trigger('onMarkAsRead', this);
+			}, 
+			fail: function () {
+				this.jQ.find('textarea').addClass('error');
 			},
 			always: function () {
 				this.jQ.find('textarea').removeAttr('disabled').focus();
