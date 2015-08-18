@@ -174,7 +174,7 @@ var Informer = {
 			}
 		});
 	},
-	
+
 	/**
 	 * Обращение у ВК API
 	 * @param  {String}	method	Метод API
@@ -227,7 +227,7 @@ var Informer = {
 		// Всегда
 		.always(options.always);
 	},
-	
+
 	/**
 	 * Вызывает метод статистики
 	 */
@@ -343,7 +343,7 @@ var Informer = {
 			return this.badge = 0;
 		}
 	},
-	
+
 	/**
 	 * Воспроизводит звук
 	 */
@@ -454,7 +454,7 @@ var Informer = {
 			'state'			: chrome.app.getDetails().id
 		});
 	},
-	
+
 	/**
 	 * @return {String} URL на страницу расширения
 	 */
@@ -467,7 +467,7 @@ var Informer = {
 			return 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn' + commentHash;
 		}
 	},
-	
+
 	/**
 	 * @param  {Object} share_options	Параметры для ссылки
 	 * @return {String}					URL ссылки для "поделится"

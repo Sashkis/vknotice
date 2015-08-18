@@ -2,9 +2,9 @@
  * Класс пользователей
  * @constructor
  * @param {Oblect|Number} user_obj ID Уже загруженного пользователя или Объект пользователя загруженный через API
- * 
+ *
  * @property {Number}	id				ID пользователя
- * @property {String}	domain			Path на профиль 
+ * @property {String}	domain			Path на профиль
  * @property {String}	first_name		Имя
  * @property {String}	last_name		Фамилия
  * @property {String}	name			Полное имя
@@ -30,13 +30,13 @@ function User (user_obj) {
 				data: {
 					user_ids: search_id,
 					fields: 'status,photo_100,domain,online'
-				}, 
+				},
 				done: function (API) {
 					window.Popup.profiles[search_id] = new User(API[0]);
 					this.upData();
 				}
 			});
-			
+
 			user_obj = {
 				notLoaded: true,
 				id: user_obj,
@@ -122,7 +122,7 @@ function User (user_obj) {
 	};
 
 	/**
-	 * Обновляет текущий объект в соотведствии с глобальным значением в Popup 
+	 * Обновляет текущий объект в соотведствии с глобальным значением в Popup
 	 * @example
 	 * var user = new User(); // User {id: 0, name: "" ...}
 	 * user.upData(1); // {id: 1, name: "Павел" ...}

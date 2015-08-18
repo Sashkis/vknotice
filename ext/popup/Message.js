@@ -58,7 +58,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['photo_130'])	attach.url = attach['photo_130'];
 					else if (attach['photo_75'])	attach.url = attach['photo_75'];
 					else attach.url = this.url;
-					return ('&nbsp;' + window.Popup.loc('Photo')).icon('camera').link(attach.url); 
+					return ('&nbsp;' + window.Popup.loc('Photo')).icon('camera').link(attach.url);
 				break;
 				// Подарок
 				case 'gift':
@@ -67,7 +67,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					else if (attach['thumb_96'])	attach.url = attach['thumb_96'];
 					else if (attach['thumb_48'])	attach.url = attach['thumb_48'];
 					else attach.url = this.url;
-					return ('&nbsp;' + window.Popup.loc('Gift')).icon('gift').link(attach.url); 
+					return ('&nbsp;' + window.Popup.loc('Gift')).icon('gift').link(attach.url);
 				break;
 				// Пост
 				case 'wall' : return ('&nbsp;' + window.Popup.loc('Post')).icon('pencil').link(VK + 'wall' + attach.from_id + '_' + attach.id); break;
@@ -88,10 +88,10 @@ function Message (mess_obj, parentDialog, parentMessage) {
 					return ('&nbsp;' + (attach.place ? attach.place.title : window.Popup.loc('Map'))).icon('location').link('https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0');
 				break;
 				// Стикеры
-				case 'sticker': 
+				case 'sticker':
 					return '<img class="emoji sticker" src="' + attach.photo_64 + '" height="32">';
 				break;
-				
+
 				// Неподдерживаемое вложение
 				default	 : return ('&nbsp;' + window.Popup.loc('Attachment')).icon('attach').link(this.url);
 			}
@@ -126,7 +126,7 @@ function Message (mess_obj, parentDialog, parentMessage) {
 		switch(type) {
 			case 'compact':
 				messHtml += '<div class="compact">' + new User(this.from_id || this.user_id).ava({size:25, title: true, marker: false}) + '</div>';
-			default : 
+			default :
 				return messHtml += '<message class="short"><span class="body">' + this.body + '</span></message> ';
 		}
 	};

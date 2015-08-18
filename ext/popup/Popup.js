@@ -76,10 +76,10 @@ var Popup = {
 		// Всегда
 		.always(options.always);
 	},
-	
+
 
 	/**
-	 * Инициализирует плагин для скролбара 
+	 * Инициализирует плагин для скролбара
 	 * @param  {Object} options Опции передаваемые для плагина mCustomScrollbar
 	 */
 	buildCustomScrollbar: function (options) {
@@ -133,19 +133,19 @@ var Popup = {
 	},
 
 	/**
-	 * Обращается к методу статистики 
+	 * Обращается к методу статистики
 	 */
 	addVisitor: function () {
 		this.callAPI('stats.trackVisitor');
 	},
 
 	/**
-	 * Вставляет счетчики в меню 
+	 * Вставляет счетчики в меню
 	 */
 	buildCounters: function () {
 		$('#menu .counter').text(function () {
 			var key = $(this).parents('li').attr('id');
-			
+
 			if (Popup.counter[key]) {
 				if (key === 'messages' && Popup.showMessage) {
 					Popup.counter[key] = 0;
@@ -163,7 +163,7 @@ var Popup = {
 	},
 
 	/**
-	 * Удаляет предзагрущик 
+	 * Удаляет предзагрущик
 	 * @return {jQuery} .wraper
 	 */
 	show: function () {
@@ -208,19 +208,20 @@ var Popup = {
 			this.newfriends.forEach(function (user_id) {
 				var user = new User(user_id),
 					cancelButton = ''.icon('cancel', {class: 'hovered', title: this.loc('Reject')}),
-					addButton    = ''.icon('ok', {class: 'hovered', title: this.loc('Accept')});
-					
-				frag.append($('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + user.status + '</span></figcaption></figure>').data(user));
+					addButton	 = ''.icon('ok', {class: 'hovered', title: this.loc('Accept')}),
+					status 		 = user.status.length > 60 ? user.status.substr(0, 60) + '…' : user.status;
+
+				frag.append($('<figure user-id="' + user.id + '">' + cancelButton + addButton + user.ava({'isLink': true, 'size': 50}) + '<figcaption>' + user.profileLink() + '<span>' + status + '</span></figcaption></figure>').data(user));
 			}, this);
 		} else {
 			$('#friends .slide').add($newfriends).removeClass('open'); // Закрыть панель новых друзей
 		}
-		
+
 		return $newfriends.html(frag);
 	},
 
 	/**
-	 * Строит диалоги. Если есть не активные диалоги - открывает панель диалогов. 
+	 * Строит диалоги. Если есть не активные диалоги - открывает панель диалогов.
 	 * @return {jQuery} #newmess
 	 */
 	buildDialogs: function () {
@@ -319,7 +320,7 @@ var Popup = {
 				}
 				text = '<tbody><tr><td>' + image + text + link + '</td></tr></tbody>';
 			}
-			var $alert = $('#alert');	
+			var $alert = $('#alert');
 			$alert.addClass('show').find('table').html(header + text + footer);
 
 			$alert.one('click', 'a', function () {

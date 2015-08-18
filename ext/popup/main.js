@@ -1,29 +1,15 @@
 'use strict';
-console.time('Total');
-console.time('chrome.storage.local.get');
 chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends', 'dialogs', 'newfriends', 'profiles', 'api', 'i18n', 'lang', 'options'], function (storage) {
-console.timeEnd('chrome.storage.local.get');
-console.time('Popup.init');
 	Popup.init(storage);
-console.timeEnd('Popup.init');
 	// buildAlert проверяет ответ ВК на наличие ошибок. Возвращает TRUE если ошибок не найдено
-console.time('Popup.buildAlert');
 	if (Popup.buildAlert()) {		// Строит уведомления
-console.timeEnd('Popup.buildAlert');
-console.time('Popup.setCurrentProfile');
 		Popup.setCurrentProfile();	// Устанавливает Хедер. Инициализируем активный профайл
-console.timeEnd('Popup.setCurrentProfile');
-console.time('Popup.loadTranslate');
 		Popup.loadTranslate();		// Переводим интерфейс
-console.timeEnd('Popup.loadTranslate');
-console.time('Popup.show');
 		Popup.show();				// Уберает предзагрущик
-console.timeEnd('Popup.show');
 
 		/**
 		 * Генерирует 6 друзей онлайн
 		 */
-console.time('Popup.builFriendsOnline');
 		try {
 			var $onlineUsers = Popup.builFriendsOnline();
 
@@ -54,20 +40,14 @@ console.time('Popup.builFriendsOnline');
 			console.error(error);
 			$('#friends-online').html('<div class="error"><b>builFriendsOnline</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.') + '</b></div>');
 		}
-console.timeEnd('Popup.builFriendsOnline');
 
 
-console.time('Popup.buildCounters');
 		Popup.buildCounters();	// Выстраивает счетчики в меню
-console.timeEnd('Popup.buildCounters');
-console.time('Popup.initSlide');
 		Popup.initSlide();		// Активирует события для слайдов
-console.timeEnd('Popup.initSlide');
 
 		/**
 		 * Генерирует новые сообщения
 		 */
-console.time('Popup.buildDialogs');
 		try {
 			var $newmess = Popup.buildDialogs();
 
@@ -78,7 +58,7 @@ console.time('Popup.buildDialogs');
 				$button.addClass('icon-spin4 animate-spin');
 				return !dialog.markAsRead();
 			});
-			
+
 			// Открытие поля для ответа
 			$newmess.on('click', '.dialog', function (event) {
 				if (!$newmess.find('.dialog a, .dialog textarea').is($(event.toElement))) {
@@ -137,13 +117,11 @@ console.time('Popup.buildDialogs');
 			console.error(error.stack);
 			$('#newmess').html('<div class="error"><b>buildDialogs</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.') + '</b></div>');
 		}
-console.timeEnd('Popup.buildDialogs');
 
 
 		/**
 		 * Генерирует новые заявки в друзья
 		 */
-console.time('Popup.buildNewFriends');
 		try {
 			var $newfriends = Popup.buildNewFriends();
 			// Принять или отклонить заявку в друзья
@@ -172,16 +150,10 @@ console.time('Popup.buildNewFriends');
 			console.error(error);
 			$('#newfriends').html('<div class="error"><b>buildNewFriends</b></br>' + error.stack.replace('chrome-extension://' + chrome.app.getDetails().id + '/popup/', '') + '</br></br><b>' + Popup.loc('Please inform the developers.') + '</b></div>');
 		}
-console.timeEnd('Popup.buildNewFriends');
 
-console.time('Popup.buildCustomScrollbar');
 		Popup.buildCustomScrollbar();	// Инициализирует плагн для скрола
-console.timeEnd('Popup.buildCustomScrollbar');
-console.time('Popup.addVisitor');
 		Popup.addVisitor();				// Делает запрос в ВК к методу статистики
-console.timeEnd('Popup.addVisitor');
 
-console.time('Dropdown');
 		// Ссылка на страницу расширения
 		$('.review').attr('href', Popup.getExtUrl(true));
 
@@ -196,9 +168,7 @@ console.time('Dropdown');
 			chrome.runtime.connect({name: 'remove_token'});
 			return false;
 		});
-console.timeEnd('Dropdown');
 	}
-console.timeEnd('Total');
 
 });
 
@@ -240,6 +210,6 @@ chrome.storage.onChanged.addListener(function (changes) {
 		Popup.alerts = changes.alerts.newValue || {error :false, message: false};
 		Popup.buildAlert();
 	}
-	
+
 	Popup.buildCounters();
 });

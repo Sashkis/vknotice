@@ -179,7 +179,7 @@ function Dialog (dialog_obj) {
 			data: {
 				message_ids: message_ids,
 				user_id: ''
-			}, 
+			},
 			done: function () {
 				this.jQ.trigger('onMarkAsRead', this);
 			}
@@ -204,11 +204,11 @@ function Dialog (dialog_obj) {
 		}
 		window.Popup.callAPI('messages.send', {
 			context: this,
-			data: sendOptions, 
+			data: sendOptions,
 			done: function () {
 				this.jQ.find('textarea').val('').removeClass('error');
 				this.jQ.trigger('onSendAnswer', [this, text]).trigger('onMarkAsRead', this);
-			}, 
+			},
 			fail: function () {
 				this.jQ.find('textarea').addClass('error');
 			},

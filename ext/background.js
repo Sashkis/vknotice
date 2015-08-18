@@ -8,7 +8,7 @@ chrome.storage.local.get(['audio', 'showMessage', 'api', 'lang', 'options', 'ale
  */
  // 86400000 - один день
 chrome.runtime.onInstalled.addListener(function (details) {
-	 
+
 	// При установке
 	if (details.reason === 'install') {
 		chrome.alarms.create('say_thanks', {'when': $.now() + 86400000 * 7});// Через 7 дней
@@ -23,7 +23,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	// 	chrome.storage.local.remove(['abbrlang']);
 	// }
 });
-		
+
 chrome.alarms.onAlarm.addListener(function (alarm) {
 	if (alarm.name === 'get_review') {
 		Informer.saveAlert({
@@ -113,7 +113,7 @@ chrome.storage.onChanged.addListener(function (changes) {
 		Informer.loadComment = changes.loadComment.newValue;
 	}
 	// Изменение времени последнего посещения страницы комментариев
-	if (!!changes.openComment) {		
+	if (!!changes.openComment) {
 		if (changes.openComment.newValue === undefined) {
 			changes.openComment.newValue = 0;
 		}

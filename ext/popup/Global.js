@@ -15,7 +15,7 @@ String.prototype.escapeHtml = function () {
 
 /**
  * Превращает текст в ссылку
- * @param  {String}	url  
+ * @param  {String}	url
  * @param  {Object}	attr
  * @return {String}	HTML
  */
@@ -34,8 +34,8 @@ String.prototype.link = function (url, attr) {
 
 /**
  * Добавлает к строке HTML код иконки
- * @param  {String}	icon 
- * @param  {Object}	attr 
+ * @param  {String}	icon
+ * @param  {Object}	attr
  * @return {String}	HTML
  */
 String.prototype.icon = function (icon, attr) {
