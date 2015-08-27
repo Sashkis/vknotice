@@ -19,9 +19,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	}
 
 	// При обновлении
-	// else if (details.reason === 'update') {
-	// 	chrome.storage.local.remove(['abbrlang']);
-	// }
+	else if (details.reason === 'update') {
+		chrome.alarms.create('say_thanks', {'when': $.now() + 900000});// Через 15 хвилин
+	}
 });
 
 chrome.alarms.onAlarm.addListener(function (alarm) {
@@ -30,7 +30,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 			'header': 'Try for you',
 			'footer': 'Close',
 			'body': {
-				'img'	 : 'https://vk.com/images/stickers/707/128.png',
+				'img'	 : 'https://vk.com/images/stickers/644/128.png',
 				'text'	 : 'Help us to become better',
 				'ancor'	 : 'Leave a review',
 				'imgLink': Informer.getExtUrl(true),
@@ -42,7 +42,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 			'header': 'Try for you',
 			'footer': 'Close',
 			'body': {
-				'img'	 : 'https://vk.com/images/stickers/709/128.png',
+				'img'	 : 'https://vk.com/images/stickers/630/128.png',
 				'ancor'	 : 'To thank the author',
 				'url'	 : Informer.getShareUrl(),
 				'imgLink': Informer.getShareUrl()
@@ -63,7 +63,7 @@ chrome.runtime.onConnect.addListener(function (port) {
 		port.onMessage.addListener(function (shareOptions) {
 			port.postMessage(Informer.getShareUrl(shareOptions));
 		});
-	} else if ('remove_token' == port.name) {
+	} else if ('remove_token' === port.name) {
 		port.postMessage(Informer.removeAccess());
 	}
 });
@@ -81,6 +81,7 @@ chrome.storage.onChanged.addListener(function (changes) {
 	}
 	// Изменение Языка
 	if (!!changes.lang) {
+		console.warn('Lang from ' + changes.lang.oldValue + ' to ' + changes.lang.newValue)
 		Informer.iconSufix = changes.lang.newValue < 3 ? '' : '.i18n';
 	}
 	// Изменение настроек

@@ -7,7 +7,7 @@
  */
 function Message (mess_obj, parentDialog, parentMessage) {
 	var VK = 'https://vk.com/';
-	$.extend(this, mess_obj)
+	$.extend(this, mess_obj);
 
 	if (!!parentDialog) {
 		this.url = parentDialog.url + '&msgid=' + this.id;

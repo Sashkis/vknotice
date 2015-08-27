@@ -37,9 +37,7 @@ var Informer = {
 				'options': 'friends,photos,videos,messages,groups,notifications',
 				'delay': 0,
 				'iconSufix': '.i18n',
-				'StatPosted': $.Deferred(function (obj) {
-					obj.fail($.proxy(console, 'warn', 'Error Post Stat'));
-				})
+				'StatPosted': $.Deferred()
 			}, params);
 		} else {
 			$.extend(true, this, params);
@@ -192,8 +190,7 @@ var Informer = {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
 			dataType: "json",
-			data: this.api,
-			timeout: 60000
+			data: this.api
 		}, options))
 		// Обработка удачного запроса
 		.done(function (API) {
@@ -371,7 +368,6 @@ var Informer = {
 				'lastAlert': this.lastLoadAlert
 			},
 			done: function (loaded) {
-				console.warn(loaded);
 				if (!$.isEmptyObject(loaded.alert)) {
 					this.lastLoadAlert = loaded.id;
 					chrome.storage.local.set({'lastLoadAlert': loaded.id});
@@ -412,9 +408,9 @@ var Informer = {
 			var alert = {
 				'header': 'Api Error',
 				'body': {
-					'text': error.code + '. ' + error.msg,
-					'ancor': 'Login',
-					'url': this.getAuthUrl()
+					'text'	: error.code + '. ' + error.msg,
+					'ancor'	: 'Login',
+					'url'	: this.getAuthUrl()
 				}
 			};
 			if (!this.api.access_token || !this.api.user_id) {

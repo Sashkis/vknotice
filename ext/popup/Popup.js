@@ -22,7 +22,7 @@ var Popup = {
 			'api': {
 				'access_token': '',
 				'user_id': '',
-				'v': '5.36'
+				'v': '5.37'
 			},
 		}, params);
 
