@@ -9,7 +9,7 @@ body {
 	font-size: 11px;
 	font-family: tahoma, arial, verdana, sans-serif;
 	margin: 0;
-	width: 459px; 
+	width: 459px;
 	background: #f0f2f5;
 	&.grayscale {
 		-webkit-filter: grayscale(100%);
@@ -32,7 +32,7 @@ a {
 	&.show {
 		display: block;
 	}
-	
+
 }
 .wraper {
 	@extend %top-block;
@@ -57,7 +57,7 @@ a {
 	top: -100%;
 	display: block;
 	transition: top .3s;
-	
+
 	&.show {
 		top: 0%;
 	}
@@ -289,7 +289,7 @@ header {
 					top: 50%;
 				}
 			}
-		} 
+		}
 		a {
 			display: block;
 		}
