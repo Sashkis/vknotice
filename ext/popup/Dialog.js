@@ -161,7 +161,7 @@ function Dialog (dialog_obj) {
 	 */
 	this.construct = function () {
 		this.jQ = $(''.link(this.url, {id: 'dialog-' + this.id, class: this.getClass()}));
-		this.jQ.html((this.addHeader() + '<div class="ans"><textarea></textarea></div>').icon('cancel', {class: 'markAsRead', title: window.Popup.loc('Mark as read')}));
+		this.jQ.html( (this.addHeader() + '<div class="ans"><textarea></textarea></div>').icon('chat history slide', {'data-target': '#history'}).icon('cancel markAsRead', {title: window.Popup.loc('Mark as read')}) );
 		this.jQ.data(this);
 		return this.jQ;
 	};

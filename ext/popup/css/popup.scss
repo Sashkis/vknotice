@@ -396,7 +396,22 @@ header {
 	opacity: .3;
 }
 
-#newmess {
+%dialog-icon {
+	color: rgba(43, 88, 122, 0.5);
+	float: right;
+	position: relative;
+	z-index: 20;
+	opacity:0;
+	&:hover {
+		color: rgba(43, 88, 122, 1);
+	}
+	.dialog:hover & {
+		opacity:1;
+	}
+}
+
+#newmess,
+#history {
 	overflow: auto;
 	padding: 0;
 	.dialog {
@@ -492,15 +507,11 @@ header {
 			}
 		}
 		.markAsRead {
-			border-radius: 2px;
-			color: rgba(43, 88, 122, 0.5);
-			float: right;
-			position: relative;
-			z-index: 20;
 			display: none;
-			&:hover {
-				color: rgba(43, 88, 122, 1);
-			}
+		}
+		.markAsRead,
+		.history {
+			@extend %dialog-icon;
 		}
 		.mess-container {
 			display: block;
@@ -589,4 +600,29 @@ header {
 }
 .mCSB_outside + .mCSB_scrollTools {
 	right: -7px;
+}
+
+#history {
+	&:empty {
+		cursor: wait;
+		min-height: 229px;
+		text-align: center;
+		padding-top: 85px;
+		&::before {
+			-webkit-animation: spin 2s infinite linear;
+			animation: spin 2s infinite linear;
+			display: inline-block;
+			color: #2B587A;
+			font-size: 40px;
+			content: '\e805';
+			font-family: "fontello";
+		}
+	}
+	.dialog {
+		cursor: default;
+	}
+	.more {
+		cursor: pointer;
+		text-align: center;
+	}
 }

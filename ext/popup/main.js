@@ -61,7 +61,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			// Открытие поля для ответа
 			$newmess.on('click', '.dialog', function (event) {
-				if (!$newmess.find('.dialog a, .dialog textarea').is($(event.toElement))) {
+				if (!$newmess.find('.dialog a, .dialog textarea, .dialog .history').is($(event.toElement))) {
 					var $ans = $(this).find('.ans');
 					if (!$(this).hasClass('open')) {
 						$newmess.find('.open').removeClass('open').find('.ans').slideUp();
@@ -111,6 +111,86 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 						}
 						return value;
 					}
+				});
+			});
+
+			// Загрузка истории
+			$newmess.on('click', '.history', function () {
+				$('#history').mCustomScrollbar('destroy').html('');
+				var data = {},
+					dialog = $(this).parents('.dialog').data();
+
+				if (dialog.isGroup) {
+					data.chat_id = dialog.id;
+				} else {
+					data.user_id = dialog.id;
+				}
+
+				Popup.callAPI('messages.getHistory', {
+					data: data,
+					done: function(API){
+						var hist = Popup.parseHistory(API);
+
+						Popup.history = data;
+						Popup.history.start_message_id = API.items[API.items.length-1].id;
+
+						$('#history').html(hist).append(Popup.loc('More').link(dialog.url, {class:'more dialog'}))
+						.linkify({
+							format: function (value, type) {
+								if (type === 'url' && value.length > 40) {
+									value = value.substr(0, 40) + '…';
+								}
+								return value;
+							}
+						})
+						.mCustomScrollbar({
+							axis: 'y',
+							autoHideScrollbar: true,
+							alwaysShowScrollbar: 0,
+							contentTouchScroll: false,
+							theme: "dark-thin",
+							scrollbarPosition: 'inside',
+							scrollInertia: 150,
+							live: true,
+							keyboard: {
+								enable: false
+							},
+							mouseWheel: {
+								scrollAmount: 36
+							},
+							advanced: {
+								updateOnContentResize: true
+							}
+						});
+					},
+					fail: function(API) {
+						$('#history').html('Api error: ' + API.error.error_code + '. ' + API.error.error_msg)
+					}
+				});
+
+				$('#history').on('click', '.more', function () {
+					$(this).html(''.icon('spin4 animate-spin'));
+					var data = Popup.history;
+					data.count = 21;
+					Popup.callAPI('messages.getHistory', {
+						data: data,
+						context: this,
+						done: function (API) {
+							delete API.items[0];
+							var hist = Popup.parseHistory(API);
+							$(this).before(hist).html(Popup.loc('More'));
+							Popup.history.start_message_id = API.items[API.items.length-1].id;
+							$('#history').linkify({
+								format: function (value, type) {
+									if (type === 'url' && value.length > 40) {
+										value = value.substr(0, 40) + '…';
+									}
+									return value;
+								}
+							});
+						}
+					});
+					return false;
 				});
 			});
 		} catch (error) {

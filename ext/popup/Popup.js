@@ -91,9 +91,15 @@ var Popup = {
 			theme: "dark-thin",
 			scrollbarPosition: 'inside',
 			scrollInertia: 150,
-			keyboard: {enable: false},
+			live: true,
+			keyboard: {
+				enable: false
+			},
 			mouseWheel: {
 				scrollAmount: 61
+			},
+			advanced: {
+				updateOnContentResize: true
 			}
 		}, options);
 		$("#newmess, #newfriends").mCustomScrollbar(options);
@@ -122,7 +128,7 @@ var Popup = {
 	 * Активирует слайд-блоки
 	 */
 	initSlide: function () {
-		return $('.slide').on('click', function () {
+		return $(document).on('click', '.slide', function () {
 			var target = $(this).attr('data-target');
 			if (target === '#' + $('.slider.open').attr('id')) {
 				target = '#friends-online';
@@ -256,6 +262,11 @@ var Popup = {
 		return $newmess;
 	},
 
+	parseHistory: function(API) {
+		return $(API.items.reduce(function (frag, mess_obj, index) {
+			return $(frag).append('<div class="dialog">' + new Message(mess_obj).getHtml('compact') + '</div>');
+		}, document.createDocumentFragment()));
+	},
 	/**
 	 * Строит Всплывающее сообщение
 	 * @return {Boolean} Загружено ли сообщение об ошибке. TRUE - Просто сообщение. FALSE - Была ошибка.
