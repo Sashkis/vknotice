@@ -18,6 +18,7 @@ var Popup = {
 			'dialogs': [],
 			'newfriends': [],
 			'profiles': [],
+			'history': {},
 			'options': 'friends,photos,videos,messages,groups,notifications',
 			'api': {
 				'access_token': '',
@@ -49,7 +50,7 @@ var Popup = {
 			options = {};
 		}
 
-		$.ajax($.extend(true, {
+		$.ajax($.extend(true, {}, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
 			dataType: "json",

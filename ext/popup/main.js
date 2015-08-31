@@ -125,14 +125,12 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 				} else {
 					data.user_id = dialog.id;
 				}
-
 				Popup.callAPI('messages.getHistory', {
 					data: data,
 					done: function(API){
 						var hist = Popup.parseHistory(API);
 
-						Popup.history = data;
-						Popup.history.start_message_id = API.items[API.items.length-1].id;
+						$.extend(Popup.history, data, {start_message_id: API.items[API.items.length-1].id})
 
 						$('#history').html(hist).append(Popup.loc('More').link(dialog.url, {class:'more dialog'}))
 						.linkify({
@@ -170,16 +168,18 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 				$('#history').on('click', '.more', function () {
 					$(this).html(''.icon('spin4 animate-spin'));
-					var data = Popup.history;
-					data.count = 21;
+
 					Popup.callAPI('messages.getHistory', {
-						data: data,
+						data: $.extend({}, Popup.history, {count: 21}),
 						context: this,
 						done: function (API) {
 							delete API.items[0];
+
 							var hist = Popup.parseHistory(API);
 							$(this).before(hist).html(Popup.loc('More'));
-							Popup.history.start_message_id = API.items[API.items.length-1].id;
+
+							$.extend(Popup.history, {start_message_id: API.items[API.items.length-1].id})
+
 							$('#history').linkify({
 								format: function (value, type) {
 									if (type === 'url' && value.length > 40) {

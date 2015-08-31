@@ -186,7 +186,7 @@ var Informer = {
 		} else if (options === undefined) {
 			options = {};
 		}
-		$.ajax($.extend(true, {
+		$.ajax($.extend(true, {}, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
 			dataType: "json",
