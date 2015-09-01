@@ -131,10 +131,13 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 				Popup.callAPI('messages.getHistory', {
 					data: data,
 					done: function(API){
+						if (API.items.length < 1) {
+							return;
+						}
 						var hist = Popup.parseHistory(API);
 						$.extend(Popup.history, data, {start_message_id: API.items[API.items.length-1].id})
 
-						$('#history').html(hist).append(Popup.loc('More').link(dialog.url, {class:'more dialog'}))
+						$('#history').html(hist).append(API.items.length < 20 ? '' : Popup.loc('More').link(dialog.url, {class:'more dialog'}))
 						.linkify({
 							format: function (value, type) {
 								if (type === 'url' && value.length > 40) {
@@ -194,6 +197,10 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 								return value;
 							}
 						});
+
+						if (API.items.length < 21) {
+							$(this).remove();
+						}
 					}
 				});
 				return false;
