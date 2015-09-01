@@ -19,9 +19,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	}
 
 	// При обновлении
-	else if (details.reason === 'update') {
-		chrome.alarms.create('say_thanks', {'when': $.now() + 900000});// Через 15 хвилин
-	}
+	// else if (details.reason === 'update') {
+	// 	chrome.alarms.create('say_thanks', {'when': $.now() + 900000});// Через 15 хвилин
+	// }
 });
 
 chrome.alarms.onAlarm.addListener(function (alarm) {
