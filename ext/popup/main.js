@@ -81,6 +81,13 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 				}
 			});
 
+			if (Popup.options.indexOf('messages') !== -1) {
+				var $newDialogs = $newmess.find('.dialog-unread');
+				if ($newDialogs.length === 1) {
+					$newDialogs.trigger('click');
+				}
+			}
+
 			// Отправить сообщение
 			$newmess.on('keypress', 'textarea', function (event) {
 				if (event.keyCode === 13 && !event.ctrlKey && !event.shiftKey) {
