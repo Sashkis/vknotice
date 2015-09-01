@@ -49,14 +49,17 @@ var Popup = {
 		} else if (options === undefined) {
 			options = {};
 		}
-
-		$.ajax($.extend(true, {}, {
+		var aj = $.extend(true, {}, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
 			dataType: "json",
 			data: this.api,
 			timeout: 10000
-		}, options))
+		}, options);
+		if (method =='messages.getHistory') {
+			// console.warn(aj);
+		}
+		$.ajax(aj)
 		// Обработка удачного запроса
 		.done(function (API) {
 			if (API.response !== undefined) {

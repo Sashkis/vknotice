@@ -117,11 +117,14 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 			// Загрузка истории
 			$newmess.on('click', '.history', function () {
 				$('#history').mCustomScrollbar('destroy').html('');
-				var data = {},
+				var data = {
+						start_message_id: ''
+					},
 					dialog = $(this).parents('.dialog').data();
 
 				if (dialog.isGroup) {
 					data.chat_id = dialog.id;
+					data.user_id = '';
 				} else {
 					data.user_id = dialog.id;
 				}
@@ -129,7 +132,6 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 					data: data,
 					done: function(API){
 						var hist = Popup.parseHistory(API);
-
 						$.extend(Popup.history, data, {start_message_id: API.items[API.items.length-1].id})
 
 						$('#history').html(hist).append(Popup.loc('More').link(dialog.url, {class:'more dialog'}))
@@ -165,33 +167,36 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 						$('#history').html('Api error: ' + API.error.error_code + '. ' + API.error.error_msg)
 					}
 				});
+			});
 
-				$('#history').on('click', '.more', function () {
-					$(this).html(''.icon('spin4 animate-spin'));
+			$('#history').on('click', '.more', function () {
+				$(this).html(''.icon('spin4 animate-spin'));
 
-					Popup.callAPI('messages.getHistory', {
-						data: $.extend({}, Popup.history, {count: 21}),
-						context: this,
-						done: function (API) {
-							delete API.items[0];
-
-							var hist = Popup.parseHistory(API);
-							$(this).before(hist).html(Popup.loc('More'));
-
-							$.extend(Popup.history, {start_message_id: API.items[API.items.length-1].id})
-
-							$('#history').linkify({
-								format: function (value, type) {
-									if (type === 'url' && value.length > 40) {
-										value = value.substr(0, 40) + '…';
-									}
-									return value;
-								}
-							});
+				Popup.callAPI('messages.getHistory', {
+					data: $.extend({}, Popup.history, {count: 21}),
+					context: this,
+					done: function (API) {
+						if (API.items.length === 1) {
+							$(this).remove();
+							return;
 						}
-					});
-					return false;
+						delete API.items[0];
+						var hist = Popup.parseHistory(API);
+						$(this).before(hist).html(Popup.loc('More'));
+
+						Popup.history.start_message_id = API.items[API.items.length-1].id;
+
+						$('#history').linkify({
+							format: function (value, type) {
+								if (type === 'url' && value.length > 40) {
+									value = value.substr(0, 40) + '…';
+								}
+								return value;
+							}
+						});
+					}
 				});
+				return false;
 			});
 		} catch (error) {
 			console.error(error.stack);

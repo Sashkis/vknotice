@@ -81,7 +81,6 @@ chrome.storage.onChanged.addListener(function (changes) {
 	}
 	// Изменение Языка
 	if (!!changes.lang) {
-		console.warn('Lang from ' + changes.lang.oldValue + ' to ' + changes.lang.newValue)
 		Informer.iconSufix = changes.lang.newValue < 3 ? '' : '.i18n';
 	}
 	// Изменение настроек

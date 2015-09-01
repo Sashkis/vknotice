@@ -159,7 +159,7 @@ var Informer = {
 				}
 
 				if (this.StatPosted.state() === 'pending') {
-					setTimeout($.proxy(this, 'addVisitor'), 1000);
+					setTimeout($.proxy(Informer, 'addVisitor'), 1000);
 				}
 			},
 			fail: function () {
@@ -167,7 +167,7 @@ var Informer = {
 			},
 			always: function (jqxhr) {
 				if (jqxhr.statusText !== 'canceled') {
-					setTimeout($.proxy(this, 'mainRequest'), this.delay);
+					setTimeout($.proxy(Informer, 'mainRequest'), this.delay);
 				}
 			}
 		});
@@ -421,7 +421,7 @@ var Informer = {
 				alert.header = '';
 			} else if ($.inArray(error.code, [6, 9]) !== -1) {
 				if (this.deamonStop()) {
-					setTimeout($.proxy(this, 'deamonStart'), 15000);
+					setTimeout($.proxy(Informer, 'deamonStart'), 15000);
 				}
 				alert = false;
 			}
