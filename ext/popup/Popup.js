@@ -50,11 +50,12 @@ var Popup = {
 			options = {};
 		}
 
-		$.ajax($.extend(true, {}, {
+		options.data = $.extend({}, this.api, options.data);
+
+		$.ajax($.extend(true, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
 			dataType: "json",
-			data: this.api,
 			timeout: 10000
 		}, options))
 		// Обработка удачного запроса

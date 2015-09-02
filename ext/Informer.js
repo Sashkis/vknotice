@@ -159,7 +159,7 @@ var Informer = {
 				}
 
 				if (this.StatPosted.state() === 'pending') {
-					setTimeout($.proxy(Informer, 'addVisitor'), 1000);
+					setTimeout($.proxy(this, 'addVisitor'), 1000);
 				}
 			},
 			fail: function () {
@@ -167,7 +167,7 @@ var Informer = {
 			},
 			always: function (jqxhr) {
 				if (jqxhr.statusText !== 'canceled') {
-					setTimeout($.proxy(Informer, 'mainRequest'), this.delay);
+					setTimeout($.proxy(this, 'mainRequest'), this.delay);
 				}
 			}
 		});
@@ -186,11 +186,13 @@ var Informer = {
 		} else if (options === undefined) {
 			options = {};
 		}
-		$.ajax($.extend(true, {}, {
+
+		options.data = $.extend({}, this.api, options.data);
+
+		$.ajax($.extend(true, {
 			url: 'https://api.vk.com/method/' + method,
 			context: this,
-			dataType: "json",
-			data: this.api
+			dataType: "json"
 		}, options))
 		// Обработка удачного запроса
 		.done(function (API) {
@@ -322,8 +324,12 @@ var Informer = {
 					needSound = true;
 				};
 			};
+			// console.warn('Informer.badge: '+ Informer.badge);
+			// console.warn('sum: '+ sum);
 			if (sum > this.badge && needSound) {
 				this.playSound();
+				this.badge = 5;
+			// console.warn('this', this);
 			}
 			if (sum > 999) {
 				chrome.browserAction.setBadgeText({text: '999+'});
@@ -333,8 +339,8 @@ var Informer = {
 				sum = 0;
 				chrome.browserAction.setBadgeText({text: ''});
 			}
-
-			return this.badge = sum;
+			this.badge = sum;
+			return sum;
 		} else {
 			chrome.browserAction.setBadgeText({text: ''});
 			return this.badge = 0;
@@ -421,7 +427,7 @@ var Informer = {
 				alert.header = '';
 			} else if ($.inArray(error.code, [6, 9]) !== -1) {
 				if (this.deamonStop()) {
-					setTimeout($.proxy(Informer, 'deamonStart'), 15000);
+					setTimeout($.proxy(this, 'deamonStart'), 15000);
 				}
 				alert = false;
 			}
