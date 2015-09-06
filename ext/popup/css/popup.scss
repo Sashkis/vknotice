@@ -451,6 +451,11 @@ header {
 				padding: 5px;
 			}
 		}
+		&.dialog-group {
+			.compact {
+				clear: both;
+			}
+		}
 		.group-photo {
 			overflow: hidden;
 			background: none;

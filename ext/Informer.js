@@ -130,7 +130,7 @@ var Informer = {
 	 * Выполняет основной запрос
 	 */
 	mainRequest: function () {
-		this.callAPI('execute.getdata', {
+		this.callAPI('execute.getdata_beta', {
 			data: {
 				'options': this.options,
 				'loadComment': this.loadComment,
@@ -215,12 +215,14 @@ var Informer = {
 		})
 		// Обработка ошибки запроса
 		.fail([function (jqxhr) {
-			window.Informer.generateError({
-				type: 'ajax',
-				code: jqxhr.status,
-				msg: jqxhr.statusText,
-				status: jqxhr.readyState
-			});
+			if (jqxhr.statusText !== 'canceled') {
+				window.Informer.generateError({
+					type: 'ajax',
+					code: jqxhr.status,
+					msg: jqxhr.statusText,
+					status: jqxhr.readyState
+				});
+			}
 			console.error(method + ' ajax error; readyState:' + jqxhr.readyState + '; status:' + jqxhr.status + '; statusText:' + jqxhr.statusText);
 		}, options.fail])
 		// Всегда
@@ -324,12 +326,9 @@ var Informer = {
 					needSound = true;
 				};
 			};
-			// console.warn('Informer.badge: '+ Informer.badge);
-			// console.warn('sum: '+ sum);
 			if (sum > this.badge && needSound) {
 				this.playSound();
 				this.badge = 5;
-			// console.warn('this', this);
 			}
 			if (sum > 999) {
 				chrome.browserAction.setBadgeText({text: '999+'});

@@ -83,6 +83,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			if (Popup.options.indexOf('messages') !== -1) {
 				var $newDialogs = $newmess.find('.dialog-unread');
+				console.log($newDialogs.length);
 				if ($newDialogs.length === 1) {
 					$newDialogs.trigger('click');
 				}
