@@ -93,7 +93,7 @@ var Popup = {
 			theme: "dark-thin",
 			scrollbarPosition: 'inside',
 			scrollInertia: 150,
-			live: true,
+			// live: true,
 			keyboard: {
 				enable: false
 			},
@@ -104,7 +104,7 @@ var Popup = {
 				updateOnContentResize: true
 			}
 		}, options);
-		$("#newmess, #newfriends").mCustomScrollbar(options);
+		$("#newmess, #newfriends, #history").mCustomScrollbar(options);
 		$('#newmess #mCSB_2_container').attr('data-before', this.loc("Your private messages will be displayed here."));
 		return true;
 	},

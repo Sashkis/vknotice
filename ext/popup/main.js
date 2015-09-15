@@ -83,7 +83,6 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			if (Popup.options.indexOf('messages') !== -1) {
 				var $newDialogs = $newmess.find('.dialog-unread');
-				console.log($newDialogs.length);
 				if ($newDialogs.length === 1) {
 					$newDialogs.trigger('click');
 				}
@@ -124,7 +123,6 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 
 			// Загрузка истории
 			$newmess.on('click', '.history', function () {
-				$('#history').mCustomScrollbar('destroy').html('');
 				var data = {
 						start_message_id: ''
 					},
@@ -145,7 +143,7 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 						var hist = Popup.parseHistory(API);
 						$.extend(Popup.history, data, {start_message_id: API.items[API.items.length-1].id})
 
-						$('#history').html(hist).append(API.items.length < 20 ? '' : Popup.loc('More').link(dialog.url, {class:'more dialog'}))
+						$('#history .mCSB_container').html(hist).append(API.items.length < 20 ? '' : Popup.loc('More').link(dialog.url, {class:'more dialog'}))
 						.linkify({
 							format: function (value, type) {
 								if (type === 'url' && value.length > 40) {
@@ -153,26 +151,8 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 								}
 								return value;
 							}
-						})
-						.mCustomScrollbar({
-							axis: 'y',
-							autoHideScrollbar: true,
-							alwaysShowScrollbar: 0,
-							contentTouchScroll: false,
-							theme: "dark-thin",
-							scrollbarPosition: 'inside',
-							scrollInertia: 150,
-							live: true,
-							keyboard: {
-								enable: false
-							},
-							mouseWheel: {
-								scrollAmount: 36
-							},
-							advanced: {
-								updateOnContentResize: true
-							}
 						});
+						$('#history').mCustomScrollbar('scrollTo', 'top');
 					},
 					fail: function(API) {
 						$('#history').html('Api error: ' + API.error.error_code + '. ' + API.error.error_msg)
