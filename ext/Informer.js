@@ -46,7 +46,7 @@ var Informer = {
 			});
 		}
 		// Устанавливаем параметры для ajax
-		this.api.v = '5.37';
+		this.api.v = '5.40';
 		this.api.user_id -= 0;
 
 		// Устанавливаем иконку
