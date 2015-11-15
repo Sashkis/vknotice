@@ -130,7 +130,7 @@ var Informer = {
 	 * Выполняет основной запрос
 	 */
 	mainRequest: function () {
-		this.callAPI('execute.getdata_beta', {
+		this.callAPI('execute.getdata', {
 			data: {
 				'options': this.options,
 				'loadComment': this.loadComment,
