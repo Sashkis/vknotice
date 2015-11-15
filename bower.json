@@ -1,6 +1,6 @@
 {
   "name": "Информер Вконтакте",
-  "version": "4.2",
+  "version": "4.2.5",
   "authors": [
     "Alex Kozack <cawa-93@yandex.ru>"
   ],
@@ -23,7 +23,7 @@
   "dependencies": {
     "jQuery-linkify": "git://github.com/SoapBox/linkifyjs.git#~1.1.7",
     "jquery": "~2.1.4",
-    "malihu-custom-scrollbar-plugin": "~3.0.9"
+    "malihu-custom-scrollbar-plugin": "~3"
   },
   "devDependencies": {}
 }
