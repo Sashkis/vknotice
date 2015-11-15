@@ -13,23 +13,9 @@ chrome.storage.local.get(['alerts', 'showMessage', 'audio', 'counter', 'friends'
 		try {
 			var $onlineUsers = Popup.builFriendsOnline();
 
-			// Событине для удаления друга онлайн
-			$onlineUsers.on('click', '.icon-cancel', function () {
-				var $user = $(this).parents('figure').addClass('delete').append('<div class="wait"><i class="icon-spin4 animate-spin"></i></div>');
-				var user = $user.data();
-
-				user.addOrDel('delete', {
-					done: function () {
-						$user.remove();
-						console.info('User deleted');
-					}
-				});
-				return false;
-			});
-
 			// Событине для создания нового сообщения
-			$onlineUsers.on('click', '.icon-pencil', function () {
-				var user = $(this).parents('figure').data();
+			$onlineUsers.on('click', '.ava-container', function () {
+				var user = $(this).data();
 				if ($('#newmess .dialog').is('#dialog-' + user.id)) {
 					$('#messages .slide').trigger('click');
 					$('#newmess #dialog-' + user.id).trigger('click');

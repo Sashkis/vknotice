@@ -197,7 +197,8 @@ var Popup = {
 		if (this.friends.length > 0) {
 			this.friends.forEach(function (user_id) {
 				var user = new User(user_id);
-				frag.append($('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.loc('Remove', true)}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
+				// frag.append($('<figure>' + user.profileLink(user.ava({marker: false}).icon('cancel', {title: this.loc('Remove', true)}) + ''.link(VK + 'im?sel=' + user.id, {class: 'icon-pencil'}) + '<figcaption>' + user.name + '</figcaption>') + '</figure>').data(user));
+				frag.append( $( (user.ava({marker: false}) + '<div class="ava-caption">' + '<span class="name">' + ''.icon('pencil') + user.name + '</span>' + '</div>' ).link(VK + 'im?sel=' + user.id, {class: 'ava-container'}) ).data(user) );
 			}, this);
 		}
 		return $('#friends-online').html(frag);

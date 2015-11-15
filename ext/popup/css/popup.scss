@@ -231,7 +231,7 @@ header {
 		min-height: 235px;
 		opacity: .3;
 	}
-	figure {
+	.ava-container {
 		display: inline-block;
 		height: 100px;
 		margin: 4.5px 0 0 0;
@@ -255,86 +255,41 @@ header {
 			display: none;
 		}
 		&:hover {
-			figcaption {
-				bottom: 0px;
+			.ava-caption {
+				top: 0px;
 			}
-			.icon-cancel {
-				right: 0px;
-			}
-			.icon-pencil {
-				left: 0px;
-			}
-		}
-		&.delete {
-			a {
-				cursor: wait;
-			}
-			.icon-cancel, .icon-pencil, figcaption {
-				display: none;
-			}
-			.wait {
-				cursor: wait;
-				background: rgba(0,0,0,.5);
-				position: absolute;
-				height: 100%;
-				width: 100%;
-				i {
-					position: absolute;
-					color: #fff;
-					background: none;
-					font-size: 30px;
-					left: 50%;
-					margin-left: -21px;
-					margin-top: -15px;
-					top: 50%;
-				}
-			}
-		}
-		a {
-			display: block;
 		}
 		img {
 			margin: 0;
 		}
-		%icon {
-			background: rgba(0,0,0,.5);
-			color: #fff;
-			display: block;
-			font-size: 11px;
-			line-height: 15px;
-			padding: 2px;
-			position: absolute;
-			text-align: center;
-			opacity: 0.75;
-			&:hover {
-				opacity: 1;
-			}
-		}
-		.icon-cancel {
-			@extend %icon;
-			right: -100%;
-			z-index: 1;
-			transition: right .3s;
-		}
-		.icon-pencil {
-			@extend %icon;
-			left: -100%;
-			transition:left .3s;
-		}
 	}
-	figcaption {
+	.ava-caption {
 		background: rgba(0,0,0,.5);
-		bottom: -100%;
+		top: -100px;
 		box-sizing: border-box;
 		color: #fff;
 		display: block;
 		font-size: 11px;
 		line-height: 15px;
-		padding: 5px;
 		position: absolute;
 		text-align: center;
-		transition: bottom .3s;
+		transition: top .3s;
 		width: 100%;
+		height: 100%;
+	}
+	.name {
+		display: block;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		padding: 5px 0;
+	}
+	.icon-pencil {
+	    position: absolute;
+	    width: 100%;
+	    font-size: 30px;
+	    left: 0;
+	    top: -45px;
 	}
 }
 
