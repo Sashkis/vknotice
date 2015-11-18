@@ -478,7 +478,7 @@ var Informer = {
 			'url'			: 'http://vk.com/note45421694_12011424',
 			'title'			: chrome.i18n.getMessage('extName'),
 			'description'	: chrome.i18n.getMessage('extDesc'),
-			'image'			: 'https://pp.vk.me/c623729/v623729694/33226/hJOeXwJ9gSI.jpg'
+			'image'			: 'https://pp.vk.me/c623123/v623123694/557d0/JQp0qYXHYcY.jpg'
 		}, share_options));
 	},
 };
