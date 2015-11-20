@@ -5,7 +5,6 @@
  * @property {Boolean}	audio			Звуковые оповещения
  * @property {Number}	badge			Число для бейджа
  * @property {Number}	delay			Интервалы между запросами
- * @property {String}	iconSufix		Суфикс для иконки
  * @property {Number}	lastLoadAlert	Последнее загруженное сообщение
  * @property {String}	options			Опции
  * @property {Boolean}	showMessage		Показывать число сообщений а не диалогов
@@ -36,7 +35,6 @@ var Informer = {
 				'openComment':0,
 				'options': 'friends,photos,videos,messages,groups,notifications',
 				'delay': 0,
-				'iconSufix': '.i18n',
 				'StatPosted': $.Deferred()
 			}, params);
 		} else {
@@ -48,9 +46,6 @@ var Informer = {
 		// Устанавливаем параметры для ajax
 		this.api.v = '5.40';
 		this.api.user_id -= 0;
-
-		// Устанавливаем иконку
-		this.iconSufix =  this.lang < 3 ? '' : '.i18n'
 
 		this.loadTranslate();
 		this.deamonStart();
@@ -120,7 +115,7 @@ var Informer = {
 			return false;
 		}
 		this.delay = 0;
-		chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
+		chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
 		console.info('Daemon stopped');
 		return true;
 	},
@@ -130,7 +125,7 @@ var Informer = {
 	 * Выполняет основной запрос
 	 */
 	mainRequest: function () {
-		this.callAPI('execute.getdata', {
+		this.callAPI('execute.getdata_beta', {
 			data: {
 				'options': this.options,
 				'loadComment': this.loadComment,
@@ -153,7 +148,7 @@ var Informer = {
 					delete API.system;
 					API.lang = this.getLangCode(API.lang);
 					chrome.storage.local.set(API);
-					chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '.png'});
+					chrome.browserAction.setIcon({path: 'img/icon38.png'});
 					this.setCounters(API.counter, API.dialogs);
 					this.saveAlert(false, 'error');
 				}
@@ -163,7 +158,7 @@ var Informer = {
 				}
 			},
 			fail: function () {
-				chrome.browserAction.setIcon({path: 'img/icon38' + this.iconSufix + '-off.png'});
+				chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
 			},
 			always: function (jqxhr) {
 				if (jqxhr.statusText !== 'canceled') {
@@ -478,7 +473,8 @@ var Informer = {
 			'url'			: 'http://vk.com/note45421694_12011424',
 			'title'			: chrome.i18n.getMessage('extName'),
 			'description'	: chrome.i18n.getMessage('extDesc'),
-			'image'			: 'https://pp.vk.me/c623123/v623123694/557d0/JQp0qYXHYcY.jpg'
+			'image'			: 'https://pp.vk.me/c623123/v623123694/557d0/JQp0qYXHYcY.jpg',
+			'noparse'		: 'true',
 		}, share_options));
 	},
 };
