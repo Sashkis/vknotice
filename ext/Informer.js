@@ -31,7 +31,7 @@ var Informer = {
 					'access_token': '',
 					'user_id': null
 				},
-				'loadComment':1,
+				'loadComment':0,
 				'openComment':0,
 				'options': 'friends,photos,videos,messages,groups,notifications',
 				'delay': 0,
@@ -125,7 +125,7 @@ var Informer = {
 	 * Выполняет основной запрос
 	 */
 	mainRequest: function () {
-		this.callAPI('execute.getdata_beta', {
+		this.callAPI('execute.getdata', {
 			data: {
 				'options': this.options,
 				'loadComment': this.loadComment,
