@@ -7,5 +7,3 @@ function save() {
 };
 
 save();
-
-setInterval(save, 1000);
