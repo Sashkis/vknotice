@@ -2,12 +2,7 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<!-- @import min.css -->
-	<!-- bower:css -->
-	<link rel="stylesheet" href="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
-	<!-- endbower -->
 	<link rel="stylesheet" href="css/popup.css">
-	<!-- @import /min.css -->
 </head>
 <body>
 	<div class="wraper show"><div><i class="icon-spin4 animate-spin"></i></div></div>
@@ -16,7 +11,7 @@
 		<header>
 			<a class="navbar-brand" target="_blank" href="https://vk.com/vknotice">Informer</a>
 			<span class="dropdown navbar-right">
-				<a class="profile"></a>
+				<a class="profile" href="#"></a>
 				<ul class="dropdown-menu">
 					<li>
 						<a target="_blank" href="https://vk.com/page-90041499_50788371" class="faq">Ask question</a>
@@ -29,17 +24,17 @@
 					</li>
 					<li role="separator" class="divider"></li>
 					<li>
-						<a target="_blank" href="https://vk.com/share.php?url=http%3A%2F%2Fvk.com%2Fnote45421694_12011424&title=Информер+Вконтакте&description=Отображает+количество+непрочитанных+сообщений+и+позволяет+ответить+не+заходя+в+ВК!&image=https%3A%2F%2Fpp.vk.me%2Fc623729%2Fv623729694%2F33226%2FhJOeXwJ9gSI.jpg" class="share" >Tell your friends</a>
+						<a target="_blank" href="https://vk.com/share.php?url=http%3A%2F%2Fvk.com%2Fnote45421694_12011424&title=Информер+Вконтакте&description=Отображает+количество+непрочитанных+сообщений+и+позволяет+ответить+не+заходя+в+ВК!&image=https%3A%2F%2Fpp.vk.me%2Fc628716%2Fv628716694%2F2c20c%2Ff3gq0pcaqHI.jpg&noparse=true" class="share" >Tell your friends</a>
 					</li>
 					<li>
 						<a target="_blank" href="https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn/reviews" class="review" >Leave a review</a>
 					</li>
 					<li role="separator" class="divider"></li>
 					<li>
-						<a target="_blank" class="settings" >Settings</a>
+						<a target="_blank" class="settings">Settings</a>
 					</li>
 					<li>
-						<a class="logout" >Logout</a>
+						<a class="logout">Logout</a>
 					</li>
 				</ul>
 			</span>
@@ -88,7 +83,6 @@
 			<li id="feed">
 				<a href="https://vk.com/feed" target="_blank">
 					<span class="i18n">My News</span>
-					<span class="counter"></span>
 				</a>
 			</li>
 			<li id="notifications">
@@ -109,12 +103,14 @@
 		<div id="newmess" class="slider panel" data-before="Please inform the developers."></div>
 		<div id="history" class="slider panel"></div>
 	</div>
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../inc/Class.Vk.js"></script>
+	<script src="../inc/Class.App.js"></script>
 	<!-- @import min.js -->
 	<!-- bower:js -->
-	<script src="../bower_components/jquery/dist/jquery.js"></script>
-	<script src="../bower_components/jQuery-linkify/dist/jquery.linkify.js"></script>
 	<script src="../bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 	<script src="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+	<script src="../bower_components/linkifyjs/linkify.js"></script>
 	<!-- endbower -->
 	<script src="Global.js"></script>
 	<script src="Emoji.js"></script>
@@ -122,7 +118,7 @@
 	<script src="Dialog.js"></script>
 	<script src="User.js"></script>
 	<script src="Popup.js"></script>
-	<script src="main.js"></script>
 	<!-- @import /min.js -->
+	<script src="main.js"></script>
 </body>
 </html>

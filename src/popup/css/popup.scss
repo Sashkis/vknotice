@@ -17,7 +17,6 @@ body {
 }
 a {
 	color: #2B587A;
-	cursor: pointer;
 	text-decoration: none;
 }
 %top-block {
@@ -56,7 +55,7 @@ a {
 	@extend %top-block;
 	top: -100%;
 	display: block;
-	transition: top .3s;
+	transition: top .2s;
 
 	&.show {
 		top: 0%;
@@ -87,10 +86,24 @@ a {
 			}
 		}
 
-		tbody td {
-			height: 214px;
-			font-size: 120%;
-			padding: 0px 15px;
+		tbody {
+			td {
+				height: 214px;
+				font-size: 120%;
+			}
+			a {
+				display: block;
+			}
+			.text {
+				color: #000;
+			}
+			.img {
+				padding-bottom: 20px;
+			}
+			.ancor {
+				padding-top: 10px;
+				font-weight: bold;
+			}
 		}
 	}
 }
@@ -151,8 +164,6 @@ header {
 			display: inline;
 			img {
 				margin: 25px-16px 0 0 10px;
-				width: 32px;
-				height: 32px;
 				-webkit-border-radius: 16px;
 			}
 		}
@@ -184,7 +195,7 @@ header {
 		display: inline-block;
 		position: absolute;
 		left: 470px;
-		transition: left .3s;
+		transition: left .2s;
 		&.open {
 			left: 145px;
 		}
@@ -211,15 +222,12 @@ header {
 		}
 		.counter {
 			background: rgba($mainColor, 0.2);
-			border-radius: 2px;
-			color: #45688E;
-			float: right;
-			font-size: 10px;
-			font-weight: bold;
-			line-height: 19px;
-			margin: 1.5px 2px 1.5px 1px;
-			padding: 0 4px;
-			transition: background-color 200ms linear, color 200ms linear;
+		    color: #45688E;
+		    float: right;
+		    font-size: 10px;
+		    font-weight: bold;
+		    line-height: 22px;
+		    padding: 0 4px;
 		}
 	}
 }
@@ -273,7 +281,7 @@ header {
 		line-height: 15px;
 		position: absolute;
 		text-align: center;
-		transition: top .3s;
+		transition: top .2s;
 		width: 100%;
 		height: 100%;
 	}
@@ -306,6 +314,9 @@ header {
 		margin: 0;
 		padding: 5px;
 		border-bottom: 1px solid #e4e8ed;
+		.ava img {
+			margin-right: 10px;
+		}
 		i {
 			border-radius: 2px;
 			color: rgba($mainColor, 0.5);
@@ -333,7 +344,6 @@ header {
 
 .ava img {
 	float: left;
-	margin-right: 10px;
 	background: url(../img/camera_100.png);
 	background-size: 100% 100%;
 }
@@ -365,8 +375,7 @@ header {
 	}
 }
 
-#newmess,
-#history {
+#newmess {
 	overflow: auto;
 	padding: 0;
 	.dialog {
@@ -390,6 +399,12 @@ header {
 				color: #8795a5;
 			}
 		}
+		&.dialog-answer-unread {
+			.mess-container message {
+				padding: 5px;
+				background: rgba($mainColor, 0.1);
+			}
+		}
 		/* Диалог с Администрацией */
 		&#dialog-100 .name {
 			color: #2E7B27;
@@ -400,62 +415,59 @@ header {
 				display: block;
 			}
 		}
-		&.dialog-ansver-unread {
-			.mess-container {
-				background-color: rgba($mainColor, 0.1);
-				padding: 5px;
-			}
+		.header {
+			padding-left: 60px;
 		}
-		&.dialog-group {
-			.compact {
-				clear: both;
-			}
+		.photo {
+			margin-left: -60px;
 		}
-		.group-photo {
+		.dialog-group .photo {
 			overflow: hidden;
 			background: none;
 			float: left;
 			margin-right: 10px;
 			width: 50px;
-			.ava-half {
-				width: 23px;
-				height: 50px;
-				overflow: hidden;
-				border-radius: 2px;
-				margin: 0 4px 0 0;
-				float: left;
-				&:nth-of-type(2) {
-					margin-right: 0;
-				}
-				img {
-					margin: 0px -12px;
-				}
-				.online {
-					&:before {
-						left: 14px;
-					}
-				}
+		}
+
+		.ava-half {
+			width: 23px;
+			height: 50px;
+			overflow: hidden;
+			border-radius: 2px;
+			margin: 0 4px 0 0;
+			float: left;
+			&:nth-of-type(2) {
+				margin-right: 0;
 			}
-			.ava-quarter {
-				width: 23px;
-				height: 23px;
-				overflow: hidden;
-				border-radius: 2px;
-				margin: 0 4px 4px 0;
-				&:nth-of-type(3),
-				&:nth-of-type(4) {
-					margin-bottom: 0;
-				}
-				.online {
-					&:before {
-						top: 17px;
-						left: 17px;
-						width: 4px;
-						height: 4px;
-					}
+			img {
+				margin: 0px -12px;
+			}
+			&.online {
+				&:before {
+					left: 15px;
 				}
 			}
 		}
+		.ava-quarter {
+			width: 23px;
+			height: 23px;
+			overflow: hidden;
+			border-radius: 2px;
+			margin: 0 4px 4px 0;
+			&:nth-of-type(3),
+			&:nth-of-type(4) {
+				margin-bottom: 0;
+			}
+			&.online {
+				&:before {
+					top: 17px;
+					left: 17px;
+					width: 4px;
+					height: 4px;
+				}
+			}
+		}
+
 		.name {
 			display: block;
 			margin-bottom: 2px;
@@ -475,15 +487,9 @@ header {
 		}
 		.mess-container {
 			display: block;
-			margin-left: 60px;
 			overflow: hidden;
-		}
-		.body {
+			padding-left: 10px;
 			color: #000;
-			&[class^="icon-"]:before,
-			&[class*=" icon-"]:before {
-				display: inline;
-			}
 			.system {
 				font-style: italic;
 				opacity: 0.5;
@@ -498,6 +504,9 @@ header {
 					height: 32px;
 					width: auto;
 				}
+			}
+			.ava img {
+				margin-right: 5px;
 			}
 		}
 		a {
@@ -526,11 +535,11 @@ header {
 				}
 			}
 		}
-		.fwd {
-			padding-left: 5px;
-			border-left: 2px solid #C3D1E0;
-			overflow: hidden;
-		}
+	}
+	message {
+		display: block;
+		overflow: hidden;
+		margin-bottom: 5px;
 	}
 }
 
@@ -563,11 +572,17 @@ header {
 }
 
 #history {
-	&:empty {
+	overflow: auto;
+	padding: 0;
+	.ava img {
+		margin-right: 5px;
+	}
+	.mCSB_container:empty {
 		cursor: wait;
 		min-height: 229px;
 		text-align: center;
 		padding-top: 85px;
+		box-sizing: border-box;
 		&::before {
 			-webkit-animation: spin 2s infinite linear;
 			animation: spin 2s infinite linear;
@@ -580,6 +595,22 @@ header {
 	}
 	.dialog {
 		cursor: default;
+		display: block;
+		overflow: hidden;
+		padding: 5px;
+		word-break: break-word;
+		& + .dialog {
+			border-top: 1px solid rgba($mainColor, 0.15);
+		}
+		&:hover,
+		&.open {
+			& + .dialog {
+				border-color: rgba($mainColor, 0.3);
+			}
+			border-color: rgba($mainColor, 0.22);
+			background: rgba($mainColor, 0.1);
+		}
+
 	}
 	.more {
 		cursor: pointer;

@@ -3,7 +3,7 @@
 	"name": "__MSG_extName__",
 	"description": "__MSG_extDesc__",
 	"short_name": "Vk notice",
-	"version": "4.2.6",
+	"version": "4.3",
 
 	"default_locale": "ru",
 
@@ -25,9 +25,6 @@
 	"content_scripts": [{
 		"matches": ["*://oauth.vk.com/blank.html"],
 		"js": ["get_token.js"]
-	},{
-		"matches": ["*://vk.com/*"],
-		"js": ["comment.js"]
 	}],
 	"browser_action": {
 		"default_title": "__MSG_extName__",

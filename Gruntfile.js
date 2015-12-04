@@ -3,55 +3,67 @@ module.exports = function(grunt) {
 	// 1. Вся настройка находится здесь
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		manifest: grunt.file.readJSON('ext/manifest.json'),
+		manifest: grunt.file.readJSON('src/manifest.json'),
 		copy: {
 			main: {
 				files: [
-					{expand: true, cwd: 'ext/', src: ['_locales/**', 'audio/**', 'img/**', 'lang/**', 'manifest.json', 'background.html'], dest: 'build/'},
-					{expand: true, cwd: 'ext/popup', src: ['font/**', 'img/**', 'popup.html'], dest: 'build/popup/'},
-					{expand: true, cwd: 'ext/bower_components/jquery/dist', src: ['jquery.min.js'], dest: 'build/popup/'},
-					{expand: true, cwd: 'ext/options', src: ['font/**', 'index.html'], dest: 'build/options/'},
+					{expand: true, cwd: 'src/', src: ['_locales/**', 'audio/**', 'img/**', 'lang/**', 'manifest.json', 'background.html'], dest: 'dist/'},
+					{expand: true, cwd: 'src/popup', src: ['font/**', 'img/**', 'popup.html'], dest: 'dist/popup/'},
+					{expand: true, cwd: 'src/options', src: ['font/**', 'index.html'], dest: 'dist/options/'},
+					{expand: true, cwd: 'src/bower_components/jquery/dist', src: ['jquery.min.js'], dest: 'dist/inc/plugins/'},
 				],
 			},
 		},
-		bower_concat: {
-			options: { separator : ';' },
-			popup: {
-				dest: '.cache/bower-concat.js',
-				cssDest: '.cache/bower-concat.css',
-				exclude: ['jquery'],
-			},
-		},
+
 		uglify: {
 			popup: {
 				files: {
-					'build/popup/popup.min.js': ['.cache/bower-concat.js', 'ext/popup/*.js']
+					'dist/popup/main.js': [
+						'src/bower_components/linkifyjs/linkify.js',
+						'src/bower_components/linkifyjs/linkify-jquery.js',
+						'src/bower_components/jquery-mousewheel/jquery.mousewheel.js',
+						'src/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js',
+						'src/popup/*.js',
+					]
 				}
 			},
 			background: {
 				files: {
-					'build/background.min.js': ['ext/Informer.js', 'ext/background.js'],
+					'dist/background.js': ['src/Informer.js', 'src/background.js'],
 				}
 			},
 			options_page: {
 				files: {
-					'build/options/main.min.js': ['ext/options/main.js'],
+					'dist/options/main.js': ['src/options/main.js'],
 				}
 			},
 			content: {
 				files: {
-					'build/get_token.js': ['ext/get_token.js'],
-					'build/comment.js': ['ext/comment.js']
+					'dist/get_token.js': ['src/get_token.js'],
+				}
+			},
+			vkClass: {
+				files: {
+					'dist/inc/Class.Vk.js': ['src/inc/Class.Vk.js'],
+				}
+			},
+			appClass: {
+				files: {
+					'dist/inc/Class.App.js': ['src/inc/Class.App.js'],
 				}
 			}
 		},
+
 		csso: {
 			popup: {
 				options: {
 					report: 'gzip'
 				},
 				files: {
-					'build/popup/css/popup.min.css': ['.cache/bower-concat.css', 'ext/popup/css/*.css']
+					'dist/popup/css/popup.css': [
+					'src/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css',
+					'src/popup/css/*.css'
+				]
 				}
 			},
 			options_page: {
@@ -59,111 +71,98 @@ module.exports = function(grunt) {
 					report: 'gzip'
 				},
 				files: {
-					'build/options/css/style.min.css': ['ext/options/css/*.css']
+					'dist/options/css/style.css': ['src/options/css/*.css']
 				}
 			},
 		},
+
 		'string-replace': {
 			popup: {
 				files: {
-					'build/popup/popup.html': 'build/popup/popup.html'
+					'dist/popup/popup.html': 'dist/popup/popup.html'
 				},
 				options: {
 					replacements: [{
 						pattern: /<!-- @import min\.js -->(.|\n)*<!-- @import \/min\.js -->/gm,
-						replacement: '<script src="jquery.min.js"></script><script src="popup.min.js"></script>'
+						replacement: ''
 					},{
 						pattern: /<!-- @import min\.css -->(.|\n)*<!-- @import \/min\.css -->/gm,
-						replacement: '<link rel="stylesheet" href="css/popup.min.css">'
+						replacement: ''
+					},{
+						pattern: /bower_components\/jquery\/dist\/jquery.js/gm,
+						replacement: 'inc/plugins/jquery.min.js'
 					}]
 				}
 			},
+
 			background: {
 				files: {
-					'build/background.html': 'build/background.html'
+					'dist/background.html': 'dist/background.html'
 				},
 				options: {
 					replacements: [{
 						pattern: /<!-- @import min\.js -->(.|\n)*<!-- @import \/min\.js -->/gm,
-						replacement: '<script src="popup/jquery.min.js"></script><script src="background.min.js"></script>'
+						replacement: ''
+					},{
+						pattern: /bower_components\/jquery\/dist\/jquery.js/gm,
+						replacement: 'inc/plugins/jquery.min.js'
 					}]
 				}
 			},
 			options_page: {
 				files: {
-					'build/options/index.html': 'build/options/index.html'
+					'dist/options/index.html': 'dist/options/index.html'
 				},
 				options: {
 					replacements: [{
 						pattern: /<!-- @import min\.js -->(.|\n)*<!-- @import \/min\.js -->/gm,
-						replacement: '<script src="../popup/jquery.min.js"></script><script src="main.min.js"></script>'
+						replacement: ''
 					},{
-						pattern: /<!-- @import min\.css -->(.|\n)*<!-- @import \/min\.css -->/gm,
-						replacement: '<link rel="stylesheet" href="css/style.min.css">'
+						pattern: /bower_components\/jquery\/dist\/jquery.js/gm,
+						replacement: 'inc/plugins/jquery.min.js'
 					}]
 				}
 			},
 		},
-		zip: {
-			build: {
-				cwd: 'build/',
-				src: 'build/**',
-				dest: 'Архив/' + '<%= manifest.version %>' + '.zip',
-				compression: 'DEFLATE'
-			}
-		},
-		fontello: {
-			ext: {
-				options: {
-					config: 'fontello/config.json',
-					fonts : 'ext/popup/font/',
-					styles: 'ext/popup/css/',
-					scss    : true,
-					exclude: ['fontello-codes.css', 'fontello-embedded.css', 'fontello-ie7.css', 'fontello-ie7-codes.css']
-				}
-			},
-			fontello: {
-				options: {
-					config: 'fontello/config.json',
-					fonts : 'fontello/font/',
-					styles: 'fontello/css/',
-				}
-			},
-		},
-		wiredep: {
-			target: {
-				src: 'ext/popup/popup.html' // point to your HTML file.
-			}
-		},
 		htmlmin: {
-			build: {
+			background: {
 				options: {
 					removeComments: true,
 					collapseWhitespace: true
 				},
 				files: {
-					'build/background.html': 'build/background.html',
-					'build/popup/popup.html': 'build/popup/popup.html'
+					'dist/background.html': 'dist/background.html',
 				}
 			},
-			dev: {
+
+			popup: {
+				options: {
+					removeComments: true,
+					collapseWhitespace: true
+				},
 				files: {
-					'ext/background.html': 'ext/background.html',
-					'ext/popup/popup.html': 'ext/popup/popup.html'
+					'dist/popup/popup.html': 'dist/popup/popup.html'
 				}
 			}
 		},
 		'json-minify': {
-			build: {
-				files: 'build/**/*.json'
+			dist: {
+				files: 'dist/**/*.json'
 			}
-}
-			
+		},
+		zip: {
+			dist: {
+				cwd: 'dist/',
+				src: 'dist/**',
+				dest: 'Архив/' + '<%= manifest.version %>' + '.zip',
+				compression: 'DEFLATE'
+			}
+		},
+
 	});
 
 	// 3. Тут мы указываем Grunt, что хотим использовать этот плагин
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-bower-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-csso');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -171,10 +170,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-string-replace');
 	grunt.loadNpmTasks('grunt-zip');
 
-	grunt.loadNpmTasks('grunt-fontello');
-	grunt.loadNpmTasks('grunt-wiredep');
 
 	// 4. Указываем, какие задачи выполняются, когда мы вводим «grunt» в терминале
-	grunt.registerTask('default', ['copy', 'bower_concat', 'uglify', 'csso', 'json-minify', 'string-replace', 'htmlmin:build', 'zip']);
-	grunt.registerTask('update', ['fontello', 'wiredep']);
+	grunt.registerTask('default', ['copy', 'uglify', 'csso', 'json-minify', 'string-replace', 'htmlmin', 'zip']);
 };

@@ -267,15 +267,6 @@
 		"54":"Afișa numărul de mesaje",
 		"61":"Weer te geven voor het aantal berichten"
 	},
-	"...Save":{
-		"0":"...Сохранение",
-		"1":"...Збереження",
-		"2":"...Захаванне",
-		"6":"...Speichern",
-		"15":"...Zapisywanie",
-		"54":"...Salvarea",
-		"61":"...Opslaan"
-	},
 
 
 
@@ -288,27 +279,8 @@
 		"54":"Aici va fi afișată lista cu mesajele Dvs.",
 		"61":"Hier ziet u de lijst met Uw berichten."
 	},
-	"Please inform the developers.":{
-		"0":"Пожалуйста сообщите разработчикам.",
-		"1":"Будь ласка, повідомте розробників.",
-		"2":"Калі ласка паведаміце распрацоўнікам.",
-		"6":"Bitte informieren Sie die Entwickler.",
-		"15":"Proszę zgłoś.",
-		"54":"Vă rugăm să informați dezvoltatorilor.",
-		"61":"Informeer je de ontwikkelaars."
-	},
 
 
-
-	"Mark as read":{
-		"0":"Пометить как прочитанные",
-		"1":"Позначити як прочитані",
-		"2":"Пазначыць як прачытаныя",
-		"6":"Markieren als gelesen markieren",
-		"15":"Oznacz jako przeczytane",
-		"54":"Marchează ca citite",
-		"61":"Markeren als gelezen"
-	},
 	"Accept":{
 		"0":"Принять",
 		"1":"Прийняти",
@@ -326,15 +298,6 @@
 		"15":"Odrzucić",
 		"54":"Respinge",
 		"61":"Weigeren"
-	},
-	"Remove":{
-		"0":"Удалить",
-		"1":"Видалити",
-		"2":"Выдаліць",
-		"6":"Entfernen",
-		"15":"Usunąć",
-		"54":"Elimina",
-		"61":"Verwijderen"
 	},
 
 
@@ -497,6 +460,15 @@
 
 
 
+	"Login":{
+		"0":"Войти",
+		"1":"Увійти",
+		"2":"Увайсці",
+		"6":"Anmelden",
+		"15":"Zalogować",
+		"54":"Fii autentificat",
+		"61":"Inloggen"
+	},
 	"Help us to become better":{
 		"0":"Помогите нам стать лучше",
 		"1":"Допоможіть нам стати краще",
@@ -542,14 +514,32 @@
 		"54":"Eroare de acces",
 		"61":"Fout bij toegang tot"
 	},
-	"Login":{
-		"0":"Войти",
-		"1":"Увійти",
-		"2":"Увайсці",
-		"6":"Anmelden",
-		"15":"Zalogować",
-		"54":"Fii autentificat",
-		"61":"Inloggen"
+	"Check your Internet connection":{
+		"0":"Проверьте интернет соединение",
+		"1":"Перевірте інтернет з'єднання",
+		"2":"Калі ласка, праверце інтэрнэт-злучэнне",
+		"6":"Überprüfen Sie die Internet-Verbindung",
+		"15":"Sprawdź połączenie z internetem",
+		"54":"Verificați conexiunea la internet",
+		"61":"Controleer uw Internet verbinding"
+	},
+	"Unknown error occurred":{
+		"0":"Произошла неизвестная ошибка",
+		"1":"Невідома помилка",
+		"2":"Невядомая памылка",
+		"6":"Ein unbekannter Fehler ist aufgetreten",
+		"15":"Wystąpił nieznany błąd",
+		"54":"A apărut o eroare necunoscută",
+		"61":"Er is een onbekende fout opgetreden"
+	},
+	"Please inform the developers.":{
+		"0":"Пожалуйста сообщите разработчикам.",
+		"1":"Будь ласка, повідомте розробників.",
+		"2":"Калі ласка паведаміце распрацоўнікам.",
+		"6":"Bitte informieren Sie die Entwickler.",
+		"15":"Proszę zgłoś.",
+		"54":"Vă rugăm să informați dezvoltatorilor.",
+		"61":"Informeer je de ontwikkelaars."
 	},
 
 
