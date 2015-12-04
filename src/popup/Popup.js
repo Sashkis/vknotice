@@ -153,6 +153,15 @@ var Popup = {
 			$('.slider.open').add('.slide.open').add(this).add(target).toggleClass('open');
 			return false;
 		});
+		var $unread = $('#newmess .dialog-unread');
+		if ( $unread.length > 0 ) {
+			$('#messages .slide').trigger('click');
+
+			if ( $unread.length === 1 ) {
+				$unread.trigger('click');
+			}
+		}
+
 		return this;
 	},
 
@@ -353,10 +362,12 @@ var Popup = {
 				$.each(stg.dialogs, function(index, dialog) {
 					if ( !!dialog.chat_active ) {
 						talkers = talkers.concat(dialog.chat_active);
-					} else {
-						talkers.push(dialog.user_id);
+						talkers.push(dialog.admin_id);
+						// talkers.push(dialog.admin_mid);
 					}
+					talkers.push(dialog.user_id);
 				});
+
 				pop.u(talkers).always(function (users) {
 
 					// Инициализация
@@ -493,7 +504,7 @@ var Popup = {
 						if ( !!changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue) ) {
 							$.each(changes.dialogs.newValue, function(i, dg) {
 								dg = new Dialog(dg);
-								$dg = $('#dialog-' + dg.id);
+								var $dg = $('#dialog-' + dg.id);
 								if ( $dg.length > 0 && $dg.data('hash') != dg.hash() ) {
 									var isOpen = $dg.hasClass('open');
 									$dg.removeAttr('class').addClass( dg.getClass( isOpen ? 'open' : '' ) ).find('.mess-container').html( dg.constructMessages(users) );

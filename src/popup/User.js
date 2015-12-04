@@ -59,14 +59,15 @@ User.prototype.ava = function (options) {
 		'isLink': false,
 		'size': 100,
 		'marker': true,
-		'type': 'full'
+		'src': this.photo_100,
+		'type': 'full',
 	}, options);
 
 	var $imgHTML = $('<div/>', {
 		'class': 'ava ava-' + options.type + (!!this.online && options.marker ? ' online' : ''),
 		html: $('<img/>', {
 			title: (options.title ? this.name : ''),
-			src: this.photo_100,
+			src: options.src,
 			width: options.size,
 			height: options.size,
 		})

@@ -23,7 +23,7 @@ function Message (mess_obj, parentDialogUrl) {
 	if ( !!mess_obj.action ) {
 		this.body = [ $('<span/>', {
 			'class': 'system',
-			html: Popup.loc(mess_obj.action),
+			html: Popup.loc(mess_obj.action) + ' ',
 		}) ];
 	} else if ( !!mess_obj.body ) {
 		mess_obj.body = mess_obj.body.escapeHtml();

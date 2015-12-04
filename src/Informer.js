@@ -151,13 +151,13 @@ var Informer = {
 			var inf = this;
 
 			inf.load({'showMessage': true}).done(function (stg) {
-				var sum = 0,
-					needSound = false;
+				var sum = 0;
+				var needSound = false;
 				$.each(counters, function (c, val) {
 					if ( c === 'messages' && !!stg.showMessage && !!dialogs ) {
 						sum = dialogs.reduce(function (sum, dialog) {
 							if ( !!dialog.unread ) {
-								if ( !needSound && dialog.push_settings === undefined || dialog.push_settings.sound !== 0 ) {
+								if ( !needSound && (dialog.push_settings !== undefined && dialog.push_settings.sound === 1 ) ) {
 									needSound = true;
 								};
 								return sum + dialog.unread;

@@ -19,8 +19,7 @@ function Dialog (dialog_obj) {
 	 * @see Dialog
 	 */
 	$.extend(this, dialog_obj);
-	delete this.message;
-	this.messages = [];
+
 	this.isGroup  = this.chat_id !== undefined;
 
 	if ( this.isGroup ) {
@@ -30,34 +29,17 @@ function Dialog (dialog_obj) {
 		this.id = this.user_id;
 		this.url = VK + 'im?sel=' + this.id;
 	}
-	if ( $.isArray(dialog_obj.message) && dialog_obj.message.length !== 0 ) {
-		this.addMess(dialog_obj.message);
-	} else {
-		delete dialog_obj.message;
-		this.addMess(dialog_obj);
-	}
-}
 
-/**
- * Добавляет одно или несколько сообщений в диалог
- * @param {Array.Object|Object} mess_array	Объект или Массив объектов сообщений загруженных через API
- * @return {Boolean} 						TRUE в случае успешного выполнения
- */
-Dialog.prototype.addMess = function (mess_array) {
-	if ( !$.isArray(mess_array) ) {
-		mess_array = [mess_array];
+	if ( $.isEmptyObject(dialog_obj.messages) ) {
+		delete dialog_obj.messages;
+		this.messages = [];
+		this.messages.push(dialog_obj);
 	}
-	var dg = this;
-	$.each(mess_array, function(index, mess) {
-		dg.messages.push(mess);
-	});
-	// Сортируем
+
 	this.messages.sort(function (mess_first, mess_second) {
 		return mess_first.date - mess_second.date;
 	});
-
-	return this;
-};
+}
 
 /**
  * Создаёт DOM елемент диалога.
@@ -126,11 +108,9 @@ Dialog.prototype.construct = function (users) {
 	var html = null;
 	$d.find('.photo').html( function () {
 		if ( !!dg.photo_50 ) {
-			return $('<img/>', {
-				'class': 'ava ava-full',
-				src: dg.photo_50,
-				widht: '50',
-				height: '50'
+			return new User().ava({
+				size: 50,
+				src: dg.photo_50
 			});
 		} else if ( dg.isGroup && $.isArray( dg.chat_active ) ) {
 			dg.chat_active = dg.chat_active.slice(0, 4);
