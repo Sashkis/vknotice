@@ -11,8 +11,5 @@
 /.cache/*
 /node_modules/*
 /Архив/*
-/ext/bower_components/*
-/build/*
-
-/fontello/*
-!/fontello/config.json
+/src/bower_components/*
+/dist/*
