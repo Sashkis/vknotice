@@ -4,6 +4,23 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		manifest: grunt.file.readJSON('src/manifest.json'),
+
+		sass: {
+			options: {
+				sourceMap: true
+			},
+			opt: {
+				files: {
+					'src/options/css/style.css': 'src/options/css/style.scss'
+				}
+			},
+			popup: {
+				files: {
+					'src/popup/css/popup.css': 'src/popup/css/popup.scss'
+				}
+			}
+		},
+
 		copy: {
 			main: {
 				files: [
@@ -11,6 +28,13 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'src/popup', src: ['font/**', 'img/**', 'popup.html'], dest: 'dist/popup/'},
 					{expand: true, cwd: 'src/options', src: ['font/**', 'index.html'], dest: 'dist/options/'},
 					{expand: true, cwd: 'src/bower_components/jquery/dist', src: ['jquery.min.js'], dest: 'dist/inc/plugins/'},
+				],
+			},
+			dev: {
+				files: [
+					{expand: true, cwd: 'src/', src: ['lang/**', 'manifest.json', 'background.html'], dest: 'dist/'},
+					{expand: true, cwd: 'src/popup', src: ['popup.html'], dest: 'dist/popup/'},
+					{expand: true, cwd: 'src/options', src: ['index.html'], dest: 'dist/options/'},
 				],
 			},
 		},
@@ -162,6 +186,7 @@ module.exports = function(grunt) {
 	});
 
 	// 3. Тут мы указываем Grunt, что хотим использовать этот плагин
+	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-csso');
@@ -172,5 +197,6 @@ module.exports = function(grunt) {
 
 
 	// 4. Указываем, какие задачи выполняются, когда мы вводим «grunt» в терминале
-	grunt.registerTask('default', ['copy', 'uglify', 'csso', 'json-minify', 'string-replace', 'htmlmin', 'zip']);
+	grunt.registerTask('default', ['sass', 'copy', 'uglify', 'csso', 'json-minify', 'string-replace', 'htmlmin', 'zip']);
+	grunt.registerTask('dev', ['sass', 'copy:dev', 'uglify', 'csso', 'string-replace']);
 };
