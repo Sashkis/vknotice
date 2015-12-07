@@ -21,6 +21,7 @@ $.when(Popup.loadTranslate(), Popup.checkError(), Popup.loadProfiles()).done(fun
 		// Событие нажатия на кнопку выхода
 		$('.logout').on('click', function () {
 			chrome.storage.local.remove(['user_id', 'access_token']);
+			return false;
 		});
 
 		app.addVisitor();
