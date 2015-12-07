@@ -11,9 +11,6 @@ body {
 	margin: 0;
 	width: 459px;
 	background: #f0f2f5;
-	&.grayscale {
-		-webkit-filter: grayscale(100%);
-	}
 }
 a {
 	color: #2B587A;
@@ -27,7 +24,7 @@ a {
 	top: 0;
 	width: 100%;
 	z-index: 1050;
-	background: rgba(255,255,255,.9) no-repeat center;
+	background: rgba(255,255,255,.9);
 	&.show {
 		display: block;
 	}
@@ -116,9 +113,11 @@ a {
 		color: #2B587A !important;
 	}
 }
+
 .icon-spin4.animate-spin {
 	cursor: wait;
 }
+
 header {
 	height: 50px;
 	color: #fff;
@@ -304,6 +303,17 @@ header {
 .slide.open {
 	background-color: $mainColor !important;
 	color: #fff !important;
+}
+
+.mCSB_scrollTools {
+	width: 8px;
+	right: -3px;
+}
+.mCSB_inside > .mCSB_container {
+	margin-right: 0px;
+}
+.mCSB_outside + .mCSB_scrollTools {
+	right: -7px;
 }
 
 #newfriends {
@@ -558,17 +568,6 @@ header {
 		border: 1px solid #fff;
 		border-radius: 10px;
 	}
-}
-
-.mCSB_scrollTools {
-	width: 8px;
-	right: -3px;
-}
-.mCSB_inside > .mCSB_container {
-	margin-right: 0px;
-}
-.mCSB_outside + .mCSB_scrollTools {
-	right: -7px;
 }
 
 #history {
