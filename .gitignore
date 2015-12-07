@@ -2,7 +2,8 @@
 *.zip
 *.sublime-project
 *.sublime-workspace
-*.css
+/src/**/*.css
+/src/**/*.css.map
 /Архив
 
 # ---- ДИРЕКТОРИИ ----
