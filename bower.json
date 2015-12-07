@@ -1,6 +1,6 @@
 {
   "name": "Информер Вконтакте",
-  "version": "4.3",
+  "version": "5.0.0",
   "authors": [
     "Alex Kozack <cawa-93@yandex.ru>"
   ],
@@ -23,7 +23,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "malihu-custom-scrollbar-plugin": "~3",
-    "linkifyjs": "v2.0.0-beta.5"
+    "linkifyjs": "~2"
   },
   "devDependencies": {}
 }

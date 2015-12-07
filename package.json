@@ -1,22 +1,21 @@
 {
   "name": "VkNotice",
-  "version": "4.3",
+  "version": "5.0.0",
   "author": "Alex Kozack <cawa-93@yandex.ru>",
   "description": "Browser extension",
   "homepage": "https://vk.com/vknotice",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.9.1",
-    "grunt-bower-concat": "~0.5.0",
     "grunt-csso": "~0.7.1",
     "grunt-string-replace": "~1.2.0",
-    "grunt-wiredep": "~2.0.0",
     "grunt-contrib-htmlmin": "~0.4.0",
     "grunt-contrib-copy": "~0.8.0",
     "grunt-contrib-concat": "~0.5.1",
     "grunt-json-minify": "~0.4.0",
     "grunt-zip": "~0.16.2",
     "grunt-contrib-compress": "~0.13.0",
-    "grunt-contrib-nodeunit": "~0.4.1"
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-sass": "~1.1.0"
   }
 }
