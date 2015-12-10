@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Объект диалога
  * @class
@@ -12,7 +13,6 @@
  * @property {Number} user_id			ID собеседника
  */
 function Dialog (dialog_obj) {
-	var VK = 'https://vk.com/';
 	/**
 	 * Инициализирует диалог
 	 * @param {Object} dialog_obj		Объект диалога загруженный через API
@@ -20,14 +20,14 @@ function Dialog (dialog_obj) {
 	 */
 	$.extend(this, dialog_obj);
 
-	this.isGroup  = this.chat_id !== undefined;
+	this.isGroup = this.chat_id !== undefined;
 
 	if ( this.isGroup ) {
 		this.id = this.chat_id;
-		this.url = VK + 'im?sel=c' + this.id;
+		this.url = 'https://vk.com/im?sel=c' + this.id;
 	} else {
 		this.id = this.user_id;
-		this.url = VK + 'im?sel=' + this.id;
+		this.url = 'https://vk.com/im?sel=' + this.id;
 	}
 
 	if ( $.isEmptyObject(dialog_obj.messages) ) {
@@ -46,19 +46,13 @@ function Dialog (dialog_obj) {
  * @return {jQuery} Данный диалог
  */
 Dialog.prototype.construct = function (users) {
-	var dg = this;
-	if ( dg.isGroup ) {
-		var peer = {
-			chat_id: dg.id
-		};
-	} else {
-		var peer = {
-			user_id: dg.id
-		};
+	const dg = this;
+	const peer = {};
 
-	}
+	if ( dg.isGroup ) peer.chat_id = dg.id;
+	else peer.user_id = dg.id;
 
-	var $d = $('<a/>', {
+	const $d = $('<a/>', {
 		id: 'dialog-' + dg.id,
 		'class': dg.getClass(),
 		href: dg.url,
@@ -77,7 +71,7 @@ Dialog.prototype.construct = function (users) {
 						$('<div/>',{
 							'class': 'name',
 							html: [
-								$('<span/>',{'class': 'title'}), ,
+								$('<span/>',{'class': 'title'}),
 								$('<span/>',{
 									'class':'date',
 									html: new Date(dg.date*1000).toStringVkFormat()
@@ -94,10 +88,9 @@ Dialog.prototype.construct = function (users) {
 			]
 		}),
 	}).data({
-		answer: peer,
+		peer: peer,
 		markAsRead: {
-			peer_id: dg.id,
-			start_message_id: dg.messages[0].id
+			peer_id: dg.id + (dg.isGroup ? 2000000000 : 0)
 		},
 		url: dg.url,
 		hash: dg.hash(),
@@ -105,7 +98,6 @@ Dialog.prototype.construct = function (users) {
 	});
 
 	// Вставляет ФОТО
-	var html = null;
 	$d.find('.photo').html( function () {
 		if ( !!dg.photo_50 ) {
 			return new User().ava({
@@ -115,26 +107,20 @@ Dialog.prototype.construct = function (users) {
 		} else if ( dg.isGroup && $.isArray( dg.chat_active ) ) {
 			dg.chat_active = dg.chat_active.slice(0, 4);
 			switch (dg.chat_active.length) {
-				case 1 : return users[ dg.chat_active[0] ].ava({size: 50}); break;
-				case 2 : return [ users[ dg.chat_active[0] ].ava({size: 50, type: 'half'}), users[ dg.chat_active[1] ].ava({size: 50, type: 'half'}) ]; break;
-				case 3 : return [ users[ dg.chat_active[0] ].ava({size: 50, type: 'half'}), users[ dg.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[2] ].ava({size: 23, type: 'quarter'}) ]; break;
-				case 4 : return [ users[ dg.chat_active[0] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[2] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[3] ].ava({size: 23, type: 'quarter'}) ]; break;
+				case 1 : return users[ dg.chat_active[0] ].ava({size: 50});
+				case 2 : return [ users[ dg.chat_active[0] ].ava({size: 50, type: 'half'}), users[ dg.chat_active[1] ].ava({size: 50, type: 'half'}) ];
+				case 3 : return [ users[ dg.chat_active[0] ].ava({size: 50, type: 'half'}), users[ dg.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[2] ].ava({size: 23, type: 'quarter'}) ];
+				case 4 : return [ users[ dg.chat_active[0] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[2] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[3] ].ava({size: 23, type: 'quarter'}) ];
 			}
 		} else {
 			return users[ dg.user_id ].ava({size: 50});
 		}
 	} );
 
-
 	// Вставляет Имя
 	$d.find('.name').text( function () {
-		if ( dg.isGroup ) {
-			return dg.title;
-		} else {
-			return users[ dg.user_id ].name;
-		}
+		return dg.isGroup ? dg.title : users[ dg.user_id ].name;
 	} );
-
 
 	// Вставляет Текст сообщений
 	$d.find('.mess-container').html( dg.constructMessages( users ) );
@@ -143,8 +129,8 @@ Dialog.prototype.construct = function (users) {
 };
 
 Dialog.prototype.constructMessages = function (users) {
-	var html = [];
-	var dg = this;
+	const dg = this;
+	let html = [];
 	$.each(dg.messages, function (i, mess) {
 		mess = new Message( mess, dg.url );
 		if ( dg.isGroup || dg.out === 1) {
@@ -154,7 +140,7 @@ Dialog.prototype.constructMessages = function (users) {
 		}
 	});
 	return html;
-}
+};
 
 
 /**
@@ -163,15 +149,15 @@ Dialog.prototype.constructMessages = function (users) {
  * @return {String}			Строка классов
  */
 Dialog.prototype.getClass = function (custom) {
-	var dialogClass = (custom ? custom + ' ' : '') + 'dialog';
-	if (!!this.unread) dialogClass += ' dialog-unread';
-	if (this.out === 1) {
+	let dialogClass = (custom ? custom + ' ' : '') + 'dialog';
+	if ( !!this.unread )
+		dialogClass += ' dialog-unread';
+	if ( this.out === 1 ) {
 		dialogClass += ' dialog-answer';
-		if (this.read_state === 0) {
+		if ( this.read_state === 0 )
 			dialogClass += ' dialog-answer-unread';
-		}
 	}
-	if (this.isGroup) dialogClass += ' dialog-group';
+	if ( this.isGroup ) dialogClass += ' dialog-group';
 	return dialogClass;
 };
 

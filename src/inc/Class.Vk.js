@@ -1,3 +1,4 @@
+"use strict";
 function Vk () {}
 
 Vk.prototype.v = '5.40';
@@ -13,15 +14,16 @@ Vk.prototype.authUrl = 'https://oauth.vk.com/authorize?' + $.param({
 });
 
 Vk.prototype.auth = function () {
-	var deferred = $.Deferred();
-	var t = this;
+	const deferred = $.Deferred();
+	const t = this;
+
 	chrome.windows.create({
-		url: this.authUrl,
-		focused: true,
+		url: t.authUrl,
+		focused: false,
 		type:  "popup",
 	}, function (authWindow) {
 		// Событие обновления данных авторизации
-		var update = function (changes) {
+		function update (changes) {
 			if ( !!changes.user_id ) {
 				t.user_id = changes.user_id.newValue;
 			}
@@ -32,7 +34,7 @@ Vk.prototype.auth = function () {
 			}
 		};
 
-		var isAuth = function (window_id) {
+		function isAuth (window_id) {
 			if ( window_id === authWindow.id ) {
 				if ( !!t.access_token && !!t.user_id ) {
 					deferred.resolve();
@@ -51,20 +53,19 @@ Vk.prototype.auth = function () {
 };
 
 Vk.prototype.load = function () {
-	var deferred = $.Deferred();
-	var t = this;
+	const deferred = $.Deferred();
+	const vk = this;
 
 	// Загрузка данных авторизации
 	chrome.storage.local.get(['access_token', 'user_id'], function (stg) {
+		if ( !!stg.access_token && !!stg.user_id ) {
+			vk.user_id = stg.user_id;
+			vk.access_token = stg.access_token;
 
-		t.user_id = stg.user_id;
-		t.access_token = stg.access_token;
-
-		if ( !!t.access_token && !!t.user_id ) {
-			deferred.resolve(t);
+			deferred.resolve(vk);
 		} else {
-			t.auth().then(function () {
-				deferred.resolve(t);
+			vk.auth().then(function () {
+				deferred.resolve(vk);
 			}, function () {
 				console.error("0. Can't find access_token or user_id");
 				deferred.reject(0);
@@ -76,21 +77,19 @@ Vk.prototype.load = function () {
 };
 
 Vk.prototype.api = function(method, params) {
-	var deferred = $.Deferred();
-	var get = {};
+	const deferred = $.Deferred();
+	const get = {};
 
-	if ( !$.isEmptyObject(params) ) {
-		$.extend(get, params);
-	}
+	!$.isEmptyObject(params) && $.extend(get, params);
 
 	get.v = this.v;
 	if ( !!this.access_token ) get.access_token = this.access_token;
 
-	$.getJSON('https://api.vk.com/method/' + method, get).done(function (vk) {
-		if ( !!vk.response ) deferred.resolve(vk.response);
+	$.getJSON('https://api.vk.com/method/' + method, get).done(function (API) {
+		if ( !!API.response ) deferred.resolve(API.response);
 		else {
-			console.error("2/" + vk.error.error_code + ". " + method + ". " + vk.error.error_msg);
-			deferred.reject(2, vk.error);
+			console.error("2/" + API.error.error_code + ". " + method + ". " + API.error.error_msg);
+			deferred.reject(2, API.error);
 		}
 	}).fail(function (jqxhr) {
 		console.error("1. Connect error");

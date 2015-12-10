@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Класс пользователей
  * @constructor
@@ -19,7 +20,7 @@ function User (user_obj) {
 
 	// Полное Имя пользователя
 	this.name = this.first_name + ' ' + this.last_name;
-};
+}
 
 User.prototype.domain = 'https://vk.com/';
 User.prototype.first_name = '';
@@ -40,7 +41,7 @@ User.prototype.profileLink = function (ancor) {
 		target: '_blank',
 		'class': 'profile',
 		html: ancor || this.name
-	})
+	});
 };
 
 /**
@@ -63,7 +64,7 @@ User.prototype.ava = function (options) {
 		'type': 'full',
 	}, options);
 
-	var $imgHTML = $('<div/>', {
+	const $imgHTML = $('<div/>', {
 		'class': 'ava ava-' + options.type + (!!this.online && options.marker ? ' online' : ''),
 		html: $('<img/>', {
 			title: (options.title ? this.name : ''),
