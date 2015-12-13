@@ -12,4 +12,4 @@
 /.cache/*
 /node_modules/*
 /Архив/*
-/src/bower_components/*
+/bower_components/*
