@@ -8,8 +8,9 @@
 
 # ---- ДИРЕКТОРИИ ----
 .sass-cache
+/dist/**
 /img/*
 /.cache/*
 /node_modules/*
 /Архив/*
-/src/bower_components/*
+/bower_components/*
