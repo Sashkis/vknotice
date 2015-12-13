@@ -22,25 +22,32 @@ function Message (mess_obj, parentDialogUrl) {
 
 
 	if ( !!mess_obj.action ) {
+
 		this.body = [ $('<span/>', {
 			'class': 'system',
 			html: Popup.loc(mess_obj.action) + ' ',
 		}) ];
+
 	} else if ( !!mess_obj.body ) {
-		mess_obj.body = mess_obj.body.escapeHtml();
+		if (/[\wа-яА-Яїєёъ]/.test( mess_obj.body.charAt( mess_obj.body.length-1 ) ))
+			mess_obj.body += '. ';
+		else
+			mess_obj.body += ' ';
+
+		// linkify экранирует html код в строке.
+		// mess_obj.body = mess_obj.body.escapeHtml();
+
+		mess_obj.body = mess_obj.body.linkify({
+			format: function (value) {
+				return value.length > 36 ? value.substr(0, 35) + '…' : value;
+			}
+		})
 
 		if (mess_obj.emoji === 1) {
 			mess_obj.body = Emoji.emojiToHTML(mess_obj.body);
 		}
 
-		this.body = [ $('<span/>', {html: mess_obj.body + ' '}).linkify({
-			format: function (value, type) {
-				if (type === 'url' && value.length > 36) {
-					value = value.substr(0, 35) + '…';
-				}
-				return value;
-			}
-		}) ];
+		this.body = [ mess_obj.body ];
 	} else {
 		this.body = [];
 	}
@@ -58,8 +65,7 @@ function Message (mess_obj, parentDialogUrl) {
 	}
 
 	// Добавляем код вложений
-	if ( !!mess_obj.attachments ) {
-		const mess = this;
+	if ( $.isArray(mess_obj.attachments) && mess_obj.attachments.length > 0 ) {
 		mess_obj.attachments = mess_obj.attachments.map(function (attach) {
 			const VK = 'https://vk.com/';
 			const type = attach.type;
@@ -186,33 +192,18 @@ function Message (mess_obj, parentDialogUrl) {
 						src: attach.photo_64,
 						height: '32'
 					});
-
-				// Неподдерживаемое вложение
-				default	 :
-					return $('<a/>', {
-						href: mess.url,
-						target: '_blank',
-						html: [
-							$('<i/>', {'class': 'icon-attach'}),
-							Popup.loc('Attachment'),
-						]
-					});
 			}
 		});
 		this.body = this.body.concat( mess_obj.attachments );
 	}
 
-	if (mess_obj.fwd_messages) {
-
+	if ( $.isArray(mess_obj.fwd_messages) && mess_obj.fwd_messages.length > 0 ) {
 		this.body.push( $('<a/>', {
 			href: this.url,
 			target: '_blank',
 			html: [
 				$('<i/>', { 'class':'icon-chat' }),
-				getCase(
-					$.isArray(mess_obj.fwd_messages) ? mess_obj.fwd_messages.length : 0,
-					Popup.loc('forwarded messages')
-				)
+				getCase( mess_obj.fwd_messages.length, Popup.loc('forwarded messages') )
 			],
 		}) );
 	}

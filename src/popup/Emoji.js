@@ -90,11 +90,15 @@ var Emoji = (function () {
 		 * @param  {String} symbolstr Символ для замены
 		 */
 		emojiReplace: function (symbolstr) {
-			const symbols = [];
-			const codes = [];
-			let out = '';
 			let buffer = '';
 			let altBuffer = '';
+			let joiner = false;
+			let isFlag = false;
+			let out = '';
+
+			const symbols = [];
+			const codes = [];
+
 
 			for (let i = 0; i < symbolstr.length; i++) {
 				const num = symbolstr.charCodeAt(i)
@@ -127,8 +131,6 @@ var Emoji = (function () {
 			buffer = '';
 			altBuffer = '';
 
-			let joiner = false;
-			let isFlag = false;
 			for (let i = 0; i < codes.length; i++) {
 				const code = codes[i];
 				const symbol = symbols[i];

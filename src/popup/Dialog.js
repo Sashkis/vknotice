@@ -47,33 +47,29 @@ function Dialog (dialog_obj) {
  */
 Dialog.prototype.construct = function (users) {
 	const dg = this;
-	const peer = {};
-
-	if ( dg.isGroup ) peer.chat_id = dg.id;
-	else peer.user_id = dg.id;
-
+	const peer = dg.isGroup ? { chat_id: dg.id } : { user_id: dg.id };
 	const $d = $('<a/>', {
 		id: 'dialog-' + dg.id,
 		'class': dg.getClass(),
 		href: dg.url,
 		html: $('<div/>', {
-			'class':'container',
+			'class': 'container',
 			html: [
 				$('<div/>', {
 					'class': 'header',
 					html: [
-						$('<i/>',{'class': 'icon-ok markAsRead'}),
-						$('<i/>',{
+						$('<i/>', {'class': 'icon-ok markAsRead'}),
+						$('<i/>', {
 							'class': 'icon-chat history slide',
 							'data-target': '#history'
 						}),
-						$('<div/>',{'class': 'photo'}),
-						$('<div/>',{
+						$('<div/>', {'class': 'photo'}),
+						$('<div/>', {
 							'class': 'name',
 							html: [
-								$('<span/>',{'class': 'title'}),
-								$('<span/>',{
-									'class':'date',
+								$('<span/>', {'class': 'title'}),
+								$('<span/>', {
+									'class': 'date',
 									html: new Date(dg.date*1000).toStringVkFormat()
 								}),
 							],

@@ -19,7 +19,7 @@ Vk.prototype.auth = function () {
 
 	chrome.windows.create({
 		url: t.authUrl,
-		focused: false,
+		focused: true,
 		type:  "popup",
 	}, function (authWindow) {
 		// Событие обновления данных авторизации

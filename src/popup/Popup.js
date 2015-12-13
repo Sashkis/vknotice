@@ -150,12 +150,14 @@ var Popup = (function () {
 		initSlide: function () {
 			$(document).on('click', '.slide', function () {
 				const target = $(this).attr('data-target');
-				if (target === '#' + $('.slider.open').attr('id')) {
-					target = '#friends-online';
-				}
-				$('.slider.open').add('.slide.open').add(this).add(target).toggleClass('open');
+				$('.slider.open')
+					.add(this)
+					.add('.slide.open')
+					.add( target === '#' + $('.slider.open').attr('id') ? '#friends-online' : target )
+					.toggleClass('open');
 				return false;
 			});
+
 			const $unread = $('#newmess .dialog-unread');
 			if ( $unread.length > 0 ) {
 				$('#messages .slide').trigger('click');
@@ -406,10 +408,10 @@ var Popup = (function () {
 
 									new Vk().load().done(function (vk) {
 										const $dg = $field.parents('.dialog');
-										const peer = $dg.data('peer');
-										peer.message = $field.val().trim();
+										const params = $.extend({}, $dg.data('peer'));
+										params.message = $field.val().trim();
 
-										vk.api('messages.send', peer).done(function (mess_id) {
+										vk.api('messages.send', params).done(function (mess_id) {
 
 											$field.removeClass('error').val('');
 
@@ -420,7 +422,7 @@ var Popup = (function () {
 													id: mess_id,
 													user_id: vk.user_id,
 													out: 1,
-													body: peer.message
+													body: params.message
 												}).getHtml(users, 'compact') );
 
 										})
@@ -465,6 +467,7 @@ var Popup = (function () {
 								data.peer.start_message_id = data.start_message_id;
 							}
 
+
 							new Vk().load().done(function (vk) {
 								vk.api('messages.getHistory', data.peer).done(function (API) {
 									const talkers = [ vk.user_id ];
@@ -481,10 +484,8 @@ var Popup = (function () {
 											html.push( new Message( mess, data.url ).getHtml(users, 'compact').addClass('dialog') );
 										});
 
-
 										if ( !isMore ) {
 											if ( API.items.length === 20 ) {
-
 												html.push( $('<a/>', {
 													'class': 'dialog history more',
 													text: pop.loc('More'),
@@ -493,9 +494,10 @@ var Popup = (function () {
 													'peer': data.peer,
 													'start_message_id': start_message_id
 												}) );
-
-												$('#history .mCSB_container').html( html );
 											}
+
+											$('#history .mCSB_container').html( html );
+
 										} else {
 											html.shift();
 											$button.before(html).data('start_message_id', start_message_id);
