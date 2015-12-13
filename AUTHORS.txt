@@ -3,4 +3,4 @@ Alex Kozack <cawa-93@yandex.ru>
 
 
 QA:
-synchuk2010@mail.ru
+Bohdan Sinchuk <synchuk2010@mail.ru>
