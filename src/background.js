@@ -2,6 +2,9 @@
 jQuery(function ($) {
 
 	Informer.deamonStart();
+	Informer.firstRequest.done(function () {
+		new App().addVisitor();
+	});
 
 	function commentUpdate (tab) {
 		if ( tab.status === 'complete' && /vk.com\/feed\?section=comments/.test(tab.url) ) {
