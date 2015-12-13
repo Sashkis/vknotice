@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
+	<title>Popup process</title>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bower.css">
 	<link rel="stylesheet" href="css/popup.css">
 </head>
 <body>
@@ -103,22 +105,20 @@
 		<div id="newmess" class="slider panel" data-before="Please inform the developers."></div>
 		<div id="history" class="slider panel"></div>
 	</div>
-	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../inc/jquery.js"></script>
+
 	<script src="../inc/Class.Vk.js"></script>
 	<script src="../inc/Class.App.js"></script>
-	<!-- @import min.js -->
-	<!-- bower:js -->
-	<script src="../bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
-	<script src="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
-	<script src="../bower_components/linkifyjs/linkify.js"></script>
-	<!-- endbower -->
+
+	<script src="bower.js"></script>
+
 	<script src="Global.js"></script>
 	<script src="Emoji.js"></script>
 	<script src="Message.js"></script>
 	<script src="Dialog.js"></script>
 	<script src="User.js"></script>
 	<script src="Popup.js"></script>
-	<!-- @import /min.js -->
-	<script src="main.js"></script>
+
+	<script src="main.js" async></script>
 </body>
 </html>

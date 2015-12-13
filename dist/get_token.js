@@ -1,1 +1,0 @@
-function parseURL(a){a=a.replace("#","");for(var b,c={},d=a.split("&"),e=d.length,f=0;e>f;f++)d[f]&&(b=d[f].split("="),c[b[0]]=b[1]);return c}var auth=parseURL(location.hash);"vknotice"===auth.state&&auth.access_token&&auth.user_id&&chrome.storage.local.set({user_id:auth.user_id,access_token:auth.access_token});

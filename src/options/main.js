@@ -11,7 +11,7 @@ $.when($.getJSON('../lang/i18n.json'), load({
 	// Локализация
 	$('[loc]').text(function (i, text) {
 		if ( !!text && !!i18n[ text ] && !!i18n[ text ][ stg.lang ] ) {
-			return i18n[text][stg.lang];
+			return i18n[ text ][ stg.lang ];
 		}
 	});
 
@@ -71,7 +71,7 @@ $.when($.getJSON('../lang/i18n.json'), load({
 
 
 function load(stg) {
-	var deferred = $.Deferred();
+	const deferred = $.Deferred();
 
 	chrome.storage.local.get(stg, function (stg) {
 		deferred.resolve(stg);

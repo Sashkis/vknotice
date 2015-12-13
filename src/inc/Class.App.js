@@ -1,4 +1,5 @@
-function App () {};
+"use strict";
+function App () {}
 
 App.prototype.id = chrome.app.getDetails().id;
 App.prototype.share = 'https://vk.com/share.php?' + $.param({
@@ -18,7 +19,7 @@ if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 }
 
 App.prototype.addVisitor = function () {
-	var deferred = $.Deferred();
+	const deferred = $.Deferred();
 	new Vk().load().done(function (vk) {
 		vk.api('stats.trackVisitor').then(deferred.resolve, deferred.reject);
 	});

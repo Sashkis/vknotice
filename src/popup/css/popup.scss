@@ -385,6 +385,18 @@ header {
 	}
 }
 
+.emoji {
+	display: inline;
+	width: 16px;
+	height: 16px;
+	vertical-align: top;
+	margin: 0px 1px;
+	&.sticker {
+		height: 32px;
+		width: auto;
+	}
+}
+
 #newmess {
 	overflow: auto;
 	padding: 0;
@@ -430,6 +442,7 @@ header {
 		}
 		.photo {
 			margin-left: -60px;
+			float: left;
 		}
 		.dialog-group .photo {
 			overflow: hidden;
@@ -464,14 +477,18 @@ header {
 			overflow: hidden;
 			border-radius: 2px;
 			margin: 0 4px 4px 0;
+			&:nth-of-type(1),
+			&:nth-of-type(3) {
+				float: left;
+			}
 			&:nth-of-type(3),
 			&:nth-of-type(4) {
 				margin-bottom: 0;
 			}
 			&.online {
 				&:before {
-					top: 17px;
-					left: 17px;
+					top: 18px;
+					left: 18px;
 					width: 4px;
 					height: 4px;
 				}
@@ -503,17 +520,6 @@ header {
 			.system {
 				font-style: italic;
 				opacity: 0.5;
-			}
-			.emoji {
-				display: inline;
-				width: 16px;
-				height: 16px;
-				vertical-align: top;
-				margin: 0px 1px;
-				&.sticker {
-					height: 32px;
-					width: auto;
-				}
 			}
 			.ava img {
 				margin-right: 5px;
