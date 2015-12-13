@@ -9,6 +9,7 @@
 var Informer = (function () {
 	return {
 		badge: 0,
+		firstRequest: $.Deferred(),
 
 		load: function (params) {
 			const deferred = $.Deferred();
@@ -114,15 +115,14 @@ var Informer = (function () {
 
 						inf.setCounters(API.counter, API.dialogs).saveAlert(false, 'error');
 
-						if ( !inf.isStatPosted ) {
-							new App().addVisitor().done(function () {
-								inf.isStatPosted = true;
-							});
-						}
+						inf.firstRequest.resolve();
 					}
 				}).fail(function (code, details) {
 					inf.generateError(code, details);
+					inf.badge = 0;
+
 					chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
+					chrome.browserAction.setBadgeText({text: ''});
 				}).always(function () {
 					if ( inf.delay > 0 ) {
 						setTimeout($.proxy(inf, 'mainRequest'), inf.delay);
@@ -148,6 +148,7 @@ var Informer = (function () {
 			if ( counters.comments === undefined ) {
 				return this;
 			}
+
 			if ( !$.isEmptyObject(counters) ) {
 				const inf = this;
 
@@ -198,7 +199,7 @@ var Informer = (function () {
 		 */
 		playSound: function () {
 			this.load({'audio': true}).done(function (stg) {
-				if (stg.audio === true) {
+				if ( stg.audio === true ) {
 					chrome.tabs.query({
 						url: "*://vk.com/*"
 					}, function (tabs) {
