@@ -85,8 +85,6 @@ var Informer = (function () {
 		 * Выполняет основной запрос
 		 */
 		mainRequest: function () {
-			const inf = this;
-
 			$.when(this.load({
 				'options' : 'friends,photos,videos,messages,groups,notifications',
 				'isLoadComment' : 0,
