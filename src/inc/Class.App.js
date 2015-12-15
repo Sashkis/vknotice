@@ -24,9 +24,7 @@ if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 
 App.prototype.addVisitor = function () {
 	const deferred = $.Deferred();
-	new Vk().load().done(function (vk) {
-		vk.api('stats.trackVisitor').then(deferred.resolve, deferred.reject);
-	});
+	new Vk().load().done(vk => vk.api('stats.trackVisitor').then(deferred.resolve, deferred.reject));
 
 	return deferred.promise();
 };

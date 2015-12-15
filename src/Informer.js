@@ -17,7 +17,7 @@ var Informer = (function () {
 
 		load: function (params) {
 			const deferred = $.Deferred();
-			chrome.storage.local.get(params, function (storage) {
+			chrome.storage.local.get(params, (storage) => {
 				deferred.resolve(storage);
 			});
 
@@ -87,28 +87,29 @@ var Informer = (function () {
 		mainRequest: function () {
 			const inf = this;
 
-			$.when(inf.load({
+			$.when(this.load({
 				'options' : 'friends,photos,videos,messages,groups,notifications',
 				'isLoadComment' : 0,
 				'lastOpenComment' : 0,
 				'lastLoadAlert' : 0,
-			}), new Vk().load()).then(function (params, vk) {
+			}), new Vk().load()).then((params, vk) => {
 				vk.api('execute.getdata_beta', {
 					'options': params.options,
 					'isLoadComment': params.isLoadComment,
 					'lastOpenComment': params.lastOpenComment,
 					'user_id': vk.user_id,
-				}).done(function (API) {
-					if ( inf.delay > 0 ) {
-						API.lang = inf.getLangCode(API.lang);
+				}).done((API) => {
+					if ( this.delay > 0 ) {
+						API.lang = this.getLangCode(API.lang);
+
 						if ( !!API.system && API.system.lastAlertId > params.lastLoadAlert ) {
 							vk.api('execute.getAlerts', {
 								'lang': API.lang,
 								'lastAlert': params.lastLoadAlert
-							}).done(function (loaded) {
+							}).done((loaded) => {
 								if ( !$.isEmptyObject(loaded.alert) ) {
 									chrome.storage.local.set({'lastLoadAlert': loaded.id});
-									inf.saveAlert(loaded.alert);
+									this.saveAlert(loaded.alert);
 								}
 							});
 						}
@@ -117,23 +118,23 @@ var Informer = (function () {
 						chrome.storage.local.set(API);
 						chrome.browserAction.setIcon({path: 'img/icon38.png'});
 
-						inf.setCounters(API.counter, API.dialogs).saveAlert(false, 'error');
+						this.setCounters(API.counter, API.dialogs).saveAlert(false, 'error');
 
-						inf.firstRequest.resolve();
+						this.firstRequest.resolve();
 					}
-				}).fail(function (code, details) {
-					inf.generateError(code, details);
-					inf.badge = 0;
+				}).fail((code, details) => {
+					this.generateError(code, details);
+					this.badge = 0;
 
 					chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
 					chrome.browserAction.setBadgeText({text: ''});
-				}).always(function () {
-					if ( inf.delay > 0 ) {
-						setTimeout($.proxy(inf, 'mainRequest'), inf.delay);
+				}).always(() => {
+					if ( this.delay > 0 ) {
+						setTimeout(() => this.mainRequest(), this.delay);
 					}
 				});
-			}, function (code) {
-				inf.generateError(code).deamonStop();
+			}, (code) => {
+				this.generateError(code).deamonStop();
 				chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
 			});
 		},
@@ -154,14 +155,13 @@ var Informer = (function () {
 			}
 
 			if ( !$.isEmptyObject(counters) ) {
-				const inf = this;
 
-				inf.load({'showMessage': true}).done(function (stg) {
+				this.load({'showMessage': true}).done((stg) => {
 					let sum = 0;
 					let needSound = false;
-					$.each(counters, function (c, val) {
+					$.each(counters, (c, val) => {
 						if ( c === 'messages' && !!stg.showMessage && !!dialogs ) {
-							sum = dialogs.reduce(function (sum, dialog) {
+							sum = dialogs.reduce((sum, dialog) => {
 								if ( !!dialog.unread ) {
 									if ( !needSound && (dialog.push_settings !== undefined && dialog.push_settings.sound === 1 ) ) {
 										needSound = true;
@@ -177,8 +177,8 @@ var Informer = (function () {
 						}
 					});
 
-					if (sum > inf.badge && needSound) {
-						inf.playSound();
+					if (sum > this.badge && needSound) {
+						this.playSound();
 					}
 					if (sum > 999) {
 						chrome.browserAction.setBadgeText({text: '999+'});
@@ -188,7 +188,7 @@ var Informer = (function () {
 						sum = 0;
 						chrome.browserAction.setBadgeText({text: ''});
 					}
-					inf.badge = sum;
+					this.badge = sum;
 				});
 			} else {
 				chrome.browserAction.setBadgeText({text: ''});
@@ -231,13 +231,12 @@ var Informer = (function () {
 		 * @param {String} alert_obj.body.img		Адрес изображения
 		 */
 		saveAlert: function (alert_obj, type) {
-			if ( alert_obj ) {
+			if ( !!alert_obj ) {
 				if ( !type ) type = 'message';
 
-				const a = {};
-				a[ 'alert_' + type ] = alert_obj;
-
-				chrome.storage.local.set(a);
+				chrome.storage.local.set({
+					[ 'alert_' + type ]:alert_obj
+				});
 			} else {
 				chrome.storage.local.remove(['alert_' + type]);
 			}
@@ -289,7 +288,7 @@ var Informer = (function () {
 						alert.header = '';
 					} else if ( $.inArray(details.error_code, [6, 9]) !== -1 ) {
 						if ( this.deamonStop() ) {
-							setTimeout($.proxy(this, 'deamonStart'), 10000);
+							setTimeout(() => this.deamonStart(), 10000);
 						}
 						alert = false;
 					}

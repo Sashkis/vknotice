@@ -40,7 +40,7 @@ function Message (mess_obj, parentDialogUrl) {
 		// mess_obj.body = mess_obj.body.escapeHtml();
 
 		mess_obj.body = mess_obj.body.linkify({
-			format: function (value) {
+			format: (value) => {
 				return value.length > 36 ? value.substr(0, 35) + '…' : value;
 			}
 		});
@@ -68,7 +68,7 @@ function Message (mess_obj, parentDialogUrl) {
 
 	// Добавляем код вложений
 	if ( $.isArray(mess_obj.attachments) && mess_obj.attachments.length > 0 ) {
-		mess_obj.attachments = mess_obj.attachments.map(function (attach) {
+		mess_obj.attachments = mess_obj.attachments.map((attach) => {
 			const VK = 'https://vk.com/';
 			const type = attach.type;
 			attach = attach[type];

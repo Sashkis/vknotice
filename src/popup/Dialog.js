@@ -26,10 +26,10 @@ function Dialog (dialog_obj) {
 	this.isGroup = this.chat_id !== undefined;
 
 	if ( this.isGroup ) {
-		this.id = this.chat_id;
+		this.id = this.chat_id - 0;
 		this.url = 'https://vk.com/im?sel=c' + this.id;
 	} else {
-		this.id = this.user_id;
+		this.id = this.user_id - 0;
 		this.url = 'https://vk.com/im?sel=' + this.id;
 	}
 
@@ -49,12 +49,10 @@ function Dialog (dialog_obj) {
  * @return {jQuery} Данный диалог
  */
 Dialog.prototype.construct = function (users) {
-	const dg = this;
-	const peer = dg.isGroup ? { chat_id: dg.id } : { user_id: dg.id };
 	const $d = $('<a/>', {
-		id: 'dialog-' + dg.id,
-		'class': dg.getClass(),
-		href: dg.url,
+		id: 'dialog-' + this.id,
+		'class': this.getClass(),
+		href: this.url,
 		html: $('<div/>', {
 			'class': 'container',
 			html: [
@@ -73,7 +71,7 @@ Dialog.prototype.construct = function (users) {
 								$('<span/>', {'class': 'title'}),
 								$('<span/>', {
 									'class': 'date',
-									html: new Date(dg.date*1000).toStringVkFormat()
+									html: new Date(this.date*1000).toStringVkFormat()
 								}),
 							],
 						}),
@@ -87,52 +85,53 @@ Dialog.prototype.construct = function (users) {
 			]
 		}),
 	}).data({
-		peer: peer,
-		markAsRead: {
-			peer_id: dg.id + (dg.isGroup ? 2000000000 : 0)
+		peer: {
+			[this.isGroup ? 'chat_id' : 'user_id'] : this.id
 		},
-		url: dg.url,
-		hash: dg.hash(),
+		markAsRead: {
+			peer_id: this.id + (this.isGroup ? 2000000000 : 0)
+		},
+		url: this.url,
+		hash: this.hash(),
 
 	});
 
 	// Вставляет ФОТО
-	$d.find('.photo').html( function () {
-		if ( !!dg.photo_50 ) {
+	$d.find('.photo').html( () => {
+		if ( !!this.photo_50 ) {
 			return new User().ava({
 				size: 50,
-				src: dg.photo_50
+				src: this.photo_50
 			});
-		} else if ( dg.isGroup && $.isArray( dg.chat_active ) ) {
-			dg.chat_active = dg.chat_active.slice(0, 4);
-			switch (dg.chat_active.length) {
-				case 1 : return users[ dg.chat_active[0] ].ava({size: 50});
-				case 2 : return [ users[ dg.chat_active[0] ].ava({size: 50, type: 'half'}), users[ dg.chat_active[1] ].ava({size: 50, type: 'half'}) ];
-				case 3 : return [ users[ dg.chat_active[0] ].ava({size: 50, type: 'half'}), users[ dg.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[2] ].ava({size: 23, type: 'quarter'}) ];
-				case 4 : return [ users[ dg.chat_active[0] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[2] ].ava({size: 23, type: 'quarter'}), users[ dg.chat_active[3] ].ava({size: 23, type: 'quarter'}) ];
+		} else if ( this.isGroup && $.isArray( this.chat_active ) ) {
+			this.chat_active = this.chat_active.slice(0, 4);
+			switch (this.chat_active.length) {
+				case 1 : return users[ this.chat_active[0] ].ava({size: 50});
+				case 2 : return [ users[ this.chat_active[0] ].ava({size: 50, type: 'half'}), users[ this.chat_active[1] ].ava({size: 50, type: 'half'}) ];
+				case 3 : return [ users[ this.chat_active[0] ].ava({size: 50, type: 'half'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}) ];
+				case 4 : return [ users[ this.chat_active[0] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[3] ].ava({size: 23, type: 'quarter'}) ];
 			}
 		} else {
-			return users[ dg.user_id ].ava({size: 50});
+			return users[ this.user_id ].ava({size: 50});
 		}
 	} );
 
 	// Вставляет Имя
-	$d.find('.name').text( function () {
-		return dg.isGroup ? dg.title : users[ dg.user_id ].name;
+	$d.find('.name').text( () => {
+		return this.isGroup ? this.title : users[ this.user_id ].name;
 	} );
 
 	// Вставляет Текст сообщений
-	$d.find('.mess-container').html( dg.constructMessages( users ) );
+	$d.find('.mess-container').html( this.constructMessages( users ) );
 
 	return $d;
 };
 
 Dialog.prototype.constructMessages = function (users) {
-	const dg = this;
 	let html = [];
-	$.each(dg.messages, function (i, mess) {
-		mess = new Message( mess, dg.url );
-		if ( dg.isGroup || dg.out === 1) {
+	$.each(this.messages, (i, mess) => {
+		mess = new Message( mess, this.url );
+		if ( this.isGroup || this.out === 1) {
 			html.push( mess.getHtml(users, 'compact') );
 		} else {
 			html = html.concat( mess.getHtml() );
@@ -164,7 +163,5 @@ Dialog.prototype.getClass = function (custom) {
  * Генерирует хэш сообщений
  */
 Dialog.prototype.hash = function () {
-	return this.messages.reduce(function (sum, mess) {
-		return sum + mess.id;
-	}, this.id - 0);
+	return this.messages.reduce((sum, mess) => sum + mess.id, this.id);
 };

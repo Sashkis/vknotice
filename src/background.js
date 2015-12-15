@@ -6,7 +6,7 @@
 jQuery(function ($) {
 
 	Informer.deamonStart();
-	Informer.firstRequest.done(function () {
+	Informer.firstRequest.done(() => {
 		new App().addVisitor();
 	});
 
@@ -18,17 +18,17 @@ jQuery(function ($) {
 		}
 	}
 
-	chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+	chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 		if ( changeInfo.status === 'complete' ) {
 			commentUpdate(tab);
 		}
 	});
 
-	chrome.tabs.onActivated.addListener(function (activeInfo) {
+	chrome.tabs.onActivated.addListener((activeInfo) => {
 		chrome.tabs.get(activeInfo.tabId, commentUpdate);
 	});
 
-	chrome.runtime.onInstalled.addListener(function (details) {
+	chrome.runtime.onInstalled.addListener((details) => {
 		// При установке
 		if (details.reason === 'install') {
 			chrome.alarms.create('say_thanks', {'when': $.now() + 86400000 * 7});	// Через 7 дней
@@ -47,7 +47,7 @@ jQuery(function ($) {
 		}
 	});
 
-	chrome.alarms.onAlarm.addListener(function (alarm) {
+	chrome.alarms.onAlarm.addListener((alarm) => {
 		const app = new App();
 		if (alarm.name === 'get_review') {
 			Informer.saveAlert({

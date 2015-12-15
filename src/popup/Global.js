@@ -14,7 +14,7 @@ String.prototype.escapeHtml = function () {
 		'"': '&quot;',
 		"'": '&#039;'
 	};
-	return this.replace(/[&<>"']/g, function (m) { return map[m]; });
+	return this.replace(/[&<>"']/g, m => map[m]);
 };
 
 /**

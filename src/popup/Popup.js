@@ -10,7 +10,7 @@ var Popup = (function () {
 	return {
 		load: function (params) {
 			const deferred = $.Deferred();
-			chrome.storage.local.get(params, function (storage) {
+			chrome.storage.local.get(params, (storage) => {
 				deferred.resolve(storage);
 			});
 
@@ -52,11 +52,10 @@ var Popup = (function () {
 		 */
 		loadTranslate: function () {
 			const deferred = $.Deferred();
-			const pop = this;
 
-			$.when( $.getJSON('../lang/i18n.json'), pop.load('lang') ).then(function (ajax, stg) {
-				pop.i18n = ajax[0];
-				pop.lang = stg.lang;
+			$.when( $.getJSON('../lang/i18n.json'), this.load('lang') ).then((ajax, stg) => {
+				this.i18n = ajax[0];
+				this.lang = stg.lang;
 				deferred.resolve();
 			}, function (ajax, stg) {
 				console.error('3. Load translate failed', ajax, stg);
@@ -70,14 +69,8 @@ var Popup = (function () {
 		 * Перевод меню
 		 */
 		setTranslate: function () {
-			const pop = this;
-			$('#menu li .i18n, .navbar-brand, .dropdown li a').text(function (i, value) {
-				return pop.loc(value, false);
-			});
-
-			$('#newmess, #newfriends').attr('data-before', function (i, value) {
-				return pop.loc(value, false);
-			});
+			$('#menu li .i18n, .navbar-brand, .dropdown li a').text((i, value) => this.loc(value, false));
+			$('#newmess, #newfriends').attr('data-before', (i, value) => this.loc(value, false));
 
 			return this;
 		},
@@ -86,17 +79,17 @@ var Popup = (function () {
 			const deferred = $.Deferred();
 			const pop = this;
 
-			if ( !pop.profiles ) {
-				pop.profiles = {};
+			if ( !this.profiles ) {
+				this.profiles = {};
 			}
 
-			pop.load('profiles').done(function (stg) {
+			this.load('profiles').done((stg) => {
 				if ( !$.isArray(stg.profiles) || $.isEmptyObject(stg.profiles) ) {
 					deferred.reject();
 				} else {
-					$.each(stg.profiles, function(i, profile) {
-						if ( !pop.profiles[ profile.id ] ) {
-							pop.profiles[ profile.id ] = profile;
+					$.each(stg.profiles, (i, profile) => {
+						if ( !this.profiles[ profile.id ] ) {
+							this.profiles[ profile.id ] = profile;
 						}
 					});
 
@@ -109,41 +102,45 @@ var Popup = (function () {
 
 		u: function (user_ids) {
 			const deferred = $.Deferred();
-			const pop = this;
 			const known = {};
 			const undef = [];
+
 			if ( !$.isArray(user_ids) ) {
 				user_ids = [user_ids];
 			}
-			$.each(user_ids, function(i, id) {
+
+			$.each(user_ids, (i, id) => {
 				if ( !!id && !known[id] ) {
-					if ( !!pop.profiles[id] ) {
-						known[id] = new User( pop.profiles[id] );
+					if ( !!this.profiles[id] ) {
+						known[id] = new User( this.profiles[id] );
 					} else {
 						known[id] = new User();
 						undef.push(id);
 					}
 				}
 			});
+
 			if ( undef.length > 0 ) {
 				console.warn('Undefined users:', undef);
 
 				new Vk().api('users.get', {
 					fields: 'status,photo_100,domain,online',
 					user_ids: undef,
-				}).then(function (users) {
+				}).then((users) => {
 					$.each(users, function(i, user) {
-						pop.profiles[ user.id ] = user;
+						this.profiles[ user.id ] = user;
 						known[ user.id ] = new User( user );
 					});
+
 					deferred.resolve(known);
-				}, function () {
+				}, () => {
 					console.error('4. Users not loaded', undef);
 					deferred.reject(known);
 				});
 			} else {
 				deferred.resolve(known);
 			}
+
 			return deferred.promise();
 		},
 
@@ -178,10 +175,13 @@ var Popup = (function () {
 		 */
 		buildCounters: function () {
 			const pop = this;
-			function updateCounters () {
-				return pop.load(['counter', 'showMessage', 'dialogs']).done(function (stg) {
+			const updateCounters = () => {
+				const deferred = $.Deferred();
+
+				this.load(['counter', 'showMessage', 'dialogs']).done((stg) => {
 					$('#menu .counter').text(function () {
 						const key = $(this).parents('li').attr('id');
+
 						if ( stg.counter[key] ) {
 							if ( key === 'messages' && !!stg.showMessage ) {
 								stg.counter.messages = 0;
@@ -196,10 +196,14 @@ var Popup = (function () {
 							return key === 'messages' ? '+' : '';
 						}
 					});
+
+					deferred.resolve();
 				});
+
+				return deferred.promise();
 			}
 
-			chrome.storage.onChanged.addListener(function (changes) {
+			chrome.storage.onChanged.addListener((changes) => {
 				( !!changes.counter || !!changes.showMessage || !!changes.dialogs ) && updateCounters();
 			});
 
@@ -221,16 +225,15 @@ var Popup = (function () {
 		 */
 		setCurrentProfile: function () {
 			const deferred = $.Deferred();
-			const pop = this;
 
-			pop.load('user_id').done(function (stg) {
-				pop.u(stg.user_id).always(function (users) {
-					pop.current = users[stg.user_id];
-					$('#my a.profile').attr('href', 'https://vk.com/' + pop.current.domain);
+			this.load('user_id').done((stg) => {
+				this.u(stg.user_id).always((users) => {
+					this.current = users[stg.user_id];
+					$('#my a.profile').attr('href', 'https://vk.com/' + this.current.domain);
 					$('header .profile').html([
-						pop.current.online ? '<i class="mark"></i>' : '',
-						pop.current.name,
-						pop.current.ava({'isLink':false, 'marker':false, 'size':32})
+						this.current.online ? '<i class="mark"></i>' : '',
+						this.current.name,
+						this.current.ava({'isLink':false, 'marker':false, 'size':32})
 					]);
 					deferred.resolve();
 				});
@@ -245,34 +248,31 @@ var Popup = (function () {
 		 */
 		builFriendsOnline: function () {
 			const deferred = $.Deferred();
-			const pop = this;
 
-			pop.load('friends').done(function (stg) {
+			this.load('friends').done((stg) => {
 				if ( !$.isEmptyObject( stg.friends ) ) {
-					pop.u(stg.friends).always(function (users) {
-						const html = [];
-						$.each(stg.friends, function(i, id) {
-							html.push( $('<a/>', {
-								href: 'https://vk.com/im?sel=' + id,
-								target: '_blank',
-								'class': 'ava-container',
-								html: [
-									users[id].ava({marker: false}),
-									$('<div/>', {
-										'class': 'ava-caption',
-										html: $('<span/>', {
-											'class': 'name',
-											html: [
-												$('<i/>', {'class': 'icon-pencil'}),
-												users[id].name
-											]
-										})
-									})
-								]
-							}).data('user_id', id) );
-						});
+					this.u(stg.friends).always((users) => {
 
-						$('#friends-online').html(html).on('click', '.ava-container', function () {
+						stg.friends = stg.friends.map(id => $('<a/>', {
+							href: 'https://vk.com/im?sel=' + id,
+							target: '_blank',
+							'class': 'ava-container',
+							html: [
+								users[id].ava({marker: false}),
+								$('<div/>', {
+									'class': 'ava-caption',
+									html: $('<span/>', {
+										'class': 'name',
+										html: [
+											$('<i/>', {'class': 'icon-pencil'}),
+											users[id].name
+										]
+									})
+								})
+							]
+						}).data('user_id', id));
+
+						$('#friends-online').html( stg.friends ).on('click', '.ava-container', function () {
 							const id = $(this).data('user_id');
 							if ( $('#newmess .dialog').is('#dialog-' + id) ) {
 								$('#messages .slide').trigger('click');
@@ -297,22 +297,21 @@ var Popup = (function () {
 		 */
 		buildNewFriends: function () {
 			const deferred = $.Deferred();
-			const pop = this;
-			pop.load('newfriends').done(function (stg) {
+
+			this.load('newfriends').done((stg) => {
 				if ( !$.isEmptyObject( stg.newfriends ) ) {
-					pop.u(stg.newfriends).always(function (users) {
-						const html = [];
-						$.each(stg.newfriends, function(i, id) {
+					this.u(stg.newfriends).always((users) => {
+						stg.newfriends = stg.newfriends.map(id => {
 							const s = users[id].status.escapeHtml();
-							html.push( $('<figure/>', {
+							return $('<figure/>', {
 								html: [
 									$('<i/>', {
 										'class': 'icon-cancel hovered',
-										title: pop.loc('Reject')
+										title: this.loc('Reject')
 									}),
 									$('<i/>', {
 										'class': 'icon-ok hovered',
-										title: pop.loc('Accept')
+										title: this.loc('Accept')
 									}),
 									users[id].ava({'isLink': true, 'size': 50}),
 									$('<figcaption/>', {
@@ -324,12 +323,12 @@ var Popup = (function () {
 										]
 									}),
 								]
-							}).data('user_id', id) );
+							}).data('user_id', id);
 						});
 
-						$('#newfriends').html( html ).on('click', '.hovered', function () {
+						$('#newfriends').html( stg.newfriends ).on('click', '.hovered', function () {
 							const $button = $(this).addClass('icon-spin4 animate-spin');
-							new Vk().load().done(function (vk) {
+							new Vk().load().done((vk) => {
 								const $user = $button.parents('figure');
 
 								vk.api('friends.' + ($button.hasClass('icon-ok') ? 'add' : 'delete'), $user.data() )
@@ -355,13 +354,12 @@ var Popup = (function () {
 		 */
 		buildDialogs: function () {
 			const deferred = $.Deferred();
-			const pop = this;
 
-			pop.load(['dialogs', 'options', 'user_id']).done(function (stg) {
+			this.load(['dialogs', 'options', 'user_id']).done((stg) => {
 
 				if (stg.dialogs.length > 0) {
 					let talkers = [ stg.user_id ];
-					$.each(stg.dialogs, function(index, dialog) {
+					$.each(stg.dialogs, (index, dialog) => {
 						if ( !!dialog.chat_active ) {
 							talkers = talkers.concat(dialog.chat_active);
 							talkers.push(dialog.admin_id);
@@ -369,19 +367,14 @@ var Popup = (function () {
 						talkers.push(dialog.user_id);
 					});
 
-					pop.u(talkers).always(function (users) {
-
-						// Инициализация
+					this.u(talkers).always((users) => {
 						const $newmess = $('#newmess');
-						const html = [];
 
 						// Обработка диалогов
-						$.each(stg.dialogs, function(index, dialog) {
-							html.unshift( new Dialog( dialog ).construct( users ) );
-						});
+						stg.dialogs = stg.dialogs.reverse().map(dialog => new Dialog( dialog ).construct( users ));
 
 						// Откритие поля ответа
-						$newmess.html(html).on('click', '.dialog', function (event) {
+						$newmess.html(stg.dialogs).on('click', '.dialog', function (event) {
 							const $target = $(this);
 
 							if ( $target.find('a, textarea, .history, .markAsRead').is(event.target) ) {
@@ -453,12 +446,12 @@ var Popup = (function () {
 							});
 						}).on('click', '.history', loadHistory);
 
-
 						deferred.resolve();
 
 						$('#history').on('click', '.history', loadHistory);
 
 						// Загрузка истории
+						const pop = this;
 						function loadHistory () {
 							/* jshint validthis: true */
 							const $button = $(this);
@@ -473,24 +466,20 @@ var Popup = (function () {
 
 
 							new Vk().load().done(function (vk) {
-								vk.api('messages.getHistory', data.peer).done(function (API) {
+								vk.api('messages.getHistory', data.peer).done((API) => {
 									const talkers = [ vk.user_id ];
 
-									$.each(API.items, function (index, mess) {
-										talkers.push( mess.from_id );
-									});
+									$.each(API.items, (index, mess) => talkers.push( mess.from_id ));
 
-									pop.u(talkers).always(function (users) {
-										const html = [];
-										const start_message_id = API.items[ API.items.length - 1 ].id;
+									pop.u(talkers).always((users) => {
+										const mess_count = API.items.length;
+										const start_message_id = API.items[ mess_count - 1 ].id;
 
-										$.each(API.items, function (index, mess) {
-											html.push( new Message( mess, data.url ).getHtml(users, 'compact').addClass('dialog') );
-										});
+										API.items = API.items.map(mess => new Message( mess, data.url ).getHtml(users, 'compact').addClass('dialog'));
 
 										if ( !isMore ) {
-											if ( API.items.length === 20 ) {
-												html.push( $('<a/>', {
+											if ( mess_count === 20 ) {
+												API.items.push( $('<a/>', {
 													'class': 'dialog history more',
 													text: pop.loc('More'),
 												}).data({
@@ -500,12 +489,12 @@ var Popup = (function () {
 												}) );
 											}
 
-											$('#history .mCSB_container').html( html );
+											$('#history .mCSB_container').html( API.items );
 
 										} else {
-											html.shift();
-											$button.before(html).data('start_message_id', start_message_id);
-											if ( API.items.length < 20 ) {
+											API.items.shift();
+											$button.before(API.items).data('start_message_id', start_message_id);
+											if ( mess_count < 20 ) {
 												$button.remove();
 											}
 										}
@@ -514,10 +503,9 @@ var Popup = (function () {
 							});
 						}
 
-						chrome.storage.onChanged.addListener(function (changes) {
+						chrome.storage.onChanged.addListener((changes) => {
 							if ( !!changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue) ) {
-
-								$.each(changes.dialogs.newValue, function(i, dg) {
+								$.each(changes.dialogs.newValue,(i, dg) => {
 									dg = new Dialog(dg);
 									const $dg = $('#dialog-' + dg.id);
 									if ( $dg.length > 0 && $dg.data('hash') != dg.hash() ) {
@@ -525,7 +513,6 @@ var Popup = (function () {
 										$dg.removeAttr('class').addClass( dg.getClass( isOpen ? 'open' : '' ) ).find('.mess-container').html( dg.constructMessages(users) );
 									}
 								});
-
 							}
 						});
 
@@ -540,15 +527,14 @@ var Popup = (function () {
 
 		checkError: function () {
 			const deferred = $.Deferred();
-			const pop = this;
 
-			pop.load(['alert_message', 'alert_error']).done(function (stg) {
+			this.load(['alert_message', 'alert_error']).done((stg) => {
 				if ( !!stg.alert_error ) {
-					pop.buildAlert(stg.alert_error).addClass('error');
+					this.buildAlert(stg.alert_error).addClass('error');
 					deferred.reject(stg.alert_error.code);
 				} else {
 					if ( !!stg.alert_message )
-						pop.buildAlert(stg.alert_message).on('click', 'a[href]', function () {
+						this.buildAlert(stg.alert_message).on('click', 'a[href]', function () {
 							chrome.storage.local.remove(['alert_message']);
 						});
 					deferred.resolve();
