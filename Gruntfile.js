@@ -83,6 +83,6 @@ module.exports = function(grunt) {
 
 
 	// 4. Указываем, какие задачи выполняются, когда мы вводим «grunt» в терминале
-	grunt.registerTask('default', ['sass', 'copy', 'clean:build', 'uglify', 'zip', 'clean:after']);
+	grunt.registerTask('default', ['sass', 'bower_concat', 'copy', 'clean:build', 'uglify', 'zip', 'clean:after']);
 	// grunt.registerTask('dev', ['sass', 'copy:dev', 'uglify', 'csso', 'string-replace']);
 };
