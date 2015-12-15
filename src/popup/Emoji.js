@@ -1,3 +1,6 @@
+/* globals $, chrome, navigator, console*/
+/*jshint esnext: true */
+
 var Emoji = (function () {
 	"use strict";
 	return {
@@ -30,8 +33,7 @@ var Emoji = (function () {
 		 * @return {String}     Изменённая строка
 		 */
 		emojiToHTML: function (str) {
-			str = str.replace(/&nbsp;/g, ' ').replace(/<br>/g, "\n");
-			let regs = {
+			const regs = {
 				'D83DDE07': /(\s|^)([0OО]:\))([\s\.,]|$)/g,
 				'D83DDE09': /(\s|^)(;-\)+)([\s\.,]|$)/g,
 				'D83DDE06': /(\s|^)([XХxх]-?D)([\s\.,]|$)/g,
@@ -44,14 +46,7 @@ var Emoji = (function () {
 				'D83DDE0D': /(\s|^)(8-\))([\s\.,]|$)/g,
 				'D83DDE37': /(\s|^)(:[XХ])([\s\.,]|$)/g,
 				'D83DDE28': /(\s|^)(:[oоOО])([\s\.,]|$)/g,
-				'2764': /(\s|^)(&lt;3)([\s\.,]|$)/g
-			};
-			for (let code in regs) {
-				str = str.replace(regs[code], function (match, pre, smile, space) {
-					return (pre || '') + Emoji.getEmojiHTML(code)+(space || '');
-				});
-			}
-			regs = {
+				'2764': /(\s|^)(&lt;3)([\s\.,]|$)/g,
 				'D83DDE0A': /(:-\))([\s\.,]|$)/g,
 				'D83DDE03': /(:-D)([\s\.,]|$)/g,
 				'D83DDE1C': /(;-[PР])([\s\.,]|$)/g,
@@ -74,15 +69,12 @@ var Emoji = (function () {
 				'270C': /(:v:)([\s\.,]|$)/g,
 				'D83DDC4C': /(:ok:|:ок:)([\s\.,]|$)/g
 			};
+
 			for (let code in regs) {
-				str = str.replace(regs[code], function (match, smile, space) {
-					return Emoji.getEmojiHTML(code)+(space || '');
-				});
+				str = str.replace(regs[code], Emoji.getEmojiHTML(code) );
 			}
 
-			str = str.replace(/\n/g, '<br>');
-			str = str.replace(Emoji.emojiRegEx, Emoji.emojiReplace).replace(/\uFE0F/g, '');
-			return str;
+			return str.replace(Emoji.emojiRegEx, Emoji.emojiReplace).replace(/\uFE0F/g, '');
 		},
 
 		/**
@@ -101,7 +93,7 @@ var Emoji = (function () {
 
 
 			for (let i = 0; i < symbolstr.length; i++) {
-				const num = symbolstr.charCodeAt(i)
+				const num = symbolstr.charCodeAt(i);
 				const code = num.toString(16).toUpperCase();
 				const symbol = symbolstr.charAt(i);
 
@@ -121,7 +113,7 @@ var Emoji = (function () {
 					buffer = '';
 					altBuffer = '';
 				}
-			};
+			}
 
 			if (buffer) {
 				codes.push(buffer);
@@ -170,7 +162,7 @@ var Emoji = (function () {
 				}
 				buffer = code;
 				altBuffer = symbol;
-			};
+			}
 
 			if (buffer) {
 				out += Emoji.getEmojiHTML(buffer, altBuffer, true);
