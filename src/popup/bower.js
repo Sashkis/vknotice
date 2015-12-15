@@ -29,10 +29,10 @@ var BaseState$$module$lib$linkify$core$state = function() {
       this.j.push([b, a]);
     }
   };
-  a.prototype.next = function(a) {
-    for (var c = 0;c < this.j.length;c++) {
-      var g = this.j[c], d = g[1];
-      if (this.test(a, g[0])) {
+  a.prototype.next = function(b) {
+    for (var a = 0;a < this.j.length;a++) {
+      var g = this.j[a], d = g[1];
+      if (this.test(b, g[0])) {
         return d;
       }
     }
@@ -41,8 +41,8 @@ var BaseState$$module$lib$linkify$core$state = function() {
   a.prototype.accepts = function() {
     return!!this.T;
   };
-  a.prototype.test = function(a, c) {
-    return a === c;
+  a.prototype.test = function(b, a) {
+    return b === a;
   };
   a.prototype.emit = function() {
     return this.T;
@@ -221,8 +221,51 @@ var TextToken$$module$lib$linkify$core$tokens = function() {
   }
   _inherits$$module$lib$linkify$core$tokens(b, a);
   return b;
+}(TextToken$$module$lib$linkify$core$tokens), OPENBRACE$$module$lib$linkify$core$tokens = function(a) {
+  function b() {
+    _classCallCheck$$module$lib$linkify$core$tokens(this, b);
+    a.call(this, "{");
+  }
+  _inherits$$module$lib$linkify$core$tokens(b, a);
+  return b;
+}(TextToken$$module$lib$linkify$core$tokens), OPENBRACKET$$module$lib$linkify$core$tokens = function(a) {
+  function b() {
+    _classCallCheck$$module$lib$linkify$core$tokens(this, b);
+    a.call(this, "[");
+  }
+  _inherits$$module$lib$linkify$core$tokens(b, a);
+  return b;
+}(TextToken$$module$lib$linkify$core$tokens), OPENPAREN$$module$lib$linkify$core$tokens = function(a) {
+  function b() {
+    _classCallCheck$$module$lib$linkify$core$tokens(this, b);
+    a.call(this, "(");
+  }
+  _inherits$$module$lib$linkify$core$tokens(b, a);
+  return b;
+}(TextToken$$module$lib$linkify$core$tokens), CLOSEBRACE$$module$lib$linkify$core$tokens = function(a) {
+  function b() {
+    _classCallCheck$$module$lib$linkify$core$tokens(this, b);
+    a.call(this, "}");
+  }
+  _inherits$$module$lib$linkify$core$tokens(b, a);
+  return b;
+}(TextToken$$module$lib$linkify$core$tokens), CLOSEBRACKET$$module$lib$linkify$core$tokens = function(a) {
+  function b() {
+    _classCallCheck$$module$lib$linkify$core$tokens(this, b);
+    a.call(this, "]");
+  }
+  _inherits$$module$lib$linkify$core$tokens(b, a);
+  return b;
+}(TextToken$$module$lib$linkify$core$tokens), CLOSEPAREN$$module$lib$linkify$core$tokens = function(a) {
+  function b() {
+    _classCallCheck$$module$lib$linkify$core$tokens(this, b);
+    a.call(this, ")");
+  }
+  _inherits$$module$lib$linkify$core$tokens(b, a);
+  return b;
 }(TextToken$$module$lib$linkify$core$tokens), text$$module$lib$linkify$core$tokens = {Base:TextToken$$module$lib$linkify$core$tokens, DOMAIN:DOMAIN$$module$lib$linkify$core$tokens, AT:AT$$module$lib$linkify$core$tokens, COLON:COLON$$module$lib$linkify$core$tokens, DOT:DOT$$module$lib$linkify$core$tokens, PUNCTUATION:PUNCTUATION$$module$lib$linkify$core$tokens, LOCALHOST:LOCALHOST$$module$lib$linkify$core$tokens, NL:TNL$$module$lib$linkify$core$tokens, NUM:NUM$$module$lib$linkify$core$tokens, PLUS:PLUS$$module$lib$linkify$core$tokens, 
-POUND:POUND$$module$lib$linkify$core$tokens, QUERY:QUERY$$module$lib$linkify$core$tokens, PROTOCOL:PROTOCOL$$module$lib$linkify$core$tokens, SLASH:SLASH$$module$lib$linkify$core$tokens, SYM:SYM$$module$lib$linkify$core$tokens, TLD:TLD$$module$lib$linkify$core$tokens, WS:WS$$module$lib$linkify$core$tokens};
+POUND:POUND$$module$lib$linkify$core$tokens, QUERY:QUERY$$module$lib$linkify$core$tokens, PROTOCOL:PROTOCOL$$module$lib$linkify$core$tokens, SLASH:SLASH$$module$lib$linkify$core$tokens, SYM:SYM$$module$lib$linkify$core$tokens, TLD:TLD$$module$lib$linkify$core$tokens, WS:WS$$module$lib$linkify$core$tokens, OPENBRACE:OPENBRACE$$module$lib$linkify$core$tokens, OPENBRACKET:OPENBRACKET$$module$lib$linkify$core$tokens, OPENPAREN:OPENPAREN$$module$lib$linkify$core$tokens, CLOSEBRACE:CLOSEBRACE$$module$lib$linkify$core$tokens, 
+CLOSEBRACKET:CLOSEBRACKET$$module$lib$linkify$core$tokens, CLOSEPAREN:CLOSEPAREN$$module$lib$linkify$core$tokens};
 function isDomainToken$$module$lib$linkify$core$tokens(a) {
   return a instanceof DOMAIN$$module$lib$linkify$core$tokens || a instanceof TLD$$module$lib$linkify$core$tokens;
 }
@@ -310,11 +353,14 @@ var module$lib$linkify$core$parser = {__esModule:!0}, _tokens$$module$lib$linkif
   return new _state$$module$lib$linkify$core$parser.TokenState(a);
 }, TT_DOMAIN$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.DOMAIN, TT_AT$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.AT, TT_COLON$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.COLON, TT_DOT$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.DOT, TT_PUNCTUATION$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.PUNCTUATION, TT_LOCALHOST$$module$lib$linkify$core$parser = 
 _tokens$$module$lib$linkify$core$parser.text.LOCALHOST, TT_NL$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.NL, TT_NUM$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.NUM, TT_PLUS$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.PLUS, TT_POUND$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.POUND, TT_PROTOCOL$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.PROTOCOL, 
-TT_QUERY$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.QUERY, TT_SLASH$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.SLASH, TT_SYM$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.SYM, TT_TLD$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.TLD, T_EMAIL$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.multi.EMAIL, T_NL$$module$lib$linkify$core$parser = 
-_tokens$$module$lib$linkify$core$parser.multi.NL, T_TEXT$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.multi.TEXT, T_URL$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.multi.URL, S_START$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PROTOCOL$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PROTOCOL_SLASH$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), 
-S_PROTOCOL_SLASH_SLASH$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_DOMAIN$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_DOMAIN_DOT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_TLD$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_TLD_COLON$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_TLD_PORT$$module$lib$linkify$core$parser = 
-makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_PSS_DOMAIN$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PSS_DOMAIN_DOT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PSS_TLD$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_PSS_TLD_COLON$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PSS_TLD_PORT$$module$lib$linkify$core$parser = 
-makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_URL$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_URL_SYMS$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_EMAIL_DOMAIN$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_EMAIL_DOMAIN_DOT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_EMAIL$$module$lib$linkify$core$parser = 
+TT_QUERY$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.QUERY, TT_SLASH$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.SLASH, TT_SYM$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.SYM, TT_TLD$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.TLD, TT_OPENBRACE$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.OPENBRACE, TT_OPENBRACKET$$module$lib$linkify$core$parser = 
+_tokens$$module$lib$linkify$core$parser.text.OPENBRACKET, TT_OPENPAREN$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.OPENPAREN, TT_CLOSEBRACE$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.CLOSEBRACE, TT_CLOSEBRACKET$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.CLOSEBRACKET, TT_CLOSEPAREN$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.text.CLOSEPAREN, T_EMAIL$$module$lib$linkify$core$parser = 
+_tokens$$module$lib$linkify$core$parser.multi.EMAIL, T_NL$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.multi.NL, T_TEXT$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.multi.TEXT, T_URL$$module$lib$linkify$core$parser = _tokens$$module$lib$linkify$core$parser.multi.URL, S_START$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PROTOCOL$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), 
+S_PROTOCOL_SLASH$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PROTOCOL_SLASH_SLASH$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_DOMAIN$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_DOMAIN_DOT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_TLD$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_TLD_COLON$$module$lib$linkify$core$parser = 
+makeState$$module$lib$linkify$core$parser(), S_TLD_PORT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_PSS_DOMAIN$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PSS_DOMAIN_DOT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_PSS_TLD$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_PSS_TLD_COLON$$module$lib$linkify$core$parser = 
+makeState$$module$lib$linkify$core$parser(), S_PSS_TLD_PORT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_URL$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_URL_SYMS$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_URL_OPENBRACE$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_URL_OPENBRACKET$$module$lib$linkify$core$parser = 
+makeState$$module$lib$linkify$core$parser(), S_URL_OPENPAREN$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_URL$$module$lib$linkify$core$parser), 
+S_URL_OPENBRACE_SYMS$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_URL_OPENBRACKET_SYMS$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_URL_OPENPAREN_SYMS$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_EMAIL_DOMAIN$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_EMAIL_DOMAIN_DOT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_EMAIL$$module$lib$linkify$core$parser = 
 makeState$$module$lib$linkify$core$parser(T_EMAIL$$module$lib$linkify$core$parser), S_EMAIL_COLON$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_EMAIL_PORT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_EMAIL$$module$lib$linkify$core$parser), S_LOCALPART$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_LOCALPART_AT$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(), S_LOCALPART_DOT$$module$lib$linkify$core$parser = 
 makeState$$module$lib$linkify$core$parser(), S_NL$$module$lib$linkify$core$parser = makeState$$module$lib$linkify$core$parser(T_NL$$module$lib$linkify$core$parser);
 S_START$$module$lib$linkify$core$parser.on(TT_NL$$module$lib$linkify$core$parser, S_NL$$module$lib$linkify$core$parser);
@@ -358,8 +404,41 @@ S_PSS_TLD_COLON$$module$lib$linkify$core$parser.on(TT_NUM$$module$lib$linkify$co
 S_PSS_TLD_PORT$$module$lib$linkify$core$parser.on(TT_SLASH$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
 S_EMAIL$$module$lib$linkify$core$parser.on(TT_COLON$$module$lib$linkify$core$parser, S_EMAIL_COLON$$module$lib$linkify$core$parser);
 S_EMAIL_COLON$$module$lib$linkify$core$parser.on(TT_NUM$$module$lib$linkify$core$parser, S_EMAIL_PORT$$module$lib$linkify$core$parser);
-var qsAccepting$$module$lib$linkify$core$parser = [TT_DOMAIN$$module$lib$linkify$core$parser, TT_AT$$module$lib$linkify$core$parser, TT_LOCALHOST$$module$lib$linkify$core$parser, TT_NUM$$module$lib$linkify$core$parser, TT_PLUS$$module$lib$linkify$core$parser, TT_POUND$$module$lib$linkify$core$parser, TT_PROTOCOL$$module$lib$linkify$core$parser, TT_SLASH$$module$lib$linkify$core$parser, TT_TLD$$module$lib$linkify$core$parser, TT_SYM$$module$lib$linkify$core$parser], qsNonAccepting$$module$lib$linkify$core$parser = 
-[TT_COLON$$module$lib$linkify$core$parser, TT_DOT$$module$lib$linkify$core$parser, TT_QUERY$$module$lib$linkify$core$parser, TT_PUNCTUATION$$module$lib$linkify$core$parser];
+var qsAccepting$$module$lib$linkify$core$parser = [TT_DOMAIN$$module$lib$linkify$core$parser, TT_AT$$module$lib$linkify$core$parser, TT_LOCALHOST$$module$lib$linkify$core$parser, TT_NUM$$module$lib$linkify$core$parser, TT_PLUS$$module$lib$linkify$core$parser, TT_POUND$$module$lib$linkify$core$parser, TT_PROTOCOL$$module$lib$linkify$core$parser, TT_SLASH$$module$lib$linkify$core$parser, TT_TLD$$module$lib$linkify$core$parser], qsNonAccepting$$module$lib$linkify$core$parser = [TT_COLON$$module$lib$linkify$core$parser, 
+TT_DOT$$module$lib$linkify$core$parser, TT_QUERY$$module$lib$linkify$core$parser, TT_PUNCTUATION$$module$lib$linkify$core$parser, TT_CLOSEBRACE$$module$lib$linkify$core$parser, TT_CLOSEBRACKET$$module$lib$linkify$core$parser, TT_CLOSEPAREN$$module$lib$linkify$core$parser, TT_OPENBRACE$$module$lib$linkify$core$parser, TT_OPENBRACKET$$module$lib$linkify$core$parser, TT_OPENPAREN$$module$lib$linkify$core$parser, TT_SYM$$module$lib$linkify$core$parser];
+S_URL$$module$lib$linkify$core$parser.on(TT_OPENBRACE$$module$lib$linkify$core$parser, S_URL_OPENBRACE$$module$lib$linkify$core$parser);
+S_URL$$module$lib$linkify$core$parser.on(TT_OPENBRACKET$$module$lib$linkify$core$parser, S_URL_OPENBRACKET$$module$lib$linkify$core$parser);
+S_URL$$module$lib$linkify$core$parser.on(TT_OPENPAREN$$module$lib$linkify$core$parser, S_URL_OPENPAREN$$module$lib$linkify$core$parser);
+S_URL_SYMS$$module$lib$linkify$core$parser.on(TT_OPENBRACE$$module$lib$linkify$core$parser, S_URL_OPENBRACE$$module$lib$linkify$core$parser);
+S_URL_SYMS$$module$lib$linkify$core$parser.on(TT_OPENBRACKET$$module$lib$linkify$core$parser, S_URL_OPENBRACKET$$module$lib$linkify$core$parser);
+S_URL_SYMS$$module$lib$linkify$core$parser.on(TT_OPENPAREN$$module$lib$linkify$core$parser, S_URL_OPENPAREN$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE$$module$lib$linkify$core$parser.on(TT_CLOSEBRACE$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET$$module$lib$linkify$core$parser.on(TT_CLOSEBRACKET$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN$$module$lib$linkify$core$parser.on(TT_CLOSEPAREN$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser.on(TT_CLOSEBRACE$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser.on(TT_CLOSEBRACKET$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser.on(TT_CLOSEPAREN$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE_SYMS$$module$lib$linkify$core$parser.on(TT_CLOSEBRACE$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET_SYMS$$module$lib$linkify$core$parser.on(TT_CLOSEBRACKET$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN_SYMS$$module$lib$linkify$core$parser.on(TT_CLOSEPAREN$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACE_SYMS$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACKET_SYMS$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENPAREN_SYMS$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE_SYMS$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACE_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET_SYMS$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACKET_Q$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN_SYMS$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL_OPENPAREN_Q$$module$lib$linkify$core$parser);
+S_URL_OPENBRACE_SYMS$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACE_SYMS$$module$lib$linkify$core$parser);
+S_URL_OPENBRACKET_SYMS$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENBRACKET_SYMS$$module$lib$linkify$core$parser);
+S_URL_OPENPAREN_SYMS$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_OPENPAREN_SYMS$$module$lib$linkify$core$parser);
 S_URL$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
 S_URL_SYMS$$module$lib$linkify$core$parser.on(qsAccepting$$module$lib$linkify$core$parser, S_URL$$module$lib$linkify$core$parser);
 S_URL$$module$lib$linkify$core$parser.on(qsNonAccepting$$module$lib$linkify$core$parser, S_URL_SYMS$$module$lib$linkify$core$parser);
@@ -413,6 +492,12 @@ S_START$$module$lib$linkify$core$scanner.on("#", makeState$$module$lib$linkify$c
 S_START$$module$lib$linkify$core$scanner.on("?", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.QUERY));
 S_START$$module$lib$linkify$core$scanner.on("/", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.SLASH));
 S_START$$module$lib$linkify$core$scanner.on(COLON$$module$lib$linkify$core$scanner, makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.COLON));
+S_START$$module$lib$linkify$core$scanner.on("{", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.OPENBRACE));
+S_START$$module$lib$linkify$core$scanner.on("[", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.OPENBRACKET));
+S_START$$module$lib$linkify$core$scanner.on("(", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.OPENPAREN));
+S_START$$module$lib$linkify$core$scanner.on("}", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.CLOSEBRACE));
+S_START$$module$lib$linkify$core$scanner.on("]", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.CLOSEBRACKET));
+S_START$$module$lib$linkify$core$scanner.on(")", makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.CLOSEPAREN));
 S_START$$module$lib$linkify$core$scanner.on(/[,;!]/, makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.PUNCTUATION));
 S_START$$module$lib$linkify$core$scanner.on(/\n/, makeState$$module$lib$linkify$core$scanner(_tokens$$module$lib$linkify$core$scanner.text.NL));
 S_START$$module$lib$linkify$core$scanner.on(/\s/, S_WS$$module$lib$linkify$core$scanner);
@@ -523,223 +608,6 @@ module$lib$linkify.tokenize = tokenize$$module$lib$linkify;
 
 window.linkify = module$lib$linkify;
 })();
-;(function (jQuery, linkify) {
-"use strict";
-var tokenize = linkify.tokenize, options = linkify.options;
-/**
-	Linkify a HTML DOM node
-*/
-
-'use strict';
-
-var HTML_NODE = 1,
-    TXT_NODE = 3;
-
-/**
-	Given a parent element and child node that the parent contains, replaces
-	that child with the given array of new children
-*/
-function replaceChildWithChildren(parent, oldChild, newChildren) {
-	var lastNewChild = newChildren[newChildren.length - 1];
-	parent.replaceChild(lastNewChild, oldChild);
-	for (var i = newChildren.length - 2; i >= 0; i--) {
-		parent.insertBefore(newChildren[i], lastNewChild);
-		lastNewChild = newChildren[i];
-	}
-}
-
-/**
-	Given an array of MultiTokens, return an array of Nodes that are either
-	(a) Plain Text nodes (node type 3)
-	(b) Anchor tag nodes (usually, unless tag name is overridden in the options)
-
-	Takes the same options as linkifyElement and an optional doc element
-	(this should be passed in by linkifyElement)
-*/
-function tokensToNodes(tokens, opts, doc) {
-	var result = [];
-
-	for (var i = 0; i < tokens.length; i++) {
-		var token = tokens[i];
-
-		if (token.isLink) {
-
-			var href = token.toHref(opts.defaultProtocol),
-			    formatted = options.resolve(opts.format, token.toString(), token.type),
-			    formattedHref = options.resolve(opts.formatHref, href, token.type),
-			    attributesHash = options.resolve(opts.attributes, href, token.type),
-			    tagName = options.resolve(opts.tagName, href, token.type),
-			    linkClass = options.resolve(opts.linkClass, href, token.type),
-			    target = options.resolve(opts.target, href, token.type),
-			    events = options.resolve(opts.events, href, token.type);
-
-			// Build the link
-			var link = doc.createElement(tagName);
-			link.setAttribute('href', formattedHref);
-			link.setAttribute('class', linkClass);
-			if (target) {
-				link.setAttribute('target', target);
-			}
-
-			// Build up additional attributes
-			if (attributesHash) {
-				for (var attr in attributesHash) {
-					link.setAttribute(attr, attributesHash[attr]);
-				}
-			}
-
-			if (events) {
-				for (var event in events) {
-					if (link.addEventListener) {
-						link.addEventListener(event, events[event]);
-					} else if (link.attachEvent) {
-						link.attachEvent('on' + event, events[event]);
-					}
-				}
-			}
-
-			link.appendChild(doc.createTextNode(formatted));
-			result.push(link);
-		} else if (token.type === 'nl' && opts.nl2br) {
-			result.push(doc.createElement('br'));
-		} else {
-			result.push(doc.createTextNode(token.toString()));
-		}
-	}
-
-	return result;
-}
-
-// Requires document.createElement
-function linkifyElementHelper(element, opts, doc) {
-
-	// Can the element be linkified?
-	if (!element || typeof element !== 'object' || element.nodeType !== HTML_NODE) {
-		throw new Error('Cannot linkify ' + element + ' - Invalid DOM Node type');
-	}
-
-	// Is this element already a link?
-	if (element.tagName === 'A' /*|| element.hasClass('linkified')*/) {
-			// No need to linkify
-			return element;
-		}
-
-	var childElement = element.firstChild;
-
-	while (childElement) {
-
-		switch (childElement.nodeType) {
-			case HTML_NODE:
-				linkifyElementHelper(childElement, opts, doc);
-				break;
-			case TXT_NODE:
-
-				var str = childElement.nodeValue,
-				    tokens = tokenize(str),
-				    nodes = tokensToNodes(tokens, opts, doc);
-
-				// Swap out the current child for the set of nodes
-				replaceChildWithChildren(element, childElement, nodes);
-
-				// so that the correct sibling is selected
-				childElement = nodes[nodes.length - 1];
-
-				break;
-		}
-
-		childElement = childElement.nextSibling;
-	}
-
-	return element;
-}
-
-function linkifyElement(element, opts) {
-	var doc = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
-
-	try {
-		doc = doc || window && window.document || global && global.document;
-	} catch (e) {/* do nothing for now */}
-
-	if (!doc) {
-		throw new Error('Cannot find document implementation. ' + 'If you are in a non-browser environment like Node.js, ' + 'pass the document implementation as the third argument to linkifyElement.');
-	}
-
-	opts = options.normalize(opts);
-	return linkifyElementHelper(element, opts, doc);
-}
-
-// Maintain reference to the recursive helper to cache option-normalization
-linkifyElement.helper = linkifyElementHelper;
-linkifyElement.normalize = options.normalize;
-'use strict';
-
-var doc = undefined;
-
-try {
-	doc = document;
-} catch (e) {
-	doc = null;
-}
-
-// Applies the plugin to jQuery
-function apply($) {
-	var doc = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-
-	$.fn = $.fn || {};
-
-	try {
-		doc = doc || window && window.document || global && global.document;
-	} catch (e) {/* do nothing for now */}
-
-	if (!doc) {
-		throw new Error('Cannot find document implementation. ' + 'If you are in a non-browser environment like Node.js, ' + 'pass the document implementation as the third argument to linkifyElement.');
-	}
-
-	if (typeof $.fn.linkify === 'function') {
-		// Already applied
-		return;
-	}
-
-	function jqLinkify(opts) {
-		opts = linkifyElement.normalize(opts);
-		return this.each(function () {
-			linkifyElement.helper(this, opts, doc);
-		});
-	}
-
-	$.fn.linkify = jqLinkify;
-
-	$(doc).ready(function () {
-		$('[data-linkify]').each(function () {
-
-			var $this = $(this),
-			    data = $this.data(),
-			    target = data.linkify,
-			    nl2br = data.linkifyNlbr,
-			    options = {
-				linkAttributes: data.linkifyAttributes,
-				defaultProtocol: data.linkifyDefaultProtocol,
-				events: data.linkifyEvents,
-				format: data.linkifyFormat,
-				formatHref: data.linkifyFormatHref,
-				newLine: data.linkifyNewline, // deprecated
-				nl2br: !!nl2br && nl2br !== 0 && nl2br !== 'false',
-				tagName: data.linkifyTagname,
-				target: data.linkifyTarget,
-				linkClass: data.linkifyLinkclass
-			};
-			var $target = target === 'this' ? $this : $this.find(target);
-			$target.linkify(options);
-		});
-	});
-}
-
-// Apply it right away if possible
-if (typeof jQuery !== 'undefined' && doc) {
-	apply(jQuery, doc);
-}
-window.linkifyElement = linkifyElement;
-})(window.jQuery, window.linkify);
 ;(function (linkify) {
 "use strict";
 var tokenize = linkify.tokenize, options = linkify.options;
@@ -749,11 +617,11 @@ var tokenize = linkify.tokenize, options = linkify.options;
 
 'use strict';
 
-function cleanText(text) {
+function escapeText(text) {
 	return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function cleanAttr(href) {
+function escapeAttr(href) {
 	return href.replace(/"/g, '&quot;');
 }
 
@@ -764,7 +632,7 @@ function attributesToString(attributes) {
 
 	for (var attr in attributes) {
 		var val = (attributes[attr] + '').replace(/"/g, '&quot;');
-		result.push(attr + '="' + cleanAttr(val) + '"');
+		result.push(attr + '="' + escapeAttr(val) + '"');
 	}
 	return result.join(' ');
 }
@@ -789,16 +657,16 @@ function linkifyStr(str) {
 			    linkClass = options.resolve(opts.linkClass, href, token.type),
 			    target = options.resolve(opts.target, href, token.type);
 
-			var link = '<' + tagName + ' href="' + cleanAttr(formattedHref) + '" class="' + cleanAttr(linkClass) + '"';
+			var link = '<' + tagName + ' href="' + escapeAttr(formattedHref) + '" class="' + escapeAttr(linkClass) + '"';
 			if (target) {
-				link += ' target="' + cleanAttr(target) + '"';
+				link += ' target="' + escapeAttr(target) + '"';
 			}
 
 			if (attributesHash) {
 				link += ' ' + attributesToString(attributesHash);
 			}
 
-			link += '>' + cleanText(formatted) + '</' + tagName + '>';
+			link += '>' + escapeText(formatted) + '</' + tagName + '>';
 			result.push(link);
 		} else if (token.type === 'nl' && opts.nl2br) {
 			if (opts.newLine) {
@@ -807,7 +675,7 @@ function linkifyStr(str) {
 				result.push('<br>\n');
 			}
 		} else {
-			result.push(cleanText(token.toString()));
+			result.push(escapeText(token.toString()));
 		}
 	}
 
