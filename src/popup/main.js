@@ -1,3 +1,7 @@
+/* globals jQuery, chrome, navigator, Vk, console, Popup, App*/
+/*jshint esnext: true */
+/*jshint -W097*/
+
 "use strict";
 jQuery(function ($) {
 

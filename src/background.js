@@ -1,3 +1,7 @@
+/* globals document, jQuery, chrome, navigator, Vk, App, console, getCase, Informer*/
+/*jshint esnext: true */
+/*jshint -W097*/
+
 "use strict";
 jQuery(function ($) {
 

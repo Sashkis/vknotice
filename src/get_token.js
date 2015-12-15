@@ -1,3 +1,5 @@
+/*jshint esnext: true */
+
 (function () {
 	"use strict";
 	function parseURL (url) {

@@ -1,4 +1,8 @@
+/* globals $, chrome, navigator, Vk, console*/
+/*jshint esnext: true */
+/*jshint -W097*/
 "use strict";
+
 function App () {}
 
 App.prototype.id = chrome.app.getDetails().id;

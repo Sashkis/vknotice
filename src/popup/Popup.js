@@ -1,3 +1,6 @@
+/* globals document, $, chrome, navigator, Vk, console, getCase, User, Dialog, Message*/
+/*jshint esnext: true */
+/*jshint -W030, -W097*/
 "use strict";
 /**
  * Popup
@@ -194,7 +197,7 @@ var Popup = (function () {
 						}
 					});
 				});
-			};
+			}
 
 			chrome.storage.onChanged.addListener(function (changes) {
 				( !!changes.counter || !!changes.showMessage || !!changes.dialogs ) && updateCounters();
@@ -457,6 +460,7 @@ var Popup = (function () {
 
 						// Загрузка истории
 						function loadHistory () {
+							/* jshint validthis: true */
 							const $button = $(this);
 							const isMore = $button.hasClass('more');
 							const data = isMore ? $button.data() : $button.parents('.dialog').data() ;
@@ -508,7 +512,7 @@ var Popup = (function () {
 									});
 								});
 							});
-						};
+						}
 
 						chrome.storage.onChanged.addListener(function (changes) {
 							if ( !!changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue) ) {
@@ -636,5 +640,5 @@ var Popup = (function () {
 			const def = isRequared === false ? undefined : text;
 			return !!this.i18n[ text ] && !!this.i18n[ text ][ this.lang ] ? this.i18n[text][this.lang] : def;
 		},
-	}
+	};
 })();

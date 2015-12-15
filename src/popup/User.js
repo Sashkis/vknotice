@@ -1,3 +1,7 @@
+/* globals document, $, chrome, navigator, Vk, console, getCase*/
+/*jshint esnext: true */
+/*jshint -W097*/
+
 "use strict";
 /**
  * Класс пользователей

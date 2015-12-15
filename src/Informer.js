@@ -1,3 +1,7 @@
+/* globals document, $, chrome, navigator, Vk, App, console, getCase, setTimeout*/
+/*jshint esnext: true */
+/*jshint -W097*/
+
 "use strict";
 /**
  * @class

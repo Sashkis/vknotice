@@ -1,3 +1,6 @@
+/* globals $, chrome, navigator, console*/
+/*jshint esnext: true */
+/*jshint -W030, -W097*/
 "use strict";
 function Vk () {}
 
@@ -32,7 +35,7 @@ Vk.prototype.auth = function () {
 				t.access_token = changes.access_token.newValue;
 				chrome.windows.remove(authWindow.id);
 			}
-		};
+		}
 
 		function isAuth (window_id) {
 			if ( window_id === authWindow.id ) {
@@ -44,7 +47,7 @@ Vk.prototype.auth = function () {
 				chrome.storage.onChanged.removeListener(update);
 				chrome.windows.onRemoved.removeListener(isAuth);
 			}
-		};
+		}
 
 		chrome.storage.onChanged.addListener(update);
 		chrome.windows.onRemoved.addListener(isAuth);

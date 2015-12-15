@@ -1,3 +1,6 @@
+/* globals $, chrome, navigator, Vk, console, Popup, Emoji, getCase*/
+/*jshint esnext: true */
+/*jshint -W097*/
 "use strict";
 /**
  * Класс сообщения
@@ -7,7 +10,6 @@
  * @param {Message} parentMessage	Объект родительского сообщения
  */
 function Message (mess_obj, parentDialogUrl) {
-
 	this.id = mess_obj.id;
 
 	if ( mess_obj.out === 1 ) {
@@ -41,7 +43,7 @@ function Message (mess_obj, parentDialogUrl) {
 			format: function (value) {
 				return value.length > 36 ? value.substr(0, 35) + '…' : value;
 			}
-		})
+		});
 
 		if (mess_obj.emoji === 1) {
 			mess_obj.body = Emoji.emojiToHTML(mess_obj.body);
@@ -181,7 +183,7 @@ function Message (mess_obj, parentDialogUrl) {
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-location'}),
-							(attach.place ? attach.place.title : window.Popup.loc('Map')),
+							(attach.place ? attach.place.title : Popup.loc('Map')),
 						]
 					});
 

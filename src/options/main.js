@@ -1,3 +1,8 @@
+/* globals $, chrome*/
+/*jshint esnext: true */
+/*jshint -W097*/
+
+"use strict";
 $.when($.getJSON('../lang/i18n.json'), load({
 		'showMessage':false,
 		'audio':true,

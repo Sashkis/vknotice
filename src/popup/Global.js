@@ -1,3 +1,6 @@
+/* globals $, chrome, navigator, console*/
+/*jshint esnext: true */
+
 /**
  * Екранирует HTML
  * @return {String}	Преобразованная строка

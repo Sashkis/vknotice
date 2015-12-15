@@ -1,3 +1,6 @@
+/* globals $, chrome, navigator, Vk, console, User, Message*/
+/*jshint esnext: true */
+/*jshint -W097*/
 "use strict";
 /**
  * Объект диалога
