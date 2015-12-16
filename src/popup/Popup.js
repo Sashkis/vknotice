@@ -402,12 +402,12 @@ var Popup = (function () {
 								if ( !!this.value ) {
 									const $field = $(this).attr('disabled', 'disabled');
 
-									new Vk().load().done(function (vk) {
+									new Vk().load().done(vk => {
 										const $dg = $field.parents('.dialog');
 										const params = $.extend({}, $dg.data('peer'));
 										params.message = $field.val().trim();
 
-										vk.api('messages.send', params).done(function (mess_id) {
+										vk.api('messages.send', params).done(mess_id => {
 
 											$field.removeClass('error').val('');
 
@@ -422,10 +422,8 @@ var Popup = (function () {
 												}).getHtml(users, 'compact') );
 
 										})
-										.fail($.proxy($field, 'addClass', 'error'))
-										.always(function () {
-											$field.removeAttr('disabled').trigger('focus');
-										});
+										.fail(() => $field.addClass('error'))
+										.always(() => $field.removeAttr('disabled').trigger('focus'));
 									});
 								}
 
@@ -435,26 +433,25 @@ var Popup = (function () {
 						}).on('click', '.markAsRead', function () {
 							const $button = $(this).addClass('icon-spin4 animate-spin');
 
-							new Vk().load().done(function (vk) {
+							new Vk().load().done(vk => {
 								const $dg = $button.parents('.dialog');
 
-								vk.api('messages.markAsRead', $dg.data('markAsRead')).done(function () {
-									$dg.removeClass('dialog-unread');
-								}).always(function () {
-									$button.removeClass('icon-spin4 animate-spin');
-								});
+								vk.api('messages.markAsRead', $dg.data('markAsRead'))
+								.done(() => $dg.removeClass('dialog-unread'))
+								.always(() => $button.removeClass('icon-spin4 animate-spin'));
 							});
-						}).on('click', '.history', loadHistory);
+						}).on('click', '.history', function () {
+							loadHistory($(this));
+						});
 
 						deferred.resolve();
 
-						$('#history').on('click', '.history', loadHistory);
+						$('#history').on('click', '.history', function () {
+							loadHistory($(this));
+						});
 
 						// Загрузка истории
-						const pop = this;
-						function loadHistory() {
-							/* jshint validthis: true */
-							const $button = $(this);
+						const loadHistory = ($button) => {
 							const isMore = $button.hasClass('more');
 							const data = isMore ? $button.data() : $button.parents('.dialog').data() ;
 
@@ -465,13 +462,13 @@ var Popup = (function () {
 							}
 
 
-							new Vk().load().done(function (vk) {
-								vk.api('messages.getHistory', data.peer).done((API) => {
+							new Vk().load().done(vk => {
+								vk.api('messages.getHistory', data.peer).done(API => {
 									const talkers = [ vk.user_id ];
 
 									$.each(API.items, (index, mess) => talkers.push( mess.from_id ));
 
-									pop.u(talkers).always((users) => {
+									this.u(talkers).always(users => {
 										const mess_count = API.items.length;
 										const start_message_id = API.items[ mess_count - 1 ].id;
 
@@ -481,7 +478,7 @@ var Popup = (function () {
 											if ( mess_count === 20 ) {
 												API.items.push( $('<a/>', {
 													'class': 'dialog history more',
-													text: pop.loc('More'),
+													text: this.loc('More'),
 												}).data({
 													'url': data.url,
 													'peer': data.peer,
