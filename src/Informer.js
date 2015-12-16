@@ -200,14 +200,12 @@ var Informer = (function () {
 		 * Воспроизводит звук
 		 */
 		playSound: function () {
-			this.load({'audio': true}).done(function (stg) {
+			this.load({'audio': true}).done(stg => {
 				if ( stg.audio === true ) {
 					chrome.tabs.query({
 						url: '*://vk.com/*'
-					}, function (tabs) {
-						if (tabs.every(function (tab) {
-							return /vk.com\/(?:login.*)?$/i.test(tab.url);
-						})) {
+					}, tabs => {
+						if (tabs.every(tab => /vk.com\/(?:login.*)?$/i.test(tab.url))) {
 							$('#audio')[0].play();
 						}
 					});
