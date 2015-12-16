@@ -5,8 +5,8 @@
 "use strict";
 jQuery(function ($) {
 
-	$.when(Popup.loadTranslate(), Popup.checkError(), Popup.loadProfiles()).done(function () {
-		$.when(Popup.setCurrentProfile(), Popup.builFriendsOnline(), Popup.buildCounters(), Popup.buildDialogs(), Popup.buildNewFriends()).done(function () {
+	$.when(Popup.loadTranslate(), Popup.checkError(), Popup.loadProfiles()).done(() => {
+		$.when(Popup.setCurrentProfile(), Popup.builFriendsOnline(), Popup.buildCounters(), Popup.buildDialogs(), Popup.buildNewFriends()).done(() => {
 			Popup.setTranslate().show().initScroll().initSlide();
 
 			$('.dropdown').on('click', function () {
@@ -40,7 +40,7 @@ jQuery(function ($) {
 			app.addVisitor();
 		});
 
-	}).fail(function (code) {
+	}).fail(code => {
 		if ( code === 3 ) {
 			Popup.buildAlert({
 				code: 3,
@@ -50,7 +50,7 @@ jQuery(function ($) {
 				}
 			}).addClass('error');
 		}
-	}).always(function () {
+	}).always(() => {
 		const vk = new Vk();
 
 		$('#alert').on('click', `a[href="${vk.authUrl}"]`, function () {

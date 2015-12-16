@@ -58,7 +58,7 @@ var Popup = (function () {
 				this.i18n = ajax[0];
 				this.lang = stg.lang;
 				deferred.resolve();
-			}, function (ajax, stg) {
+			}, (ajax, stg) => {
 				console.error('3. Load translate failed', ajax, stg);
 				deferred.reject(3);
 			});
@@ -84,6 +84,7 @@ var Popup = (function () {
 			}
 
 			this.load('profiles').done((stg) => {
+				window.p = stg.profiles;
 				if ( !$.isArray(stg.profiles) || $.isEmptyObject(stg.profiles) ) {
 					deferred.reject();
 				} else {
@@ -126,8 +127,8 @@ var Popup = (function () {
 				new Vk().api('users.get', {
 					fields: 'status,photo_100,domain,online',
 					user_ids: undef,
-				}).then((users) => {
-					$.each(users, function(i, user) {
+				}).then(users => {
+					$.each(users, (i, user) => {
 						this.profiles[user.id] = new User(user);
 						known[user.id] = this.profiles[user.id];
 					});
@@ -185,7 +186,7 @@ var Popup = (function () {
 						if ( stg.counter[key] ) {
 							if ( key === 'messages' && !!stg.showMessage ) {
 								stg.counter.messages = 0;
-								$.each(stg.dialogs, function(i, dialog) {
+								$.each(stg.dialogs, (i, dialog) => {
 									if ( !!dialog.unread ) {
 										stg.counter.messages += dialog.unread;
 									}
