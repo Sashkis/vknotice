@@ -22,7 +22,7 @@ Vk.prototype.auth = function () {
 	chrome.windows.create({
 		url: this.authUrl,
 		focused: true,
-		type:  "popup",
+		type:  'popup',
 	}, (authWindow) => {
 
 		// Событие обновления данных авторизации
@@ -86,11 +86,11 @@ Vk.prototype.api = function (method, params) {
 	get.v = this.v;
 	if ( !!this.access_token ) get.access_token = this.access_token;
 
-	$.getJSON('https://api.vk.com/method/' + method, get).done((API) => {
+	$.getJSON(`https://api.vk.com/method/${method}`, get).done((API) => {
 		if ( !!API.response )
 			deferred.resolve(API.response);
 		else {
-			console.error('2/' + API.error.error_code + '. ' + method + '. ' + API.error.error_msg);
+			console.error(`2/${API.error.error_code}. ${method}. ${API.error.error_msg}`);
 			deferred.reject(2, API.error);
 		}
 	}).fail((jqxhr) => {

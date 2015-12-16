@@ -53,7 +53,7 @@ jQuery(function ($) {
 	}).always(function () {
 		const vk = new Vk();
 
-		$('#alert').on('click', 'a[href="' + vk.authUrl + '"]', function () {
+		$('#alert').on('click', `a[href="${vk.authUrl}"]`, function () {
 			vk.auth();
 			return false;
 		}).on('click', 'a[href]', function () {

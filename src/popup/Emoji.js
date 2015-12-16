@@ -24,7 +24,7 @@ var Emoji = (function () {
 		 * @return {String}        HTML код картинки
 		 */
 		getEmojiHTML: function (code, symbol) {
-			return '<img class="emoji" ' + (symbol ? 'alt="' + symbol + '"' : '') + ' src="' + this.pathToEmojisImages + code+'.png" />';
+			return `<img class="emoji" ${symbol ? `alt="${symbol}"` : ''} src="${this.pathToEmojisImages}${code}.png" />`;
 		},
 
 		/**
@@ -71,10 +71,10 @@ var Emoji = (function () {
 			};
 
 			for (let code in regs) {
-				str = str.replace(regs[code], Emoji.getEmojiHTML(code) );
+				str = str.replace(regs[code], this.getEmojiHTML(code) );
 			}
 
-			return str.replace(Emoji.emojiRegEx, Emoji.emojiReplace).replace(/\uFE0F/g, '');
+			return str.replace(this.emojiRegEx, this.emojiReplace).replace(/\uFE0F/g, '');
 		},
 
 		/**

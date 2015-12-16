@@ -16,10 +16,10 @@ App.prototype.share = 'https://vk.com/share.php?' + $.param({
 
 if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 	App.prototype.ext = 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin';
-	App.prototype.comment = App.prototype.ext + '#feedback-container';
+	App.prototype.comment = `${App.prototype.ext}#feedback-container`;
 } else {
 	App.prototype.ext = 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
-	App.prototype.comment = App.prototype.ext + '/reviews';
+	App.prototype.comment = `${App.prototype.ext}/reviews`;
 }
 
 App.prototype.addVisitor = function () {

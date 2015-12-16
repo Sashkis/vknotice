@@ -41,7 +41,7 @@ User.prototype.status = '';
  */
 User.prototype.profileLink = function (ancor) {
 	return $('<a/>', {
-		href: 'https://vk.com/' + this.domain,
+		href: `https://vk.com/${this.domain}`,
 		target: '_blank',
 		'class': 'profile',
 		html: ancor || this.name
@@ -69,7 +69,7 @@ User.prototype.ava = function (options) {
 	}, options);
 
 	const $imgHTML = $('<div/>', {
-		'class': 'ava ava-' + options.type + (!!this.online && options.marker ? ' online' : ''),
+		'class': `ava ava-${options.type} ${!!this.online && options.marker ? 'online' : ''}`,
 		html: $('<img/>', {
 			title: (options.title ? this.name : ''),
 			src: options.src,

@@ -26,12 +26,14 @@ function Dialog (dialog_obj) {
 	this.isGroup = this.chat_id !== undefined;
 
 	if ( this.isGroup ) {
-		this.id = this.chat_id - 0;
-		this.url = 'https://vk.com/im?sel=c' + this.id;
+		this.id = this.chat_id;
+		this.url = `https://vk.com/im?sel=c${this.id}`;
 	} else {
-		this.id = this.user_id - 0;
-		this.url = 'https://vk.com/im?sel=' + this.id;
+		this.id = this.user_id;
+		this.url = `https://vk.com/im?sel=${this.id}`;
 	}
+
+	this.id -= 0; // Приведение к числу
 
 	if ( $.isEmptyObject(dialog_obj.messages) ) {
 		delete dialog_obj.messages;
@@ -39,9 +41,7 @@ function Dialog (dialog_obj) {
 		this.messages.push(dialog_obj);
 	}
 
-	this.messages.sort(function (mess_first, mess_second) {
-		return mess_first.date - mess_second.date;
-	});
+	this.messages.sort((f, s) => f.date - s.date);
 }
 
 /**
@@ -97,7 +97,7 @@ Dialog.prototype.construct = function (users) {
 	});
 
 	// Вставляет ФОТО
-	$d.find('.photo').html( () => {
+	$d.find('.photo').html(() => {
 		if ( !!this.photo_50 ) {
 			return new User().ava({
 				size: 50,
@@ -117,7 +117,7 @@ Dialog.prototype.construct = function (users) {
 	} );
 
 	// Вставляет Имя
-	$d.find('.name').text( () => {
+	$d.find('.name > .title').text(() => {
 		return this.isGroup ? this.title : users[ this.user_id ].name;
 	} );
 
@@ -147,17 +147,13 @@ Dialog.prototype.constructMessages = function (users) {
  * @return {String}			Строка классов
  */
 Dialog.prototype.getClass = function (custom) {
-	let dialogClass = (custom ? custom + ' ' : '') + 'dialog';
-	if ( !!this.unread )
-		dialogClass += ' dialog-unread';
-	if ( this.out === 1 ) {
-		dialogClass += ' dialog-answer';
-		if ( this.read_state === 0 )
-			dialogClass += ' dialog-answer-unread';
-	}
-	if ( this.isGroup ) dialogClass += ' dialog-group';
-	return dialogClass;
-};
+
+	return 'dialog ' +
+		`${!!this.unread ? 'dialog-unread' : ''} ` +
+		`${!!this.out ? `dialog-answer ${this.read_state ? 'dialog-answer-unread' : ''}` : ''} ` +
+		`${this.isGroup ? 'dialog-group' : ''} ` +
+		`${custom ? custom : ''}`;
+}
 
 /**
  * Генерирует хэш сообщений

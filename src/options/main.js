@@ -14,16 +14,14 @@ $.when($.getJSON('../lang/i18n.json'), load({
 	i18n = i18n[0];
 
 	// Локализация
-	$('[loc]').text(function (i, text) {
+	$('[loc]').text((i, text) => {
 		if ( !!text && !!i18n[ text ] && !!i18n[ text ][ stg.lang ] ) {
 			return i18n[ text ][ stg.lang ];
 		}
 	});
 
 	// Настройки уведомлений
-	$.each(stg.options.split(','), function(i, opt) {
-		$('#' + opt).prop('checked', true);
-	});
+	$.each(stg.options.split(','), (i, opt) => $(`#${opt}`).prop('checked', true));
 
 	// Настройки комментариев
 	$('#comments').prop('checked', stg.isLoadComment);
@@ -51,7 +49,7 @@ $.when($.getJSON('../lang/i18n.json'), load({
 				$('<input/>', {
 					type: 'image',
 					name: 'btn_text',
-					src: 'https://static.liqpay.com/buttons/d6' + (stg.lang < 3 ? 'ru' : 'en') + '.png'
+					src: `https://static.liqpay.com/buttons/d6${stg.lang < 3 ? 'ru' : 'en'}.png`
 				}),
 			]
 		})
@@ -59,10 +57,8 @@ $.when($.getJSON('../lang/i18n.json'), load({
 
 	// Событие переключения
 	$('.panel').on('change', 'input', function () {
-		var new_options = '';
-		$('input.main-opt:checked').each(function (i, el) {
-			new_options +=  $(el).attr('id') + ',';
-		});
+		let new_options = '';
+		$('input.main-opt:checked').each((i, el) => new_options += $(el).attr('id') + ',');
 
 		// Сохранение нового значения
 		chrome.storage.local.set({

@@ -6,7 +6,7 @@
  * @return {String}	Преобразованная строка
  */
 String.prototype.escapeHtml = function () {
-	"use strict";
+	'use strict';
 	const map = {
 		'&': '&amp;',
 		'<': '&lt;',
@@ -26,19 +26,18 @@ Date.prototype.toStringVkFormat = function () {
 	const now = new Date();
 	const ago = (now.getTime() - this.getTime())/1000; // Количество секунд прошедших с момента публикации
 	if (ago < 10)		  return Popup.loc('just now');
-	else if (ago < 60)	  return getCase(Math.floor(ago),		Popup.loc('seconds')) + '&nbsp' + Popup.loc('ago');
-	else if (ago < 3600)  return getCase(Math.floor(ago/60),	Popup.loc('minutes')) + '&nbsp' + Popup.loc('ago');
-	else if (ago < 10800) return getCase(Math.floor(ago/3600),	Popup.loc('hours'))	 + '&nbsp' + Popup.loc('ago');
+	else if (ago < 60)	  return `${getCase(Math.floor(ago), Popup.loc('seconds'))} ${Popup.loc('ago')}`;
+	else if (ago < 3600)  return `${getCase(Math.floor(ago/60), Popup.loc('minutes'))} ${Popup.loc('ago')}`;
+	else if (ago < 10800) return `${getCase(Math.floor(ago/3600), Popup.loc('hours'))} ${Popup.loc('ago')}`;
 	else {
-		const h = this.getHours()	< 10 ? '0' + this.getHours()   : this.getHours();
-		const m = this.getMinutes() < 10 ? '0' + this.getMinutes() : this.getMinutes();
-		if (ago < 86400) {
-			return Popup.loc('today')	+ '&nbsp' + Popup.loc('at') + '&nbsp' + h + ':' + m;
-		} else if (ago < 172800) {
-			return Popup.loc('tomorrow') + '&nbsp' + Popup.loc('at') + '&nbsp' + h + ':' + m;
+		const h = this.getHours()	< 10 ? `0${this.getHours()}`   : this.getHours();
+		const m = this.getMinutes() < 10 ? `0${this.getMinutes()}` : this.getMinutes();
+		const at = `${Popup.loc('at')} ${h}:${m}`;
+		if (ago < 172800) {
+			return `${Popup.loc(this.getDate() === now.getDate() ? 'today' : 'tomorrow')} ${at}`;
 		} else {
-			const y = this.getFullYear() != now.getFullYear() ? '&nbsp' + this.getFullYear() : '';
-			return this.getDate() + '&nbsp' + Popup.loc('months')[this.getMonth()] + y + '&nbsp' + Popup.loc('at') + '&nbsp' + h + ':' + m;
+			const y = this.getFullYear() != now.getFullYear() ? this.getFullYear() : '';
+			return `${this.getDate()} ${Popup.loc('months')[this.getMonth()]} ${y} ${at}`;
 		}
 	}
 };
@@ -53,5 +52,5 @@ Date.prototype.toStringVkFormat = function () {
  */
 function getCase (number, words) {
 	"use strict";
-	return number!==0? number + '&nbsp' + words[number%10===1&&number%100!==11?0:number%10>=2&&number%10<=4&&(number%100<10||number%100>=20)?1:2] : "";
+	return number!==0? `${number} ${words[number%10===1&&number%100!==11?0:number%10>=2&&number%10<=4&&(number%100<10||number%100>=20)?1:2]}` : '';
 }

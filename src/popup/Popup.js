@@ -21,28 +21,29 @@ var Popup = (function () {
 		 * Инициализирует плагин для скролбара
 		 */
 		initScroll: function () {
-			$("#newmess, #newfriends, #history").mCustomScrollbar({
+			$('#newmess, #newfriends, #history').mCustomScrollbar({
 				axis: 'y',
 				autoHideScrollbar: true,
 				alwaysShowScrollbar: 0,
 				contentTouchScroll: false,
-				theme: "dark-thin",
+				theme: 'dark-thin',
 				scrollbarPosition: 'inside',
 				scrollInertia: 150,
 				keyboard: {
-					enable: false
+					enable: false,
 				},
 				mouseWheel: {
-					scrollAmount: 61
+					scrollAmount: 61,
 				},
 				callbacks:{
 					onScroll: function () {
 						$(this).trigger('scrollEnd');
 					}
-				}
+				},
 			});
 
-			$('#newmess .mCSB_container').attr('data-before', this.loc('Your private messages will be displayed here.'));
+			$('#newmess .mCSB_container')
+				.attr('data-before', this.loc('Your private messages will be displayed here.'));
 
 			return this;
 		},
@@ -77,7 +78,6 @@ var Popup = (function () {
 
 		loadProfiles: function () {
 			const deferred = $.Deferred();
-			const pop = this;
 
 			if ( !this.profiles ) {
 				this.profiles = {};
@@ -89,7 +89,7 @@ var Popup = (function () {
 				} else {
 					$.each(stg.profiles, (i, profile) => {
 						if ( !this.profiles[ profile.id ] ) {
-							this.profiles[ profile.id ] = profile;
+							this.profiles[ profile.id ] = new User(profile);
 						}
 					});
 
@@ -112,7 +112,7 @@ var Popup = (function () {
 			$.each(user_ids, (i, id) => {
 				if ( !!id && !known[id] ) {
 					if ( !!this.profiles[id] ) {
-						known[id] = new User( this.profiles[id] );
+						known[id] = this.profiles[id];
 					} else {
 						known[id] = new User();
 						undef.push(id);
@@ -128,8 +128,8 @@ var Popup = (function () {
 					user_ids: undef,
 				}).then((users) => {
 					$.each(users, function(i, user) {
-						this.profiles[ user.id ] = user;
-						known[ user.id ] = new User( user );
+						this.profiles[user.id] = new User(user);
+						known[user.id] = this.profiles[user.id];
 					});
 
 					deferred.resolve(known);
@@ -153,7 +153,7 @@ var Popup = (function () {
 				$('.slider.open')
 					.add(this)
 					.add('.slide.open')
-					.add( target === '#' + $('.slider.open').attr('id') ? '#friends-online' : target )
+					.add( target === `#${$('.slider.open').attr('id')}` ? '#friends-online' : target )
 					.toggleClass('open');
 				return false;
 			});
@@ -191,7 +191,7 @@ var Popup = (function () {
 									}
 								});
 							}
-							return '+' + Math.min(stg.counter[key], 99);
+							return `+${Math.min(stg.counter[key], 99)}`;
 						} else {
 							return key === 'messages' ? '+' : '';
 						}
@@ -229,7 +229,7 @@ var Popup = (function () {
 			this.load('user_id').done((stg) => {
 				this.u(stg.user_id).always((users) => {
 					this.current = users[stg.user_id];
-					$('#my a.profile').attr('href', 'https://vk.com/' + this.current.domain);
+					$('#my a.profile').attr('href', `https://vk.com/${this.current.domain}`);
 					$('header .profile').html([
 						this.current.online ? '<i class="mark"></i>' : '',
 						this.current.name,
@@ -254,7 +254,7 @@ var Popup = (function () {
 					this.u(stg.friends).always((users) => {
 
 						stg.friends = stg.friends.map(id => $('<a/>', {
-							href: 'https://vk.com/im?sel=' + id,
+							href: `https://vk.com/im?sel=${id}`,
 							target: '_blank',
 							'class': 'ava-container',
 							html: [
@@ -274,9 +274,9 @@ var Popup = (function () {
 
 						$('#friends-online').html( stg.friends ).on('click', '.ava-container', function () {
 							const id = $(this).data('user_id');
-							if ( $('#newmess .dialog').is('#dialog-' + id) ) {
+							if ( $('#newmess .dialog').is(`#dialog-${id}`) ) {
 								$('#messages .slide').trigger('click');
-								$('#newmess #dialog-' + id).trigger('click');
+								$(`#newmess #dialog-${id}`).trigger('click');
 								return false;
 							}
 						});
@@ -318,7 +318,7 @@ var Popup = (function () {
 										html: [
 											users[id].profileLink(),
 											$('<span/>', {
-												html: s.length > 60 ? s.substr(0, 60) + '…' : s
+												html: s.length > 60 ? `${s.substr(0, 60)}…` : s
 											})
 										]
 									}),
@@ -331,7 +331,7 @@ var Popup = (function () {
 							new Vk().load().done((vk) => {
 								const $user = $button.parents('figure');
 
-								vk.api('friends.' + ($button.hasClass('icon-ok') ? 'add' : 'delete'), $user.data() )
+								vk.api(`friends.${$button.hasClass('icon-ok') ? 'add' : 'delete'}`, $user.data() )
 									.done( $.proxy($user, 'slideUp', 'fast') )
 									.always( $.proxy($button, 'removeClass', 'icon-spin4 animate-spin') );
 							});
@@ -369,7 +369,7 @@ var Popup = (function () {
 
 					this.u(talkers).always((users) => {
 						const $newmess = $('#newmess');
-
+						window.d = stg.dialogs;
 						// Обработка диалогов
 						stg.dialogs = stg.dialogs.reverse().map(dialog => new Dialog( dialog ).construct( users ));
 
@@ -452,7 +452,7 @@ var Popup = (function () {
 
 						// Загрузка истории
 						const pop = this;
-						function loadHistory () {
+						function loadHistory() {
 							/* jshint validthis: true */
 							const $button = $(this);
 							const isMore = $button.hasClass('more');
@@ -485,7 +485,7 @@ var Popup = (function () {
 												}).data({
 													'url': data.url,
 													'peer': data.peer,
-													'start_message_id': start_message_id
+													'start_message_id': start_message_id,
 												}) );
 											}
 
@@ -507,7 +507,7 @@ var Popup = (function () {
 							if ( !!changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue) ) {
 								$.each(changes.dialogs.newValue,(i, dg) => {
 									dg = new Dialog(dg);
-									const $dg = $('#dialog-' + dg.id);
+									const $dg = $(`#dialog-${dg.id}`);
 									if ( $dg.length > 0 && $dg.data('hash') != dg.hash() ) {
 										const isOpen = $dg.hasClass('open');
 										$dg.removeAttr('class').addClass( dg.getClass( isOpen ? 'open' : '' ) ).find('.mess-container').html( dg.constructMessages(users) );
@@ -554,12 +554,12 @@ var Popup = (function () {
 			if ( $alert.hasClass('show') ) return $alert;
 			// Инициализация
 			const header = $('<thead/>', {
-				html: '<tr><td>' + ( !!alert.header ? this.loc(alert.header) : '' ) + '</td></tr>'
+				html: `<tr><td>${!!alert.header ? this.loc(alert.header) : ''}</td></tr>`
 			});
 
 			// Футер
 			const footer = $('<tfoot/>', {
-					html: '<tr><td><a href="#">' + ( !!alert.footer ? this.loc(alert.footer) : '' ) + '</a></td></tr>'
+					html: `<tr><td><a href="#">${!!alert.footer ? this.loc(alert.footer) : ''}</a></td></tr>`
 				});
 
 			// Тело

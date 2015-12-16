@@ -69,7 +69,6 @@ function Message (mess_obj, parentDialogUrl) {
 	// Добавляем код вложений
 	if ( $.isArray(mess_obj.attachments) && mess_obj.attachments.length > 0 ) {
 		mess_obj.attachments = mess_obj.attachments.map((attach) => {
-			const VK = 'https://vk.com/';
 			const type = attach.type;
 			attach = attach[type];
 			switch(type) {
@@ -111,7 +110,7 @@ function Message (mess_obj, parentDialogUrl) {
 				// Пост
 				case 'wall' :
 					return $('<a/>', {
-						href: VK + 'wall' + attach.from_id + '_' + attach.id,
+						href: `https://vk.com/wall${attach.from_id}_${attach.id}`,
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-pencil'}),
@@ -122,7 +121,7 @@ function Message (mess_obj, parentDialogUrl) {
 				// Комментарий
 				case 'wall_reply' :
 					return $('<a/>', {
-						href: VK + 'wall' + attach.owner_id + '_' + attach.post_id + '?reply=' + attach.id,
+						href: `https://vk.com/wall${attach.owner_id}_${attach.post_id}?reply=${attach.id}`,
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-chat'}),
@@ -133,18 +132,18 @@ function Message (mess_obj, parentDialogUrl) {
 				// Аудиозапись
 				case 'audio':
 					return $('<a/>', {
-						href: VK + 'audio' + attach.owner_id + '_' + attach.id,
+						href: `https://vk.com/audio${attach.owner_id}_${attach.id}`,
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-music'}),
-							attach.artist.bold() + '&nbsp;–&nbsp;' + attach.title,
+							`<b>${attach.artist}</b>&nbsp;–&nbsp;${attach.title}`,
 						]
 					});
 
 				// Видеозапись
 				case 'video':
 					return $('<a/>', {
-						href: VK + 'video' + attach.owner_id + '_' + attach.id,
+						href: `https://vk.com/video${attach.owner_id}_${attach.id}`,
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-video'}),
@@ -177,9 +176,10 @@ function Message (mess_obj, parentDialogUrl) {
 				// Карта
 				case 'geo':
 					attach.coordinates = attach.coordinates.split(' ');
-					attach.coordinates = (attach.coordinates[0]-0) + ',' + (attach.coordinates[1]-0);
 					return $('<a/>', {
-						href: 'https://www.google.com.ua/maps/place/@' + attach.coordinates + ',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0',
+						href: 'https://www.google.com.ua/maps/place/@' +
+							`${attach.coordinates[0]},${attach.coordinates[1]}` +
+							',13z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0',
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-location'}),

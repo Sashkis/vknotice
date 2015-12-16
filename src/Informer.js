@@ -203,7 +203,7 @@ var Informer = (function () {
 			this.load({'audio': true}).done(function (stg) {
 				if ( stg.audio === true ) {
 					chrome.tabs.query({
-						url: "*://vk.com/*"
+						url: '*://vk.com/*'
 					}, function (tabs) {
 						if (tabs.every(function (tab) {
 							return /vk.com\/(?:login.*)?$/i.test(tab.url);
@@ -233,10 +233,10 @@ var Informer = (function () {
 				if ( !type ) type = 'message';
 
 				chrome.storage.local.set({
-					[ 'alert_' + type ]:alert_obj
+					[ `alert_${type}` ]:alert_obj
 				});
 			} else {
-				chrome.storage.local.remove(['alert_' + type]);
+				chrome.storage.local.remove([`alert_${type}`]);
 			}
 			return this;
 		},
@@ -275,7 +275,7 @@ var Informer = (function () {
 					alert = {
 						'header': 'Access error',
 						'body': {
-							'text'	: code + '/ ' + details.error_code + '. ' + details.error_msg,
+							'text'	: `${code}/${details.error_code}. ${details.error_msg}`,
 							'ancor'	: 'Login',
 							'url'	: new Vk().authUrl
 						}
