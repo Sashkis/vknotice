@@ -35,7 +35,7 @@ Vk.prototype.auth = function () {
 				this.access_token = changes.access_token.newValue;
 				chrome.windows.remove(authWindow.id);
 			}
-		}
+		};
 
 		// Проверка авторизации
 		const isAuth = (window_id) => {
@@ -45,7 +45,7 @@ Vk.prototype.auth = function () {
 				chrome.storage.onChanged.removeListener(update);
 				chrome.windows.onRemoved.removeListener(isAuth);
 			}
-		}
+		};
 
 		chrome.storage.onChanged.addListener(update);
 		chrome.windows.onRemoved.addListener(isAuth);
