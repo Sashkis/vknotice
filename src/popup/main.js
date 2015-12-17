@@ -37,7 +37,7 @@ jQuery(function ($) {
 				}).addClass('error');
 			});
 
-			new Vk().load().done(vk => vk.api('stats.trackVisitor')
+			new Vk().load().done(vk => vk.api('stats.trackVisitor'));
 		});
 
 	}).fail(code => {
