@@ -23,7 +23,7 @@ function Dialog (dialog_obj) {
 	 */
 	$.extend(this, dialog_obj);
 
-	this.isGroup = this.chat_id !== undefined;
+	this.isGroup = !!this.chat_id;
 
 	if ( this.isGroup ) {
 		this.id = this.chat_id;
@@ -41,7 +41,7 @@ function Dialog (dialog_obj) {
 		this.messages.push(dialog_obj);
 	}
 
-	this.messages.sort((f, s) => f.date - s.date);
+	// this.messages.sort((f, s) => f.date - s.date);
 }
 
 /**
@@ -147,10 +147,9 @@ Dialog.prototype.constructMessages = function (users) {
  * @return {String}			Строка классов
  */
 Dialog.prototype.getClass = function (custom) {
-
 	return 'dialog ' +
 		`${this.unread ? 'dialog-unread' : ''} ` +
-		`${this.out ? `dialog-answer ${this.read_state ? 'dialog-answer-unread' : ''}` : ''} ` +
+		`${this.out && !this.read_state ? 'dialog-answer-unread' : ''} ` +
 		`${this.isGroup ? 'dialog-group' : ''} ` +
 		`${custom ? custom : ''}`;
 }

@@ -54,7 +54,7 @@ function Message (mess_obj, parentDialogUrl) {
 
 	// Добавляем код карту во вложения
 	if ( mess_obj.geo ) {
-		if (mess_obj.attachments === undefined) {
+		if (mess_obj.attachments) {
 			mess_obj.attachments = [];
 		}
 		mess_obj.attachments.push({

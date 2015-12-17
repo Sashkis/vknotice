@@ -87,7 +87,7 @@ Vk.prototype.api = function (method, params) {
 	if (this.access_token) get.access_token = this.access_token;
 
 	$.getJSON(`https://api.vk.com/method/${method}`, get).done((API) => {
-		if (API.response)
+		if (typeof API.response !== 'undefined')
 			deferred.resolve(API.response);
 		else {
 			console.error(`2/${API.error.error_code}. ${method}. ${API.error.error_msg}`);

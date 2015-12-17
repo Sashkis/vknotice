@@ -3,14 +3,14 @@
 /*jshint -W097*/
 
 "use strict";
-$.when($.getJSON('../lang/i18n.json'), load({
+$.when($.getJSON('../lang/i18n.json'), new App().load({
 		'showMessage':false,
 		'audio':true,
 		'lang':0,
 		'options':'friends,photos,videos,messages,groups,notifications',
 		'isLoadComment':0
 	})
-).done(function (i18n, stg) {
+).done((i18n, stg) => {
 	i18n = i18n[0];
 
 	// Локализация
@@ -69,14 +69,3 @@ $.when($.getJSON('../lang/i18n.json'), load({
 		});
 	});
 });
-
-
-function load(stg) {
-	const deferred = $.Deferred();
-
-	chrome.storage.local.get(stg, function (stg) {
-		deferred.resolve(stg);
-	});
-
-	return deferred.promise();
-}

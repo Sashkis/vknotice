@@ -21,3 +21,11 @@ if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 	App.prototype.ext = 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
 	App.prototype.comment = `${App.prototype.ext}/reviews`;
 }
+
+App.prototype.load = function (params) {
+	const deferred = $.Deferred();
+
+	chrome.storage.local.get(params, deferred.resolve);
+
+	return deferred.promise();
+}

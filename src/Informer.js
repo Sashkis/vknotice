@@ -15,15 +15,6 @@ var Informer = (function () {
 		badge: 0,
 		firstRequest: $.Deferred(),
 
-		load: function (params) {
-			const deferred = $.Deferred();
-			chrome.storage.local.get(params, (storage) => {
-				deferred.resolve(storage);
-			});
-
-			return deferred.promise();
-		},
-
 		/**
 		 * Вычисляет код языка
 		 * @param  {Number}	lang_code	Код языка для проверки
@@ -85,7 +76,7 @@ var Informer = (function () {
 		 * Выполняет основной запрос
 		 */
 		mainRequest: function () {
-			$.when(this.load({
+			$.when(new App().load({
 				'options' : 'friends,photos,videos,messages,groups,notifications',
 				'isLoadComment' : 0,
 				'lastOpenComment' : 0,
@@ -148,20 +139,20 @@ var Informer = (function () {
 			 * Поле comments присутствует всегда, при условии, что ВК корректно вернул счетчики
 			 * Проверяем, существует ли данное поле. Если нет - значит счетчики не корректные и ничего не делаем.
 			 */
-			if ( counters.comments === undefined ) {
+			if ( typeof counters.comments === 'undefined' ) {
 				return this;
 			}
 
 			if ( !$.isEmptyObject(counters) ) {
 
-				this.load({'showMessage': true}).done((stg) => {
+				new App().load({'showMessage': true}).done((stg) => {
 					let sum = 0;
 					let needSound = false;
 					$.each(counters, (c, val) => {
 						if ( c === 'messages' && stg.showMessage && dialogs ) {
 							sum = dialogs.reduce((sum, dialog) => {
 								if ( dialog.unread ) {
-									if ( !needSound && (dialog.push_settings !== undefined && dialog.push_settings.sound === 1 ) ) {
+									if ( !needSound && (dialog.push_settings && dialog.push_settings.sound) ) {
 										needSound = true;
 									}
 									return sum + dialog.unread;
@@ -200,7 +191,7 @@ var Informer = (function () {
 		 * Воспроизводит звук
 		 */
 		playSound: function () {
-			this.load({'audio': true}).done(stg => {
+			new App().load({'audio': true}).done(stg => {
 				if ( stg.audio === true ) {
 					chrome.tabs.query({
 						url: '*://vk.com/*'
