@@ -21,10 +21,3 @@ if (/(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)) {
 	App.prototype.ext = 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn';
 	App.prototype.comment = `${App.prototype.ext}/reviews`;
 }
-
-App.prototype.addVisitor = function () {
-	const deferred = $.Deferred();
-	new Vk().load().done(vk => vk.api('stats.trackVisitor').then(deferred.resolve, deferred.reject));
-
-	return deferred.promise();
-};

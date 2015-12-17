@@ -7,7 +7,7 @@ jQuery(function ($) {
 
 	Informer.deamonStart();
 	Informer.firstRequest.done(() => {
-		new App().addVisitor();
+		new Vk().load().done(vk => vk.api('stats.trackVisitor');
 	});
 
 	function commentUpdate (tab) {
