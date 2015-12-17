@@ -19,7 +19,7 @@
 
 	const auth = parseURL(location.hash);
 
-	if ( auth.state === 'vknotice' && !!auth.access_token && !!auth.user_id ) {
+	if ( auth.state === 'vknotice' && auth.access_token && auth.user_id ) {
 		chrome.storage.local.set({
 			user_id: auth.user_id,
 			access_token: auth.access_token,

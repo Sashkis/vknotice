@@ -69,7 +69,7 @@ User.prototype.ava = function (options) {
 	}, options);
 
 	const $imgHTML = $('<div/>', {
-		'class': `ava ava-${options.type} ${!!this.online && options.marker ? 'online' : ''}`,
+		'class': `ava ava-${options.type} ${this.online && options.marker ? 'online' : ''}`,
 		html: $('<img/>', {
 			title: (options.title ? this.name : ''),
 			src: options.src,

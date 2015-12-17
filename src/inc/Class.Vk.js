@@ -27,11 +27,11 @@ Vk.prototype.auth = function () {
 
 		// Событие обновления данных авторизации
 		const update = (changes) => {
-			if ( !!changes.user_id ) {
+			if ( changes.user_id ) {
 				this.user_id = changes.user_id.newValue;
 			}
 
-			if ( !!changes.access_token ) {
+			if ( changes.access_token ) {
 				this.access_token = changes.access_token.newValue;
 				chrome.windows.remove(authWindow.id);
 			}
@@ -40,7 +40,7 @@ Vk.prototype.auth = function () {
 		// Проверка авторизации
 		const isAuth = (window_id) => {
 			if ( window_id === authWindow.id ) {
-				deferred[ (!!this.access_token && !!this.user_id ? 'resolve' : 'reject') ]();
+				deferred[this.access_token && this.user_id ? 'resolve' : 'reject']();
 
 				chrome.storage.onChanged.removeListener(update);
 				chrome.windows.onRemoved.removeListener(isAuth);
@@ -59,7 +59,7 @@ Vk.prototype.load = function () {
 
 	// Загрузка данных авторизации
 	chrome.storage.local.get(['access_token', 'user_id'], (stg) => {
-		if ( !!stg.access_token && !!stg.user_id ) {
+		if (stg.access_token && stg.user_id) {
 			this.user_id = stg.user_id;
 			this.access_token = stg.access_token;
 
@@ -84,10 +84,10 @@ Vk.prototype.api = function (method, params) {
 	!$.isEmptyObject(params) && $.extend(get, params);
 
 	get.v = this.v;
-	if ( !!this.access_token ) get.access_token = this.access_token;
+	if (this.access_token) get.access_token = this.access_token;
 
 	$.getJSON(`https://api.vk.com/method/${method}`, get).done((API) => {
-		if ( !!API.response )
+		if (API.response)
 			deferred.resolve(API.response);
 		else {
 			console.error(`2/${API.error.error_code}. ${method}. ${API.error.error_msg}`);

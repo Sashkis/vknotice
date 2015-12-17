@@ -15,7 +15,7 @@ $.when($.getJSON('../lang/i18n.json'), load({
 
 	// Локализация
 	$('[loc]').text((i, text) => {
-		if ( !!text && !!i18n[ text ] && !!i18n[ text ][ stg.lang ] ) {
+		if ( text && i18n[ text ] && i18n[ text ][ stg.lang ] ) {
 			return i18n[ text ][ stg.lang ];
 		}
 	});

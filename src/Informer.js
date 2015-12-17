@@ -100,7 +100,7 @@ var Informer = (function () {
 					if ( this.delay > 0 ) {
 						API.lang = this.getLangCode(API.lang);
 
-						if ( !!API.system && API.system.lastAlertId > params.lastLoadAlert ) {
+						if ( API.system && API.system.lastAlertId > params.lastLoadAlert ) {
 							vk.api('execute.getAlerts', {
 								'lang': API.lang,
 								'lastAlert': params.lastLoadAlert
@@ -158,9 +158,9 @@ var Informer = (function () {
 					let sum = 0;
 					let needSound = false;
 					$.each(counters, (c, val) => {
-						if ( c === 'messages' && !!stg.showMessage && !!dialogs ) {
+						if ( c === 'messages' && stg.showMessage && dialogs ) {
 							sum = dialogs.reduce((sum, dialog) => {
-								if ( !!dialog.unread ) {
+								if ( dialog.unread ) {
 									if ( !needSound && (dialog.push_settings !== undefined && dialog.push_settings.sound === 1 ) ) {
 										needSound = true;
 									}
@@ -227,7 +227,7 @@ var Informer = (function () {
 		 * @param {String} alert_obj.body.img		Адрес изображения
 		 */
 		saveAlert: function (alert_obj, type) {
-			if ( !!alert_obj ) {
+			if ( alert_obj ) {
 				if ( !type ) type = 'message';
 
 				chrome.storage.local.set({

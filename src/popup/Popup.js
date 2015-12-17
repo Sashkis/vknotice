@@ -111,8 +111,8 @@ var Popup = (function () {
 			}
 
 			$.each(user_ids, (i, id) => {
-				if ( !!id && !known[id] ) {
-					if ( !!this.profiles[id] ) {
+				if ( id && !known[id] ) {
+					if ( this.profiles[id] ) {
 						known[id] = this.profiles[id];
 					} else {
 						known[id] = new User();
@@ -184,10 +184,10 @@ var Popup = (function () {
 						const key = $(this).parents('li').attr('id');
 
 						if ( stg.counter[key] ) {
-							if ( key === 'messages' && !!stg.showMessage ) {
+							if ( key === 'messages' && stg.showMessage ) {
 								stg.counter.messages = 0;
 								$.each(stg.dialogs, (i, dialog) => {
-									if ( !!dialog.unread ) {
+									if ( dialog.unread ) {
 										stg.counter.messages += dialog.unread;
 									}
 								});
@@ -205,7 +205,7 @@ var Popup = (function () {
 			}
 
 			chrome.storage.onChanged.addListener((changes) => {
-				( !!changes.counter || !!changes.showMessage || !!changes.dialogs ) && updateCounters();
+				( changes.counter || changes.dialogs ) && updateCounters();
 			});
 
 			return updateCounters();
@@ -361,7 +361,7 @@ var Popup = (function () {
 				if (stg.dialogs.length > 0) {
 					let talkers = [ stg.user_id ];
 					$.each(stg.dialogs, (index, dialog) => {
-						if ( !!dialog.chat_active ) {
+						if ( dialog.chat_active ) {
 							talkers = talkers.concat(dialog.chat_active);
 							talkers.push(dialog.admin_id);
 						}
@@ -400,7 +400,7 @@ var Popup = (function () {
 						// Отправка ответа
 						}).on('keypress', 'textarea', function (event) {
 							if (event.keyCode === 13 && !event.ctrlKey && !event.shiftKey) {
-								if ( !!this.value ) {
+								if ( this.value ) {
 									const $field = $(this).attr('disabled', 'disabled');
 
 									new Vk().load().done(vk => {
@@ -502,7 +502,7 @@ var Popup = (function () {
 						}
 
 						chrome.storage.onChanged.addListener((changes) => {
-							if ( !!changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue) ) {
+							if ( changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue) ) {
 								$.each(changes.dialogs.newValue,(i, dg) => {
 									dg = new Dialog(dg);
 									const $dg = $(`#dialog-${dg.id}`);
@@ -527,11 +527,11 @@ var Popup = (function () {
 			const deferred = $.Deferred();
 
 			this.load(['alert_message', 'alert_error']).done((stg) => {
-				if ( !!stg.alert_error ) {
+				if ( stg.alert_error ) {
 					this.buildAlert(stg.alert_error).addClass('error');
 					deferred.reject(stg.alert_error.code);
 				} else {
-					if ( !!stg.alert_message )
+					if ( stg.alert_message )
 						this.buildAlert(stg.alert_message).on('click', 'a[href]', function () {
 							chrome.storage.local.remove(['alert_message']);
 						});
@@ -552,20 +552,20 @@ var Popup = (function () {
 			if ( $alert.hasClass('show') ) return $alert;
 			// Инициализация
 			const header = $('<thead/>', {
-				html: `<tr><td>${!!alert.header ? this.loc(alert.header) : ''}</td></tr>`
+				html: `<tr><td>${alert.header ? this.loc(alert.header) : ''}</td></tr>`
 			});
 
 			// Футер
 			const footer = $('<tfoot/>', {
-					html: `<tr><td><a href="#">${!!alert.footer ? this.loc(alert.footer) : ''}</a></td></tr>`
+					html: `<tr><td><a href="#">${alert.footer ? this.loc(alert.footer) : ''}</a></td></tr>`
 				});
 
 			// Тело
 			let body = [];
-			if ( !!alert.body  ) {
+			if ( alert.body  ) {
 
 				// Картинка
-				if ( !!alert.body.img  ) {
+				if ( alert.body.img  ) {
 					body.push( $('<a/>', {
 						'class': 'img',
 						target: '_blank',
@@ -577,7 +577,7 @@ var Popup = (function () {
 				}
 
 				// Текст
-				if ( !!alert.body.text  ) {
+				if ( alert.body.text  ) {
 					body.push( $('<a/>', {
 						'class': 'text',
 						target: '_blank',
@@ -587,7 +587,7 @@ var Popup = (function () {
 				}
 
 				// Ссылка
-				if ( !!alert.body.ancor ) {
+				if ( alert.body.ancor ) {
 					body.push( $('<a/>', {
 						'class': 'ancor',
 						target: '_blank',
@@ -622,7 +622,7 @@ var Popup = (function () {
 			}
 
 			const def = isRequared === false ? undefined : text;
-			return !!this.i18n[ text ] && !!this.i18n[ text ][ this.lang ] ? this.i18n[text][this.lang] : def;
+			return this.i18n[ text ] && this.i18n[ text ][ this.lang ] ? this.i18n[text][this.lang] : def;
 		},
 	};
 })();

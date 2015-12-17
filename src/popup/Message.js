@@ -18,19 +18,19 @@ function Message (mess_obj, parentDialogUrl) {
 		this.user_id = mess_obj.user_id;
 	}
 
-	if ( !!parentDialogUrl ) {
+	if ( parentDialogUrl ) {
 		this.url = parentDialogUrl + '&msgid=' + this.id;
 	}
 
 
-	if ( !!mess_obj.action ) {
+	if ( mess_obj.action ) {
 
 		this.body = [ $('<span/>', {
 			'class': 'system',
 			html: Popup.loc(mess_obj.action) + ' ',
 		}) ];
 
-	} else if ( !!mess_obj.body ) {
+	} else if ( mess_obj.body ) {
 		if (/[\wа-яА-Яїєёъ]/.test( mess_obj.body.charAt( mess_obj.body.length-1 ) ))
 			mess_obj.body += '. ';
 		else
@@ -40,9 +40,7 @@ function Message (mess_obj, parentDialogUrl) {
 		// mess_obj.body = mess_obj.body.escapeHtml();
 
 		mess_obj.body = mess_obj.body.linkify({
-			format: (value) => {
-				return value.length > 36 ? value.substr(0, 35) + '…' : value;
-			}
+			format: url => url.length > 36 ? `${url.substr(0, 35)}…` : url
 		});
 
 		if (mess_obj.emoji === 1) {
@@ -55,7 +53,7 @@ function Message (mess_obj, parentDialogUrl) {
 	}
 
 	// Добавляем код карту во вложения
-	if ( !!mess_obj.geo ) {
+	if ( mess_obj.geo ) {
 		if (mess_obj.attachments === undefined) {
 			mess_obj.attachments = [];
 		}

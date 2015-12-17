@@ -98,7 +98,7 @@ Dialog.prototype.construct = function (users) {
 
 	// Вставляет ФОТО
 	$d.find('.photo').html(() => {
-		if ( !!this.photo_50 ) {
+		if ( this.photo_50 ) {
 			return new User().ava({
 				size: 50,
 				src: this.photo_50
@@ -149,8 +149,8 @@ Dialog.prototype.constructMessages = function (users) {
 Dialog.prototype.getClass = function (custom) {
 
 	return 'dialog ' +
-		`${!!this.unread ? 'dialog-unread' : ''} ` +
-		`${!!this.out ? `dialog-answer ${this.read_state ? 'dialog-answer-unread' : ''}` : ''} ` +
+		`${this.unread ? 'dialog-unread' : ''} ` +
+		`${this.out ? `dialog-answer ${this.read_state ? 'dialog-answer-unread' : ''}` : ''} ` +
 		`${this.isGroup ? 'dialog-group' : ''} ` +
 		`${custom ? custom : ''}`;
 }
