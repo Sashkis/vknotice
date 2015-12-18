@@ -54,7 +54,7 @@ var Popup = (function () {
 		loadTranslate: function () {
 			const deferred = $.Deferred();
 
-			$.when( $.getJSON('../lang/i18n.json'), this.load('lang') ).then((ajax, stg) => {
+			$.when($.getJSON('../lang/i18n.json'), this.load('lang')).then((ajax, stg) => {
 				this.i18n = ajax[0];
 				this.lang = stg.lang;
 				deferred.resolve();
@@ -79,12 +79,12 @@ var Popup = (function () {
 		loadProfiles: function () {
 			const deferred = $.Deferred();
 
-			if ( !this.profiles ) {
+			if (!this.profiles ) {
 				this.profiles = {};
 			}
 
 			this.load('profiles').done((stg) => {
-				if ( !$.isArray(stg.profiles) || $.isEmptyObject(stg.profiles) ) {
+				if (!$.isArray(stg.profiles) || $.isEmptyObject(stg.profiles)) {
 					deferred.reject();
 				} else {
 					$.each(stg.profiles, (i, profile) => {
@@ -92,7 +92,6 @@ var Popup = (function () {
 							this.profiles[ profile.id ] = new User(profile);
 						}
 					});
-
 					deferred.resolve();
 				}
 			});
@@ -110,8 +109,8 @@ var Popup = (function () {
 			}
 
 			$.each(user_ids, (i, id) => {
-				if ( !!id && !known[id] ) {
-					if ( !!this.profiles[id] ) {
+				if (!!id && !known[id]) {
+					if (!!this.profiles[id] ) {
 						known[id] = this.profiles[id];
 					} else {
 						known[id] = new User();
@@ -120,7 +119,7 @@ var Popup = (function () {
 				}
 			});
 
-			if ( undef.length > 0 ) {
+			if (undef.length > 0) {
 				console.warn('Undefined users:', undef);
 
 				new Vk().api('users.get', {
@@ -140,7 +139,6 @@ var Popup = (function () {
 			} else {
 				deferred.resolve(known);
 			}
-
 			return deferred.promise();
 		},
 
@@ -153,7 +151,7 @@ var Popup = (function () {
 				$('.slider.open')
 					.add(this)
 					.add('.slide.open')
-					.add( target === `#${$('.slider.open').attr('id')}` ? '#friends-online' : target )
+					.add(target === `#${$('.slider.open').attr('id')}` ? '#friends-online' : target)
 					.toggleClass('open');
 				return false;
 			});
@@ -162,7 +160,7 @@ var Popup = (function () {
 			if ( $unread.length > 0 ) {
 				$('#messages .slide').trigger('click');
 
-				if ( $unread.length === 1 ) {
+				if ($unread.length === 1) {
 					$unread.trigger('click');
 				}
 			}
@@ -183,7 +181,7 @@ var Popup = (function () {
 						const key = $(this).parents('li').attr('id');
 
 						if ( stg.counter[key] ) {
-							if ( key === 'messages' && !!stg.showMessage ) {
+							if (key === 'messages' && !!stg.showMessage) {
 								stg.counter.messages = 0;
 								$.each(stg.dialogs, function(i, dialog) {
 									if ( !!dialog.unread ) {
@@ -204,7 +202,7 @@ var Popup = (function () {
 			}
 
 			chrome.storage.onChanged.addListener((changes) => {
-				( !!changes.counter || !!changes.showMessage || !!changes.dialogs ) && updateCounters();
+				(!!changes.counter || !!changes.showMessage || !!changes.dialogs) && updateCounters();
 			});
 
 			return updateCounters();
@@ -272,7 +270,7 @@ var Popup = (function () {
 							]
 						}).data('user_id', id));
 
-						$('#friends-online').html( stg.friends ).on('click', '.ava-container', function () {
+						$('#friends-online').html(stg.friends).on('click', '.ava-container', function () {
 							const id = $(this).data('user_id');
 							if ( $('#newmess .dialog').is(`#dialog-${id}`) ) {
 								$('#messages .slide').trigger('click');
@@ -287,7 +285,6 @@ var Popup = (function () {
 					deferred.resolve();
 				}
 			});
-
 			return deferred.promise();
 		},
 
@@ -299,7 +296,7 @@ var Popup = (function () {
 			const deferred = $.Deferred();
 
 			this.load('newfriends').done((stg) => {
-				if ( !$.isEmptyObject( stg.newfriends ) ) {
+				if (!$.isEmptyObject(stg.newfriends)) {
 					this.u(stg.newfriends).always((users) => {
 						stg.newfriends = stg.newfriends.map(id => {
 							const s = users[id].status.escapeHtml();
@@ -326,25 +323,22 @@ var Popup = (function () {
 							}).data('user_id', id);
 						});
 
-						$('#newfriends').html( stg.newfriends ).on('click', '.hovered', function () {
+						$('#newfriends').html(stg.newfriends).on('click', '.hovered', function () {
 							const $button = $(this).addClass('icon-spin4 animate-spin');
 							new Vk().load().done((vk) => {
 								const $user = $button.parents('figure');
 
 								vk.api(`friends.${$button.hasClass('icon-ok') ? 'add' : 'delete'}`, $user.data() )
-									.done( $.proxy($user, 'slideUp', 'fast') )
-									.always( $.proxy($button, 'removeClass', 'icon-spin4 animate-spin') );
+									.done($.proxy($user, 'slideUp', 'fast'))
+									.always($.proxy($button, 'removeClass', 'icon-spin4 animate-spin'));
 							});
 						});
-
 						deferred.resolve();
-
 					});
 				} else {
 					deferred.resolve();
 				}
 			});
-
 			return deferred.promise();
 		},
 
@@ -358,9 +352,9 @@ var Popup = (function () {
 			this.load(['dialogs', 'options', 'user_id']).done((stg) => {
 
 				if (stg.dialogs.length > 0) {
-					let talkers = [ stg.user_id ];
+					let talkers = [stg.user_id];
 					$.each(stg.dialogs, (index, dialog) => {
-						if ( !!dialog.chat_active ) {
+						if (!!dialog.chat_active) {
 							talkers = talkers.concat(dialog.chat_active);
 							talkers.push(dialog.admin_id);
 						}
@@ -377,14 +371,14 @@ var Popup = (function () {
 						$newmess.html(stg.dialogs).on('click', '.dialog', function (event) {
 							const $target = $(this);
 
-							if ( $target.find('a, textarea, .history, .markAsRead').is(event.target) ) {
+							if ($target.find('a, textarea, .history, .markAsRead').is(event.target)) {
 								return true;
-							} else if ( $target.hasClass('open') ) {
+							} else if ($target.hasClass('open')) {
 								$target.removeClass('open').find('.ans').slideUp('fast');
 							} else {
 								$newmess.find('.dialog.open').removeClass('open').find('.ans').slideUp('fast');
 								$target.addClass('open').find('.ans').slideDown('fast', function () {
-									if ( $target.offset().top - 53 > 0 ) {
+									if ($target.offset().top - 53 > 0) {
 
 										$newmess.one('scrollEnd', function() {
 											$target.find('textarea').trigger('focus');
@@ -477,8 +471,8 @@ var Popup = (function () {
 
 										API.items = API.items.map(mess => new Message( mess, data.url ).getHtml(users, 'compact').addClass('dialog'));
 
-										if ( !isMore ) {
-											if ( mess_count === 20 ) {
+										if (!isMore) {
+											if (mess_count === 20) {
 												API.items.push( $('<a/>', {
 													'class': 'dialog history more',
 													text: pop.loc('More'),
@@ -504,24 +498,22 @@ var Popup = (function () {
 						}
 
 						chrome.storage.onChanged.addListener((changes) => {
-							if ( !!changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue) ) {
+							if (!!changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue)) {
 								$.each(changes.dialogs.newValue,(i, dg) => {
 									dg = new Dialog(dg);
 									const $dg = $(`#dialog-${dg.id}`);
-									if ( $dg.length > 0 && $dg.data('hash') != dg.hash() ) {
+									if ($dg.length > 0 && $dg.data('hash') != dg.hash()) {
 										const isOpen = $dg.hasClass('open');
-										$dg.removeAttr('class').addClass( dg.getClass( isOpen ? 'open' : '' ) ).find('.mess-container').html( dg.constructMessages(users) );
+										$dg.removeAttr('class').addClass( dg.getClass(isOpen ? 'open' : '')).find('.mess-container').html(dg.constructMessages(users));
 									}
 								});
 							}
 						});
-
 					});
 				} else {
 					deferred.resolve();
 				}
 			});
-
 			return deferred.promise();
 		},
 
@@ -533,14 +525,13 @@ var Popup = (function () {
 					this.buildAlert(stg.alert_error).addClass('error');
 					deferred.reject(stg.alert_error.code);
 				} else {
-					if ( !!stg.alert_message )
+					if (!!stg.alert_message)
 						this.buildAlert(stg.alert_message).on('click', 'a[href]', function () {
 							chrome.storage.local.remove(['alert_message']);
 						});
 					deferred.resolve();
 				}
 			});
-
 			return deferred.promise();
 		},
 
@@ -551,7 +542,7 @@ var Popup = (function () {
 		 */
 		buildAlert: function (alert) {
 			const $alert = $('#alert');
-			if ( $alert.hasClass('show') ) return $alert;
+			if ($alert.hasClass('show')) return $alert;
 			// Инициализация
 			const header = $('<thead/>', {
 				html: `<tr><td>${!!alert.header ? this.loc(alert.header) : ''}</td></tr>`
@@ -567,7 +558,7 @@ var Popup = (function () {
 			if ( !!alert.body  ) {
 
 				// Картинка
-				if ( !!alert.body.img  ) {
+				if (!!alert.body.img) {
 					body.push( $('<a/>', {
 						'class': 'img',
 						target: '_blank',
@@ -575,27 +566,27 @@ var Popup = (function () {
 						html: $('<img/>', {
 							src: alert.body.img
 						})
-					}) );
+					}));
 				}
 
 				// Текст
-				if ( !!alert.body.text  ) {
+				if (!!alert.body.text) {
 					body.push( $('<a/>', {
 						'class': 'text',
 						target: '_blank',
 						href: alert.body.url,
 						html: this.loc(alert.body.text)
-					}) );
+					}));
 				}
 
 				// Ссылка
-				if ( !!alert.body.ancor ) {
-					body.push( $('<a/>', {
+				if (!!alert.body.ancor) {
+					body.push($('<a/>', {
 						'class': 'ancor',
 						target: '_blank',
 						href: alert.body.url,
 						html: this.loc(alert.body.ancor)
-					}) );
+					}));
 
 				}
 				body = $('<tbody/>',{
@@ -619,12 +610,12 @@ var Popup = (function () {
 		 * @return {String|undefined}	 Строка перевода или undefined.
 		 */
 		loc: function (text, isRequared) {
-			if ( !text ) {
+			if (!text) {
 				return '';
 			}
 
 			const def = isRequared === false ? undefined : text;
-			return !!this.i18n[ text ] && !!this.i18n[ text ][ this.lang ] ? this.i18n[text][this.lang] : def;
+			return !!this.i18n[text] && !!this.i18n[text][this.lang] ? this.i18n[text][this.lang] : def;
 		},
 	};
 })();
