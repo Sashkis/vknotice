@@ -31,10 +31,7 @@ function Message (mess_obj, parentDialogUrl) {
 		}) ];
 
 	} else if ( mess_obj.body ) {
-		if (/[\wа-яА-Яїєёъ]/.test( mess_obj.body.charAt( mess_obj.body.length-1 ) ))
-			mess_obj.body += '. ';
-		else
-			mess_obj.body += ' ';
+		mess_obj.body += /[\wа-яА-Яїєёъ]/.test( mess_obj.body.charAt( mess_obj.body.length-1 ) ) ? '. ' : ' ';
 
 		// linkify экранирует html код в строке.
 		// mess_obj.body = mess_obj.body.escapeHtml();
@@ -43,7 +40,7 @@ function Message (mess_obj, parentDialogUrl) {
 			format: url => url.length > 36 ? `${url.substr(0, 35)}…` : url
 		});
 
-		if (mess_obj.emoji === 1) {
+		if (mess_obj.emoji) {
 			mess_obj.body = Emoji.emojiToHTML(mess_obj.body);
 		}
 
@@ -54,7 +51,7 @@ function Message (mess_obj, parentDialogUrl) {
 
 	// Добавляем код карту во вложения
 	if ( mess_obj.geo ) {
-		if (mess_obj.attachments) {
+		if (!mess_obj.attachments) {
 			mess_obj.attachments = [];
 		}
 		mess_obj.attachments.push({
