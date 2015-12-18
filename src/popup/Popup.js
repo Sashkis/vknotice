@@ -515,7 +515,8 @@ var Popup = (function () {
 		buildAlert: function (alert) {
 			const $alert = $('#alert');
 			if ($alert.hasClass('show')) return $alert;
-			const app = App();
+			const app = new App();
+			console.log(app);
 			// Инициализация
 			const header = $('<thead/>', {
 				html: `<tr><td>${alert.header ? app.loc(alert.header) : ''}</td></tr>`
