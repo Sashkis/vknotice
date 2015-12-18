@@ -52,12 +52,9 @@ $.when(app.loadTranslate(), app.load({
 
 	// Событие переключения
 	$('.panel').on('change', 'input', function () {
-		let new_options = '';
-		$('input.main-opt:checked').each((i, el) => new_options += $(el).attr('id') + ',');
-
 		// Сохранение нового значения
 		chrome.storage.local.set({
-			'options': new_options,
+			'options': $('input.main-opt:checked').toArray().map(el => $(el).attr('id')).join(','),
 			'showMessage': $('#showMessage').prop('checked'),
 			'audio': $('#audio').prop('checked'),
 			'isLoadComment': $('#comments').prop('checked') ? 1 : 0 // Значением должен быть 0 или 1
