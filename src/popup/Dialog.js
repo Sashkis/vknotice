@@ -96,21 +96,21 @@ Dialog.prototype.construct = function (users) {
 
 	// Вставляет ФОТО
 	$d.find('.photo').html(() => {
-		if ( this.photo_50 ) {
+		if (this.photo_50) {
 			return new User().ava({
 				size: 50,
 				src: this.photo_50
 			});
-		} else if ( this.isGroup && $.isArray( this.chat_active ) ) {
+		} else if (this.isGroup && $.isArray(this.chat_active) ) {
 			this.chat_active = this.chat_active.slice(0, 4);
 			switch (this.chat_active.length) {
-				case 1 : return users[ this.chat_active[0] ].ava({size: 50});
-				case 2 : return [ users[ this.chat_active[0] ].ava({size: 50, type: 'half'}), users[ this.chat_active[1] ].ava({size: 50, type: 'half'}) ];
-				case 3 : return [ users[ this.chat_active[0] ].ava({size: 50, type: 'half'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}) ];
-				case 4 : return [ users[ this.chat_active[0] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[3] ].ava({size: 23, type: 'quarter'}) ];
+				case 1 : return users[this.chat_active[0]].ava({size: 50});
+				case 2 : return [users[this.chat_active[0]].ava({size: 50, type: 'half'}), users[this.chat_active[1]].ava({size: 50, type: 'half'}) ];
+				case 3 : return [users[this.chat_active[0]].ava({size: 50, type: 'half'}), users[this.chat_active[1]].ava({size: 23, type: 'quarter'}), users[this.chat_active[2]].ava({size: 23, type: 'quarter'})];
+				case 4 : return [users[this.chat_active[0]].ava({size: 23, type: 'quarter'}), users[this.chat_active[1]].ava({size: 23, type: 'quarter'}), users[this.chat_active[2]].ava({size: 23, type: 'quarter'}), users[this.chat_active[3]].ava({size: 23, type: 'quarter'})];
 			}
 		} else if (!this.isGroup) {
-			return users[ this.id ].ava({size: 50});
+			return users[this.id].ava({size: 50});
 		}
 	} );
 
@@ -118,7 +118,7 @@ Dialog.prototype.construct = function (users) {
 	$d.find('.name > .title').text(this.isGroup ? this.title : users[this.id].name);
 
 	// Вставляет Текст сообщений
-	$d.find('.mess-container').html( this.constructMessages( users ) );
+	$d.find('.mess-container').html(this.constructMessages(users));
 
 	return $d;
 };
