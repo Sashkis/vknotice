@@ -145,7 +145,7 @@ var Informer = (function () {
 
 			if ( !$.isEmptyObject(counters) ) {
 
-				new App().load({'showMessage': true}).done((stg) => {
+				new App().load({'showMessage': false}).done((stg) => {
 					let sum = 0;
 					let needSound = false;
 					$.each(counters, (c, val) => {
