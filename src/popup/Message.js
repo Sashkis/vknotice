@@ -10,6 +10,7 @@
  * @param {Message} parentMessage	Объект родительского сообщения
  */
 function Message (mess_obj, parentDialogUrl) {
+	const app = new App();
 	this.id = mess_obj.id;
 
 	if ( mess_obj.out === 1 ) {
@@ -27,7 +28,7 @@ function Message (mess_obj, parentDialogUrl) {
 
 		this.body = [ $('<span/>', {
 			'class': 'system',
-			html: Popup.loc(mess_obj.action) + ' ',
+			html: app.loc(mess_obj.action) + ' ',
 		}) ];
 
 	} else if ( mess_obj.body ) {
@@ -82,7 +83,7 @@ function Message (mess_obj, parentDialogUrl) {
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-camera'}),
-							Popup.loc('Photo'),
+							app.loc('Photo'),
 						]
 					});
 
@@ -98,7 +99,7 @@ function Message (mess_obj, parentDialogUrl) {
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-gift'}),
-							Popup.loc('Gift'),
+							app.loc('Gift'),
 						]
 					});
 
@@ -109,7 +110,7 @@ function Message (mess_obj, parentDialogUrl) {
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-pencil'}),
-							Popup.loc('Post'),
+							app.loc('Post'),
 						]
 					});
 
@@ -120,7 +121,7 @@ function Message (mess_obj, parentDialogUrl) {
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-chat'}),
-							Popup.loc('Comment'),
+							app.loc('Comment'),
 						]
 					});
 
@@ -178,7 +179,7 @@ function Message (mess_obj, parentDialogUrl) {
 						target: '_blank',
 						html: [
 							$('<i/>', {'class': 'icon-location'}),
-							(attach.place ? attach.place.title : Popup.loc('Map')),
+							(attach.place ? attach.place.title : app.loc('Map')),
 						]
 					});
 
@@ -200,7 +201,7 @@ function Message (mess_obj, parentDialogUrl) {
 			target: '_blank',
 			html: [
 				$('<i/>', { 'class':'icon-chat' }),
-				getCase( mess_obj.fwd_messages.length, Popup.loc('forwarded messages') )
+				getCase( mess_obj.fwd_messages.length, app.loc('forwarded messages') )
 			],
 		}) );
 	}

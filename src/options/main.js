@@ -3,22 +3,17 @@
 /*jshint -W097*/
 
 "use strict";
-$.when($.getJSON('../lang/i18n.json'), new App().load({
+const app = new App();
+$.when(app.loadTranslate(), app.load({
 		'showMessage':false,
 		'audio':true,
 		'lang':0,
 		'options':'friends,photos,videos,messages,groups,notifications',
 		'isLoadComment':0
 	})
-).done((i18n, stg) => {
-	i18n = i18n[0];
-
+).done((app, stg) => {
 	// Локализация
-	$('[loc]').text((i, text) => {
-		if ( text && i18n[ text ] && i18n[ text ][ stg.lang ] ) {
-			return i18n[ text ][ stg.lang ];
-		}
-	});
+	$('[loc]').text((i, text) => app.loc(text, false));
 
 	// Настройки уведомлений
 	$.each(stg.options.split(','), (i, opt) => $(`#${opt}`).prop('checked', true));

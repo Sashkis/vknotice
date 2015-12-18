@@ -5,7 +5,7 @@
 "use strict";
 jQuery(function ($) {
 
-	$.when(Popup.loadTranslate(), Popup.checkError(), Popup.loadProfiles()).done(() => {
+	$.when(new App().loadTranslate(), Popup.checkError(), Popup.loadProfiles()).done(() => {
 		$.when(Popup.setCurrentProfile(), Popup.builFriendsOnline(), Popup.buildCounters(), Popup.buildDialogs(), Popup.buildNewFriends()).done(() => {
 			Popup.setTranslate().show().initScroll().initSlide();
 

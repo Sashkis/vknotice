@@ -29,3 +29,31 @@ App.prototype.load = function (params) {
 
 	return deferred.promise();
 }
+
+App.prototype.loadTranslate = function (params) {
+	const deferred = $.Deferred();
+	if (!window.i18n) {
+		$.when($.getJSON('../lang/i18n.json'), this.load('lang')).then((ajax, stg) => {
+			window.i18n = {
+				str: ajax[0],
+				lang: stg.lang,
+			};
+			deferred.resolve(this);
+		}, (ajax, stg) => {
+			console.error('3. Load translate failed', ajax, stg);
+			deferred.reject(3);
+		});
+	} else {
+		deferred.resolve(this);
+	}
+
+	return deferred.promise();
+}
+
+App.prototype.loc = function (text, isRequared) {
+	if (!text) return '';
+
+	const def = isRequared === false ? undefined : text;
+	const l = window.i18n.lang;
+	return window.i18n && window.i18n.str[text][l] ? window.i18n.str[text][l] : def;
+}

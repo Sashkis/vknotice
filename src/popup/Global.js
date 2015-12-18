@@ -23,21 +23,22 @@ String.prototype.escapeHtml = function () {
  */
 Date.prototype.toStringVkFormat = function () {
 	"use strict";
+	const app = new App();
 	const now = new Date();
 	const ago = (now.getTime() - this.getTime())/1000; // Количество секунд прошедших с момента публикации
-	if (ago < 10)		  return Popup.loc('just now');
-	else if (ago < 60)	  return `${getCase(Math.floor(ago), Popup.loc('seconds'))} ${Popup.loc('ago')}`;
-	else if (ago < 3600)  return `${getCase(Math.floor(ago/60), Popup.loc('minutes'))} ${Popup.loc('ago')}`;
-	else if (ago < 10800) return `${getCase(Math.floor(ago/3600), Popup.loc('hours'))} ${Popup.loc('ago')}`;
+	if (ago < 10)		  return app.loc('just now');
+	else if (ago < 60)	  return `${getCase(Math.floor(ago), app.loc('seconds'))} ${app.loc('ago')}`;
+	else if (ago < 3600)  return `${getCase(Math.floor(ago/60), app.loc('minutes'))} ${app.loc('ago')}`;
+	else if (ago < 10800) return `${getCase(Math.floor(ago/3600), app.loc('hours'))} ${app.loc('ago')}`;
 	else {
 		const h = this.getHours()	< 10 ? `0${this.getHours()}`   : this.getHours();
 		const m = this.getMinutes() < 10 ? `0${this.getMinutes()}` : this.getMinutes();
-		const at = `${Popup.loc('at')} ${h}:${m}`;
+		const at = `${app.loc('at')} ${h}:${m}`;
 		if (ago < 172800) {
-			return `${Popup.loc(this.getDate() === now.getDate() ? 'today' : 'tomorrow')} ${at}`;
+			return `${app.loc(this.getDate() === now.getDate() ? 'today' : 'tomorrow')} ${at}`;
 		} else {
 			const y = this.getFullYear() != now.getFullYear() ? this.getFullYear() : '';
-			return `${this.getDate()} ${Popup.loc('months')[this.getMonth()]} ${y} ${at}`;
+			return `${this.getDate()} ${app.loc('months')[this.getMonth()]} ${y} ${at}`;
 		}
 	}
 };

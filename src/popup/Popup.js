@@ -34,35 +34,18 @@ var Popup = (function () {
 			});
 
 			$('#newmess .mCSB_container')
-				.attr('data-before', this.loc('Your private messages will be displayed here.'));
+				.attr('data-before', new App().loc('Your private messages will be displayed here.'));
 
 			return this;
-		},
-
-		/**
-		 * Загрузка перевода
-		 */
-		loadTranslate: function () {
-			const deferred = $.Deferred();
-
-			$.when( $.getJSON('../lang/i18n.json'), new App().load('lang') ).then((ajax, stg) => {
-				this.i18n = ajax[0];
-				this.lang = stg.lang;
-				deferred.resolve();
-			}, (ajax, stg) => {
-				console.error('3. Load translate failed', ajax, stg);
-				deferred.reject(3);
-			});
-
-			return deferred.promise();
 		},
 
 		/**
 		 * Перевод меню
 		 */
 		setTranslate: function () {
-			$('#menu li .i18n, .navbar-brand, .dropdown li a').text((i, value) => this.loc(value, false));
-			$('#newmess, #newfriends').attr('data-before', (i, value) => this.loc(value, false));
+			const app = new App();
+			$('#menu li .i18n, .navbar-brand, .dropdown li a').text((i, value) => app.loc(value, false));
+			$('#newmess, #newfriends').attr('data-before', (i, value) => app.loc(value, false));
 
 			return this;
 		},
@@ -289,8 +272,9 @@ var Popup = (function () {
 		 */
 		buildNewFriends: function () {
 			const deferred = $.Deferred();
+			const app = new App();
 
-			new App().load('newfriends').done((stg) => {
+			app.load('newfriends').done((stg) => {
 				if ( !$.isEmptyObject( stg.newfriends ) ) {
 					this.u(stg.newfriends).always((users) => {
 						stg.newfriends = stg.newfriends.map(id => {
@@ -299,11 +283,11 @@ var Popup = (function () {
 								html: [
 									$('<i/>', {
 										'class': 'icon-cancel hovered',
-										title: this.loc('Reject')
+										title: app.loc('Reject')
 									}),
 									$('<i/>', {
 										'class': 'icon-ok hovered',
-										title: this.loc('Accept')
+										title: app.loc('Accept')
 									}),
 									users[id].ava({'isLink': true, 'size': 50}),
 									$('<figcaption/>', {
@@ -470,7 +454,7 @@ var Popup = (function () {
 											if ( mess_count === 20 ) {
 												API.items.push( $('<a/>', {
 													'class': 'dialog history more',
-													text: this.loc('More'),
+													text: new App().loc('More'),
 												}).data({
 													'url': data.url,
 													'peer': data.peer,
@@ -541,14 +525,15 @@ var Popup = (function () {
 		buildAlert: function (alert) {
 			const $alert = $('#alert');
 			if ( $alert.hasClass('show') ) return $alert;
+			const app = App();
 			// Инициализация
 			const header = $('<thead/>', {
-				html: `<tr><td>${alert.header ? this.loc(alert.header) : ''}</td></tr>`
+				html: `<tr><td>${alert.header ? app.loc(alert.header) : ''}</td></tr>`
 			});
 
 			// Футер
 			const footer = $('<tfoot/>', {
-					html: `<tr><td><a href="#">${alert.footer ? this.loc(alert.footer) : ''}</a></td></tr>`
+					html: `<tr><td><a href="#">${alert.footer ? app.loc(alert.footer) : ''}</a></td></tr>`
 				});
 
 			// Тело
@@ -573,7 +558,7 @@ var Popup = (function () {
 						'class': 'text',
 						target: '_blank',
 						href: alert.body.url,
-						html: this.loc(alert.body.text)
+						html: app.loc(alert.body.text)
 					}) );
 				}
 
@@ -583,7 +568,7 @@ var Popup = (function () {
 						'class': 'ancor',
 						target: '_blank',
 						href: alert.body.url,
-						html: this.loc(alert.body.ancor)
+						html: app.loc(alert.body.ancor)
 					}) );
 
 				}
@@ -599,21 +584,6 @@ var Popup = (function () {
 			$alert.addClass('show').find('table').html([header, body, footer]);
 
 			return $alert;
-		},
-
-		/**
-		 * Возвращает строку перевода
-		 * @param  {String}  text		 Строка для перевода.
-		 * @param  {Boolean} isRequared  Возвращать строку или undefined
-		 * @return {String|undefined}	 Строка перевода или undefined.
-		 */
-		loc: function (text, isRequared) {
-			if ( !text ) {
-				return '';
-			}
-
-			const def = isRequared === false ? undefined : text;
-			return this.i18n[ text ] && this.i18n[ text ][ this.lang ] ? this.i18n[text][this.lang] : def;
 		},
 	};
 })();
