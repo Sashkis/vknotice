@@ -25,7 +25,7 @@ function Dialog (dialog_obj) {
 
 	this.isGroup = this.chat_id !== undefined;
 
-	if ( this.isGroup ) {
+	if (this.isGroup) {
 		this.id = this.chat_id;
 		this.url = `https://vk.com/im?sel=c${this.id}`;
 	} else {
@@ -35,7 +35,7 @@ function Dialog (dialog_obj) {
 
 	this.id -= 0; // Приведение к числу
 
-	if ( $.isEmptyObject(dialog_obj.messages) ) {
+	if ($.isEmptyObject(dialog_obj.messages) ) {
 		delete dialog_obj.messages;
 		this.messages = [];
 		this.messages.push(dialog_obj);
@@ -98,31 +98,31 @@ Dialog.prototype.construct = function (users) {
 
 	// Вставляет ФОТО
 	$d.find('.photo').html(() => {
-		if ( !!this.photo_50 ) {
+		if (!!this.photo_50) {
 			return new User().ava({
 				size: 50,
 				src: this.photo_50
 			});
-		} else if ( this.isGroup && $.isArray( this.chat_active ) ) {
+		} else if (this.isGroup && $.isArray(this.chat_active) ) {
 			this.chat_active = this.chat_active.slice(0, 4);
 			switch (this.chat_active.length) {
-				case 1 : return users[ this.chat_active[0] ].ava({size: 50});
-				case 2 : return [ users[ this.chat_active[0] ].ava({size: 50, type: 'half'}), users[ this.chat_active[1] ].ava({size: 50, type: 'half'}) ];
-				case 3 : return [ users[ this.chat_active[0] ].ava({size: 50, type: 'half'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}) ];
-				case 4 : return [ users[ this.chat_active[0] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[3] ].ava({size: 23, type: 'quarter'}) ];
+				case 1 : return users[this.chat_active[0]].ava({size: 50});
+				case 2 : return [users[this.chat_active[0]].ava({size: 50, type: 'half'}), users[this.chat_active[1]].ava({size: 50, type: 'half'}) ];
+				case 3 : return [users[this.chat_active[0]].ava({size: 50, type: 'half'}), users[this.chat_active[1]].ava({size: 23, type: 'quarter'}), users[this.chat_active[2]].ava({size: 23, type: 'quarter'})];
+				case 4 : return [users[this.chat_active[0]].ava({size: 23, type: 'quarter'}), users[this.chat_active[1]].ava({size: 23, type: 'quarter'}), users[this.chat_active[2]].ava({size: 23, type: 'quarter'}), users[this.chat_active[3]].ava({size: 23, type: 'quarter'})];
 			}
 		} else {
-			return users[ this.user_id ].ava({size: 50});
+			return users[this.user_id].ava({size: 50});
 		}
 	} );
 
 	// Вставляет Имя
 	$d.find('.name > .title').text(() => {
-		return this.isGroup ? this.title : users[ this.user_id ].name;
+		return this.isGroup ? this.title : users[this.user_id].name;
 	} );
 
 	// Вставляет Текст сообщений
-	$d.find('.mess-container').html( this.constructMessages( users ) );
+	$d.find('.mess-container').html(this.constructMessages(users));
 
 	return $d;
 };
@@ -132,9 +132,9 @@ Dialog.prototype.constructMessages = function (users) {
 	$.each(this.messages, (i, mess) => {
 		mess = new Message( mess, this.url );
 		if ( this.isGroup || this.out === 1) {
-			html.push( mess.getHtml(users, 'compact') );
+			html.push(mess.getHtml(users, 'compact'));
 		} else {
-			html = html.concat( mess.getHtml() );
+			html = html.concat(mess.getHtml());
 		}
 	});
 	return html;
