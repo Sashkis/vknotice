@@ -6,42 +6,40 @@
  * Объект диалога
  * @class
  * @param {Object} dialog_obj Объект диалога загруженный через API
- * @property {String} body				Текст последнего сообщения
- * @property {Number} date				Дата последнего сообщения
  * @property {Number} id				ID последнего сообщения
- * @property {Array.Message} message	Массив объектов сообщений
+ * @property {Number} date				Дата последнего сообщения
+ * @property {Array}  message			Массив объектов сообщений
  * @property {Number} out				1 - Исходящее, 0 - Входящее последнее сообщение
  * @property {Number} read_state		1 - Сообщение прочитано
  * @property {String} title				Заголовок диалога
- * @property {Number} user_id			ID собеседника
  */
-function Dialog (dialog_obj) {
-	/**
-	 * Инициализирует диалог
-	 * @param {Object} dialog_obj		Объект диалога загруженный через API
-	 * @see Dialog
-	 */
-	$.extend(this, dialog_obj);
+function Dialog (dialog_obj, up) {
+	this.isGroup = !!dialog_obj.chat_id;
+	this.unread = dialog_obj.unread || 0;
+	this.date = dialog_obj.date;
+	this.out = dialog_obj.out;
+	this.read_state = dialog_obj.read_state;
 
-	this.isGroup = !!this.chat_id;
-
-	if ( this.isGroup ) {
-		this.id = this.chat_id;
-		this.url = `https://vk.com/im?sel=c${this.id}`;
-	} else {
-		this.id = this.user_id;
+	if (!this.isGroup) {
+		this.id = dialog_obj.user_id;
 		this.url = `https://vk.com/im?sel=${this.id}`;
+	} else {
+		this.id = dialog_obj.chat_id;
+		this.url = `https://vk.com/im?sel=c${this.id}`;
+		this.title = dialog_obj.title;
+		this.chat_active = dialog_obj.chat_active;
+		this.photo_50 = dialog_obj.photo_50;
 	}
 
 	this.id -= 0; // Приведение к числу
 
-	if ( $.isEmptyObject(dialog_obj.messages) ) {
-		delete dialog_obj.messages;
+	if ($.isEmptyObject(dialog_obj.messages)) {
 		this.messages = [];
+		delete dialog_obj.messages;
 		this.messages.push(dialog_obj);
+	} else {
+		this.messages = dialog_obj.messages;
 	}
-
-	// this.messages.sort((f, s) => f.date - s.date);
 }
 
 /**
@@ -111,15 +109,13 @@ Dialog.prototype.construct = function (users) {
 				case 3 : return [ users[ this.chat_active[0] ].ava({size: 50, type: 'half'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}) ];
 				case 4 : return [ users[ this.chat_active[0] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[1] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[2] ].ava({size: 23, type: 'quarter'}), users[ this.chat_active[3] ].ava({size: 23, type: 'quarter'}) ];
 			}
-		} else {
-			return users[ this.user_id ].ava({size: 50});
+		} else if (!this.isGroup) {
+			return users[ this.id ].ava({size: 50});
 		}
 	} );
 
 	// Вставляет Имя
-	$d.find('.name > .title').text(() => {
-		return this.isGroup ? this.title : users[ this.user_id ].name;
-	} );
+	$d.find('.name > .title').text(this.isGroup ? this.title : users[this.id].name);
 
 	// Вставляет Текст сообщений
 	$d.find('.mess-container').html( this.constructMessages( users ) );
@@ -127,19 +123,16 @@ Dialog.prototype.construct = function (users) {
 	return $d;
 };
 
+/**
+ * Генерирует сообщения
+ */
 Dialog.prototype.constructMessages = function (users) {
-	let html = [];
-	$.each(this.messages, (i, mess) => {
-		mess = new Message( mess, this.url );
-		if ( this.isGroup || this.out === 1) {
-			html.push( mess.getHtml(users, 'compact') );
-		} else {
-			html = html.concat( mess.getHtml() );
-		}
-	});
-	return html;
+	return this.messages.reduceRight((html, mess) => {
+		return html.concat(
+			new Message( mess, this.url ).getHtml(users, this.isGroup || this.out === 1 ? 'compact' : '')
+		);
+	}, []);
 };
-
 
 /**
  * Генерирует классы для диалога

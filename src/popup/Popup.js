@@ -183,7 +183,7 @@ var Popup = (function () {
 									}
 								});
 							}
-							return `+${Math.min(stg.counter[key], 99)}`;
+							return `+${Math.min(stg.counter[key], 999)}`;
 						} else {
 							return key === 'messages' ? '+' : '';
 						}
@@ -320,12 +320,12 @@ var Popup = (function () {
 
 						$('#newfriends').html( stg.newfriends ).on('click', '.hovered', function () {
 							const $button = $(this).addClass('icon-spin4 animate-spin');
-							new Vk().load().done((vk) => {
+							new Vk().load().done(vk => {
 								const $user = $button.parents('figure');
 
-								vk.api(`friends.${$button.hasClass('icon-ok') ? 'add' : 'delete'}`, $user.data() )
-									.done( $.proxy($user, 'slideUp', 'fast') )
-									.always( $.proxy($button, 'removeClass', 'icon-spin4 animate-spin') );
+								vk.api(`friends.${$button.hasClass('icon-ok') ? 'add' : 'delete'}`, $user.data())
+									.done(() => $user.slideUp('fast'))
+									.always(() => $button.removeClass('icon-spin4 animate-spin'));
 							});
 						});
 
@@ -464,7 +464,7 @@ var Popup = (function () {
 										const mess_count = API.items.length;
 										const start_message_id = API.items[ mess_count - 1 ].id;
 
-										API.items = API.items.map(mess => new Message( mess, data.url ).getHtml(users, 'compact').addClass('dialog'));
+										API.items = API.items.map(mess => new Message( mess, data.url ).getHtml(users, 'compact')[0].addClass('dialog'));
 
 										if ( !isMore ) {
 											if ( mess_count === 20 ) {
