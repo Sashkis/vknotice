@@ -12,26 +12,26 @@
 function Message (mess_obj, parentDialogUrl) {
 	this.id = mess_obj.id;
 
-	if ( mess_obj.out === 1 ) {
+	if (mess_obj.out === 1) {
 		this.user_id = Popup.current.id;
 	} else {
 		this.user_id = mess_obj.user_id;
 	}
 
-	if ( !!parentDialogUrl ) {
+	if (!!parentDialogUrl) {
 		this.url = parentDialogUrl + '&msgid=' + this.id;
 	}
 
 
-	if ( !!mess_obj.action ) {
+	if (!!mess_obj.action) {
 
-		this.body = [ $('<span/>', {
+		this.body = [$('<span/>', {
 			'class': 'system',
 			html: Popup.loc(mess_obj.action) + ' ',
-		}) ];
+		})];
 
-	} else if ( !!mess_obj.body ) {
-		if (/[\wа-яА-Яїєёъ]/.test( mess_obj.body.charAt( mess_obj.body.length-1 ) ))
+	} else if (!!mess_obj.body) {
+		if (/[\wа-яА-Яїєёъ]/.test(mess_obj.body.charAt(mess_obj.body.length-1 )))
 			mess_obj.body += '. ';
 		else
 			mess_obj.body += ' ';
@@ -49,13 +49,13 @@ function Message (mess_obj, parentDialogUrl) {
 			mess_obj.body = Emoji.emojiToHTML(mess_obj.body);
 		}
 
-		this.body = [ mess_obj.body ];
+		this.body = [mess_obj.body];
 	} else {
 		this.body = [];
 	}
 
 	// Добавляем код карту во вложения
-	if ( !!mess_obj.geo ) {
+	if (!!mess_obj.geo) {
 		if (mess_obj.attachments === undefined) {
 			mess_obj.attachments = [];
 		}
@@ -67,7 +67,7 @@ function Message (mess_obj, parentDialogUrl) {
 	}
 
 	// Добавляем код вложений
-	if ( $.isArray(mess_obj.attachments) && mess_obj.attachments.length > 0 ) {
+	if ($.isArray(mess_obj.attachments) && mess_obj.attachments.length > 0) {
 		mess_obj.attachments = mess_obj.attachments.map((attach) => {
 			const type = attach.type;
 			attach = attach[type];
@@ -196,16 +196,16 @@ function Message (mess_obj, parentDialogUrl) {
 					});
 			}
 		});
-		this.body = this.body.concat( mess_obj.attachments );
+		this.body = this.body.concat(mess_obj.attachments);
 	}
 
-	if ( $.isArray(mess_obj.fwd_messages) && mess_obj.fwd_messages.length > 0 ) {
+	if ($.isArray(mess_obj.fwd_messages) && mess_obj.fwd_messages.length > 0) {
 		this.body.push( $('<a/>', {
 			href: this.url,
 			target: '_blank',
 			html: [
 				$('<i/>', { 'class':'icon-chat' }),
-				getCase( mess_obj.fwd_messages.length, Popup.loc('forwarded messages') )
+				getCase(mess_obj.fwd_messages.length, Popup.loc('forwarded messages'))
 			],
 		}) );
 	}
@@ -220,7 +220,7 @@ Message.prototype.getHtml = function (users, type) {
 	switch(type) {
 		case 'compact':
 			return $('<message/>', {
-				html: [ users[ this.user_id ].ava({size:25, title: true, marker: false}) ].concat(this.body)
+				html: [users[this.user_id].ava({size:25, title: true, marker: false})].concat(this.body)
 			});
 		default :
 			return this.body;
