@@ -1,4 +1,4 @@
-/* globals $, chrome, navigator, console*/
+/* globals $, chrome, navigator, console, App*/
 /*jshint esnext: true */
 /*jshint -W030, -W097*/
 "use strict";
@@ -58,7 +58,7 @@ Vk.prototype.load = function () {
 	const deferred = $.Deferred();
 
 	// Загрузка данных авторизации
-	chrome.storage.local.get(['access_token', 'user_id'], (stg) => {
+	new App().load(['access_token', 'user_id']).done(stg => {
 		if (stg.access_token && stg.user_id) {
 			this.user_id = stg.user_id;
 			this.access_token = stg.access_token;
@@ -87,7 +87,7 @@ Vk.prototype.api = function (method, params) {
 	if (this.access_token) get.access_token = this.access_token;
 
 	$.getJSON(`https://api.vk.com/method/${method}`, get).done((API) => {
-		if (API.response)
+		if (typeof API.response !== 'undefined')
 			deferred.resolve(API.response);
 		else {
 			console.error(`2/${API.error.error_code}. ${method}. ${API.error.error_msg}`);

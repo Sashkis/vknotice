@@ -54,7 +54,7 @@ function Message (mess_obj, parentDialogUrl) {
 
 	// Добавляем код карту во вложения
 	if ( mess_obj.geo ) {
-		if (mess_obj.attachments === undefined) {
+		if (mess_obj.attachments) {
 			mess_obj.attachments = [];
 		}
 		mess_obj.attachments.push({
@@ -217,9 +217,9 @@ function Message (mess_obj, parentDialogUrl) {
 Message.prototype.getHtml = function (users, type) {
 	switch(type) {
 		case 'compact':
-			return $('<message/>', {
+			return [$('<message/>', {
 				html: [ users[ this.user_id ].ava({size:25, title: true, marker: false}) ].concat(this.body)
-			});
+			})];
 		default :
 			return this.body;
 	}

@@ -40,7 +40,7 @@ jQuery(function ($) {
 
 		// Удалить при следующие обновлении !!!
 		if (details.reason === 'update') {
-			Informer.load(['options', 'isLoadComment', 'lastOpenComment', 'showMessage', 'audio', 'alert_error']).done(function (stg) {
+			new App().load(['options', 'isLoadComment', 'lastOpenComment', 'showMessage', 'audio', 'alert_error']).done(stg => {
 				chrome.storage.local.clear();
 				chrome.storage.local.set(stg);
 			});
