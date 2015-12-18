@@ -1,4 +1,4 @@
-/* globals $, chrome*/
+/* globals $, chrome, App*/
 /*jshint esnext: true */
 /*jshint -W097*/
 

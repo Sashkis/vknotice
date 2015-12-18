@@ -1,4 +1,4 @@
-/* globals $, chrome, navigator, console*/
+/* globals $, chrome, navigator, console, App*/
 /*jshint esnext: true */
 /*jshint -W030, -W097*/
 "use strict";
@@ -35,7 +35,7 @@ Vk.prototype.auth = function () {
 				this.access_token = changes.access_token.newValue;
 				chrome.windows.remove(authWindow.id);
 			}
-		}
+		};
 
 		// Проверка авторизации
 		const isAuth = (window_id) => {
@@ -45,7 +45,7 @@ Vk.prototype.auth = function () {
 				chrome.storage.onChanged.removeListener(update);
 				chrome.windows.onRemoved.removeListener(isAuth);
 			}
-		}
+		};
 
 		chrome.storage.onChanged.addListener(update);
 		chrome.windows.onRemoved.addListener(isAuth);
@@ -58,7 +58,7 @@ Vk.prototype.load = function () {
 	const deferred = $.Deferred();
 
 	// Загрузка данных авторизации
-	chrome.storage.local.get(['access_token', 'user_id'], (stg) => {
+	new App().load(['access_token', 'user_id']).done(stg => {
 		if (stg.access_token && stg.user_id) {
 			this.user_id = stg.user_id;
 			this.access_token = stg.access_token;
