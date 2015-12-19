@@ -32,7 +32,7 @@ function Message (mess_obj, parentDialogUrl) {
 		})];
 
 	} else if (mess_obj.body) {
-		mess_obj.body += /[\wа-яА-Яїєёъ]/.test( mess_obj.body.charAt( mess_obj.body.length-1 ) ) ? '. ' : ' ';
+		mess_obj.body += /[\wа-яА-Яїєёъ]/.test(mess_obj.body.charAt( mess_obj.body.length-1 )) ? '. ' : ' ';
 
 		// linkify экранирует html код в строке.
 		// mess_obj.body = mess_obj.body.escapeHtml();
@@ -57,7 +57,7 @@ function Message (mess_obj, parentDialogUrl) {
 		}
 		mess_obj.attachments.push({
 			type: 'geo',
-			geo: mess_obj.geo
+			geo: mess_obj.geo,
 		});
 		delete mess_obj.geo;
 	}
@@ -90,7 +90,7 @@ function Message (mess_obj, parentDialogUrl) {
 				// Подарок
 				case 'gift':
 					attach.url = '';
-					if		(attach.thumb_256)	attach.url = attach.thumb_256;
+					if (attach.thumb_256)    	attach.url = attach.thumb_256;
 					else if (attach.thumb_96)	attach.url = attach.thumb_96;
 					else if (attach.thumb_48)	attach.url = attach.thumb_48;
 
@@ -200,7 +200,7 @@ function Message (mess_obj, parentDialogUrl) {
 			href: this.url,
 			target: '_blank',
 			html: [
-				$('<i/>', { 'class':'icon-chat' }),
+				$('<i/>', {'class':'icon-chat'}),
 				getCase(mess_obj.fwd_messages.length, app.loc('forwarded messages'))
 			],
 		}) );
@@ -216,7 +216,7 @@ Message.prototype.getHtml = function (users, type) {
 	switch(type) {
 		case 'compact':
 			return [$('<message/>', {
-				html: [ users[ this.user_id ].ava({size:25, title: true, marker: false}) ].concat(this.body)
+				html: [users[this.user_id].ava({size:25, title: true, marker: false})].concat(this.body)
 			})];
 		default :
 			return this.body;
