@@ -99,7 +99,7 @@ Dialog.prototype.construct = function (users) {
 		if (this.photo_50) {
 			return new User().ava({
 				size: 50,
-				src: this.photo_50
+				src: this.photo_50,
 			});
 		} else if (this.isGroup && $.isArray(this.chat_active) ) {
 			this.chat_active = this.chat_active.slice(0, 4);
@@ -129,7 +129,7 @@ Dialog.prototype.construct = function (users) {
 Dialog.prototype.constructMessages = function (users) {
 	return this.messages.reduceRight((html, mess) => {
 		return html.concat(
-			new Message( mess, this.url ).getHtml(users, this.isGroup || this.out === 1 ? 'compact' : '')
+			new Message(mess, this.url).getHtml(users, this.isGroup || this.out === 1 ? 'compact' : '')
 		);
 	}, []);
 };
