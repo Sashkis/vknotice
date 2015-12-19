@@ -62,8 +62,8 @@ var Popup = (function () {
 					deferred.reject();
 				} else {
 					$.each(stg.profiles, (i, profile) => {
-						if ( !this.profiles[ profile.id ] ) {
-							this.profiles[ profile.id ] = new User(profile);
+						if (!this.profiles[profile.id]) {
+							this.profiles[profile.id] = new User(profile);
 						}
 					});
 					deferred.resolve();
@@ -78,7 +78,7 @@ var Popup = (function () {
 			const known = {};
 			const undef = [];
 
-			if ( !$.isArray(user_ids) ) {
+			if (!$.isArray(user_ids)) {
 				user_ids = [user_ids];
 			}
 
@@ -158,7 +158,7 @@ var Popup = (function () {
 							if (key === 'messages' && stg.showMessage) {
 								stg.counter.messages = 0;
 								$.each(stg.dialogs, (i, dialog) => {
-									if ( dialog.unread ) {
+									if (dialog.unread) {
 										stg.counter.messages += dialog.unread;
 									}
 								});
@@ -237,7 +237,7 @@ var Popup = (function () {
 										'class': 'name',
 										html: [
 											$('<i/>', {'class': 'icon-pencil'}),
-											users[id].name
+											users[id].name,
 										]
 									})
 								})
@@ -246,7 +246,7 @@ var Popup = (function () {
 
 						$('#friends-online').html(stg.friends).on('click', '.ava-container', function () {
 							const id = $(this).data('user_id');
-							if ( $('#newmess .dialog').is(`#dialog-${id}`) ) {
+							if ($('#newmess .dialog').is(`#dialog-${id}`)) {
 								$('#messages .slide').trigger('click');
 								$(`#newmess #dialog-${id}`).trigger('click');
 								return false;
@@ -271,7 +271,7 @@ var Popup = (function () {
 			const app = new App();
 
 			app.load('newfriends').done((stg) => {
-				if ( !$.isEmptyObject( stg.newfriends ) ) {
+				if (!$.isEmptyObject(stg.newfriends)) {
 					this.u(stg.newfriends).always((users) => {
 						stg.newfriends = stg.newfriends.map(id => {
 							const s = users[id].status.escapeHtml();
@@ -387,7 +387,7 @@ var Popup = (function () {
 													id: mess_id,
 													user_id: vk.user_id,
 													out: 1,
-													body: params.message
+													body: params.message,
 												}).getHtml(users, 'compact') );
 
 										})
@@ -433,7 +433,7 @@ var Popup = (function () {
 
 							new Vk().load().done(vk => {
 								vk.api('messages.getHistory', data.peer).done(API => {
-									const talkers = [ vk.user_id ];
+									const talkers = [vk.user_id];
 
 									$.each(API.items, (index, mess) => talkers.push( mess.from_id ));
 
@@ -460,7 +460,7 @@ var Popup = (function () {
 										} else {
 											API.items.shift();
 											$button.before(API.items).data('start_message_id', start_message_id);
-											if ( mess_count < 20 ) {
+											if (mess_count < 20) {
 												$button.remove();
 											}
 										}
@@ -529,7 +529,7 @@ var Popup = (function () {
 
 			// Тело
 			let body = [];
-			if ( alert.body  ) {
+			if (alert.body) {
 
 				// Картинка
 				if (alert.body.img) {
@@ -538,7 +538,7 @@ var Popup = (function () {
 						target: '_blank',
 						href: alert.body.url,
 						html: $('<img/>', {
-							src: alert.body.img
+							src: alert.body.img,
 						})
 					}));
 				}
@@ -549,7 +549,7 @@ var Popup = (function () {
 						'class': 'text',
 						target: '_blank',
 						href: alert.body.url,
-						html: app.loc(alert.body.text)
+						html: app.loc(alert.body.text),
 					}) );
 				}
 
@@ -559,7 +559,7 @@ var Popup = (function () {
 						'class': 'ancor',
 						target: '_blank',
 						href: alert.body.url,
-						html: app.loc(alert.body.ancor)
+						html: app.loc(alert.body.ancor),
 					}));
 
 				}
