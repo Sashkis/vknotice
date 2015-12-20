@@ -543,6 +543,7 @@ header {
 				box-sizing: border-box;
 				resize: vertical;
 				height: 100%;
+				min-height: 35px;
 				overflow: hidden;
 				border: 1px solid rgba($mainColor, 0.4);
 				font: inherit;
