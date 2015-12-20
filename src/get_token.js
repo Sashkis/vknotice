@@ -2,22 +2,20 @@
 
 (function () {
 	"use strict";
-	function parseURL (url) {
-		url = url.replace('#', '');
+	function parseHash (hash) {
 		const ret = {};
-		const seg = url.split('&');
-		const len = seg.length;
-		for (let i = 0; i < len; i++) {
-			if (!seg[i]) {
-				continue;
-			}
-			let s = seg[i].split('=');
+
+		hash = hash.replace('#', '').split('&');
+		for (let i = hash.length; i--;) {
+			if (!hash[i]) continue;
+
+			let s = hash[i].split('=');
 			ret[s[0]] = s[1];
 		}
 		return ret;
 	}
 
-	const auth = parseURL(location.hash);
+	const auth = parseHash(location.hash);
 
 	if ( auth.state === 'vknotice' && auth.access_token && auth.user_id ) {
 		chrome.storage.local.set({
