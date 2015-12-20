@@ -23,6 +23,6 @@
 		chrome.storage.local.set({
 			user_id: auth.user_id,
 			access_token: auth.access_token,
-		});
+		}, () => window.close());
 	}
 })();

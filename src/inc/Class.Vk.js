@@ -33,14 +33,13 @@ Vk.prototype.auth = function () {
 
 			if ( changes.access_token ) {
 				this.access_token = changes.access_token.newValue;
-				chrome.windows.remove(authWindow.id);
 			}
 		};
 
 		// Проверка авторизации
 		const isAuth = (window_id) => {
 			if ( window_id === authWindow.id ) {
-				deferred[this.access_token && this.user_id ? 'resolve' : 'reject']();
+				deferred[this.access_token && this.user_id ? 'resolve' : 'reject'](this);
 
 				chrome.storage.onChanged.removeListener(update);
 				chrome.windows.onRemoved.removeListener(isAuth);
@@ -65,9 +64,7 @@ Vk.prototype.load = function () {
 
 			deferred.resolve(this);
 		} else {
-			this.auth().then(() => {
-				deferred.resolve(this);
-			}, () => {
+			this.auth().then(deferred.resolve, () => {
 				console.error('0. Can\'t find access_token or user_id');
 				deferred.reject(0);
 			});
