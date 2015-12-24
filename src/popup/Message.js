@@ -64,7 +64,7 @@ function Message (mess_obj, parentDialogUrl) {
 
 	// Добавляем код вложений
 	if ($.isArray(mess_obj.attachments) && mess_obj.attachments.length > 0) {
-		mess_obj.attachments = mess_obj.attachments.map((attach) => {
+		mess_obj.attachments = mess_obj.attachments.map(attach => {
 			const type = attach.type;
 			attach = attach[type];
 			switch(type) {

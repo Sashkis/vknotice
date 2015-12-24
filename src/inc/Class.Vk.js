@@ -23,10 +23,10 @@ Vk.prototype.auth = function () {
 		url: this.authUrl,
 		focused: true,
 		type:  'popup',
-	}, (authWindow) => {
+	}, authWindow => {
 
 		// Событие обновления данных авторизации
-		const update = (changes) => {
+		const update = changes => {
 			if (changes.user_id) {
 				this.user_id = changes.user_id.newValue;
 			}
@@ -37,7 +37,7 @@ Vk.prototype.auth = function () {
 		};
 
 		// Проверка авторизации
-		const isAuth = (window_id) => {
+		const isAuth = window_id => {
 			if (window_id === authWindow.id) {
 				deferred[this.access_token && this.user_id ? 'resolve' : 'reject'](this);
 
@@ -83,14 +83,14 @@ Vk.prototype.api = function (method, params) {
 	get.v = this.v;
 	if (this.access_token) get.access_token = this.access_token;
 
-	$.getJSON(`https://api.vk.com/method/${method}`, get).done((API) => {
+	$.getJSON(`https://api.vk.com/method/${method}`, get).done(API => {
 		if (typeof API.response !== 'undefined')
 			deferred.resolve(API.response);
 		else {
 			console.error(`2/${API.error.error_code}. ${method}. ${API.error.error_msg}`);
 			deferred.reject(2, API.error);
 		}
-	}).fail((jqxhr) => {
+	}).fail(jqxhr => {
 		console.error('1. Connect error');
 		deferred.reject(1, jqxhr);
 	});

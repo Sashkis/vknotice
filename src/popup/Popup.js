@@ -57,7 +57,7 @@ var Popup = (function () {
 				this.profiles = {};
 			}
 
-			new App().load('profiles').done((stg) => {
+			new App().load('profiles').done(stg => {
 				if (!$.isArray(stg.profiles) || $.isEmptyObject(stg.profiles)) {
 					deferred.reject();
 				} else {
@@ -150,7 +150,7 @@ var Popup = (function () {
 			const updateCounters = () => {
 				const deferred = $.Deferred();
 
-				new App().load(['counter', 'showMessage', 'dialogs']).done((stg) => {
+				new App().load(['counter', 'showMessage', 'dialogs']).done(stg => {
 					$('#menu .counter').text(function () {
 						const key = $(this).parents('li').attr('id');
 
@@ -198,8 +198,8 @@ var Popup = (function () {
 		setCurrentProfile: function () {
 			const deferred = $.Deferred();
 
-			new App().load('user_id').done((stg) => {
-				this.u(stg.user_id).always((users) => {
+			new App().load('user_id').done(stg => {
+				this.u(stg.user_id).always(users => {
 					this.current = users[stg.user_id];
 					$('#my a.profile').attr('href', `https://vk.com/${this.current.domain}`);
 					$('header .profile').html([
@@ -225,9 +225,9 @@ var Popup = (function () {
 		builFriendsOnline: function () {
 			const deferred = $.Deferred();
 
-			new App().load('friends').done((stg) => {
+			new App().load('friends').done(stg => {
 				if (!$.isEmptyObject(stg.friends)) {
-					this.u(stg.friends).always((users) => {
+					this.u(stg.friends).always(users => {
 
 						stg.friends = stg.friends.map(id => $('<a/>', {
 							href: `https://vk.com/im?sel=${id}`,
@@ -274,9 +274,9 @@ var Popup = (function () {
 			const deferred = $.Deferred();
 			const app = new App();
 
-			app.load('newfriends').done((stg) => {
+			app.load('newfriends').done(stg => {
 				if (!$.isEmptyObject(stg.newfriends)) {
-					this.u(stg.newfriends).always((users) => {
+					this.u(stg.newfriends).always(users => {
 						stg.newfriends = stg.newfriends.map(id => {
 							const s = users[id].status.escapeHtml();
 							return $('<figure/>', {
@@ -343,7 +343,7 @@ var Popup = (function () {
 						talkers.push(dialog.user_id);
 					});
 
-					this.u(talkers).always((users) => {
+					this.u(talkers).always(users => {
 						const $newmess = $('#newmess');
 						window.d = stg.dialogs;
 						// Обработка диалогов
@@ -427,7 +427,7 @@ var Popup = (function () {
 						});
 
 						// Загрузка истории
-						const loadHistory = ($button) => {
+						const loadHistory = $button => {
 							const isMore = $button.hasClass('more');
 							const data = isMore ? $button.data() : $button.parents('.dialog').data() ;
 
@@ -476,7 +476,7 @@ var Popup = (function () {
 							});
 						}
 
-						chrome.storage.onChanged.addListener((changes) => {
+						chrome.storage.onChanged.addListener(changes => {
 							if (changes.dialogs && !$.isEmptyObject(changes.dialogs.newValue)) {
 								$.each(changes.dialogs.newValue,(i, dg) => {
 									dg = new Dialog(dg);
@@ -499,7 +499,7 @@ var Popup = (function () {
 		checkError: function () {
 			const deferred = $.Deferred();
 
-			new App().load(['alert_message', 'alert_error']).done((stg) => {
+			new App().load(['alert_message', 'alert_error']).done(stg => {
 				if (stg.alert_error) {
 					this.buildAlert(stg.alert_error).addClass('error');
 					deferred.reject(stg.alert_error.code);
