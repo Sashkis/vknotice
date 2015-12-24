@@ -40,7 +40,7 @@ var Informer = (function () {
 				return false;
 			}
 			this.delay = 0;
-			chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
+			chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
 			console.info('Demon has been stopped');
 			return true;
 		},
@@ -68,7 +68,7 @@ var Informer = (function () {
 							'lastAlert': stg.lastLoadAlert
 						}).done(loaded => {
 							if (!$.isEmptyObject(loaded.alert)) {
-								chrome.storage.local.set({'lastLoadAlert': loaded.id});
+								chrome.storage.local.set({ 'lastLoadAlert': loaded.id });
 								this.saveAlert(loaded.alert);
 							}
 						});
@@ -76,14 +76,14 @@ var Informer = (function () {
 
 					delete API.system;
 					chrome.storage.local.set(API);
-					chrome.browserAction.setIcon({path: 'img/icon38.png'});
+					chrome.browserAction.setIcon({ path: 'img/icon38.png' });
 					this.setCounters(API.counter, API.dialogs).saveAlert(false, 'error').firstRequest.resolve();
 				}).fail((code, details) => {
 					this.generateError(code, details);
 					this.badge = 0;
 
-					chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
-					chrome.browserAction.setBadgeText({text: ''});
+					chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
+					chrome.browserAction.setBadgeText({ text: '' });
 				}).always(() => {
 					if (this.delay > 0) {
 						setTimeout(() => this.mainRequest(), this.delay);
@@ -91,7 +91,7 @@ var Informer = (function () {
 				});
 			}, code => {
 				this.generateError(code).deamonStop();
-				chrome.browserAction.setIcon({path: 'img/icon38-off.png'});
+				chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
 			});
 		},
 
@@ -110,7 +110,7 @@ var Informer = (function () {
 
 			if (!$.isEmptyObject(counters)) {
 
-				new App().load({'showMessage': false}).done(stg => {
+				new App().load({ 'showMessage': false }).done(stg => {
 					let sum = 0;
 					let needSound = false;
 					$.each(counters, (c, val) => {
@@ -133,17 +133,17 @@ var Informer = (function () {
 						playSound();
 					}
 					if (sum > 999) {
-						chrome.browserAction.setBadgeText({text: '999+'});
+						chrome.browserAction.setBadgeText({ text: '999+' });
 					} else if (sum > 0) {
-						chrome.browserAction.setBadgeText({text: sum + ''});
+						chrome.browserAction.setBadgeText({ text: sum + '' });
 					} else {
 						sum = 0;
-						chrome.browserAction.setBadgeText({text: ''});
+						chrome.browserAction.setBadgeText({ text: '' });
 					}
 					this.badge = sum;
 				});
 			} else {
-				chrome.browserAction.setBadgeText({text: ''});
+				chrome.browserAction.setBadgeText({ text: '' });
 				this.badge = 0;
 			}
 
@@ -260,7 +260,7 @@ var Informer = (function () {
 	 * Воспроизводит звук
 	 */
 	function playSound() {
-		new App().load({'audio': true}).done(stg => {
+		new App().load({ 'audio': true }).done(stg => {
 			if (stg.audio) {
 				chrome.tabs.query({
 					url: '*://vk.com/*'

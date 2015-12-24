@@ -31,8 +31,8 @@ jQuery(function ($) {
 	chrome.runtime.onInstalled.addListener((details) => {
 		// При установке
 		if (details.reason === 'install') {
-			chrome.alarms.create('say_thanks', {'when': $.now() + 86400000 * 7});	// Через 7 дней
-			chrome.alarms.create('get_review', {'when': $.now() + 3600000});		// Через 1 час
+			chrome.alarms.create('say_thanks', { 'when': $.now() + 86400000 * 7 });	// Через 7 дней
+			chrome.alarms.create('get_review', { 'when': $.now() + 3600000 });		// Через 1 час
 			chrome.storage.local.set({
 				'lastOpenComment': parseInt($.now()/1000)
 			});

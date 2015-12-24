@@ -216,7 +216,7 @@ Message.prototype.getHtml = function (users, type) {
 	switch(type) {
 		case 'compact':
 			return [$('<message/>', {
-				html: [users[this.user_id].ava({size:25, title: true, marker: false})].concat(this.body)
+				html: [users[this.user_id].ava({ size:25, title: true, marker: false })].concat(this.body)
 			})];
 		default :
 			return this.body;

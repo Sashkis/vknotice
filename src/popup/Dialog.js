@@ -104,13 +104,13 @@ Dialog.prototype.construct = function (users) {
 		} else if (this.isGroup && $.isArray(this.chat_active)) {
 			this.chat_active = this.chat_active.slice(0, 4);
 			switch (this.chat_active.length) {
-				case 1 : return users[this.chat_active[0]].ava({size: 50});
-				case 2 : return [users[this.chat_active[0]].ava({size: 50, type: 'half'}), users[this.chat_active[1]].ava({size: 50, type: 'half'})];
-				case 3 : return [users[this.chat_active[0]].ava({size: 50, type: 'half'}), users[this.chat_active[1]].ava({size: 23, type: 'quarter'}), users[this.chat_active[2]].ava({size: 23, type: 'quarter'})];
-				case 4 : return [users[this.chat_active[0]].ava({size: 23, type: 'quarter'}), users[this.chat_active[1]].ava({size: 23, type: 'quarter'}), users[this.chat_active[2]].ava({size: 23, type: 'quarter'}), users[this.chat_active[3]].ava({size: 23, type: 'quarter'})];
+				case 1 : return users[this.chat_active[0]].ava({ size: 50 });
+				case 2 : return [users[this.chat_active[0]].ava({ size: 50, type: 'half' }), users[this.chat_active[1]].ava({ size: 50, type: 'half' })];
+				case 3 : return [users[this.chat_active[0]].ava({ size: 50, type: 'half' }), users[this.chat_active[1]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[2]].ava({ size: 23, type: 'quarter' })];
+				case 4 : return [users[this.chat_active[0]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[1]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[2]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[3]].ava({ size: 23, type: 'quarter' })];
 			}
 		} else if (!this.isGroup) {
-			return users[this.id].ava({size: 50});
+			return users[this.id].ava({ size: 50 });
 		}
 	});
 

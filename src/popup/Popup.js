@@ -205,7 +205,11 @@ var Popup = (function () {
 					$('header .profile').html([
 						this.current.online ? '<i class="mark"></i>' : '',
 						this.current.name,
-						this.current.ava({'isLink':false, 'marker':false, 'size':32})
+						this.current.ava({
+							'isLink':false,
+							'marker':false,
+							'size':32,
+						}),
 					]);
 					deferred.resolve();
 				});
@@ -230,7 +234,7 @@ var Popup = (function () {
 							target: '_blank',
 							'class': 'ava-container',
 							html: [
-								users[id].ava({marker: false}),
+								users[id].ava({ marker: false }),
 								$('<div/>', {
 									'class': 'ava-caption',
 									html: $('<span/>', {
@@ -285,7 +289,10 @@ var Popup = (function () {
 										'class': 'icon-ok hovered',
 										title: app.loc('Accept')
 									}),
-									users[id].ava({'isLink': true, 'size': 50}),
+									users[id].ava({
+										'isLink': true,
+										'size': 50
+									}),
 									$('<figcaption/>', {
 										html: [
 											users[id].profileLink(),
