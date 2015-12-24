@@ -32,7 +32,7 @@ function Message (mess_obj, parentDialogUrl) {
 		})];
 
 	} else if (mess_obj.body) {
-		mess_obj.body += /[\wа-яА-Яїєёъ]/.test(mess_obj.body.charAt( mess_obj.body.length-1 )) ? '. ' : ' ';
+		mess_obj.body += /[\wа-яА-Яїєёъ]/.test(mess_obj.body.charAt(mess_obj.body.length-1)) ? '. ' : ' ';
 
 		// linkify экранирует html код в строке.
 		// mess_obj.body = mess_obj.body.escapeHtml();
@@ -196,14 +196,14 @@ function Message (mess_obj, parentDialogUrl) {
 	}
 
 	if ($.isArray(mess_obj.fwd_messages) && mess_obj.fwd_messages.length > 0) {
-		this.body.push( $('<a/>', {
+		this.body.push($('<a/>', {
 			href: this.url,
 			target: '_blank',
 			html: [
 				$('<i/>', {'class':'icon-chat'}),
 				getCase(mess_obj.fwd_messages.length, app.loc('forwarded messages'))
 			],
-		}) );
+		}));
 	}
 }
 

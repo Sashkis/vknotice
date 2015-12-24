@@ -41,7 +41,7 @@ jQuery(function ($) {
 		});
 
 	}).fail(code => {
-		if ( code === 3 ) {
+		if (code === 3) {
 			Popup.buildAlert({
 				code: 3,
 				header: 'Error',

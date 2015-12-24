@@ -71,7 +71,7 @@ var Emoji = (function () {
 			};
 
 			for (let code in regs) {
-				str = str.replace(regs[code], this.getEmojiHTML(code) );
+				str = str.replace(regs[code], this.getEmojiHTML(code));
 			}
 
 			return str.replace(this.emojiRegEx, this.emojiReplace).replace(/\uFE0F/g, '');

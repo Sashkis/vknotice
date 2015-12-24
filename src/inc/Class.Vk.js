@@ -27,18 +27,18 @@ Vk.prototype.auth = function () {
 
 		// Событие обновления данных авторизации
 		const update = (changes) => {
-			if ( changes.user_id ) {
+			if (changes.user_id) {
 				this.user_id = changes.user_id.newValue;
 			}
 
-			if ( changes.access_token ) {
+			if (changes.access_token) {
 				this.access_token = changes.access_token.newValue;
 			}
 		};
 
 		// Проверка авторизации
 		const isAuth = (window_id) => {
-			if ( window_id === authWindow.id ) {
+			if (window_id === authWindow.id) {
 				deferred[this.access_token && this.user_id ? 'resolve' : 'reject'](this);
 
 				chrome.storage.onChanged.removeListener(update);

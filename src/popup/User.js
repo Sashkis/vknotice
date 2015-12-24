@@ -78,6 +78,6 @@ User.prototype.ava = function (options) {
 		})
 	});
 
-	if (options.isLink === true) return this.profileLink( $imgHTML );
+	if (options.isLink === true) return this.profileLink($imgHTML);
 	else return $imgHTML;
 };

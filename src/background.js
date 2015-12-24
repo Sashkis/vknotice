@@ -11,7 +11,7 @@ jQuery(function ($) {
 	});
 
 	function commentUpdate (tab) {
-		if ( tab.status === 'complete' && /vk.com\/feed\?section=comments/.test(tab.url) ) {
+		if (tab.status === 'complete' && /vk.com\/feed\?section=comments/.test(tab.url)) {
 			chrome.storage.local.set({
 				'lastOpenComment': parseInt(new Date().getTime()/1000)
 			});
@@ -19,7 +19,7 @@ jQuery(function ($) {
 	}
 
 	chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-		if ( changeInfo.status === 'complete' ) {
+		if (changeInfo.status === 'complete') {
 			commentUpdate(tab);
 		}
 	});

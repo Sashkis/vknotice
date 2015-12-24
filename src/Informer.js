@@ -15,7 +15,6 @@ var Informer = (function () {
 		badge: 0,
 		firstRequest: $.Deferred(),
 
-
 		/**
 		 * Запуск демона
 		 * @returns {Boolean}	Был ли демон запущен
@@ -107,9 +106,7 @@ var Informer = (function () {
 			 * Поле comments присутствует всегда, при условии, что ВК корректно вернул счетчики
 			 * Проверяем, существует ли данное поле. Если нет - значит счетчики не корректные и ничего не делаем.
 			 */
-			if (typeof counters.comments === 'undefined') {
-				return this;
-			}
+			if (typeof counters.comments === 'undefined') return this;
 
 			if (!$.isEmptyObject(counters)) {
 

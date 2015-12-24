@@ -53,7 +53,7 @@ var Popup = (function () {
 		loadProfiles: function () {
 			const deferred = $.Deferred();
 
-			if (!this.profiles ) {
+			if (!this.profiles) {
 				this.profiles = {};
 			}
 
@@ -84,7 +84,7 @@ var Popup = (function () {
 
 			$.each(user_ids, (i, id) => {
 				if (id && !known[id]) {
-					if ( this.profiles[id] ) {
+					if (this.profiles[id]) {
 						known[id] = this.profiles[id];
 					} else {
 						known[id] = new User();
@@ -131,7 +131,7 @@ var Popup = (function () {
 			});
 
 			const $unread = $('#newmess .dialog-unread');
-			if ( $unread.length > 0 ) {
+			if ($unread.length > 0) {
 				$('#messages .slide').trigger('click');
 
 				if ($unread.length === 1) {
@@ -154,7 +154,7 @@ var Popup = (function () {
 					$('#menu .counter').text(function () {
 						const key = $(this).parents('li').attr('id');
 
-						if ( stg.counter[key] ) {
+						if (stg.counter[key]) {
 							if (key === 'messages' && stg.showMessage) {
 								stg.counter.messages = 0;
 								$.each(stg.dialogs, (i, dialog) => {
@@ -222,7 +222,7 @@ var Popup = (function () {
 			const deferred = $.Deferred();
 
 			new App().load('friends').done((stg) => {
-				if ( !$.isEmptyObject( stg.friends ) ) {
+				if (!$.isEmptyObject(stg.friends)) {
 					this.u(stg.friends).always((users) => {
 
 						stg.friends = stg.friends.map(id => $('<a/>', {
@@ -340,7 +340,7 @@ var Popup = (function () {
 						const $newmess = $('#newmess');
 						window.d = stg.dialogs;
 						// Обработка диалогов
-						stg.dialogs = stg.dialogs.reverse().map(dialog => new Dialog( dialog ).construct( users ));
+						stg.dialogs = stg.dialogs.reverse().map(dialog => new Dialog(dialog).construct(users));
 
 						// Откритие поля ответа
 						$newmess.html(stg.dialogs).on('click', '.dialog', function (event) {
@@ -368,7 +368,7 @@ var Popup = (function () {
 						// Отправка ответа
 						}).on('keypress', 'textarea', function (event) {
 							if (event.keyCode === 13 && !event.ctrlKey && !event.shiftKey) {
-								if ( this.value ) {
+								if (this.value) {
 									const $field = $(this).attr('disabled', 'disabled');
 
 									new Vk().load().done(vk => {
@@ -383,12 +383,12 @@ var Popup = (function () {
 											$dg.removeClass('dialog-unread')
 												.addClass('dialog-answer dialog-answer-unread')
 												.find('.mess-container')
-												.html( new Message({
+												.html(new Message({
 													id: mess_id,
 													user_id: vk.user_id,
 													out: 1,
 													body: params.message,
-												}).getHtml(users, 'compact') );
+												}).getHtml(users, 'compact'));
 
 										})
 										.fail(() => $field.addClass('error'))
@@ -424,7 +424,7 @@ var Popup = (function () {
 							const isMore = $button.hasClass('more');
 							const data = isMore ? $button.data() : $button.parents('.dialog').data() ;
 
-							if ( !isMore ) {
+							if (!isMore) {
 								$('#history .mCSB_container').empty();
 							} else {
 								data.peer.start_message_id = data.start_message_id;
@@ -435,27 +435,27 @@ var Popup = (function () {
 								vk.api('messages.getHistory', data.peer).done(API => {
 									const talkers = [vk.user_id];
 
-									$.each(API.items, (index, mess) => talkers.push( mess.from_id ));
+									$.each(API.items, (index, mess) => talkers.push(mess.from_id));
 
 									this.u(talkers).always(users => {
 										const mess_count = API.items.length;
-										const start_message_id = API.items[ mess_count - 1 ].id;
+										const start_message_id = API.items[mess_count - 1].id;
 
-										API.items = API.items.map(mess => new Message( mess, data.url ).getHtml(users, 'compact')[0].addClass('dialog'));
+										API.items = API.items.map(mess => new Message(mess, data.url).getHtml(users, 'compact')[0].addClass('dialog'));
 
 										if (!isMore) {
 											if (mess_count === 20) {
-												API.items.push( $('<a/>', {
+												API.items.push($('<a/>', {
 													'class': 'dialog history more',
 													text: new App().loc('More'),
 												}).data({
 													'url': data.url,
 													'peer': data.peer,
 													'start_message_id': start_message_id,
-												}) );
+												}));
 											}
 
-											$('#history .mCSB_container').html( API.items );
+											$('#history .mCSB_container').html(API.items);
 
 										} else {
 											API.items.shift();
@@ -476,7 +476,7 @@ var Popup = (function () {
 									const $dg = $(`#dialog-${dg.id}`);
 									if ($dg.length > 0 && $dg.data('hash') != dg.hash()) {
 										const isOpen = $dg.hasClass('open');
-										$dg.removeAttr('class').addClass( dg.getClass(isOpen ? 'open' : '')).find('.mess-container').html(dg.constructMessages(users));
+										$dg.removeAttr('class').addClass(dg.getClass(isOpen ? 'open' : '')).find('.mess-container').html(dg.constructMessages(users));
 									}
 								});
 							}
@@ -493,7 +493,7 @@ var Popup = (function () {
 			const deferred = $.Deferred();
 
 			new App().load(['alert_message', 'alert_error']).done((stg) => {
-				if ( stg.alert_error ) {
+				if (stg.alert_error) {
 					this.buildAlert(stg.alert_error).addClass('error');
 					deferred.reject(stg.alert_error.code);
 				} else {
@@ -516,7 +516,6 @@ var Popup = (function () {
 			const $alert = $('#alert');
 			if ($alert.hasClass('show')) return $alert;
 			const app = new App();
-			console.log(app);
 			// Инициализация
 			const header = $('<thead/>', {
 				html: `<tr><td>${alert.header ? app.loc(alert.header) : ''}</td></tr>`
@@ -533,7 +532,7 @@ var Popup = (function () {
 
 				// Картинка
 				if (alert.body.img) {
-					body.push( $('<a/>', {
+					body.push($('<a/>', {
 						'class': 'img',
 						target: '_blank',
 						href: alert.body.url,
@@ -545,12 +544,12 @@ var Popup = (function () {
 
 				// Текст
 				if (alert.body.text) {
-					body.push( $('<a/>', {
+					body.push($('<a/>', {
 						'class': 'text',
 						target: '_blank',
 						href: alert.body.url,
 						html: app.loc(alert.body.text),
-					}) );
+					}));
 				}
 
 				// Ссылка

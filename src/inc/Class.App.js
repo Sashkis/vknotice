@@ -54,6 +54,5 @@ App.prototype.loc = function (text, isRequared) {
 	if (!text) return '';
 
 	const def = isRequared === false ? undefined : text;
-	const l = i18n.lang;
-	return i18n && i18n.str[text] && i18n.str[text][l] ? i18n.str[text][l] : def;
+	return i18n && i18n.str[text] && i18n.str[text][i18n.lang] ? i18n.str[text][i18n.lang] : def;
 }
