@@ -5,7 +5,7 @@
  * Екранирует HTML
  * @return {String}	Преобразованная строка
  */
-function escapeHtml = function (str) {
+function escapeHtml(str) {
 	'use strict';
 	const map = {
 		'&': '&amp;',
