@@ -4,7 +4,7 @@
 "use strict";
 function Vk () {}
 
-Vk.prototype.v = '5.40';
+Vk.prototype.v = '5.44';
 
 Vk.prototype.authUrl = 'https://oauth.vk.com/authorize?' + $.param({
 	'redirect_uri'	: 'https://oauth.vk.com/blank.html',
