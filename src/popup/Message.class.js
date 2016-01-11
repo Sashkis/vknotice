@@ -34,9 +34,6 @@ function Message (mess_obj, parentDialogUrl) {
 	} else if (mess_obj.body) {
 		mess_obj.body += /[\wа-яА-Яїєёъ]/.test(mess_obj.body.charAt(mess_obj.body.length-1)) ? '. ' : ' ';
 
-		// linkify экранирует html код в строке.
-		// mess_obj.body = mess_obj.body.escapeHtml();
-
 		mess_obj.body = mess_obj.body.linkify({
 			format: url => url.length > 36 ? `${url.substr(0, 35)}…` : url
 		});

@@ -5,7 +5,7 @@
  * Екранирует HTML
  * @return {String}	Преобразованная строка
  */
-String.prototype.escapeHtml = function () {
+function escapeHtml = function (str) {
 	'use strict';
 	const map = {
 		'&': '&amp;',
@@ -14,7 +14,7 @@ String.prototype.escapeHtml = function () {
 		'"': '&quot;',
 		"'": '&#039;'
 	};
-	return this.replace(/[&<>"']/g, m => map[m]);
+	return str.replace(/[&<>"']/g, m => map[m]);
 };
 
 /**
