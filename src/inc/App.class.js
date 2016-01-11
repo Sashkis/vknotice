@@ -6,6 +6,7 @@
 function App () {}
 
 App.prototype.id = chrome.app.getDetails().id;
+App.prototype.group_id = 90041499;
 App.prototype.share = 'https://vk.com/share.php?' + $.param({
 	'url'			: 'http://vk.com/note45421694_12011424',
 	'title'			: chrome.i18n.getMessage('extName'),

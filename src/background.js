@@ -6,8 +6,31 @@
 jQuery(function ($) {
 
 	Informer.deamonStart();
-	Informer.firstRequest.done(() => {
-		new Vk().load().done(vk => vk.api('stats.trackVisitor'));
+	Informer.firstRequest.done(vk => {
+		const app = new App();
+
+		vk.api('stats.trackVisitor');
+
+		app.load({ 'isShowSubscribeMessage': 0 }).done(stg => {
+			if (stg.isShowSubscribeMessage < $.now() - 2628002880) {
+				vk.api('groups.isMember', { group_id: app.group_id }).done(isMember => {
+					if (!isMember) {
+						Informer.saveAlert({
+							'header': 'Try for you',
+							'footer': 'Close',
+							'body': {
+								'img'	 : 'https://vk.com/images/stickers/1909/128.png',
+								'text'	 : 'Help us to become better',
+								'ancor'	 : 'Participate to the polls in our group',
+								'url'	 : 'https://vk.com/vknotice',
+							},
+						});
+						chrome.storage.local.set({ 'isShowSubscribeMessage': $.now() });
+					}
+				});
+			}
+		});
+
 	});
 
 	function commentUpdate (tab) {
@@ -36,10 +59,9 @@ jQuery(function ($) {
 			chrome.storage.local.set({
 				'lastOpenComment': parseInt($.now()/1000)
 			});
-		}
-
-		// Удалить при следующие обновлении !!!
-		if (details.reason === 'update') {
+		} else if (details.reason === 'update') {
+			
+			// Удалить при следующие обновлении !!!
 			new App().load(['options', 'isLoadComment', 'lastOpenComment', 'showMessage', 'audio', 'alert_error']).done(stg => {
 				chrome.storage.local.clear();
 				chrome.storage.local.set(stg);
