@@ -417,8 +417,8 @@ header {
 			}
 			border-color: rgba($mainColor, 0.22);
 			background: rgba($mainColor, 0.1);
-			.date {
-				color: #8795a5;
+			.name .date {
+				color: #879BB0;
 			}
 		}
 		&.dialog-answer-unread {
