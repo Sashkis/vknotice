@@ -57,7 +57,7 @@ var Informer = (function () {
 				'lastLoadAlert': 0,
 			}), new Vk().load()).then((stg, vk) => {
 				stg.user_id = vk.user_id;
-				vk.api('execute.getdata_beta', stg).done(API => {
+				vk.api('execute.get', stg).done(API => {
 					if (!this.delay) return;
 
 					API.lang = getLangCode(API.lang);
@@ -77,7 +77,7 @@ var Informer = (function () {
 					delete API.system;
 					chrome.storage.local.set(API);
 					chrome.browserAction.setIcon({ path: 'img/icon38.png' });
-					this.setCounters(API.counter, API.dialogs).saveAlert(false, 'error').firstRequest.resolve();
+					this.setCounters(API.counter, API.dialogs).saveAlert(false, 'error').firstRequest.resolve(vk);
 				}).fail((code, details) => {
 					this.generateError(code, details);
 					this.badge = 0;
@@ -157,10 +157,12 @@ var Informer = (function () {
 		 */
 		saveAlert: function (alert_obj, type) {
 			if (alert_obj) {
-				!type && (type = 'message');
+				type = type || 'message';
+				type = `alert_${type}`;
 
-				chrome.storage.local.set({
-					[`alert_${type}`]: alert_obj
+				new App().load(type).done(stg => {
+					console.log(stg[type]);
+					if (!stg[type]) chrome.storage.local.set({ [type]: alert_obj });
 				});
 			} else {
 				chrome.storage.local.remove([`alert_${type}`]);
