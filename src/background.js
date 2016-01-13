@@ -11,8 +11,8 @@ jQuery(function ($) {
 
 		vk.api('stats.trackVisitor');
 
-		app.load({ 'isShowSubscribeMessage': 0 }).done(stg => {
-			if (stg.isShowSubscribeMessage < $.now() - 2628002880) {
+		app.load({ 'subscribeMessage': 0 }).done(stg => {
+			if (stg.subscribeMessage < $.now() - 2628002880) {
 				vk.api('groups.isMember', { group_id: app.group_id }).done(isMember => {
 					if (!isMember) {
 						Informer.saveAlert({
@@ -25,7 +25,7 @@ jQuery(function ($) {
 								'url'	 : 'https://vk.com/vknotice',
 							},
 						});
-						chrome.storage.local.set({ 'isShowSubscribeMessage': $.now() });
+						chrome.storage.local.set({ 'subscribeMessage': $.now() });
 					}
 				});
 			}

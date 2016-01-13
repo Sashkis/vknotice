@@ -24,7 +24,7 @@ var Popup = (function () {
 					enable: false,
 				},
 				mouseWheel: {
-					scrollAmount: 61,
+					scrollAmount: 61
 				},
 				callbacks:{
 					onScroll: function () {
@@ -278,7 +278,7 @@ var Popup = (function () {
 				if (!$.isEmptyObject(stg.newfriends)) {
 					this.u(stg.newfriends).always(users => {
 						stg.newfriends = stg.newfriends.map(id => {
-							const s = users[id].status.escapeHtml();
+							const s = escapeHtml(users[id].status);
 							return $('<figure/>', {
 								html: [
 									$('<i/>', {

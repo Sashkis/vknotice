@@ -161,7 +161,6 @@ var Informer = (function () {
 				type = `alert_${type}`;
 
 				new App().load(type).done(stg => {
-					console.log(stg[type]);
 					if (!stg[type]) chrome.storage.local.set({ [type]: alert_obj });
 				});
 			} else {
