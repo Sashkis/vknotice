@@ -3,7 +3,6 @@ module.exports = function(grunt) {
 	// 1. Вся настройка находится здесь
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		manifest: grunt.file.readJSON('src/manifest.json'),
 
 		sass: {
 			options: {
@@ -39,35 +38,26 @@ module.exports = function(grunt) {
 		copy: {
 			all: {
 				files: [
-					{expand: true, cwd: 'src/', src: ['**'], dest: '.build/'},
+					{expand: true, cwd: 'src/', src: ['**'], dest: 'build/'},
 				],
 			},
 		},
 
 		clean: {
-			build: [".build/popup/css/mixins", ".build/**/*.scss", ".build/**/*.map"],
-			after: [".build"]
+			build: ["build/popup/css/mixins", "build/**/*.scss", "build/**/*.map"],
+			before: ["build"]
 		},
 
 		uglify: {
 			jquery: {
 				files: {
-					'.build/inc/jquery.js': ['.build/inc/jquery.js']
+					'build/inc/jquery.js': ['build/inc/jquery.js']
 				}
 			},
 			bower: {
 				files: {
-					'.build/popup/bower.js': ['.build/popup/bower.js'],
+					'build/popup/bower.js': ['build/popup/bower.js'],
 				}
-			}
-		},
-
-		zip: {
-			dist: {
-				cwd: '.build/',
-				src: '.build/**',
-				dest: 'Архив/' + '<%= manifest.version %>' + '.zip',
-				compression: 'DEFLATE'
 			}
 		},
 	});
@@ -79,10 +69,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-zip');
-
 
 	// 4. Указываем, какие задачи выполняются, когда мы вводим «grunt» в терминале
-	grunt.registerTask('default', ['sass', 'bower_concat', 'copy', 'clean:build', 'uglify', 'zip', 'clean:after']);
+	grunt.registerTask('default', ['clean:before', 'sass', 'bower_concat', 'copy', 'clean:build', 'uglify']);
 	// grunt.registerTask('dev', ['sass', 'copy:dev', 'uglify', 'csso', 'string-replace']);
 };

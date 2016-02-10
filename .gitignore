@@ -8,7 +8,7 @@
 
 # ---- ДИРЕКТОРИИ ----
 .sass-cache
-/dist/**
+/build/**
 /img/*
 /.cache/*
 /node_modules/*
