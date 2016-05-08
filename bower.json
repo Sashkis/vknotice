@@ -5,7 +5,7 @@
     "Alex Kozack <cawa-93@yandex.ru>"
   ],
   "description": "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!",
-  "main": "ext/*",
+  "main": "src/*",
   "keywords": [
     "ВК",
     "Вконтакте"
@@ -16,14 +16,15 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "ext/bower_components/",
+    "src/bower_components/",
     "test",
     "tests"
   ],
   "dependencies": {
     "jquery": "~2.2",
     "malihu-custom-scrollbar-plugin": "~3",
-    "linkifyjs": "~2"
+    "linkifyjs": "~2",
+    "angular": "#1.5.5"
   },
   "devDependencies": {}
 }

@@ -1,21 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="PopupApp">
 <head>
 	<title>Popup process</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/bower.css">
 	<link rel="stylesheet" href="css/popup.css">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+	<script src="angular.min.js"></script>
+
+	<script src="../inc/jquery.js"></script>
+	<script src="../inc/App.class.js"></script>
+
+	<script src="js/PopupApp.js"></script>
+	<script src="js/controllers/HeaderCtrl.js"></script>
 </head>
 <body>
-	<div class="wraper show"><div><i class="icon-spin4 animate-spin"></i></div></div>
+	<div class="wraper" ng-if="false"><div><i class="icon-spin4 animate-spin"></i></div></div>
 	<div id="alert"><table></table></div>
 	<div class="container">
-		<header>
+		<header ng-controller="HeaderCtrl">
 			<a class="navbar-brand" target="_blank" href="https://vk.com/vknotice">Informer</a>
-			<a class="notifications empty" target="_blank" href="https://vk.com/feed?section=notifications"><i class="icon-bell-alt"></i></a>
+			<a class="notifications" ng-class="{
+				empty: !notifications
+			}" ng-attr-data-badge="{{notifications}}" target="_blank" href="https://vk.com/feed?section=notifications"><i class="icon-bell-alt"></i></a>
 			<span class="dropdown navbar-right">
-				<a class="profile" href="#"></a>
+				<a class="profile" ng-href="https://vk.com/{{current_user.domain}}">{{current_user.first_name}} <img ng-src="{{current_user.photo_100}}"> <i class="carret"></i></a>
 				<ul class="dropdown-menu">
 					<li>
 						<a target="_blank" href="https://vk.com/vknotice?w=page-90041499_50788371" class="faq">Ask question</a>
@@ -101,20 +111,6 @@
 		<div id="newmess" class="slider panel" data-before="Please inform the developers."></div>
 		<div id="history" class="slider panel"></div>
 	</div>
-	<script src="../inc/jquery.js"></script>
 
-	<script src="../inc/App.class.js"></script>
-	<script src="../inc/Vk.class.js"></script>
-
-	<script src="bower.js"></script>
-
-	<script src="Global.js"></script>
-	<script src="Emoji.js"></script>
-	<script src="Message.class.js"></script>
-	<script src="Dialog.class.js"></script>
-	<script src="User.class.js"></script>
-	<script src="Popup.js"></script>
-
-	<script src="main.js" async></script>
 </body>
 </html>
