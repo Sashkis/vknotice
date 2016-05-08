@@ -8,84 +8,75 @@
 		"54":"Pagina mea",
 		"61":"Mijn Pagina"
 	},
-	"My Friends":{
-		"0":"Мои Друзья",
-		"1":"Мої Друзі",
-		"2":"Мае Сябры",
-		"6":"Meine Freunde",
-		"15":"Moi Znajomi",
-		"54":"Prietenii mei",
-		"61":"Mijn Vrienden"
+	"Friends":{
+		"0":"Друзья",
+		"1":"Друзі",
+		"2":"Сябры",
+		"6":"Freunde",
+		"15":"Znajomi",
+		"54":"Prietenii",
+		"61":"Vrienden"
 	},
-	"My Photos":{
-		"0":"Мои Фотографии",
-		"1":"Мої Фотографії",
-		"2":"Мае Фотаздымкі",
-		"6":"Meine Fotos",
-		"15":"Moje Zdjęcia",
-		"54":"Fotografiile mele",
-		"61":"Mijn Foto's"
+	"Photos":{
+		"0":"Фотографии",
+		"1":"Фотографії",
+		"2":"Фотаздымкі",
+		"6":"Fotos",
+		"15":"Zdjęcia",
+		"54":"Fotografiile",
+		"61":"Foto's"
 	},
-	"My Videos":{
-		"0":"Мои Видеозаписи",
-		"1":"Мої Відеозаписи",
-		"2":"Мае Відэазапісы",
-		"6":"Meine Videos",
-		"15":"Moje Filmy",
-		"54":"Mele video",
-		"61":"Mijn Video's"
+	"Videos":{
+		"0":"Видеозаписи",
+		"1":"Відеозаписи",
+		"2":"Відэазапісы",
+		"6":"Videos",
+		"15":"Filmy",
+		"54":"Video",
+		"61":"Video's"
 	},
-	"My Music":{
-		"0":"Мои Аудиозаписи",
-		"1":"Мої Аудiозаписи",
-		"2":"Мае Аўдыязапісы",
-		"6":"Meine Musik",
-		"15":"Moja Muzyka",
-		"54":"Mele audio",
-		"61":"Mijn Muziek"
+	"Music":{
+		"0":"Аудиозаписи",
+		"1":"Аудiозаписи",
+		"2":"Аўдыязапісы",
+		"6":"Musik",
+		"15":"Muzyka",
+		"54":"Audio",
+		"61":"Muziek"
 	},
-	"My Messages":{
-		"0":"Мои Сообщения",
-		"1":"Мої Повiдомлення",
-		"2":"Мае Паведамленні",
-		"6":"Meine Nachrichten",
-		"15":"Moje Wiadomości",
-		"54":"Mesajele mele",
-		"61":"Mijn Berichten"
+	"Messages":{
+		"0":"Сообщения",
+		"1":"Повiдомлення",
+		"2":"Паведамленні",
+		"6":"Nachrichten",
+		"15":"Wiadomości",
+		"54":"Mesajele",
+		"61":"Berichten"
 	},
-	"My Communities":{
-		"0":"Мои Группы",
-		"1":"Мої Спільноти",
-		"2":"Мае Суполкі",
-		"6":"Meine Communities",
-		"15":"Moje Grupy",
-		"54":"Grupurile mele",
-		"61":"Mijn Groepen"
+	"Communities":{
+		"0":"Группы",
+		"1":"Спільноти",
+		"2":"Суполкі",
+		"6":"Communities",
+		"15":"Grupy",
+		"54":"Grupurile",
+		"61":"Groepen"
 	},
-	"My News":{
-		"0":"Мои Новости",
-		"1":"Мої Новини",
-		"2":"Мае Навіны",
-		"6":"Meine Neuigkeiten",
-		"15":"Moje Odpowiedzi",
-		"54":"Noutăţile mele",
-		"61":"Mijn Nieuws"
+	"News":{
+		"0":"Новости",
+		"1":"Новини",
+		"2":"Навіны",
+		"6":"Neuigkeiten",
+		"15":"Odpowiedzi",
+		"54":"Noutăţile",
+		"61":"Nieuws"
 	},
-	"My Feedback":{
-		"0":"Мои Ответы",
-		"1":"Мої Відповіді",
-		"2":"Мае Адказы",
-		"6":"Mein Feedback",
-		"15":"Moje Nowości",
-		"54":"Răspunsurile mele",
-		"61":"Mijn Reacties"
-	},
-	"My Comments":{
-		"0":"Мои Комментарии",
-		"1":"Мої Коментарі",
-		"2":"Мае Каментары",
-		"6":"Meine Kommentare",
-		"15":"Moje Komentarze",
+	"Comments":{
+		"0":"Комментарии",
+		"1":"Коментарі",
+		"2":"Каментары",
+		"6":"Kommentare",
+		"15":"Komentarze",
 		"54":"Comentarii",
 		"61":"Commentaren"
 	},
@@ -457,6 +448,16 @@
 		"54":"Exclus de utilizator",
 		"61":"Uitgesloten gebruiker"
 	},
+	"Type your text here..":{
+		"0":"Введите Ваше сообщение..",
+		"1":"Введіть Ваше повідомлення..",
+		"2":"Увядзіце Вашае паведамленне..",
+		"6":"Geben Sie hier Ihre Nachricht ein...",
+		"15":"Napisz swoją wiadomość..",
+		"54":"Scrieţi mesajul Dvs..",
+		"61":"Voer je bericht in.."
+	},
+
 
 
 

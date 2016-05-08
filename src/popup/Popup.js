@@ -169,6 +169,11 @@ var Popup = (function () {
 						}
 					});
 
+					if (stg.counter.notifications) {
+						$('header > .notifications').attr('data-badge', stg.counter.notifications).removeClass('empty');
+					} else {
+						$('header > .notifications').removeAttr('data-badge').addClass('empty');
+					}
 					deferred.resolve();
 				});
 
@@ -203,13 +208,13 @@ var Popup = (function () {
 					this.current = users[stg.user_id];
 					$('#my a.profile').attr('href', `https://vk.com/${this.current.domain}`);
 					$('header .profile').html([
-						this.current.online ? '<i class="mark"></i>' : '',
-						this.current.name,
-						this.current.ava({
-							'isLink':false,
-							'marker':false,
-							'size':32,
+						this.current.first_name,
+						$('<img/>', {
+							'src': this.current.photo_100,
 						}),
+						$('<i/>', {
+							'class': 'caret',
+						})
 					]);
 					deferred.resolve();
 				});
@@ -380,8 +385,10 @@ var Popup = (function () {
 
 									new Vk().load().done(vk => {
 										const $dg = $field.parents('.dialog');
-										const params = $.extend({}, $dg.data('peer'));
-										params.message = $field.val().trim();
+										const params = {
+											peer_id: $dg.data('peer_id'),
+											message: $field.val().trim(),
+										};
 
 										vk.api('messages.send', params).done(mess_id => {
 
@@ -412,10 +419,13 @@ var Popup = (function () {
 							new Vk().load().done(vk => {
 								const $dg = $button.parents('.dialog');
 
-								vk.api('messages.markAsRead', $dg.data('markAsRead'))
+								vk.api('messages.markAsRead', {
+									peer_id: $dg.data('peer_id'),
+								})
 								.done(() => $dg.removeClass('dialog-unread'))
 								.always(() => $button.removeClass('icon-spin4 animate-spin'));
 							});
+						// Загрузить историю
 						}).on('click', '.history', function () {
 							loadHistory($(this));
 						});
@@ -431,15 +441,17 @@ var Popup = (function () {
 							const isMore = $button.hasClass('more');
 							const data = isMore ? $button.data() : $button.parents('.dialog').data() ;
 
+							console.log(data);
 							if (!isMore) {
 								$('#history .mCSB_container').empty();
-							} else {
-								data.peer.start_message_id = data.start_message_id;
 							}
 
 
 							new Vk().load().done(vk => {
-								vk.api('messages.getHistory', data.peer).done(API => {
+								vk.api('messages.getHistory', {
+									peer_id: data.peer_id,
+									start_message_id: data.start_message_id || 0,
+								}).done(API => {
 									const talkers = [vk.user_id];
 
 									$.each(API.items, (index, mess) => talkers.push(mess.from_id));
@@ -457,7 +469,7 @@ var Popup = (function () {
 													text: new App().loc('More'),
 												}).data({
 													'url': data.url,
-													'peer': data.peer,
+													'peer_id': data.peer_id,
 													'start_message_id': start_message_id,
 												}));
 											}

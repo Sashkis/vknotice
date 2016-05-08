@@ -78,17 +78,14 @@ Dialog.prototype.construct = function (users) {
 				$('<div/>', {'class': 'mess-container'}),
 				$('<div/>', {
 					'class': 'ans',
-					html: $('<textarea/>')
+					html: $('<textarea/>', {
+						placeholder: new App().loc('Type your text here..'),
+					})
 				})
 			]
 		}),
 	}).data({
-		peer: {
-			[this.isGroup ? 'chat_id' : 'user_id'] : this.id
-		},
-		markAsRead: {
-			peer_id: this.id + (this.isGroup ? 2000000000 : 0)
-		},
+		peer_id: this.isGroup ? this.id+2000000000 : this.id,
 		url: this.url,
 		hash: this.hash(),
 
@@ -104,10 +101,10 @@ Dialog.prototype.construct = function (users) {
 		} else if (this.isGroup && $.isArray(this.chat_active)) {
 			this.chat_active = this.chat_active.slice(0, 4);
 			switch (this.chat_active.length) {
-				case 1 : return users[this.chat_active[0]].ava({ size: 50 });
-				case 2 : return [users[this.chat_active[0]].ava({ size: 50, type: 'half' }), users[this.chat_active[1]].ava({ size: 50, type: 'half' })];
-				case 3 : return [users[this.chat_active[0]].ava({ size: 50, type: 'half' }), users[this.chat_active[1]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[2]].ava({ size: 23, type: 'quarter' })];
-				case 4 : return [users[this.chat_active[0]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[1]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[2]].ava({ size: 23, type: 'quarter' }), users[this.chat_active[3]].ava({ size: 23, type: 'quarter' })];
+				case 1 : return users[this.chat_active[0]].ava({ marker: false, size: 50 });
+				case 2 : return [users[this.chat_active[0]].ava({ marker: false, size: 50, type: 'half' }), users[this.chat_active[1]].ava({ marker: false, size: 50, type: 'half' })];
+				case 3 : return [users[this.chat_active[0]].ava({ marker: false, size: 50, type: 'half' }), users[this.chat_active[1]].ava({ marker: false, size: 23, type: 'quarter' }), users[this.chat_active[2]].ava({ marker: false, size: 23, type: 'quarter' })];
+				case 4 : return [users[this.chat_active[0]].ava({ marker: false, size: 23, type: 'quarter' }), users[this.chat_active[1]].ava({ marker: false, size: 23, type: 'quarter' }), users[this.chat_active[2]].ava({ marker: false, size: 23, type: 'quarter' }), users[this.chat_active[3]].ava({ marker: false, size: 23, type: 'quarter' })];
 			}
 		} else if (!this.isGroup) {
 			return users[this.id].ava({ size: 50 });

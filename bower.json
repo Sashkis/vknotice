@@ -1,5 +1,5 @@
 {
-  "name": "Информер Вконтакте",
+  "name": "vk-informer",
   "version": "5.0.0",
   "authors": [
     "Alex Kozack <cawa-93@yandex.ru>"
@@ -21,7 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
+    "jquery": "~2.2",
     "malihu-custom-scrollbar-plugin": "~3",
     "linkifyjs": "~2"
   },
