@@ -1,0 +1,1 @@
+angular.module('PopupHeaderApp', ['StorageApp', 'PopupL10nApp']);

@@ -1,4 +1,4 @@
-angular.module('PopupHeaderApp', ['StorageApp', 'PopupL10nApp'])
+angular.module('PopupHeaderApp')
 
 	.config([
 		'$compileProvider',
