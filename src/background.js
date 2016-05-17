@@ -59,13 +59,6 @@ jQuery(function ($) {
 			chrome.storage.local.set({
 				'lastOpenComment': parseInt($.now()/1000)
 			});
-		} else if (details.reason === 'update') {
-			
-			// Удалить при следующие обновлении !!!
-			new App().load(['options', 'isLoadComment', 'lastOpenComment', 'showMessage', 'audio', 'alert_error']).done(stg => {
-				chrome.storage.local.clear();
-				chrome.storage.local.set(stg);
-			});
 		}
 	});
 

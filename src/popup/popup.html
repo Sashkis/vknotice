@@ -3,6 +3,8 @@
 <head>
 	<title>Popup process</title>
 	<meta charset="UTF-8">
+	<base target="_blank">
+
 	<link rel="stylesheet" href="css/bower.css">
 	<link rel="stylesheet" href="css/popup.css">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -13,103 +15,33 @@
 	<script src="../inc/App.class.js"></script>
 
 	<script src="js/PopupApp.js"></script>
-	<script src="js/controllers/HeaderCtrl.js"></script>
+
+	<script src="js/Global/StorageApp.js"></script>
+	<script src="js/Global/PopupL10nApp.js"></script>
+
+	<script src="js/Header/HeaderCtrl.js"></script>
+	<script src="js/Header/DropDownFactory.js"></script>
+
+	<script src="js/Sidebar/PopupSidebarApp.js"></script>
+	<script src="js/Sidebar/SidebarFactory.js"></script>
 </head>
 <body>
 	<div class="wraper" ng-if="false"><div><i class="icon-spin4 animate-spin"></i></div></div>
 	<div id="alert"><table></table></div>
 	<div class="container">
-		<header ng-controller="HeaderCtrl">
-			<a class="navbar-brand" target="_blank" href="https://vk.com/vknotice">Informer</a>
-			<a class="notifications" ng-class="{
-				empty: !notifications
-			}" ng-attr-data-badge="{{notifications}}" target="_blank" href="https://vk.com/feed?section=notifications"><i class="icon-bell-alt"></i></a>
-			<span class="dropdown navbar-right">
-				<a class="profile" ng-href="https://vk.com/{{current_user.domain}}">{{current_user.first_name}} <img ng-src="{{current_user.photo_100}}"> <i class="carret"></i></a>
-				<ul class="dropdown-menu">
-					<li>
-						<a target="_blank" href="https://vk.com/vknotice?w=page-90041499_50788371" class="faq">Ask question</a>
-					</li>
-					<li>
-						<a target="_blank" href="https://vk.com/topic-90041499_31898043" class="offer">Leave offer</a>
-					</li>
-					<li>
-						<a target="_blank" href="https://vk.com/im?sel=-90041499" class="error">Report error</a>
-					</li>
-					<li role="separator" class="divider"></li>
-					<li>
-						<a target="_blank" href="https://vk.com/share.php?url=http%3A%2F%2Fvk.com%2Fnote45421694_12011424&title=Информер+Вконтакте&description=Отображает+количество+непрочитанных+сообщений+и+позволяет+ответить+не+заходя+в+ВК!&image=https%3A%2F%2Fpp.vk.me%2Fc628716%2Fv628716694%2F2c20c%2Ff3gq0pcaqHI.jpg&noparse=true" class="share" >Tell your friends</a>
-					</li>
-					<li>
-						<a target="_blank" href="https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn/reviews" class="review" >Leave a review</a>
-					</li>
-					<li role="separator" class="divider"></li>
-					<li>
-						<a target="_blank" class="settings">Settings</a>
-					</li>
-					<li>
-						<a class="logout" href="#">Logout</a>
-					</li>
-				</ul>
-			</span>
-		</header>
-		<menu id="menu" class="">
-			<li id="my">
-				<a class="profile" href="http://vk.com/" target="_blank">
-					<span class="i18n">My Profile</span>
-				</a>
-			</li>
-			<li id="friends">
-				<a href="https://vk.com/friends" target="_blank">
-					<span class="i18n">Friends</span>
-					<span class="hovered slide counter" data-target="#newfriends"></span>
-				</a>
-			</li>
-			<li id="photos">
-				<a href="https://vk.com/albums" target="_blank">
-					<span class="i18n">Photos</span>
-					<span class="counter"></span>
-				</a>
-			</li>
-			<li id="videos">
-				<a href="https://vk.com/video" target="_blank">
-					<span class="i18n">Videos</span>
-					<span class="counter"></span>
-				</a>
-			</li>
-			<li id="audio">
-				<a href="https://vk.com/audio" target="_blank">
-					<span class="i18n">Music</span>
-				</a>
-			</li>
-			<li id="messages">
-				<a href="https://vk.com/im" target="_blank">
-					<span class="i18n">Messages</span>
-					<span class="hovered slide counter" data-target="#newmess"></span>
-				</a>
-			</li>
-			<li id="groups">
-				<a href="https://vk.com/groups" target="_blank">
-					<span class="i18n">Communities</span>
-					<span class="counter"></span>
-				</a>
-			</li>
-			<li id="feed">
-				<a href="https://vk.com/feed" target="_blank">
-					<span class="i18n">News</span>
-				</a>
-			</li>
-			<li id="comments">
-				<a href="https://vk.com/feed?section=comments" target="_blank">
-					<span class="i18n">Comments</span>
-					<span class="counter"></span>
+		<header ng-controller="HeaderCtrl" ng-include="'js/Header/HeaderTempl.html'"></header>
+		<menu id="menu" class="" ng-controller="SidebarCtrl">
+			<li id="{{item.id}}" ng-repeat="item in menu">
+				<a ng-href="{{item.url}}" >
+					<span class="i18n">{{item.ancor}}</span>
+					<span ng-if="item.counter" class="counter" ng-click="false">{{stg.counter[item.id] ? '+'+stg.counter[item.id] : ''}}</span>
 				</a>
 			</li>
 		</menu>
 		<div id="friends-online" class="slider panel open"></div>
-		<div id="newfriends" class="slider panel" data-before="Please inform the developers."></div>
-		<div id="newmess" class="slider panel" data-before="Please inform the developers."></div>
-		<div id="history" class="slider panel"></div>
+		<div id="newfriends" class="slider panel open" data-before="Please inform the developers."></div>
+		<div id="newmess" class="slider panel open" data-before="Please inform the developers."></div>
+		<div id="history" class="slider panel open"></div>
 	</div>
 
 </body>
