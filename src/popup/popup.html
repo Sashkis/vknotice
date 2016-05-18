@@ -11,9 +11,6 @@
 
 	<script src="angular.min.js"></script>
 
-	<script src="../inc/jquery.js"></script>
-	<script src="../inc/App.class.js"></script>
-
 	<script src="js/PopupApp.js"></script>
 
 	<script src="js/Global/StorageApp.js"></script>
@@ -23,26 +20,20 @@
 	<script src="js/Header/HeaderCtrl.js"></script>
 	<script src="js/Header/DropDownFactory.js"></script>
 
+	<script src="js/Sections/SectionsApp.js"></script>
+	<script src="js/Sections/SectionsCtrl.js"></script>
+	<script src="js/Sections/StackFactory.js"></script>
+
 	<script src="js/Sidebar/PopupSidebarApp.js"></script>
+	<script src="js/Sidebar/SidebarCtrl.js"></script>
 	<script src="js/Sidebar/SidebarFactory.js"></script>
 </head>
 <body>
 	<div class="wraper" ng-if="false"><div><i class="icon-spin4 animate-spin"></i></div></div>
 	<div id="alert"><table></table></div>
-	<div class="container">
-		<header ng-controller="HeaderCtrl" ng-include="'js/Header/HeaderTempl.html'"></header>
-		<menu id="menu" class="" ng-controller="SidebarCtrl">
-			<li id="{{item.id}}" ng-repeat="item in menu">
-				<a ng-href="{{item.url}}" >
-					<span class="i18n">{{item.ancor}}</span>
-					<span ng-if="item.counter" class="counter" ng-click="false">{{stg.counter[item.id] ? '+'+stg.counter[item.id] : ''}}</span>
-				</a>
-			</li>
-		</menu>
-		<div id="friends-online" class="slider panel open"></div>
-		<div id="newfriends" class="slider panel open" data-before="Please inform the developers."></div>
-		<div id="newmess" class="slider panel open" data-before="Please inform the developers."></div>
-		<div id="history" class="slider panel open"></div>
+	<div class="container" ng-controller="SectionsCtrl as main">
+		<ng-include src="'js/Header/HeaderTempl.html'" ng-click="main.openSection('newfriends')"></ng-include>
+		<ng-include src="main.stack.cur() || main.sections.default"></ng-include>
 	</div>
 
 </body>

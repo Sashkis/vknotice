@@ -15,6 +15,9 @@ angular.module('PopupHeaderApp')
 			'i18n',
 			'dropdownMenu',
 		function ($q, $scope, storage, i18n, dropdownMenu) {
+			$scope.log = function (a) {
+				console.log(a);
+			}
 			$scope.isDropdownOpen = false;
 
 			$q.all([storage.defer, i18n.defer]).then(function ([stg, lang]) {

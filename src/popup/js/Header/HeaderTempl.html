@@ -1,19 +1,21 @@
-<a class="navbar-brand"  ng-href="https://vk.com/vknotice">{{title}}</a>
+<header ng-controller="HeaderCtrl">
+	<a class="navbar-brand" ng-href="https://vk.com/vknotice">{{main.stack.cur() ? 'Back' : title}}</a>
 
-<a ng-class="['notifications', {empty: !stg.counter.notifications}]" ng-attr-data-badge="{{stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
-	<i class="icon-bell-alt"></i>
-</a>
-
-<span ng-class="['dropdown navbar-right',{open: isDropdownOpen}]" ng-click="isDropdownOpen = !isDropdownOpen">
-	<a class="profile" ng-href="">
-		{{current_user.first_name}}
-		<img ng-src="{{current_user.photo_100}}">
-		<i class="carret"></i>
+	<a ng-class="['notifications', {empty: !stg.counter.notifications}]" ng-attr-data-badge="{{stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
+		<i class="icon-bell-alt"></i>
 	</a>
 
-	<ul class="dropdown-menu">
-		<li ng-repeat="item in menu" ng-class="item.id" >
-			<a ng-href="{{item.url}}">{{item.ancor}}</a>
-		</li>
-	</ul>
-</span>
+	<span ng-class="['dropdown navbar-right',{open: isDropdownOpen}]" ng-click="isDropdownOpen = !isDropdownOpen">
+		<a class="profile" ng-href="">
+			{{current_user.first_name}}
+			<img ng-src="{{current_user.photo_100}}">
+			<i class="carret"></i>
+		</a>
+
+		<ul class="dropdown-menu">
+			<li ng-repeat="item in menu" ng-class="item.id" >
+				<a ng-href="{{item.url}}">{{item.ancor}}</a>
+			</li>
+		</ul>
+	</span>
+</header>

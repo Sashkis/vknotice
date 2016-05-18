@@ -1,4 +1,4 @@
-angular.module('PopupApp', ['PopupHeaderApp', 'PopupSidebarApp'])
+angular.module('PopupApp', ['PopupHeaderApp', 'SectionsApp'])
 .config(function () {
 	console.log("PopupApp config");
 })
