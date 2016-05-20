@@ -29,6 +29,7 @@ angular.module('SidebarApp')
 			},{
 				id: 'messages',
 				url: 'https://vk.com/im',
+				default: '+',
 				ancor: i18n.get('Messages'),
 				counter: true,
 				target: 'newmess',

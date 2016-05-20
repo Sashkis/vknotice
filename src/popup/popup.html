@@ -38,7 +38,7 @@
 	<div class="wraper" ng-if="false"><div><i class="icon-spin4 animate-spin"></i></div></div>
 	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
-		<ng-include src="'js/Header/HeaderTempl.html'" ng-click="main.openSection('newfriends')"></ng-include>
+		<ng-include src="'js/Header/HeaderTempl.html'"></ng-include>
 		<ng-include src="main.stack.cur() || main.sections.default"></ng-include>
 	</div>
 

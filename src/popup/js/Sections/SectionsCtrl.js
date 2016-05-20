@@ -8,7 +8,10 @@ angular.module('SectionsApp')
 		$this.openSection = openSection;
 		$this.backSection = backSection;
 
-		function openSection (section_id) {
+		function openSection (section_id, $event) {
+			console.log(this);
+			$event.preventDefault();
+			console.log(section_id);
 			if ($this.sections[section_id]) {
 				if ($this.sections[section_id] !== $this.stack.cur()) {
 					$this.stack.add($this.sections[section_id]);

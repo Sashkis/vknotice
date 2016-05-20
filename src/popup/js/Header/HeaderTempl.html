@@ -1,5 +1,9 @@
 <header ng-controller="HeaderCtrl">
-	<a class="navbar-brand" ng-href="https://vk.com/vknotice">{{main.stack.cur() ? 'Back' : title}}</a>
+	<a ng-hide="main.stack.cur()" class="navbar-brand" ng-href="https://vk.com/vknotice">{{title}}</a>
+	<span ng-show="main.stack.cur()" class="navbar-brand" ng-click="main.backSection()">
+		<i class="icon-arrow-left"></i>
+		Back
+	</span>
 
 	<a ng-class="['notifications', {empty: !stg.counter.notifications}]" ng-attr-data-badge="{{stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
 		<i class="icon-bell-alt"></i>
