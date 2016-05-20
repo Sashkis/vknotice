@@ -22,13 +22,11 @@ angular.module('StorageApp', [])
 				angular.forEach(changes, function(val, key) {
 					$this.stg[key] = filter(val.newValue, key);
 				});
-				console.log('-------');
 				$rootScope.$apply();
 			});
 		});
 
 		function filter (val, key) {
-			console.log(key);
 			switch (key) {
 				case 'profiles' : return index_users(val);
 				case 'friends' : return replace_id_to_user(val);
