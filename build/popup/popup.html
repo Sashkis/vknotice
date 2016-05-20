@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Popup process</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bower.css">
+	<link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+	<div class="wraper show"><div><i class="icon-spin4 animate-spin"></i></div></div>
+	<div id="alert"><table></table></div>
+	<div class="container">
+		<header>
+			<a class="navbar-brand" target="_blank" href="https://vk.com/vknotice">Informer</a>
+			<span class="dropdown navbar-right">
+				<a class="profile" href="#"></a>
+				<ul class="dropdown-menu">
+					<li>
+						<a target="_blank" href="https://vk.com/vknotice?w=page-90041499_50788371" class="faq">Ask question</a>
+					</li>
+					<li>
+						<a target="_blank" href="https://vk.com/topic-90041499_31898043" class="offer">Leave offer</a>
+					</li>
+					<li>
+						<a target="_blank" href="https://vk.com/im?sel=-90041499" class="error">Report error</a>
+					</li>
+					<li role="separator" class="divider"></li>
+					<li>
+						<a target="_blank" href="https://vk.com/share.php?url=http%3A%2F%2Fvk.com%2Fnote45421694_12011424&title=Информер+Вконтакте&description=Отображает+количество+непрочитанных+сообщений+и+позволяет+ответить+не+заходя+в+ВК!&image=https%3A%2F%2Fpp.vk.me%2Fc628716%2Fv628716694%2F2c20c%2Ff3gq0pcaqHI.jpg&noparse=true" class="share" >Tell your friends</a>
+					</li>
+					<li>
+						<a target="_blank" href="https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn/reviews" class="review" >Leave a review</a>
+					</li>
+					<li role="separator" class="divider"></li>
+					<li>
+						<a target="_blank" class="settings">Settings</a>
+					</li>
+					<li>
+						<a class="logout" href="#">Logout</a>
+					</li>
+				</ul>
+			</span>
+		</header>
+		<menu id="menu" class="panel">
+			<li id="my">
+				<a class="profile" href="http://vk.com/" target="_blank">
+					<span class="i18n">My Profile</span>
+				</a>
+			</li>
+			<li id="friends">
+				<a href="https://vk.com/friends" target="_blank">
+					<span class="i18n">Friends</span>
+					<span class="hovered slide counter" data-target="#newfriends"></span>
+				</a>
+			</li>
+			<li id="photos">
+				<a href="https://vk.com/albums" target="_blank">
+					<span class="i18n">Photos</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="videos">
+				<a href="https://vk.com/video" target="_blank">
+					<span class="i18n">Videos</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="audio">
+				<a href="https://vk.com/audio" target="_blank">
+					<span class="i18n">Music</span>
+				</a>
+			</li>
+			<li id="messages">
+				<a href="https://vk.com/im" target="_blank">
+					<span class="i18n">Messages</span>
+					<span class="hovered slide counter" data-target="#newmess"></span>
+				</a>
+			</li>
+			<li id="groups">
+				<a href="https://vk.com/groups" target="_blank">
+					<span class="i18n">Communities</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+			<li id="feed">
+				<a href="https://vk.com/feed" target="_blank">
+					<span class="i18n">News</span>
+				</a>
+			</li>
+			<li id="comments">
+				<a href="https://vk.com/feed?section=comments" target="_blank">
+					<span class="i18n">Comments</span>
+					<span class="counter"></span>
+				</a>
+			</li>
+		</menu>
+		<div id="friends-online" class="slider panel open"></div>
+		<div id="newfriends" class="slider panel" data-before="Please inform the developers."></div>
+		<div id="newmess" class="slider panel" data-before="Please inform the developers."></div>
+		<div id="history" class="slider panel"></div>
+	</div>
+	<script src="../inc/jquery.js"></script>
+
+	<script src="../inc/App.class.js"></script>
+	<script src="../inc/Vk.class.js"></script>
+
+	<script src="bower.js"></script>
+
+	<script src="Global.js"></script>
+	<script src="Emoji.js"></script>
+	<script src="Message.class.js"></script>
+	<script src="Dialog.class.js"></script>
+	<script src="User.class.js"></script>
+	<script src="Popup.js"></script>
+
+	<script src="main.js" async></script>
+</body>
+</html>
