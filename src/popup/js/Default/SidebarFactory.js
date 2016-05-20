@@ -1,4 +1,4 @@
-angular.module('PopupSidebarApp')
+angular.module('SidebarApp')
 	.factory('sidebarMenu', ['i18n', function (i18n) {
 		console.log("factory dropdownMenu");
 		return function () {

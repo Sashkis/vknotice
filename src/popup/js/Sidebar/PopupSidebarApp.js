@@ -1,1 +1,0 @@
-angular.module('PopupSidebarApp', ['StorageApp', 'PopupL10nApp']);

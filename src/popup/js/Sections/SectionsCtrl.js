@@ -1,6 +1,6 @@
 angular.module('SectionsApp')
 
-	.controller('SectionsCtrl', ['sections', 'stack', function (sections, stack) {
+	.controller('SectionsCtrl', ['sections', 'stack', '$rootScope', function (sections, stack, $rootScope) {
 		const $this = this;
 		$this.sections = sections;
 		$this.stack = stack;
@@ -15,10 +15,14 @@ angular.module('SectionsApp')
 				} else {
 					$this.backSection();
 				}
+				// $this.$apply();
+				// $apply();
 			}
 		}
 
 		function backSection () {
 			$this.stack.get();
+				// $rootScope.$apply();
+				// $this.$apply();
 		}
 	}]);

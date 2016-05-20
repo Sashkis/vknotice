@@ -1,9 +1,0 @@
-<menu id="menu" class="" ng-controller="SidebarCtrl">
-			<li id="{{item.id}}" ng-repeat="item in menu">
-				<a ng-href="{{item.url}}" >
-					<span class="i18n">{{item.ancor}}</span>
-					<span ng-if="item.counter" class="counter" ng-click="false">{{stg.counter[item.id] ? '+'+stg.counter[item.id] : ''}}</span>
-				</a>
-			</li>
-		</menu>
-<div id="friends-online" class="slider panel open"></div>

@@ -1,4 +1,4 @@
-angular.module('PopupSidebarApp')
+angular.module('SidebarApp')
 
 	.controller('SidebarCtrl', [
 			'$q',

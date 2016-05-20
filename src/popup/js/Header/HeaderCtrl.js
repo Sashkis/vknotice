@@ -23,12 +23,7 @@ angular.module('PopupHeaderApp')
 			$q.all([storage.defer, i18n.defer]).then(function ([stg, lang]) {
 				$scope.title = i18n.get('Informer');
 				$scope.stg = stg;
-				for (let i = $scope.stg.profiles.length - 1; i >= 0; i--) {
-					if ($scope.stg.profiles[i].id == $scope.stg.user_id) {
-						$scope.current_user = $scope.stg.profiles[i];
-						break;
-					}
-				}
+				$scope.current_user = $scope.stg.profiles[ $scope.stg.user_id ];
 				$scope.menu = dropdownMenu();
 			});
 

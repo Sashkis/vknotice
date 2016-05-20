@@ -1,0 +1,1 @@
+angular.module('SidebarApp', ['StorageApp', 'PopupL10nApp'])
