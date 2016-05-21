@@ -10,7 +10,7 @@
 </menu><!--
 
 --><div id="friends-online" class="panel" ng-controller="FriendsCtrl">
-	<a class="item" ng-repeat="user in stg.friends track by $index" ng-href="https://vk.com/{{user.domain}}">
+	<a class="item" ng-repeat="user in stg.profiles track by $index" ng-href="https://vk.com/{{user.screen_name}}">
 		<img ng-src="{{user.photo_100}}" alt="{{user.first_name}}">
 		<span>{{user.first_name}}</span>
 	</a>
