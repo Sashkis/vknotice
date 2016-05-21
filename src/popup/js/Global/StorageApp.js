@@ -18,7 +18,7 @@ angular.module('StorageApp', ['ProfileApp'])
 
 		function replace_id_to_user_filter (array_ids) {
 			return array_ids.map((user_id) => {
-				return profileSrc.profiles[user_id] || {};
+				return $prof.getById(user_id);
 			});
 		}
 
@@ -27,7 +27,6 @@ angular.module('StorageApp', ['ProfileApp'])
 		}
 
 		return {
-			setProfileSrc: (src) => profileSrc = src,
 			auto: auto_filter,
 			profiles: index_users_filter,
 			friends: replace_id_to_user_filter
@@ -42,13 +41,12 @@ angular.module('StorageApp', ['ProfileApp'])
 
 		chrome.storage.local.get(function (stg) {
 			$this.stg = angular.extend({}, stg);
-			$prof.setSrc($this.stg);
 
 			$this.stg.profiles = filter.profiles(stg.users, $this.stg.profiles);
 			$this.stg.profiles = filter.profiles(stg.groups, $this.stg.profiles);
-			filter.setProfileSrc($this.stg);
+			$prof.setSrc($this.stg);
 
-			$this.stg.friends = filter.friends(stg.friends, $this.stg.profiles);
+			$this.stg.friends = filter.friends(stg.friends);
 
 			delete $this.stg.users;
 			delete $this.stg.groups;

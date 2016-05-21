@@ -14,6 +14,7 @@ Profile.prototype = {
 };
 
 Profile.getById = function( id ) {
+	console.log(this.src.profiles);
 	return new Profile(this.src.profiles[id] || {});
 };
 
