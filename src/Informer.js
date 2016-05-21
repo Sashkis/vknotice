@@ -57,7 +57,7 @@ var Informer = (function () {
 				'lastLoadAlert': 0,
 			}), new Vk().load()).then((stg, vk) => {
 				stg.user_id = vk.user_id;
-				vk.api('execute.get', stg).done(API => {
+				vk.api('execute.ang', stg).done(API => {
 					if (!this.delay) return;
 
 					API.lang = getLangCode(API.lang);
