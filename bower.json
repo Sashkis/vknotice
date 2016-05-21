@@ -21,10 +21,8 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.2",
-    "malihu-custom-scrollbar-plugin": "~3",
-    "linkifyjs": "~2",
-    "angular": "#1.5.5"
+    "angular": "#1.5.5",
+    "angular-gettext": "^2.2.1"
   },
   "devDependencies": {}
 }

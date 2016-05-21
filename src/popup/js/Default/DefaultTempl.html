@@ -1,9 +1,64 @@
 <menu id="menu" ng-controller="SidebarCtrl">
-	<li id="{{item.id}}" ng-repeat="item in menu">
-		<a ng-href="{{item.url}}" >
-			<span>{{item.ancor}}</span>
-			<span ng-if="item.counter" class="counter" ng-click="main.openSection(item.id, $event)">
-				{{stg.counter[item.id] ? '+'+stg.counter[item.id] : item.default || ''}}
+	<li>
+		<a ng-href="https://vk.com/" >
+			<translate>Моя Страница</translate>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/friends" >
+			<translate>Друзья</translate>
+			<span class="counter" ng-click="main.openSection('friends', $event)">
+				{{stg.counter.friends ? '+'+stg.counter.friends : ''}}
+			</span>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/albums" >
+			<translate>Фотографии</translate>
+			<span class="counter">
+				{{stg.counter.photos ? '+'+stg.counter.photos : ''}}
+			</span>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/video" >
+			<translate>Видеозаписи</translate>
+			<span class="counter">
+				{{stg.counter.videos ? '+'+stg.counter.videos : ''}}
+			</span>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/audio" >
+			<translate>Аудиозаписи</translate>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/im" >
+			<translate>Сообщения</translate>
+			<span class="counter" ng-click="main.openSection('messages', $event)">
+				{{stg.counter.messages ? '+'+stg.counter.messages : '+'}}
+			</span>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/groups" >
+			<translate>Группы</translate>
+			<span class="counter">
+				{{stg.counter.groups ? '+'+stg.counter.groups : ''}}
+			</span>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/feed" >
+			<translate>Новости</translate>
+		</a>
+	</li>
+	<li>
+		<a ng-href="https://vk.com/feed?section=comments" >
+			<translate>Комментарии</translate>
+			<span class="counter">
+				{{stg.counter.comments ? '+'+stg.counter.comments : ''}}
 			</span>
 		</a>
 	</li>

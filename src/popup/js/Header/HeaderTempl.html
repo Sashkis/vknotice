@@ -1,25 +1,30 @@
 <header ng-controller="HeaderCtrl">
-	<a ng-hide="main.stack.cur()" class="navbar-brand" ng-href="https://vk.com/vknotice">{{title}}</a>
-	<span ng-show="main.stack.cur()" class="navbar-brand" ng-click="main.backSection()">
-		<i class="icon-arrow-left"></i>
-		Back
-	</span>
+	<a ng-hide="main.stack.cur()" class="navbar-brand" ng-href="https://vk.com/vknotice" translate>Информер</a>
+	<span ng-show="main.stack.cur()" class="navbar-brand" ng-click="main.backSection()" translate>Назад</span>
 
 	<a ng-class="['notifications', {empty: !stg.counter.notifications}]" ng-attr-data-badge="{{stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
 		<i class="icon-bell-alt"></i>
 	</a>
 
 	<span ng-class="['dropdown navbar-right',{open: isDropdownOpen}]" ng-click="isDropdownOpen = !isDropdownOpen">
-		<a class="profile" ng-href="">
+		<a class="profile">
 			{{current_user.first_name}}
 			<img ng-src="{{current_user.photo_100}}">
 			<i class="carret"></i>
 		</a>
 
 		<ul class="dropdown-menu">
-			<li ng-repeat="item in menu" ng-class="item.id" >
-				<a ng-href="{{item.url}}">{{item.ancor}}</a>
-			</li>
+			<li><a href="https://vk.com/vknotice?w=page-90041499_50788371" translate>Задать вопрос</a></li>
+			<li><a href="https://vk.com/topic-90041499_31898043" translate>Оставить предложение</a></li>
+			<li><a href="https://vk.com/im?sel=-90041499" translate>Сообщить об ошибке</a></li>
+			<li class="divider"></li>
+			<li><a ng-href="{{getShareUrl()}}" translate>Рассказать друзьям</a></li>
+			<li><a ng-href="{{getReviewUrl()}}" translate>Оставить отзыв</a></li>
+			<li class="divider"></li>
+			<li><a ng-href="chrome-extension://{{chrome.app.getDetails().id}}/options/index.html" translate>
+				Настройки
+			</a></li>
+			<li><a href="#" ng-click="logout($event)" translate>Выйти</a></li>
 		</ul>
 	</span>
 </header>

@@ -1,20 +1,10 @@
-angular.module('PopupApp', ['PopupHeaderApp', 'SectionsApp'])
-.config(function () {
-	console.log("PopupApp config");
-})
-.run(function ($rootScope) {
-	console.log("PopupApp run");
-// 	chrome.storage.local.get(function(stg) {
-// 		// The $apply is only necessary to execute the function inside Angular scope
-// 		$rootScope.$apply(function() {
-// 			$rootScope.stg = stg;
-// 		});
-// 	});
+angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext'])
+.run(function (gettextCatalog, storage) {
 
-// 	chrome.storage.onChanged.addListener(function (changes) {
-// 		angular.forEach(changes, function (values, key) {
-// 			$rootScope.stg[key] = values.newValue;
-// 		});
-// 		$rootScope.$apply();
-// 	});
+    gettextCatalog.setCurrentLanguage('uk');
+	gettextCatalog.debug = true;
+
+	storage.defer.then(function (stg) {
+		console.log('PopupApp.js', stg);
+	});
 });

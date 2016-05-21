@@ -1,1 +1,1 @@
-angular.module('SidebarApp', ['StorageApp', 'PopupL10nApp'])
+angular.module('SidebarApp', ['StorageApp'])

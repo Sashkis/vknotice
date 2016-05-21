@@ -1,15 +1,11 @@
 angular.module('SidebarApp')
 
 	.controller('SidebarCtrl', [
-			'$q',
 			'$scope',
 			'storage',
-			'i18n',
-			'sidebarMenu',
-		function ($q, $scope, storage, i18n, sidebarMenu) {
-			$q.all([storage.defer, i18n.defer]).then(function ([stg, lang]) {
+		function ($scope, storage) {
+			storage.defer.then(function (stg) {
 				$scope.stg = stg;
-				$scope.menu = sidebarMenu();
 			});
 
 		}

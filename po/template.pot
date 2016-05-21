@@ -1,0 +1,85 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: src/popup/js/Default/DefaultTempl.html:33
+msgid "Аудиозаписи"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:25
+msgid "Видеозаписи"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:27
+msgid "Выйти"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:46
+msgid "Группы"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:9
+msgid "Друзья"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:17
+msgid "Задать вопрос"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:2
+msgid "Информер"
+msgstr ""
+
+#: src/popup/js/Header/HeaderCtrl.js:27
+msgid "Информер Вконтакте"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:59
+msgid "Комментарии"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:4
+msgid "Моя Страница"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:3
+msgid "Назад"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:24
+msgid "Настройки"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:54
+msgid "Новости"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:22
+msgid "Оставить отзыв"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:18
+msgid "Оставить предложение"
+msgstr ""
+
+#: src/popup/js/Header/HeaderCtrl.js:28
+msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:21
+msgid "Рассказать друзьям"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:38
+msgid "Сообщения"
+msgstr ""
+
+#: src/popup/js/Header/HeaderTempl.html:19
+msgid "Сообщить об ошибке"
+msgstr ""
+
+#: src/popup/js/Default/DefaultTempl.html:17
+msgid "Фотографии"
+msgstr ""

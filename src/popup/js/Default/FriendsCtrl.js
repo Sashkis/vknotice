@@ -1,11 +1,10 @@
 angular.module('FriendsApp')
 
 	.controller('FriendsCtrl', [
-			'$q',
 			'$scope',
 			'storage',
-		function ($q, $scope, storage) {
-			$q.all([storage.defer]).then(function ([stg, lang]) {
+		function ($scope, storage) {
+			storage.defer.then(function (stg) {
 				$scope.stg = stg;
 			});
 

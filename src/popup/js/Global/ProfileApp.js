@@ -5,13 +5,13 @@ function Profile( data ) {
 	angular.extend(this, data);
 }
 
-Profile.prototype = {
-	update: function() {
-		// Обновляем (В реальном коде :P)
-		this.name = "Dave";
-		this.country = "Canada";
-	}
-};
+// Profile.prototype = {
+// 	update: function() {
+// 		// Обновляем (В реальном коде :P)
+// 		this.name = "Dave";
+// 		this.country = "Canada";
+// 	}
+// };
 
 Profile.getById = function( id ) {
 	console.log(this.src.profiles);
