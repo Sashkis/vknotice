@@ -13,17 +13,15 @@ angular.module('PopupHeaderApp')
 			'$scope',
 			'storage',
 			'i18n',
+			'profileService',
 			'dropdownMenu',
-		function ($q, $scope, storage, i18n, dropdownMenu) {
-			$scope.log = function (a) {
-				console.log(a);
-			}
+		function ($q, $scope, storage, i18n, $prof, dropdownMenu) {
 			$scope.isDropdownOpen = false;
 
 			$q.all([storage.defer, i18n.defer]).then(function ([stg, lang]) {
 				$scope.title = i18n.get('Informer');
 				$scope.stg = stg;
-				$scope.current_user = $scope.stg.profiles[ $scope.stg.user_id ];
+				$scope.current_user = $prof.getById($scope.stg.user_id);
 				$scope.menu = dropdownMenu();
 			});
 

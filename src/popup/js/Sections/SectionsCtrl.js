@@ -9,23 +9,17 @@ angular.module('SectionsApp')
 		$this.backSection = backSection;
 
 		function openSection (section_id, $event) {
-			console.log(this);
 			$event.preventDefault();
-			console.log(section_id);
 			if ($this.sections[section_id]) {
 				if ($this.sections[section_id] !== $this.stack.cur()) {
 					$this.stack.add($this.sections[section_id]);
 				} else {
 					$this.backSection();
 				}
-				// $this.$apply();
-				// $apply();
 			}
 		}
 
 		function backSection () {
 			$this.stack.get();
-				// $rootScope.$apply();
-				// $this.$apply();
 		}
 	}]);

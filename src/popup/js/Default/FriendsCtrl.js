@@ -4,9 +4,9 @@ angular.module('FriendsApp')
 			'$q',
 			'$scope',
 			'storage',
-			'i18n',
-		function ($q, $scope, storage, i18n) {
-			$q.all([storage.defer, i18n.defer]).then(function ([stg, lang]) {
+			'profileService',
+		function ($q, $scope, storage, profile) {
+			$q.all([storage.defer]).then(function ([stg, lang]) {
 				$scope.stg = stg;
 			});
 
