@@ -345,7 +345,9 @@ header {
     font-size: 13px;
     font-weight: bold;
     padding-left: 51px;
-    background: url("../img/dev_logo_vk.png") 10px center no-repeat; }
+    background: url("../img/dev_logo_vk.png") 10px center no-repeat;
+    min-width: 138px;
+    box-sizing: border-box; }
   header .notifications.empty {
     color: #33567f; }
     header .notifications.empty:after {
@@ -389,7 +391,7 @@ header {
       margin: 0 5px;
       vertical-align: middle; }
     header .profile .caret {
-      opacity: 0.45; }
+      opacity: 0.5; }
 
 aside {
   padding: 0;

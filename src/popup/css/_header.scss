@@ -24,6 +24,8 @@ header {
 		font-weight: bold;
 		padding-left: 51px;
 		background: url("../img/dev_logo_vk.png") 10px center no-repeat;
+	    min-width: 138px;
+    	box-sizing: border-box;
 	}
 	.notifications {
 		&.empty {
@@ -84,7 +86,7 @@ header {
 		    vertical-align: middle;
 		}
 		.caret {
-		    opacity: 0.45;
+			opacity: 0.5;
 		}
 	}
 }
