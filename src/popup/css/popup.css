@@ -273,16 +273,15 @@ aside {
       word-break: break-all; }
 
 #newfriends {
+  padding: 0 13px;
   flex: 1;
-  flex-direction: column; }
+  flex-direction: column;
+  background: #fff; }
   #newfriends .item {
-    padding: 0 13px;
-    background: #fff; }
-    #newfriends .item .bordered {
-      flex: 1;
-      padding: 6px 0;
-      align-items: center; }
-    #newfriends .item:not(:last-child) .bordered {
+    flex: 1;
+    padding: 6px 0;
+    align-items: center; }
+    #newfriends .item:not(:last-child) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
     #newfriends .item .ava {
       margin-right: 6px; }
@@ -290,10 +289,10 @@ aside {
       flex: 1;
       flex-direction: column; }
     #newfriends .item .fa {
-      flex-basis: 50px;
       font-size: 30px;
-      text-align: center;
-      opacity: .5; }
+      text-align: right;
+      opacity: .5;
+      margin-left: 15px; }
       #newfriends .item .fa:hover {
         opacity: 1; }
 

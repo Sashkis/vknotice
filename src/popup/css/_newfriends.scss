@@ -1,19 +1,14 @@
 #newfriends {
-    // padding: 13px;
+	padding: 0 13px;
     flex: 1;
     flex-direction: column;
+    background: #fff;
     .item {
-	    padding: 0 13px;
-	    background: #fff;
-	    .bordered {
-	    	flex: 1;
-	    	padding: 6px 0;
-	    	align-items: center;
-	    }
+    	flex: 1;
+    	padding: 6px 0;
+    	align-items: center;
     	&:not(:last-child) {
-    		.bordered {
-    			border-bottom: 1px solid rgba(0,0,0,.1);
-    		}
+			border-bottom: 1px solid rgba(0,0,0,.1);
     	}
     	.ava {
 			margin-right: 6px;
@@ -23,10 +18,10 @@
     		flex-direction: column;
     	}
     	.fa {
-		    flex-basis: 50px;
-		    font-size: 30px;
-		    text-align: center;
-		    opacity: .5;
+			font-size: 30px;
+			text-align: right;
+			opacity: .5;
+			margin-left: 15px;
 		    &:hover {
 		    	opacity:1;
 		    }
