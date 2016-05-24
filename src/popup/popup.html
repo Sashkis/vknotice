@@ -43,7 +43,7 @@
 	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
 		<ng-include src="'js/Header/HeaderTempl.html'"></ng-include>
-		<ng-include src="main.stack.cur() || main.sections.default"></ng-include>
+		<ng-include src="main.stack.cur() || main.sections.default" class="flex"></ng-include>
 	</div>
 
 </body>
