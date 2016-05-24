@@ -3,10 +3,13 @@
 		<span class="fa fa-vk"></span>
 		<translate>Информер</translate>
 	</a>
-	<span ng-show="main.stack.cur()" class="navbar-brand" ng-click="main.backSection()" translate>Назад</span>
+	<span ng-show="main.stack.cur()" class="navbar-brand" ng-click="main.backSection()">
+		<span class="fa fa-chevron-left"></span>
+		<translate>Назад</translate>
+	</span>
 
 	<a ng-class="['notifications', {empty: !stg.counter.notifications}]" ng-attr-data-badge="{{stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
-		<i class="icon-bell-alt"></i>
+		<i class="fa fa-bell"></i>
 	</a>
 
 	<span ng-class="['dropdown navbar-right',{open: isDropdownOpen}]" ng-click="isDropdownOpen = !isDropdownOpen">

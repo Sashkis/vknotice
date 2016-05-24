@@ -155,16 +155,14 @@
 header {
   height: 50px;
   color: #fff;
-  background: #567ca4; }
+  background: #567ca4;
+  display: flex; }
   header .navbar-brand, header > span, header > a {
     cursor: pointer;
     color: #fff;
     line-height: 50px;
-    display: inline-block;
     font-size: 17px;
-    vertical-align: middle;
-    padding: 0 13px;
-    position: relative; }
+    padding: 0 13px; }
     header .navbar-brand:hover, header > span:hover, header > a:hover {
       background-color: rgba(0, 0, 0, 0.06); }
     header .navbar-brand a, header > span a, header > a a {
@@ -172,10 +170,13 @@ header {
   header .navbar-brand {
     font-size: 13px;
     font-weight: bold;
-    padding-left: 51px;
-    background: url("../img/dev_logo_vk.png") 10px center no-repeat;
-    min-width: 138px;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    display: flex;
+    flex: 1; }
+    header .navbar-brand .fa {
+      font-size: 30px;
+      line-height: 50px;
+      margin-right: 10px; }
   header .notifications.empty {
     color: #33567f; }
     header .notifications.empty:after {
