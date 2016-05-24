@@ -1,0 +1,32 @@
+aside {
+    padding: 0;
+    flex-basis: 138px;
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 220px;
+	a {
+	    padding: 0px 0px 0px 6px;
+	    flex: 1;
+	    display: flex;
+	    flex-flow: row nowrap;
+		&:hover {
+			background-color: rgba($mainColor, 0.2);
+		}
+		translate {
+		    flex: 1;
+	        display: flex;
+			align-items: center;
+		}
+		.counter {
+		    background: rgba(86, 124, 164, 0.2);
+			font-size: 10px;
+			font-weight: bold;
+			flex-basis: 14px;
+			justify-content: center;
+			display: flex;
+			align-items: center;
+			padding: 0 3px;
+			box-sizing: border-box;
+		}
+	}
+}
