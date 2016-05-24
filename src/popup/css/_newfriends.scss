@@ -1,0 +1,35 @@
+#newfriends {
+    // padding: 13px;
+    flex: 1;
+    flex-direction: column;
+    .item {
+	    padding: 0 13px;
+	    background: #fff;
+	    .bordered {
+	    	flex: 1;
+	    	padding: 6px 0;
+	    	align-items: center;
+	    }
+    	&:not(:last-child) {
+    		.bordered {
+    			border-bottom: 1px solid rgba(0,0,0,.1);
+    		}
+    	}
+    	.ava {
+			margin-right: 6px;
+    	}
+    	.user {
+    		flex: 1;
+    		flex-direction: column;
+    	}
+    	.fa {
+		    flex-basis: 50px;
+		    font-size: 30px;
+		    text-align: center;
+		    opacity: .5;
+		    &:hover {
+		    	opacity:1;
+		    }
+    	}
+    }
+}

@@ -9,6 +9,7 @@ $mainColor: #567ca4;
 @import 'header';
 @import 'sidebar';
 @import 'friends-online';
+@import 'newfriends';
 
 body {
 	background: #f0f2f5;
@@ -172,41 +173,41 @@ a {
 // 	right: -7px;
 // }
 
-#newfriends {
-	overflow-y: auto;
-	padding: 0;
-	figure {
-		overflow: hidden;
-		margin: 0;
-		padding: 5px;
-		border-bottom: 1px solid #e4e8ed;
-		.ava img {
-			margin-right: 10px;
-		}
-		i {
-			border-radius: 2px;
-			color: rgba($mainColor, 0.5);
-			cursor: pointer;
-			float: right;
-			font-size: 30px;
-			padding: 8px 4px;
-			&:hover {
-				color: $mainColor;
-			}
-			&.icon-spin4:hover {
-				background: none !important;
-				color: rgba($mainColor, 0.5) !important;
-				cursor: wait;
-			}
-		}
-	}
-	figcaption {
-		a {
-			display: block;
-			font-weight: bold;
-		}
-	}
-}
+// #newfriends {
+// 	overflow-y: auto;
+// 	padding: 0;
+// 	figure {
+// 		overflow: hidden;
+// 		margin: 0;
+// 		padding: 5px;
+// 		border-bottom: 1px solid #e4e8ed;
+// 		.ava img {
+// 			margin-right: 10px;
+// 		}
+// 		i {
+// 			border-radius: 2px;
+// 			color: rgba($mainColor, 0.5);
+// 			cursor: pointer;
+// 			float: right;
+// 			font-size: 30px;
+// 			padding: 8px 4px;
+// 			&:hover {
+// 				color: $mainColor;
+// 			}
+// 			&.icon-spin4:hover {
+// 				background: none !important;
+// 				color: rgba($mainColor, 0.5) !important;
+// 				cursor: wait;
+// 			}
+// 		}
+// 	}
+// 	figcaption {
+// 		a {
+// 			display: block;
+// 			font-weight: bold;
+// 		}
+// 	}
+// }
 
 .ava img {
 	float: left;
@@ -215,18 +216,18 @@ a {
 	border-radius:300px;
 }
 
-#newmess #mCSB_2_container:empty::before,
-#newmess:empty::before,
-#newfriends:empty {
-	content: attr(data-before);
-	font-size: 15px;
-	text-align: center;
-	display: table-cell;
-	height: 210px;
-	width: 320px;
-	vertical-align: middle;
-	opacity: .3;
-}
+// #newmess #mCSB_2_container:empty::before,
+// #newmess:empty::before,
+// #newfriends:empty {
+// 	content: attr(data-before);
+// 	font-size: 15px;
+// 	text-align: center;
+// 	display: table-cell;
+// 	height: 210px;
+// 	width: 320px;
+// 	vertical-align: middle;
+// 	opacity: .3;
+// }
 
 %dialog-icon {
 	color: rgba(43, 88, 122, 0.5);

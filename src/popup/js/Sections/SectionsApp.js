@@ -1,7 +1,7 @@
-angular.module('SectionsApp', ['DefaultSectionApp'])
+angular.module('SectionsApp', ['DefaultSectionApp', 'NewFriendsApp'])
 	.constant('sections', {
 		'default':    'js/Default/DefaultTempl.html',
 		'messages':   'js/NewMess/NewMessTempl.html',
 		'history':    'js/History/HistoryTempl.html',
-		'newfriends': 'js/NewFriends/NewFriendsTempl.html',
+		'friends': 	  'js/NewFriends/NewFriendsTempl.html',
 	});

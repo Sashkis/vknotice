@@ -29,7 +29,8 @@ angular.module('StorageApp', ['ProfileApp'])
 		return {
 			auto: auto_filter,
 			profiles: index_users_filter,
-			friends: replace_id_to_user_filter
+			friends: replace_id_to_user_filter,
+			newfriends: replace_id_to_user_filter,
 		}
 
 	}])
@@ -47,6 +48,7 @@ angular.module('StorageApp', ['ProfileApp'])
 			$prof.setSrc($this.stg);
 
 			$this.stg.friends = filter.friends(stg.friends);
+			$this.stg.newfriends = filter.newfriends(stg.newfriends);
 
 			delete $this.stg.users;
 			delete $this.stg.groups;
@@ -56,17 +58,17 @@ angular.module('StorageApp', ['ProfileApp'])
 
 			chrome.storage.onChanged.addListener(function (changes) {
 				if (changes.users !== undefined) {
-					console.log('users');
+					// console.log('users');
 					$this.stg.profiles = filter.profiles(changes.users.newValue, $this.stg.profiles);
 					delete changes.users;
 				}
 				if (changes.groups !== undefined) {
-					console.log('groups');
+					// console.log('groups');
 					$this.stg.profiles = filter.profiles(changes.groups.newValue, $this.stg.profiles);
 					delete changes.groups;
 				}
 				angular.forEach(changes, function(val, key) {
-					console.log(key);
+					// console.log(key);
 					$this.stg[key] = filter.auto(val.newValue, key);
 				});
 				$rootScope.$apply();

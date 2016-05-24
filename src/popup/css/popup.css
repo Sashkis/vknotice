@@ -155,8 +155,7 @@
 header {
   height: 50px;
   color: #fff;
-  background: #567ca4;
-  display: flex; }
+  background: #567ca4; }
   header .navbar-brand, header > span, header > a {
     cursor: pointer;
     color: #fff;
@@ -273,6 +272,31 @@ aside {
       width: 100%;
       word-break: break-all; }
 
+#newfriends {
+  flex: 1;
+  flex-direction: column; }
+  #newfriends .item {
+    padding: 0 13px;
+    background: #fff; }
+    #newfriends .item .bordered {
+      flex: 1;
+      padding: 6px 0;
+      align-items: center; }
+    #newfriends .item:not(:last-child) .bordered {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    #newfriends .item .ava {
+      margin-right: 6px; }
+    #newfriends .item .user {
+      flex: 1;
+      flex-direction: column; }
+    #newfriends .item .fa {
+      flex-basis: 50px;
+      font-size: 30px;
+      text-align: center;
+      opacity: .5; }
+      #newfriends .item .fa:hover {
+        opacity: 1; }
+
 body {
   background: #f0f2f5;
   color: #000;
@@ -309,50 +333,11 @@ a {
     .panel.slider.open {
       left: 145px; }
 
-#newfriends {
-  overflow-y: auto;
-  padding: 0; }
-  #newfriends figure {
-    overflow: hidden;
-    margin: 0;
-    padding: 5px;
-    border-bottom: 1px solid #e4e8ed; }
-    #newfriends figure .ava img {
-      margin-right: 10px; }
-    #newfriends figure i {
-      border-radius: 2px;
-      color: rgba(86, 124, 164, 0.5);
-      cursor: pointer;
-      float: right;
-      font-size: 30px;
-      padding: 8px 4px; }
-      #newfriends figure i:hover {
-        color: #567ca4; }
-      #newfriends figure i.icon-spin4:hover {
-        background: none !important;
-        color: rgba(86, 124, 164, 0.5) !important;
-        cursor: wait; }
-  #newfriends figcaption a {
-    display: block;
-    font-weight: bold; }
-
 .ava img {
   float: left;
   background: url(../img/camera_100.png);
   background-size: 100% 100%;
   border-radius: 300px; }
-
-#newmess #mCSB_2_container:empty::before,
-#newmess:empty::before,
-#newfriends:empty {
-  content: attr(data-before);
-  font-size: 15px;
-  text-align: center;
-  display: table-cell;
-  height: 210px;
-  width: 320px;
-  vertical-align: middle;
-  opacity: .3; }
 
 #newmess .dialog .markAsRead,
 #newmess .dialog .history {
