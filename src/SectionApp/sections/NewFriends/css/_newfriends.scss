@@ -17,6 +17,9 @@
     		flex: 1;
     		flex-direction: column;
     	}
+        .status {
+            word-break: break-word;
+        }
     	.fa {
 			font-size: 30px;
 			text-align: right;
