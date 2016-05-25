@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="PopupApp">
+<head>
+	<title>Popup process</title>
+	<meta charset="UTF-8">
+	<base target="_blank">
+
+
+	<link rel="stylesheet" href="css/bower.css">
+	<link rel="stylesheet" href="css/popup.css">
+
+	<link rel="stylesheet" href="../HeaderApp/css/header.css">
+	<link rel="stylesheet" href="../SectionApp/css/section.css">
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../fontawesome/css/font-awesome.min.css">
+
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-gettext/dist/angular-gettext.min.js"></script>
+
+	<script src="js/PopupApp.js"></script>
+	<script src="js/translations.js"></script>
+
+	<script src="../inc/ProfileApp.js"></script>
+	<script src="../inc/StorageApp.js"></script>
+
+	<script src="../HeaderApp/js/HeaderApp.js"></script>
+	<script src="../HeaderApp/js/HeaderCtrl.js"></script>
+
+	<script src="../SectionApp/js/SectionsApp.js"></script>
+	<script src="../SectionApp/js/SectionsCtrl.js"></script>
+	<script src="../SectionApp/js/StackFactory.js"></script>
+
+	<script src="../SectionApp/sections/Default/js/SidebarCtrl.js"></script>
+	<script src="../SectionApp/sections/Default/js/FriendsCtrl.js"></script>
+	<script src="../SectionApp/sections/NewFriends/js/NewFriendsCtrl.js"></script>
+
+</head>
+<body>
+	<div class="wraper" ng-if="false"><div><i class="icon-spin4 animate-spin"></i></div></div>
+	<div id="alert"><table></table></div>
+	<div class="container" ng-controller="SectionsCtrl as main">
+		<ng-include src="'../HeaderApp/HeaderTempl.html'"></ng-include>
+		<ng-include src="main.stack.cur() || main.sections.default" class="flex"></ng-include>
+	</div>
+
+</body>
+</html>
