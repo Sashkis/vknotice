@@ -7,14 +7,14 @@ module.exports = function(grunt) {
 		nggettext_extract: {
 			pot: {
 				files: {
-					'po/template.pot': ['src/popup/**/*.html','src/popup/**/*.js'],
+					'po/all.pot': ['src/**/*.html','src/**/*.js'],
 				}
 			},
 		},
 		nggettext_compile: {
 			all: {
 				files: {
-					'src/popup/translations.js': ['po/*.po']
+					'src/Translations/all.js': ['po/*.po']
 				}
 			},
 		},

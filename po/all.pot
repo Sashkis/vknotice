@@ -1,110 +1,97 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: uk\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Project-Id-Version: \n"
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:20
 msgid "Аудиозаписи"
-msgstr "Аудiозаписи"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:16
 msgid "Видеозаписи"
-msgstr "Відеозаписи"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:33
 msgid "Выйти"
-msgstr "Вийти"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:29
 msgid "Группы"
-msgstr "Спільноти"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:6
 msgid "Друзья"
-msgstr "Друзі"
+msgstr ""
 
 #: src/SectionApp/sections/NewFriends/NewFriendsTempl.html:10
 msgid "Заблокировать"
-msgstr "Заблокувати"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:23
 msgid "Задать вопрос"
-msgstr "Задати питання"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:4
 msgid "Информер"
-msgstr "Інформер"
+msgstr ""
 
 #: src/HeaderApp/js/HeaderCtrl.js:27
 msgid "Информер Вконтакте"
-msgstr "Інформер Вконтакте"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:36
 msgid "Комментарии"
-msgstr "Коментарі"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:3
 msgid "Моя Страница"
-msgstr "Моя Cторінка"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:8
 msgid "Назад"
-msgstr "Назад"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:30
 msgid "Настройки"
-msgstr "Налаштування"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:33
 msgid "Новости"
-msgstr "Новини"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:28
 msgid "Оставить отзыв"
-msgstr "Залишити відгук"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:24
 msgid "Оставить предложение"
-msgstr "Залишити пропозицію"
+msgstr ""
 
 #: src/SectionApp/sections/NewFriends/NewFriendsTempl.html:9
 msgid "Отклонить"
-msgstr "Відмовити"
+msgstr ""
 
 #: src/HeaderApp/js/HeaderCtrl.js:28
-msgid ""
-"Отображает количество непрочитанных сообщений и позволяет ответить не заходя "
-"в ВК!"
+msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr ""
-"Відображає кількість непрочитаних повідомлень і дозволяє відповісти не "
-"заходячи в ВК!"
 
 #: src/SectionApp/sections/NewFriends/NewFriendsTempl.html:8
 msgid "Принять"
-msgstr "Прийняти"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:27
 msgid "Рассказать друзьям"
-msgstr "Розповісти друзям"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:23
 msgid "Сообщения"
-msgstr "Повiдомлення"
+msgstr ""
 
 #: src/HeaderApp/HeaderTempl.html:25
 msgid "Сообщить об ошибке"
-msgstr "Повідомити про помилку"
+msgstr ""
 
 #: src/SectionApp/sections/Default/DefaultTempl.html:12
 msgid "Фотографии"
-msgstr "Фотографії"
+msgstr ""
