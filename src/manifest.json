@@ -15,7 +15,7 @@
 	},
 
 	"icons": {
-		"128": "img/icon128.png"
+		"128": "BackgroundApp/img/icon128.png"
 	},
 
 	"options_page": "OptionsApp/index.html",
@@ -24,11 +24,11 @@
 	},
 	"content_scripts": [{
 		"matches": ["*://oauth.vk.com/blank.html"],
-		"js": ["BackgroundApp/get_token.js"]
+		"js": ["BackgroundApp/js/get_token.js"]
 	}],
 	"browser_action": {
 		"default_title": "__MSG_extName__",
-		"default_icon": "img/icon38-off.png",
+		"default_icon": "BackgroundApp/img/icon38-off.png",
 		"default_popup": "PopupApp/popup.html"
 	},
 
