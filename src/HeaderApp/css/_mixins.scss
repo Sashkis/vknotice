@@ -1,7 +1,7 @@
-// Mixins
-// --------------------------------------------------
+// // Mixins
+// // --------------------------------------------------
 
-// Utilities
+// // Utilities
 @import "mixins/hide-text";
 @import "mixins/opacity";
 @import "mixins/image";
@@ -16,7 +16,7 @@
 @import "mixins/text-overflow";
 @import "mixins/vendor-prefixes";
 
-// Components
+// // Components
 @import "mixins/alerts";
 @import "mixins/buttons";
 @import "mixins/panels";
@@ -27,12 +27,12 @@
 @import "mixins/progress-bar";
 @import "mixins/table-row";
 
-// Skins
+// // Skins
 @import "mixins/background-variant";
 @import "mixins/border-radius";
 @import "mixins/gradients";
 
-// Layout
+// // Layout
 @import "mixins/clearfix";
 @import "mixins/center-block";
 @import "mixins/nav-vertical-align";

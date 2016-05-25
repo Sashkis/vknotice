@@ -1,4 +1,4 @@
-angular.module('SectionsApp', ['DefaultSectionApp', 'NewFriendsApp'])
+angular.module('SectionsApp', [])
 	.constant('sections', {
 		'default':    'js/Default/DefaultTempl.html',
 		'messages':   'js/NewMess/NewMessTempl.html',

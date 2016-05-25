@@ -1,4 +1,4 @@
-angular.module('NewFriendsApp')
+angular.module('SectionsApp')
 	.controller('NewFriendsCtrl', [
 		'$scope',
 		'storage',

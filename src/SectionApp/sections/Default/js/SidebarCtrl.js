@@ -1,6 +1,6 @@
-angular.module('FriendsApp')
+angular.module('SectionsApp')
 
-	.controller('FriendsCtrl', [
+	.controller('SidebarCtrl', [
 			'$scope',
 			'storage',
 		function ($scope, storage) {
