@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="css/popup.css">
 
 	<link rel="stylesheet" href="../HeaderApp/css/header.css">
+	<link rel="stylesheet" href="../SectionApp/css/section.css">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../fontawesome/css/font-awesome.min.css">
@@ -23,23 +24,23 @@
 	<script src="../inc/ProfileApp.js"></script>
 	<script src="../inc/StorageApp.js"></script>
 
-	<script src="../HeaderApp/HeaderApp.js"></script>
-	<script src="../HeaderApp/HeaderCtrl.js"></script>
+	<script src="../HeaderApp/js/HeaderApp.js"></script>
+	<script src="../HeaderApp/js/HeaderCtrl.js"></script>
 
-	<script src="../SectionApp/SectionsApp.js"></script>
-	<script src="../SectionApp/SectionsCtrl.js"></script>
-	<script src="../SectionApp/StackFactory.js"></script>
+	<script src="../SectionApp/js/SectionsApp.js"></script>
+	<script src="../SectionApp/js/SectionsCtrl.js"></script>
+	<script src="../SectionApp/js/StackFactory.js"></script>
 
-	<script src="../SectionApp/Default/SidebarCtrl.js"></script>
-	<script src="../SectionApp/Default/FriendsCtrl.js"></script>
-	<script src="../SectionApp/NewFriends/NewFriendsCtrl.js"></script>
+	<script src="../SectionApp/sections/Default/js/SidebarCtrl.js"></script>
+	<script src="../SectionApp/sections/Default/js/FriendsCtrl.js"></script>
+	<script src="../SectionApp/sections/NewFriends/js/NewFriendsCtrl.js"></script>
 
 </head>
 <body>
 	<div class="wraper" ng-if="false"><div><i class="icon-spin4 animate-spin"></i></div></div>
 	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
-		<ng-include src="'js/Header/HeaderTempl.html'"></ng-include>
+		<ng-include src="'../HeaderApp/HeaderTempl.html'"></ng-include>
 		<ng-include src="main.stack.cur() || main.sections.default" class="flex"></ng-include>
 	</div>
 
