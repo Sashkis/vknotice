@@ -18,18 +18,18 @@
 		"128": "img/icon128.png"
 	},
 
-	"options_page": "options/index.html",
+	"options_page": "Options/index.html",
 	"background": {
-		"page": "background.html"
+		"page": "Background/background.html"
 	},
 	"content_scripts": [{
 		"matches": ["*://oauth.vk.com/blank.html"],
-		"js": ["get_token.js"]
+		"js": ["Background/get_token.js"]
 	}],
 	"browser_action": {
 		"default_title": "__MSG_extName__",
 		"default_icon": "img/icon38-off.png",
-		"default_popup": "popup/popup.html"
+		"default_popup": "Popup/popup.html"
 	},
 
 	"permissions": [
