@@ -37,8 +37,8 @@ angular.module('StorageApp', ['ProfileApp'])
 
 	.service('storage', ['$q','$rootScope','filter','profileService', function ($q,$rootScope,filter,$prof) {
 		let $this = this;
-		let defer = $q.defer();
-		$this.defer = defer.promise;
+		let onLoad = $q.defer();
+		$this.onLoad = onLoad.promise;
 
 		chrome.storage.local.get(function (stg) {
 			$this.stg = angular.extend({}, stg);
@@ -54,7 +54,7 @@ angular.module('StorageApp', ['ProfileApp'])
 			delete $this.stg.groups;
 
 			$rootScope.$apply();
-			defer.resolve($this.stg)
+			onLoad.resolve($this.stg)
 
 			chrome.storage.onChanged.addListener(function (changes) {
 				if (changes.users !== undefined) {
