@@ -87,4 +87,12 @@ jQuery(function ($) {
 			});
 		}
 	});
+
+	chrome.contextMenus.create({
+		title: 'Открыть в новой вкладке',
+		contexts: ['browser_action'],
+		onclick: function () {
+			window.open('chrome-extension://'+chrome.app.getDetails().id+'/PopupApp/popup.html');
+		}
+	});
 });
