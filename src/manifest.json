@@ -39,7 +39,8 @@
 		"background",
 		"storage",
 		"alarms",
-		"tabs"
+		"tabs",
+		"contextMenus"
 	],
 	"incognito": "split"
 }
