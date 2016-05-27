@@ -22,10 +22,6 @@
 	"background": {
 		"page": "BackgroundApp/background.html"
 	},
-	"content_scripts": [{
-		"matches": ["*://oauth.vk.com/blank.html"],
-		"js": ["BackgroundApp/js/get_token.js"]
-	}],
 	"browser_action": {
 		"default_title": "__MSG_extName__",
 		"default_icon": "BackgroundApp/img/icon38-off.png",

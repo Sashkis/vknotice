@@ -1,4 +1,4 @@
-angular.module('BgApp', ['StorageApp'])
+angular.module('BgApp', ['StorageApp', 'VkApp'])
 
 .constant('Config', {
 	profilesLimit: 100,
@@ -51,6 +51,18 @@ angular.module('BgApp', ['StorageApp'])
 
 	});
 }])
+
+.run(['storage', '$vk', function (storage, $vk) {
+	storage.ready.then(function (stg) {
+		$vk.auth().then(function () {
+			$vk.api('users.get', {
+				access_token: stg.access_token,
+				user_ids: stg.user_id
+			}).then(a => console.log(a), b => console.error(b));
+		}, function () {
+			console.warn('err');
+		});
+	});
 	// console.log('BgAPP');
 }]);
 
@@ -58,7 +70,7 @@ angular.module('BgApp', ['StorageApp'])
 // "use strict";
 // jQuery(function ($) {
 
-// 	Informer.deamonStart();
+	// Informer.deamonStart();
 // 	Informer.firstRequest.done(vk => {
 // 		const app = new App();
 
@@ -141,11 +153,11 @@ angular.module('BgApp', ['StorageApp'])
 // 		}
 // 	});
 
-// 	chrome.contextMenus.create({
-// 		title: 'Открыть в новой вкладке',
-// 		contexts: ['browser_action'],
-// 		onclick: function () {
-// 			window.open('chrome-extension://'+chrome.app.getDetails().id+'/PopupApp/popup.html');
-// 		}
-// 	});
+	chrome.contextMenus.create({
+		title: 'Открыть в новой вкладке',
+		contexts: ['browser_action'],
+		onclick: function () {
+			window.open('chrome-extension://'+chrome.app.getDetails().id+'/PopupApp/popup.html');
+		}
+	});
 // });
