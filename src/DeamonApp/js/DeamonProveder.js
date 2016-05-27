@@ -7,10 +7,6 @@ angular.module('DeamonApp')
 
 	var requestInterval = 2000;
 	var isDeamonStarted = false;
-	var isContinue = function () {
-		return true;
-	};
-
 
 	return {
 
@@ -18,11 +14,8 @@ angular.module('DeamonApp')
 			requestInterval = interval;
 		},
 
-		set_isContinue_function: function (func) {
-			isContinue = func;
-		},
 
-		$get: ['$vk', function () {
+		$get: ['$vk', function ($vk) {
 			function deamonStart (method, params, doneCallback, failCallback) {
 				defaultMethod = method || defaultMethod;
 				defaultDoneCallback = doneCallback || defaultDoneCallback;
@@ -35,23 +28,20 @@ angular.module('DeamonApp')
 
 			function deamonStop (timeOut, params) {
 				isDeamonStarted = false;
-				// if (timeOut) {
-				// 	setTimeout(deamonStart, timeOut);
-				// }
 			}
 
 			function request(params) {
-				console.log(params);
-				// $vk.api(defaultMethod, params).then(function (response) {
-				// 	defaultDoneCallback(response);
-				// 	if (isDeamonStarted && isContinue()) {
-				// 		setTimeout(() => {
-				// 			request(params);
-				// 		}, requestInterval);
-				// 	} else {
-				// 		deamonStop();
-				// 	}
-				// });
+				$vk.api(defaultMethod, params).then(function (response) {
+					var isContinue = defaultDoneCallback(response);
+					if (isDeamonStarted && isContinue) {
+						setTimeout(() => {
+							request(params);
+						}, requestInterval);
+					} else {
+						deamonStop();
+					}
+				},
+				defaultFailCallback);
 			}
 			return {
 				start: deamonStart,

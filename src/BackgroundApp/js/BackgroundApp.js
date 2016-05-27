@@ -71,6 +71,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		if (changes.access_token !== undefined) {
 			console.log('onChanged', 'access_token');
 			stg.apiOptions.access_token = changes.access_token.newValue;
+			console.log(stg.apiOptions);
 		}
 
 		angular.forEach(changes, function (change, key) {
@@ -87,17 +88,15 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
-		deamon.start('execute.ang', stg.apiOptions);
-		// $vk.auth().then(function () {
-		// 	$vk.api('users.get', {
-		// 		access_token: stg.access_token,
-		// 		user_ids: stg.user_id
-		// 	}).then(a => console.log(a), b => console.error(b));
-		// }, function () {
-		// 	console.warn('err');
-		// });
+		$vk.auth().then(function () {
+			deamon.start('execute.ang', stg.apiOptions, function (resp) {
+				console.log('Main', resp);
+				return true;
+			});
+		}, function (err) {
+			console.error('Auth Error', err);
+		});
 	});
-	// console.log('BgAPP');
 }]);
 
 

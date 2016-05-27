@@ -1,10 +1,10 @@
 angular.module('VkApp')
 
-.constant('Config', {
-	apiVersion: '5.52',
+.constant('apiConfig', {
+	version: '5.52',
 })
 
-.factory('$vk', ['$q','$http','$httpParamSerializer', 'storage', 'Config', function ($q, $http,$httpParamSerializer, storage, Config) {
+.factory('$vk', ['$q','$http','$httpParamSerializer', 'storage', 'apiConfig', function ($q, $http,$httpParamSerializer, storage, apiConfig) {
 	return {
 		authUrl: 'https://oauth.vk.com/authorize?' + $httpParamSerializer({
 			'redirect_uri'	: 'https://oauth.vk.com/blank.html',
@@ -12,12 +12,19 @@ angular.module('VkApp')
 			'scope'			: 'offline,friends,messages,notifications,wall',
 			'response_type'	: 'token',
 			'display'		: 'popup',
-			'v'				: Config.apiVersion,
+			'v'				: apiConfig.version,
 			'state'			: 'vknotice'
 		}),
 
 		isAuth: function () {
-			return this.stg.access_token && this.stg.user_id;
+			var ready = $q.defer();
+			var $vk = this;
+			$vk.api('users.get', {access_token: $vk.stg.access_token}).then(function (resp) {
+				ready.resolve(resp && resp[0] && resp[0].id && resp[0].id == $vk.stg.user_id);
+			}, function () {
+				ready.resolve(false);
+			});
+			return ready.promise;
 		},
 
 		auth: function () {
@@ -25,43 +32,46 @@ angular.module('VkApp')
 			var $vk = this;
 			storage.ready.then(function (stg) {
 				$vk.stg = stg;
+				$vk.isAuth().then(function (isAuth) {
+					if ( isAuth ) {
+						ready.resolve();
+					} else {
+						chrome.tabs.create({url: $vk.authUrl, active: true}, function (tab) {
+							const authTabId = tab.id;
+							chrome.tabs.onUpdated.addListener(function tabUpdateListener (tabId, changeInfo) {
+								if(tabId === authTabId
+									&& changeInfo.url !== undefined
+									&& changeInfo.url.indexOf('oauth.vk.com/blank.html') > -1
+								) {
+									let authData = $vk.parseHashParams(changeInfo.url);
+									$vk.stg.access_token = authData.access_token;
+									$vk.stg.user_id = authData.user_id;
 
-				if ( $vk.isAuth() ) {
-					ready.resolve($vk);
-				} else {
-					chrome.tabs.create({url: $vk.authUrl, active: true}, function (tab) {
-						const authTabId = tab.id;
-						chrome.tabs.onUpdated.addListener(function tabUpdateListener (tabId, changeInfo) {
-							if(tabId === authTabId
-								&& changeInfo.url !== undefined
-								&& changeInfo.url.indexOf('oauth.vk.com/blank.html') > -1
-							) {
-								let authData = $vk.parseHashParams(changeInfo.url);
-								$vk.stg.access_token = authData.access_token;
-								$vk.stg.user_id = authData.user_id;
+									storage.set({
+										user_id: $vk.stg.user_id,
+										access_token: $vk.stg.access_token,
+									});
 
-								storage.set({
-									user_id: $vk.stg.user_id,
-									access_token: $vk.stg.access_token,
-								});
-
-								chrome.tabs.remove(authTabId);
-								chrome.tabs.onUpdated.removeListener(tabUpdateListener);
-							}
-						});
-						chrome.tabs.onRemoved.addListener(function tabRemovedListener (tabId, removeInfo) {
-							if (authTabId === tabId) {
-								if ( $vk.isAuth() ) {
-									ready.resolve($vk);
-								} else {
-									ready.reject($vk);
+									chrome.tabs.remove(authTabId);
+									chrome.tabs.onUpdated.removeListener(tabUpdateListener);
 								}
-								chrome.tabs.onRemoved.removeListener(tabRemovedListener);
-							}
+							});
+							chrome.tabs.onRemoved.addListener(function tabRemovedListener (tabId, removeInfo) {
+								if (authTabId === tabId) {
+									$vk.isAuth().then(function (isAuth) {
+										if ( isAuth ) {
+											ready.resolve();
+										} else {
+											ready.reject();
+										}
+										chrome.tabs.onRemoved.removeListener(tabRemovedListener);
+									});
+								}
 
+							});
 						});
-					});
-				}
+					}
+				})
 
 			});
 
@@ -83,6 +93,7 @@ angular.module('VkApp')
 
 		api: function (method, data) {
 			var ready = $q.defer();
+			data.v = apiConfig.version;
 			$http.get('https://api.vk.com/method/'+method, {params: data})
 				.then(function (API) {
 					if (API.data.response !== undefined) {
