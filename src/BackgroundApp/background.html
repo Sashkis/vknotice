@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="BgApp">
  <head>
    <title>Background process</title>
 	<meta charset="UTF-8">
@@ -10,10 +10,13 @@
 		<source src="audio/vk.mp3" type="audio/mpeg">
 		<source src="audio/vk.wav" type="audio/wav">
 	</audio>
-	<script src="js/jq.js"></script>
-	<script src="../inc/App.class.js"></script>
-	<script src="../inc/Vk.class.js"></script>
-	<script src="js/Informer.js"></script>
-	<script src="js/background.js"></script>
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-gettext/dist/angular-gettext.min.js"></script>
+	<script src="../inc/StorageApp.js"></script>
+	<!-- <script src="js/jq.js"></script> -->
+	<!-- <script src="../inc/App.class.js"></script> -->
+	<!-- <script src="../inc/Vk.class.js"></script> -->
+	<!-- <script src="js/Informer.js"></script> -->
+	<script src="js/BackgroundApp.js"></script>
 </body>
 </html>
