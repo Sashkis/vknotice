@@ -1,1 +1,1 @@
-angular.module('DeamonApp', ['StorageApp', 'VkApp']);
+angular.module('DeamonApp', ['VkApp']);

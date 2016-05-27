@@ -1,10 +1,10 @@
-angular.module('BgApp', ['StorageApp', 'VkApp'])
+angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .constant('Config', {
 	profilesLimit: 100,
 })
 
-.config(['storageProvider','Config', function (storageProvider, Config) {
+.config(['Config', 'storageProvider', 'deamonProvider', function (Config, storageProvider, deamonProvider) {
 
 	function searchIDInArray (array, ID) {
 		for (let i = array.length - 1; i >= 0; i--) {
@@ -48,20 +48,23 @@ angular.module('BgApp', ['StorageApp', 'VkApp'])
 		if (changes.groups !== undefined) {
 			saveProfiles(changes.groups.newValue, stg);
 		}
-
 	});
+
+
+	// deamonProvider.set_isContinue_function
 }])
 
-.run(['storage', '$vk', function (storage, $vk) {
+.run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
-		$vk.auth().then(function () {
-			$vk.api('users.get', {
-				access_token: stg.access_token,
-				user_ids: stg.user_id
-			}).then(a => console.log(a), b => console.error(b));
-		}, function () {
-			console.warn('err');
-		});
+		console.log(deamon);
+		// $vk.auth().then(function () {
+		// 	$vk.api('users.get', {
+		// 		access_token: stg.access_token,
+		// 		user_ids: stg.user_id
+		// 	}).then(a => console.log(a), b => console.error(b));
+		// }, function () {
+		// 	console.warn('err');
+		// });
 	});
 	// console.log('BgAPP');
 }]);
