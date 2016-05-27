@@ -38,16 +38,47 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 				saveProfiles(stg.groups, stg);
 			}
 		}
+
+		if (!stg.apiOptions) {
+			stg.apiOptions = {
+				access_token: stg.access_token,
+				counters: 'friends,photos,videos,messages,groups,notifications',
+				isLoadComment: 0,
+				lastOpenComment: Date.now(),
+				lastLoadAlert: 0,
+			}
+		}
 	});
 
 	storageProvider.set_onChanged_callback(function (changes, stg) {
 		if (changes.users !== undefined) {
+			console.log('onChanged', 'users');
 			saveProfiles(changes.users.newValue, stg);
+			delete changes.users;
 		}
 
 		if (changes.groups !== undefined) {
+			console.log('onChanged', 'groups');
 			saveProfiles(changes.groups.newValue, stg);
+			delete changes.groups;
 		}
+
+		if (changes.profiles !== undefined) {
+			console.log('onChanged', 'profiles');
+			delete changes.profiles;
+		}
+
+		if (changes.access_token !== undefined) {
+			console.log('onChanged', 'access_token');
+			stg.apiOptions.access_token = changes.access_token.newValue;
+		}
+
+		angular.forEach(changes, function (change, key) {
+			console.log('onChanged', key);
+			stg[key] = angular.copy(change.newValue);
+		});
+
+		chrome.storage.local.set(stg);
 	});
 
 
@@ -56,7 +87,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
-		console.log(deamon);
+		deamon.start('execute.ang', stg.apiOptions);
 		// $vk.auth().then(function () {
 		// 	$vk.api('users.get', {
 		// 		access_token: stg.access_token,
