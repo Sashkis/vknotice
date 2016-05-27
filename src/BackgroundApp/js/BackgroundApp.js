@@ -1,11 +1,56 @@
 angular.module('BgApp', ['StorageApp'])
 
-.config(function () {})
+.constant('Config', {
+	profilesLimit: 100,
+})
 
-.run(['storage', function (storage) {
-	storage.onLoad.then(function (stg) {
-		console.log(stg);
+.config(['storageProvider','Config', function (storageProvider, Config) {
+
+	function searchIDInArray (array, ID) {
+		for (let i = array.length - 1; i >= 0; i--) {
+			if (array[i].id == ID) return i;
+		}
+		return -1;
+	}
+
+	function saveProfiles(prof, stg) {
+		for (let i = prof.length - 1; i >= 0; i--) {
+			let index = searchIDInArray(stg.profiles, prof[i].id);
+			if (index > -1) {
+				stg.profiles[index] = prof[i];
+			} else {
+				let length = stg.profiles.unshift(prof[i]);
+				if (length > Config.profilesLimit) {
+					stg.profiles = stg.profiles.slice(0, Config.profilesLimit);
+				}
+			}
+		}
+	}
+
+	storageProvider.set_onLoad_callback(function (stg) {
+		if (!stg.profiles) {
+			stg.profiles = [];
+			if (stg.users) {
+				saveProfiles(stg.users, stg);
+			}
+
+			if (stg.groups) {
+				saveProfiles(stg.groups, stg);
+			}
+		}
 	});
+
+	storageProvider.set_onChanged_callback(function (changes, stg) {
+		if (changes.users !== undefined) {
+			saveProfiles(changes.users.newValue, stg);
+		}
+
+		if (changes.groups !== undefined) {
+			saveProfiles(changes.groups.newValue, stg);
+		}
+
+	});
+}])
 	// console.log('BgAPP');
 }]);
 

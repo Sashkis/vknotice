@@ -1,78 +1,42 @@
-angular.module('StorageApp', ['ProfileApp'])
-
-	.factory('filter', ['profileService', function ($prof) {
-		let profileSrc;
-
-		function auto_filter (val, key) {
-			if (this[key] !== undefined) return this[key](val);
-			else return default_filter(val);
-		}
-
-		function index_users_filter(profiles, target) {
-			const indexed_list = angular.isArray(target) ? {} : angular.isObject(target) ? target : {};
-			angular.forEach(profiles, function (data) {
-				indexed_list[data.id] = $prof.create(data);
-			});
-			return indexed_list;
-		}
-
-		function replace_id_to_user_filter (array_ids) {
-			return array_ids.map((user_id) => {
-				return $prof.getById(user_id);
-			});
-		}
-
-		function default_filter (val) {
-			return val;
-		}
+angular.module('StorageApp', [])
+	.provider('storage', [function () {
+		var onLoad = function () {};
+		var onChanged = function () {};
 
 		return {
-			auto: auto_filter,
-			profiles: index_users_filter,
-			friends: replace_id_to_user_filter,
-			newfriends: replace_id_to_user_filter,
-		}
+			set_onChanged_callback: function (cb) {
+				onChanged = cb;
+			},
 
-	}])
+			set_onLoad_callback: function (cb) {
+				onLoad = cb;
+			},
 
-	.service('storage', ['$q','$rootScope','filter','profileService', function ($q,$rootScope,filter,$prof) {
-		let $this = this;
-		let onLoad = $q.defer();
-		$this.onLoad = onLoad.promise;
+			$get: ['$q', '$rootScope', function ($q, $rootScope) {
+				var ready = $q.defer();
+				var storage = {
+					ready: ready.promise,
+					stg: {},
+					set: function (data, cb) {
+						chrome.storage.local.set(data, cb);
+					}
+				};
 
-		chrome.storage.local.get(function (stg) {
-			$this.stg = angular.extend({}, stg);
+				chrome.storage.local.get(function (stg) {
+					storage.stg = angular.copy(stg);
 
-			$this.stg.profiles = filter.profiles(stg.users, $this.stg.profiles);
-			$this.stg.profiles = filter.profiles(stg.groups, $this.stg.profiles);
-			$prof.setSrc($this.stg);
+					onLoad(storage.stg);
 
-			$this.stg.friends = filter.friends(stg.friends);
-			$this.stg.newfriends = filter.newfriends(stg.newfriends);
+					$rootScope.$apply();
+					ready.resolve(storage.stg);
 
-			delete $this.stg.users;
-			delete $this.stg.groups;
-
-			$rootScope.$apply();
-			onLoad.resolve($this.stg)
-
-			chrome.storage.onChanged.addListener(function (changes) {
-				if (changes.users !== undefined) {
-					// console.log('users');
-					$this.stg.profiles = filter.profiles(changes.users.newValue, $this.stg.profiles);
-					delete changes.users;
-				}
-				if (changes.groups !== undefined) {
-					// console.log('groups');
-					$this.stg.profiles = filter.profiles(changes.groups.newValue, $this.stg.profiles);
-					delete changes.groups;
-				}
-				angular.forEach(changes, function(val, key) {
-					// console.log(key);
-					$this.stg[key] = filter.auto(val.newValue, key);
+					chrome.storage.onChanged.addListener(function (changes) {
+						onChanged(changes, storage.stg);
+						$rootScope.$apply();
+					});
 				});
-				$rootScope.$apply();
-			});
-		});
 
+				return storage;
+			}]
+		};
 	}]);
