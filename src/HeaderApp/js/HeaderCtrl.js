@@ -17,7 +17,7 @@ angular.module('HeaderApp')
 		function ($scope, storage, $prof, gettextCatalog, $httpParamSerializer) {
 			$scope.isDropdownOpen = false;
 
-			storage.onLoad.then(function (stg) {
+			storage.ready.then(function (stg) {
 				$scope.stg = stg;
 				$scope.current_user = $prof.getById($scope.stg.user_id);
 

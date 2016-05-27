@@ -3,7 +3,7 @@ angular.module('SectionsApp')
 		'$scope',
 		'storage',
 		function ($scope, storage) {
-			storage.onLoad.then(function (stg) {
+			storage.ready.then(function (stg) {
 				$scope.stg = stg;
 				console.log(stg);
 			});

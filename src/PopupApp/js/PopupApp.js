@@ -3,7 +3,7 @@ angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext'])
 
 	gettextCatalog.debug = true;
 
-	storage.onLoad.then(function (stg) {
+	storage.ready.then(function (stg) {
 		const lang = getLang(stg.lang);
 		console.log('PopupApp.js', lang);
 		if (lang !== 'ru') {

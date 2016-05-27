@@ -1,14 +1,14 @@
-angular.module('BgApp', ['StorageApp', 'VkApp'])
+angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .constant('Config', {
 	profilesLimit: 100,
 })
 
-.config(['storageProvider','Config', function (storageProvider, Config) {
+.config(['Config', 'storageProvider', 'deamonProvider', function (Config, storageProvider, deamonProvider) {
 
 	function searchIDInArray (array, ID) {
 		for (let i = array.length - 1; i >= 0; i--) {
-			if (array[i].id == ID) return i;
+			if (array[i] && array[i].id == ID) return i;
 		}
 		return -1;
 	}
@@ -19,11 +19,11 @@ angular.module('BgApp', ['StorageApp', 'VkApp'])
 			if (index > -1) {
 				stg.profiles[index] = prof[i];
 			} else {
-				let length = stg.profiles.unshift(prof[i]);
-				if (length > Config.profilesLimit) {
-					stg.profiles = stg.profiles.slice(0, Config.profilesLimit);
-				}
+				stg.profiles.unshift(prof[i]);
 			}
+		}
+		if (stg.profiles.length > Config.profilesLimit) {
+			stg.profiles = stg.profiles.slice(0, Config.profilesLimit);
 		}
 	}
 
@@ -38,32 +38,68 @@ angular.module('BgApp', ['StorageApp', 'VkApp'])
 				saveProfiles(stg.groups, stg);
 			}
 		}
+
+		if (!stg.apiOptions) {
+			stg.apiOptions = {
+				access_token: stg.access_token,
+				counters: 'friends,photos,videos,messages,groups,notifications',
+				isLoadComment: 0,
+				lastOpenComment: Date.now(),
+				lastLoadAlert: 0,
+			}
+		}
 	});
 
 	storageProvider.set_onChanged_callback(function (changes, stg) {
+		console.log(changes);
 		if (changes.users !== undefined) {
+			console.log('onChanged', 'users');
 			saveProfiles(changes.users.newValue, stg);
+			delete changes.users;
+			delete stg.users;
 		}
 
 		if (changes.groups !== undefined) {
+			console.log('onChanged', 'groups');
 			saveProfiles(changes.groups.newValue, stg);
+			delete changes.groups;
+			delete stg.groups;
 		}
 
+		if (changes.profiles !== undefined) {
+			console.log('onChanged', 'profiles');
+			delete changes.profiles;
+		}
+
+		if (changes.access_token !== undefined) {
+			console.log('onChanged', 'access_token');
+			stg.apiOptions.access_token = changes.access_token.newValue;
+			console.log(stg.apiOptions);
+		}
+
+		angular.forEach(changes, function (change, key) {
+			console.log('onChanged', key);
+			stg[key] = angular.copy(change.newValue);
+		});
+
+		chrome.storage.local.set(stg);
 	});
 }])
 
-.run(['storage', '$vk', function (storage, $vk) {
+.run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
+		console.log(stg);
 		$vk.auth().then(function () {
-			$vk.api('users.get', {
-				access_token: stg.access_token,
-				user_ids: stg.user_id
-			}).then(a => console.log(a), b => console.error(b));
-		}, function () {
-			console.warn('err');
+			deamon.start('execute.ang', stg.apiOptions, function (resp) {
+				delete resp.system;
+				storage.set(resp);
+				console.log(stg.profiles);
+				return true;
+			});
+		}, function (err) {
+			console.error('Auth Error', err);
 		});
 	});
-	// console.log('BgAPP');
 }]);
 
 
@@ -153,11 +189,5 @@ angular.module('BgApp', ['StorageApp', 'VkApp'])
 // 		}
 // 	});
 
-	chrome.contextMenus.create({
-		title: 'Открыть в новой вкладке',
-		contexts: ['browser_action'],
-		onclick: function () {
-			window.open('chrome-extension://'+chrome.app.getDetails().id+'/PopupApp/popup.html');
-		}
-	});
+
 // });
