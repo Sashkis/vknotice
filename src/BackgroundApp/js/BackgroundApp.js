@@ -8,7 +8,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 	function searchIDInArray (array, ID) {
 		for (let i = array.length - 1; i >= 0; i--) {
-			if (array[i].id == ID) return i;
+			if (array[i] && array[i].id == ID) return i;
 		}
 		return -1;
 	}
@@ -19,11 +19,11 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 			if (index > -1) {
 				stg.profiles[index] = prof[i];
 			} else {
-				let length = stg.profiles.unshift(prof[i]);
-				if (length > Config.profilesLimit) {
-					stg.profiles = stg.profiles.slice(0, Config.profilesLimit);
-				}
+				stg.profiles.unshift(prof[i]);
 			}
+		}
+		if (stg.profiles.length > Config.profilesLimit) {
+			stg.profiles = stg.profiles.slice(0, Config.profilesLimit);
 		}
 	}
 
@@ -51,16 +51,19 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	});
 
 	storageProvider.set_onChanged_callback(function (changes, stg) {
+		console.log(changes);
 		if (changes.users !== undefined) {
 			console.log('onChanged', 'users');
 			saveProfiles(changes.users.newValue, stg);
 			delete changes.users;
+			delete stg.users;
 		}
 
 		if (changes.groups !== undefined) {
 			console.log('onChanged', 'groups');
 			saveProfiles(changes.groups.newValue, stg);
 			delete changes.groups;
+			delete stg.groups;
 		}
 
 		if (changes.profiles !== undefined) {
@@ -81,16 +84,16 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 		chrome.storage.local.set(stg);
 	});
-
-
-	// deamonProvider.set_isContinue_function
 }])
 
 .run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
+		console.log(stg);
 		$vk.auth().then(function () {
 			deamon.start('execute.ang', stg.apiOptions, function (resp) {
-				console.log('Main', resp);
+				delete resp.system;
+				storage.set(resp);
+				console.log(stg.profiles);
 				return true;
 			});
 		}, function (err) {
@@ -186,11 +189,5 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 // 		}
 // 	});
 
-	chrome.contextMenus.create({
-		title: 'Открыть в новой вкладке',
-		contexts: ['browser_action'],
-		onclick: function () {
-			window.open('chrome-extension://'+chrome.app.getDetails().id+'/PopupApp/popup.html');
-		}
-	});
+
 // });
