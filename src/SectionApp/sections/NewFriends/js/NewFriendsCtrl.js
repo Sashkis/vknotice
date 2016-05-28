@@ -5,8 +5,21 @@ angular.module('SectionsApp')
 		function ($scope, storage) {
 			storage.ready.then(function (stg) {
 				$scope.stg = stg;
-				console.log(stg);
 			});
 
 		}
-	]);
+	])
+
+	.directive('request', ['profile', function(profile) {
+		return {
+			restrict: 'E',
+			replace: 'true',
+			templateUrl:'../SectionApp/sections/NewFriends/request.tpl',
+			scope: {
+				id: '='
+			},
+			link: function ($scope) {
+				$scope.user = profile.getById($scope.id)
+	        }
+		};
+	}]);
