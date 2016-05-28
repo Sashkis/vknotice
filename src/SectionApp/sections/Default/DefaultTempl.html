@@ -36,11 +36,8 @@
 		<translate>Комментарии</translate>
 		<span class="counter" ng-if="stg.counter.comments">{{'+'+stg.counter.comments}}</span>
 	</a>
-</aside><!--
+</aside>
 
---><div id="friends-online" ng-controller="FriendsCtrl">
-	<a class="item" ng-repeat="user in stg.friends track by $index" ng-href="https://vk.com/{{user.screen_name}}">
-		<img class="ava" ng-src="{{user.photo_100}}" alt="{{user.first_name}}" width="50px" height="50px">
-		<span>{{user.first_name}}</span>
-	</a>
+<div id="friends-online" ng-controller="FriendsCtrl">
+	<friend id="user_id" ng-repeat="user_id in stg.friends"></friend>
 </div>
