@@ -6,6 +6,8 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .config(['Config', 'storageProvider', 'deamonProvider', function (Config, storageProvider, deamonProvider) {
 
+	var currentBadge = 0;
+
 	function searchIDInArray (array, ID) {
 		for (let i = array.length - 1; i >= 0; i--) {
 			if (array[i] && array[i].id == ID) return i;
@@ -27,7 +29,30 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		}
 	}
 
+	function setBadge(counters) {
+		var badge = 0;
+		angular.forEach(counters, function (counter) {
+			if (counter) {
+				badge += counter
+			}
+		})
+
+		chrome.browserAction.setBadgeText({ text: badge > 0 ? badge+'' : '' });
+		return badge;
+	}
+
+	function playSound(newBadge, stg) {
+		if (stg.audio !== false && newBadge > currentBadge) {
+			chrome.tabs.query({
+				url: '*://vk.com/*'
+			}, function (tabs) {
+				tabs.every(tab => /vk.com\/(?:login.*)?$/i.test(tab.url)) && document.getElementById('audio').play()
+			});
+		}
+	}
+
 	storageProvider.set_onLoad_callback(function (stg) {
+		console.log(stg);
 		if (!stg.profiles) {
 			stg.profiles = [];
 			if (stg.users) {
@@ -37,6 +62,12 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 			if (stg.groups) {
 				saveProfiles(stg.groups, stg);
 			}
+		}
+
+		if (stg.counter) {
+			let badge = setBadge(stg.counter);
+			playSound(badge, stg);
+			currentBadge = badge;
 		}
 
 		if (!stg.apiOptions) {
@@ -70,7 +101,12 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 		if (changes.access_token !== undefined) {
 			stg.apiOptions.access_token = changes.access_token.newValue;
-			console.log(stg.apiOptions);
+		}
+
+		if (changes.counter !== undefined) {
+			let badge = setBadge(changes.counter.newValue);
+			playSound(badge, stg);
+			currentBadge = badge;
 		}
 
 		angular.forEach(changes, function (change, key) {
