@@ -18,13 +18,13 @@ angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext'])
 				case 1:
 					return 'uk';  // Украинский
 				case 2: case 114:
-					return 'be';  // Белоруский
+					return 'be';  // Белорусский
 				case 6:
 					return 'de';  // Немецкий
 				case 15:
 					return 'pl'; // Польский
 				case 54: case 66:
-					return 'ro'; // Румунский
+					return 'ro'; // Румынский
 				case 61:
 					return 'nl'; // Нидерландский
 				default:

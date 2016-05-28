@@ -52,7 +52,6 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	}
 
 	storageProvider.set_onLoad_callback(function (stg) {
-		console.log(stg);
 		if (!stg.profiles) {
 			stg.profiles = [];
 			if (stg.users) {
@@ -73,7 +72,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		if (!stg.apiOptions) {
 			stg.apiOptions = {
 				access_token: stg.access_token,
-				counters: 'friends,photos,videos,messages,groups,notifications',
+				options: 'friends,photos,videos,messages,groups,notifications',
 				isLoadComment: 0,
 				lastOpenComment: Date.now(),
 				lastLoadAlert: 0,
