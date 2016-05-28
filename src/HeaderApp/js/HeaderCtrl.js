@@ -11,15 +11,17 @@ angular.module('HeaderApp')
 	.controller('HeaderCtrl', [
 			'$scope',
 			'storage',
-			'profileService',
+			'profile',
 			'gettextCatalog',
 			'$httpParamSerializer',
-		function ($scope, storage, $prof, gettextCatalog, $httpParamSerializer) {
+		function ($scope, storage, profile, gettextCatalog, $httpParamSerializer) {
 			$scope.isDropdownOpen = false;
 
 			storage.ready.then(function (stg) {
 				$scope.stg = stg;
-				$scope.current_user = $prof.getById($scope.stg.user_id);
+				profile.init(stg);
+				$scope.current_user = profile.getById($scope.stg.user_id);
+				console.log($scope.current_user);
 
 				$scope.getShareUrl = function () {
 					return 'https://vk.com/share.php?' + $httpParamSerializer({

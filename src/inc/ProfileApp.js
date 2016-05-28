@@ -1,38 +1,18 @@
-function Profile( data ) {
-	if (!data.name && (data.first_name || data.last_name)) {
-		data.name = data.first_name+' '+data.last_name;
-	}
-	angular.extend(this, data);
-}
-
-// Profile.prototype = {
-// 	update: function() {
-// 		// Обновляем (В реальном коде :P)
-// 		this.name = "Dave";
-// 		this.country = "Canada";
-// 	}
-// };
-
-Profile.getById = function( id ) {
-	console.log(this.src.profiles);
-	return new Profile(this.src.profiles[id] || {});
-};
-
-Profile.setSrc = function( src ) {
-	this.src = src;
-};
-
-Profile.create = function( data ) {
-	return new Profile(data);
-};
-
 // Наша фабрика
 angular.module('ProfileApp', [])
 
-.factory('profileService', function() {
+.factory('profile', function() {
 	return {
-		getById: Profile.getById,
-		setSrc: Profile.setSrc,
-		create: Profile.create,
+		getById: function (id) {
+			if (this.stg && this.stg.profiles && angular.isArray(this.stg.profiles) && this.stg.profiles.length) {
+				for (var i = this.stg.profiles.length - 1; i >= 0; i--) {
+					if (this.stg.profiles[i] && this.stg.profiles[i].id == id) return this.stg.profiles[i];
+				}
+			}
+			return {};
+		},
+		init: function (stgSrc) {
+			this.stg = stgSrc;
+		},
 	};
 });
