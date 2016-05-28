@@ -53,32 +53,27 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	storageProvider.set_onChanged_callback(function (changes, stg) {
 		console.log(changes);
 		if (changes.users !== undefined) {
-			console.log('onChanged', 'users');
 			saveProfiles(changes.users.newValue, stg);
 			delete changes.users;
 			delete stg.users;
 		}
 
 		if (changes.groups !== undefined) {
-			console.log('onChanged', 'groups');
 			saveProfiles(changes.groups.newValue, stg);
 			delete changes.groups;
 			delete stg.groups;
 		}
 
 		if (changes.profiles !== undefined) {
-			console.log('onChanged', 'profiles');
 			delete changes.profiles;
 		}
 
 		if (changes.access_token !== undefined) {
-			console.log('onChanged', 'access_token');
 			stg.apiOptions.access_token = changes.access_token.newValue;
 			console.log(stg.apiOptions);
 		}
 
 		angular.forEach(changes, function (change, key) {
-			console.log('onChanged', key);
 			stg[key] = angular.copy(change.newValue);
 		});
 
@@ -88,13 +83,18 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
-		console.log(stg);
 		$vk.auth().then(function () {
 			deamon.start('execute.ang', stg.apiOptions, function (resp) {
+				chrome.browserAction.setIcon({ path: 'img/icon38.png' });
+
 				delete resp.system;
 				storage.set(resp);
-				console.log(stg.profiles);
+
 				return true;
+
+			}, function (error) {
+				chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
+				return error === 'connect_error';
 			});
 		}, function (err) {
 			console.error('Auth Error', err);
