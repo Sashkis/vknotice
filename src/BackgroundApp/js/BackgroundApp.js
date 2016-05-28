@@ -52,7 +52,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	}
 
 	storageProvider.set_onLoad_callback(function (stg) {
-		if (!stg.profiles) {
+		if (!stg.profiles || !stg.profiles.length) {
 			stg.profiles = [];
 			if (stg.users) {
 				saveProfiles(stg.users, stg);
@@ -61,6 +61,12 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 			if (stg.groups) {
 				saveProfiles(stg.groups, stg);
 			}
+		} else {
+			var filteredProfiles = [];
+			angular.forEach(stg.profiles, function (profile) {
+				if (profile && profile.id) filteredProfiles.push(profile);
+			});
+			stg.profiles = angular.copy(filteredProfiles);
 		}
 
 		if (stg.counter) {
