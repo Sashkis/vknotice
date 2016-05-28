@@ -55,11 +55,14 @@ aside {
   flex: 1;
   flex-direction: column;
   background: #fff; }
+  #newfriends > :first-child {
+    padding: 3px;
+    text-align: right; }
+  #newfriends .bordered:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   #newfriends .item {
     padding: 6px 0;
     align-items: center; }
-    #newfriends .item:not(:last-child) {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
     #newfriends .item .ava {
       margin-right: 6px; }
     #newfriends .item .user {
