@@ -4,7 +4,7 @@ angular.module('SectionsApp')
 
 		return {
 			add: (item) => items.push(item),
-			get: () => items.pop(),
-			cur: () => items[items.length-1],
+			delete: () => items.pop(),
+			get: () => items[items.length-1],
 		}
 	});

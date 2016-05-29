@@ -4,7 +4,7 @@
 	</a>
 	<a ng-href="https://vk.com/friends" >
 		<translate>Друзья</translate>
-		<span class="counter" ng-click="main.openSection('friends', $event)" ng-if="stg.counter.friends">
+		<span class="counter" ng-click="main.openSection('NewFriends', $event)" ng-if="stg.counter.friends">
 			{{'+'+stg.counter.friends}}
 		</span>
 	</a>
@@ -21,7 +21,7 @@
 	</a>
 	<a ng-href="https://vk.com/im" >
 		<translate>Сообщения</translate>
-		<span class="counter" ng-click="main.openSection('messages', $event)">
+		<span class="counter" ng-click="main.openSection('NewMess', $event)">
 			{{stg.counter.messages ? '+'+stg.counter.messages : '+'}}
 		</span>
 	</a>
