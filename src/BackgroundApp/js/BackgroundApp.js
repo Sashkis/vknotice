@@ -6,7 +6,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .config(['Config', 'storageProvider', function (Config, storageProvider) {
 
-	var currentBadge = 0;
+	let currentBadge = 0;
 
 	function searchIDInArray (array, ID) {
 		for (let i = array.length - 1; i >= 0; i--) {
@@ -24,13 +24,10 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 				stg.profiles.unshift(prof[i]);
 			}
 		}
-		if (stg.profiles.length > Config.profilesLimit) {
-			stg.profiles = stg.profiles.slice(0, Config.profilesLimit);
-		}
 	}
 
 	function setBadge(counters) {
-		var badge = 0;
+		let badge = 0;
 		angular.forEach(counters, function (counter) {
 			if (counter) {
 				badge += counter;
@@ -52,6 +49,8 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	}
 
 	storageProvider.set_onLoad_callback(function (stg) {
+		// Если профили не заданы, или в них пусто
+		// Обработать поля пользователей и груп
 		if (!stg.profiles || !stg.profiles.length) {
 			stg.profiles = [];
 			if (stg.users) {
@@ -61,20 +60,32 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 			if (stg.groups) {
 				saveProfiles(stg.groups, stg);
 			}
-		} else {
-			var filteredProfiles = [];
+		}
+
+		// Удаляем профили без id
+		// и обрезаем если массив профилей превысил лимит
+		{
+			let filteredProfiles = [];
 			angular.forEach(stg.profiles, function (profile) {
 				if (profile && profile.id) filteredProfiles.push(profile);
 			});
+
+			if (filteredProfiles.length > Config.profilesLimit) {
+				filteredProfiles = filteredProfiles.slice(0, Config.profilesLimit);
+			}
 			stg.profiles = angular.copy(filteredProfiles);
 		}
 
+		// Устанавливаем бейдж
+		// и воспроизводим звуковое уведомление
 		if (stg.counter) {
 			let badge = setBadge(stg.counter);
 			playSound(badge, stg);
 			currentBadge = badge;
 		}
 
+		// Если свойство с настройками для API не задано
+		// задаем его с параметрами по умолчанию
 		if (!stg.apiOptions) {
 			stg.apiOptions = {
 				access_token: stg.access_token,

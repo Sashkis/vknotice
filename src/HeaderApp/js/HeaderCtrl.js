@@ -15,7 +15,7 @@ angular.module('HeaderApp')
 		'gettextCatalog',
 		'$httpParamSerializer',
 		function ($log, storage, profile, gettextCatalog, $httpParamSerializer) {
-			var vm = this;
+			const vm = this;
 			vm.isDropdownOpen = false;
 
 			vm.getShareUrl = function () {

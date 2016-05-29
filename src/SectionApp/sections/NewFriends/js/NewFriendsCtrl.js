@@ -5,7 +5,7 @@ angular.module('SectionsApp')
 
 			vm.mark = function ($event, type, user_id) {
 				$event.preventDefault();
-				var method = false;
+				let method = false;
 				switch (type) {
 				case 'add'       : method = 'friends.add'; break;
 				case 'ban'       : method = 'account.banUser'; break;

@@ -18,8 +18,8 @@ function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 		}),
 
 		isAuth: function () {
-			var ready = $q.defer();
-			var $vk = this;
+			const ready = $q.defer();
+			const $vk = this;
 			$vk.api('users.get', {access_token: $vk.stg.access_token}).then(function (resp) {
 				ready.resolve(resp && resp[0] && resp[0].id && resp[0].id == $vk.stg.user_id);
 			}, function () {
@@ -29,8 +29,8 @@ function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 		},
 
 		auth: function () {
-			var ready = $q.defer();
-			var $vk = this;
+			const ready = $q.defer();
+			const $vk = this;
 			storage.ready.then(function (stg) {
 				$vk.stg = stg;
 				$vk.isAuth().then(function (isAuth) {
@@ -93,7 +93,7 @@ function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 		},
 
 		api: function (method, data) {
-			var ready = $q.defer();
+			const ready = $q.defer();
 			data.v = apiConfig.version;
 			$http.get('https://api.vk.com/method/'+method, {params: data})
 				.then(function (API) {

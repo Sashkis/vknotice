@@ -5,7 +5,7 @@ angular.module('ProfileApp', [])
 	return {
 		getById: function (id) {
 			if (this.stg && this.stg.profiles && angular.isArray(this.stg.profiles) && this.stg.profiles.length) {
-				for (var i = this.stg.profiles.length - 1; i >= 0; i--) {
+				for (let i = this.stg.profiles.length - 1; i >= 0; i--) {
 					if (this.stg.profiles[i] && this.stg.profiles[i].id == id) return this.stg.profiles[i];
 				}
 			}

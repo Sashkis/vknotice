@@ -1,11 +1,11 @@
 angular.module('DeamonApp')
 
 .factory('deamon', ['$vk','$log','$timeout', function ($vk, $log, $timeout) {
-	var defaultMethod = '';
-	var defaultDoneCallback = function () {};
-	var defaultFailCallback = function () {};
-	var isDeamonStarted = false;
-	var requestInterval = 2000;
+	let defaultMethod = '';
+	let defaultDoneCallback = function () {};
+	let defaultFailCallback = function () {};
+	let isDeamonStarted = false;
+	let requestInterval = 2000;
 
 	function deamonStart (method, params, doneCallback, failCallback) {
 		defaultMethod = method || defaultMethod;
@@ -24,13 +24,12 @@ angular.module('DeamonApp')
 
 	function request(params) {
 		$vk.api(defaultMethod, params).then(function (response) {
-			var isContinue = defaultDoneCallback(response);
+			let isContinue = defaultDoneCallback(response);
 			restartRequest(isContinue, params);
-		},
-				function (err) {
-					var isContinue = defaultFailCallback(err);
-					restartRequest(isContinue, params);
-				});
+		},function (err) {
+			let isContinue = defaultFailCallback(err);
+			restartRequest(isContinue, params);
+		});
 	}
 
 	function restartRequest (isContinue, params) {

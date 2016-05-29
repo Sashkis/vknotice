@@ -12,8 +12,8 @@
         "angular/controller-name": [2,"/[A-Z].*Ctrl/"],
         "angular/document-service": 0,
 
+        "no-var": "error",
         "comma-dangle": ["error", "always-multiline"],
-        "no-console": 0,
         "indent": [
             "error",
             "tab"

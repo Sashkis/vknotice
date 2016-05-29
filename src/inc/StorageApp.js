@@ -1,7 +1,7 @@
 angular.module('StorageApp', [])
 	.provider('storage', [function () {
-		var onLoad = function () {};
-		var onChanged = function () {};
+		let onLoad = function () {};
+		let onChanged = function () {};
 
 		return {
 			set_onChanged_callback: function (cb) {
@@ -13,8 +13,8 @@ angular.module('StorageApp', [])
 			},
 
 			$get: ['$q', '$rootScope', function ($q, $rootScope) {
-				var ready = $q.defer();
-				var storage = {
+				const ready = $q.defer();
+				const storage = {
 					ready: ready.promise,
 					stg: {},
 					set: function (data, cb) {
