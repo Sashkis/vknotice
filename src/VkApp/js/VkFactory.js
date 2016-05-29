@@ -4,7 +4,8 @@ angular.module('VkApp')
 	version: '5.52',
 })
 
-.factory('$vk', ['$q','$http','$httpParamSerializer', 'storage', 'apiConfig', function ($q, $http,$httpParamSerializer, storage, apiConfig) {
+.factory('$vk', ['$q','$http','$httpParamSerializer', 'storage', 'apiConfig', '$log',
+function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 	return {
 		authUrl: 'https://oauth.vk.com/authorize?' + $httpParamSerializer({
 			'redirect_uri'	: 'https://oauth.vk.com/blank.html',
@@ -13,7 +14,7 @@ angular.module('VkApp')
 			'response_type'	: 'token',
 			'display'		: 'popup',
 			'v'				: apiConfig.version,
-			'state'			: 'vknotice'
+			'state'			: 'vknotice',
 		}),
 
 		isAuth: function () {
@@ -40,7 +41,7 @@ angular.module('VkApp')
 							const authTabId = tab.id;
 							chrome.tabs.onUpdated.addListener(function tabUpdateListener (tabId, changeInfo) {
 								if(tabId === authTabId
-									&& changeInfo.url !== undefined
+									&& angular.isDefined(changeInfo.url)
 									&& changeInfo.url.indexOf('oauth.vk.com/blank.html') > -1
 								) {
 									let authData = $vk.parseHashParams(changeInfo.url);
@@ -56,7 +57,7 @@ angular.module('VkApp')
 									chrome.tabs.onUpdated.removeListener(tabUpdateListener);
 								}
 							});
-							chrome.tabs.onRemoved.addListener(function tabRemovedListener (tabId, removeInfo) {
+							chrome.tabs.onRemoved.addListener(function tabRemovedListener (tabId) {
 								if (authTabId === tabId) {
 									$vk.isAuth().then(function (isAuth) {
 										if ( isAuth ) {
@@ -71,7 +72,7 @@ angular.module('VkApp')
 							});
 						});
 					}
-				})
+				});
 
 			});
 
@@ -96,10 +97,10 @@ angular.module('VkApp')
 			data.v = apiConfig.version;
 			$http.get('https://api.vk.com/method/'+method, {params: data})
 				.then(function (API) {
-					if (API.data.response !== undefined) {
+					if (angular.isDefined(API.data.response)) {
 						ready.resolve(API.data.response);
 					} else {
-						console.error(API.data.error);
+						$log.error(API.data.error);
 						ready.reject('api_error');
 					}
 				}, function () {
@@ -107,6 +108,6 @@ angular.module('VkApp')
 				});
 
 			return ready.promise;
-		}
-	}
+		},
+	};
 }]);

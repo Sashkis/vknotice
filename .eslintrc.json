@@ -4,6 +4,9 @@
         "es6": true
     },
     "extends": ["eslint:recommended", "angular"],
+    "globals": {
+        "chrome": true
+    },
     "rules": {
         "angular/di": [2,"array"],
         "angular/controller-name": [2,"/[A-Z].*Ctrl/"],
