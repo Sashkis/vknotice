@@ -6,5 +6,5 @@ angular.module('SectionsApp')
 			add: (item) => items.push(item),
 			delete: () => items.pop(),
 			get: () => items[items.length-1],
-		}
+		};
 	});

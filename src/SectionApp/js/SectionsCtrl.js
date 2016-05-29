@@ -1,35 +1,35 @@
 angular.module('SectionsApp')
 
 	.controller('SectionsCtrl', ['stack', 'storage', function (stack, storage) {
-		const $this = this;
-		$this.stack = stack;
+		const vm = this;
+		vm.stack = stack;
 
-		$this.openSection = openSection;
-		$this.backSection = backSection;
-		$this.currentSection = 'Default';
+		vm.openSection = openSection;
+		vm.backSection = backSection;
+		vm.currentSection = 'Default';
 
 		function openSection (section_id, $event) {
-			if ($event !== undefined) $event.preventDefault();
-			if (section_id !== $this.currentSection) {
-				$this.stack.add(section_id);
-				$this.currentSection = section_id;
+			angular.isDefined($event) && $event.preventDefault();
+			if (section_id !== vm.currentSection) {
+				vm.stack.add(section_id);
+				vm.currentSection = section_id;
 
-				storage.set({currentSection: $this.currentSection});
+				storage.set({currentSection: vm.currentSection});
 			} else {
-				$this.backSection();
+				vm.backSection($event);
 			}
 		}
 
 		function backSection ($event) {
-			if ($event !== undefined) $event.preventDefault();
-			$this.stack.delete();
-			$this.currentSection = $this.stack.get();
+			angular.isDefined($event) && $event.preventDefault();
+			vm.stack.delete();
+			vm.currentSection = vm.stack.get();
 
-			if (!$this.currentSection) {
-				$this.currentSection = 'Default';
+			if (!vm.currentSection) {
+				vm.currentSection = 'Default';
 			}
 
-			storage.set({currentSection: $this.currentSection});
+			storage.set({currentSection: vm.currentSection});
 		}
 
 		storage.ready.then(function (stg) {

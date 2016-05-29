@@ -19,7 +19,7 @@ angular.module('StorageApp', [])
 					stg: {},
 					set: function (data, cb) {
 						chrome.storage.local.set(data, cb);
-					}
+					},
 				};
 
 				chrome.storage.local.get(function (stg) {
@@ -37,6 +37,6 @@ angular.module('StorageApp', [])
 				});
 
 				return storage;
-			}]
+			}],
 		};
 	}]);

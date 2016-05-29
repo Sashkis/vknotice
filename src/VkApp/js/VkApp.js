@@ -1,1 +1,1 @@
-angular.module('VkApp', ['StorageApp'])
+angular.module('VkApp', ['StorageApp']);
