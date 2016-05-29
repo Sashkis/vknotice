@@ -10,6 +10,7 @@
     "rules": {
         "angular/di": [2,"array"],
         "angular/controller-name": [2,"/[A-Z].*Ctrl/"],
+        "angular/document-service": 0,
 
         "comma-dangle": ["error", "always-multiline"],
         "no-console": 0,
