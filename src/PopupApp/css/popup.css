@@ -51,7 +51,8 @@ body {
 
 a {
   color: #33567f;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 .flex {
   display: flex; }

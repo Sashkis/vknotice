@@ -101,7 +101,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		}
 
 		if (changes.profiles !== undefined) {
-			delete changes.profiles;
+			console.log('Profiles:', changes.profiles.newValue.length);
 		}
 
 		if (changes.access_token !== undefined) {
@@ -124,10 +124,10 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
+				console.log(stg);
 		$vk.auth().then(function () {
 			deamon.start('execute.ang', stg.apiOptions, function (resp) {
 				chrome.browserAction.setIcon({ path: 'img/icon38.png' });
-
 				delete resp.system;
 				storage.set(resp);
 

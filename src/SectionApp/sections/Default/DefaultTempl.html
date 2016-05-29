@@ -39,5 +39,5 @@
 </aside>
 
 <div id="friends-online" ng-controller="FriendsCtrl">
-	<friend id="user_id" ng-repeat="user_id in stg.friends"></friend>
+	<friend id="user_id.id" ng-repeat="user_id in stg.profiles track by $index"></friend>
 </div>

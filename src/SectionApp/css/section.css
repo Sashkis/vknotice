@@ -34,7 +34,7 @@ aside {
   background: #fff;
   border-left: 1px solid #e6e7eb; }
   #friends-online .item {
-    padding: 0px 5px 5px;
+    padding: 0px 3px 5px;
     text-align: center;
     overflow: hidden;
     display: block; }
@@ -55,11 +55,14 @@ aside {
   flex: 1;
   flex-direction: column;
   background: #fff; }
+  #newfriends > :first-child {
+    padding: 3px;
+    text-align: right; }
+  #newfriends .bordered:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   #newfriends .item {
     padding: 6px 0;
     align-items: center; }
-    #newfriends .item:not(:last-child) {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
     #newfriends .item .ava {
       margin-right: 6px; }
     #newfriends .item .user {

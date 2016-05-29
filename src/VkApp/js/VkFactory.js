@@ -99,6 +99,7 @@ angular.module('VkApp')
 					if (API.data.response !== undefined) {
 						ready.resolve(API.data.response);
 					} else {
+						console.log(API.data.error);
 						ready.reject('api_error');
 					}
 				}, function () {

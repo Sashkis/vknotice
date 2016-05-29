@@ -1,10 +1,34 @@
 angular.module('SectionsApp')
 	.controller('NewFriendsCtrl', [
-		'$scope',
 		'storage',
-		function ($scope, storage) {
+		'$vk',
+		function (storage, $vk) {
+			$this = this;
+
+			$this.mark = function ($event, type, user_id) {
+				$event.preventDefault();
+				var method = false;
+				switch (type) {
+					case 'add' : method = 'friends.add'; break;
+					case 'ban' : method = 'account.banUser'; break;
+					case 'delete' : method = 'friends.delete'; break;
+					case 'deleteAll' : method = 'friends.deleteAllRequests'; break;
+				}
+
+				if (method) {
+					$vk.auth().then(function () {
+						$vk.api(method, {
+							user_id: user_id,
+							access_token: $vk.stg.access_token,
+						}).then(function (resp) {
+							console.log(resp);
+						});
+					});
+				}
+			}
+
 			storage.ready.then(function (stg) {
-				$scope.stg = stg;
+				$this.stg = stg;
 			});
 
 		}
@@ -15,11 +39,9 @@ angular.module('SectionsApp')
 			restrict: 'E',
 			replace: 'true',
 			templateUrl:'../SectionApp/sections/NewFriends/request.tpl',
-			scope: {
-				id: '='
-			},
-			link: function ($scope) {
-				$scope.user = profile.getById($scope.id)
+			scope: true,
+			link: function ($scope, el, attr) {
+				$scope.user = profile.getById(attr.userId);
 	        }
 		};
 	}]);
