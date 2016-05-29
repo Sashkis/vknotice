@@ -1,21 +1,21 @@
-<header ng-controller="HeaderCtrl" class="flex">
-	<a ng-hide="main.stack.get()" class="navbar-brand" ng-href="https://vk.com/vknotice">
+<header ng-controller="HeaderCtrl as head" class="flex">
+	<a ng-hide="head.main.stack.get()" class="navbar-brand" ng-href="https://vk.com/vknotice">
 		<span class="fa fa-vk"></span>
 		<translate>Информер</translate>
 	</a>
-	<span ng-show="main.stack.get()" class="navbar-brand" ng-click="main.backSection($event)">
+	<span ng-show="head.main.stack.get()" class="navbar-brand" ng-click="head.main.backSection($event)">
 		<span class="fa fa-chevron-left"></span>
 		<translate>Назад</translate>
 	</span>
 
-	<a ng-class="['notifications', {empty: !stg.counter.notifications}]" ng-attr-data-badge="{{stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
+	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
 		<i class="fa fa-bell"></i>
 	</a>
 
-	<span ng-class="['dropdown navbar-right',{open: isDropdownOpen}]" ng-click="isDropdownOpen = !isDropdownOpen">
+	<span ng-class="['dropdown navbar-right',{open: head.isDropdownOpen}]" ng-click="head.isDropdownOpen = !head.isDropdownOpen">
 		<a class="profile">
-			{{current_user.first_name}}
-			<img class="ava" ng-src="{{current_user.photo_100}}" width="50px" height="50px">
+			{{head.current_user.first_name}}
+			<img class="ava" ng-src="{{head.current_user.photo_100}}" width="50px" height="50px">
 			<i class="caret"></i>
 		</a>
 
@@ -24,13 +24,13 @@
 			<li><a href="https://vk.com/topic-90041499_31898043" translate>Оставить предложение</a></li>
 			<li><a href="https://vk.com/im?sel=-90041499" translate>Сообщить об ошибке</a></li>
 			<li class="divider"></li>
-			<li><a ng-href="{{getShareUrl()}}" translate>Рассказать друзьям</a></li>
-			<li><a ng-href="{{getReviewUrl()}}" translate>Оставить отзыв</a></li>
+			<li><a ng-href="{{head.getShareUrl()}}" translate>Рассказать друзьям</a></li>
+			<li><a ng-href="{{head.getReviewUrl()}}" translate>Оставить отзыв</a></li>
 			<li class="divider"></li>
 			<li><a ng-href="chrome-extension://{{chrome.app.getDetails().id}}/options/index.html" translate>
 				Настройки
 			</a></li>
-			<li><a href="#" ng-click="logout($event)" translate>Выйти</a></li>
+			<li><a href="#" ng-click="head.logout($event)" translate>Выйти</a></li>
 		</ul>
 	</span>
 </header>
