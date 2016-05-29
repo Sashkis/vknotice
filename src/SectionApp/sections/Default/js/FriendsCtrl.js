@@ -1,14 +1,13 @@
 angular.module('SectionsApp')
 
-	.controller('FriendsCtrl', [
-			'$scope',
-			'storage',
-		function ($scope, storage) {
+	.controller('FriendsCtrl', ['storage',
+		function (storage) {
+			const vm = this;
 			storage.ready.then(function (stg) {
-				$scope.stg = stg;
+				vm.stg = stg;
 			});
 
-		}
+		},
 	])
 
 	.directive('friend', ['profile', function(profile) {
@@ -17,10 +16,10 @@ angular.module('SectionsApp')
 			replace: 'true',
 			templateUrl:'../SectionApp/sections/Default/friend.tpl',
 			scope: {
-				id: '='
+				id: '=',
 			},
 			link: function ($scope) {
-				$scope.user = profile.getById($scope.id)
-	        }
+				$scope.user = profile.getById($scope.id);
+			},
 		};
 	}]);

@@ -1,12 +1,10 @@
 angular.module('SectionsApp')
 
-	.controller('SidebarCtrl', [
-			'$scope',
-			'storage',
-		function ($scope, storage) {
+	.controller('SidebarCtrl', ['storage',
+		function (storage) {
+			const vm = this;
 			storage.ready.then(function (stg) {
-				$scope.stg = stg;
+				vm.stg = stg;
 			});
-
-		}
+		},
 	]);
