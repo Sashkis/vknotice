@@ -45,7 +45,7 @@
 	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
 		<ng-include src="'../HeaderApp/HeaderTempl.html'"></ng-include>
-		<ng-include src="main.stack.cur() || main.sections.default" class="flex"></ng-include>
+		<ng-include src="'../SectionApp/sections/'+main.currentSection+'/'+main.currentSection+'Templ.html'" class="flex"></ng-include>
 	</div>
 
 </body>
