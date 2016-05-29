@@ -21,7 +21,7 @@ angular.module('SectionsApp')
 		}
 
 		function backSection ($event) {
-			$event.preventDefault();
+			if ($event !== undefined) $event.preventDefault();
 			$this.stack.delete();
 			$this.currentSection = $this.stack.get();
 
