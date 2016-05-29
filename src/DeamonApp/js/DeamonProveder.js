@@ -22,13 +22,13 @@ angular.module('DeamonApp')
 				defaultFailCallback = failCallback || defaultFailCallback;
 
 				isDeamonStarted = true;
-				console.warn('Deamon Start');
+				console.info('Deamon Start');
 				request(params);
 			}
 
 			function deamonStop (timeOut, params) {
 				isDeamonStarted = false;
-				console.warn('Deamon Stop');
+				console.info('Deamon Stop');
 			}
 
 			function request(params) {

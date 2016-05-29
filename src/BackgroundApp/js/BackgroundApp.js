@@ -87,7 +87,6 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	});
 
 	storageProvider.set_onChanged_callback(function (changes, stg) {
-		console.log(changes);
 		if (changes.users !== undefined) {
 			saveProfiles(changes.users.newValue, stg);
 			delete changes.users;
@@ -100,9 +99,8 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 			delete stg.groups;
 		}
 
-		if (changes.profiles !== undefined) {
-			console.log('Profiles:', changes.profiles.newValue.length);
-		}
+		// if (changes.profiles !== undefined) {
+		// }
 
 		if (changes.access_token !== undefined) {
 			stg.apiOptions.access_token = changes.access_token.newValue;
@@ -124,7 +122,6 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 .run(['storage', '$vk', 'deamon', function (storage, $vk, deamon) {
 	storage.ready.then(function (stg) {
-				console.log(stg);
 		$vk.auth().then(function () {
 			deamon.start('execute.ang', stg.apiOptions, function (resp) {
 				chrome.browserAction.setIcon({ path: 'img/icon38.png' });
@@ -137,8 +134,8 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 				chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
 				return error === 'connect_error';
 			});
-		}, function (err) {
-			console.error('Auth Error', err);
+		}, function (error) {
+			console.error('Auth Error', error);
 		});
 	});
 }]);

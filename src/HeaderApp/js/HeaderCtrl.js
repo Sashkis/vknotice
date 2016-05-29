@@ -21,7 +21,6 @@ angular.module('HeaderApp')
 				$scope.stg = stg;
 				profile.init(stg);
 				$scope.current_user = profile.getById($scope.stg.user_id);
-				console.log($scope.current_user);
 
 				$scope.getShareUrl = function () {
 					return 'https://vk.com/share.php?' + $httpParamSerializer({
@@ -41,7 +40,7 @@ angular.module('HeaderApp')
 
 				$scope.logout = function  ($event) {
 					$event.preventDefault();
-					console.log('Logout');
+					console.warn('Logout');
 				}
 			});
 

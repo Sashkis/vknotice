@@ -21,7 +21,7 @@ angular.module('SectionsApp')
 							user_id: user_id,
 							access_token: $vk.stg.access_token,
 						}).then(function (resp) {
-							console.log(resp);
+							// Сделать что-то когда заявка обработана
 						});
 					});
 				}

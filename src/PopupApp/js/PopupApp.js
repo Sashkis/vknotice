@@ -4,10 +4,9 @@ angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext'])
 	gettextCatalog.debug = true;
 
 	storage.ready.then(function (stg) {
-		console.log('STG', stg);
-
 		const lang = getLang(stg.lang);
 		if (lang !== 'ru') {
+			console.info('Current Language set as "' + lang + '"');
 			gettextCatalog.setCurrentLanguage(lang);
 		}
 
