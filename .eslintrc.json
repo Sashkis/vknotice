@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true
+    },
+    "extends": ["eslint:recommended", "angular"],
+    "rules": {
+        "angular/di": [2,"array"],
+        "angular/controller-name": [2,"/[A-Z].*Ctrl/"],
+        
+        "no-console": 0,
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}
