@@ -1,7 +1,7 @@
 // Наша фабрика
 angular.module('ProfileApp', [])
 
-.factory('profile', function() {
+.factory('profile', function () {
 	return {
 		getById: function (id) {
 			if (this.stg && this.stg.profiles && angular.isArray(this.stg.profiles) && this.stg.profiles.length) {
@@ -9,6 +9,7 @@ angular.module('ProfileApp', [])
 					if (this.stg.profiles[i] && this.stg.profiles[i].id == id) return this.stg.profiles[i];
 				}
 			}
+
 			return {};
 		},
 		init: function (stgSrc) {
