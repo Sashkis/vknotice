@@ -6,6 +6,7 @@ function (gettextCatalog, storage, $log) {
 
 	storage.ready.then(function (stg) {
 		const lang = getLang(stg.lang);
+		
 		if (lang !== 'ru') {
 			$log.info('Current Language set as "' + lang + '"');
 			gettextCatalog.setCurrentLanguage(lang);

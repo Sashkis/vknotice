@@ -8,16 +8,18 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 	let currentBadge = 0;
 
-	function searchIDInArray (array, ID) {
+	function searchIDInArray(array, ID) {
 		for (let i = array.length - 1; i >= 0; i--) {
 			if (array[i] && array[i].id == ID) return i;
 		}
+
 		return -1;
 	}
 
 	function saveProfiles(prof, stg) {
 		for (let i = prof.length - 1; i >= 0; i--) {
 			let index = searchIDInArray(stg.profiles, prof[i].id);
+
 			if (index > -1) {
 				stg.profiles[index] = prof[i];
 			} else {
@@ -28,6 +30,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 	function setBadge(counters) {
 		let badge = 0;
+
 		angular.forEach(counters, function (counter) {
 			if (counter) {
 				badge += counter;
@@ -35,6 +38,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		});
 
 		chrome.browserAction.setBadgeText({ text: badge > 0 ? badge+'' : '' });
+
 		return badge;
 	}
 
@@ -43,7 +47,8 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 			chrome.tabs.query({
 				url: '*://vk.com/*',
 			}, function (tabs) {
-				tabs.every(tab => /vk.com\/(?:login.*)?$/i.test(tab.url)) && document.getElementById('audio').play();
+				if ( tabs.every(tab => /vk.com\/(?:login.*)?$/i.test(tab.url)) )
+					document.getElementById('audio').play();
 			});
 		}
 	}
@@ -66,6 +71,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		// и обрезаем если массив профилей превысил лимит
 		{
 			let filteredProfiles = [];
+
 			angular.forEach(stg.profiles, function (profile) {
 				if (profile && profile.id) filteredProfiles.push(profile);
 			});
@@ -80,6 +86,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		// и воспроизводим звуковое уведомление
 		if (stg.counter) {
 			let badge = setBadge(stg.counter);
+
 			playSound(badge, stg);
 			currentBadge = badge;
 		}
@@ -119,6 +126,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 		if (angular.isDefined(changes.counter)) {
 			let badge = setBadge(changes.counter.newValue);
+
 			playSound(badge, stg);
 			currentBadge = badge;
 		}
@@ -143,6 +151,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 			}, function (error) {
 				chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
+
 				return error === 'connect_error';
 			});
 		}, function (error) {

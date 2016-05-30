@@ -2,13 +2,13 @@ angular.module('SectionsApp')
 
 	.controller('SectionsCtrl', ['stack', 'storage', function (stack, storage) {
 		const vm = this;
-		vm.stack = stack;
 
-		vm.openSection = openSection;
-		vm.backSection = backSection;
+		vm.stack          = stack;
+		vm.openSection    = openSection;
+		vm.backSection    = backSection;
 		vm.currentSection = 'Default';
 
-		function openSection (section_id, $event) {
+		function openSection(section_id, $event) {
 			angular.isDefined($event) && $event.preventDefault();
 			if (section_id !== vm.currentSection) {
 				vm.stack.add(section_id);
@@ -20,7 +20,7 @@ angular.module('SectionsApp')
 			}
 		}
 
-		function backSection ($event) {
+		function backSection($event) {
 			angular.isDefined($event) && $event.preventDefault();
 			vm.stack.delete();
 			vm.currentSection = vm.stack.get();

@@ -3,8 +3,8 @@ angular.module('SectionsApp')
 		let items = [];
 
 		return {
-			add: (item) => items.push(item),
-			delete: () => items.pop(),
-			get: () => items[items.length-1],
+			add:    (item) => items.push(item),
+			delete: ()     => items.pop(),
+			get:    ()     => items[items.length-1],
 		};
 	});

@@ -5,18 +5,20 @@ angular.module('SectionsApp')
 
 			vm.mark = function ($event, type, user_id) {
 				$event.preventDefault();
+
 				let method = false;
+
 				switch (type) {
-				case 'add'       : method = 'friends.add'; break;
-				case 'ban'       : method = 'account.banUser'; break;
-				case 'delete'    : method = 'friends.delete'; break;
-				case 'deleteAll' : method = 'friends.deleteAllRequests'; break;
+				case 'add':       method = 'friends.add'; break;
+				case 'ban':       method = 'account.banUser'; break;
+				case 'delete':    method = 'friends.delete'; break;
+				case 'deleteAll': method = 'friends.deleteAllRequests'; break;
 				}
 
 				if (method) {
 					$vk.auth().then(function () {
 						$vk.api(method, {
-							user_id: user_id,
+							user_id:      user_id,
 							access_token: $vk.stg.access_token,
 						}).then(function () {
 							// Сделать что-то когда заявка обработана
@@ -32,7 +34,7 @@ angular.module('SectionsApp')
 		},
 	])
 
-	.directive('request', ['profile', function(profile) {
+	.directive('request', ['profile', function (profile) {
 		return {
 			restrict: 'E',
 			replace: 'true',

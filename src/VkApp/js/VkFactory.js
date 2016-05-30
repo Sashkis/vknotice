@@ -4,8 +4,8 @@ angular.module('VkApp')
 	version: '5.52',
 })
 
-.factory('$vk', ['$q','$http','$httpParamSerializer', 'storage', 'apiConfig', '$log',
-function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
+.factory('$vk', ['$q', '$http', '$httpParamSerializer', 'storage', 'apiConfig', '$log',
+function ($q, $http, $httpParamSerializer, storage, apiConfig, $log) {
 	return {
 		authUrl:          'https://oauth.vk.com/authorize?' + $httpParamSerializer({
 			'redirect_uri':  'https://oauth.vk.com/blank.html',
@@ -21,6 +21,7 @@ function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 		isAuth: function () {
 			const $vk   = this;
 			const ready = $q.defer();
+
 			if ($vk.stg.access_token && $vk.stg.user_id) {
 				$vk.api('users.get', {access_token: $vk.stg.access_token}).then(function (resp) {
 					ready.resolve(resp && resp[0] && resp[0].id && resp[0].id == $vk.stg.user_id);
@@ -30,26 +31,33 @@ function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 			} else {
 				ready.resolve(false);
 			}
+
 			return ready.promise;
 		},
 
 		auth: function () {
 			const $vk   = this;
 			const ready = $q.defer();
+
 			storage.ready.then(function (stg) {
 				$vk.stg = stg;
 				$vk.isAuth().then(function (isAuth) {
 					if (isAuth) {
 						ready.resolve();
 					} else {
-						chrome.tabs.create({url: $vk.authUrl, active: true}, function (tab) {
+						chrome.tabs.create({
+							url:    $vk.authUrl,
+							active: true,
+						}, function (tab) {
 							const authTabId = tab.id;
-							chrome.tabs.onUpdated.addListener(function tabUpdateListener (tabId, changeInfo) {
-								if(tabId === authTabId
+
+							chrome.tabs.onUpdated.addListener(function tabUpdateListener(tabId, changeInfo) {
+								if (tabId === authTabId
 									&& angular.isDefined(changeInfo.url)
 									&& changeInfo.url.indexOf('oauth.vk.com/blank.html') > -1
 								) {
 									let authData = $vk.parseHashParams(changeInfo.url);
+
 									$vk.stg.user_id      = authData.user_id;
 									$vk.stg.access_token = authData.access_token;
 
@@ -62,7 +70,7 @@ function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 									chrome.tabs.onUpdated.removeListener(tabUpdateListener);
 								}
 							});
-							chrome.tabs.onRemoved.addListener(function tabRemovedListener (tabId) {
+							chrome.tabs.onRemoved.addListener(function tabRemovedListener(tabId) {
 								if (authTabId === tabId) {
 									$vk.isAuth().then(function (isAuth) {
 										ready[ isAuth ? 'resolve' : 'reject' ]();
@@ -81,16 +89,20 @@ function ($q, $http,$httpParamSerializer, storage, apiConfig, $log) {
 		parseHashParams: function (url) {
 			const ret  = {};
 			const hash = url.split('#')[1].split('&');
+
 			for (let i = hash.length; i--;) {
 				if (!hash[i]) continue;
 				let s = hash[i].split('=');
+
 				ret[s[0]] = s[1];
 			}
+
 			return ret;
 		},
 
 		api: function (method, data) {
 			const ready = $q.defer();
+			
 			data.v = apiConfig.version;
 			$http.get('https://api.vk.com/method/'+method, {params: data})
 				.then(function (API) {
