@@ -3,6 +3,7 @@ angular.module('SectionsApp')
 	.controller('FriendsCtrl', ['storage',
 		function (storage) {
 			const vm = this;
+			
 			storage.ready.then(function (stg) {
 				vm.stg = stg;
 			});
@@ -10,7 +11,7 @@ angular.module('SectionsApp')
 		},
 	])
 
-	.directive('friend', ['profile', function(profile) {
+	.directive('friend', ['profile', function (profile) {
 		return {
 			restrict: 'E',
 			replace: 'true',
