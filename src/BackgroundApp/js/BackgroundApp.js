@@ -10,7 +10,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 	function searchIDInArray(array, ID) {
 		for (let i = array.length - 1; i >= 0; i--) {
-			if (array[i] && array[i].id == ID) return i;
+			if (array[i] && array[i].id === ID) return i;
 		}
 
 		return -1;
@@ -18,7 +18,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 	function saveProfiles(prof, stg) {
 		for (let i = prof.length - 1; i >= 0; i--) {
-			let index = searchIDInArray(stg.profiles, prof[i].id);
+			const index = searchIDInArray(stg.profiles, prof[i].id);
 
 			if (index > -1) {
 				stg.profiles[index] = prof[i];
@@ -31,13 +31,11 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	function setBadge(counters) {
 		let badge = 0;
 
-		angular.forEach(counters, function (counter) {
-			if (counter) {
-				badge += counter;
-			}
+		angular.forEach(counters, (counter) => {
+			badge += angular.isNumber(counter) ? counter : 0;
 		});
 
-		chrome.browserAction.setBadgeText({ text: badge > 0 ? badge+'' : '' });
+		chrome.browserAction.setBadgeText({ text: badge > 0 ? `${badge}` : '' });
 
 		return badge;
 	}
@@ -56,16 +54,16 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	storageProvider.set_onLoad_callback(function (stg) {
 		// Если профили не заданы, или в них пусто
 		// Обработать поля пользователей и груп
-		if (!stg.profiles || !stg.profiles.length) {
-			stg.profiles = [];
-			if (stg.users) {
-				saveProfiles(stg.users, stg);
-			}
-
-			if (stg.groups) {
-				saveProfiles(stg.groups, stg);
-			}
+		// if (!stg.profiles || !stg.profiles.length) {
+			// stg.profiles = [];
+		if (stg.users) {
+			saveProfiles(stg.users, stg);
 		}
+
+		if (stg.groups) {
+			saveProfiles(stg.groups, stg);
+		}
+		// }
 
 		// Удаляем профили без id
 		// и обрезаем если массив профилей превысил лимит
@@ -107,14 +105,14 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	storageProvider.set_onChanged_callback(function (changes, stg) {
 		if (angular.isDefined(changes.users)) {
 			saveProfiles(changes.users.newValue, stg);
-			delete changes.users;
-			delete stg.users;
+			// delete changes.users;
+			// delete stg.users;
 		}
 
 		if (angular.isDefined(changes.groups)) {
 			saveProfiles(changes.groups.newValue, stg);
-			delete changes.groups;
-			delete stg.groups;
+			// delete changes.groups;
+			// delete stg.groups;
 		}
 
 		// if (changes.profiles !== undefined) {
