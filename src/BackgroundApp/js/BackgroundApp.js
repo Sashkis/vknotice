@@ -41,12 +41,11 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	}
 
 	function playSound(newBadge, stg) {
-		if (stg.audio !== false && newBadge > currentBadge) {
+		if (stg.audio && newBadge > currentBadge) {
 			chrome.tabs.query({
-				url: '*://vk.com/*',
+				url: '*://*.vk.com/*',
 			}, function (tabs) {
-				if ( tabs.every(tab => /vk.com\/(?:login.*)?$/i.test(tab.url)) )
-					document.getElementById('audio').play();
+				if (!tabs.length) document.getElementById('audio').play();
 			});
 		}
 	}
@@ -99,6 +98,10 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 				lastOpenComment: Date.now(),
 				lastLoadAlert: 0,
 			};
+		}
+
+		if (angular.isUndefined(stg.audio)) {
+			stg.audio = 1;
 		}
 	});
 
