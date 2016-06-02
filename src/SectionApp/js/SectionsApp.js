@@ -1,1 +1,1 @@
-angular.module('SectionsApp', ['ProfileApp', 'VkApp', 'StorageApp']);
+angular.module('SectionsApp', ['VkApp', 'StorageApp']);

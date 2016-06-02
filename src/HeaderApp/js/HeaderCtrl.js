@@ -11,10 +11,9 @@ angular.module('HeaderApp')
 	.controller('HeaderCtrl', [
 		'$log',
 		'storage',
-		'profile',
 		'gettextCatalog',
 		'$httpParamSerializer',
-		function ($log, storage, profile, gettextCatalog, $httpParamSerializer) {
+		function ($log, storage, gettextCatalog, $httpParamSerializer) {
 			const vm = this;
 
 			vm.isDropdownOpen = false;
@@ -43,8 +42,7 @@ angular.module('HeaderApp')
 
 			storage.ready.then(function (stg) {
 				vm.stg = stg;
-				profile.init(stg);
-				vm.current_user = profile.getById(vm.stg.user_id);
+				vm.current_user = storage.getProfile(vm.stg.user_id);
 			});
 
 		},

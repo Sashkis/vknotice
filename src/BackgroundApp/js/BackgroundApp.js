@@ -4,29 +4,8 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 	profilesLimit: 100,
 })
 
-.config(['Config', 'storageProvider', function (Config, storageProvider) {
-
+.run(['Config', 'storage', '$vk', 'deamon', '$log', function (Config, storage, $vk, deamon, $log) {
 	let currentBadge = 0;
-
-	function searchIDInArray(array, ID) {
-		for (let i = array.length - 1; i >= 0; i--) {
-			if (array[i] && array[i].id === ID) return i;
-		}
-
-		return -1;
-	}
-
-	function saveProfiles(prof, stg) {
-		for (let i = prof.length - 1; i >= 0; i--) {
-			const index = searchIDInArray(stg.profiles, prof[i].id);
-
-			if (index > -1) {
-				stg.profiles[index] = prof[i];
-			} else {
-				stg.profiles.unshift(prof[i]);
-			}
-		}
-	}
 
 	function setBadge(counters) {
 		let badge = 0;
@@ -50,19 +29,15 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		}
 	}
 
-	storageProvider.set_onLoad_callback(function (stg) {
-		// Если профили не заданы, или в них пусто
-		// Обработать поля пользователей и груп
-		// if (!stg.profiles || !stg.profiles.length) {
-			// stg.profiles = [];
+	storage.set_onLoad_callback(function (stg) {
+		// Записать пользователей и групы в кэш профилей
 		if (stg.users) {
-			saveProfiles(stg.users, stg);
+			storage.setProfiles(stg.users);
 		}
 
 		if (stg.groups) {
-			saveProfiles(stg.groups, stg);
+			storage.setProfiles(stg.groups);
 		}
-		// }
 
 		// Удаляем профили без id
 		// и обрезаем если массив профилей превысил лимит
@@ -105,17 +80,13 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 		}
 	});
 
-	storageProvider.set_onChanged_callback(function (changes, stg) {
+	storage.set_onChanged_callback(function (changes, stg) {
 		if (angular.isDefined(changes.users)) {
-			saveProfiles(changes.users.newValue, stg);
-			// delete changes.users;
-			// delete stg.users;
+			storage.setProfiles(changes.users.newValue);
 		}
 
 		if (angular.isDefined(changes.groups)) {
-			saveProfiles(changes.groups.newValue, stg);
-			// delete changes.groups;
-			// delete stg.groups;
+			storage.setProfiles(changes.groups.newValue);
 		}
 
 		// if (changes.profiles !== undefined) {
@@ -138,9 +109,7 @@ angular.module('BgApp', ['DeamonApp', 'StorageApp'])
 
 		chrome.storage.local.set(stg);
 	});
-}])
 
-.run(['storage', '$vk', 'deamon', '$log', function (storage, $vk, deamon, $log) {
 	storage.ready.then(function (stg) {
 		$vk.auth().then(function () {
 			deamon.start('execute.ang', stg.apiOptions, function (resp) {

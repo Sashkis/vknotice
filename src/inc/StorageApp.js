@@ -1,9 +1,9 @@
 angular.module('StorageApp', [])
-	.provider('storage', [function () {
+	.factory('storage', ['$q', '$rootScope', function ($q, $rootScope) {
 		let onLoad = function () {};
 		let onChanged = function () {};
-
-		return {
+		const ready = $q.defer();
+		const storage = {
 			set_onChanged_callback: function (cb) {
 				onChanged = cb;
 			},
@@ -11,32 +11,58 @@ angular.module('StorageApp', [])
 			set_onLoad_callback: function (cb) {
 				onLoad = cb;
 			},
+			ready: ready.promise,
+			stg: {},
+			set: function (data, cb) {
+				chrome.storage.local.set(data, cb);
+			},
+			getProfileIndex: function (id) {
+				id = +id;
+				if (!id
+					|| angular.isUndefined(this.stg)
+					|| angular.isUndefined(this.stg.profiles)
+					|| !angular.isArray(this.stg.profiles)
+				) return -1;
+				for (let i = 0; i < this.stg.profiles.length; i++) {
+					if (this.stg.profiles[i].id === id) return i;
+				}
 
-			$get: ['$q', '$rootScope', function ($q, $rootScope) {
-				const ready = $q.defer();
-				const storage = {
-					ready: ready.promise,
-					stg: {},
-					set: function (data, cb) {
-						chrome.storage.local.set(data, cb);
-					},
-				};
+				return -1;
+			},
+			getProfile: function (id) {
+				const index = this.getProfileIndex(id);
 
-				chrome.storage.local.get(function (stg) {
-					storage.stg = angular.copy(stg);
+				return index >= 0 ? this.stg.profiles[index] : {};
+			},
+			setProfiles: function (array) {
+				array.map((profile) => {
+					const index = this.getProfileIndex(profile.id);
 
-					onLoad(storage.stg);
+					if (angular.isUndefined(this.stg.profiles)) this.stg.profiles = [];
 
-					$rootScope.$apply();
-					ready.resolve(storage.stg);
-
-					chrome.storage.onChanged.addListener(function (changes) {
-						onChanged(changes, storage.stg);
-						$rootScope.$apply();
-					});
+					if (index >= 0) {
+						this.stg.profiles[index] = profile;
+					} else {
+						this.stg.profiles.unshift(profile);
+					}
 				});
-
-				return storage;
-			}],
+			},
 		};
+
+		chrome.storage.local.get(function (stg) {
+			storage.stg = angular.copy(stg);
+
+			onLoad(storage.stg);
+
+			$rootScope.$apply();
+			ready.resolve(storage.stg);
+
+			chrome.storage.onChanged.addListener(function (changes) {
+				onChanged(changes, storage.stg);
+				$rootScope.$apply();
+			});
+		});
+
+		return storage;
+
 	}]);

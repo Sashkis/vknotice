@@ -34,14 +34,14 @@ angular.module('SectionsApp')
 		},
 	])
 
-	.directive('request', ['profile', function (profile) {
+	.directive('request', ['storage', function (storage) {
 		return {
 			restrict: 'E',
 			replace: 'true',
 			templateUrl:'../SectionApp/sections/NewFriends/request.tpl',
 			scope: true,
 			link: function ($scope, el, attr) {
-				$scope.user = profile.getById(attr.userId);
+				$scope.user = storage.getProfile(attr.userId);
 			},
 		};
 	}]);
