@@ -17,14 +17,15 @@ angular.module('StorageApp', [])
 				chrome.storage.local.set(data, cb);
 			},
 			getProfileIndex: function (id) {
-				id = +id;
 				if (!id
 					|| angular.isUndefined(this.stg)
 					|| angular.isUndefined(this.stg.profiles)
 					|| !angular.isArray(this.stg.profiles)
 				) return -1;
 				for (let i = 0; i < this.stg.profiles.length; i++) {
-					if (this.stg.profiles[i].id === id) return i;
+					// Нельзя проводить сравнение по типу,
+					// так как id может быть передан в качестве строки
+					if (this.stg.profiles[i].id == id) return i;
 				}
 
 				return -1;
