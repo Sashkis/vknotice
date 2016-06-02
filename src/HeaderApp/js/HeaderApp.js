@@ -1,1 +1,1 @@
-angular.module('HeaderApp', ['StorageApp', 'ProfileApp']);
+angular.module('HeaderApp', ['StorageApp']);
