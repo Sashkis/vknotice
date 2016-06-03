@@ -1,10 +1,12 @@
 #friends-online {
-    padding: 5px;
-    flex: 1;
-    display: flex;
-    flex-flow: row wrap;
-    background: #fff;
-    border-left: 1px solid #e6e7eb;
+  padding: 5px;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-left: 1px solid #e6e7eb;
+  align-content: flex-start;
+  justify-content: flex-start;
 
 	.item {
 		padding: 0px 3px 5px;

@@ -30,9 +30,11 @@ aside {
   padding: 5px;
   flex: 1;
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   background: #fff;
-  border-left: 1px solid #e6e7eb; }
+  border-left: 1px solid #e6e7eb;
+  align-content: flex-start;
+  justify-content: flex-start; }
   #friends-online .item {
     padding: 0px 3px 5px;
     text-align: center;
