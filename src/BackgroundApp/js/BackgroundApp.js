@@ -1,134 +1,153 @@
-angular.module('BgApp', ['DeamonApp', 'StorageApp'])
+angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 
 .constant('Config', {
 	profilesLimit: 100,
 })
 
-.run(['Config', 'storage', '$vk', 'deamon', '$log', function (Config, storage, $vk, deamon, $log) {
-	let currentBadge = 0;
+.config(['AnalyticsProvider', function (AnalyticsProvider) {
+	AnalyticsProvider.setAccount({
+		tracker: 'UA-71609511-3',
+		fields: {
+			cookieName: 'vknotice-analitics',
+			cookieDomain: 'none',
+		},
+		set: {
+			forceSSL: true,
+		},
+	})
+	.setHybridMobileSupport(true);
+	AnalyticsProvider.logAllCalls(true);
+}])
 
-	function setBadge(counters) {
-		let badge = 0;
+.run(['Config', 'storage', '$vk', 'deamon', '$log', 'Analytics',
+	function (Config, storage, $vk, deamon, $log, Analytics) {
+		let currentBadge = 0;
 
-		angular.forEach(counters, (counter) => {
-			badge += angular.isNumber(counter) ? counter : 0;
-		});
+		function setBadge(counters) {
+			let badge = 0;
 
-		chrome.browserAction.setBadgeText({ text: badge > 0 ? `${badge}` : '' });
-
-		return badge;
-	}
-
-	function playSound(newBadge, stg) {
-		if (stg.audio && newBadge > currentBadge) {
-			chrome.tabs.query({
-				url: '*://*.vk.com/*',
-			}, function (tabs) {
-				if (!tabs.length) document.getElementById('audio').play();
-			});
-		}
-	}
-
-	storage.set_onLoad_callback(function (stg) {
-		// Записать пользователей и групы в кэш профилей
-		if (stg.users) {
-			storage.setProfiles(stg.users);
-		}
-
-		if (stg.groups) {
-			storage.setProfiles(stg.groups);
-		}
-
-		// Удаляем профили без id
-		// и обрезаем если массив профилей превысил лимит
-		{
-			let filteredProfiles = [];
-
-			angular.forEach(stg.profiles, function (profile) {
-				if (profile && profile.id) filteredProfiles.push(profile);
+			angular.forEach(counters, (counter) => {
+				badge += angular.isNumber(counter) ? counter : 0;
 			});
 
-			if (filteredProfiles.length > Config.profilesLimit) {
-				filteredProfiles = filteredProfiles.slice(0, Config.profilesLimit);
+			chrome.browserAction.setBadgeText({ text: badge > 0 ? `${badge}` : '' });
+
+			return badge;
+		}
+
+		function playSound(newBadge, stg) {
+			if (stg.audio && newBadge > currentBadge) {
+				chrome.tabs.query({
+					url: '*://*.vk.com/*',
+				}, function (tabs) {
+					if (!tabs.length) document.getElementById('audio').play();
+				});
 			}
-			stg.profiles = angular.copy(filteredProfiles);
 		}
 
-		// Устанавливаем бейдж
-		// и воспроизводим звуковое уведомление
-		if (stg.counter) {
-			let badge = setBadge(stg.counter);
+		storage.set_onLoad_callback(function (stg) {
+			// Записать пользователей и групы в кэш профилей
+			if (stg.users) {
+				storage.setProfiles(stg.users);
+			}
 
-			playSound(badge, stg);
-			currentBadge = badge;
-		}
+			if (stg.groups) {
+				storage.setProfiles(stg.groups);
+			}
 
-		// Если свойство с настройками для API не задано
-		// задаем его с параметрами по умолчанию
-		if (!stg.apiOptions) {
-			stg.apiOptions = {
-				access_token: stg.access_token,
-				options: 'friends,photos,videos,messages,groups,notifications',
-				isLoadComment: 0,
-				lastOpenComment: Date.now(),
-				lastLoadAlert: 0,
-			};
-		}
+			// Удаляем профили без id
+			// и обрезаем если массив профилей превысил лимит
+			{
+				let filteredProfiles = [];
 
-		if (angular.isUndefined(stg.audio)) {
-			stg.audio = 1;
-		}
-	});
+				angular.forEach(stg.profiles, function (profile) {
+					if (profile && profile.id) filteredProfiles.push(profile);
+				});
 
-	storage.set_onChanged_callback(function (changes, stg) {
-		if (angular.isDefined(changes.users)) {
-			storage.setProfiles(changes.users.newValue);
-		}
+				if (filteredProfiles.length > Config.profilesLimit) {
+					filteredProfiles = filteredProfiles.slice(0, Config.profilesLimit);
+				}
+				stg.profiles = angular.copy(filteredProfiles);
+			}
 
-		if (angular.isDefined(changes.groups)) {
-			storage.setProfiles(changes.groups.newValue);
-		}
+			// Устанавливаем бейдж
+			// и воспроизводим звуковое уведомление
+			if (stg.counter) {
+				let badge = setBadge(stg.counter);
 
-		// if (changes.profiles !== undefined) {
-		// }
+				playSound(badge, stg);
+				currentBadge = badge;
+			}
 
-		if (angular.isDefined(changes.access_token)) {
-			stg.apiOptions.access_token = changes.access_token.newValue;
-		}
+			// Если свойство с настройками для API не задано
+			// задаем его с параметрами по умолчанию
+			if (!stg.apiOptions) {
+				stg.apiOptions = {
+					access_token: stg.access_token,
+					options: 'friends,photos,videos,messages,groups,notifications',
+					isLoadComment: 0,
+					lastOpenComment: Date.now(),
+					lastLoadAlert: 0,
+				};
+			}
 
-		if (angular.isDefined(changes.counter)) {
-			let badge = setBadge(changes.counter.newValue);
-
-			playSound(badge, stg);
-			currentBadge = badge;
-		}
-
-		angular.forEach(changes, function (change, key) {
-			stg[key] = angular.copy(change.newValue);
+			if (angular.isUndefined(stg.audio)) {
+				stg.audio = 1;
+			}
 		});
 
-		chrome.storage.local.set(stg);
-	});
+		storage.set_onChanged_callback(function (changes, stg) {
+			if (angular.isDefined(changes.users)) {
+				storage.setProfiles(changes.users.newValue);
+			}
 
-	storage.ready.then(function (stg) {
-		$vk.auth().then(function () {
-			deamon.start('execute.ang', stg.apiOptions, function (resp) {
-				chrome.browserAction.setIcon({ path: 'img/icon38.png' });
-				delete resp.system;
-				storage.set(resp);
+			if (angular.isDefined(changes.groups)) {
+				storage.setProfiles(changes.groups.newValue);
+			}
 
-				return true;
+			// if (changes.profiles !== undefined) {
+			// }
 
-			}, function (error) {
-				chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
+			if (angular.isDefined(changes.access_token)) {
+				stg.apiOptions.access_token = changes.access_token.newValue;
+			}
 
-				return error === 'connect_error';
+			if (angular.isDefined(changes.counter)) {
+				let badge = setBadge(changes.counter.newValue);
+
+				playSound(badge, stg);
+				currentBadge = badge;
+			}
+
+			angular.forEach(changes, function (change, key) {
+				stg[key] = angular.copy(change.newValue);
 			});
-		}, function (error) {
-			$log.error('Auth Error', error);
+
+			chrome.storage.local.set(stg);
 		});
-	});
-}]);
+
+		storage.ready.then(function (stg) {
+			Analytics.trackPage('Background');
+			Analytics.set('&uid', stg.user_id);
+			$vk.auth().then(function () {
+				deamon.start('execute.ang', stg.apiOptions, function (resp) {
+					chrome.browserAction.setIcon({ path: 'img/icon38.png' });
+					delete resp.system;
+					storage.set(resp);
+
+					return true;
+
+				}, function (error) {
+					chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
+
+					return error === 'connect_error';
+				});
+			}, function (error) {
+				$log.error('Auth Error', error);
+			});
+		});
+	},
+]);
 
 
 // "use strict";
