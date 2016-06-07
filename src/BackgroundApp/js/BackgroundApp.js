@@ -45,7 +45,43 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 			}
 		}
 
-		storage.set_onLoad_callback(function (stg) {
+		/**
+		 * Отслеживаем изменения в памяти chrome
+		 * При изменении определенного параметра выполняем соотведствующие действия
+		 */
+		storage.onChanged((changes, stg) => {
+			if (angular.isDefined(changes.users)) {
+				storage.setProfiles(changes.users.newValue);
+			}
+
+
+			if (angular.isDefined(changes.groups)) {
+				storage.setProfiles(changes.groups.newValue);
+			}
+
+			// if (changes.profiles !== undefined) {
+			// }
+
+			if (angular.isDefined(changes.access_token)) {
+				stg.apiOptions.access_token = changes.access_token.newValue;
+			}
+
+			if (angular.isDefined(changes.counter)) {
+				let badge = setBadge(changes.counter.newValue);
+
+				playSound(badge, stg);
+				currentBadge = badge;
+			}
+
+			angular.forEach(changes, function (change, key) {
+				stg[key] = angular.copy(change.newValue);
+			});
+
+			storage.set(stg);
+		});
+
+		storage.ready.then(function (stg) {
+
 			// Записать пользователей и групы в кэш профилей
 			if (stg.users) {
 				storage.setProfiles(stg.users);
@@ -57,18 +93,7 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 
 			// Удаляем профили без id
 			// и обрезаем если массив профилей превысил лимит
-			{
-				let filteredProfiles = [];
-
-				angular.forEach(stg.profiles, function (profile) {
-					if (profile && profile.id) filteredProfiles.push(profile);
-				});
-
-				if (filteredProfiles.length > Config.profilesLimit) {
-					filteredProfiles = filteredProfiles.slice(0, Config.profilesLimit);
-				}
-				stg.profiles = angular.copy(filteredProfiles);
-			}
+			storage.clearProfiles();
 
 			// Устанавливаем бейдж
 			// и воспроизводим звуковое уведомление
@@ -94,41 +119,12 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 			if (angular.isUndefined(stg.audio)) {
 				stg.audio = 1;
 			}
-		});
 
-		storage.set_onChanged_callback(function (changes, stg) {
-			if (angular.isDefined(changes.users)) {
-				storage.setProfiles(changes.users.newValue);
-			}
 
-			if (angular.isDefined(changes.groups)) {
-				storage.setProfiles(changes.groups.newValue);
-			}
-
-			// if (changes.profiles !== undefined) {
-			// }
-
-			if (angular.isDefined(changes.access_token)) {
-				stg.apiOptions.access_token = changes.access_token.newValue;
-			}
-
-			if (angular.isDefined(changes.counter)) {
-				let badge = setBadge(changes.counter.newValue);
-
-				playSound(badge, stg);
-				currentBadge = badge;
-			}
-
-			angular.forEach(changes, function (change, key) {
-				stg[key] = angular.copy(change.newValue);
-			});
-
-			chrome.storage.local.set(stg);
-		});
-
-		storage.ready.then(function (stg) {
 			Analytics.trackPage('Background');
 			Analytics.set('&uid', stg.user_id);
+
+
 			$vk.auth().then(function () {
 				deamon.start('execute.ang', stg.apiOptions, function (resp) {
 					chrome.browserAction.setIcon({ path: 'img/icon38.png' });
