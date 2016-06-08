@@ -1,4 +1,4 @@
-angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext', 'angular-google-analytics'])
+angular.module('OptionsApp', ['HeaderApp', 'gettext', 'angular-google-analytics'])
 
 .config(['AnalyticsProvider', function (AnalyticsProvider) {
 	AnalyticsProvider.setAccount({
@@ -17,7 +17,6 @@ angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext', 'angular-goog
 
 .run(['gettextCatalog', 'storage', '$log', 'Analytics',
 function (gettextCatalog, storage, $log, Analytics) {
-
 	gettextCatalog.debug = true;
 
 	storage.ready.then(function (stg) {

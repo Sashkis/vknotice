@@ -1,19 +1,19 @@
+$mainColor: #567ca4;
 body {
 	color: #000;
 	font: normal 15px "Arial", sans-serif;
 	background: #f0f2f5;
 	margin: 0 auto;
-	padding: 50px 10px;
-	  box-sizing: border-box;
-	@media (max-width:1000px) {
-		max-width: 600px;
-		width: 100%;
-	}
+	box-sizing: border-box;
 }
-.wrapper {
+.wrapper, header {
 	width: 100%;
-	max-width: 865px;
-	margin: 0 auto
+	max-width: 1000px;
+	margin: 0 auto 30px;
+}
+ng-include.header {
+	background: $mainColor;
+	display: block;
 }
 .news {
 	float: right;
@@ -45,24 +45,14 @@ label {
 	display: block;
 	cursor: pointer;
 	input {
-		cursor: pointer;
-		position: absolute;
-		opacity: 0;
-		&:checked + .icon-toggle-off {
-			display: none;
-		}
-
-		&:checked ~ .icon-toggle-on {
-			display: inline;
-			color:#2B587A;
-		}
-	}
-	.icon-toggle-on {
 		display: none;
 	}
-	.icon-toggle-off {
-		color:#2B587A;
-		opacity: 0.5;
+	i.fa {
+		color: #567ca4;
+		width: 20px;
+		font-size: 120%;
+		line-height: 20px;
+		vertical-align: middle;
 	}
 }
 [class^="icon-"], [class*=" icon-"] {
@@ -72,4 +62,29 @@ label {
 
 #donate {
 	text-align: center;
+}
+
+.save {
+		padding: 7px 16px 8px;
+	// margin: 0;
+	font-size: 12px;
+	display: inline-block;
+	// zoom: 1;
+	cursor: pointer;
+	// white-space: nowrap;
+	// outline: none;
+	// font-family: Open Sans,Helvetica Neue,sans-serif;
+	vertical-align: top;
+	line-height: 15px;
+	text-align: center;
+	text-decoration: none;
+	// background: none;
+	background-color: #6287ae;
+	color: #fff;
+	border: 0;
+	border-radius: 2px;
+	// box-sizing: border-box;
+	&:disabled {
+		opacity: 0.5;
+	}
 }
