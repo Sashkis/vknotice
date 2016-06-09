@@ -1,6 +1,7 @@
 angular.module('SectionsApp')
 
-	.controller('SectionsCtrl', ['stack', 'storage', function (stack, storage) {
+	.controller('SectionsCtrl', ['stack', 'storage', 'Analytics', 'SectionsNames',
+	function (stack, storage, Analytics, SectionsNames) {
 		const vm = this;
 
 		vm.stack          = stack;
@@ -14,6 +15,7 @@ angular.module('SectionsApp')
 				vm.stack.add(section_id);
 				vm.currentSection = section_id;
 
+				Analytics.trackPage('/'+vm.currentSection, (SectionsNames[vm.currentSection] || vm.currentSection) );
 				storage.set({currentSection: vm.currentSection});
 			} else {
 				vm.backSection($event);
@@ -28,7 +30,7 @@ angular.module('SectionsApp')
 			if (!vm.currentSection) {
 				vm.currentSection = 'Default';
 			}
-
+			Analytics.trackPage('/'+vm.currentSection, (SectionsNames[vm.currentSection] || vm.currentSection) );
 			storage.set({currentSection: vm.currentSection});
 		}
 

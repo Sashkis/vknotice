@@ -13,7 +13,8 @@ angular.module('HeaderApp')
 		'storage',
 		'gettextCatalog',
 		'$httpParamSerializer',
-		function ($log, storage, gettextCatalog, $httpParamSerializer) {
+		'Analytics',
+		function ($log, storage, gettextCatalog, $httpParamSerializer, Analytics) {
 			const vm = this;
 
 			vm.isDropdownOpen = false;
@@ -29,7 +30,7 @@ angular.module('HeaderApp')
 				});
 			};
 
-			vm.getReviewUrldkfsnd = function () {
+			vm.getReviewUrl = function () {
 				return /(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)
 				? ('https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin#feedback-container')
 				: ('https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn/reviews');
@@ -38,6 +39,10 @@ angular.module('HeaderApp')
 			vm.logout = function  ($event) {
 				$event.preventDefault();
 				$log.warn('Logout');
+			};
+
+			vm.trackActivity = function  (activity) {
+				Analytics.trackEvent('Activity', activity, 'dropdown-menu');
 			};
 
 			storage.ready.then(function (stg) {
