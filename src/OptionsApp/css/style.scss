@@ -107,25 +107,33 @@ label {
 	}
 }
 
-
-@mixin btnColor($selector, $mainColor, $textColor: #fff) {
-  #{$selector} {
-		@extend %btn;
-		background-color: $mainColor;
-		color: $textColor;
-		&:disabled {
-			background-color: lighten($mainColor, 30%);
+@mixin btnColor($mainColor, $textColor: #fff) {
+	background-color: $mainColor;
+	color: $textColor;
+	&:disabled {
+		background-color: lighten($mainColor, 30%);
+	}
+	&:not(:disabled) {
+		&:active {
+			background-color: darken($mainColor, 5%) !important;
 		}
-		&:not(:disabled) {
-			&:active {
-				background-color: darken($mainColor, 5%) !important;
-			}
-			&:hover {
-				background-color: lighten($mainColor, 5%);
-			}
+		&:hover {
+			background-color: lighten($mainColor, 5%);
 		}
-  }
+	}
 }
 
-@include btnColor('.save', #6287ae);
-@include btnColor('.reset', #dc4040);
+.buttons-conteiner {
+	display: flex;
+	max-width: 600px;
+	.save {
+		@extend %btn;
+		@include btnColor(#6287ae);
+	}
+
+	.clear {
+		@extend %btn;
+		@include btnColor(#dc4040);
+		margin-left: auto;
+	}
+}

@@ -74,7 +74,7 @@ label {
 #donate {
   text-align: center; }
 
-.save, .reset {
+.buttons-conteiner .save, .buttons-conteiner .clear {
   padding: 7px 16px 8px;
   margin: 0;
   font-size: 12px;
@@ -84,33 +84,36 @@ label {
   border-radius: 2px;
   box-sizing: border-box;
   vertical-align: top; }
-  .save:not(:disabled), .reset:not(:disabled) {
+  .buttons-conteiner .save:not(:disabled), .buttons-conteiner .clear:not(:disabled) {
     cursor: pointer; }
-    .save:not(:disabled):active, .reset:not(:disabled):active {
+    .buttons-conteiner .save:not(:disabled):active, .buttons-conteiner .clear:not(:disabled):active {
       padding-top: 8px;
       padding-bottom: 7px;
       background-color: #ccc; }
-  .save:focus, .reset:focus {
+  .buttons-conteiner .save:focus, .buttons-conteiner .clear:focus {
     outline: none; }
 
-.save {
-  background-color: #6287ae;
-  color: #fff; }
-  .save:disabled {
-    background-color: #c7d4e2; }
-  .save:not(:disabled):active {
-    background-color: #547aa3 !important; }
-  .save:not(:disabled):hover {
-    background-color: #7394b7; }
-
-.reset {
-  background-color: #dc4040;
-  color: #fff; }
-  .reset:disabled {
-    background-color: #f4c1c1; }
-  .reset:not(:disabled):active {
-    background-color: #d82a2a !important; }
-  .reset:not(:disabled):hover {
-    background-color: #e05656; }
+.buttons-conteiner {
+  display: flex;
+  max-width: 600px; }
+  .buttons-conteiner .save {
+    background-color: #6287ae;
+    color: #fff; }
+    .buttons-conteiner .save:disabled {
+      background-color: #c7d4e2; }
+    .buttons-conteiner .save:not(:disabled):active {
+      background-color: #547aa3 !important; }
+    .buttons-conteiner .save:not(:disabled):hover {
+      background-color: #7394b7; }
+  .buttons-conteiner .clear {
+    background-color: #dc4040;
+    color: #fff;
+    margin-left: auto; }
+    .buttons-conteiner .clear:disabled {
+      background-color: #f4c1c1; }
+    .buttons-conteiner .clear:not(:disabled):active {
+      background-color: #d82a2a !important; }
+    .buttons-conteiner .clear:not(:disabled):hover {
+      background-color: #e05656; }
 
 /*# sourceMappingURL=style.css.map */

@@ -93,12 +93,15 @@
 			</div>
 		</div>
 
-		<button ng-disabled="controller.isOptionSaved()" ng-click="controller.saveOptions()" class="save">
-			<translate ng-show="controller.isOptionSaved()">Сохранено</translate>
-			<translate ng-hide="controller.isOptionSaved()">Сохранить</translate>
-		</button>
+		<div class="buttons-conteiner">
 
-		<button ng-click="" class="reset"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить кэш</translate></button>
+			<button ng-disabled="controller.isOptionSaved()" ng-click="controller.saveOptions()" class="save">
+				<translate ng-show="controller.isOptionSaved()">Сохранено</translate>
+				<translate ng-hide="controller.isOptionSaved()">Сохранить</translate>
+			</button>
+
+			<button ng-click="" class="clear"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить все данные расширения</translate></button>
+		</div>
 	</div>
 	<div id="donate"></div>
 </body>
