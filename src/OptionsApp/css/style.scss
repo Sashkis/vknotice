@@ -40,6 +40,26 @@ ng-include.header {
 		padding: 25px 30px 30px;
 	}
 }
+
+.audioOption > .content {
+	display: flex;
+	justify-content: space-between;
+	label {
+		flex-grow: 1;
+		text-align: center;
+		color: rgba(0,0,0,0.3);
+		&:hover { color: lighten($mainColor, 15%); }
+		&.active { color: $mainColor; }
+		.fa {
+			color: inherit;
+			display: block;
+			margin: auto;
+			font-size: 300%;
+			line-height: normal;
+		}
+	}
+}
+
 label {
 	position: relative;
 	display: block;
@@ -64,27 +84,48 @@ label {
 	text-align: center;
 }
 
-.save {
-		padding: 7px 16px 8px;
-	// margin: 0;
+%btn {
+	padding: 7px 16px 8px;
+	margin: 0;
 	font-size: 12px;
-	display: inline-block;
-	// zoom: 1;
-	cursor: pointer;
-	// white-space: nowrap;
-	// outline: none;
-	// font-family: Open Sans,Helvetica Neue,sans-serif;
-	vertical-align: top;
-	line-height: 15px;
+	font-family: Open Sans,Helvetica Neue,sans-serif;
 	text-align: center;
-	text-decoration: none;
-	// background: none;
-	background-color: #6287ae;
-	color: #fff;
 	border: 0;
 	border-radius: 2px;
-	// box-sizing: border-box;
-	&:disabled {
-		opacity: 0.5;
+	box-sizing: border-box;
+	vertical-align: top;
+	&:not(:disabled) {
+		cursor: pointer;
+		&:active {
+			padding-top: 8px;
+			padding-bottom: 7px;
+			background-color: #ccc;
+		}
+	}
+	&:focus {
+		outline: none;
 	}
 }
+
+
+@mixin btnColor($selector, $mainColor, $textColor: #fff) {
+  #{$selector} {
+		@extend %btn;
+		background-color: $mainColor;
+		color: $textColor;
+		&:disabled {
+			background-color: lighten($mainColor, 30%);
+		}
+		&:not(:disabled) {
+			&:active {
+				background-color: darken($mainColor, 5%) !important;
+			}
+			&:hover {
+				background-color: lighten($mainColor, 5%);
+			}
+		}
+  }
+}
+
+@include btnColor('.save', #6287ae);
+@include btnColor('.reset', #dc4040);

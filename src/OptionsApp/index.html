@@ -15,7 +15,8 @@
 
 	<script src="../Translations/all.js"></script>
 
-	<script src="../inc/StorageApp.js"></script>
+	<script src="../StorageApp/StorageClass.js"></script>
+	<script src="../StorageApp/StorageApp.js"></script>
 	<script src="../VkApp/js/VkApp.js"></script>
 	<script src="../VkApp/js/VkFactory.js"></script>
 
@@ -34,58 +35,70 @@
 			<div class="header" translate >Настройки уведомлений</div>
 			<div class="content">
 				<label>
-					<input ng-model="controller.options.friends" type="checkbox" ng-change="controller.isOptionSaved = false"/>
+					<input ng-model="controller.options.friends" type="checkbox"/>
 					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.friends}]"></i>
 					<translate>Сообщать о заявках в друзья</translate>
 				</label>
 				<label>
-					<input ng-model="controller.options.photos" type="checkbox" ng-change="controller.isOptionSaved = false"/>
+					<input ng-model="controller.options.photos" type="checkbox"/>
 					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.photos}]"></i>
 					<translate>Сообщать об отметках на фотографиях</translate>
 				</label>
 				<label>
-					<input ng-model="controller.options.videos" type="checkbox" ng-change="controller.isOptionSaved = false"/>
+					<input ng-model="controller.options.videos" type="checkbox"/>
 					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.videos}]"></i>
 					<translate>Сообщать об отметках в видеозаписях</translate>
 				</label>
 				<label>
-					<input ng-model="controller.options.messages" type="checkbox" ng-change="controller.isOptionSaved = false"/>
+					<input ng-model="controller.options.messages" type="checkbox"/>
 					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.messages}]"></i>
 					<translate>Сообщать о личных сообщениях</translate>
 				</label>
 				<label>
-					<input ng-model="controller.options.groups" type="checkbox" ng-change="controller.isOptionSaved = false"/>
+					<input ng-model="controller.options.groups" type="checkbox"/>
 					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.groups}]"></i>
 					<translate>Сообщать о приглашениях в группы</translate>
 				</label>
 				<label>
-					<input ng-model="controller.options.notifications" type="checkbox" ng-change="controller.isOptionSaved = false"/>
+					<input ng-model="controller.options.notifications" type="checkbox"/>
 					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.notifications}]"></i>
 					<translate>Сообщать об ответах</translate>
 				</label>
 				<label>
-					<input ng-model="controller.options.comments" type="checkbox"  ng-change="controller.isOptionSaved = false"/>
+					<input ng-model="controller.options.comments" type="checkbox"/>
 					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.comments}]"></i>
 					<translate>Сообщать о новых комментариях</translate>
 				</label>
 			</div>
 		</div>
 
-		<div class="panel sys">
-			<div class="header" translate >Настройки Информера</div>
+		<div class="panel audioOption">
+			<div class="header" translate >Звуковые уведомления</div>
 			<div class="content">
-				<label>
-					<input ng-model="controller.options.audio" type="checkbox"  ng-change="controller.isOptionSaved = false"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': controller.options.audio}]"></i>
-					<translate>Звуковые уведомления</translate>
+				<label ng-class="{'active': controller.options.audio == 0}">
+					<i class="fa fa-volume-off"></i>
+					<translate>Выключить</translate>
+					<input ng-model="controller.options.audio" type="radio" value="0"/>
+				</label>
+				<label ng-class="{'active': controller.options.audio == 1}">
+					<i class="fa fa-volume-down"></i>
+					<translate>При закрытом ВК</translate>
+					<input ng-model="controller.options.audio" type="radio" value="1"/>
+				</label>
+				<label ng-class="{'active': controller.options.audio == 2}">
+					<i class="fa fa-volume-up"></i>
+					<translate>Всегда</translate>
+					<input ng-model="controller.options.audio" type="radio" value="2"/>
 				</label>
 			</div>
 		</div>
 
-		<button ng-disabled="controller.isOptionSaved" ng-click="controller.saveOptions()" class="save">
-			<translate ng-show="controller.isOptionSaved">Сохранено</translate>
-			<translate ng-hide="controller.isOptionSaved">Сохранить</translate>
+		<button ng-disabled="controller.isOptionSaved()" ng-click="controller.saveOptions()" class="save">
+			<translate ng-show="controller.isOptionSaved()">Сохранено</translate>
+			<translate ng-hide="controller.isOptionSaved()">Сохранить</translate>
 		</button>
+
+		<button ng-click="" class="reset"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить кэш</translate></button>
 	</div>
 	<div id="donate"></div>
 </body>
