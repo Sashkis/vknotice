@@ -14,7 +14,7 @@
  * @prop {boolean} stg.options.groups        - Опция для включения уведомления.
  * @prop {boolean} stg.options.notifications - Опция для включения уведомления.
  * @prop {boolean} stg.options.comments      - Опция для включения уведомления.
- * @prop {number}  stg.options.audio         - Опция для включения звука при получении нового уведомления.
+ * @prop {string}  stg.options.audio         - Опция для включения звука при получении нового уведомления.
  *                                             0 - Звук выключен.
  *                                             1 - Звук включен, если закрыты все вкладки *.vk.com
  *                                             2 - Звук включен всегда
@@ -57,6 +57,7 @@ class Storage {
 	}
 
 	set(data, callback) {
+		angular.extend(this.stg, angular.copy(data) );
 		chrome.storage.local.set(data, callback);
 	}
 
@@ -82,7 +83,9 @@ class Storage {
 	}
 
 	setProfiles(array) {
+		if (!angular.isArray(array)) return;
 		array.map((profile) => {
+			if (!profile || angular.isUndefined(profile.id)) return;
 			const index = this.getProfileIndex(profile.id);
 
 			if (angular.isUndefined(this.stg.profiles)) this.stg.profiles = [];
