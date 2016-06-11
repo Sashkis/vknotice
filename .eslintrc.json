@@ -7,6 +7,9 @@
     "globals": {
         "chrome": true
     },
+		"parserOptions" : {
+			"sourceType": "module"
+		},
     "rules": {
         "block-spacing": 1,
         "brace-style": 1,
