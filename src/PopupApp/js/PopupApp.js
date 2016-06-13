@@ -3,6 +3,7 @@ angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext', 'angular-goog
 .config(['AnalyticsProvider', function (AnalyticsProvider) {
 	AnalyticsProvider.setAccount({
 		tracker:    'UA-71609511-3',
+		trackEvent: true,
 		fields: {
 			cookieName:   'vknotice-analitics',
 			cookieDomain: 'none',
@@ -12,7 +13,6 @@ angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext', 'angular-goog
 		},
 	})
 	.setHybridMobileSupport(true);
-	AnalyticsProvider.logAllCalls(true);
 }])
 
 .run(['gettextCatalog', 'storage', '$log', 'Analytics',
