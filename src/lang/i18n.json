@@ -249,17 +249,6 @@
 		"54":"Sunet de notificare",
 		"61":"Geluid meldingen"
 	},
-	"Display the number of messages":{
-		"0":"Отображать количество сообщений",
-		"1":"Відображати кількість повідомлень",
-		"2":"Адлюстроўваць колькасць паведамленняў",
-		"6":"Zeigt die Anzahl der Nachrichten",
-		"15":"Wyświetlanie ilości postów",
-		"54":"Afișa numărul de mesaje",
-		"61":"Weer te geven voor het aantal berichten"
-	},
-
-
 
 	"Your private messages will be displayed here.":{
 		"0":"Здесь будет выводиться список Ваших сообщений.",

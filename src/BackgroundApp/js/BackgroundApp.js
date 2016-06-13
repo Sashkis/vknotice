@@ -21,9 +21,8 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 
 .run(['Config', 'storage', '$vk', 'deamon', '$log', 'Analytics',
 	function (Config, storage, $vk, deamon, $log, Analytics) {
-		let currentBadge = 0;
 
-		function setBadge(counters) {
+		function setBadge(counters, audioOption) {
 			let badge = 0;
 
 			angular.forEach(counters, (counter) => {
@@ -31,18 +30,23 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 			});
 
 			chrome.browserAction.setBadgeText({ text: badge > 0 ? `${badge}` : '' });
-
-			return badge;
+			playSound(badge, audioOption);
 		}
 
-		function playSound(newBadge, stg) {
-			if (stg.audio && newBadge > currentBadge) {
-				chrome.tabs.query({
-					url: '*://*.vk.com/*',
-				}, function (tabs) {
-					if (!tabs.length) document.getElementById('audio').play();
-				});
-			}
+		function playSound(newBadge, audioOption) {
+			if (audioOption === '0') return;
+			chrome.browserAction.getBadgeText({}, function (oldBadge) {
+				if (newBadge > oldBadge) {
+					if (audioOption === '2') document.getElementById('audio').play();
+					else {
+						chrome.tabs.query({
+							url: '*://*.vk.com/*',
+						}, function (tabs) {
+							if (!tabs.length) document.getElementById('audio').play();
+						});
+					}
+				}
+			});
 		}
 
 		/**
@@ -62,15 +66,8 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 			// if (changes.profiles !== undefined) {
 			// }
 
-			if (angular.isDefined(changes.access_token)) {
-				stg.apiOptions.access_token = changes.access_token.newValue;
-			}
-
 			if (angular.isDefined(changes.counter)) {
-				let badge = setBadge(changes.counter.newValue);
-
-				playSound(badge, stg);
-				currentBadge = badge;
+				setBadge(changes.counter.newValue, stg.options.audio);
 			}
 
 			angular.forEach(changes, function (change, key) {
@@ -81,6 +78,28 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 		});
 
 		storage.ready.then(function (stg) {
+			if (angular.isUndefined(stg.profiles)) {
+				storage.set({
+					profiles: [],
+				});
+			}
+
+			// Если свойство с настройками не задано
+			// задаем его с параметрами по умолчанию
+			if (angular.isUndefined(stg.options)) {
+				storage.set({
+					options: {
+						friends:       true,
+						photos:        true,
+						videos:        true,
+						messages:      true,
+						groups:        true,
+						notifications: true,
+						comments:      true,
+						audio:         '1',
+					},
+				});
+			}
 
 			// Записать пользователей и групы в кэш профилей
 			if (stg.users) {
@@ -98,35 +117,33 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 			// Устанавливаем бейдж
 			// и воспроизводим звуковое уведомление
 			if (stg.counter) {
-				let badge = setBadge(stg.counter);
-
-				playSound(badge, stg);
-				currentBadge = badge;
+				setBadge(stg.counter, stg.options.audio);
 			}
 
-			// Если свойство с настройками для API не задано
-			// задаем его с параметрами по умолчанию
-			if (!stg.apiOptions) {
-				stg.apiOptions = {
-					access_token: stg.access_token,
-					options: 'friends,photos,videos,messages,groups,notifications',
-					isLoadComment: 0,
-					lastOpenComment: Date.now(),
-					lastLoadAlert: 0,
-				};
+			if (angular.isUndefined(stg.lastOpenComment)) {
+				stg.lastOpenComment = Date.now();
 			}
-
-			if (angular.isUndefined(stg.audio)) {
-				stg.audio = 1;
-			}
-
 
 			Analytics.trackPage('Background');
 			Analytics.set('&uid', stg.user_id);
 
 
 			$vk.auth().then(function () {
-				deamon.start('execute.ang', stg.apiOptions, function (resp) {
+				const apiOptions = {
+					access_token: stg.access_token,
+					options: '',
+					isLoadComment: stg.options.comments,
+					lastOpenComment: stg.lastOpenComment,
+				};
+
+				if (stg.options.friends)       apiOptions.options += 'friends,';
+				if (stg.options.photos)        apiOptions.options += 'photos,';
+				if (stg.options.videos)        apiOptions.options += 'videos,';
+				if (stg.options.messages)      apiOptions.options += 'messages,';
+				if (stg.options.groups)        apiOptions.options += 'groups,';
+				if (stg.options.notifications) apiOptions.options += 'notifications,';
+
+				deamon.start('execute.ang', apiOptions, function (resp) {
 					chrome.browserAction.setIcon({ path: 'img/icon38.png' });
 					delete resp.system;
 					storage.set(resp);
