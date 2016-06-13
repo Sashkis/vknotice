@@ -3,6 +3,7 @@ angular.module('OptionsApp', ['HeaderApp', 'gettext', 'angular-google-analytics'
 .config(['AnalyticsProvider', function (AnalyticsProvider) {
 	AnalyticsProvider.setAccount({
 		tracker:    'UA-71609511-3',
+		trackEvent: true,
 		fields: {
 			cookieName:   'vknotice-analitics',
 			cookieDomain: 'none',
@@ -12,7 +13,6 @@ angular.module('OptionsApp', ['HeaderApp', 'gettext', 'angular-google-analytics'
 		},
 	})
 	.setHybridMobileSupport(true);
-	AnalyticsProvider.logAllCalls(true);
 }])
 
 .run(['gettextCatalog', 'storage', '$log', 'Analytics',
@@ -21,6 +21,7 @@ function (gettextCatalog, storage, $log, Analytics) {
 
 	storage.ready.then(function (stg) {
 		Analytics.set('&uid', stg.user_id);
+		Analytics.trackPage('/Options', 'Настройки');
 		const lang = getLang(stg.lang);
 
 		if (lang !== 'ru') {

@@ -1,5 +1,5 @@
 angular.module('OptionsApp')
-	.controller('OptionsCtrl', ['storage', '$log', '$scope', function (storage, $log, $scope) {
+	.controller('OptionsCtrl', ['storage', 'Analytics', '$scope', function (storage, Analytics, $scope) {
 		const vm = this;
 
 		vm.stg = {
@@ -12,12 +12,15 @@ angular.module('OptionsApp')
 		});
 
 		vm.saveOptions = function () {
+			Analytics.trackEvent('Activity', 'SaveOptions');
 			storage.set({
 				options: vm.options,
-			}, () => {
-				// vm.isOptionSaved = true;
-				$scope.$apply();
-			});
+			}, () => $scope.$apply() );
+		};
+
+		vm.clearData = function () {
+			Analytics.trackEvent('Activity', 'ClearData');
+			chrome.storage.local.clear();
 		};
 
 		vm.isOptionSaved = function () {
