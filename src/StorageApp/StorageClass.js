@@ -58,7 +58,7 @@ class Storage {
 
 	set(data, callback) {
 		angular.extend(this.stg, angular.copy(data) );
-		chrome.storage.local.set(data, callback);
+		chrome.storage.local.set(data, callback || function () {});
 	}
 
 	getProfileIndex(id) {

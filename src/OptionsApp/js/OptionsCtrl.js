@@ -20,7 +20,7 @@ angular.module('OptionsApp')
 
 		vm.clearData = function () {
 			Analytics.trackEvent('Activity', 'ClearData');
-			chrome.storage.local.clear();
+			// chrome.storage.local.clear();
 		};
 
 		vm.isOptionSaved = function () {
