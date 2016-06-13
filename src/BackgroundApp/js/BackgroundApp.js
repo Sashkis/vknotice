@@ -145,7 +145,9 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 
 				deamon.start('execute.ang', apiOptions, function (resp) {
 					chrome.browserAction.setIcon({ path: 'img/icon38.png' });
+					resp.dialogs.map(deleteAttachent);
 					delete resp.system;
+
 					storage.set(resp);
 
 					return true;
@@ -162,6 +164,11 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 	},
 ]);
 
+function deleteAttachent(dialog) {
+	if (dialog.message.attachments) delete dialog.message.attachments;
+
+	return dialog;
+}
 
 // "use strict";
 // jQuery(function ($) {
