@@ -18,6 +18,7 @@ angular.module('HeaderApp')
 			const vm = this;
 
 			vm.isDropdownOpen = false;
+			vm.app_id = chrome.app.getDetails().id;
 
 			vm.getShareUrl = function () {
 				return 'https://vk.com/share.php?' + $httpParamSerializer({
