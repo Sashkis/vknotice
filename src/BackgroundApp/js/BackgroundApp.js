@@ -78,6 +78,10 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 				setBadge(changes.counter.newValue, stg.options.audio);
 			}
 
+			if (changes.user_id && changes.user_id.newValue) {
+				Analytics.set('&uid', changes.user_id.newValue);
+			}
+
 			const newStg = {};
 
 			angular.forEach(changes, function (change, key) {
@@ -136,7 +140,10 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 			}
 
 			Analytics.trackPage('Background');
-			Analytics.set('&uid', stg.user_id);
+
+			if (stg.user_id) {
+				Analytics.set('&uid', stg.user_id);
+			}
 
 
 			$vk.auth().then(function () {
