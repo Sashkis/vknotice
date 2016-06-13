@@ -1,11 +1,18 @@
 angular.module('OptionsApp', ['HeaderApp', 'gettext', 'angular-google-analytics'])
 
-.config(['AnalyticsProvider', function (AnalyticsProvider) {
+.config(['$provide', 'AnalyticsProvider', function ($provide, AnalyticsProvider) {
+	$provide.decorator('$exceptionHandler', ['$delegate', '$log', function ($delegate, $log) {
+		return function (exception, cause) {
+			$log.warn(exception, cause);
+			$delegate(exception, cause);
+		};
+	}]);
+
 	AnalyticsProvider.setAccount({
-		tracker:    'UA-71609511-3',
+		tracker: 'UA-71609511-3',
 		trackEvent: true,
 		fields: {
-			cookieName:   'vknotice-analitics',
+			cookieName: 'vknotice-analitics',
 			cookieDomain: 'none',
 		},
 		set: {

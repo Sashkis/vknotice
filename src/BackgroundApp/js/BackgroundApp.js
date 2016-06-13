@@ -4,9 +4,18 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 	profilesLimit: 100,
 })
 
-.config(['AnalyticsProvider', function (AnalyticsProvider) {
+
+.config(['$provide', 'AnalyticsProvider', function ($provide, AnalyticsProvider) {
+	$provide.decorator('$exceptionHandler', ['$delegate', '$log', function ($delegate, $log) {
+		return function (exception, cause) {
+			$log.warn(exception, cause);
+			$delegate(exception, cause);
+		};
+	}]);
+
 	AnalyticsProvider.setAccount({
 		tracker: 'UA-71609511-3',
+		trackEvent: true,
 		fields: {
 			cookieName: 'vknotice-analitics',
 			cookieDomain: 'none',
@@ -16,7 +25,6 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 		},
 	})
 	.setHybridMobileSupport(true);
-	AnalyticsProvider.logAllCalls(true);
 }])
 
 .run(['Config', 'storage', '$vk', 'deamon', '$log', 'Analytics',

@@ -1,6 +1,13 @@
 angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext', 'angular-google-analytics'])
 
-.config(['AnalyticsProvider', function (AnalyticsProvider) {
+.config(['$provide', 'AnalyticsProvider', function ($provide, AnalyticsProvider) {
+	$provide.decorator('$exceptionHandler', ['$delegate', '$log', function ($delegate, $log) {
+		return function (exception, cause) {
+			$log.warn(exception, cause);
+			$delegate(exception, cause);
+		};
+	}]);
+
 	AnalyticsProvider.setAccount({
 		tracker:    'UA-71609511-3',
 		trackEvent: true,
