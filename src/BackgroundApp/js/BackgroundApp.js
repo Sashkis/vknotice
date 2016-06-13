@@ -62,27 +62,30 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 		 * При изменении определенного параметра выполняем соотведствующие действия
 		 */
 		storage.onChanged((changes, stg) => {
-			if (angular.isDefined(changes.users)) {
+			if (changes.users && changes.users.newValue) {
 				storage.setProfiles(changes.users.newValue);
 			}
 
 
-			if (angular.isDefined(changes.groups)) {
+			if (changes.groups && changes.groups.newValue) {
 				storage.setProfiles(changes.groups.newValue);
 			}
 
 			// if (changes.profiles !== undefined) {
 			// }
 
-			if (angular.isDefined(changes.counter)) {
+			if (changes.counter && changes.counter.newValue) {
 				setBadge(changes.counter.newValue, stg.options.audio);
 			}
 
+			const newStg = {};
+
 			angular.forEach(changes, function (change, key) {
-				stg[key] = angular.copy(change.newValue);
+				if (angular.isDefined(change.newValue)) newStg[key] = angular.copy(change.newValue);
 			});
 
-			storage.set(stg);
+			newStg.profiles = stg.profiles;
+			storage.set(newStg);
 		});
 
 		storage.ready.then(function (stg) {
