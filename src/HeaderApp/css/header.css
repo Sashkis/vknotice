@@ -130,13 +130,18 @@ header {
   color: #fff;
   background: #567ca4;
   display: flex; }
-  header .navbar-brand, header > span, header > a {
+  header .navbar-brand,
+  header > span,
+  header > a {
     cursor: pointer;
     color: #fff;
     line-height: 50px;
     font-size: 17px;
-    padding: 0 13px; }
-    header .navbar-brand:hover, header > span:hover, header > a:hover {
+    padding: 0 13px;
+    position: relative; }
+    header .navbar-brand:hover,
+    header > span:hover,
+    header > a:hover {
       background-color: rgba(0, 0, 0, 0.06); }
   header a {
     color: #fff;

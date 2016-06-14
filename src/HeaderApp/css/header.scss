@@ -8,12 +8,15 @@ header {
 	color: #fff;
 	background: $mainColor;
 	display: flex;
-	.navbar-brand, > span, > a {
+	.navbar-brand,
+	> span,
+	> a {
 		cursor: pointer;
 		color: #fff;
 		line-height: 50px;
 		font-size: 17px;
 		padding: 0 13px;
+		position: relative;
 		&:hover {
 			background-color: rgba(0, 0, 0, 0.06);
 		}
