@@ -1,0 +1,252 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'fontello';
+  src: url("../font/fontello.eot?65490445");
+  src: url("../font/fontello.eot?65490445#iefix") format("embedded-opentype"), url("../font/fontello.woff?65490445") format("woff"), url("../font/fontello.ttf?65490445") format("truetype"), url("../font/fontello.svg?65490445#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?65490445#fontello') format('svg');
+  }
+}
+*/
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */ }
+
+.icon-toggle-on:before {
+  content: '\e800'; }
+
+/* '' */
+.icon-toggle-off:before {
+  content: '\e801'; }
+
+/* '' */
+.icon-ok:before {
+  content: '\e803'; }
+
+/* '' */
+.icon-cancel:before {
+  content: '\e804'; }
+
+/* '' */
+.icon-spin4:before {
+  content: '\e805'; }
+
+/* '' */
+.icon-camera:before {
+  content: '\e806'; }
+
+/* '' */
+.icon-video:before {
+  content: '\e807'; }
+
+/* '' */
+.icon-music:before {
+  content: '\e808'; }
+
+/* '' */
+.icon-pencil:before {
+  content: '\e809'; }
+
+/* '' */
+.icon-chat:before {
+  content: '\e80a'; }
+
+/* '' */
+.icon-doc:before {
+  content: '\e80b'; }
+
+/* '' */
+.icon-emo-happy:before {
+  content: '\e80f'; }
+
+/* '' */
+.icon-link:before {
+  content: '\e810'; }
+
+/* '' */
+.icon-gift:before {
+  content: '\e811'; }
+
+/* '' */
+.icon-attach:before {
+  content: '\e812'; }
+
+/* '' */
+.icon-location:before {
+  content: '\e813'; }
+
+/* '' */
+/*
+   Animation example, for spinners
+*/
+.animate-spin {
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+  display: inline-block; }
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+
+@-webkit-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+
+@-o-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+
+@-ms-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+
+@keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+
+@font-face {
+  font-family: 'fontello';
+  src: url("../../popup/font/fontello.eot?24024807");
+  src: url("../../popup/font/fontello.eot?24024807#iefix") format("embedded-opentype"), url("../../popup/font/fontello.woff?24024807") format("woff"), url("../../popup/font/fontello.ttf?24024807") format("truetype"), url("../../popup/font/fontello.svg?24024807#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  color: #000;
+  font: normal 15px "Arial", sans-serif;
+  background: #f0f2f5;
+  margin: 0 auto;
+  padding: 50px 10px;
+  box-sizing: border-box; }
+  @media (max-width: 1000px) {
+    body {
+      max-width: 600px;
+      width: 100%; } }
+
+.wrapper {
+  width: 100%;
+  max-width: 865px;
+  margin: 0 auto; }
+
+.news {
+  float: right; }
+  @media (max-width: 1000px) {
+    .news {
+      display: none; } }
+
+.panel {
+  max-width: 600px;
+  padding: 0px;
+  background: #FFF;
+  box-shadow: 0 1px 2px rgba(6, 33, 63, 0.13);
+  color: #2b2f33;
+  margin-bottom: 20px;
+  box-sizing: border-box; }
+  .panel .header {
+    font-size: 19px;
+    padding: 15px 30px;
+    background-color: #f7f8fa;
+    border-bottom: 1px solid #eef0f3; }
+  .panel .content {
+    padding: 25px 30px 30px; }
+
+label {
+  position: relative;
+  display: block;
+  cursor: pointer; }
+  label input {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0; }
+    label input:checked + .icon-toggle-off {
+      display: none; }
+    label input:checked ~ .icon-toggle-on {
+      display: inline;
+      color: #2B587A; }
+  label .icon-toggle-on {
+    display: none; }
+  label .icon-toggle-off {
+    color: #2B587A;
+    opacity: 0.5; }
+
+[class^="icon-"], [class*=" icon-"] {
+  font-size: 1.5em;
+  vertical-align: middle; }
+
+#donate {
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */
