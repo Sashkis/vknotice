@@ -1,8 +1,11 @@
 $mainColor: #567ca4;
 body {
 	color: #000;
-	font: normal 15px "Arial", sans-serif;
-	background: #f0f2f5;
+	font-size: 13px;
+	font-family: "Open Sans","Helvetica Neue", sans-serif;
+	line-height: 1.154;
+	font-weight: 400;
+	background: #edeef0;
 	margin: 0 auto;
 	box-sizing: border-box;
 }
@@ -12,7 +15,7 @@ body {
 	margin: 0 auto 30px;
 }
 ng-include.header {
-	background: $mainColor;
+	background: #507299;
 	display: block;
 }
 .news {

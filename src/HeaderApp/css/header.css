@@ -126,16 +126,16 @@
     left: 0;
     right: auto; } }
 header {
-  height: 50px;
+  height: 42px;
   color: #fff;
-  background: #567ca4;
+  background: #507299;
   display: flex; }
   header .navbar-brand,
   header > span,
   header > a {
     cursor: pointer;
     color: #fff;
-    line-height: 50px;
+    line-height: 42px;
     font-size: 17px;
     padding: 0 13px;
     position: relative; }
@@ -154,7 +154,7 @@ header {
     flex: 1; }
     header .navbar-brand .fa {
       font-size: 30px;
-      line-height: 50px;
+      line-height: 42px;
       margin-right: 10px; }
   header .notifications.empty {
     color: #33567f; }

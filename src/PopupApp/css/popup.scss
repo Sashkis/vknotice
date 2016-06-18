@@ -1,14 +1,15 @@
 $mainColor: #567ca4;
 @import 'preloader';
+@import 'fonts';
 
 body {
-	background: #f0f2f5;
-    color: #2b2f33;
+	background: #edeef0;
+	color: #2b2f33;
 	font-family: "Open Sans", "Helvetica Neue", sans-serif;
 	font-size: 11px;
 	margin: 0;
-    width: 460px;
-    position: relative;
+	width: 460px;
+	position: relative;
 }
 a {
 	color: #33567f;
@@ -218,4 +219,3 @@ img.ava {
 // 		opacity:1;
 // 	}
 // }
-

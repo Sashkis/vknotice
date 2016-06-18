@@ -1,19 +1,20 @@
 $mainColor: #567ca4;
+$height: 42px;
 @import 'variables';
 @import 'mixins';
 @import 'dropdowns';
 
 header {
-	height: 50px;
+	height: $height;
 	color: #fff;
-	background: $mainColor;
+	background: #507299;
 	display: flex;
 	.navbar-brand,
 	> span,
 	> a {
 		cursor: pointer;
 		color: #fff;
-		line-height: 50px;
+		line-height: $height;
 		font-size: 17px;
 		padding: 0 13px;
 		position: relative;
@@ -33,7 +34,7 @@ header {
 	    flex: 1;
 	    .fa {
 		    font-size: 30px;
-		    line-height: 50px;
+		    line-height: $height;
 		    margin-right: 10px;
 	    }
 	}
