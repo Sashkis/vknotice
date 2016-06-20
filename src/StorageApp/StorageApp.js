@@ -1,3 +1,6 @@
-// eslint-disable-next-line angular/no-service-method
-angular.module('StorageApp', [])
-	.service('storage', ['$q', '$rootScope', Storage]);
+var StorageApp;
+(function (StorageApp) {
+    angular.module('StorageApp', [])
+        .service('storage', ['$q', '$rootScope', StorageApp.StorageService]);
+})(StorageApp || (StorageApp = {}));
+//# sourceMappingURL=StorageApp.js.map
