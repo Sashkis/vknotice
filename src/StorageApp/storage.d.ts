@@ -15,7 +15,7 @@ interface IStorageData {
 	newfriends?: number[];
 	dialogs?: IDialog[];
 	groups?: IProfiles[];
-	users: IProfiles[];
+	users?: IProfiles[];
 	profiles?: IProfiles[];
 	lang?: number;
 	lastOpenComment?: number;
