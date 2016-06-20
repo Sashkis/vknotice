@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+				"module": "es6",
+				"noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+				"strictNullChecks" : true,
+				"sourceMap": true
+    },
+    "exclude": [
+        "node_modules",
+        "build",
+        "src/bower_components/",
+        "src/_all.ts"
+    ]
+}
