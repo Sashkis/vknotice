@@ -68,4 +68,4 @@ var StorageApp;
     }());
     StorageApp.StorageService = StorageService;
 })(StorageApp || (StorageApp = {}));
-//# sourceMappingURL=StorageClass.js.map
+//# sourceMappingURL=StorageService.js.map

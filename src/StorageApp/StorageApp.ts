@@ -1,4 +1,4 @@
-/// <reference path="../_all.d.ts"/>
+/// <reference path="../all.d.ts"/>
 module StorageApp {
 // eslint-disable-next-line angular/no-service-method
 	angular.module('StorageApp', [])
