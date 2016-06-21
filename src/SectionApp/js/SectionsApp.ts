@@ -1,4 +1,4 @@
-/// <reference path="../../_all.d.ts"/>
+/// <reference path="../../all.d.ts"/>
 angular.module('SectionsApp', ['VkApp', 'StorageApp'])
 .constant('SectionsNames', {
 	'Default': 'Меню',
