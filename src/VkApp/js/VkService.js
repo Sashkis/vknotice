@@ -1,22 +1,22 @@
 var VkApp;
 (function (VkApp) {
     var VkService = (function () {
-        function VkService($q, $http, $httpParamSerializer, storage, apiConfig, authConfig, $log) {
+        function VkService($q, $http, storage, apiConfig, authConfig, $log, $httpParamSerializer) {
             this.$q = $q;
             this.$http = $http;
-            this.$httpParamSerializer = $httpParamSerializer;
             this.storage = storage;
             this.apiConfig = apiConfig;
             this.authConfig = authConfig;
             this.$log = $log;
-            this.authUrl = 'https://oauth.vk.com/authorize?' + $httpParamSerializer(authConfig);
+            this.stg = {};
+            this.authUrl = "https://oauth.vk.com/authorize?" + $httpParamSerializer(authConfig);
         }
         VkService.prototype.isAuth = function () {
-            var $vk = this;
+            var _this = this;
             var ready = this.$q.defer();
-            if ($vk.stg.access_token && $vk.stg.user_id) {
-                $vk.api('users.get', { access_token: $vk.stg.access_token }).then(function (resp) {
-                    ready.resolve(resp && resp[0] && resp[0].id && resp[0].id == $vk.stg.user_id);
+            if (this.stg.access_token && this.stg.user_id) {
+                this.api('users.get', { access_token: this.stg.access_token }).then(function (resp) {
+                    ready.resolve(resp && resp[0] && resp[0].id && resp[0].id == _this.stg.user_id);
                 }, function () {
                     ready.resolve(false);
                 });
@@ -37,11 +37,17 @@ var VkApp;
             }
             return ret;
         };
+        VkService.prototype.isAuthSuccess = function (authData) {
+            if (authData === void 0) { authData = {}; }
+            return authData && authData.user_id
+                && authData.access_token
+                && authData.state
+                && authData.state === 'vknotice';
+        };
         VkService.prototype.auth = function () {
             var _this = this;
             var ready = this.$q.defer();
             this.storage.ready.then(function (stg) {
-                console.log(_this);
                 _this.stg = stg;
                 _this.isAuth().then(function (isAuth) {
                     if (isAuth) {
@@ -54,17 +60,17 @@ var VkApp;
                         }, function (tab) {
                             var authTabId = tab.id;
                             var tabUpdateListener = function (tabId, changeInfo) {
-                                if (tabId === authTabId
+                                if (authTabId && authTabId === tabId
                                     && changeInfo.url
                                     && changeInfo.url.indexOf('oauth.vk.com/blank.html') > -1) {
                                     var authData = _this.parseHashParams(changeInfo.url);
-                                    _this.stg.user_id = authData.user_id;
-                                    _this.stg.access_token = authData.access_token;
+                                    if (!_this.isAuthSuccess(authData))
+                                        return;
                                     _this.storage.set({
-                                        user_id: _this.stg.user_id,
-                                        access_token: _this.stg.access_token,
+                                        user_id: authData.user_id,
+                                        access_token: authData.access_token,
                                     });
-                                    authTabId && chrome.tabs.remove(authTabId);
+                                    !!authTabId && chrome.tabs.remove(authTabId);
                                     chrome.tabs.onUpdated.removeListener(tabUpdateListener);
                                 }
                             };
@@ -84,17 +90,18 @@ var VkApp;
             });
             return ready.promise;
         };
-        VkService.prototype.api = function (method, data) {
-            if (data === void 0) { data = {}; }
+        VkService.prototype.api = function (method, params) {
+            var _this = this;
+            if (params === void 0) { params = {}; }
             var ready = this.$q.defer();
-            data.v = this.apiConfig.version;
-            this.$http.get('https://api.vk.com/method/' + method, { params: data })
+            params.v = this.apiConfig.version;
+            this.$http.get("https://api.vk.com/method/" + method, { params: params })
                 .then(function (API) {
-                if (API.data && API.data.response) {
+                if (_this.isResponseSuccess(API.data)) {
                     ready.resolve(API.data.response);
                 }
-                else if (API.data.error) {
-                    this.$log.error(API.data.error);
+                else {
+                    _this.$log.error(API.data.error);
                     ready.reject('api_error');
                 }
             }, function () {
@@ -102,14 +109,17 @@ var VkApp;
             });
             return ready.promise;
         };
+        VkService.prototype.isResponseSuccess = function (respData) {
+            return !!respData.response;
+        };
         VkService.$inject = [
             '$q',
             '$http',
-            '$httpParamSerializer',
             'storage',
             'apiConfig',
             'authConfig',
             '$log',
+            '$httpParamSerializer',
         ];
         return VkService;
     }());
