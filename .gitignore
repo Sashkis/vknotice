@@ -1,13 +1,6 @@
-
-*.zip
 *.log
 *.sublime-project
 *.sublime-workspace
-/src/**/*.css.map
-/Архив
 .sass-cache
 /img/*
-/.cache/*
 /node_modules/*
-/src/bower_components/*
-/out
