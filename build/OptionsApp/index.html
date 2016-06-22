@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="OptionsApp">
+<head>
+	<title>{{'Настройки'|translate}}</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../HeaderApp/HeaderApp.css">
+	<link rel="stylesheet" href="OptionsApp.css">
+	<link rel="stylesheet" href="../vendors/css/fonts.css">
+
+</head>
+<body>
+	<ng-include src="'../HeaderApp/Header.tpl'" class="header"></ng-include>
+	<div class="wrapper" ng-controller="OptionsCtrl as vm">
+		<iframe class="group news" name="fXDc2eac" frameborder="0" src="https://vk.com/widget_community.php?app=0&amp;width=380px&amp;_ver=1&amp;gid=90041499&amp;mode=2&amp;color1=FFFFFF&amp;color2=2B587A&amp;color3=5B7FA6&amp;class_name=&amp;height=470&amp;url=https%3A%2F%2Fvk.com%2Fdev%2FCommunity%3Fheight%3D470%26link%3Dhttps%253A%252F%252Fvk.com%252Fvknotice%26mode%3D2%26oid%3D-90041499%26wide%3D%26width%3D250&amp;14eb7275869" width="380" height="200" scrolling="no" id="vkwidget7" style="overflow: hidden; height: 470px;"></iframe>
+		<div class="panel noty">
+			<div class="header" translate >Настройки уведомлений</div>
+			<div class="content">
+				<label>
+					<input ng-model="vm.options.friends" type="checkbox"/>
+					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.friends}]"></i>
+					<translate>Сообщать о заявках в друзья</translate>
+				</label>
+				<label>
+					<input ng-model="vm.options.photos" type="checkbox"/>
+					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.photos}]"></i>
+					<translate>Сообщать об отметках на фотографиях</translate>
+				</label>
+				<label>
+					<input ng-model="vm.options.videos" type="checkbox"/>
+					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.videos}]"></i>
+					<translate>Сообщать об отметках в видеозаписях</translate>
+				</label>
+				<label>
+					<input ng-model="vm.options.messages" type="checkbox"/>
+					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.messages}]"></i>
+					<translate>Сообщать о личных сообщениях</translate>
+				</label>
+				<label>
+					<input ng-model="vm.options.groups" type="checkbox"/>
+					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.groups}]"></i>
+					<translate>Сообщать о приглашениях в группы</translate>
+				</label>
+				<label>
+					<input ng-model="vm.options.notifications" type="checkbox"/>
+					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
+					<translate>Сообщать об ответах</translate>
+				</label>
+				<label>
+					<input ng-model="vm.options.comments" type="checkbox"/>
+					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.comments}]"></i>
+					<translate>Сообщать о новых комментариях</translate>
+				</label>
+			</div>
+		</div>
+
+		<div class="panel audioOption">
+			<div class="header" translate >Звуковые уведомления</div>
+			<div class="content">
+				<label ng-class="{'active': vm.options.audio == 0}">
+					<i class="fa fa-volume-off"></i>
+					<translate>Выключить</translate>
+					<input ng-model="vm.options.audio" type="radio" value="0"/>
+				</label>
+				<label ng-class="{'active': vm.options.audio == 1}">
+					<i class="fa fa-volume-down"></i>
+					<translate>При закрытом ВК</translate>
+					<input ng-model="vm.options.audio" type="radio" value="1"/>
+				</label>
+				<label ng-class="{'active': vm.options.audio == 2}">
+					<i class="fa fa-volume-up"></i>
+					<translate>Всегда</translate>
+					<input ng-model="vm.options.audio" type="radio" value="2"/>
+				</label>
+			</div>
+		</div>
+
+		<div class="buttons-conteiner">
+
+			<button ng-disabled="vm.isOptionSaved()" ng-click="vm.saveOptions()" class="save">
+				<translate ng-show="vm.isOptionSaved()">Сохранено</translate>
+				<translate ng-hide="vm.isOptionSaved()">Сохранить</translate>
+			</button>
+
+			<button ng-click="vm.clearData()" class="clear"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить все данные расширения</translate></button>
+		</div>
+	</div>
+	<div id="donate"></div>
+	<script src="../vendors/js/vendors.js"></script>
+	<script src="../Translations/all.js"></script>
+	<script src="../StorageApp/StorageApp.js"></script>
+	<script src="../VkApp/VkApp.js"></script>
+	<script src="../HeaderApp/HeaderApp.js"></script>
+	<script src="OptionsApp.js"></script>
+</body>
+</html>

@@ -3,32 +3,23 @@
 <head>
 	<title>{{'Настройки'|translate}}</title>
 	<meta charset="UTF-8">
+	<!-- build:css ../HeaderApp/HeaderApp.css -->
 	<link rel="stylesheet" href="../HeaderApp/css/header.css">
+	<!-- endbuild -->
+	<!-- build:css OptionsApp.css -->
 	<link rel="stylesheet" href="css/style.css">
-
+	<!-- endbuild -->
+	<!-- build:css ../vendors/css/fonts.css -->
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="../fontawesome/css/font-awesome.min.css">
-
-	<script src="../bower_components/angular/angular.min.js"></script>
-	<script src="../bower_components/angular-gettext/dist/angular-gettext.min.js"></script>
-	<script src="../bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
-
-	<script src="../Translations/all.js"></script>
-
-	<script src="../StorageApp/StorageService.js"></script>
-	<script src="../StorageApp/StorageApp.js"></script>
-	<script src="../VkApp/js/VkApp.js"></script>
-	<script src="../VkApp/js/VkFactory.js"></script>
-
-	<script src="../HeaderApp/js/HeaderApp.js"></script>
-	<script src="../HeaderApp/js/HeaderCtrl.js"></script>
-
-	<script src="js/OptionsApp.js"></script>
-	<script src="js/OptionsCtrl.js"></script>
+	<!-- bower:css -->
+	<link rel='stylesheet' href='../bower_components/components-font-awesome/css/font-awesome.css' />
+	<link rel='stylesheet' href='../bower_components/open-sans/css/open-sans.css' />
+	<!-- endbower -->
+	<!-- endbuild -->
 
 </head>
 <body>
-	<ng-include src="'../HeaderApp/HeaderTempl.html'" class="header"></ng-include>
+	<ng-include src="'../HeaderApp/Header.tpl'" class="header"></ng-include>
 	<div class="wrapper" ng-controller="OptionsCtrl as vm">
 		<iframe class="group news" name="fXDc2eac" frameborder="0" src="https://vk.com/widget_community.php?app=0&amp;width=380px&amp;_ver=1&amp;gid=90041499&amp;mode=2&amp;color1=FFFFFF&amp;color2=2B587A&amp;color3=5B7FA6&amp;class_name=&amp;height=470&amp;url=https%3A%2F%2Fvk.com%2Fdev%2FCommunity%3Fheight%3D470%26link%3Dhttps%253A%252F%252Fvk.com%252Fvknotice%26mode%3D2%26oid%3D-90041499%26wide%3D%26width%3D250&amp;14eb7275869" width="380" height="200" scrolling="no" id="vkwidget7" style="overflow: hidden; height: 470px;"></iframe>
 		<div class="panel noty">
@@ -104,5 +95,31 @@
 		</div>
 	</div>
 	<div id="donate"></div>
+	<!-- build:js ../vendors/js/vendors.js -->
+	<!-- bower:js -->
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-gettext/dist/angular-gettext.js"></script>
+	<script src="../bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+	<!-- build:js ../Translations/all.js-->
+	<script src="../Translations/all.js"></script>
+	<!-- endbuild -->
+	<!-- build:js ../StorageApp/StorageApp.js -->
+	<script src="../StorageApp/StorageService.js"></script>
+	<script src="../StorageApp/StorageApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js ../VkApp/VkApp.js -->
+	<script src="../VkApp/js/VkService.js"></script>
+	<script src="../VkApp/js/VkApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js ../HeaderApp/HeaderApp.js -->
+	<script src="../HeaderApp/js/HeaderApp.js"></script>
+	<script src="../HeaderApp/js/HeaderCtrl.js"></script>
+	<!-- endbuild -->
+	<!-- build:js OptionsApp.js -->
+	<script src="./js/OptionsApp.js"></script>
+	<script src="./js/OptionsCtrl.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
