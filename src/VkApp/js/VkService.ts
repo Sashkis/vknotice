@@ -24,7 +24,10 @@ module VkApp {
 		) {
 			this.authUrl = `https://oauth.vk.com/authorize?${$httpParamSerializer(authConfig)}`;
 		}
-		
+
+		/**
+		 * Асинхронно Проверяет авторизован ли пользователь
+		 */
 		isAuth () {
 			const ready = this.$q.defer<boolean>();
 
@@ -41,6 +44,11 @@ module VkApp {
 			return ready.promise;
 		}
 
+		/**
+		 * Парсит ссылку страницы авторизации
+		 * @param  {string}  url Ссылка страницы авторизации
+		 * @return {IVkAuth}     Данние после авторизации
+		 */
 		private parseHashParams (url: string) : IVkAuth {
 			const ret  = <IVkAuth>{};
 			const hash = url.split('#')[1].split('&');
@@ -55,13 +63,21 @@ module VkApp {
 			return ret;
 		}
 
+		/**
+		 * Проверяет, что данные со страницы сожержат информациб об авторизованном пользователе
+		 * @param  {IVkAuth}   authData     Данные со страницы авторизации
+		 * @return {boolean}
+		 */
 		private isAuthSuccess (authData = <any>{}) : authData is IVkAuthSuccess {
 			return authData && authData.user_id
 			                && authData.access_token
-											&& authData.state
-											&& authData.state === 'vknotice';
+			                && authData.state
+			                && authData.state === 'vknotice';
 		}
 
+		/**
+		 * Асинхронно авторизовавыет пользователя
+		 */
 		auth() {
 			const ready = this.$q.defer<undefined>();
 
@@ -113,6 +129,11 @@ module VkApp {
 			return ready.promise;
 		}
 
+		/**
+		 * Выполняет асинхронный запрос к API
+		 * @param  {string}     method                Метод API
+		 * @param  {IVkRequest} params                Параметры API
+		 */
 		api (method: string, params = <IVkRequest>{}) {
 			const ready = this.$q.defer();
 
@@ -132,6 +153,11 @@ module VkApp {
 			return ready.promise;
 		}
 
+		/**
+		 * Проверяет наличие поля с результатом выполнения метода
+		 * @param  {object}      respData Ответ сервера
+		 * @return {boolean}
+		 */
 		private isResponseSuccess(respData: any) : respData is IVkResponseSuccess {
 			return !!respData.response;
 		}
