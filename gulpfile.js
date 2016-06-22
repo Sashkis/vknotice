@@ -15,6 +15,20 @@ var jsonminify = require('gulp-jsonminify');
 var flatten    = require('gulp-flatten');
 
 var wiredep    = require('wiredep').stream;
+var gettext    = require('gulp-angular-gettext');
+
+gulp.task('pot', function () {
+    return gulp.src(['src/**/*.html', 'src/**/*.js'])
+        .pipe(gettext.extract('all.pot'))
+        .pipe(gulp.dest('po/'));
+});
+
+gulp.task('translations', function () {
+	return gulp.src(['po/**/*.po'])
+		.pipe(gettext.compile())
+		.pipe(gulp.dest('src/Translations/'));
+});
+
 
 gulp.task('default', ['sass:watch']);
 
