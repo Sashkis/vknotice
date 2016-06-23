@@ -1,6 +1,6 @@
 /// <reference path="../../all.d.ts"/>
 module DeamonApp {
-	class DeamonService {
+	export class DeamonService {
 		private method: string | (() => string);
 		private params: {} | (() => {});
 		private timeoutID: ng.IPromise<void>;
@@ -49,9 +49,9 @@ module DeamonApp {
 			const params = typeof this.params === 'function' ? this.params() : this.params;
 
 			this.$vk.api(method, params).then((resp: IVkResponseSuccess) => {
-				(this.DoneCB(resp)  && this.restart()) || this.stop();
+				this.DoneCB(resp)  ? this.restart() : this.stop();
 			}, (error: any) => {
-				(this.FailCB(error) && this.restart()) || this.stop();
+				this.FailCB(error) ? this.restart() : this.stop();
 			});
 
 			return this;
@@ -59,7 +59,8 @@ module DeamonApp {
 
 		restart() {
 			if (!this.isStarted) return this.stop();
-			this.timeoutID = this.$timeout(() => {this.sendRequest}, this.interval, false);
+			this.timeoutID = this.$timeout(() => {this.sendRequest()}, this.interval, false);
+			return this;
 		}
 	}
 }

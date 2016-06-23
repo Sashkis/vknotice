@@ -34,9 +34,9 @@ var DeamonApp;
             var method = typeof this.method === 'function' ? this.method() : this.method;
             var params = typeof this.params === 'function' ? this.params() : this.params;
             this.$vk.api(method, params).then(function (resp) {
-                (_this.DoneCB(resp) && _this.restart()) || _this.stop();
+                _this.DoneCB(resp) ? _this.restart() : _this.stop();
             }, function (error) {
-                (_this.FailCB(error) && _this.restart()) || _this.stop();
+                _this.FailCB(error) ? _this.restart() : _this.stop();
             });
             return this;
         };
@@ -44,7 +44,8 @@ var DeamonApp;
             var _this = this;
             if (!this.isStarted)
                 return this.stop();
-            this.timeoutID = this.$timeout(function () { _this.sendRequest; }, this.interval, false);
+            this.timeoutID = this.$timeout(function () { _this.sendRequest(); }, this.interval, false);
+            return this;
         };
         DeamonService.$inject = [
             '$vk',
@@ -52,5 +53,6 @@ var DeamonApp;
         ];
         return DeamonService;
     }());
+    DeamonApp.DeamonService = DeamonService;
 })(DeamonApp || (DeamonApp = {}));
 //# sourceMappingURL=DeamonService.js.map
