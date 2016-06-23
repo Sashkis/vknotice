@@ -67,7 +67,7 @@ var VkApp;
                                     if (!_this.isAuthSuccess(authData))
                                         return;
                                     _this.storage.set({
-                                        user_id: authData.user_id,
+                                        user_id: +authData.user_id,
                                         access_token: authData.access_token,
                                     });
                                     !!authTabId && chrome.tabs.remove(authTabId);

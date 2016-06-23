@@ -2,18 +2,21 @@
 module StorageApp {
 
 	export class StorageService {
-		$rootScope: ng.IRootScopeService;
 		ready: ng.IPromise<{}>;
-		stg: IStorageData;
+		stg = <IStorageData>{};
 
-		constructor($q: ng.IQService, $rootScope: ng.IRootScopeService) {
-			const Promise = $q.defer();
+		public static $inject = [
+			'$q',
+			'$rootScope',
+			'DefaultStorage',
+		];
 
-			this.$rootScope = $rootScope;
+		constructor($q: ng.IQService, private $rootScope: ng.IRootScopeService, DefaultStorage: IStorageData) {
+			const Promise = $q.defer<IStorageData>();
+
 			this.ready = Promise.promise;
-			// this.stg = {};
 
-			chrome.storage.local.get((stg) => {
+			chrome.storage.local.get(DefaultStorage, (stg: IStorageData) => {
 				this.stg = angular.copy(stg);
 
 				$rootScope.$apply();
@@ -21,45 +24,44 @@ module StorageApp {
 			});
 		}
 
-		onChanged(callback: Function) {
+		onChanged(callback = (changes: chrome.storage.StorageChange, stg: IStorageData) => {}) {
 			chrome.storage.onChanged.addListener((changes) => {
 				callback(changes, this.stg);
 				this.$rootScope.$apply();
 			});
 		}
 
-		set(data: IStorageData, callback:() => void = () => {}) {
+		set(data: {}, callback = () => {}) {
 			angular.extend(this.stg, angular.copy(data) );
 			chrome.storage.local.set(data, callback);
 		}
 
-		getProfileIndex(id: number | string): number {
+		getProfileIndex(id: number): number {
 			if (id && this.stg
 			       && this.stg.profiles
 			) {
 				for (let i = 0; i < this.stg.profiles.length; i++) {
-					// Нельзя проводить сравнение по типу,
-					// так как id может быть передан в качестве строки
-					if (this.stg.profiles[i].id == id) return i;
+					if (this.stg.profiles[i].id === id) return i;
 				}
 			}
 
 			return -1;
 		}
 
-		getProfile(id: number) : IProfiles | Object {
+		getProfile(id: number) : IProfiles | {} {
 			const index = this.getProfileIndex(id);
-
 			return (index >= 0 && this.stg.profiles && this.stg.profiles[index]) ? this.stg.profiles[index] : {};
 		}
 
-		setProfiles(array: IProfiles[]) {
-			if (!angular.isArray(array)) return;
-			array.map((profile) => {
-				if (!profile || !profile.id) return;
-				const index = this.getProfileIndex(profile.id);
+		setProfiles(newProfiles: IProfiles[]) {
+			if (!this.stg.profiles) this.initEmptyProfilesCash();
 
-				if (!this.stg.profiles) this.stg.profiles = [];
+			const needSearch = this.stg.profiles.length > 0;
+			if (!angular.isArray(newProfiles)) return this.stg.profiles;
+
+			newProfiles.map((profile) => {
+				if (!profile || !profile.id) return;
+				const index = needSearch ? this.getProfileIndex(profile.id) : -1;
 
 				if (index >= 0) {
 					this.stg.profiles[index] = profile;
@@ -67,15 +69,24 @@ module StorageApp {
 					this.stg.profiles.unshift(profile);
 				}
 			});
+
+			return this.stg.profiles;
 		}
 
 		clearProfiles(limit: number) : IProfiles[] {
-			if (limit === 0 || !this.stg.profiles) return this.stg.profiles = [];
+			if (!limit || !this.stg.profiles) return this.initEmptyProfilesCash();
 
 			this.stg.profiles = this.stg.profiles.filter((profile) => profile && profile.id);
-			if (this.stg.profiles.length > limit) return this.stg.profiles = this.stg.profiles.slice(0, limit);
+			if (this.stg.profiles.length > limit) this.stg.profiles = this.stg.profiles.slice(0, limit);
 
 			return this.stg.profiles;
+		}
+
+		initEmptyProfilesCash() : IProfiles[] {
+			this.set({
+				profiles: []
+			});
+			return [];
 		}
 	}
 

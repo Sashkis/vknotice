@@ -102,7 +102,7 @@ module VkApp {
 									if (!this.isAuthSuccess(authData)) return;
 
 									this.storage.set({
-										user_id:      authData.user_id,
+										user_id:      +authData.user_id,
 										access_token: authData.access_token,
 									});
 

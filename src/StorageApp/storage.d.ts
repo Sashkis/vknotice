@@ -1,8 +1,8 @@
 interface IStorageData {
-	access_token?: string;
-	user_id?: string | number;
-	options?: IOptions;
-	counter?: {
+	access_token: string;
+	user_id: number;
+	options: IOptions;
+	counter: {
 		friends?: number;
 		photos?: number;
 		videos?: number;
@@ -10,15 +10,14 @@ interface IStorageData {
 		groups?: number;
 		notifications?: number;
 	};
-	currentSection?: string;
-	friends?: number[];
-	newfriends?: number[];
-	dialogs?: IDialog[];
-	groups?: IProfiles[];
-	users?: IProfiles[];
-	profiles?: IProfiles[];
-	lang?: number;
-	lastOpenComment?: number;
+	currentSection: string;
+	friends: number[];
+	newfriends: number[];
+	dialogs: IDialog[];
+	groups: IProfiles[];
+	users: IProfiles[];
+	profiles: IProfiles[];
+	lang: number;
 }
 
 
@@ -36,7 +35,7 @@ interface IOptions {
 	groups: boolean;
 	notifications: boolean;
 	comments: boolean;
-	audio: number;
+	audio: OptionsStatus;
 }
 
 interface IDialog {

@@ -72,37 +72,17 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
             storage.set(newStg);
         });
         storage.ready.then(function (stg) {
-            if (angular.isUndefined(stg.profiles)) {
-                storage.set({
-                    profiles: [],
-                });
-            }
-            if (angular.isUndefined(stg.options)) {
-                storage.set({
-                    options: {
-                        friends: true,
-                        photos: true,
-                        videos: true,
-                        messages: true,
-                        groups: true,
-                        notifications: true,
-                        comments: true,
-                        audio: '1',
-                    },
-                });
-            }
-            if (stg.users) {
+            if (stg.users && stg.users.length) {
                 storage.setProfiles(stg.users);
             }
-            if (stg.groups) {
+            if (stg.groups && stg.groups.length) {
                 storage.setProfiles(stg.groups);
             }
-            storage.clearProfiles();
+            if (stg.profiles && stg.profiles.length) {
+                storage.clearProfiles();
+            }
             if (stg.counter) {
                 setBadge(stg.counter, stg.options.audio);
-            }
-            if (angular.isUndefined(stg.lastOpenComment)) {
-                stg.lastOpenComment = Date.now();
             }
             Analytics.trackPage('Background');
             if (stg.user_id) {

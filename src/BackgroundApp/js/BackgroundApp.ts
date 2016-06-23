@@ -93,41 +93,20 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 		});
 
 		storage.ready.then(function (stg) {
-			if (angular.isUndefined(stg.profiles)) {
-				storage.set({
-					profiles: [],
-				});
-			}
-
-			// Если свойство с настройками не задано
-			// задаем его с параметрами по умолчанию
-			if (angular.isUndefined(stg.options)) {
-				storage.set({
-					options: {
-						friends:       true,
-						photos:        true,
-						videos:        true,
-						messages:      true,
-						groups:        true,
-						notifications: true,
-						comments:      true,
-						audio:         '1',
-					},
-				});
-			}
-
 			// Записать пользователей и групы в кэш профилей
-			if (stg.users) {
+			if (stg.users && stg.users.length) {
 				storage.setProfiles(stg.users);
 			}
 
-			if (stg.groups) {
+			if (stg.groups && stg.groups.length) {
 				storage.setProfiles(stg.groups);
 			}
 
 			// Удаляем профили без id
 			// и обрезаем если массив профилей превысил лимит
-			storage.clearProfiles();
+			if (stg.profiles && stg.profiles.length) {
+				storage.clearProfiles();
+			}
 
 			// Устанавливаем бейдж
 			// и воспроизводим звуковое уведомление
@@ -135,9 +114,9 @@ angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
 				setBadge(stg.counter, stg.options.audio);
 			}
 
-			if (angular.isUndefined(stg.lastOpenComment)) {
-				stg.lastOpenComment = Date.now();
-			}
+			// if (angular.isUndefined(stg.lastOpenComment)) {
+			// 	stg.lastOpenComment = Date.now();
+			// }
 
 			Analytics.trackPage('Background');
 
