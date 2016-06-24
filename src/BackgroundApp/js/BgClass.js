@@ -40,15 +40,15 @@ var BgApp;
             return this;
         };
         BgClass.prototype.setBadge = function () {
-            if (angular.isArray(this.stg.counter))
-                return this;
             var newBadge = 0;
-            angular.forEach(this.stg.counter, function (counter) {
-                newBadge += angular.isNumber(counter) ? counter : 0;
-            });
-            chrome.browserAction.setBadgeText({ text: newBadge > 0 ? "" + newBadge : '' });
-            this.playSound(newBadge);
+            if (!angular.isArray(this.stg.counter)) {
+                angular.forEach(this.stg.counter, function (counter) {
+                    newBadge += angular.isNumber(counter) ? counter : 0;
+                });
+                this.playSound(newBadge);
+            }
             this.badge = newBadge;
+            chrome.browserAction.setBadgeText({ text: newBadge > 0 ? "" + newBadge : '' });
             return this;
         };
         BgClass.prototype.playSound = function (newBadge) {
