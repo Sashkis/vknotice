@@ -37,9 +37,9 @@ module StorageApp {
 			});
 		}
 
-		set(data: {}, callback = () => {}) {
+		set(data: {}, needSaveInCrrome = true, callback = () => {}) {
 			angular.extend(this.stg, angular.copy(data));
-			callback && chrome.storage.local.set(data, callback);
+			needSaveInCrrome && chrome.storage.local.set(data, callback);
 		}
 
 		getProfileIndex(id: number): number {

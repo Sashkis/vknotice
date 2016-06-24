@@ -50,6 +50,7 @@ module DeamonApp {
 
 			this.$vk.api(method, params).then((resp: IVkResponseSuccess) => {
 				this.DoneCB(resp)  ? this.restart() : this.stop();
+
 			}, (error: any) => {
 				this.FailCB(error) ? this.restart() : this.stop();
 			});

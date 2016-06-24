@@ -24,6 +24,7 @@ module StorageApp {
 			users: [],
 			profiles: [],
 			lang: 0,
+			notifyLast_viewed: Date.now()/1000,
 		})
 		.service('storage', StorageService);
 }

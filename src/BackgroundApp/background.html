@@ -4,7 +4,7 @@
 	<title>Background process</title>
 	<meta charset="UTF-8">
 </head>
-<body>
+<body ng-controller="Bg">
 	<audio id="audio">
 		<source src="audio/vk.ogg" type="audio/ogg">
 		<source src="audio/vk.mp3" type="audio/mpeg">
@@ -27,10 +27,11 @@
 	<script src="../VkApp/js/VkApp.js"></script>
 	<!-- endbuild -->
 	<!-- build:js ../DeamonApp/DeamonApp.js -->
+	<script src="../DeamonApp/js/DeamonService.js"></script>
 	<script src="../DeamonApp/js/DeamonApp.js"></script>
-	<script src="../DeamonApp/js/DeamonFactory.js"></script>
 	<!-- endbuild -->
 	<!-- build:js BackgroundApp.js -->
+	<script src="./js/BgClass.js"></script>
 	<script src="./js/BackgroundApp.js"></script>
 	<!-- endbuild -->
 </body>

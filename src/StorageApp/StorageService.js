@@ -27,10 +27,11 @@ var StorageApp;
                 _this.$rootScope.$apply();
             });
         };
-        StorageService.prototype.set = function (data, callback) {
+        StorageService.prototype.set = function (data, needSaveInCrrome, callback) {
+            if (needSaveInCrrome === void 0) { needSaveInCrrome = true; }
             if (callback === void 0) { callback = function () { }; }
             angular.extend(this.stg, angular.copy(data));
-            callback && chrome.storage.local.set(data, callback);
+            needSaveInCrrome && chrome.storage.local.set(data, callback);
         };
         StorageService.prototype.getProfileIndex = function (id) {
             if (id && this.stg

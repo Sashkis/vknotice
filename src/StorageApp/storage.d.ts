@@ -18,6 +18,7 @@ interface IStorageData {
 	users: IProfiles[];
 	profiles: IProfiles[];
 	lang: number;
+	notifyLast_viewed: number;
 }
 
 
@@ -54,6 +55,7 @@ interface IMessage {
 	title: string;
 	body: string;
 	random_id: number;
+	attachments: any[]
 }
 
 declare enum OnlineStatus {
