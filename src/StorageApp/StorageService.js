@@ -1,5 +1,11 @@
 var StorageApp;
 (function (StorageApp) {
+    (function (OptionsStatus) {
+        OptionsStatus[OptionsStatus["Never"] = 0] = "Never";
+        OptionsStatus[OptionsStatus["SomeConditions"] = 1] = "SomeConditions";
+        OptionsStatus[OptionsStatus["Always"] = 2] = "Always";
+    })(StorageApp.OptionsStatus || (StorageApp.OptionsStatus = {}));
+    var OptionsStatus = StorageApp.OptionsStatus;
     var StorageService = (function () {
         function StorageService($q, $rootScope, DefaultStorage) {
             var _this = this;
@@ -24,7 +30,7 @@ var StorageApp;
         StorageService.prototype.set = function (data, callback) {
             if (callback === void 0) { callback = function () { }; }
             angular.extend(this.stg, angular.copy(data));
-            chrome.storage.local.set(data, callback);
+            callback && chrome.storage.local.set(data, callback);
         };
         StorageService.prototype.getProfileIndex = function (id) {
             if (id && this.stg
@@ -58,6 +64,7 @@ var StorageApp;
                     _this.stg.profiles.unshift(profile);
                 }
             });
+            this.set({ profiles: this.stg.profiles });
             return this.stg.profiles;
         };
         StorageService.prototype.clearProfiles = function (limit) {

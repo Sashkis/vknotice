@@ -1,8 +1,14 @@
 /// <reference path="../all.d.ts"/>
 module StorageApp {
 
+	export enum OptionsStatus {
+		Never,
+		SomeConditions,
+		Always,
+	}
+
 	export class StorageService {
-		ready: ng.IPromise<{}>;
+		ready: ng.IPromise<IStorageData>;
 		stg = <IStorageData>{};
 
 		public static $inject = [
@@ -32,8 +38,8 @@ module StorageApp {
 		}
 
 		set(data: {}, callback = () => {}) {
-			angular.extend(this.stg, angular.copy(data) );
-			chrome.storage.local.set(data, callback);
+			angular.extend(this.stg, angular.copy(data));
+			callback && chrome.storage.local.set(data, callback);
 		}
 
 		getProfileIndex(id: number): number {
@@ -70,6 +76,7 @@ module StorageApp {
 				}
 			});
 
+			this.set({profiles: this.stg.profiles});
 			return this.stg.profiles;
 		}
 
