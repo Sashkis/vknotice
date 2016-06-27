@@ -41,7 +41,7 @@ angular.module('SectionsApp')
 			templateUrl:'../SectionApp/sections/NewFriends/request.tpl',
 			scope: true,
 			link: function ($scope, el, attr) {
-				$scope.user = storage.getProfile(attr.userId);
+				$scope.user = storage.getProfile(+attr.userId);
 			},
 		};
 	}]);

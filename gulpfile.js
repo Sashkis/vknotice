@@ -5,14 +5,14 @@ var del        = require('del');
 
 var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
+var gulpif     = require('gulp-if');
+var flatten    = require('gulp-flatten');
 
 var useref     = require('gulp-useref');
-var gulpif     = require('gulp-if');
 var uglify     = require('gulp-uglify');
 var cleanCSS   = require('gulp-clean-css');
-
+var htmlmin    = require('gulp-htmlmin');
 var jsonminify = require('gulp-jsonminify');
-var flatten    = require('gulp-flatten');
 
 var wiredep    = require('wiredep').stream;
 var gettext    = require('gulp-angular-gettext');
@@ -45,31 +45,11 @@ gulp.task('sass:watch', ['sass'], function () {
 });
 
 
-gulp.task('copy:manifest', function () {
-	return gulp.src(['src/manifest.json'])
-	      .pipe(jsonminify())
-	      .pipe(gulp.dest('build'));
-});
-
-gulp.task('copy:_locales', function () {
-	return gulp.src(['src/_locales/**/*.json'])
-	      .pipe(jsonminify())
-	      .pipe(gulp.dest('build/_locales/'));
-});
-
-gulp.task('copy:img', function () {
-	return gulp.src(['src/BackgroundApp/img/*'])
-	      .pipe(gulp.dest('build/BackgroundApp/img'));
-});
-
-gulp.task('copy:audio', function () {
-	return gulp.src(['src/BackgroundApp/audio/*'])
-	      .pipe(gulp.dest('build/BackgroundApp/audio'));
-});
-
-gulp.task('copy:tpls', function () {
-	return gulp.src(['src/**/*.tpl'])
-	      .pipe(gulp.dest('build/'));
+gulp.task('copy', ['copy:fonts'], function () {
+	return gulp.src(['src/*.json', 'src/+(_locales)/**/*.json', 'src/+(BackgroundApp)/+(audio|img)/*', 'src/**/*.tpl'])
+	      .pipe(gulpif('*.json', jsonminify()))
+	      .pipe(gulpif('*.tpl', htmlmin({collapseWhitespace: true})))
+	      .pipe(gulp.dest('build'))
 });
 
 gulp.task('copy:fonts', function () {
@@ -91,12 +71,7 @@ gulp.task('build:all', [
 	'build:Background',
 	'build:Options',
 	'build:Popup',
-	'copy:audio',
-	'copy:manifest',
-	'copy:_locales',
-	'copy:img',
-	'copy:tpls',
-	'copy:fonts',
+	'copy',
 ]);
 gulp.task('build:Background', function () {
 	return gulp.src('src/BackgroundApp/background.html')
@@ -107,15 +82,16 @@ gulp.task('build:Background', function () {
 });
 
 gulp.task('build:Options', function () {
-	return gulp.src('src/OptionsApp/index.html')
+	return gulp.src('src/OptionsApp/*.html')
 	      .pipe(useref())
 	      .pipe(gulpif('*.js', uglify()))
 	      .pipe(gulpif('*.css', cleanCSS()))
-	      .pipe(gulp.dest('build/OptionsApp'));
+				.pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
+	      .pipe(gulp.dest('build/OptionsApp/'));
 });
 
 gulp.task('build:Popup', function () {
-	                      return gulp.src('src/PopupApp/popup.html')
+	return gulp.src('src/PopupApp/popup.html')
 	      .pipe(useref())
 	      .pipe(gulpif('*.js', uglify()))
 	      .pipe(gulpif('*.css', cleanCSS()))
