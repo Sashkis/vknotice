@@ -3,18 +3,17 @@
 <head>
 	<title>{{'Настройки'|translate}}</title>
 	<meta charset="UTF-8">
+	<!-- build:css ../vendors/css/fonts.css -->
+	<!-- bower:css -->
+	<link rel='stylesheet' href='../bower_components/components-font-awesome/css/font-awesome.css' />
+	<link rel='stylesheet' href='../bower_components/open-sans/css/open-sans.css' />
+	<!-- endbower -->
+	<!-- endbuild -->
 	<!-- build:css ../HeaderApp/HeaderApp.css -->
 	<link rel="stylesheet" href="../HeaderApp/css/header.css">
 	<!-- endbuild -->
 	<!-- build:css OptionsApp.css -->
 	<link rel="stylesheet" href="css/style.css">
-	<!-- endbuild -->
-	<!-- build:css ../vendors/css/fonts.css -->
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	<!-- bower:css -->
-	<link rel='stylesheet' href='../bower_components/components-font-awesome/css/font-awesome.css' />
-	<link rel='stylesheet' href='../bower_components/open-sans/css/open-sans.css' />
-	<!-- endbower -->
 	<!-- endbuild -->
 
 </head>
@@ -116,6 +115,9 @@
 	<!-- build:js ../HeaderApp/HeaderApp.js -->
 	<script src="../HeaderApp/js/HeaderApp.js"></script>
 	<script src="../HeaderApp/js/HeaderCtrl.js"></script>
+	<!-- endbuild -->
+	<!-- build:js ../libs/Helpers.js -->
+	<script src="../libs/helpers/Helpers.js"></script>
 	<!-- endbuild -->
 	<!-- build:js OptionsApp.js -->
 	<script src="./js/OptionsApp.js"></script>

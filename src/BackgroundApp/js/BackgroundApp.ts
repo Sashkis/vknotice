@@ -7,22 +7,6 @@ module BgApp {
 		profilesLimit: 100,
 	})
 
-
-	.config(['AnalyticsProvider', function (AnalyticsProvider: any) {
-
-		AnalyticsProvider.setAccount({
-			tracker: 'UA-71609511-3',
-			trackEvent: true,
-			fields: {
-				cookieName: 'vknotice-analitics',
-				cookieDomain: 'none',
-			},
-			set: {
-				forceSSL: true,
-			},
-		})
-		.setHybridMobileSupport(true);
-	}])
-
+	.config(['AnalyticsProvider', Helpers.setAnaliticSetting])
 	.controller('Bg', BgClass);
 }
