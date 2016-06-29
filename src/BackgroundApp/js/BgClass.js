@@ -52,10 +52,10 @@ var BgApp;
             return this;
         };
         BgClass.prototype.playSound = function (newBadge) {
-            if (this.stg.options.audio === StorageApp.OptionsStatus.Never || newBadge <= this.badge)
+            if (this.stg.options.audio === StorageApp.AudioOptionStatus.Never || newBadge <= this.badge)
                 return this;
             var audio = document.getElementById('audio');
-            if (this.stg.options.audio === StorageApp.OptionsStatus.Always) {
+            if (this.stg.options.audio === StorageApp.AudioOptionStatus.Always) {
                 audio.play();
                 return this;
             }

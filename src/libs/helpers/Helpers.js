@@ -28,7 +28,7 @@ var Helpers;
             dependency[_i - 0] = arguments[_i];
         }
         var gettextCatalog = dependency[0], storage = dependency[1];
-        gettextCatalog.debug = true;
+        gettextCatalog.debug = false;
         storage.ready.then(function (stg) {
             var lang = getLang(stg.lang);
             if (lang !== 'ru') {

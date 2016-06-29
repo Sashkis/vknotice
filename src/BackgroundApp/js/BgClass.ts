@@ -61,9 +61,9 @@ module BgApp {
 		}
 
 		playSound(newBadge: number) : this {
-			if (this.stg.options.audio === StorageApp.OptionsStatus.Never || newBadge <= this.badge) return this;
+			if (this.stg.options.audio === StorageApp.AudioOptionStatus.Never || newBadge <= this.badge) return this;
 			const audio = <HTMLAudioElement>document.getElementById('audio');
-			if (this.stg.options.audio === StorageApp.OptionsStatus.Always) {
+			if (this.stg.options.audio === StorageApp.AudioOptionStatus.Always) {
 				audio.play();
 				return this;
 			}

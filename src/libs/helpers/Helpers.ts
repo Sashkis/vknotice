@@ -21,7 +21,7 @@ module Helpers {
 	export function setCurrentLanguage (...dependency: Array<any>) {
 		const [gettextCatalog, storage] = dependency;
 
-		gettextCatalog.debug = true;
+		gettextCatalog.debug = false;
 
 		storage.ready.then((stg: IStorageData) => {
 			const lang = getLang(stg.lang);

@@ -20,77 +20,99 @@
 <body>
 	<ng-include src="'../HeaderApp/Header.tpl'" class="header"></ng-include>
 	<div class="wrapper" ng-controller="OptionsCtrl as vm">
-		<iframe class="group news" name="fXDc2eac" frameborder="0" src="https://vk.com/widget_community.php?app=0&amp;width=380px&amp;_ver=1&amp;gid=90041499&amp;mode=2&amp;color1=FFFFFF&amp;color2=2B587A&amp;color3=5B7FA6&amp;class_name=&amp;height=470&amp;url=https%3A%2F%2Fvk.com%2Fdev%2FCommunity%3Fheight%3D470%26link%3Dhttps%253A%252F%252Fvk.com%252Fvknotice%26mode%3D2%26oid%3D-90041499%26wide%3D%26width%3D250&amp;14eb7275869" width="380" height="200" scrolling="no" id="vkwidget7" style="overflow: hidden; height: 470px;"></iframe>
-		<div class="panel noty">
-			<div class="header" translate >Настройки уведомлений</div>
-			<div class="content">
-				<label>
-					<input ng-model="vm.options.friends" type="checkbox"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.friends}]"></i>
-					<translate>Сообщать о заявках в друзья</translate>
-				</label>
-				<label>
-					<input ng-model="vm.options.photos" type="checkbox"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.photos}]"></i>
-					<translate>Сообщать об отметках на фотографиях</translate>
-				</label>
-				<label>
-					<input ng-model="vm.options.videos" type="checkbox"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.videos}]"></i>
-					<translate>Сообщать об отметках в видеозаписях</translate>
-				</label>
-				<label>
-					<input ng-model="vm.options.messages" type="checkbox"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.messages}]"></i>
-					<translate>Сообщать о личных сообщениях</translate>
-				</label>
-				<label>
-					<input ng-model="vm.options.groups" type="checkbox"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.groups}]"></i>
-					<translate>Сообщать о приглашениях в группы</translate>
-				</label>
-				<label>
-					<input ng-model="vm.options.notifications" type="checkbox"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
-					<translate>Сообщать об ответах</translate>
-				</label>
-				<label>
-					<input ng-model="vm.options.comments" type="checkbox"/>
-					<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.comments}]"></i>
-					<translate>Сообщать о новых комментариях</translate>
-				</label>
+		<div class="option-panels">
+			<div class="panel noty box">
+				<div class="header" translate >Настройки уведомлений</div>
+				<div class="content">
+					<label>
+						<input ng-model="vm.options.friends" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.friends}]"></i>
+						<translate>Сообщать о заявках в друзья</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.photos" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.photos}]"></i>
+						<translate>Сообщать об отметках на фотографиях</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.videos" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.videos}]"></i>
+						<translate>Сообщать об отметках в видеозаписях</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.messages" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.messages}]"></i>
+						<translate>Сообщать о личных сообщениях</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.groups" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.groups}]"></i>
+						<translate>Сообщать о приглашениях в группы</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.wall" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
+						<translate>Сообщать о записях</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.mentions" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
+						<translate>Сообщать о упоминаниях в записях, в комментариях или в обсуждениях</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.comments" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
+						<translate>Сообщать о комментариях к записям, фотографиям и видеозаписям</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.likes" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
+						<translate>Сообщать об отметках «Мне нравится»</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.reposts" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
+						<translate>Сообщать о скопированных записях, фотографиях и видеозаписях</translate>
+					</label>
+					<label>
+						<input ng-model="vm.options.followers" type="checkbox"/>
+						<i ng-class="['fa', 'fa-square-o', {'fa-check-square': vm.options.notifications}]"></i>
+						<translate>Сообщать о новых подписчиках</translate>
+					</label>
+				</div>
+			</div>
+
+			<div class="panel audioOption box">
+				<div class="header" translate >Звуковые уведомления</div>
+				<div class="content">
+					<label ng-class="{'active': vm.options.audio == 0}">
+						<i class="fa fa-volume-off"></i>
+						<translate>Выключить</translate>
+						<input ng-model="vm.options.audio" type="radio" value="0"/>
+					</label>
+					<label ng-class="{'active': vm.options.audio == 1}">
+						<i class="fa fa-volume-down"></i>
+						<translate>При закрытом ВК</translate>
+						<input ng-model="vm.options.audio" type="radio" value="1"/>
+					</label>
+					<label ng-class="{'active': vm.options.audio == 2}">
+						<i class="fa fa-volume-up"></i>
+						<translate>Всегда</translate>
+						<input ng-model="vm.options.audio" type="radio" value="2"/>
+					</label>
+				</div>
+			</div>
+
+			<div class="buttons-conteiner box">
+				<button ng-disabled="vm.isOptionSaved()" ng-click="vm.saveOptions()" class="save">
+					<translate ng-show="vm.isOptionSaved()">Сохранено</translate>
+					<translate ng-hide="vm.isOptionSaved()">Сохранить</translate>
+				</button>
+				<button ng-click="vm.clearData()" class="clear"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить все данные расширения</translate></button>
 			</div>
 		</div>
-
-		<div class="panel audioOption">
-			<div class="header" translate >Звуковые уведомления</div>
-			<div class="content">
-				<label ng-class="{'active': vm.options.audio == 0}">
-					<i class="fa fa-volume-off"></i>
-					<translate>Выключить</translate>
-					<input ng-model="vm.options.audio" type="radio" value="0"/>
-				</label>
-				<label ng-class="{'active': vm.options.audio == 1}">
-					<i class="fa fa-volume-down"></i>
-					<translate>При закрытом ВК</translate>
-					<input ng-model="vm.options.audio" type="radio" value="1"/>
-				</label>
-				<label ng-class="{'active': vm.options.audio == 2}">
-					<i class="fa fa-volume-up"></i>
-					<translate>Всегда</translate>
-					<input ng-model="vm.options.audio" type="radio" value="2"/>
-				</label>
-			</div>
-		</div>
-
-		<div class="buttons-conteiner">
-
-			<button ng-disabled="vm.isOptionSaved()" ng-click="vm.saveOptions()" class="save">
-				<translate ng-show="vm.isOptionSaved()">Сохранено</translate>
-				<translate ng-hide="vm.isOptionSaved()">Сохранить</translate>
-			</button>
-
-			<button ng-click="vm.clearData()" class="clear"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить все данные расширения</translate></button>
+		<div class="widget box">
+			<iframe name="fXDf6e82" frameborder="0" src="https://vk.com/widget_community.php?app=0&amp;width=380px&amp;_ver=1&amp;gid=90041499&amp;mode=2&amp;color1=FFFFFF&amp;color2=2B587A&amp;color3=5B7FA6&amp;class_name=&amp;height=620&amp;url=https%3A%2F%2Fnew.vk.com%2Fdev%2FCommunity%3Fheight%3D620%26link%3Dhttp%253A%252F%252Fvk.com%252Fvknotice%26mode%3D2%26oid%3D-90041499%26wide%3D%26width%3D380&amp;referrer=https%3A%2F%2Fnew.vk.com%2Fdev%2Fsites&amp;title=%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%20%7C%20%D0%A0%D0%BE%D0%B7%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC&amp;1559ca7dac8" width="380" height="200" scrolling="no" id="vkwidget9" style="overflow: hidden; height: 620px;"></iframe>
 		</div>
 	</div>
 	<div id="donate"></div>
@@ -120,8 +142,8 @@
 	<script src="../libs/helpers/Helpers.js"></script>
 	<!-- endbuild -->
 	<!-- build:js OptionsApp.js -->
-	<script src="./js/OptionsApp.js"></script>
 	<script src="./js/OptionsCtrl.js"></script>
+	<script src="./js/OptionsApp.js"></script>
 	<!-- endbuild -->
 </body>
 </html>

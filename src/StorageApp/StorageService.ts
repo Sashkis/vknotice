@@ -1,7 +1,7 @@
 /// <reference path="../all.d.ts"/>
 module StorageApp {
 
-	export enum OptionsStatus {
+	export enum AudioOptionStatus {
 		Never,
 		SomeConditions,
 		Always,

@@ -22,7 +22,7 @@ interface IStorageData {
 }
 
 
-declare enum OptionsStatus {
+declare enum AudioOptionStatus {
 	Never,
 	SomeConditions,
 	Always,
@@ -36,7 +36,7 @@ interface IOptions {
 	groups: boolean;
 	notifications: boolean;
 	comments: boolean;
-	audio: OptionsStatus;
+	audio: AudioOptionStatus;
 }
 
 interface IDialog {

@@ -1,11 +1,11 @@
 var StorageApp;
 (function (StorageApp) {
-    (function (OptionsStatus) {
-        OptionsStatus[OptionsStatus["Never"] = 0] = "Never";
-        OptionsStatus[OptionsStatus["SomeConditions"] = 1] = "SomeConditions";
-        OptionsStatus[OptionsStatus["Always"] = 2] = "Always";
-    })(StorageApp.OptionsStatus || (StorageApp.OptionsStatus = {}));
-    var OptionsStatus = StorageApp.OptionsStatus;
+    (function (AudioOptionStatus) {
+        AudioOptionStatus[AudioOptionStatus["Never"] = 0] = "Never";
+        AudioOptionStatus[AudioOptionStatus["SomeConditions"] = 1] = "SomeConditions";
+        AudioOptionStatus[AudioOptionStatus["Always"] = 2] = "Always";
+    })(StorageApp.AudioOptionStatus || (StorageApp.AudioOptionStatus = {}));
+    var AudioOptionStatus = StorageApp.AudioOptionStatus;
     var StorageService = (function () {
         function StorageService($q, $rootScope, DefaultStorage) {
             var _this = this;
