@@ -22,10 +22,10 @@ ng-include.header {
 	display: flex;
 }
 .option-panels {
-	flex-grow: 1;
+	flex: 5;
 }
 .widget {
-	flex-basis: 380px;
+	flex: 3;
 	&.box {
 		margin-left: 0;
 	}

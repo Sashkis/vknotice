@@ -12,7 +12,13 @@ var OptionsApp;
                 _this.stg = stg;
                 _this.options = angular.copy(stg.options);
                 _this.$scope.saveOptions = _this.saveOptions;
+                _this.$scope.isOptionSaved = _this.isOptionSaved;
             });
+            VK.Widgets.Group("vk_groups", {
+                mode: 2,
+                height: document.getElementById('vk_groups').offsetHeight,
+                width: 'auto'
+            }, 90041499);
         }
         OptionsCtrl.prototype.saveOptions = function () {
             var _this = this;
@@ -20,6 +26,10 @@ var OptionsApp;
             this.storage.set({
                 options: this.options,
             }, true, function () { return _this.$scope.$apply(); });
+        };
+        ;
+        OptionsCtrl.prototype.isOptionSaved = function () {
+            return angular.equals(this.options, this.stg.options);
         };
         ;
         OptionsCtrl.$inject = [

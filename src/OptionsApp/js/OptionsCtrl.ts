@@ -2,7 +2,7 @@ module OptionsApp {
 
 	interface IOptionScope extends ng.IScope {
 		saveOptions: () => void,
-		// saveOptions: () => void,
+		isOptionSaved: () => boolean,
 	}
 
 	export class OptionsCtrl {
@@ -20,7 +20,14 @@ module OptionsApp {
 				this.stg = stg;
 				this.options = angular.copy(stg.options);
 				this.$scope.saveOptions = this.saveOptions;
+				this.$scope.isOptionSaved = this.isOptionSaved;
 			});
+
+			VK.Widgets.Group("vk_groups", {
+				mode: 2,
+				height: document.getElementById('vk_groups').offsetHeight,
+				width: 'auto'
+			}, 90041499);
 		}
 
 			saveOptions () {
@@ -28,6 +35,10 @@ module OptionsApp {
 				this.storage.set({
 					options: this.options,
 				}, true, () => this.$scope.$apply() );
+			};
+
+			isOptionSaved () {
+				return angular.equals(this.options, this.stg.options);
 			};
 	}
 }
