@@ -1,12 +1,29 @@
 module Helpers {
+	export function trackPage (...dependency: Array<any>) {
+		const [Analytics, storage] = dependency;
+		storage.ready.then((stg: IStorageData) => {
+			stg.user_id && Analytics.set('&uid', stg.user_id);
+			let path = getPageTrackUrl();
+			path = path === '/Popup/' && stg.currentSection ? path+stg.currentSection : path;
+			Analytics.trackPage(path);
+		});
+	}
+
+	export function getPageTrackUrl () {
+		switch (location.pathname) {
+			case "/OptionsApp/index.html" : return '/Options/';
+			case "/BackgroundApp/background.html" : return '/Background/';
+			case "/PopupApp/popup.html" : return '/Popup/';
+
+		}
+	}
+
 	export function setCurrentLanguage (...dependency: Array<any>) {
-		const [gettextCatalog, storage, Analytics] = dependency;
+		const [gettextCatalog, storage] = dependency;
 
 		gettextCatalog.debug = true;
 
 		storage.ready.then((stg: IStorageData) => {
-			Analytics.set('&uid', stg.user_id);
-			Analytics.trackPage('/Options', 'Настройки');
 			const lang = getLang(stg.lang);
 
 			if (lang !== 'ru') {

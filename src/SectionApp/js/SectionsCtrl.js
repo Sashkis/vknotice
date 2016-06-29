@@ -11,8 +11,8 @@ angular.module('SectionsApp')
             if (section_id !== vm.currentSection) {
                 vm.stack.add(section_id);
                 vm.currentSection = section_id;
-                Analytics.trackPage('/' + vm.currentSection, (SectionsNames[vm.currentSection] || vm.currentSection));
                 storage.set({ currentSection: vm.currentSection });
+                Helpers.trackPage(Analytics, storage);
             }
             else {
                 vm.backSection($event);
@@ -25,8 +25,8 @@ angular.module('SectionsApp')
             if (!vm.currentSection) {
                 vm.currentSection = 'Default';
             }
-            Analytics.trackPage('/' + vm.currentSection, (SectionsNames[vm.currentSection] || vm.currentSection));
             storage.set({ currentSection: vm.currentSection });
+            Helpers.trackPage(Analytics, storage);
         }
         storage.ready.then(function (stg) {
             if (stg.currentSection) {

@@ -8,5 +8,6 @@ module BgApp {
 	})
 
 	.config(['AnalyticsProvider', Helpers.setAnaliticSetting])
+	.run(['Analytics', 'storage', Helpers.trackPage])
 	.controller('Bg', BgClass);
 }
