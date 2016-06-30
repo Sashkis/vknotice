@@ -1,3 +1,4 @@
+/// <reference path="../../all.d.ts"/>
 module OptionsApp {
 
 	interface IOptionScope extends ng.IScope {

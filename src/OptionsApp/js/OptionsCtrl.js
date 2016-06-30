@@ -14,10 +14,10 @@ var OptionsApp;
                 _this.$scope.saveOptions = _this.saveOptions;
                 _this.$scope.isOptionSaved = _this.isOptionSaved;
             });
-            VK.Widgets.Group("vk_groups", {
+            VK.Widgets.Group('vk_groups', {
                 mode: 2,
                 height: document.getElementById('vk_groups').offsetHeight,
-                width: 'auto'
+                width: 'auto',
             }, 90041499);
         }
         OptionsCtrl.prototype.saveOptions = function () {
