@@ -69,6 +69,7 @@ var BgApp;
             var apiOptions = {
                 access_token: this.stg.access_token,
                 options: '',
+                notifyFilters: '',
                 notifyLast_viewed: this.stg.notifyLast_viewed,
             };
             if (this.stg.options.friends)
@@ -81,8 +82,18 @@ var BgApp;
                 apiOptions.options += 'messages,';
             if (this.stg.options.groups)
                 apiOptions.options += 'groups,';
-            if (this.stg.options.notifications)
-                apiOptions.options += 'notifications,';
+            if (this.stg.options.wall)
+                apiOptions.notifyFilters += 'wall,';
+            if (this.stg.options.mentions)
+                apiOptions.notifyFilters += 'mentions,';
+            if (this.stg.options.comments)
+                apiOptions.notifyFilters += 'comments,';
+            if (this.stg.options.likes)
+                apiOptions.notifyFilters += 'likes,';
+            if (this.stg.options.reposts)
+                apiOptions.notifyFilters += 'reposts,';
+            if (this.stg.options.followers)
+                apiOptions.notifyFilters += 'followers,';
             return apiOptions;
         };
         BgClass.prototype.deamonDoneCB = function (resp) {

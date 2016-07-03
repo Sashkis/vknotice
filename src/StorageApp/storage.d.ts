@@ -34,8 +34,12 @@ interface IOptions {
 	videos: boolean;
 	messages: boolean;
 	groups: boolean;
-	notifications: boolean;
-	comments: boolean;
+	wall: boolean,
+	mentions: boolean,
+	comments: boolean,
+	likes: boolean,
+	reposts: boolean,
+	followers: boolean,
 	audio: AudioOptionStatus;
 }
 

@@ -1,7 +1,6 @@
 var StorageApp;
 (function (StorageApp) {
-    angular.module('StorageApp', [])
-        .constant('DefaultStorage', {
+    var DefaultStorage = {
         access_token: '',
         user_id: 0,
         options: {
@@ -10,11 +9,15 @@ var StorageApp;
             videos: true,
             messages: true,
             groups: true,
-            notifications: true,
+            wall: true,
+            mentions: true,
             comments: true,
+            likes: true,
+            reposts: true,
+            followers: true,
             audio: 1,
         },
-        counter: {},
+        counter: [],
         currentSection: '',
         friends: [],
         newfriends: [],
@@ -24,7 +27,9 @@ var StorageApp;
         profiles: [],
         lang: 0,
         notifyLast_viewed: Date.now() / 1000,
-    })
+    };
+    angular.module('StorageApp', [])
+        .constant('DefaultStorage', DefaultStorage)
         .service('storage', StorageApp.StorageService);
 })(StorageApp || (StorageApp = {}));
 //# sourceMappingURL=StorageApp.js.map

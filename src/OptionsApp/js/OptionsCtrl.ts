@@ -20,8 +20,6 @@ module OptionsApp {
 			storage.ready.then((stg) => {
 				this.stg = stg;
 				this.options = angular.copy(stg.options);
-				this.$scope.saveOptions = this.saveOptions;
-				this.$scope.isOptionSaved = this.isOptionSaved;
 			});
 
 			VK.Widgets.Group("vk_groups", {
@@ -32,6 +30,7 @@ module OptionsApp {
 		}
 
 			saveOptions () {
+				console.log(this);
 				this.Analytics.trackEvent('Activity', 'SaveOptions');
 				this.storage.set({
 					options: this.options,
