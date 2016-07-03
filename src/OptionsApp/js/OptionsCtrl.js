@@ -12,10 +12,10 @@ var OptionsApp;
                 _this.stg = stg;
                 _this.options = angular.copy(stg.options);
             });
-            VK.Widgets.Group('vk_groups', {
+            VK.Widgets.Group("vk_groups", {
                 mode: 2,
                 height: document.getElementById('vk_groups').offsetHeight,
-                width: 'auto',
+                width: 'auto'
             }, 90041499);
         }
         OptionsCtrl.prototype.saveOptions = function () {
