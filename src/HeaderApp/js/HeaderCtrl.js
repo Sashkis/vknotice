@@ -39,7 +39,10 @@ angular.module('HeaderApp')
 
 			vm.logout = function  ($event) {
 				$event.preventDefault();
-				$log.warn('Logout');
+				storage.set({
+					user_id: 0,
+					access_token: '',
+				});
 			};
 
 			vm.trackActivity = function  (activity) {
