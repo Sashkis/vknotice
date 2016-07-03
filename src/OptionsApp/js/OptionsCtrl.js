@@ -31,6 +31,19 @@ var OptionsApp;
             return angular.equals(this.options, this.stg.options);
         };
         ;
+        OptionsCtrl.prototype.clearData = function () {
+            var _this = this;
+            this.Analytics.trackEvent('Activity', 'ClearData');
+            this.storage.clear(function () { return _this.onStorageClear(); });
+        };
+        ;
+        OptionsCtrl.prototype.onStorageClear = function () {
+            var windows = chrome.extension.getViews();
+            console.log(windows);
+            for (var i = 0; i < windows.length; i++) {
+                windows[i].location.reload();
+            }
+        };
         OptionsCtrl.$inject = [
             'storage',
             '$scope',

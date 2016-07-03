@@ -42,6 +42,10 @@ module StorageApp {
 			needSaveInCrrome && chrome.storage.local.set(data, callback);
 		}
 
+		clear(callback?: () => void) {
+			chrome.storage.local.clear(callback);
+		}
+
 		getProfileIndex(id: number): number {
 			if (id && this.stg
 			       && this.stg.profiles

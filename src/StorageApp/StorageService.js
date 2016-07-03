@@ -33,6 +33,9 @@ var StorageApp;
             angular.extend(this.stg, angular.copy(data));
             needSaveInCrrome && chrome.storage.local.set(data, callback);
         };
+        StorageService.prototype.clear = function (callback) {
+            chrome.storage.local.clear(callback);
+        };
         StorageService.prototype.getProfileIndex = function (id) {
             if (id && this.stg
                 && this.stg.profiles) {
