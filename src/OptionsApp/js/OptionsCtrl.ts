@@ -29,45 +29,29 @@ module OptionsApp {
 			}, 90041499);
 		}
 
-			saveOptions () {
-				console.log(this);
-				this.Analytics.trackEvent('Activity', 'SaveOptions');
-				this.storage.set({
-					options: this.options,
-				}, true, () => this.$scope.$apply() );
-			};
+		saveOptions () {
+			console.log(this);
+			this.Analytics.trackEvent('Activity', 'SaveOptions');
+			this.storage.set({
+				options: this.options,
+			}, true, () => this.$scope.$apply() );
+		};
 
-			isOptionSaved () {
-				return angular.equals(this.options, this.stg.options);
-			};
+		isOptionSaved () {
+			return angular.equals(this.options, this.stg.options);
+		};
+
+		clearData () {
+			this.Analytics.trackEvent('Activity', 'ClearData');
+			this.storage.clear(() => this.onStorageClear());
+		};
+
+		private onStorageClear() {
+			const windows = chrome.extension.getViews();
+			console.log(windows);
+			for (let i = 0; i < windows.length; i++) {
+				windows[i].location.reload();
+			}
+		}
 	}
 }
-	// .controller('OptionsCtrl', ['storage', 'Analytics', '$scope', function (storage, Analytics, $scope) {
-	// 	const vm = this;
-	//
-	// 	vm.stg = {
-	// 		options: {},
-	// 	};
-	// 	vm.options = {};
-	// 	storage.ready.then((stg) => {
-	// 		vm.stg = stg;
-	// 		vm.options = angular.copy(stg.options);
-	// 	});
-	//
-	// 	vm.saveOptions = function () {
-	// 		Analytics.trackEvent('Activity', 'SaveOptions');
-	// 		storage.set({
-	// 			options: vm.options,
-	// 		}, () => $scope.$apply() );
-	// 	};
-	//
-	// 	vm.clearData = function () {
-	// 		Analytics.trackEvent('Activity', 'ClearData');
-	// 		// chrome.storage.local.clear();
-	// 	};
-	//
-	// 	vm.isOptionSaved = function () {
-	// 		return angular.equals(vm.options, vm.stg.options);
-	// 	};
-	//
-	// }]);
