@@ -111,7 +111,7 @@ module BgApp {
 			return true;
 		}
 
-		deamonFailCB(error: any) {
+		deamonFailCB(error: string) {
 			console.error(error);
 			chrome.browserAction.setIcon({ path: 'img/icon38-off.png' });
 
@@ -135,6 +135,11 @@ module BgApp {
 				delete changes.counter;
 			}
 
+			if (changes.access_token) {
+				this.stg.access_token = changes.access_token.newValue;
+				delete changes.access_token;
+			}
+
 			if (changes.user_id && changes.user_id.newValue) {
 				this.Analytics.set('&uid', changes.user_id.newValue);
 				this.stg.user_id = changes.user_id.newValue;
@@ -143,7 +148,7 @@ module BgApp {
 
 			const newStg = {};
 			angular.forEach(changes, function (change, key) {
-				if (angular.isDefined(change.newValue)) newStg[key] = angular.copy(change.newValue);
+				newStg[key] = angular.copy(change.newValue);
 			});
 
 			this.storage.set(newStg, false);
