@@ -18,6 +18,8 @@
     "gulp-uglify": "^1.5.3",
     "gulp-useref": "^3.1.0",
     "wiredep": "^4.0.0",
-    "yargs": "~4.7.1"
+    "yargs": "~4.7.1",
+    "gulp-bump": "~2.2.0",
+    "gulp-filter": "~4.0.0"
   }
 }

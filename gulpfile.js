@@ -3,6 +3,7 @@
 var gulp       = require('gulp');
 var del        = require('del');
 var args       = require('yargs').argv;
+var filter     = require('gulp-filter');
 
 var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
@@ -17,6 +18,8 @@ var jsonminify = require('gulp-jsonminify');
 
 var wiredep    = require('wiredep').stream;
 var gettext    = require('gulp-angular-gettext');
+
+var bump = require('gulp-bump');
 
 gulp.task('pot', function () {
     return gulp.src(['src/**/*.html', 'src/**/*.js'])
@@ -110,4 +113,27 @@ gulp.task('bower', function () {
 	      goes: 'here',
 	    }))
 	    .pipe(gulp.dest('src'));
+});
+
+gulp.task('bump', function () {
+
+	// Version example
+	//  major: 1.0.0
+	//  minor: 0.1.0
+	//  patch: 0.0.2
+	//  prerelease: 0.0.1-2
+	var bumpParams = {};
+	if (args.ver) bumpParams.version = args.ver;
+	else bumpParams.type = args.type || 'patch';
+
+  var manifestFilter = filter(['src/manifest.json'], {restore: true});
+  var regularJsons = filter(['*.json'], {restore: true});
+
+  return gulp.src(['bower.json', 'package.json', 'src/manifest.json'])
+    .pipe(bump(bumpParams))
+		.pipe(manifestFilter)
+    .pipe(gulp.dest('./src'))
+    .pipe(manifestFilter.restore)
+    .pipe(regularJsons)
+    .pipe(gulp.dest('./'));
 });
