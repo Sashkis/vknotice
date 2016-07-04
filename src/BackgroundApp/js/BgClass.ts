@@ -2,7 +2,7 @@
 module BgApp {
 	export class BgClass {
 		stg = <IStorageData>{};
-		badge: number;
+		badge: number = 0;
 
 		public static $inject = [
 			'storage',
