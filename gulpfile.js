@@ -1,13 +1,15 @@
 'use strict';
+// var debug = require('gulp-debug');
 
 var gulp       = require('gulp');
 var del        = require('del');
 var args       = require('yargs').argv;
+
 var filter     = require('gulp-filter');
 
 var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
-var gulpif     = require('gulp-if');
+// var gulpif     = require('gulp-if');
 var flatten    = require('gulp-flatten');
 
 var useref     = require('gulp-useref');
@@ -50,9 +52,11 @@ gulp.task('sass:watch', ['sass'], function () {
 
 
 gulp.task('copy', ['copy:fonts'], function () {
+	var json = filter(['**/*.json'], {restore: true});
+	var html = filter(['**/*.tpl'], {restore: true});
 	return gulp.src(['src/*.json', 'src/+(_locales)/**/*.json', 'src/+(BackgroundApp)/+(audio|img)/*', 'src/**/*.tpl'])
-	      .pipe(gulpif('*.json', jsonminify()))
-	      .pipe(gulpif('*.tpl', htmlmin({collapseWhitespace: true})))
+				.pipe(json).pipe(jsonminify()).pipe(json.restore)
+				.pipe(html).pipe(htmlmin({collapseWhitespace: true})).pipe(html.restore)
 	      .pipe(gulp.dest('build'))
 });
 
@@ -67,39 +71,20 @@ gulp.task('copy:fonts', function () {
 });
 
 
-gulp.task('build', ['sass', 'clean'], function () {
-	gulp.start('build:all');
+gulp.task('build', ['clean'], function () {
+	gulp.start('build:source')
 });
-
-gulp.task('build:all', [
-	'build:Background',
-	'build:Options',
-	'build:Popup',
-	'copy',
-]);
-gulp.task('build:Background', function () {
-	return gulp.src('src/BackgroundApp/background.html')
-	      .pipe(useref())
-	      .pipe(gulpif('*.js', uglify()))
-	      .pipe(gulpif('*.css', cleanCSS()))
-	      .pipe(gulp.dest('build/BackgroundApp'));
-});
-
-gulp.task('build:Options', function () {
-	return gulp.src('src/OptionsApp/*.html')
-	      .pipe(useref())
-	      .pipe(gulpif('*.js', uglify()))
-	      .pipe(gulpif('*.css', cleanCSS()))
-				.pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
-	      .pipe(gulp.dest('build/OptionsApp/'));
-});
-
-gulp.task('build:Popup', function () {
-	return gulp.src('src/PopupApp/popup.html')
-	      .pipe(useref())
-	      .pipe(gulpif('*.js', uglify()))
-	      .pipe(gulpif('*.css', cleanCSS()))
-	      .pipe(gulp.dest('build/PopupApp'));
+gulp.task('build:source', ['copy', 'sass'], function () {
+	var js = filter(['**/*.js'], {restore: true});
+	var css = filter(['**/*.css'], {restore: true});
+	var html = filter(['**/*.html'], {restore: true});
+	return gulp.src(['src/+(OptionsApp|BackgroundApp|PopupApp)/*.html'])
+				.pipe(useref())
+	      .pipe(js).pipe(uglify()).pipe(js.restore)
+	      .pipe(css).pipe(cleanCSS()).pipe(css.restore)
+	      .pipe(html).pipe(htmlmin({collapseWhitespace: true})).pipe(html.restore)
+				.pipe(gulp.dest('build'))
+				;
 });
 
 gulp.task('clean', function () {
