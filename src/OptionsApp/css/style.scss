@@ -2,37 +2,45 @@ $mainColor: #567ca4;
 body {
 	color: #000;
 	font-size: 15px;
-	font-family: "Open Sans","Helvetica Neue", sans-serif;
+	font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
 	background: #edeef0;
 	margin: 0 auto;
 	box-sizing: border-box;
 }
+
 header, .wrapper {
 	max-width: 1200px;
 	margin: 0 auto;
 }
+
 ng-include.header {
 	background: #507299;
 	display: block;
 }
 
+
 .wrapper {
 	display: flex;
 }
+
 .option-panels {
 	flex: 5;
 }
+
 .widget {
 	flex: 3;
 	&.box {
 		margin-left: 0;
 	}
+
 }
+
 .box {
 	margin: 20px;
 }
+
 .panel {
 	padding: 0px;
 	background: #FFF;
@@ -45,10 +53,13 @@ ng-include.header {
 		background-color: #f7f8fa;
 		border-bottom: 1px solid #eef0f3;
 	}
+
 	.content {
 		padding: 25px 30px 30px;
 	}
+
 }
+
 
 .audioOption > .content {
 	display: flex;
@@ -58,7 +69,9 @@ ng-include.header {
 		text-align: center;
 		color: rgba(0,0,0,0.3);
 		&:hover { color: lighten($mainColor, 15%); }
+
 		&.active { color: $mainColor; }
+
 		.fa {
 			color: inherit;
 			display: block;
@@ -66,8 +79,11 @@ ng-include.header {
 			font-size: 300%;
 			line-height: normal;
 		}
+
 	}
+
 }
+
 
 label {
 	position: relative;
@@ -76,6 +92,7 @@ label {
 	input {
 		display: none;
 	}
+
 	i.fa {
 		color: #567ca4;
 		width: 20px;
@@ -83,15 +100,19 @@ label {
 		line-height: 20px;
 		vertical-align: middle;
 	}
+
 }
+
 [class^="icon-"], [class*=" icon-"] {
 	font-size: 1.5em;
 	vertical-align: middle;
 }
 
+
 #donate {
 	text-align: center;
 }
+
 
 %btn {
 	padding: 7px 16px 8px;
@@ -110,11 +131,15 @@ label {
 			padding-bottom: 7px;
 			background-color: #ccc;
 		}
+
 	}
+
 	&:focus {
 		outline: none;
 	}
+
 }
+
 
 @mixin btnColor($mainColor, $textColor: #fff) {
 	background-color: $mainColor;
@@ -122,15 +147,20 @@ label {
 	&:disabled {
 		background-color: lighten($mainColor, 30%);
 	}
+
 	&:not(:disabled) {
 		&:active {
 			background-color: darken($mainColor, 5%) !important;
 		}
+
 		&:hover {
 			background-color: lighten($mainColor, 5%);
 		}
+
 	}
+
 }
+
 
 .buttons-conteiner {
 	display: flex;
@@ -139,9 +169,12 @@ label {
 		@include btnColor(#6287ae);
 	}
 
+
 	.clear {
 		@extend %btn;
 		@include btnColor(#dc4040);
 		margin-left: auto;
 	}
+
 }
+
