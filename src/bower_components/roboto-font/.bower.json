@@ -1,0 +1,36 @@
+{
+  "name": "roboto-font",
+  "homepage": "https://github.com/cawa-93/vknotice",
+  "authors": [
+    "Alex Kozack <kozackunisoft@gmail.com>"
+  ],
+  "description": "Roboto font-face css",
+  "main": "css/roboto.css",
+  "keywords": [
+    "roboto",
+    "font"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".git",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cawa-93/roboto-font.git"
+  },
+  "_release": "3f581614b9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "3f581614b95f4d7098ea30a6ad2b07e33dd91d7a"
+  },
+  "_source": "git@github.com:cawa-93/roboto-font.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:cawa-93/roboto-font.git"
+}
