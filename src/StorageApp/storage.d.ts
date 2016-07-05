@@ -14,9 +14,9 @@ interface IStorageData {
 	friends: number[];
 	newfriends: number[];
 	dialogs: IDialog[];
-	groups: IProfiles[];
-	users: IProfiles[];
-	profiles: IProfiles[];
+	groups: IProfile[];
+	users: IProfile[];
+	profiles: IProfile[];
 	lang: number;
 	notifyLast_viewed: number;
 }
@@ -67,7 +67,7 @@ declare enum OnlineStatus {
 	Online,
 }
 
-interface IProfiles {
+interface IProfile {
 	id: number;
 	first_name?: string;
 	last_name?: string;

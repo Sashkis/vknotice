@@ -42,7 +42,7 @@ module BgApp {
 			return this;
 		}
 
-		cacheProfiles(...arraysProfiles: IProfiles[][]) : this {
+		cacheProfiles(...arraysProfiles: IProfile[][]) : this {
 			arraysProfiles.forEach((profiles) => profiles && profiles.length && this.storage.setProfiles(profiles));
 			return this;
 		}

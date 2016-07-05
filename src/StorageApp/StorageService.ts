@@ -58,12 +58,12 @@ module StorageApp {
 			return -1;
 		}
 
-		getProfile(id: number) : IProfiles | {} {
+		getProfile(id: number) : IProfile | {} {
 			const index = this.getProfileIndex(id);
 			return (index >= 0 && this.stg.profiles && this.stg.profiles[index]) ? this.stg.profiles[index] : {};
 		}
 
-		setProfiles(newProfiles: IProfiles[]) {
+		setProfiles(newProfiles: IProfile[]) {
 			if (!this.stg.profiles) this.initEmptyProfilesCash();
 
 			const needSearch = this.stg.profiles.length > 0;
@@ -84,7 +84,7 @@ module StorageApp {
 			return this.stg.profiles;
 		}
 
-		clearProfiles(limit: number) : IProfiles[] {
+		clearProfiles(limit: number) : IProfile[] {
 			if (!limit || !this.stg.profiles) return this.initEmptyProfilesCash();
 
 			this.stg.profiles = this.stg.profiles.filter((profile) => profile && profile.id);
@@ -93,7 +93,7 @@ module StorageApp {
 			return this.stg.profiles;
 		}
 
-		initEmptyProfilesCash() : IProfiles[] {
+		initEmptyProfilesCash() : IProfile[] {
 			this.set({
 				profiles: []
 			});
