@@ -25,7 +25,7 @@
     "angular-gettext": "^2.2.1",
     "angular-google-analytics": "^1.1.7",
     "components-font-awesome": "^4.6.3",
-    "open-sans": "^1.1.0"
+    "roboto-font": "git@github.com:cawa-93/roboto-font.git"
   },
   "devDependencies": {}
 }
