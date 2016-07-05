@@ -9,6 +9,7 @@ var BgApp;
             this.Config = Config;
             this.Analytics = Analytics;
             this.stg = {};
+            this.badge = 0;
             storage.ready.then(function (stg) { _this.StgReady(stg); });
             storage.onChanged(function (changes) { _this.StgChanged(changes); });
         }

@@ -88,17 +88,17 @@
 					<label ng-class="{'active': vm.options.audio == 0}">
 						<i class="fa fa-volume-off"></i>
 						<translate>Выключить</translate>
-						<input ng-model="vm.options.audio" type="radio" value="0"/>
+						<input ng-model="vm.options.audio" type="radio" ng-value="0"/>
 					</label>
 					<label ng-class="{'active': vm.options.audio == 1}">
 						<i class="fa fa-volume-down"></i>
 						<translate>При закрытом ВК</translate>
-						<input ng-model="vm.options.audio" type="radio" value="1"/>
+						<input ng-model="vm.options.audio" type="radio" ng-value="1"/>
 					</label>
 					<label ng-class="{'active': vm.options.audio == 2}">
 						<i class="fa fa-volume-up"></i>
 						<translate>Всегда</translate>
-						<input ng-model="vm.options.audio" type="radio" value="2"/>
+						<input ng-model="vm.options.audio" type="radio" ng-value="2"/>
 					</label>
 				</div>
 			</div>
