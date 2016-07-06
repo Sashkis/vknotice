@@ -24,11 +24,11 @@
     "type": "git",
     "url": "git://github.com/cawa-93/roboto-font.git"
   },
-  "_release": "3f581614b9",
+  "_release": "d7d18e4d76",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "3f581614b95f4d7098ea30a6ad2b07e33dd91d7a"
+    "commit": "d7d18e4d76b3ccdc3a2699241095172111d7cb46"
   },
   "_source": "git@github.com:cawa-93/roboto-font.git",
   "_target": "*",

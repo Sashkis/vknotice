@@ -1,1 +1,31 @@
-<!DOCTYPE html><html ng-app="PopupApp"><head><title>{{'Информер Вконтакте'|translate}}</title><meta charset="UTF-8"><base target="_blank"><link rel="stylesheet" href="/HeaderApp/HeaderApp.css"><link rel="stylesheet" href="/PopupApp/PopupApp.css"><link rel="stylesheet" href="/vendors/css/fonts.css"></head><body><div preloader ng-if="false" class="preloader"></div><div id="alert"><table></table></div><div class="container" ng-controller="SectionsCtrl as main"><ng-include src="'../HeaderApp/Header.tpl'"></ng-include><ng-include src="'../SectionApp/sections/'+main.currentSection+'/'+main.currentSection+'.tpl'" class="flex"></ng-include></div><script src="/vendors/js/vendors.js"></script><script src="/Translations/all.js"></script><script src="/StorageApp/StorageApp.js"></script><script src="/VkApp/VkApp.js"></script><script src="/HeaderApp/HeaderApp.js"></script><script src="/libs/Helpers.js"></script><script src="/PopupApp/PopupApp.js"></script><script src="/SectionApp/SectionApp.js"></script></body></html>
+<!DOCTYPE html>
+<html ng-app="PopupApp">
+<head>
+	<title>{{'Информер Вконтакте'|translate}}</title>
+	<meta charset="UTF-8">
+	<base target="_blank">
+
+	<link rel="stylesheet" href="/HeaderApp/HeaderApp.css">
+	<link rel="stylesheet" href="/PopupApp/PopupApp.css">
+	<link rel="stylesheet" href="/vendors/css/fonts.css">
+
+</head>
+<body>
+	<div preloader ng-if="false" class="preloader"></div>
+	<div id="alert"><table></table></div>
+	<div class="container" ng-controller="SectionsCtrl as main">
+		<ng-include src="'../HeaderApp/Header.tpl'"></ng-include>
+		<ng-include src="'../SectionApp/sections/'+main.currentSection+'/'+main.currentSection+'.tpl'" class="flex"></ng-include>
+	</div>
+	<script src="/vendors/js/vendors.js"></script>
+	<script src="/Translations/all.js"></script>
+	<script src="/StorageApp/StorageApp.js"></script>
+	<script src="/VkApp/VkApp.js"></script>
+	<script src="/HeaderApp/HeaderApp.js"></script>
+	<script src="/libs/Helpers.js"></script>
+	<script src="/PopupApp/PopupApp.js"></script>
+
+	<script src="/SectionApp/SectionApp.js"></script>
+
+</body>
+</html>

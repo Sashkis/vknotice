@@ -9,8 +9,6 @@
     "gulp": "^3.9.1",
     "gulp-angular-gettext": "^2.2.0",
     "gulp-clean-css": "^2.0.10",
-    "gulp-flatten": "^0.3.0",
-    "gulp-htmlmin": "^2.0.0",
     "gulp-jsonminify": "^1.0.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
