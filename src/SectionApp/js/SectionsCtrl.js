@@ -1,37 +1,43 @@
-angular.module('SectionsApp')
-    .controller('SectionsCtrl', ['stack', 'storage', 'Analytics', 'SectionsNames',
-    function (stack, storage, Analytics, SectionsNames) {
-        var vm = this;
-        vm.stack = stack;
-        vm.openSection = openSection;
-        vm.backSection = backSection;
-        vm.currentSection = 'Default';
-        function openSection(section_id, $event) {
-            angular.isDefined($event) && $event.preventDefault();
-            if (section_id !== vm.currentSection) {
-                vm.stack.add(section_id);
-                vm.currentSection = section_id;
-                storage.set({ currentSection: vm.currentSection });
-                Helpers.trackPage(Analytics, storage);
-            }
-            else {
-                vm.backSection($event);
-            }
+var SectionsApp;
+(function (SectionsApp) {
+    var SectionsCtrl = (function () {
+        function SectionsCtrl(storage, Analytics, $location, $window, $scope) {
+            var _this = this;
+            this.storage = storage;
+            this.Analytics = Analytics;
+            this.$location = $location;
+            this.$window = $window;
+            storage.ready.then(function (stg) {
+                Analytics.set('&uid', stg.user_id);
+                if (stg.currentSection !== '/') {
+                    $location.url(stg.currentSection);
+                }
+            });
+            $scope.$on('$locationChangeSuccess', function () { return _this.saveSection(); });
         }
-        function backSection($event) {
-            angular.isDefined($event) && $event.preventDefault();
-            vm.stack.delete();
-            vm.currentSection = vm.stack.get();
-            if (!vm.currentSection) {
-                vm.currentSection = 'Default';
-            }
-            storage.set({ currentSection: vm.currentSection });
-            Helpers.trackPage(Analytics, storage);
-        }
-        storage.ready.then(function (stg) {
-            if (stg.currentSection) {
-                openSection(stg.currentSection);
-            }
-        });
-    }]);
+        SectionsCtrl.prototype.isRoot = function () {
+            return this.$location.url() === '/';
+        };
+        SectionsCtrl.prototype.back = function () {
+            if (this.$window.history.length > 1)
+                this.$window.history.back();
+            else
+                this.$location.url('/');
+        };
+        SectionsCtrl.prototype.saveSection = function () {
+            this.storage.set({
+                currentSection: this.$location.url()
+            });
+        };
+        SectionsCtrl.$inject = [
+            'storage',
+            'Analytics',
+            '$location',
+            '$window',
+            '$scope',
+        ];
+        return SectionsCtrl;
+    }());
+    SectionsApp.SectionsCtrl = SectionsCtrl;
+})(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsCtrl.js.map

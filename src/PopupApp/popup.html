@@ -26,13 +26,14 @@
 	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
 		<ng-include src="'../HeaderApp/Header.tpl'"></ng-include>
-		<ng-include src="'../SectionApp/sections/'+main.currentSection+'/'+main.currentSection+'.tpl'" class="flex"></ng-include>
+		<ng-view></ng-view>
 	</div>
 	<!-- build:js /vendors/js/vendors.js -->
 	<!-- bower:js -->
 	<script src="../bower_components/angular/angular.js"></script>
 	<script src="../bower_components/angular-gettext/dist/angular-gettext.js"></script>
 	<script src="../bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+	<script src="../bower_components/angular-route/angular-route.js"></script>
 	<!-- endbower -->
 	<!-- endbuild -->
 	<!-- build:js /Translations/all.js -->
@@ -59,9 +60,8 @@
 	<!-- endbuild -->
 
 	<!-- build:js /SectionApp/SectionApp.js -->
-	<script src="../SectionApp/js/SectionsApp.js"></script>
 	<script src="../SectionApp/js/SectionsCtrl.js"></script>
-	<script src="../SectionApp/js/StackFactory.js"></script>
+	<script src="../SectionApp/js/SectionsApp.js"></script>
 
 	<script src="../SectionApp/sections/Default/js/SidebarCtrl.js"></script>
 	<script src="../SectionApp/sections/Default/js/FriendsCtrl.js"></script>

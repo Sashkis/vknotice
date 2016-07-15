@@ -1,42 +1,46 @@
-angular.module('SectionsApp')
+module SectionsApp {
+	export class SectionsCtrl {
+		public static $inject = [
+			'storage',
+			'Analytics',
+			'$location',
+			'$window',
+			'$scope',
+		];
 
-	.controller('SectionsCtrl', ['stack', 'storage', 'Analytics', 'SectionsNames',
-	function (stack, storage, Analytics, SectionsNames) {
-		const vm = this;
+		constructor(
+			private storage: StorageApp.StorageService,
+			private Analytics: any,
+			private $location: ng.ILocationService,
+			private $window: ng.IWindowService,
+			$scope: ng.IScope
+		) {
+			storage.ready.then((stg) => {
+				Analytics.set('&uid', stg.user_id);
 
-		vm.stack          = stack;
-		vm.openSection    = openSection;
-		vm.backSection    = backSection;
-		vm.currentSection = 'Default';
+				if (stg.currentSection !== '/') {
+					$location.url(stg.currentSection);
+				}
+			});
 
-		function openSection(section_id, $event) {
-			angular.isDefined($event) && $event.preventDefault();
-			if (section_id !== vm.currentSection) {
-				vm.stack.add(section_id);
-				vm.currentSection = section_id;
-
-				storage.set({currentSection: vm.currentSection});
-				Helpers.trackPage(Analytics, storage);
-			} else {
-				vm.backSection($event);
-			}
+				$scope.$on('$locationChangeSuccess', () => this.saveSection())
 		}
 
-		function backSection($event) {
-			angular.isDefined($event) && $event.preventDefault();
-			vm.stack.delete();
-			vm.currentSection = vm.stack.get();
-
-			if (!vm.currentSection) {
-				vm.currentSection = 'Default';
-			}
-			storage.set({currentSection: vm.currentSection});
-			Helpers.trackPage(Analytics, storage);
+		isRoot() {
+			return this.$location.url() === '/';
 		}
 
-		storage.ready.then(function (stg) {
-			if (stg.currentSection) {
-				openSection(stg.currentSection);
-			}
-		});
-	}]);
+		back() {
+			if (this.$window.history.length > 1)
+				this.$window.history.back();
+			else
+				this.$location.url('/');
+		}
+
+		saveSection() {
+			this.storage.set({
+				currentSection: this.$location.url()
+			});
+		}
+	}
+}

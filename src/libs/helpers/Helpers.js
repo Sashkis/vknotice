@@ -9,7 +9,6 @@ var Helpers;
         storage.ready.then(function (stg) {
             stg.user_id && Analytics.set('&uid', stg.user_id);
             var path = getPageTrackUrl();
-            path = path === '/Popup/' && stg.currentSection ? path + stg.currentSection : path;
             Analytics.trackPage(path);
         });
     }
@@ -18,7 +17,6 @@ var Helpers;
         switch (location.pathname) {
             case "/OptionsApp/index.html": return '/Options/';
             case "/BackgroundApp/background.html": return '/Background/';
-            case "/PopupApp/popup.html": return '/Popup/';
         }
     }
     Helpers.getPageTrackUrl = getPageTrackUrl;

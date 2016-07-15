@@ -1,9 +1,9 @@
 <header ng-controller="HeaderCtrl as head" class="flex">
-	<a ng-hide="main.stack.get()" class="navbar-brand" ng-href="https://vk.com/vknotice">
+	<a ng-show="main.isRoot()" class="navbar-brand" ng-href="https://vk.com/vknotice">
 		<span class="fa fa-vk"></span>
 		<translate>Информер</translate>
 	</a>
-	<span ng-show="main.stack.get()" class="navbar-brand" ng-click="main.backSection($event)">
+	<span ng-hide="main.isRoot()" class="navbar-brand" ng-click="main.back();">
 		<span class="fa fa-chevron-left"></span>
 		<translate>Назад</translate>
 	</span>
