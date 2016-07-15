@@ -26,7 +26,7 @@
 	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
 		<ng-include src="'../HeaderApp/Header.tpl'"></ng-include>
-		<ng-include src="'../SectionApp/sections/'+main.currentSection+'/'+main.currentSection+'.tpl'" class="flex"></ng-include>
+		<ng-view></ng-view>
 	</div>
 	<!-- build:js /vendors/js/vendors.js -->
 	<!-- bower:js -->
