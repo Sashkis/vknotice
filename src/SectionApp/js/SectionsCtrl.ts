@@ -1,7 +1,52 @@
-angular.module('SectionsApp')
+module SectionsApp {
+	export class SectionsCtrl {
+		public static $inject = [
+			'storage',
+			'Analytics',
+			'$location',
+			'$window',
+			'$scope',
+		];
 
-	.controller('SectionsCtrl', ['stack', 'storage', 'Analytics', 'SectionsNames',
-	function (stack, storage, Analytics, SectionsNames) {
+		constructor(
+			private storage: StorageApp.StorageService,
+			private Analytics: any,
+			private $location: ng.ILocationService,
+			private $window: ng.IWindowService,
+			$scope: ng.IScope
+		) {
+			storage.ready.then((stg) => {
+				console.log(stg.currentSection);
+				if (stg.currentSection !== '/') {
+					$location.url(stg.currentSection);
+				}
+			});
+
+				$scope.$on('$locationChangeSuccess', () => this.saveSection())
+		}
+
+		isRoot() {
+			return this.$location.url() === '/';
+		}
+
+		back() {
+			if (this.$window.history.length > 1)
+				this.$window.history.back();
+			else
+				this.$location.url('/');
+		}
+
+		saveSection() {
+			this.storage.set({
+				currentSection: this.$location.url()
+			});
+		}
+	}
+}
+// angular.module('SectionsApp')
+//
+// 	.controller('SectionsCtrl', ['stack', 'storage', 'Analytics', 'SectionsNames',
+// 	function (stack, storage, Analytics, SectionsNames) {
 	// 	const vm = this;
 	//
 	// 	vm.stack          = stack;
@@ -38,5 +83,5 @@ angular.module('SectionsApp')
 	// 		if (stg.currentSection) {
 	// 			openSection(stg.currentSection);
 	// 		}
-		});
-	}]);
+		// });
+	// }]);

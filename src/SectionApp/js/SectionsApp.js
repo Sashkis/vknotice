@@ -24,6 +24,7 @@ var SectionsApp;
                 redirectTo: '/'
             });
         }
-    ]);
+    ])
+        .controller('SectionsCtrl', SectionsApp.SectionsCtrl);
 })(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsApp.js.map

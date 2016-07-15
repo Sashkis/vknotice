@@ -26,5 +26,7 @@ module SectionsApp {
 						redirectTo: '/'
 					});
 			}
-		]);
+		])
+
+		.controller('SectionsCtrl', SectionsCtrl);
 }

@@ -1,6 +1,43 @@
-angular.module('SectionsApp')
-    .controller('SectionsCtrl', ['stack', 'storage', 'Analytics', 'SectionsNames',
-    function (stack, storage, Analytics, SectionsNames) {
-    }]);
-;
+var SectionsApp;
+(function (SectionsApp) {
+    var SectionsCtrl = (function () {
+        function SectionsCtrl(storage, Analytics, $location, $window, $scope) {
+            var _this = this;
+            this.storage = storage;
+            this.Analytics = Analytics;
+            this.$location = $location;
+            this.$window = $window;
+            storage.ready.then(function (stg) {
+                console.log(stg.currentSection);
+                if (stg.currentSection !== '/') {
+                    $location.url(stg.currentSection);
+                }
+            });
+            $scope.$on('$locationChangeSuccess', function () { return _this.saveSection(); });
+        }
+        SectionsCtrl.prototype.isRoot = function () {
+            return this.$location.url() === '/';
+        };
+        SectionsCtrl.prototype.back = function () {
+            if (this.$window.history.length > 1)
+                this.$window.history.back();
+            else
+                this.$location.url('/');
+        };
+        SectionsCtrl.prototype.saveSection = function () {
+            this.storage.set({
+                currentSection: this.$location.url()
+            });
+        };
+        SectionsCtrl.$inject = [
+            'storage',
+            'Analytics',
+            '$location',
+            '$window',
+            '$scope',
+        ];
+        return SectionsCtrl;
+    }());
+    SectionsApp.SectionsCtrl = SectionsCtrl;
+})(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsCtrl.js.map
