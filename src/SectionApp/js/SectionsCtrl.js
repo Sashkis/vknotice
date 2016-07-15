@@ -8,7 +8,7 @@ var SectionsApp;
             this.$location = $location;
             this.$window = $window;
             storage.ready.then(function (stg) {
-                console.log(stg.currentSection);
+                Analytics.set('&uid', stg.user_id);
                 if (stg.currentSection !== '/') {
                     $location.url(stg.currentSection);
                 }

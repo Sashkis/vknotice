@@ -2,15 +2,13 @@
 module SectionsApp {
 
 	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute'])
-		.constant('SectionsNames', {
-			'Default': 'Меню',
-			'NewMess': 'Диалоги',
-			'NewFriends': 'Заявки в друзья',
-		})
 
 		.config(['$routeProvider', 'AnalyticsProvider',
 			function($routeProvider: angular.route.IRouteProvider, AnalyticsProvider: any) {
-				AnalyticsProvider.readFromRoute(true);
+				AnalyticsProvider
+					.readFromRoute(true)
+					.trackPrefix('/Popup');
+
 				$routeProvider
 					.when('/', {
 						templateUrl: '/SectionApp/sections/Default/Default.tpl',
