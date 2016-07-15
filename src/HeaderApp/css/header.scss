@@ -33,10 +33,11 @@ header {
 	    display: flex;
 	    flex: 1;
 	    .fa {
-		    font-size: 30px;
-		    line-height: $height;
 		    margin-right: 10px;
-		    margin-top: -2px;
+				&.fa-vk {
+					font-size: 30px;
+					line-height: $height - 4;
+				}
 	    }
 	}
 	.notifications {

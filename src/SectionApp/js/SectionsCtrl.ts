@@ -26,8 +26,8 @@ module SectionsApp {
 				$scope.$on('$locationChangeSuccess', () => this.saveSection())
 		}
 
-		isRoot() {
-			return this.$location.url() === '/';
+		isNoRoot() {
+			return this.$location.url() !== '/';
 		}
 
 		back() {

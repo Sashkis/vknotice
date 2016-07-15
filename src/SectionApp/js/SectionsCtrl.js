@@ -15,8 +15,8 @@ var SectionsApp;
             });
             $scope.$on('$locationChangeSuccess', function () { return _this.saveSection(); });
         }
-        SectionsCtrl.prototype.isRoot = function () {
-            return this.$location.url() === '/';
+        SectionsCtrl.prototype.isNoRoot = function () {
+            return this.$location.url() !== '/';
         };
         SectionsCtrl.prototype.back = function () {
             if (this.$window.history.length > 1)

@@ -1,10 +1,10 @@
 <header ng-controller="HeaderCtrl as head" class="flex">
-	<a ng-show="main.isRoot()" class="navbar-brand" ng-href="https://vk.com/vknotice">
-		<span class="fa fa-vk"></span>
+	<a ng-hide="main.isNoRoot()" class="navbar-brand" ng-href="https://vk.com/vknotice">
+		<span class="fa fa-vk fa-3x"></span>
 		<translate>Информер</translate>
 	</a>
-	<span ng-hide="main.isRoot()" class="navbar-brand" ng-click="main.back();">
-		<span class="fa fa-chevron-left"></span>
+	<span ng-show="main.isNoRoot()" class="navbar-brand" ng-click="main.back();">
+		<span class="fa fa-angle-left fa-3x"></span>
 		<translate>Назад</translate>
 	</span>
 
