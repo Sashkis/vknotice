@@ -9,5 +9,13 @@ module HeaderApp {
 		},
 	])
 
-	.controller('HeaderCtrl', HeaderCtrl);
+	.controller('HeaderCtrl', HeaderCtrl)
+	.directive('vkHeader', () => {
+		return {
+			templateUrl: '/HeaderApp/Header.tpl',
+			restrict: 'E',
+			scope: false,
+			replace: true,
+		}
+	});
 }

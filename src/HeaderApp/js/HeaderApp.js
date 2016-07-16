@@ -7,6 +7,14 @@ var HeaderApp;
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|chrome-extension):/);
         },
     ])
-        .controller('HeaderCtrl', HeaderApp.HeaderCtrl);
+        .controller('HeaderCtrl', HeaderApp.HeaderCtrl)
+        .directive('vkHeader', function () {
+        return {
+            templateUrl: '/HeaderApp/Header.tpl',
+            restrict: 'E',
+            scope: false,
+            replace: true,
+        };
+    });
 })(HeaderApp || (HeaderApp = {}));
 //# sourceMappingURL=HeaderApp.js.map
