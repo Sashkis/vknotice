@@ -12,7 +12,7 @@ aside {
 		&:hover {
 			background-color: rgba($mainColor, 0.2);
 		}
-		a {
+		a, span {
 			display: flex;
 			&:not(.counter) {
 				flex: 1;
