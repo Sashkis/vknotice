@@ -45,6 +45,14 @@ interface IOptions {
 
 interface IDialog {
 	unread?: number;
+	message: IMessage;
+	in_read: number;
+	out_read: number;
+}
+
+interface IDialog_cached {
+	id: number;
+	unread?: number;
 	message: IMessage[];
 	in_read: number;
 	out_read: number;
@@ -60,6 +68,10 @@ interface IMessage {
 	body: string;
 	random_id: number;
 	attachments: any[]
+}
+interface IAttachment {
+	type: string;
+	[type: string]: any;
 }
 
 declare enum OnlineStatus {

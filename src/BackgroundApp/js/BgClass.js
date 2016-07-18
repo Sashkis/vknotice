@@ -10,8 +10,8 @@ var BgApp;
             this.Analytics = Analytics;
             this.stg = {};
             this.badge = 0;
-            storage.ready.then(function (stg) { _this.StgReady(stg); });
-            storage.onChanged(function (changes) { _this.StgChanged(changes); });
+            storage.ready.then(function (stg) { return _this.StgReady(stg); });
+            storage.onChanged(function (changes) { return _this.StgChanged(changes); });
         }
         BgClass.prototype.StgReady = function (stg) {
             var _this = this;
@@ -100,10 +100,14 @@ var BgApp;
         BgClass.prototype.deamonDoneCB = function (resp) {
             if (resp === void 0) { resp = {}; }
             chrome.browserAction.setIcon({ path: 'img/icon38.png' });
-            resp.dialogs && resp.dialogs.map(function (dialog) {
-                dialog.message.attachments && dialog.message.attachments.map(function (attach) { return attach.type; });
-                return dialog;
-            });
+            if (resp.dialogs) {
+                resp.dialogs = resp.dialogs.map(function (dialog) {
+                    if (dialog.message.attachments) {
+                        dialog.message.attachments = dialog.message.attachments.map(function (attach) { return new SectionsApp.Attachment(attach); });
+                    }
+                    return dialog;
+                });
+            }
             delete resp.system;
             this.storage.set(resp);
             return true;

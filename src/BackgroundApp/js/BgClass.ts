@@ -19,8 +19,8 @@ module BgApp {
 			private Config: {profilesLimit: number},
 			private Analytics: any
 		) {
-			storage.ready.then((stg) => {this.StgReady(stg)});
-			storage.onChanged((changes) => {this.StgChanged(changes)});
+			storage.ready.then((stg) => this.StgReady(stg));
+			storage.onChanged((changes) => this.StgChanged(changes));
 		}
 
 		StgReady(stg: IStorageData) : this {
@@ -81,28 +81,33 @@ module BgApp {
 				notifyLast_viewed: this.stg.notifyLast_viewed,
 			};
 
-			if (this.stg.options.friends)       apiOptions.options += 'friends,';
-			if (this.stg.options.photos)        apiOptions.options += 'photos,';
-			if (this.stg.options.videos)        apiOptions.options += 'videos,';
-			if (this.stg.options.messages)      apiOptions.options += 'messages,';
-			if (this.stg.options.groups)        apiOptions.options += 'groups,';
+			if (this.stg.options.friends)   apiOptions.options += 'friends,';
+			if (this.stg.options.photos)    apiOptions.options += 'photos,';
+			if (this.stg.options.videos)    apiOptions.options += 'videos,';
+			if (this.stg.options.messages)  apiOptions.options += 'messages,';
+			if (this.stg.options.groups)    apiOptions.options += 'groups,';
 
-			if (this.stg.options.wall)          apiOptions.notifyFilters += 'wall,';
-			if (this.stg.options.mentions)      apiOptions.notifyFilters += 'mentions,';
-			if (this.stg.options.comments)      apiOptions.notifyFilters += 'comments,';
-			if (this.stg.options.likes)         apiOptions.notifyFilters += 'likes,';
-			if (this.stg.options.reposts)       apiOptions.notifyFilters += 'reposts,';
-			if (this.stg.options.followers)     apiOptions.notifyFilters += 'followers,';
+			if (this.stg.options.wall)      apiOptions.notifyFilters += 'wall,';
+			if (this.stg.options.mentions)  apiOptions.notifyFilters += 'mentions,';
+			if (this.stg.options.comments)  apiOptions.notifyFilters += 'comments,';
+			if (this.stg.options.likes)     apiOptions.notifyFilters += 'likes,';
+			if (this.stg.options.reposts)   apiOptions.notifyFilters += 'reposts,';
+			if (this.stg.options.followers) apiOptions.notifyFilters += 'followers,';
 
 			return apiOptions;
 		}
 
 		deamonDoneCB(resp = <any>{}) {
 			chrome.browserAction.setIcon({ path: 'img/icon38.png' });
-			resp.dialogs && resp.dialogs.map((dialog: any) => {
-				dialog.message.attachments && dialog.message.attachments.map((attach: any) => attach.type);
-				return dialog;
-			});
+
+			if (resp.dialogs) {
+				resp.dialogs = resp.dialogs.map((dialog: IDialog) => {
+					if (dialog.message.attachments) {
+						dialog.message.attachments = dialog.message.attachments.map((attach: IAttachment) => new SectionsApp.Attachment(attach));
+					}
+					return dialog;
+				});
+			}
 
 			delete resp.system;
 
