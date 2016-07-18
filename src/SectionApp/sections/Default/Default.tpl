@@ -8,9 +8,9 @@
 		<li>
 			<a ng-href="https://vk.com/friends" >
 				<translate>Друзья</translate>
-				<span class="counter" ng-click="main.openSection('NewFriends', $event)" ng-if="sidebar.stg.counter.friends">
+				<a class="counter" href="#NewFriends" ng-if="sidebar.stg.counter.friends">
 					{{'+'+sidebar.stg.counter.friends}}
-				</span>
+				</a>
 			</a>
 		</li>
 		<li>
