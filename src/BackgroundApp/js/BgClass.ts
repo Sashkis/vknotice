@@ -151,6 +151,10 @@ module BgApp {
 				delete changes.user_id;
 			}
 
+			if (changes.dialogs && changes.dialogs.newValue) {
+				this.storage.cacheDialogs(changes.dialogs.newValue);
+			}
+
 			const newStg = {};
 			angular.forEach(changes, function (change, key) {
 				newStg[key] = angular.copy(change.newValue);

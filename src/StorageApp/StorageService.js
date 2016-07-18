@@ -85,6 +85,56 @@ var StorageApp;
             });
             return [];
         };
+        StorageService.prototype.getDialogID = function (dialog) {
+            if (dialog.message.chat_id)
+                return 2000000000 + dialog.message.chat_id;
+            return dialog.message.user_id;
+        };
+        StorageService.prototype.getDialogIndex = function (id) {
+            if (id && this.stg
+                && this.stg.dialogs_cache) {
+                for (var i = 0; i < this.stg.dialogs_cache.length; i++) {
+                    if (this.stg.dialogs_cache[i].id === id)
+                        return i;
+                }
+            }
+            return -1;
+        };
+        StorageService.prototype.getDialog = function (id) {
+            var index = this.getDialogIndex(id);
+            return index >= 0 ? this.stg.dialogs_cache[index] : undefined;
+        };
+        StorageService.prototype.getCachedDialog = function (dialog) {
+            var dialogID = this.getDialogID(dialog);
+            var targetDialogIndex = this.getDialogIndex(dialogID);
+            if (targetDialogIndex >= 0) {
+                var targetDialog = this.stg.dialogs_cache[targetDialogIndex];
+                if (!angular.isArray(targetDialog.message))
+                    targetDialog.message = [];
+                var lastMessIndex = targetDialog.message.length - 1;
+                if (dialog.message.id === targetDialog.message[lastMessIndex].id) {
+                    targetDialog.message[lastMessIndex] = dialog.message;
+                }
+                else {
+                    targetDialog.message.push(dialog.message);
+                }
+                return targetDialog;
+            }
+            else {
+                return {
+                    id: dialogID,
+                    message: [dialog.message],
+                    in_read: dialog.in_read,
+                    out_read: dialog.out_read,
+                    unread: dialog.unread,
+                };
+            }
+        };
+        StorageService.prototype.cacheDialogs = function (dialogs) {
+            var _this = this;
+            var cache = dialogs.map(function (dialog) { return _this.getCachedDialog(dialog); });
+            this.set({ dialogs_cache: cache });
+        };
         StorageService.$inject = [
             '$q',
             '$rootScope',

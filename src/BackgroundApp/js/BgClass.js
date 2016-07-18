@@ -140,6 +140,9 @@ var BgApp;
                 this.stg.user_id = changes.user_id.newValue;
                 delete changes.user_id;
             }
+            if (changes.dialogs && changes.dialogs.newValue) {
+                this.storage.cacheDialogs(changes.dialogs.newValue);
+            }
             var newStg = {};
             angular.forEach(changes, function (change, key) {
                 newStg[key] = angular.copy(change.newValue);
