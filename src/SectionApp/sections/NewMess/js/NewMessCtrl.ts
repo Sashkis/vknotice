@@ -1,9 +1,15 @@
-angular.module('SectionsApp')
-.controller('NewMessCtrl', ['storage',
-function (storage) {
-	const vm = this;
+module SectionsApp {
+	export class NewMessCtrl {
+		dialogs: IDialog_cached[];
 
-	storage.ready.then(function (stg) {
-		vm.stg = stg;
-	});
-}]);
+		public static $inject = [
+			'storage',
+		];
+
+		constructor(private storage: StorageApp.StorageService) {
+			storage.ready.then((stg) => {
+				this.dialogs = angular.copy(stg.dialogs_cache);
+			});
+		}
+	}
+}
