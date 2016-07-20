@@ -159,7 +159,7 @@ module VkApp {
 		 * @return {boolean}
 		 */
 		private isResponseSuccess(respData: any) : respData is IVkResponseSuccess {
-			return !!respData.response;
+			return angular.isDefined(respData.response);
 		}
 	}
 }

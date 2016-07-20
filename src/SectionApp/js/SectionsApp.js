@@ -17,6 +17,9 @@ var SectionsApp;
                 .when('/NewMess', {
                 templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
             })
+                .when('/NewMess/:peer_id', {
+                templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
+            })
                 .otherwise({
                 redirectTo: '/'
             });

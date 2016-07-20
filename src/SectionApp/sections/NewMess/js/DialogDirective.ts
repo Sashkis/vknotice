@@ -13,10 +13,10 @@ module SectionsApp {
 		// }
 		return {
 			templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
+			replace: true,
 			compile: () => {
 				return {
 					pre: (scope:any) => {
-						console.log(scope);
 						scope.dialog.profile = storage.getProfile(scope.dialog.id);
 					}
 				}

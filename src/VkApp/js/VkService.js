@@ -110,7 +110,7 @@ var VkApp;
             return ready.promise;
         };
         VkService.prototype.isResponseSuccess = function (respData) {
-            return !!respData.response;
+            return angular.isDefined(respData.response);
         };
         VkService.$inject = [
             '$q',

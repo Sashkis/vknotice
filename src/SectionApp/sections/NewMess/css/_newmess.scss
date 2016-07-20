@@ -1,3 +1,26 @@
+#newmess {
+	display: flex;
+	background-color: #fff;
+	#dialogs-list {
+		border-right: 1px solid #e7e8ec;
+		.dialog-item {
+			display: block;
+			padding: 6px;
+			&:hover {
+	    	background: #f5f7fa;
+			}
+			img {
+				border-radius: 50%;
+				display: block;
+			}
+		}
+	}
+	#messages-list {
+		flex:1;
+	}
+}
+
+
 // .emoji {
 // 	display: inline;
 // 	width: 16px;

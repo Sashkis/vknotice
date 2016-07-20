@@ -3,10 +3,10 @@ var SectionsApp;
     function DialogDirective(storage) {
         return {
             templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
+            replace: true,
             compile: function () {
                 return {
                     pre: function (scope) {
-                        console.log(scope);
                         scope.dialog.profile = storage.getProfile(scope.dialog.id);
                     }
                 };
