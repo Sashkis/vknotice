@@ -1,13 +1,17 @@
 #newmess {
 	display: flex;
-	background-color: #fff;
+	background-color: #f3f5f7;
 	#dialogs-list {
+		background-color: #fff;
 		border-right: 1px solid #e7e8ec;
 		.dialog-item {
 			display: block;
 			padding: 6px;
 			&:hover {
 	    	background: #f5f7fa;
+			}
+			&.active {
+		    background: #7293b6;
 			}
 			img {
 				border-radius: 50%;
@@ -17,6 +21,42 @@
 	}
 	#messages-list {
 		flex:1;
+		height: 288px;
+		overflow: auto;
+		.message-item-container {
+	    padding: 4px 12px 4px 8px;
+			display: flex;
+			&.unread {
+		    background-color: #e6ecf2;
+			}
+			&.out {
+		    flex-direction: row-reverse;
+				.message-item {
+					background-color: #d4e7fa;
+					border-color: #cad8e6;
+				}
+				.message-date {
+					margin-left: auto;
+					margin-right: 5px;
+			    text-align: right;
+				}
+			}
+			.message-item {
+				display: inline-block;
+				padding: 5px 10px;
+				background: #fff;
+				border: 1px solid #e1e4e8;
+				border-radius: 6px;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			.message-date {
+				padding-top: 6px;
+				flex-basis: 30%;
+				margin-left: 5px;
+		    color: hsla(0,0%,58%,.6);
+			}
+		}
 	}
 }
 

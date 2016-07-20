@@ -1,6 +1,6 @@
 var SectionsApp;
 (function (SectionsApp) {
-    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute'])
+    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', 'ngScrollbar'])
         .config(['$routeProvider', 'AnalyticsProvider',
         function ($routeProvider, AnalyticsProvider) {
             AnalyticsProvider
