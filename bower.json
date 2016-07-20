@@ -26,7 +26,8 @@
     "angular-google-analytics": "^1.1.7",
     "components-font-awesome": "^4.6.3",
     "roboto-font": "git@github.com:cawa-93/roboto-font.git",
-    "angular-route": "^1.5.7"
+    "angular-route": "^1.5.7",
+    "ng-scrollbar": "^0.0.8"
   },
   "devDependencies": {}
 }
