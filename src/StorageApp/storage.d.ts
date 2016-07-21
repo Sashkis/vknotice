@@ -14,7 +14,6 @@ interface IStorageData {
 	friends: number[];
 	newfriends: number[];
 	dialogs: IDialog[];
-	dialogs_cache: IDialog_cached[];
 	groups: IProfile[];
 	users: IProfile[];
 	profiles: IProfile[];
@@ -43,20 +42,25 @@ interface IOptions {
 	followers: boolean,
 	audio: AudioOptionStatus;
 }
+declare enum DialogType {
+	User,
+	Chat,
+	Group,
+}
 
 interface IDialog {
 	unread?: number;
-	message: IMessage;
 	in_read: number;
 	out_read: number;
+	type: DialogType;
+	chat_active?: number[];
 }
 
-interface IDialog_cached {
-	id: number;
+interface IVkDialog {
 	unread?: number;
-	message: IMessage[];
 	in_read: number;
 	out_read: number;
+	message: IMessage;
 }
 
 interface IMessage {
