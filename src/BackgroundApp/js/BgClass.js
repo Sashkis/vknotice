@@ -16,6 +16,8 @@ var BgApp;
         BgClass.prototype.StgReady = function (stg) {
             var _this = this;
             this.stg = stg;
+            if (stg.groups)
+                stg.groups = stg.groups.map(this.setNegativeID);
             this.cacheProfiles(stg.users, stg.groups);
             stg.profiles && stg.profiles.length && this.storage.clearProfiles(this.Config.profilesLimit);
             stg.counter && this.setBadge();
@@ -39,6 +41,10 @@ var BgApp;
             }
             arraysProfiles.forEach(function (profiles) { return profiles && profiles.length && _this.storage.setProfiles(profiles); });
             return this;
+        };
+        BgClass.prototype.setNegativeID = function (profile) {
+            profile.id = profile.id * -1;
+            return profile;
         };
         BgClass.prototype.setBadge = function () {
             var newBadge = 0;
@@ -100,12 +106,9 @@ var BgApp;
         BgClass.prototype.deamonDoneCB = function (resp) {
             if (resp === void 0) { resp = {}; }
             chrome.browserAction.setIcon({ path: 'img/icon38.png' });
-            if (resp.dialogs) {
+            if (angular.isArray(resp.dialogs)) {
                 resp.dialogs = resp.dialogs.map(function (dialog) {
-                    if (dialog.message.attachments) {
-                        dialog.message.attachments = dialog.message.attachments.map(function (attach) { return new SectionsApp.Attachment(attach); });
-                    }
-                    return dialog;
+                    return new SectionsApp.Dialog(dialog);
                 });
             }
             delete resp.system;
@@ -123,6 +126,8 @@ var BgApp;
                 delete changes.users;
             }
             if (changes.groups) {
+                if (changes.groups.newValue)
+                    changes.groups.newValue = changes.groups.newValue(this.setNegativeID);
                 this.cacheProfiles(changes.groups.newValue);
                 delete changes.groups;
             }

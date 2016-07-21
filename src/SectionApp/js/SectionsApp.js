@@ -1,6 +1,6 @@
 var SectionsApp;
 (function (SectionsApp) {
-    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute'])
+    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute',])
         .config(['$routeProvider', 'AnalyticsProvider',
         function ($routeProvider, AnalyticsProvider) {
             AnalyticsProvider
@@ -17,11 +17,17 @@ var SectionsApp;
                 .when('/NewMess', {
                 templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
             })
+                .when('/NewMess/:peer_id', {
+                templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
+            })
                 .otherwise({
                 redirectTo: '/'
             });
         }
     ])
-        .controller('SectionsCtrl', SectionsApp.SectionsCtrl);
+        .controller('SectionsCtrl', SectionsApp.SectionsCtrl)
+        .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
+        .directive('vkDialog', SectionsApp.DialogDirective);
+    ;
 })(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsApp.js.map

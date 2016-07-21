@@ -44,30 +44,45 @@ interface IOptions {
 }
 
 interface IDialog {
+	peer_id: number;
 	unread?: number;
-	message: IMessage;
+	title?: string;
 	in_read: number;
 	out_read: number;
+	type: SectionsApp.DialogType;
+	profiles: number[];
+
 }
 
-interface IDialog_cached {
-	id: number;
+interface IVkDialog {
 	unread?: number;
-	message: IMessage[];
 	in_read: number;
 	out_read: number;
+	message: IMessage;
 }
 
 interface IMessage {
 	id: number;
-	date: Date;
-	out: number;
 	user_id: number;
+	from_id: number;
+	date: Date;
 	read_state: number;
+	out: number;
 	title: string;
 	body: string;
+	geo: any;
+	attachments?: any[];
+	fwd_messages?: any[];
+	emoji: number;
+	important: number;
+	deleted: number;
 	random_id: number;
-	attachments: any[]
+	chat_id?: number;
+	chat_active?: number[];
+	push_settings?: any;
+	users_count?: number;
+	admin_id?: number;
+
 }
 interface IAttachment {
 	type: string;

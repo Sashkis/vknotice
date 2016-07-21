@@ -1,3 +1,171 @@
+%badge {
+	display: block;
+	position: absolute;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 9px;
+	text-align: center;
+}
+%ava-full {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+}
+
+#newmess {
+	display: flex;
+	background-color: #f3f5f7;
+	$DialogBg: #fff;
+	$DialogBgHover: #f5f7fa;
+	$DialogBgActive: #7293b6;
+	#dialogs-list {
+		background-color: $DialogBg;
+		border-right: 1px solid #e7e8ec;
+		.dialog-item {
+			display: block;
+			padding: 6px;
+			position: relative;
+			z-index: 2;
+			&:hover {
+	    	background: $DialogBgHover;
+				&::after,
+				&::before {
+					opacity: 1;
+				}
+				.ava-container {
+					border-color: $DialogBgHover;
+				}
+				.marlAsRead {
+					opacity: 1 !important;
+				}
+			}
+			&.active {
+		    background: $DialogBgActive;
+				.ava-container {
+					border-color: $DialogBgActive;
+				}
+			}
+			@mixin tooltip {
+				position: absolute;
+				top: 50%;
+				opacity: 0;
+				transition: opacity .15s;
+				transform: translate(0, -50%);
+				pointer-events: none;
+			}
+			$tooltipColor: rgba(0, 0, 0, 0.8);
+			&::after {
+				@include tooltip;
+				content: attr(data-title);
+		    display: inline;
+		    left: 53px;
+		    font-weight: 700;
+		    padding: 0.5em 0.8em;
+		    background: $tooltipColor;
+		    color: #fff;
+		    border-radius: 6px;
+			}
+			&::before {
+				@include tooltip;
+				content: '';
+				display: block;
+				left: 43px;
+				width: 0;
+				height: 0;
+				border: solid transparent 5px;
+				border-right-color: $tooltipColor;
+			}
+			.ava-container {
+				position: relative;
+				border-color: $DialogBg;
+				&.ava-count-1 {
+					&.online:after {
+						@extend %badge;
+				    border: 2px solid;
+					  border-color: inherit;
+						background-color: #62b245;
+						content: '';
+						bottom: 2%;
+						right: 2%;
+						height: 7px;
+						width: 7px;
+					}
+					img {
+						@extend %ava-full;
+					}
+				}
+				.unread {
+					@extend %badge;
+					padding: 1px 4px;
+					height: 11px;
+					line-height: 11px;
+					top: 0;
+					left: 0;
+					background-color: #ff734c;
+				}
+				.marlAsRead {
+					@extend %badge;
+					background-color: rgba(0, 0, 0, .7);;
+					width: 14px;
+					line-height: 14px;
+					opacity: 0;
+					right: 0;
+					font-size: 10px;
+					color: rgba(255, 255, 255, .7);
+					transition: opacity 0.15s ease;
+					&:hover {
+						color: rgba(255, 255, 255, 1);
+					}
+				}
+			}
+			// img {
+				// border-radius: 50%;
+				// display: block;
+			// }
+		}
+	}
+	#messages-list {
+		flex:1;
+		height: 288px;
+		overflow: auto;
+		.message-item-container {
+	    padding: 4px 12px 4px 8px;
+			display: flex;
+			&.unread {
+		    background-color: #e6ecf2;
+			}
+			&.out {
+		    flex-direction: row-reverse;
+				.message-item {
+					background-color: #d4e7fa;
+					border-color: #cad8e6;
+				}
+				.message-date {
+					margin-left: auto;
+					margin-right: 5px;
+			    text-align: right;
+				}
+			}
+			.message-item {
+				display: inline-block;
+				padding: 5px 10px;
+				background: #fff;
+				border: 1px solid #e1e4e8;
+				border-radius: 6px;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			.message-date {
+				padding-top: 6px;
+				flex-basis: 30%;
+				margin-left: 5px;
+		    color: hsla(0,0%,58%,.6);
+			}
+		}
+	}
+}
+
+
 // .emoji {
 // 	display: inline;
 // 	width: 16px;
