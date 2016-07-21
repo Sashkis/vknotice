@@ -25,6 +25,7 @@ module BgApp {
 
 		StgReady(stg: IStorageData) : this {
 			this.stg = stg;
+			if (stg.groups) stg.groups = stg.groups.map(this.setNegativeID);
 			this.cacheProfiles(stg.users, stg.groups);
 			stg.profiles && stg.profiles.length && this.storage.clearProfiles( this.Config.profilesLimit );
 			stg.counter && this.setBadge();
@@ -45,6 +46,11 @@ module BgApp {
 		cacheProfiles(...arraysProfiles: IProfile[][]) : this {
 			arraysProfiles.forEach((profiles) => profiles && profiles.length && this.storage.setProfiles(profiles));
 			return this;
+		}
+
+		setNegativeID(profile: IProfile) {
+			profile.id = profile.id * -1;
+			return profile;
 		}
 
 		setBadge() : this {
@@ -127,6 +133,8 @@ module BgApp {
 			}
 
 			if (changes.groups) {
+				if (changes.groups.newValue) changes.groups.newValue = changes.groups.newValue(this.setNegativeID);
+
 				this.cacheProfiles(changes.groups.newValue);
 				delete changes.groups;
 			}

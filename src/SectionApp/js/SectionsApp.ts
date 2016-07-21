@@ -1,7 +1,7 @@
 /// <reference path="../../all.d.ts"/>
 module SectionsApp {
 
-	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', 'ngScrollbar'])
+	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', /*'ngScrollbar'*/])
 
 		.config(['$routeProvider', 'AnalyticsProvider',
 			function($routeProvider: angular.route.IRouteProvider, AnalyticsProvider: any) {

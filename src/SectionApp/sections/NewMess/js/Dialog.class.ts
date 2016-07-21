@@ -12,6 +12,7 @@ module SectionsApp {
 		out_read: number;
 		unread: number = 0;
 		type: DialogType;
+		title: string;
 		profiles: number[] = [];
 
 		constructor(dialog: IVkDialog) {
@@ -19,6 +20,7 @@ module SectionsApp {
 			this.out_read = dialog.out_read;
 
 			if (dialog.message.chat_id) {
+				this.title = dialog.message.title;
 				this.type = DialogType.Chat;
 				this.peer_id = 2000000000 + dialog.message.chat_id;
 				if (dialog.message.chat_active && angular.isArray(dialog.message.chat_active))

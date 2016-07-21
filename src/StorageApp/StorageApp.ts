@@ -23,7 +23,6 @@ module StorageApp {
 		friends: [],
 		newfriends: [],
 		dialogs: [],
-		dialogs_cache: [],
 		groups: [],
 		users: [],
 		profiles: [],

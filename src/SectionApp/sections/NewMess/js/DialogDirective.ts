@@ -1,32 +1,23 @@
 module SectionsApp {
 	export function DialogDirective(storage: StorageApp.StorageService) {
-		// dialogs: IDialog_cached[];
 
-		// public static $inject = [
-		// 	'storage',
-		// ];
+		function getProfile (profile: number|IProfile) {
+			return typeof profile === 'object' ? profile : storage.getProfile(profile);
+		};
 
-		// constructor(private storage: StorageApp.StorageService) {
-		// 	// storage.ready.then((stg) => {
-		// 		// this.dialogs = angular.copy(stg.dialogs_cache);
-		// 	// });
-		// }
 		return {
 			templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
 			replace: true,
 			compile: () => {
 				return {
 					pre: (scope:any) => {
-						scope.dialog.profile = storage.getProfile(scope.dialog.id);
+						scope.dialog.profiles = scope.dialog.profiles.map(getProfile);
 					}
 				}
 			}
 		};
-
-		// link(scope) {
-		// 	console.log(scope);
-		// }
 	}
+
 	DialogDirective.$inject = [
 		'storage',
 	];

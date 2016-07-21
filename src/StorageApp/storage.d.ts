@@ -46,6 +46,7 @@ interface IOptions {
 interface IDialog {
 	peer_id: number;
 	unread?: number;
+	title?: string;
 	in_read: number;
 	out_read: number;
 	type: SectionsApp.DialogType;
