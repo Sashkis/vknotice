@@ -51,7 +51,7 @@ interface IDialog {
 	out_read: number;
 	type: SectionsApp.DialogType;
 	profiles: number[];
-
+	message?: IMessage[];
 }
 
 interface IVkDialog {

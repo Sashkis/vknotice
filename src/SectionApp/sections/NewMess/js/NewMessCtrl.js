@@ -11,19 +11,16 @@ var SectionsApp;
                 _this.stg = stg;
                 _this.currentDialog = _this.getCurrentDialog();
                 if (_this.currentDialog) {
+                    var targetID_1 = _this.currentDialog.peer_id;
                     $vk.auth().then(function () {
-                        console.log(_this.currentDialog);
                         $vk.api('messages.getHistory', {
                             access_token: $vk.stg.access_token,
-                            peer_id: _this.currentDialog.peer_id,
+                            peer_id: targetID_1,
                             count: 100,
                         }).then(function (API) {
                             if (_this.currentDialog) {
-                                _this.currentDialog.unread = API.unread | 0;
+                                _this.currentDialog.unread = API.unread || 0;
                                 _this.currentDialog.message = API.items;
-                                var sel = "message-" + _this.currentDialog.message[_this.currentDialog.message.length - 1].id;
-                                var a = document.getElementById(sel);
-                                console.log(sel, a);
                             }
                         });
                     });

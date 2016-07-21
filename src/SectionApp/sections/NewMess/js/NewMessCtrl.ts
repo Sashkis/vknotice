@@ -26,25 +26,16 @@ module SectionsApp {
 
 				this.currentDialog = this.getCurrentDialog();
 				if (this.currentDialog) {
+					const targetID = this.currentDialog.peer_id;
 					$vk.auth().then(() => {
-						console.log(this.currentDialog);
 						$vk.api('messages.getHistory', {
 							access_token: $vk.stg.access_token,
-							peer_id: this.currentDialog.peer_id,
-							// offset: this.currentDialog.unread ? -this.currentDialog.unread : 0,
-							// start_message_id:-1,
+							peer_id: targetID,
 							count:100,
-							// rev: 1,
 						}).then((API: any) => {
 							if (this.currentDialog) {
-								this.currentDialog.unread = API.unread | 0;
-								// this.currentDialog.in_read = API.in_read;
-								// this.currentDialog.out_read = API.out_read;
+								this.currentDialog.unread = API.unread || 0;
 								this.currentDialog.message = API.items;
-
-									var sel = `message-${this.currentDialog.message[ this.currentDialog.message.length-1 ].id}`;
-									var a = document.getElementById(sel);
-									console.log(sel, a);
 							}
 						})
 					});
