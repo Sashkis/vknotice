@@ -11,9 +11,7 @@
 			ng-class="{out: message.out, unread: !message.read_state}"
 			ng-repeat="message in vm.currentDialog.message"
 			>
-			<div class="message-item">
-				{{message.body}}
-			</div>
+			<div class="message-item" ng-bind-html="message.body | emoji | linky"></div>
 			<div class="message-date">
 				{{message.date*1000 | date:'HH:mm'}}
 			</div>

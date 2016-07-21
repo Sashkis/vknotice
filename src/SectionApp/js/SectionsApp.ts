@@ -1,7 +1,7 @@
 /// <reference path="../../all.d.ts"/>
 module SectionsApp {
 
-	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', /*'ngScrollbar'*/])
+	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', 'ngSanitize'])
 
 		.config(['$routeProvider', 'AnalyticsProvider',
 			function($routeProvider: angular.route.IRouteProvider, AnalyticsProvider: any) {
@@ -32,8 +32,8 @@ module SectionsApp {
 		.controller('SectionsCtrl', SectionsCtrl)
 
 		.controller('NewMessCtrl', NewMessCtrl)
-		// .controller('DialogCtrl', DialogCtrl)
-		.directive('vkDialog', DialogDirective);
+		.directive('vkDialog', DialogDirective)
+		.filter('emoji', () => (text: string) => new Emoji().emojiToHTML(text))
 		// .directive('vkDialog', () => {
 		// 	return {
 		// 		// controller: 'DialogCtrl',

@@ -35,7 +35,7 @@ module SectionsApp {
 						}).then((API: any) => {
 							if (this.currentDialog) {
 								this.currentDialog.unread = API.unread || 0;
-								this.currentDialog.message = API.items;
+								this.currentDialog.message = API.items.map((mess: IMessage) => new Message(mess));
 							}
 						})
 					});

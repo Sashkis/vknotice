@@ -20,7 +20,7 @@ var SectionsApp;
                         }).then(function (API) {
                             if (_this.currentDialog) {
                                 _this.currentDialog.unread = API.unread || 0;
-                                _this.currentDialog.message = API.items;
+                                _this.currentDialog.message = API.items.map(function (mess) { return new SectionsApp.Message(mess); });
                             }
                         });
                     });

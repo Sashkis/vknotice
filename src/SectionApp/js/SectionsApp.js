@@ -1,6 +1,6 @@
 var SectionsApp;
 (function (SectionsApp) {
-    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute',])
+    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', 'ngSanitize'])
         .config(['$routeProvider', 'AnalyticsProvider',
         function ($routeProvider, AnalyticsProvider) {
             AnalyticsProvider
@@ -27,7 +27,7 @@ var SectionsApp;
     ])
         .controller('SectionsCtrl', SectionsApp.SectionsCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
-        .directive('vkDialog', SectionsApp.DialogDirective);
-    ;
+        .directive('vkDialog', SectionsApp.DialogDirective)
+        .filter('emoji', function () { return function (text) { return new SectionsApp.Emoji().emojiToHTML(text); }; });
 })(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsApp.js.map
