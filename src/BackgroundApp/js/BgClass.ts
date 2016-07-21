@@ -100,12 +100,9 @@ module BgApp {
 		deamonDoneCB(resp = <any>{}) {
 			chrome.browserAction.setIcon({ path: 'img/icon38.png' });
 
-			if (resp.dialogs) {
-				resp.dialogs = resp.dialogs.map((dialog: IDialog) => {
-					if (dialog.message.attachments) {
-						dialog.message.attachments = dialog.message.attachments.map((attach: IAttachment) => new SectionsApp.Attachment(attach));
-					}
-					return dialog;
+			if (angular.isArray(resp.dialogs)) {
+				resp.dialogs = resp.dialogs.map((dialog: IVkDialog) => {
+					return new SectionsApp.Dialog(dialog);
 				});
 			}
 

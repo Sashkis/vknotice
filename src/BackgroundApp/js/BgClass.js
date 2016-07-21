@@ -100,12 +100,9 @@ var BgApp;
         BgClass.prototype.deamonDoneCB = function (resp) {
             if (resp === void 0) { resp = {}; }
             chrome.browserAction.setIcon({ path: 'img/icon38.png' });
-            if (resp.dialogs) {
+            if (angular.isArray(resp.dialogs)) {
                 resp.dialogs = resp.dialogs.map(function (dialog) {
-                    if (dialog.message.attachments) {
-                        dialog.message.attachments = dialog.message.attachments.map(function (attach) { return new SectionsApp.Attachment(attach); });
-                    }
-                    return dialog;
+                    return new SectionsApp.Dialog(dialog);
                 });
             }
             delete resp.system;

@@ -42,18 +42,15 @@ interface IOptions {
 	followers: boolean,
 	audio: AudioOptionStatus;
 }
-declare enum DialogType {
-	User,
-	Chat,
-	Group,
-}
 
 interface IDialog {
+	peer_id: number;
 	unread?: number;
 	in_read: number;
 	out_read: number;
-	type: DialogType;
-	chat_active?: number[];
+	type: SectionsApp.DialogType;
+	profiles: number[];
+
 }
 
 interface IVkDialog {
