@@ -157,9 +157,7 @@ module BgApp {
 			}
 
 			const newStg = {};
-			angular.forEach(changes, function (change, key) {
-				newStg[key] = angular.copy(change.newValue);
-			});
+			angular.forEach(changes, (change, key) =>	newStg[key] = angular.copy(change.newValue));
 
 			this.storage.set(newStg, false);
 

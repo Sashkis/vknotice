@@ -2,11 +2,13 @@ module SectionsApp {
 
 	interface IDialogRouteParams extends angular.route.IRouteParamsService {
 		peer_id: string,
+		message: string,
 	}
 
 	export class NewMessCtrl {
 		stg: IStorageData;
 		currentDialog: IDialog | undefined;
+		message: string;
 
 		public static $inject = [
 			'storage',
@@ -56,6 +58,34 @@ module SectionsApp {
 				this.$vk.api('messages.markAsRead', {
 					access_token: this.$vk.stg.access_token,
 					peer_id,
+				});
+			});
+		}
+
+		sendMessage() {
+			if (!this.currentDialog) return;
+			const peer_id = this.currentDialog.peer_id;
+			const message = this.message;
+			this.$vk.auth().then(() => {
+				this.$vk.api('messages.send', {
+					access_token: this.$vk.stg.access_token,
+					message,
+					peer_id,
+				}).then((API:number) => {
+					if (this.currentDialog && this.currentDialog.peer_id === peer_id) {
+						if (!this.currentDialog.message) this.currentDialog.message = [];
+						this.currentDialog.message.unshift(new Message({
+							id: API,
+							body: message,
+							user_id: this.$vk.stg.user_id,
+							from_id: this.$vk.stg.user_id,
+							out: 1,
+							date: Math.round(Date.now()/1000),
+							read_state:0,
+						}));
+					}
+
+					this.message = '';
 				});
 			});
 		}

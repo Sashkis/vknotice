@@ -33,7 +33,6 @@ module SectionsApp {
 
 		.controller('NewMessCtrl', NewMessCtrl)
 		.directive('vkDialog', DialogDirective)
-		.filter('emoji', () => (text: string) => new Emoji().emojiToHTML(text))
 		// .directive('vkDialog', () => {
 		// 	return {
 		// 		// controller: 'DialogCtrl',

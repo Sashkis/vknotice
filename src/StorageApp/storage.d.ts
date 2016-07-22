@@ -52,6 +52,7 @@ interface IDialog {
 	type: SectionsApp.DialogType;
 	profiles: number[];
 	message?: IMessage[];
+	photo_50?: string;
 }
 
 interface IVkDialog {
@@ -66,7 +67,7 @@ interface IMessage {
 	body: string;
 	user_id: number;
 	from_id: number;
-	date: Date;
+	date: number;
 	read_state: number;
 	out: number;
 	title?: string;
@@ -82,6 +83,7 @@ interface IMessage {
 	push_settings?: any;
 	users_count?: number;
 	admin_id?: number;
+	photo_50?: string;
 }
 interface IAttachment {
 	type: string;

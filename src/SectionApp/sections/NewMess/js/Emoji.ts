@@ -14,7 +14,7 @@ module SectionsApp {
 		* @return String        HTML код картинки
 		*/
 		getEmojiHTML(code: string, symbol?: string) {
-			return `<img class="emoji" ${symbol ? `alt="${symbol}"` : ''} ng-src="${this.pathToEmojisImages}${code}.png" />`;
+			return `<img class="emoji" ${symbol ? `alt="${symbol}"` : ''} src="${this.pathToEmojisImages}${code}.png" />`;
 		}
 		/**
 		* Преобразует символы смайликов в строке в соотведствующие изображения

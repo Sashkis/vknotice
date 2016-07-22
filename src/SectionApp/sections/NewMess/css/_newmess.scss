@@ -5,11 +5,21 @@
 	color: #fff;
 	font-size: 9px;
 	text-align: center;
+	z-index: 5;
 }
 %ava-full {
 	width: 36px;
 	height: 36px;
 	border-radius: 50%;
+}
+%ava-half {
+	width: 18px;
+	height: 36px;
+	object-fit: cover;
+}
+%ava-quarter {
+	width: 18px;
+	height: 18px;
 }
 
 #newmess {
@@ -78,6 +88,7 @@
 			.ava-container {
 				position: relative;
 				border-color: $DialogBg;
+				img { display: block; }
 				&.ava-count-1 {
 					&.online:after {
 						@extend %badge;
@@ -94,34 +105,58 @@
 						@extend %ava-full;
 					}
 				}
-				.unread {
-					@extend %badge;
-					padding: 1px 4px;
-					height: 11px;
-					line-height: 11px;
-					top: 0;
-					left: 0;
-					background-color: #ff734c;
+				&.ava-count-2,
+				&.ava-count-3,
+				&.ava-count-4 {
+					display: flex;
+					width: 36px;
+					border-radius: 50%;
+					overflow: hidden;
 				}
-				.marlAsRead {
-					@extend %badge;
-					background-color: rgba(0, 0, 0, .7);;
-					width: 14px;
-					line-height: 14px;
-					opacity: 0;
-					right: 0;
-					font-size: 10px;
-					color: rgba(255, 255, 255, .7);
-					transition: opacity 0.15s ease;
-					&:hover {
-						color: rgba(255, 255, 255, 1);
+				&.ava-count-2 {
+					img {
+						@extend %ava-half;
+					}
+				}
+				&.ava-count-3 {
+					img:nth-of-type(1) {
+						@extend %ava-half;
+					}
+					img:nth-of-type(2),
+					img:nth-of-type(3) {
+						@extend %ava-quarter;
+					}
+				}
+				&.ava-count-4 {
+					flex-wrap: wrap;
+					img {
+						@extend %ava-quarter;
 					}
 				}
 			}
-			// img {
-				// border-radius: 50%;
-				// display: block;
-			// }
+			.unread {
+				@extend %badge;
+				padding: 1px 4px;
+				height: 11px;
+				line-height: 12px;
+				top: 5px;
+				left: 5px;
+				background-color: #ff734c;
+			}
+			.marlAsRead {
+				@extend %badge;
+				background-color: rgba(0, 0, 0, .7);;
+				width: 14px;
+				line-height: 14px;
+				opacity: 0;
+				right: 5px;
+				font-size: 10px;
+				color: rgba(255, 255, 255, .7);
+				transition: opacity 0.15s ease;
+				&:hover {
+					color: rgba(255, 255, 255, 1);
+				}
+			}
 		}
 	}
 	#messages-list {
@@ -154,6 +189,10 @@
 				border-radius: 6px;
 				box-sizing: border-box;
 				overflow: hidden;
+		    word-break: break-word;
+				.emoji {
+					vertical-align: middle;
+				}
 			}
 			.message-date {
 				padding-top: 6px;
@@ -164,7 +203,47 @@
 		}
 	}
 }
+.messages-list-container {
+	flex-direction: column;
+	flex: 1;
+	form {
+		display: flex;
+		border-top: 1px solid #e7e8ec;
+		background: #fff;
+		input, button {
+			margin: 0;
+			padding: 10px 20px;
+			border: none;
+			background: none;
+			outline: none;
+		}
+		input {
+			flex: 1;
+		}
+		button {
+			cursor: pointer;
+			color: rgba(148, 148, 148, 0.6);
+			&:hover {
+				color: #6d8cb0;
+			}
+		}
+	}
+}
 
+.empty-messages-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #929eb0;
+		.fa.fa-comments {
+	    font-size: 90px;
+	    opacity: .3;
+	    margin-bottom: 10px;
+	}
+}
 
 // .emoji {
 // 	display: inline;

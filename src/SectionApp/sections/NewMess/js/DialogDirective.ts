@@ -12,6 +12,7 @@ module SectionsApp {
 				return {
 					pre: (scope:any) => {
 						scope.dialog.profiles = scope.dialog.profiles.map(getProfile);
+						// console.log(scope.dialog);
 					}
 				}
 			}

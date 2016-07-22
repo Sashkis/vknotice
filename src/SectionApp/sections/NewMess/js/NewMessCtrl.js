@@ -45,6 +45,35 @@ var SectionsApp;
                 });
             });
         };
+        NewMessCtrl.prototype.sendMessage = function () {
+            var _this = this;
+            if (!this.currentDialog)
+                return;
+            var peer_id = this.currentDialog.peer_id;
+            var message = this.message;
+            this.$vk.auth().then(function () {
+                _this.$vk.api('messages.send', {
+                    access_token: _this.$vk.stg.access_token,
+                    message: message,
+                    peer_id: peer_id,
+                }).then(function (API) {
+                    if (_this.currentDialog && _this.currentDialog.peer_id === peer_id) {
+                        if (!_this.currentDialog.message)
+                            _this.currentDialog.message = [];
+                        _this.currentDialog.message.unshift(new SectionsApp.Message({
+                            id: API,
+                            body: message,
+                            user_id: _this.$vk.stg.user_id,
+                            from_id: _this.$vk.stg.user_id,
+                            out: 1,
+                            date: Math.round(Date.now() / 1000),
+                            read_state: 0,
+                        }));
+                    }
+                    _this.message = '';
+                });
+            });
+        };
         NewMessCtrl.$inject = [
             'storage',
             '$routeParams',
