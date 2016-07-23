@@ -3,10 +3,10 @@
 		<span class="fa fa-vk fa-3x"></span>
 		<translate>Информер</translate>
 	</a>
-	<span ng-show="main.isNoRoot()" class="navbar-brand" ng-click="main.back();">
+	<a ng-show="main.isNoRoot()" class="navbar-brand" ng-href="#/">
 		<span class="fa fa-angle-left fa-3x"></span>
 		<translate>Назад</translate>
-	</span>
+	</a>
 
 	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
 		<i class="fa fa-bell"></i>
