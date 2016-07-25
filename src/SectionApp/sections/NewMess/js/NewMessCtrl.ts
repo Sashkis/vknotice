@@ -9,19 +9,27 @@ module SectionsApp {
 		stg: IStorageData;
 		currentDialog: IDialog | undefined;
 		message: string;
+		LongPollParams: {
+			access_token: string,
+			ts: number,
+			pts:number,
+			fields: string,
+		};
 
 		public static $inject = [
 			'storage',
 			'$routeParams',
 			'$vk',
 			'$scope',
+			'deamon',
 		];
 
 		constructor(
 			private storage: StorageApp.StorageService,
 			private $routeParams: IDialogRouteParams,
 			private $vk: VkApp.VkService,
-			private $scope: ng.IScope
+			private $scope: ng.IScope,
+			private deamon: DeamonApp.DeamonService
 		) {
 			storage.ready.then((stg) => {
 				this.stg = stg;
@@ -30,19 +38,82 @@ module SectionsApp {
 				if (this.currentDialog) {
 					const targetID = this.currentDialog.peer_id;
 					$vk.auth().then(() => {
-						$vk.api('messages.getHistory', {
+						$vk.api('execute.getHistory', {
 							access_token: $vk.stg.access_token,
 							peer_id: targetID,
 							count:100,
-						}).then((API: any) => {
-							if (this.currentDialog) {
-								this.currentDialog.unread = API.unread || 0;
-								this.currentDialog.message = API.items.map((mess: IMessage) => new Message(mess));
+						}).then((API: {
+									history: any,
+									profiles: any[],
+									server: any,
+							}) => {
+							storage.setProfiles(API.profiles);
+
+							if (this.currentDialog && this.currentDialog.peer_id === targetID) {
+								this.currentDialog.unread = API.history.unread || 0;
+								this.currentDialog.message = API.history.items.map((mess: IMessage) => new Message(mess));
 							}
-						})
+
+							this.LongPollParams = {
+								access_token: $vk.stg.access_token,
+								ts: API.server.ts,
+								pts: API.server.pts,
+								fields: 'screen_name,status,photo_50,online',
+							};
+
+
+							deamon
+								.setConfig({
+									method: 'messages.getLongPollHistory',
+									params: this.LongPollParams,
+									interval: 1000,
+									DoneCB: (resp)	=> this.onLongPollDone(resp),
+								})
+								.start();
+
+								$scope.$on('$destroy', function() {
+									deamon.stop();
+								});
+
+						});
+
+
+
 					});
 				}
 			});
+		}
+
+		onLongPollDone(API: any) {
+			// console.log(API);
+			this.LongPollParams.pts = API.new_pts;
+
+			if (angular.isArray(API.profiles)) {
+				this.storage.setProfiles(API.profiles);
+			}
+
+			if (!this.currentDialog) return true;
+
+			const targetID = this.currentDialog.peer_id;
+			angular.forEach(API.history, (event) => {
+				// console.log(event);
+				const event_code = event[0];
+				switch (event_code) {
+
+					case 4 : const [event_code, message_id, flags, peer_id] = event;
+						if (peer_id !== targetID || !this.currentDialog) return;
+
+						const message = new Message( API.messages.items.find((mess: IMessage) => mess.id === message_id) );
+						if (!this.currentDialog.message) this.currentDialog.message = [];
+						this.currentDialog.message.unshift(message);
+					break;
+
+					default:
+						console.log(event);
+				}
+			});
+
+			return true;
 		}
 
 		getCurrentDialog() {
@@ -72,22 +143,11 @@ module SectionsApp {
 					message,
 					peer_id,
 				}).then((API:number) => {
-					if (this.currentDialog && this.currentDialog.peer_id === peer_id) {
-						if (!this.currentDialog.message) this.currentDialog.message = [];
-						this.currentDialog.message.unshift(new Message({
-							id: API,
-							body: message,
-							user_id: this.$vk.stg.user_id,
-							from_id: this.$vk.stg.user_id,
-							out: 1,
-							date: Math.round(Date.now()/1000),
-							read_state:0,
-						}));
-					}
-
 					this.message = '';
 				});
 			});
 		}
+
+
 	}
 }
