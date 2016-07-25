@@ -8,12 +8,8 @@ var SectionsApp;
         return {
             templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
             replace: true,
-            compile: function () {
-                return {
-                    pre: function (scope) {
-                        scope.dialog.profiles = scope.dialog.profiles.map(getProfile);
-                    }
-                };
+            link: function ($scope) {
+                $scope.dialog.profiles = $scope.dialog.profiles.map(getProfile);
             }
         };
     }

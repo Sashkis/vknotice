@@ -8,14 +8,17 @@ module SectionsApp {
 		return {
 			templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
 			replace: true,
-			compile: () => {
-				return {
-					pre: (scope:any) => {
-						scope.dialog.profiles = scope.dialog.profiles.map(getProfile);
-						// console.log(scope.dialog);
-					}
-				}
-			}
+			link: function($scope: ng.IScope) {
+        $scope.dialog.profiles = $scope.dialog.profiles.map(getProfile);
+      }
+			// compile: () => {
+			// 	return {
+			// 		pre: (scope:any) => {
+			// 			scope.dialog.profiles = scope.dialog.profiles.map(getProfile);
+			// 			// console.log(scope.dialog);
+			// 		}
+			// 	}
+			// }
 		};
 	}
 
