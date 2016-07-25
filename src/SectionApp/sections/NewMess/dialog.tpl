@@ -2,7 +2,7 @@
 	class="dialog-item"
 	ng-class="{active: vm.$routeParams.peer_id == dialog.peer_id}"
 	ng-href="#NewMess/{{dialog.peer_id}}"
-	data-title="{{dialog.title || dialog.profiles[0].first_name || dialog.profiles[0].name}}"
+	data-title="{{dialog.title || dialog.profiles[0].first_name || dialog.profiles[0].name || ''}}"
 >
 	<div class="unread" ng-if="dialog.unread">{{dialog.unread}}</div>
 	<div class="marlAsRead" ng-click="vm.markAsRead(dialog.peer_id)"><i class="fa fa-eye"></i></div>
