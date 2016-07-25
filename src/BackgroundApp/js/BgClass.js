@@ -126,8 +126,8 @@ var BgApp;
                 delete changes.users;
             }
             if (changes.groups) {
-                if (changes.groups.newValue)
-                    changes.groups.newValue = changes.groups.newValue(this.setNegativeID);
+                if (angular.isArray(changes.groups.newValue))
+                    changes.groups.newValue = changes.groups.newValue.map(this.setNegativeID);
                 this.cacheProfiles(changes.groups.newValue);
                 delete changes.groups;
             }
