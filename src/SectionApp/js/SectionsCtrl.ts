@@ -23,18 +23,11 @@ module SectionsApp {
 				}
 			});
 
-				$scope.$on('$locationChangeSuccess', () => this.saveSection())
+			$scope.$on('$locationChangeStart', () => this.saveSection())
 		}
 
 		isNoRoot() {
 			return this.$location.url() !== '/';
-		}
-
-		back() {
-			if (this.$window.history.length > 1)
-				this.$window.history.back();
-			else
-				this.$location.url('/');
 		}
 
 		saveSection() {

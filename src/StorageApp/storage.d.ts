@@ -101,7 +101,7 @@ interface IProfile {
 	last_name?: string;
 	name?: string;
 	screen_name: string;
-	photo_100: string;
+	photo_50: string;
 	online: OnlineStatus;
 	online_mobile?: OnlineStatus;
 	online_app?: string;

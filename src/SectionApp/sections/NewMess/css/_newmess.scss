@@ -159,10 +159,14 @@
 			}
 		}
 	}
+	// .scroll-bar {
+	// }
 	#messages-list {
-		flex:1;
-		height: 288px;
+		height: 252px;
 		overflow: auto;
+		flex:1;
+		display: flex;
+    flex-direction: column-reverse;
 		.message-item-container {
 	    padding: 4px 12px 4px 8px;
 			display: flex;

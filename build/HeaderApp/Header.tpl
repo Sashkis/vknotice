@@ -15,7 +15,7 @@
 	<span ng-class="['dropdown navbar-right',{open: head.isDropdownOpen}]" ng-click="head.isDropdownOpen = !head.isDropdownOpen">
 		<a class="profile">
 			{{head.current_user.first_name}}
-			<img class="ava" ng-src="{{head.current_user.photo_100}}" width="50px" height="50px">
+			<img class="ava" ng-src="{{head.current_user.photo_50}}" width="50px" height="50px">
 			<i class="caret"></i>
 		</a>
 

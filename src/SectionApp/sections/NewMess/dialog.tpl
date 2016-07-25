@@ -11,7 +11,7 @@
 		ng-class="['ava-count-'+ (dialog.photo_50 ? 1 : dialog.profiles.length),
 		         {online: dialog.profiles.length === 1 && dialog.profiles[0].online === 1}]"
 	>
-		<img ng-if="!dialog.photo_50" ng-repeat="profile in dialog.profiles" ng-src="{{profile.photo_100}}" width="36px" height="36px">
+		<img ng-if="!dialog.photo_50" ng-repeat="profile in dialog.profiles" ng-src="{{profile.photo_50}}" width="36px" height="36px">
 		<img ng-if="dialog.photo_50" ng-src="{{dialog.photo_50}}" width="36px" height="36px">
 	</div>
 </a>
