@@ -11,9 +11,6 @@ module SectionsApp {
 
 		constructor(message: IMessage) {
 			angular.extend(<IMessage>this, message);
-			if (this.emoji) {
-				this.body = new Emoji().emojiToHTML(this.body);
-			}
 		}
 	}
 }

@@ -12,7 +12,7 @@
 				class="message-item-container"
 				ng-class="{out: message.out, unread: !message.read_state}"
 				>
-					<div class="message-item" ng-bind-html="message.body"></div>
+					<div class="message-item" ng-bind-html="message.body | linkify | emoji"></div>
 					<div class="message-date">
 						{{message.date*1000 | date:'HH:mm'}}
 					</div>

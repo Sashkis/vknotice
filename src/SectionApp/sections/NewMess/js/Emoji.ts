@@ -14,6 +14,7 @@ module SectionsApp {
 		* @return String        HTML код картинки
 		*/
 		getEmojiHTML(code: string, symbol?: string) {
+			console.log(code);
 			return `<img class="emoji" ${symbol ? `alt="${symbol}"` : ''} src="${this.pathToEmojisImages}${code}.png" />`;
 		}
 		/**
@@ -60,7 +61,8 @@ module SectionsApp {
 			};
 
 			for (let code in regs) {
-				str = str.replace(regs[code], this.getEmojiHTML(code));
+				if (str.indexOf(code) > -1)
+					str = str.replace(regs[code], this.getEmojiHTML(code));
 			}
 
 			return str.replace(this.emojiRegEx, (s:string) => this.emojiReplace(s)).replace(/\uFE0F/g, '');

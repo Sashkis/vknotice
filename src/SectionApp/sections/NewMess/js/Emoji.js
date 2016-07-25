@@ -7,6 +7,7 @@ var SectionsApp;
             this.pathToEmojisImages = 'https://vk.com/images/emoji/';
         }
         Emoji.prototype.getEmojiHTML = function (code, symbol) {
+            console.log(code);
             return "<img class=\"emoji\" " + (symbol ? "alt=\"" + symbol + "\"" : '') + " src=\"" + this.pathToEmojisImages + code + ".png\" />";
         };
         Emoji.prototype.emojiToHTML = function (str) {
@@ -47,7 +48,8 @@ var SectionsApp;
                 'D83DDC4C': /(:ok:|:ок:)([\s\.,]|$)/g
             };
             for (var code in regs) {
-                str = str.replace(regs[code], this.getEmojiHTML(code));
+                if (str.indexOf(code) > -1)
+                    str = str.replace(regs[code], this.getEmojiHTML(code));
             }
             return str.replace(this.emojiRegEx, function (s) { return _this.emojiReplace(s); }).replace(/\uFE0F/g, '');
         };

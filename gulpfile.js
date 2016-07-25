@@ -1,32 +1,17 @@
 'use strict';
 // var debug = require('gulp-debug');
 
-var gulp       = require('gulp');
-var del        = require('del');
-var args       = require('yargs').argv;
-
-var filter     = require('gulp-filter');
-
-var sass       = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-
-var useref     = require('gulp-useref');
-var uglify     = require('gulp-uglify');
-var cleanCSS   = require('gulp-clean-css');
-var jsonminify = require('gulp-jsonminify');
-
-var wiredep    = require('wiredep').stream;
-var gettext    = require('gulp-angular-gettext');
-
-var bump = require('gulp-bump');
+var gulp = require('gulp');
 
 gulp.task('pot', function () {
-    return gulp.src(['src/**/*.html', 'src/**/*.js'])
-        .pipe(gettext.extract('all.pot'))
-        .pipe(gulp.dest('po/'));
+	var gettext    = require('gulp-angular-gettext');
+  return gulp.src(['src/**/*.html', 'src/**/*.js'])
+      .pipe(gettext.extract('all.pot'))
+      .pipe(gulp.dest('po/'));
 });
 
 gulp.task('translations', function () {
+	var gettext    = require('gulp-angular-gettext');
 	return gulp.src(['po/**/*.po'])
 		.pipe(gettext.compile())
 		.pipe(gulp.dest('src/Translations/'));
@@ -36,6 +21,9 @@ gulp.task('translations', function () {
 gulp.task('default', ['sass:watch']);
 
 gulp.task('sass', function () {
+	var sass       = require('gulp-sass');
+	var sourcemaps = require('gulp-sourcemaps');
+
 	return gulp.src(['./src/**/*.scss', '!src/bower_components/**/*.scss'])
 	  .pipe(sourcemaps.init())
 	  .pipe(sass().on('error', sass.logError))
@@ -49,18 +37,24 @@ gulp.task('sass:watch', ['sass'], function () {
 
 
 gulp.task('copy', ['clean'], function () {
+	var jsonminify = require('gulp-jsonminify');
+	var filter     = require('gulp-filter');
 
-	gulp.src(['src/bower_components/roboto-font/fonts/*.woff2',
-	          'src/bower_components/components-font-awesome/fonts/*.woff2'])
-			 .pipe(gulp.dest('build/vendors/fonts'))
+
+	gulp.src(['src/bower_components/roboto-font/fonts/*.woff2', 'src/bower_components/components-font-awesome/fonts/*.woff2'])
+			.pipe(gulp.dest('build/vendors/fonts'));
 
 	var json = filter(['**/*.json'], {restore: true});
 	return gulp.src(['src/*.json', 'src/+(_locales)/**/*.json', 'src/+(BackgroundApp)/+(audio|img)/*', 'src/**/*.tpl'])
-				.pipe(json).pipe(jsonminify()).pipe(json.restore)
-	      .pipe(gulp.dest('build'))
+			.pipe(json).pipe(jsonminify()).pipe(json.restore)
+	    .pipe(gulp.dest('build'))
 });
 
 gulp.task('build', ['copy', 'sass'], function () {
+	var useref     = require('gulp-useref');
+	var uglify     = require('gulp-uglify');
+	var cleanCSS   = require('gulp-clean-css');
+	var filter     = require('gulp-filter');
 
 	var js = filter(['**/*.js'], {restore: true});
 	var css = filter(['**/*.css'], {restore: true});
@@ -73,19 +67,30 @@ gulp.task('build', ['copy', 'sass'], function () {
 });
 
 gulp.task('clean', function () {
+	var del        = require('del');
+
 	return del(['build/*']);
 });
 
 gulp.task('bower', function () {
+	var wiredep    = require('wiredep').stream;
+
 	gulp.src('src/**/*.html')
 	    .pipe(wiredep({
-	      optional: 'configuration',
-	      goes: 'here',
-	    }))
+				overrides: {
+		        "linkifyjs": {
+		            "main": ['linkify.js', 'linkify-string.js'],
+								"dependencies": {}
+		        }
+		    }
+			}))
 	    .pipe(gulp.dest('src'));
 });
 
 gulp.task('bump', function () {
+	var bump = require('gulp-bump');
+	var args = require('yargs').argv;
+	var filter     = require('gulp-filter');
 
 	// Version example
 	//  major: 1.0.0
