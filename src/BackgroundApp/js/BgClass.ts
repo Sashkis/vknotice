@@ -25,11 +25,14 @@ module BgApp {
 
 		StgReady(stg: IStorageData) : this {
 			this.stg = stg;
+
 			if (stg.groups) stg.groups = stg.groups.map(this.setNegativeID);
 			this.cacheProfiles(stg.users, stg.groups);
-			stg.profiles && stg.profiles.length && this.storage.clearProfiles( this.Config.profilesLimit );
-			stg.counter && this.setBadge();
-			// this.initDeamon();
+
+			if (stg.profiles && stg.profiles.length) this.storage.clearProfiles( this.Config.profilesLimit );
+			
+			if (stg.counter) this.setBadge();
+
 			this.$vk.auth().then(() => {
 				this.deamon
 					.setConfig({

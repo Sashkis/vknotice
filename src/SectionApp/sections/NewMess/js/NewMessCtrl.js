@@ -56,10 +56,9 @@ var SectionsApp;
                 return true;
             var targetID = this.currentDialog.peer_id;
             angular.forEach(API.history, function (event) {
-                var event_code = event[0];
-                switch (event_code) {
+                switch (event[0]) {
                     case 4:
-                        var event_code_1 = event[0], message_id_1 = event[1], flags = event[2], peer_id = event[3];
+                        var event_code = event[0], message_id_1 = event[1], flags = event[2], peer_id = event[3];
                         if (peer_id !== targetID || !_this.currentDialog)
                             return;
                         var message = new SectionsApp.Message(API.messages.items.find(function (mess) { return mess.id === message_id_1; }));
@@ -77,10 +76,7 @@ var SectionsApp;
             if (!this.stg || !this.stg.dialogs.length || !this.$routeParams.peer_id)
                 return;
             var targetID = +this.$routeParams.peer_id;
-            for (var i = 0; i < this.stg.dialogs.length; i++) {
-                if (targetID === this.stg.dialogs[i].peer_id)
-                    return this.stg.dialogs[i];
-            }
+            return this.stg.dialogs.find(function (dialog) { return targetID === dialog.peer_id; });
         };
         NewMessCtrl.prototype.markAsRead = function (peer_id) {
             var _this = this;

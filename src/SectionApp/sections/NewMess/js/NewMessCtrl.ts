@@ -61,7 +61,6 @@ module SectionsApp {
 								fields: 'screen_name,status,photo_50,online',
 							};
 
-
 							deamon
 								.setConfig({
 									method: 'messages.getLongPollHistory',
@@ -76,9 +75,6 @@ module SectionsApp {
 								});
 
 						});
-
-
-
 					});
 				}
 			});
@@ -97,8 +93,7 @@ module SectionsApp {
 			const targetID = this.currentDialog.peer_id;
 			angular.forEach(API.history, (event) => {
 				// console.log(event);
-				const event_code = event[0];
-				switch (event_code) {
+				switch (event[0]) {
 
 					case 4 : const [event_code, message_id, flags, peer_id] = event;
 						if (peer_id !== targetID || !this.currentDialog) return;
@@ -118,10 +113,8 @@ module SectionsApp {
 
 		getCurrentDialog() {
 			if (!this.stg || !this.stg.dialogs.length || !this.$routeParams.peer_id ) return;
-			const targetID = +this.$routeParams.peer_id
-			for (let i = 0; i < this.stg.dialogs.length; i++) {
-				if (targetID === this.stg.dialogs[i].peer_id) return this.stg.dialogs[i];
-			}
+			const targetID = +this.$routeParams.peer_id;
+			return this.stg.dialogs.find((dialog: IDialog) => targetID === dialog.peer_id);
 		}
 
 		markAsRead(peer_id: number) {

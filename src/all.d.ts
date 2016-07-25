@@ -2,5 +2,6 @@
 /// <reference path='./libs/angular/angular.d.ts' />
 /// <reference path="./libs/angular/angular-route.d.ts"/>
 /// <reference path="./libs/vk/openapi.d.ts"/>
+/// <reference path="./libs/helpers/helpers.d.ts"/>
 /// <reference path="./StorageApp/storage.d.ts"/>
 /// <reference path="./VkApp/js/VkService.ts"/>
