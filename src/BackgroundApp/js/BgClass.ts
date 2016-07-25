@@ -33,7 +33,7 @@ module BgApp {
 			this.$vk.auth().then(() => {
 				this.deamon
 					.setConfig({
-						method: 'execute.ang',
+						method: 'execute.get',
 						params: ()      => this.getDeamonParams(),
 						DoneCB: (resp)  => this.deamonDoneCB(resp),
 						FailCB: (error) => this.deamonFailCB(error),
@@ -85,6 +85,7 @@ module BgApp {
 				options: '',
 				notifyFilters: '',
 				notifyLast_viewed: this.stg.notifyLast_viewed,
+				func_v: 2,
 			};
 
 			if (this.stg.options.friends)   apiOptions.options += 'friends,';

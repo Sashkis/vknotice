@@ -24,7 +24,7 @@ var BgApp;
             this.$vk.auth().then(function () {
                 _this.deamon
                     .setConfig({
-                    method: 'execute.ang',
+                    method: 'execute.get',
                     params: function () { return _this.getDeamonParams(); },
                     DoneCB: function (resp) { return _this.deamonDoneCB(resp); },
                     FailCB: function (error) { return _this.deamonFailCB(error); },
@@ -78,6 +78,7 @@ var BgApp;
                 options: '',
                 notifyFilters: '',
                 notifyLast_viewed: this.stg.notifyLast_viewed,
+                func_v: 2,
             };
             if (this.stg.options.friends)
                 apiOptions.options += 'friends,';
