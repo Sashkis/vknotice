@@ -12,8 +12,7 @@
 					<div class="space" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id === vm.currentDialog.message[$index+1].from_id"></div>
 					<div class="message-item">
 						<b user-name profile-id="message.from_id" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id !== vm.currentDialog.message[$index+1].from_id"></b>
-						<span ng-bind-html="message.body | linkify | emoji"></span>
-						<br>
+						<div ng-bind-html="message.body | linkify | emoji"></div>
 						<attachment ng-repeat="attachment in message.attachments"></attachment>
 					</div>
 					<div class="message-date">
@@ -24,7 +23,7 @@
 		</div>
 
 		<form class="sendMess" ng-submit="vm.sendMessage()">
-			<input type="text" ng-model="vm.message" placeholder="Введите ваше сообщение" autofocus>
+			<input type="text" ng-model="vm.message" placeholder="{{'Введите ваше сообщение'|translate}}" autofocus>
 			<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 		</form>
 
