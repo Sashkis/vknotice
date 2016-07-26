@@ -32,7 +32,11 @@ module SectionsApp {
 		.controller('SectionsCtrl', SectionsCtrl)
 
 		.controller('NewMessCtrl', NewMessCtrl)
+		.directive('userAva', userAvaDirective)
+		.directive('userName', userNameDirective)
 		.directive('vkDialog', DialogDirective)
+		.directive('attachment', AttachmentDirective)
+
 		.filter('emoji', ['$sce', ($sce: ng.ISCEService) => (text: string) => $sce.trustAsHtml(new Emoji().emojiToHTML(text))])
 		.filter('linkify', () => (text: string) => linkifyStr(text, {
 			format: (value, type) => {

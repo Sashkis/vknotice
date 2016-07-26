@@ -27,7 +27,10 @@ var SectionsApp;
     ])
         .controller('SectionsCtrl', SectionsApp.SectionsCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
+        .directive('userAva', SectionsApp.userAvaDirective)
+        .directive('userName', SectionsApp.userNameDirective)
         .directive('vkDialog', SectionsApp.DialogDirective)
+        .directive('attachment', SectionsApp.AttachmentDirective)
         .filter('emoji', ['$sce', function ($sce) { return function (text) { return $sce.trustAsHtml(new SectionsApp.Emoji().emojiToHTML(text)); }; }])
         .filter('linkify', function () { return function (text) { return linkifyStr(text, {
         format: function (value, type) {

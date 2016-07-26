@@ -88,7 +88,10 @@
 			.ava-container {
 				position: relative;
 				border-color: $DialogBg;
-				img { display: block; }
+				img {
+					display: block;
+			    border-radius: 0;
+				}
 				&.ava-count-1 {
 					&.online:after {
 						@extend %badge;
@@ -119,6 +122,9 @@
 					}
 				}
 				&.ava-count-3 {
+					flex-direction: column;
+					flex-wrap: wrap;
+					height: 36px;
 					img:nth-of-type(1) {
 						@extend %ava-half;
 					}
@@ -159,8 +165,7 @@
 			}
 		}
 	}
-	// .scroll-bar {
-	// }
+
 	#messages-list {
 		height: 252px;
 		overflow: auto;
@@ -197,12 +202,31 @@
 				.emoji {
 					vertical-align: middle;
 				}
+				b {
+					display: block;
+			    color: #42648b;
+			    font-weight: 700;
+			    -webkit-font-smoothing: antialiased;
+			    max-width: 200px;
+			    white-space: nowrap;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+				}
 			}
 			.message-date {
 				padding-top: 6px;
 				flex-basis: 30%;
 				margin-left: 5px;
 		    color: hsla(0,0%,58%,.6);
+			}
+			.ava {
+				margin-right: 5px;
+				height: 25px;
+				width: auto;
+				display: block;
+			}
+			.space {
+				width: 30px;
 			}
 		}
 	}

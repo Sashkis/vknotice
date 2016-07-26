@@ -7,7 +7,6 @@ var SectionsApp;
             this.pathToEmojisImages = 'https://vk.com/images/emoji/';
         }
         Emoji.prototype.getEmojiHTML = function (code, symbol) {
-            console.log(code);
             return "<img class=\"emoji\" " + (symbol ? "alt=\"" + symbol + "\"" : '') + " src=\"" + this.pathToEmojisImages + code + ".png\" />";
         };
         Emoji.prototype.emojiToHTML = function (str) {

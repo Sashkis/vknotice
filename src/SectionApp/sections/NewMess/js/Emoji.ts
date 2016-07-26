@@ -14,7 +14,6 @@ module SectionsApp {
 		* @return String        HTML код картинки
 		*/
 		getEmojiHTML(code: string, symbol?: string) {
-			console.log(code);
 			return `<img class="emoji" ${symbol ? `alt="${symbol}"` : ''} src="${this.pathToEmojisImages}${code}.png" />`;
 		}
 		/**

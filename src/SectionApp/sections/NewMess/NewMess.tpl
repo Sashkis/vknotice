@@ -6,13 +6,16 @@
 
 	<div class="flex messages-list-container" ng-if="vm.currentDialog">
 		<div id="messages-list" ng-scrollbar rebuild-on="messagesLoad">
-			<div class="scroll-bar" ng-repeat="message in vm.currentDialog.message">
-				<div
-				id="message-{{message.id}}"
-				class="message-item-container"
-				ng-class="{out: message.out, unread: !message.read_state}"
-				>
-					<div class="message-item" ng-bind-html="message.body | linkify | emoji"></div>
+			<div ng-repeat="message in vm.currentDialog.message track by message.id">
+				<div id="message-{{message.id}}" class="message-item-container" ng-class="{out: message.out, unread: !message.read_state}">
+					<div user-ava profile-id="message.from_id" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id !== vm.currentDialog.message[$index+1].from_id"></div>
+					<div class="space" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id === vm.currentDialog.message[$index+1].from_id"></div>
+					<div class="message-item">
+						<b user-name profile-id="message.from_id" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id !== vm.currentDialog.message[$index+1].from_id"></b>
+						<span ng-bind-html="message.body | linkify | emoji"></span>
+						<br>
+						<attachment ng-repeat="attachment in message.attachments"></attachment>
+					</div>
 					<div class="message-date">
 						{{message.date*1000 | date:'HH:mm'}}
 					</div>
