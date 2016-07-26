@@ -6,12 +6,13 @@ var SectionsApp;
         }
         ;
         return {
-            template: '{{profile.name || profile.first_name+" "+profile.second_name}}',
+            template: '{{profile.name || profile.first_name+" "+profile.last_name}}',
             scope: {
                 profileId: '=',
             },
             link: function ($scope) {
                 $scope.profile = getProfile($scope.profileId);
+                console.log($scope.profile);
             }
         };
     }

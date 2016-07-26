@@ -5,21 +5,8 @@
   </div>
 
 	<div class="flex messages-list-container" ng-if="vm.currentDialog">
-		<div id="messages-list" ng-scrollbar rebuild-on="messagesLoad">
-			<div ng-repeat="message in vm.currentDialog.message track by message.id">
-				<div id="message-{{message.id}}" class="message-item-container" ng-class="{out: message.out, unread: !message.read_state}">
-					<div user-ava profile-id="message.from_id" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id !== vm.currentDialog.message[$index+1].from_id"></div>
-					<div class="space" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id === vm.currentDialog.message[$index+1].from_id"></div>
-					<div class="message-item">
-						<b user-name profile-id="message.from_id" ng-if="vm.currentDialog.type === 1 && message.out === 0 && message.from_id !== vm.currentDialog.message[$index+1].from_id"></b>
-						<div ng-bind-html="message.body | linkify | emoji"></div>
-						<attachment ng-repeat="attachment in message.attachments"></attachment>
-					</div>
-					<div class="message-date">
-						{{message.date*1000 | date:'HH:mm'}}
-					</div>
-				</div>
-			</div>
+		<div id="messages-list">
+			<message ng-repeat="message in vm.currentDialog.message track by message.id"></message>
 		</div>
 
 		<form class="sendMess" ng-submit="vm.sendMessage()">

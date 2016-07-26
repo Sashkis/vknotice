@@ -11,13 +11,14 @@ module SectionsApp {
 		};
 
 		return {
-			template: '{{profile.name || profile.first_name+" "+profile.second_name}}',
+			template: '{{profile.name || profile.first_name+" "+profile.last_name}}',
 			// replace: true,
 			scope: {
         profileId:'=',
       },
 			link: function($scope: INameScope) {
 				$scope.profile = getProfile($scope.profileId);
+				console.log($scope.profile);
       }
 		};
 	}

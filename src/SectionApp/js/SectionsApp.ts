@@ -35,6 +35,7 @@ module SectionsApp {
 		.directive('userAva', userAvaDirective)
 		.directive('userName', userNameDirective)
 		.directive('vkDialog', DialogDirective)
+		.directive('message', MessageDirective)
 		.directive('attachment', AttachmentDirective)
 
 		.filter('emoji', ['$sce', ($sce: ng.ISCEService) => (text: string) => $sce.trustAsHtml(new Emoji().emojiToHTML(text))])

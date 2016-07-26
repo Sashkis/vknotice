@@ -190,6 +190,13 @@
 			    text-align: right;
 				}
 			}
+			&.action {
+				font-size: 13px;
+				display: block;
+				color: #777;
+				text-align: center;
+				padding: 15px 10px;
+			}
 			.message-item {
 				display: inline-block;
 				padding: 5px 10px;
