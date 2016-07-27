@@ -23,6 +23,7 @@ module OptionsApp {
 			});
 
 			VK.Widgets.Group("vk_groups", {
+				redesign: 1,
 				mode: 2,
 				height: document.getElementById('vk_groups').offsetHeight,
 				width: 'auto'
