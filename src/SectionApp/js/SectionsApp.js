@@ -25,8 +25,6 @@ var SectionsApp;
             });
         }
     ])
-        .controller('SectionsCtrl', SectionsApp.SectionsCtrl)
-        .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
         .directive('userAva', SectionsApp.userAvaDirective)
         .directive('userName', SectionsApp.userNameDirective)
         .directive('vkDialog', SectionsApp.DialogDirective)
@@ -40,6 +38,8 @@ var SectionsApp;
             }
             return value;
         }
-    }); }; });
+    }); }; })
+        .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
+        .controller('SectionsCtrl', SectionsApp.SectionsCtrl);
 })(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsApp.js.map

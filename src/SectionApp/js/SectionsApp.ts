@@ -29,9 +29,7 @@ module SectionsApp {
 			}
 		])
 
-		.controller('SectionsCtrl', SectionsCtrl)
 
-		.controller('NewMessCtrl', NewMessCtrl)
 		.directive('userAva', userAvaDirective)
 		.directive('userName', userNameDirective)
 		.directive('vkDialog', DialogDirective)
@@ -47,5 +45,8 @@ module SectionsApp {
 				return value;
 			}
 		}))
+
+		.controller('NewMessCtrl', NewMessCtrl)
+		.controller('SectionsCtrl', SectionsCtrl)
 		;
 }

@@ -17,7 +17,7 @@ var SectionsApp;
         };
     }
     SectionsApp.userNameDirective = userNameDirective;
-    SectionsApp.DialogDirective.$inject = [
+    userNameDirective.$inject = [
         'storage',
     ];
 })(SectionsApp || (SectionsApp = {}));

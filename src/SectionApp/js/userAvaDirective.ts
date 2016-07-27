@@ -26,7 +26,7 @@ module SectionsApp {
 		};
 	}
 
-	DialogDirective.$inject = [
+	userAvaDirective.$inject = [
 		'storage',
 	];
 }

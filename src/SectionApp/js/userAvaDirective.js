@@ -21,7 +21,7 @@ var SectionsApp;
         };
     }
     SectionsApp.userAvaDirective = userAvaDirective;
-    SectionsApp.DialogDirective.$inject = [
+    userAvaDirective.$inject = [
         'storage',
     ];
 })(SectionsApp || (SectionsApp = {}));

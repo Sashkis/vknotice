@@ -23,7 +23,7 @@ module SectionsApp {
 		};
 	}
 
-	DialogDirective.$inject = [
+	userNameDirective.$inject = [
 		'storage',
 	];
 }
