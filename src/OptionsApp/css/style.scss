@@ -93,12 +93,11 @@ label {
 		display: none;
 	}
 
-	i.fa {
-		color: #567ca4;
-		width: 20px;
-		font-size: 120%;
-		line-height: 20px;
-		vertical-align: middle;
+	.fa-stack {
+		font-size: 60%;
+		.fa-square {
+			color: #567ca4;
+		}
 	}
 
 }
