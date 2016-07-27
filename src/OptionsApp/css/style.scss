@@ -99,6 +99,10 @@ label {
 			color: #567ca4;
 		}
 	}
+	
+	input.ng-empty + .fa-stack {
+		opacity: .1;
+	}
 
 }
 

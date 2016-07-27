@@ -6,6 +6,7 @@
 
 	<div class="flex messages-list-container" ng-if="vm.currentDialog">
 		<div id="messages-list">
+			<div class="preloader" ng-if="!vm.currentDialog.message || vm.currentDialog.message.length < 1"></div>
 			<message ng-repeat="message in vm.currentDialog.message track by message.id"></message>
 			<div ng-if="vm.isMore" class="loadMore"><button ng-click="vm.loadMore(vm.currentDialog.peer_id)">Загрузить ещё</button></div>
 		</div>
