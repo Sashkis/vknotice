@@ -13,75 +13,118 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:20
+#: SectionApp/sections/NewMess/attachment.tpl:63
+msgid "{{$count}} Пересланное сообщение"
+msgid_plural "{{$count}} Пересланных сообщений"
+msgstr[0] "{{$count}} Переслане повідомлення"
+msgstr[1] "{{$count}} Пересланих повідомлення"
+msgstr[2] "{{$count}} Пересланих повідомлень"
+
+#: SectionApp/sections/Default/Default.tpl:30
 msgid "Аудиозаписи"
 msgstr "Аудiозаписи"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:16
+#: SectionApp/sections/NewMess/NewMess.tpl:26
+msgid "Введите ваше сообщение"
+msgstr "Введіть ваше повідомлення"
+
+#: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
 msgstr "Відеозаписи"
 
-#: src/HeaderApp/HeaderTempl.html:33
+#: SectionApp/sections/NewMess/attachment.tpl:69
+msgid "Вложение"
+msgstr "Вкладення"
+
+#: OptionsApp/index.html:102
+msgid "Всегда"
+msgstr "Завжди"
+
+#: HeaderApp/Header.tpl:33
 msgid "Выйти"
 msgstr "Вийти"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:29
+#: OptionsApp/index.html:92
+msgid "Выключить"
+msgstr "Вимкнути"
+
+#: SectionApp/sections/Default/Default.tpl:43
 msgid "Группы"
 msgstr "Спільноти"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:6
+#: SectionApp/sections/Default/Default.tpl:10
 msgid "Друзья"
 msgstr "Друзі"
 
-#: src/SectionApp/sections/NewFriends/NewFriendsTempl.html:10
+#: SectionApp/sections/NewFriends/request.tpl:9
 msgid "Заблокировать"
 msgstr "Заблокувати"
 
-#: src/HeaderApp/HeaderTempl.html:23
+#: HeaderApp/Header.tpl:23
 msgid "Задать вопрос"
 msgstr "Задати питання"
 
-#: src/HeaderApp/HeaderTempl.html:4
+#: SectionApp/sections/NewMess/attachment.tpl:20
+msgid "Запись"
+msgstr "Запис"
+
+#: OptionsApp/index.html:88
+msgid "Звуковые уведомления"
+msgstr "Звукові сповіщення"
+
+#: HeaderApp/Header.tpl:4
 msgid "Информер"
 msgstr "Інформер"
 
-#: src/HeaderApp/js/HeaderCtrl.js:27
+#: HeaderApp/js/HeaderCtrl.js:11 PopupApp/popup.html:4
 msgid "Информер Вконтакте"
 msgstr "Інформер Вконтакте"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:36
+#: SectionApp/sections/Default/Default.tpl:54
 msgid "Комментарии"
 msgstr "Коментарі"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:3
+#: SectionApp/sections/NewMess/attachment.tpl:25
+msgid "Комментарий"
+msgstr "Коментар"
+
+#: SectionApp/sections/Default/Default.tpl:5
 msgid "Моя Страница"
 msgstr "Моя Cторінка"
 
-#: src/HeaderApp/HeaderTempl.html:8
+#: HeaderApp/Header.tpl:8
 msgid "Назад"
 msgstr "Назад"
 
-#: src/HeaderApp/HeaderTempl.html:30
+#: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
 msgid "Настройки"
 msgstr "Налаштування"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:33
+#: OptionsApp/index.html:27
+msgid "Настройки уведомлений"
+msgstr "Налаштування сповіщень"
+
+#: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
 msgstr "Новини"
 
-#: src/HeaderApp/HeaderTempl.html:28
+#: HeaderApp/Header.tpl:28
 msgid "Оставить отзыв"
 msgstr "Залишити відгук"
 
-#: src/HeaderApp/HeaderTempl.html:24
+#: HeaderApp/Header.tpl:24
 msgid "Оставить предложение"
 msgstr "Залишити пропозицію"
 
-#: src/SectionApp/sections/NewFriends/NewFriendsTempl.html:9
+#: SectionApp/sections/NewFriends/request.tpl:8
 msgid "Отклонить"
 msgstr "Відмовити"
 
-#: src/HeaderApp/js/HeaderCtrl.js:28
+#: SectionApp/sections/NewFriends/NewFriends.tpl:3
+msgid "Отклонить все"
+msgstr "Відхилити всі"
+
+#: HeaderApp/js/HeaderCtrl.js:12
 msgid ""
 "Отображает количество непрочитанных сообщений и позволяет ответить не заходя "
 "в ВК!"
@@ -89,22 +132,92 @@ msgstr ""
 "Відображає кількість непрочитаних повідомлень і дозволяє відповісти не "
 "заходячи в ВК!"
 
-#: src/SectionApp/sections/NewFriends/NewFriendsTempl.html:8
+#: SectionApp/sections/NewMess/NewMess.tpl:33
+msgid "Пожалуйста, выберите диалог"
+msgstr "Будь ласка, виберіть діалог"
+
+#: OptionsApp/index.html:97
+msgid "При закрытом ВК"
+msgstr "При закритому ВК"
+
+#: SectionApp/sections/NewFriends/request.tpl:7
 msgid "Принять"
 msgstr "Прийняти"
 
-#: src/HeaderApp/HeaderTempl.html:27
+#: HeaderApp/Header.tpl:27
 msgid "Рассказать друзьям"
 msgstr "Розповісти друзям"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:23
+#: OptionsApp/index.html:57
+msgid "Сообщать о записях"
+msgstr "Повідомляти про записи"
+
+#: OptionsApp/index.html:32
+msgid "Сообщать о заявках в друзья"
+msgstr ""
+
+#: OptionsApp/index.html:67
+msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
+msgstr ""
+
+#: OptionsApp/index.html:47
+msgid "Сообщать о личных сообщениях"
+msgstr ""
+
+#: OptionsApp/index.html:82
+msgid "Сообщать о новых подписчиках"
+msgstr ""
+
+#: OptionsApp/index.html:52
+msgid "Сообщать о приглашениях в группы"
+msgstr ""
+
+#: OptionsApp/index.html:77
+msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
+msgstr ""
+
+#: OptionsApp/index.html:62
+msgid "Сообщать о упоминаниях в записях, в комментариях или в обсуждениях"
+msgstr ""
+
+#: OptionsApp/index.html:72
+msgid "Сообщать об отметках «Мне нравится»"
+msgstr ""
+
+#: OptionsApp/index.html:42
+msgid "Сообщать об отметках в видеозаписях"
+msgstr ""
+
+#: OptionsApp/index.html:37
+msgid "Сообщать об отметках на фотографиях"
+msgstr ""
+
+#: SectionApp/sections/Default/Default.tpl:35
 msgid "Сообщения"
 msgstr "Повiдомлення"
 
-#: src/HeaderApp/HeaderTempl.html:25
+#: HeaderApp/Header.tpl:25
 msgid "Сообщить об ошибке"
 msgstr "Повідомити про помилку"
 
-#: src/SectionApp/sections/Default/DefaultTempl.html:12
+#: OptionsApp/index.html:110
+msgid "Сохранено"
+msgstr "Збережено"
+
+#: OptionsApp/index.html:111
+msgid "Сохранить"
+msgstr "Зберегти"
+
+#: OptionsApp/index.html:113
+msgid "Удалить все данные расширения"
+msgstr "Видалити всі дані розширення"
+
+#: SectionApp/sections/Default/Default.tpl:18
 msgid "Фотографии"
 msgstr "Фотографії"
+
+#~ msgid "Пересланное сообщение"
+#~ msgid_plural "{{$count}} Пересланных сообщений"
+#~ msgstr[0] "{{$count}} Переслане повідомлення"
+#~ msgstr[1] "{{$count}} Пересланих повідомлення"
+#~ msgstr[2] "{{$count}} Пересланих повідомлень"

@@ -97,7 +97,7 @@ var Popup = (function () {
 				console.warn('Undefined users:', undef);
 
 				new Vk().api('users.get', {
-					fields: 'status,photo_100,domain,online',
+					fields: 'status,photo_50,domain,online',
 					user_ids: undef,
 				}).then(users => {
 					$.each(users, (i, user) => {
@@ -210,7 +210,7 @@ var Popup = (function () {
 					$('header .profile').html([
 						this.current.first_name,
 						$('<img/>', {
-							'src': this.current.photo_100,
+							'src': this.current.photo_50,
 						}),
 						$('<i/>', {
 							'class': 'caret',

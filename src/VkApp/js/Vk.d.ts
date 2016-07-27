@@ -1,6 +1,7 @@
 interface IVkRequest {
-    v?: string;
+		v?: string;
 		access_token?: string;
+		[key: string]: any;
 }
 
 interface IVkResponse {

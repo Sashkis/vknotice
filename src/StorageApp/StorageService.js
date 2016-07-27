@@ -36,19 +36,15 @@ var StorageApp;
         StorageService.prototype.clear = function (callback) {
             chrome.storage.local.clear(callback);
         };
-        StorageService.prototype.getProfileIndex = function (id) {
-            if (id && this.stg
-                && this.stg.profiles) {
-                for (var i = 0; i < this.stg.profiles.length; i++) {
-                    if (this.stg.profiles[i].id === id)
-                        return i;
-                }
+        StorageService.prototype.getProfileIndex = function (searchID) {
+            if (searchID && this.stg && this.stg.profiles) {
+                return this.stg.profiles.findIndex(function (prof) { return prof.id === searchID; });
             }
             return -1;
         };
         StorageService.prototype.getProfile = function (id) {
             var index = this.getProfileIndex(id);
-            return (index >= 0 && this.stg.profiles && this.stg.profiles[index]) ? this.stg.profiles[index] : {};
+            return index >= 0 ? this.stg.profiles[index] : {};
         };
         StorageService.prototype.setProfiles = function (newProfiles) {
             var _this = this;
@@ -74,9 +70,7 @@ var StorageApp;
         StorageService.prototype.clearProfiles = function (limit) {
             if (!limit || !this.stg.profiles)
                 return this.initEmptyProfilesCash();
-            this.stg.profiles = this.stg.profiles.filter(function (profile) { return profile && profile.id; });
-            if (this.stg.profiles.length > limit)
-                this.stg.profiles = this.stg.profiles.slice(0, limit);
+            this.stg.profiles = this.stg.profiles.filter(function (profile) { return profile && profile.id; }).slice(0, limit);
             return this.stg.profiles;
         };
         StorageService.prototype.initEmptyProfilesCash = function () {

@@ -1,12 +1,12 @@
 <header ng-controller="HeaderCtrl as head" class="flex">
-	<a ng-hide="main.stack.get()" class="navbar-brand" ng-href="https://vk.com/vknotice">
-		<span class="fa fa-vk"></span>
+	<a ng-hide="main.isNoRoot()" class="navbar-brand" ng-href="https://vk.com/vknotice">
+		<span class="fa fa-vk fa-3x"></span>
 		<translate>Информер</translate>
 	</a>
-	<span ng-show="main.stack.get()" class="navbar-brand" ng-click="main.backSection($event)">
-		<span class="fa fa-chevron-left"></span>
+	<a ng-show="main.isNoRoot()" class="navbar-brand" ng-href="#/">
+		<span class="fa fa-angle-left fa-3x"></span>
 		<translate>Назад</translate>
-	</span>
+	</a>
 
 	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
 		<i class="fa fa-bell"></i>
@@ -15,7 +15,7 @@
 	<span ng-class="['dropdown navbar-right',{open: head.isDropdownOpen}]" ng-click="head.isDropdownOpen = !head.isDropdownOpen">
 		<a class="profile">
 			{{head.current_user.first_name}}
-			<img class="ava" ng-src="{{head.current_user.photo_100}}" width="50px" height="50px">
+			<img class="ava" ng-src="{{head.current_user.photo_50}}" width="28px" height="28px">
 			<i class="caret"></i>
 		</a>
 

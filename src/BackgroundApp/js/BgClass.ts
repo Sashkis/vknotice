@@ -25,15 +25,18 @@ module BgApp {
 
 		StgReady(stg: IStorageData) : this {
 			this.stg = stg;
+
 			if (stg.groups) stg.groups = stg.groups.map(this.setNegativeID);
 			this.cacheProfiles(stg.users, stg.groups);
-			stg.profiles && stg.profiles.length && this.storage.clearProfiles( this.Config.profilesLimit );
-			stg.counter && this.setBadge();
-			// this.initDeamon();
+
+			if (stg.profiles && stg.profiles.length) this.storage.clearProfiles( this.Config.profilesLimit );
+			
+			if (stg.counter) this.setBadge();
+
 			this.$vk.auth().then(() => {
 				this.deamon
 					.setConfig({
-						method: 'execute.ang',
+						method: 'execute.get',
 						params: ()      => this.getDeamonParams(),
 						DoneCB: (resp)  => this.deamonDoneCB(resp),
 						FailCB: (error) => this.deamonFailCB(error),
@@ -85,6 +88,7 @@ module BgApp {
 				options: '',
 				notifyFilters: '',
 				notifyLast_viewed: this.stg.notifyLast_viewed,
+				func_v: 2,
 			};
 
 			if (this.stg.options.friends)   apiOptions.options += 'friends,';
@@ -133,7 +137,8 @@ module BgApp {
 			}
 
 			if (changes.groups) {
-				if (changes.groups.newValue) changes.groups.newValue = changes.groups.newValue(this.setNegativeID);
+				if (angular.isArray(changes.groups.newValue))
+					changes.groups.newValue = changes.groups.newValue.map(this.setNegativeID);
 
 				this.cacheProfiles(changes.groups.newValue);
 				delete changes.groups;
@@ -157,9 +162,7 @@ module BgApp {
 			}
 
 			const newStg = {};
-			angular.forEach(changes, function (change, key) {
-				newStg[key] = angular.copy(change.newValue);
-			});
+			angular.forEach(changes, (change, key) =>	newStg[key] = angular.copy(change.newValue));
 
 			this.storage.set(newStg, false);
 

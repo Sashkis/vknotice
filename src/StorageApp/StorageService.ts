@@ -46,13 +46,9 @@ module StorageApp {
 			chrome.storage.local.clear(callback);
 		}
 
-		getProfileIndex(id: number): number {
-			if (id && this.stg
-			       && this.stg.profiles
-			) {
-				for (let i = 0; i < this.stg.profiles.length; i++) {
-					if (this.stg.profiles[i].id === id) return i;
-				}
+		getProfileIndex(searchID: number): number {
+			if (searchID && this.stg && this.stg.profiles) {
+				return this.stg.profiles.findIndex((prof: IProfile) => prof.id === searchID);
 			}
 
 			return -1;
@@ -60,7 +56,7 @@ module StorageApp {
 
 		getProfile(id: number) : IProfile | {} {
 			const index = this.getProfileIndex(id);
-			return (index >= 0 && this.stg.profiles && this.stg.profiles[index]) ? this.stg.profiles[index] : {};
+			return index >= 0 ? this.stg.profiles[index] : {};
 		}
 
 		setProfiles(newProfiles: IProfile[]) {
@@ -87,8 +83,7 @@ module StorageApp {
 		clearProfiles(limit: number) : IProfile[] {
 			if (!limit || !this.stg.profiles) return this.initEmptyProfilesCash();
 
-			this.stg.profiles = this.stg.profiles.filter((profile) => profile && profile.id);
-			if (this.stg.profiles.length > limit) this.stg.profiles = this.stg.profiles.slice(0, limit);
+			this.stg.profiles = this.stg.profiles.filter((profile) => profile && profile.id).slice(0, limit);
 
 			return this.stg.profiles;
 		}

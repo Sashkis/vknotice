@@ -5,11 +5,21 @@
 	color: #fff;
 	font-size: 9px;
 	text-align: center;
+	z-index: 5;
 }
 %ava-full {
 	width: 36px;
 	height: 36px;
 	border-radius: 50%;
+}
+%ava-half {
+	width: 18px;
+	height: 36px;
+	object-fit: cover;
+}
+%ava-quarter {
+	width: 18px;
+	height: 18px;
 }
 
 #newmess {
@@ -78,6 +88,10 @@
 			.ava-container {
 				position: relative;
 				border-color: $DialogBg;
+				img {
+					display: block;
+			    border-radius: 0;
+				}
 				&.ava-count-1 {
 					&.online:after {
 						@extend %badge;
@@ -94,40 +108,70 @@
 						@extend %ava-full;
 					}
 				}
-				.unread {
-					@extend %badge;
-					padding: 1px 4px;
-					height: 11px;
-					line-height: 11px;
-					top: 0;
-					left: 0;
-					background-color: #ff734c;
+				&.ava-count-2,
+				&.ava-count-3,
+				&.ava-count-4 {
+					display: flex;
+					width: 36px;
+					border-radius: 50%;
+					overflow: hidden;
 				}
-				.marlAsRead {
-					@extend %badge;
-					background-color: rgba(0, 0, 0, .7);;
-					width: 14px;
-					line-height: 14px;
-					opacity: 0;
-					right: 0;
-					font-size: 10px;
-					color: rgba(255, 255, 255, .7);
-					transition: opacity 0.15s ease;
-					&:hover {
-						color: rgba(255, 255, 255, 1);
+				&.ava-count-2 {
+					img {
+						@extend %ava-half;
+					}
+				}
+				&.ava-count-3 {
+					flex-direction: column;
+					flex-wrap: wrap;
+					height: 36px;
+					img:nth-of-type(1) {
+						@extend %ava-half;
+					}
+					img:nth-of-type(2),
+					img:nth-of-type(3) {
+						@extend %ava-quarter;
+					}
+				}
+				&.ava-count-4 {
+					flex-wrap: wrap;
+					img {
+						@extend %ava-quarter;
 					}
 				}
 			}
-			// img {
-				// border-radius: 50%;
-				// display: block;
-			// }
+			.unread {
+				@extend %badge;
+				padding: 1px 4px;
+				height: 11px;
+				line-height: 12px;
+				top: 5px;
+				left: 5px;
+				background-color: #ff734c;
+			}
+			.marlAsRead {
+				@extend %badge;
+				background-color: rgba(0, 0, 0, .7);;
+				width: 14px;
+				line-height: 14px;
+				opacity: 0;
+				right: 5px;
+				font-size: 10px;
+				color: rgba(255, 255, 255, .7);
+				transition: opacity 0.15s ease;
+				&:hover {
+					color: rgba(255, 255, 255, 1);
+				}
+			}
 		}
 	}
+
 	#messages-list {
-		flex:1;
-		height: 288px;
+		height: 252px;
 		overflow: auto;
+		flex:1;
+		display: flex;
+    flex-direction: column-reverse;
 		.message-item-container {
 	    padding: 4px 12px 4px 8px;
 			display: flex;
@@ -146,14 +190,36 @@
 			    text-align: right;
 				}
 			}
+			&.action {
+				font-size: 13px;
+				display: block;
+				color: #777;
+				text-align: center;
+				padding: 15px 10px;
+			}
 			.message-item {
 				display: inline-block;
 				padding: 5px 10px;
 				background: #fff;
 				border: 1px solid #e1e4e8;
-				border-radius: 6px;
+				border-radius: 4px;
 				box-sizing: border-box;
 				overflow: hidden;
+		    word-break: break-word;
+				font-size: 13px;
+				.emoji {
+					vertical-align: middle;
+				}
+				b {
+					display: block;
+			    color: #42648b;
+			    font-weight: 700;
+			    -webkit-font-smoothing: antialiased;
+			    max-width: 200px;
+			    white-space: nowrap;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+				}
 			}
 			.message-date {
 				padding-top: 6px;
@@ -161,10 +227,59 @@
 				margin-left: 5px;
 		    color: hsla(0,0%,58%,.6);
 			}
+			.ava {
+				margin-right: 5px;
+				height: 25px;
+				width: auto;
+				display: block;
+			}
+			.space {
+				width: 30px;
+			}
+		}
+	}
+}
+.messages-list-container {
+	flex-direction: column;
+	flex: 1;
+	form {
+		display: flex;
+		border-top: 1px solid #e7e8ec;
+		background: #fff;
+		input, button {
+			margin: 0;
+			padding: 10px 20px;
+			border: none;
+			background: none;
+			outline: none;
+		}
+		input {
+			flex: 1;
+		}
+		button {
+			cursor: pointer;
+			color: rgba(148, 148, 148, 0.6);
+			&:hover {
+				color: #6d8cb0;
+			}
 		}
 	}
 }
 
+.empty-messages-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #929eb0;
+		.fa.fa-comments {
+	    font-size: 90px;
+	    opacity: .3;
+	    margin-bottom: 10px;
+	}
+}
 
 // .emoji {
 // 	display: inline;

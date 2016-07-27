@@ -14,7 +14,7 @@
  * @property {String}	last_name		Фамилия
  * @property {String}	name			Полное имя
  * @property {Boolean}	online			Онлайн статус пользователя
- * @property {String}	photo_100		URL аватара
+ * @property {String}	photo_50		URL аватара
  * @property {String}	status			Статус пользователя
  */
 function User (user_obj) {
@@ -30,7 +30,7 @@ User.prototype.domain = 'https://vk.com/';
 User.prototype.first_name = '';
 User.prototype.last_name = '';
 User.prototype.name = '';
-User.prototype.photo_100 = 'img/camera_100.png';
+User.prototype.photo_50 = 'img/camera_100.png';
 User.prototype.status = '';
 
 
@@ -64,7 +64,7 @@ User.prototype.ava = function (options) {
 		'isLink': false,
 		'size': 100,
 		'marker': true,
-		'src': this.photo_100,
+		'src': this.photo_50,
 		'type': 'full',
 	}, options);
 

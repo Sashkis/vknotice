@@ -51,7 +51,8 @@ interface IDialog {
 	out_read: number;
 	type: SectionsApp.DialogType;
 	profiles: number[];
-
+	message?: IMessage[];
+	photo_50?: string;
 }
 
 interface IVkDialog {
@@ -63,26 +64,26 @@ interface IVkDialog {
 
 interface IMessage {
 	id: number;
+	body: string;
 	user_id: number;
 	from_id: number;
-	date: Date;
+	date: number;
 	read_state: number;
 	out: number;
-	title: string;
-	body: string;
-	geo: any;
+	title?: string;
+	geo?: any;
 	attachments?: any[];
 	fwd_messages?: any[];
-	emoji: number;
-	important: number;
-	deleted: number;
-	random_id: number;
+	emoji?: number;
+	important?: number;
+	deleted?: number;
+	random_id?: number;
 	chat_id?: number;
 	chat_active?: number[];
 	push_settings?: any;
 	users_count?: number;
 	admin_id?: number;
-
+	photo_50?: string;
 }
 interface IAttachment {
 	type: string;
@@ -100,7 +101,7 @@ interface IProfile {
 	last_name?: string;
 	name?: string;
 	screen_name: string;
-	photo_100: string;
+	photo_50: string;
 	online: OnlineStatus;
 	online_mobile?: OnlineStatus;
 	online_app?: string;

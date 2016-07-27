@@ -1,7 +1,7 @@
 /// <reference path="../../all.d.ts"/>
 module SectionsApp {
 
-	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', /*'ngScrollbar'*/])
+	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', 'DeamonApp'])
 
 		.config(['$routeProvider', 'AnalyticsProvider',
 			function($routeProvider: angular.route.IRouteProvider, AnalyticsProvider: any) {
@@ -32,18 +32,20 @@ module SectionsApp {
 		.controller('SectionsCtrl', SectionsCtrl)
 
 		.controller('NewMessCtrl', NewMessCtrl)
-		// .controller('DialogCtrl', DialogCtrl)
-		.directive('vkDialog', DialogDirective);
-		// .directive('vkDialog', () => {
-		// 	return {
-		// 		// controller: 'DialogCtrl',
-		// 		templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
-		// 		restrict: 'E',
-		// 		// scope: false,
-		// 		replace: false,
-		// 		link: (scope) => {console.log(scope)}
-		// 	}
-		// });
+		.directive('userAva', userAvaDirective)
+		.directive('userName', userNameDirective)
+		.directive('vkDialog', DialogDirective)
+		.directive('message', MessageDirective)
+		.directive('attachment', AttachmentDirective)
 
+		.filter('emoji', ['$sce', ($sce: ng.ISCEService) => (text: string) => $sce.trustAsHtml(new Emoji().emojiToHTML(text))])
+		.filter('linkify', () => (text: string) => linkifyStr(text, {
+			format: (value, type) => {
+				if (type === 'url' && value.length > 40) {
+					value = value.slice(0, 25) + '…';
+				}
+				return value;
+			}
+		}))
 		;
 }
