@@ -7,6 +7,7 @@
 	<div class="flex messages-list-container" ng-if="vm.currentDialog">
 		<div id="messages-list">
 			<message ng-repeat="message in vm.currentDialog.message track by message.id"></message>
+			<div ng-if="vm.isMore" class="loadMore"><button ng-click="vm.loadMore(vm.currentDialog.peer_id)">Загрузить ещё</button></div>
 		</div>
 
 		<form class="sendMess" ng-submit="vm.sendMessage()">

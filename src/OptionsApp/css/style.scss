@@ -1,4 +1,6 @@
-$mainColor: #567ca4;
+@import "../../libs/helpers/_variables";
+@import "../../libs/helpers/_mixins";
+
 body {
 	color: #000;
 	font-size: 15px;
@@ -16,7 +18,7 @@ header, .wrapper {
 }
 
 .header-container {
-	background: #507299;
+	background: $mainColor;
 	display: block;
 }
 
@@ -105,60 +107,6 @@ label {
 	font-size: 1.5em;
 	vertical-align: middle;
 }
-
-
-#donate {
-	text-align: center;
-}
-
-
-%btn {
-	padding: 7px 16px 8px;
-	margin: 0;
-	font-size: 12px;
-	font-family: Open Sans,Helvetica Neue,sans-serif;
-	text-align: center;
-	border: 0;
-	border-radius: 2px;
-	box-sizing: border-box;
-	vertical-align: top;
-	&:not(:disabled) {
-		cursor: pointer;
-		&:active {
-			padding-top: 8px;
-			padding-bottom: 7px;
-			background-color: #ccc;
-		}
-
-	}
-
-	&:focus {
-		outline: none;
-	}
-
-}
-
-
-@mixin btnColor($mainColor, $textColor: #fff) {
-	background-color: $mainColor;
-	color: $textColor;
-	&:disabled {
-		background-color: lighten($mainColor, 30%);
-	}
-
-	&:not(:disabled) {
-		&:active {
-			background-color: darken($mainColor, 5%) !important;
-		}
-
-		&:hover {
-			background-color: lighten($mainColor, 5%);
-		}
-
-	}
-
-}
-
 
 .buttons-conteiner {
 	display: flex;

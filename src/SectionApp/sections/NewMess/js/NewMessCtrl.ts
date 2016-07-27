@@ -5,10 +5,27 @@ module SectionsApp {
 		message: string,
 	}
 
+	interface executeGetHistoryResponse {
+		history: executeGetHistoryResponse_History
+		profiles: IProfile[],
+		server: {
+			ts: number,
+			pts: number,
+			server: string,
+			key: string,
+		},
+	}
+	interface executeGetHistoryResponse_History  {
+		count: number,
+		items: IMessage[],
+		unread?: number
+	}
+
 	export class NewMessCtrl {
 		stg: IStorageData;
 		currentDialog: IDialog | undefined;
 		message: string;
+		isMore: boolean = false;
 		LongPollParams: {
 			access_token: string,
 			ts: number,
@@ -31,28 +48,21 @@ module SectionsApp {
 			private $scope: ng.IScope,
 			private deamon: DeamonApp.DeamonService
 		) {
+
+
+
 			storage.ready.then((stg) => {
 				this.stg = stg;
 
 				this.currentDialog = this.getCurrentDialog();
 				if (this.currentDialog) {
 					const targetID = this.currentDialog.peer_id;
+
 					$vk.auth().then(() => {
-						$vk.api('execute.getHistory', {
-							access_token: $vk.stg.access_token,
-							peer_id: targetID,
-							count:100,
-						}).then((API: {
-									history: any,
-									profiles: any[],
-									server: any,
-							}) => {
+						this.loadHistory(targetID).then((API: executeGetHistoryResponse) => {
 							storage.setProfiles(API.profiles);
 
-							if (this.currentDialog && this.currentDialog.peer_id === targetID) {
-								this.currentDialog.unread = API.history.unread || 0;
-								this.currentDialog.message = API.history.items.map((mess: IMessage) => new Message(mess));
-							}
+							this.insertMessages(targetID, API.history);
 
 							this.LongPollParams = {
 								access_token: $vk.stg.access_token,
@@ -80,8 +90,40 @@ module SectionsApp {
 			});
 		}
 
+		loadHistory(peer_id: number, offset = 0, count = 10) {
+			return this.$vk.api('execute.getHistory', {
+				access_token: this.$vk.stg.access_token,
+				peer_id,
+				count,
+				offset,
+			});
+		}
+
+		insertMessages(peer_id: number, history: executeGetHistoryResponse_History, clearBeforInsert = true) {
+			if (this.currentDialog && this.currentDialog.peer_id === peer_id) {
+				this.currentDialog.unread = history.unread || 0;
+
+				history.items = history.items.map((mess: IMessage) => new Message(mess));
+				if (clearBeforInsert || !this.currentDialog.message || !angular.isArray(this.currentDialog.message)) {
+					this.currentDialog.message = [];
+				}
+
+				this.currentDialog.message = this.currentDialog.message.concat(history.items);
+
+				this.isMore = history.count > this.currentDialog.message.length;
+			}
+		}
+
+		loadMore(peer_id: number) {
+			if (!this.currentDialog) return;
+			if (!this.currentDialog.message) this.currentDialog.message = [];
+
+			this.loadHistory(peer_id, this.currentDialog.message.length).then((API: executeGetHistoryResponse) => {
+				this.insertMessages(peer_id, API.history, false);
+			});
+		}
+
 		onLongPollDone(API: any) {
-			// console.log(API);
 			this.LongPollParams.pts = API.new_pts;
 
 			if (angular.isArray(API.profiles)) {

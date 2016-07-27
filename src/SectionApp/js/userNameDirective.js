@@ -12,7 +12,6 @@ var SectionsApp;
             },
             link: function ($scope) {
                 $scope.profile = getProfile($scope.profileId);
-                console.log($scope.profile);
             }
         };
     }

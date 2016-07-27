@@ -8,22 +8,16 @@ var SectionsApp;
             this.$vk = $vk;
             this.$scope = $scope;
             this.deamon = deamon;
+            this.isMore = false;
             storage.ready.then(function (stg) {
                 _this.stg = stg;
                 _this.currentDialog = _this.getCurrentDialog();
                 if (_this.currentDialog) {
                     var targetID_1 = _this.currentDialog.peer_id;
                     $vk.auth().then(function () {
-                        $vk.api('execute.getHistory', {
-                            access_token: $vk.stg.access_token,
-                            peer_id: targetID_1,
-                            count: 100,
-                        }).then(function (API) {
+                        _this.loadHistory(targetID_1).then(function (API) {
                             storage.setProfiles(API.profiles);
-                            if (_this.currentDialog && _this.currentDialog.peer_id === targetID_1) {
-                                _this.currentDialog.unread = API.history.unread || 0;
-                                _this.currentDialog.message = API.history.items.map(function (mess) { return new SectionsApp.Message(mess); });
-                            }
+                            _this.insertMessages(targetID_1, API.history);
                             _this.LongPollParams = {
                                 access_token: $vk.stg.access_token,
                                 ts: API.server.ts,
@@ -46,6 +40,38 @@ var SectionsApp;
                 }
             });
         }
+        NewMessCtrl.prototype.loadHistory = function (peer_id, offset, count) {
+            if (offset === void 0) { offset = 0; }
+            if (count === void 0) { count = 10; }
+            return this.$vk.api('execute.getHistory', {
+                access_token: this.$vk.stg.access_token,
+                peer_id: peer_id,
+                count: count,
+                offset: offset,
+            });
+        };
+        NewMessCtrl.prototype.insertMessages = function (peer_id, history, clearBeforInsert) {
+            if (clearBeforInsert === void 0) { clearBeforInsert = true; }
+            if (this.currentDialog && this.currentDialog.peer_id === peer_id) {
+                this.currentDialog.unread = history.unread || 0;
+                history.items = history.items.map(function (mess) { return new SectionsApp.Message(mess); });
+                if (clearBeforInsert || !this.currentDialog.message || !angular.isArray(this.currentDialog.message)) {
+                    this.currentDialog.message = [];
+                }
+                this.currentDialog.message = this.currentDialog.message.concat(history.items);
+                this.isMore = history.count > this.currentDialog.message.length;
+            }
+        };
+        NewMessCtrl.prototype.loadMore = function (peer_id) {
+            var _this = this;
+            if (!this.currentDialog)
+                return;
+            if (!this.currentDialog.message)
+                this.currentDialog.message = [];
+            this.loadHistory(peer_id, this.currentDialog.message.length).then(function (API) {
+                _this.insertMessages(peer_id, API.history, false);
+            });
+        };
         NewMessCtrl.prototype.onLongPollDone = function (API) {
             var _this = this;
             this.LongPollParams.pts = API.new_pts;

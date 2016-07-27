@@ -1,3 +1,6 @@
+@import "../../../../libs/helpers/_variables";
+@import "../../../../libs/helpers/_mixins";
+
 %badge {
 	display: block;
 	position: absolute;
@@ -242,6 +245,13 @@
 .messages-list-container {
 	flex-direction: column;
 	flex: 1;
+	.loadMore button {
+		@extend %btn;
+		@include btnColor(#e5ebf1, #55677d);
+		margin: 10px auto;
+		display: block;
+		font-size: 90%;
+	}
 	form {
 		display: flex;
 		border-top: 1px solid #e7e8ec;

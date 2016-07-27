@@ -1,0 +1,46 @@
+%btn {
+	padding: 7px 16px 8px;
+	margin: 0;
+	font-size: 12px;
+	font-family: Open Sans,Helvetica Neue,sans-serif;
+	text-align: center;
+	border: 0;
+	border-radius: 2px;
+	box-sizing: border-box;
+	vertical-align: top;
+	&:not(:disabled) {
+		cursor: pointer;
+		&:active {
+			padding-top: 8px;
+			padding-bottom: 7px;
+			background-color: #ccc;
+		}
+
+	}
+	&:focus {
+		outline: none;
+	}
+}
+
+
+@mixin btnColor($mainColor, $textColor: #fff) {
+	background-color: $mainColor;
+	color: $textColor;
+	&:disabled {
+		background-color: lighten($mainColor, 30%);
+	}
+
+	&:not(:disabled) {
+		&:active {
+			background-color: darken($mainColor, 5%) !important;
+		}
+
+		&:hover {
+			@if (lightness($mainColor) > 80) {
+				background-color: darken($mainColor, 2.5%);
+			} @else {
+				background-color: lighten($mainColor, 5%);
+			}
+		}
+	}
+}

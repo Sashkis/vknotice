@@ -18,7 +18,6 @@ module SectionsApp {
       },
 			link: function($scope: INameScope) {
 				$scope.profile = getProfile($scope.profileId);
-				console.log($scope.profile);
       }
 		};
 	}
