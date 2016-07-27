@@ -1,6 +1,6 @@
 <span ng-switch="attachment.type" class="attachment attachment-{{attachment.type}}">
 
-	<a ng-switch-when="photo" ng-href={{attachment.photo.photo_2560}}>
+	<a ng-switch-when="photo" ng-href="{{attachment.photo.photo_2560 || attachment.photo.photo_1280 || attachment.photo.photo_807 || attachment.photo.photo_604 || attachment.photo.photo_130 || attachment.photo.photo_75}}">
 		<img ng-src="{{attachment.photo.photo_130}}">
 	</a>
 
