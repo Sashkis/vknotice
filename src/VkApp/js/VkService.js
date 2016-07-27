@@ -1,13 +1,12 @@
 var VkApp;
 (function (VkApp) {
     var VkService = (function () {
-        function VkService($q, $http, storage, apiConfig, authConfig, $log, $httpParamSerializer) {
+        function VkService($q, $http, storage, apiConfig, authConfig, $httpParamSerializer) {
             this.$q = $q;
             this.$http = $http;
             this.storage = storage;
             this.apiConfig = apiConfig;
             this.authConfig = authConfig;
-            this.$log = $log;
             this.stg = {};
             this.authUrl = "https://oauth.vk.com/authorize?" + $httpParamSerializer(authConfig);
         }
@@ -101,8 +100,17 @@ var VkApp;
                     ready.resolve(API.data.response);
                 }
                 else {
-                    _this.$log.error(API.data.error);
-                    ready.reject('api_error');
+                    if (API.data.error && API.data.error.error_code === 6) {
+                        console.warn('Wait to restart');
+                        setTimeout(function () {
+                            console.warn('Restart');
+                            _this.api(method, params).then(ready.resolve, ready.reject);
+                        }, 2000);
+                    }
+                    else {
+                        console.error(API.data.error);
+                        ready.reject('api_error');
+                    }
                 }
             }, function () {
                 ready.reject('connect_error');
@@ -118,7 +126,6 @@ var VkApp;
             'storage',
             'apiConfig',
             'authConfig',
-            '$log',
             '$httpParamSerializer',
         ];
         return VkService;

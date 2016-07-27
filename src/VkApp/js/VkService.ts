@@ -9,7 +9,6 @@ module VkApp {
 			'storage',
 			'apiConfig',
 			'authConfig',
-			'$log',
 			'$httpParamSerializer',
 		];
 
@@ -19,7 +18,6 @@ module VkApp {
 			private storage: StorageApp.StorageService,
 			private apiConfig: { version: string },
 			private authConfig: {},
-			private $log: ng.ILogService,
 			$httpParamSerializer: ng.IHttpParamSerializer
 		) {
 			this.authUrl = `https://oauth.vk.com/authorize?${$httpParamSerializer(authConfig)}`;
@@ -143,8 +141,16 @@ module VkApp {
 					if (this.isResponseSuccess(API.data)) {
 						ready.resolve(API.data.response);
 					} else {
-						this.$log.error(API.data.error);
-						ready.reject('api_error');
+						if (API.data.error && API.data.error.error_code === 6) {
+							console.warn('Wait to restart');
+							setTimeout(() => {
+								console.warn('Restart');
+								this.api(method, params).then(ready.resolve, ready.reject);
+							}, 2000);
+						} else {
+							console.error(API.data.error);
+							ready.reject('api_error');
+						}
 					}
 				}, () => {
 					ready.reject('connect_error');
