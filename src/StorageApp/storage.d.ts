@@ -53,6 +53,7 @@ interface IDialog {
 	profiles: number[];
 	message?: IMessage[];
 	photo_50?: string;
+	isMore?: boolean;
 }
 
 interface IVkDialog {

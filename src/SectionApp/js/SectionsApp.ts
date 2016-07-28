@@ -46,6 +46,8 @@ module SectionsApp {
 			}
 		}))
 
+		.service('messMap', MessMapService)
+
 		.controller('NewMessCtrl', NewMessCtrl)
 		.controller('SectionsCtrl', SectionsCtrl)
 		;

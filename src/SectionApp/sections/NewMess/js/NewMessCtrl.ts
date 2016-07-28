@@ -1,9 +1,5 @@
 module SectionsApp {
 
-	interface IDialogRouteParams extends angular.route.IRouteParamsService {
-		peer_id: string,
-		message: string,
-	}
 
 	interface executeGetHistoryResponse {
 		history: executeGetHistoryResponse_History
@@ -21,9 +17,15 @@ module SectionsApp {
 		unread?: number
 	}
 
+	interface IMessageMap {
+		isMore: boolean,
+		peer_id: number,
+		items: IMessage[],
+	}
+
 	export class NewMessCtrl {
 		stg: IStorageData;
-		currentDialog: IDialog | undefined;
+		currentMessMap: IMessageMap | undefined;
 		message: string;
 		isMore: boolean = false;
 		LongPollParams: {
@@ -35,18 +37,18 @@ module SectionsApp {
 
 		public static $inject = [
 			'storage',
-			'$routeParams',
 			'$vk',
 			'$scope',
 			'deamon',
+			'messMap',
 		];
 
 		constructor(
 			private storage: StorageApp.StorageService,
-			private $routeParams: IDialogRouteParams,
 			private $vk: VkApp.VkService,
 			private $scope: ng.IScope,
-			private deamon: DeamonApp.DeamonService
+			private deamon: DeamonApp.DeamonService,
+			private messMap: MessMapService
 		) {
 
 
@@ -54,15 +56,16 @@ module SectionsApp {
 			storage.ready.then((stg) => {
 				this.stg = stg;
 
-				this.currentDialog = this.getCurrentDialog();
-				if (this.currentDialog) {
-					const targetID = this.currentDialog.peer_id;
+				this.currentMessMap = messMap.getMessMap();
+				if (this.currentMessMap) {
+					const targetPeer_id = this.currentMessMap.peer_id;
 
 					$vk.auth().then(() => {
-						this.loadHistory(targetID).then((API: executeGetHistoryResponse) => {
+						this.loadHistory(targetPeer_id).then((API: executeGetHistoryResponse) => {
 							storage.setProfiles(API.profiles);
 
-							this.insertMessages(targetID, API.history);
+							messMap.insertMessages(targetPeer_id, API.history.items);
+							messMap.setMore(targetPeer_id, API.history.count);
 
 							this.LongPollParams = {
 								access_token: $vk.stg.access_token,
@@ -90,7 +93,7 @@ module SectionsApp {
 			});
 		}
 
-		loadHistory(peer_id: number, offset = 0, count = 10) {
+		loadHistory(peer_id: number, offset = 0, count = 20) {
 			return this.$vk.api('execute.getHistory', {
 				access_token: this.$vk.stg.access_token,
 				peer_id,
@@ -99,27 +102,15 @@ module SectionsApp {
 			});
 		}
 
-		insertMessages(peer_id: number, history: executeGetHistoryResponse_History, clearBeforInsert = true) {
-			if (this.currentDialog && this.currentDialog.peer_id === peer_id) {
-				this.currentDialog.unread = history.unread || 0;
 
-				history.items = history.items.map((mess: IMessage) => new Message(mess));
-				if (clearBeforInsert || !this.currentDialog.message || !angular.isArray(this.currentDialog.message)) {
-					this.currentDialog.message = [];
-				}
-
-				this.currentDialog.message = this.currentDialog.message.concat(history.items);
-
-				this.isMore = history.count > this.currentDialog.message.length;
-			}
-		}
 
 		loadMore(peer_id: number) {
-			if (!this.currentDialog) return;
-			if (!this.currentDialog.message) this.currentDialog.message = [];
+			const targetMessMap = this.messMap.getMessMap(peer_id);
+			if (!targetMessMap) return;
+			const offset = targetMessMap.items ? targetMessMap.items.length : 0;
 
-			this.loadHistory(peer_id, this.currentDialog.message.length).then((API: executeGetHistoryResponse) => {
-				this.insertMessages(peer_id, API.history, false);
+			this.loadHistory(peer_id, offset).then((API: executeGetHistoryResponse) => {
+				this.messMap.insertMessages(peer_id, API.history.items, false);
 			});
 		}
 
@@ -130,19 +121,16 @@ module SectionsApp {
 				this.storage.setProfiles(API.profiles);
 			}
 
-			if (!this.currentDialog) return true;
+			if (!this.currentMessMap) return true;
 
-			const targetID = this.currentDialog.peer_id;
 			angular.forEach(API.history, (event) => {
 				// console.log(event);
 				switch (event[0]) {
 
 					case 4 : const [event_code, message_id, flags, peer_id] = event;
-						if (peer_id !== targetID || !this.currentDialog) return;
-
-						const message = new Message( API.messages.items.find((mess: IMessage) => mess.id === message_id) );
-						if (!this.currentDialog.message) this.currentDialog.message = [];
-						this.currentDialog.message.unshift(message);
+						const message = API.messages.items.find((m: IMessage) => m.id === message_id);
+						this.messMap.insertMessages(peer_id, [message], false, true);
+						// targetDialog.message.unshift(message);
 					break;
 
 					default:
@@ -153,11 +141,12 @@ module SectionsApp {
 			return true;
 		}
 
-		getCurrentDialog() {
-			if (!this.stg || !this.stg.dialogs.length || !this.$routeParams.peer_id ) return;
-			const targetID = +this.$routeParams.peer_id;
-			return this.stg.dialogs.find((dialog: IDialog) => targetID === dialog.peer_id);
-		}
+		// getDialog(peer_id = +this.$routeParams.peer_id ) {
+		// 	if (!this.stg || !this.stg.dialogs.length || !peer_id ) return;
+		// 	return this.stg.dialogs.find((dialog) => peer_id === dialog.peer_id);
+		// }
+
+
 
 		markAsRead(peer_id: number) {
 			this.$vk.auth().then(() => {
@@ -169,8 +158,8 @@ module SectionsApp {
 		}
 
 		sendMessage() {
-			if (!this.currentDialog) return;
-			const peer_id = this.currentDialog.peer_id;
+			if (!this.currentMessMap) return;
+			const peer_id = this.currentMessMap.peer_id;
 			const message = this.message;
 			this.$vk.auth().then(() => {
 				this.$vk.api('messages.send', {

@@ -1,23 +1,24 @@
 var SectionsApp;
 (function (SectionsApp) {
     var NewMessCtrl = (function () {
-        function NewMessCtrl(storage, $routeParams, $vk, $scope, deamon) {
+        function NewMessCtrl(storage, $vk, $scope, deamon, messMap) {
             var _this = this;
             this.storage = storage;
-            this.$routeParams = $routeParams;
             this.$vk = $vk;
             this.$scope = $scope;
             this.deamon = deamon;
+            this.messMap = messMap;
             this.isMore = false;
             storage.ready.then(function (stg) {
                 _this.stg = stg;
-                _this.currentDialog = _this.getCurrentDialog();
-                if (_this.currentDialog) {
-                    var targetID_1 = _this.currentDialog.peer_id;
+                _this.currentMessMap = messMap.getMessMap();
+                if (_this.currentMessMap) {
+                    var targetPeer_id_1 = _this.currentMessMap.peer_id;
                     $vk.auth().then(function () {
-                        _this.loadHistory(targetID_1).then(function (API) {
+                        _this.loadHistory(targetPeer_id_1).then(function (API) {
                             storage.setProfiles(API.profiles);
-                            _this.insertMessages(targetID_1, API.history);
+                            messMap.insertMessages(targetPeer_id_1, API.history.items);
+                            messMap.setMore(targetPeer_id_1, API.history.count);
                             _this.LongPollParams = {
                                 access_token: $vk.stg.access_token,
                                 ts: API.server.ts,
@@ -42,7 +43,7 @@ var SectionsApp;
         }
         NewMessCtrl.prototype.loadHistory = function (peer_id, offset, count) {
             if (offset === void 0) { offset = 0; }
-            if (count === void 0) { count = 10; }
+            if (count === void 0) { count = 20; }
             return this.$vk.api('execute.getHistory', {
                 access_token: this.$vk.stg.access_token,
                 peer_id: peer_id,
@@ -50,26 +51,14 @@ var SectionsApp;
                 offset: offset,
             });
         };
-        NewMessCtrl.prototype.insertMessages = function (peer_id, history, clearBeforInsert) {
-            if (clearBeforInsert === void 0) { clearBeforInsert = true; }
-            if (this.currentDialog && this.currentDialog.peer_id === peer_id) {
-                this.currentDialog.unread = history.unread || 0;
-                history.items = history.items.map(function (mess) { return new SectionsApp.Message(mess); });
-                if (clearBeforInsert || !this.currentDialog.message || !angular.isArray(this.currentDialog.message)) {
-                    this.currentDialog.message = [];
-                }
-                this.currentDialog.message = this.currentDialog.message.concat(history.items);
-                this.isMore = history.count > this.currentDialog.message.length;
-            }
-        };
         NewMessCtrl.prototype.loadMore = function (peer_id) {
             var _this = this;
-            if (!this.currentDialog)
+            var targetMessMap = this.messMap.getMessMap(peer_id);
+            if (!targetMessMap)
                 return;
-            if (!this.currentDialog.message)
-                this.currentDialog.message = [];
-            this.loadHistory(peer_id, this.currentDialog.message.length).then(function (API) {
-                _this.insertMessages(peer_id, API.history, false);
+            var offset = targetMessMap.items ? targetMessMap.items.length : 0;
+            this.loadHistory(peer_id, offset).then(function (API) {
+                _this.messMap.insertMessages(peer_id, API.history.items, false);
             });
         };
         NewMessCtrl.prototype.onLongPollDone = function (API) {
@@ -78,31 +67,20 @@ var SectionsApp;
             if (angular.isArray(API.profiles)) {
                 this.storage.setProfiles(API.profiles);
             }
-            if (!this.currentDialog)
+            if (!this.currentMessMap)
                 return true;
-            var targetID = this.currentDialog.peer_id;
             angular.forEach(API.history, function (event) {
                 switch (event[0]) {
                     case 4:
                         var event_code = event[0], message_id_1 = event[1], flags = event[2], peer_id = event[3];
-                        if (peer_id !== targetID || !_this.currentDialog)
-                            return;
-                        var message = new SectionsApp.Message(API.messages.items.find(function (mess) { return mess.id === message_id_1; }));
-                        if (!_this.currentDialog.message)
-                            _this.currentDialog.message = [];
-                        _this.currentDialog.message.unshift(message);
+                        var message = API.messages.items.find(function (m) { return m.id === message_id_1; });
+                        _this.messMap.insertMessages(peer_id, [message], false, true);
                         break;
                     default:
                         console.log(event);
                 }
             });
             return true;
-        };
-        NewMessCtrl.prototype.getCurrentDialog = function () {
-            if (!this.stg || !this.stg.dialogs.length || !this.$routeParams.peer_id)
-                return;
-            var targetID = +this.$routeParams.peer_id;
-            return this.stg.dialogs.find(function (dialog) { return targetID === dialog.peer_id; });
         };
         NewMessCtrl.prototype.markAsRead = function (peer_id) {
             var _this = this;
@@ -115,9 +93,9 @@ var SectionsApp;
         };
         NewMessCtrl.prototype.sendMessage = function () {
             var _this = this;
-            if (!this.currentDialog)
+            if (!this.currentMessMap)
                 return;
-            var peer_id = this.currentDialog.peer_id;
+            var peer_id = this.currentMessMap.peer_id;
             var message = this.message;
             this.$vk.auth().then(function () {
                 _this.$vk.api('messages.send', {
@@ -131,10 +109,10 @@ var SectionsApp;
         };
         NewMessCtrl.$inject = [
             'storage',
-            '$routeParams',
             '$vk',
             '$scope',
             'deamon',
+            'messMap',
         ];
         return NewMessCtrl;
     }());

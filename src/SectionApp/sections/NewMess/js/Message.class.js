@@ -6,7 +6,6 @@ var SectionsApp;
             if (angular.isArray(this.fwd_messages)) {
                 if (!this.attachments)
                     this.attachments = [];
-                console.log(this);
                 this.attachments.push({
                     type: 'fwd_messages',
                     fwd_messages: {

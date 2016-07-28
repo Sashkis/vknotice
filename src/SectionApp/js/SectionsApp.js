@@ -39,6 +39,7 @@ var SectionsApp;
             return value;
         }
     }); }; })
+        .service('messMap', SectionsApp.MessMapService)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
         .controller('SectionsCtrl', SectionsApp.SectionsCtrl);
 })(SectionsApp || (SectionsApp = {}));

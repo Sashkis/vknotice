@@ -1,6 +1,6 @@
 <a
 	class="dialog-item"
-	ng-class="{active: vm.$routeParams.peer_id == dialog.peer_id}"
+	ng-class="{active: vm.currentMessMap.peer_id == dialog.peer_id}"
 	ng-href="#NewMess/{{dialog.peer_id}}"
 	data-title="{{dialog.title || dialog.profiles[0].first_name || dialog.profiles[0].name || ''}}"
 >
