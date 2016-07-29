@@ -19,6 +19,10 @@ interface IStorageData {
 	profiles: IProfile[];
 	lang: number;
 	notifyLast_viewed: number;
+	state: {
+		name: string,
+		params: Object,
+	}
 }
 
 

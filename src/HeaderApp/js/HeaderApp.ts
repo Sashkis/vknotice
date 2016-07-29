@@ -1,5 +1,5 @@
 module HeaderApp {
-	angular.module('HeaderApp', ['StorageApp', 'gettext', 'angular-google-analytics'])
+	angular.module('HeaderApp', ['StorageApp', 'gettext', 'angular-google-analytics', 'ui.router'])
 
 	.config([
 		'$compileProvider',

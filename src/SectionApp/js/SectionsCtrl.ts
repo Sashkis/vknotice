@@ -3,36 +3,30 @@ module SectionsApp {
 		public static $inject = [
 			'storage',
 			'Analytics',
-			'$location',
-			'$window',
+			'$state',
 			'$scope',
 		];
 
 		constructor(
 			private storage: StorageApp.StorageService,
-			private Analytics: any,
-			private $location: ng.ILocationService,
-			private $window: ng.IWindowService,
+			Analytics: any,
+			$state: ng.ui.IStateService,
 			$scope: ng.IScope
 		) {
 			storage.ready.then((stg) => {
 				Analytics.set('&uid', stg.user_id);
-
-				if (stg.currentSection !== '/') {
-					$location.url(stg.currentSection);
-				}
+				$state.go(stg.state.name, stg.state.params);
 			});
 
-			$scope.$on('$locationChangeStart', () => this.saveSection())
+			$scope.$on('$stateChangeSuccess', ($event, toState, toParams) => this.saveSection(toState, toParams));
 		}
 
-		isNoRoot() {
-			return this.$location.url() !== '/';
-		}
-
-		saveSection() {
+		saveSection(toState: ng.ui.IState, toParams: Object) {
 			this.storage.set({
-				currentSection: this.$location.url()
+				state: {
+					name: toState.name,
+					params: toParams
+				}
 			});
 		}
 	}

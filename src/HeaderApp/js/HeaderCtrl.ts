@@ -4,6 +4,7 @@ module HeaderApp {
 		public static $inject = [
 			'storage',
 			'Analytics',
+			'$state',
 			'$httpParamSerializer',
 			'gettextCatalog',
 		];
@@ -18,8 +19,9 @@ module HeaderApp {
 		constructor (
 			private storage: StorageApp.StorageService,
 			private Analytics: any,
+			private $state: ng.ui.IStateService,
 			$httpParamSerializer: ng.IHttpParamSerializer,
-			gettextCatalog: any
+			gettextCatalog: any,
 		) {
 			this.optionUrl = chrome.extension.getURL('OptionsApp/index.html');
 
@@ -51,6 +53,11 @@ module HeaderApp {
 
 		trackActivity (activity: string) {
 			this.Analytics.trackEvent('Activity', activity, 'dropdown-menu');
+		}
+
+		isHome() {
+			const isHome = this.$state.is('home');
+			return isHome === undefined ? true : isHome;
 		}
 
 	}

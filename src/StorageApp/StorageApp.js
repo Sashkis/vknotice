@@ -27,6 +27,10 @@ var StorageApp;
         profiles: [],
         lang: 0,
         notifyLast_viewed: Date.now() / 1000,
+        state: {
+            name: 'home',
+            params: {},
+        }
     };
     angular.module('StorageApp', [])
         .constant('DefaultStorage', DefaultStorage)

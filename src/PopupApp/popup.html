@@ -22,11 +22,9 @@
 
 </head>
 <body>
-	<div preloader ng-if="false" class="preloader"></div>
-	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
 		<vk-header></vk-header>
-		<ng-view></ng-view>
+		<section ui-view></section>
 	</div>
 	<!-- build:js /vendors/js/vendors.js -->
 	<!-- bower:js -->
@@ -36,6 +34,7 @@
 	<script src="../bower_components/angular-route/angular-route.js"></script>
 	<script src="../bower_components/linkifyjs/linkify.js"></script>
 	<script src="../bower_components/linkifyjs/linkify-string.js"></script>
+	<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<!-- endbower -->
 	<!-- endbuild -->
 	<!-- build:js /Translations/all.js -->
@@ -70,10 +69,12 @@
 	<script src="../SectionApp/sections/NewMess/js/AttachmentDirective.js"></script>
 	<script src="../SectionApp/js/userAvaDirective.js"></script>
 	<script src="../SectionApp/js/userNameDirective.js"></script>
+
 	<script src="../SectionApp/sections/NewMess/js/MessageDirective.js"></script>
 	<script src="../SectionApp/sections/NewMess/js/Message.class.js"></script>
-
 	<script src="../SectionApp/sections/NewMess/js/MessMapService.js"></script>
+	<script src="../SectionApp/sections/NewMess/js/ChatCtrl.js"></script>
+
 	<script src="../SectionApp/sections/NewMess/js/NewMessCtrl.js"></script>
 	<script src="../SectionApp/js/SectionsCtrl.js"></script>
 	<script src="../SectionApp/js/SectionsApp.js"></script>
