@@ -29,7 +29,6 @@ var SectionsApp;
                 targetMessMap.items = targetMessMap.items.concat(messages);
             else
                 targetMessMap.items = messages.concat(targetMessMap.items);
-            console.log(this.maps);
             return targetMessMap.items.length;
         };
         MessMapService.prototype.setMore = function (peer_id, count) {
