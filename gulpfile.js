@@ -81,8 +81,7 @@ gulp.task('build', ['copy', 'sass'], function () {
 });
 
 gulp.task('clean', function () {
-	var del				= require('del');
-
+	var del	= require('del');
 	return del(['build/*']);
 });
 
@@ -90,21 +89,21 @@ gulp.task('bower', function () {
 	var wiredep		= require('wiredep').stream;
 
 	gulp.src('src/**/*.html')
-			.pipe(wiredep({
-				overrides: {
-						"linkifyjs": {
-								"main": ['linkify.js', 'linkify-string.js'],
-								"dependencies": {}
-						}
-				}
-			}))
-			.pipe(gulp.dest('src'));
+		.pipe(wiredep({
+			overrides: {
+					"linkifyjs": {
+							"main": ['linkify.js', 'linkify-string.js'],
+							"dependencies": {}
+					}
+			}
+		}))
+		.pipe(gulp.dest('src'));
 });
 
 gulp.task('bump', function () {
 	var bump = require('gulp-bump');
 	var args = require('yargs').argv;
-	var filter		 = require('gulp-filter');
+	var filter = require('gulp-filter');
 
 	// Version example
 	//	major: 1.0.0

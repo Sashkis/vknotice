@@ -17,22 +17,22 @@ module SectionsApp {
 
 		public static $inject = [
 			'storage',
-			'$routeParams',
+			'$stateParams',
 			// '',
 		];
 
-		constructor(storage: StorageApp.StorageService, private $routeParams: IDialogRouteParams) {
+		constructor(storage: StorageApp.StorageService, private $stateParams: IDialogRouteParams) {
 			storage.ready.then((stg) => {
 				this.maps = stg.dialogs.map(d => { return {peer_id: d.peer_id, isMore: false, items: []}});
 			});
 		}
 
-		getMessMap(peer_id = +this.$routeParams.peer_id ) {
+		getMessMap(peer_id = +this.$stateParams.peer_id ) {
 			if (!peer_id) return;
 			return this.maps.find((d) => peer_id === d.peer_id);
 		}
 
-		insertMessages(peer_id: number, messages: IMessage[], clearBeforInsert = true, prepend = false) {
+		insertMessages(peer_id: number, messages: IMessage[], prepend = false, clearBeforInsert = false ) {
 			const targetMessMap = this.getMessMap(peer_id);
 			if (!targetMessMap) return;
 

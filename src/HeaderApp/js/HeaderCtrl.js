@@ -1,10 +1,11 @@
 var HeaderApp;
 (function (HeaderApp) {
     var HeaderCtrl = (function () {
-        function HeaderCtrl(storage, Analytics, $httpParamSerializer, gettextCatalog) {
+        function HeaderCtrl(storage, Analytics, $state, $httpParamSerializer, gettextCatalog) {
             var _this = this;
             this.storage = storage;
             this.Analytics = Analytics;
+            this.$state = $state;
             this.optionUrl = chrome.extension.getURL('OptionsApp/index.html');
             this.shareUrl = 'https://vk.com/share.php?' + $httpParamSerializer({
                 'url': 'http://vk.com/note45421694_12011424',
@@ -31,9 +32,14 @@ var HeaderApp;
         HeaderCtrl.prototype.trackActivity = function (activity) {
             this.Analytics.trackEvent('Activity', activity, 'dropdown-menu');
         };
+        HeaderCtrl.prototype.isHome = function () {
+            var isHome = this.$state.is('home');
+            return isHome === undefined ? true : isHome;
+        };
         HeaderCtrl.$inject = [
             'storage',
             'Analytics',
+            '$state',
             '$httpParamSerializer',
             'gettextCatalog',
         ];

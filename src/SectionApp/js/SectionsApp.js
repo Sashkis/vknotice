@@ -1,27 +1,28 @@
 var SectionsApp;
 (function (SectionsApp) {
-    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', 'DeamonApp'])
-        .config(['$routeProvider', 'AnalyticsProvider',
-        function ($routeProvider, AnalyticsProvider) {
+    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp'])
+        .config(['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider',
+        function ($stateProvider, $urlRouterProvider, AnalyticsProvider) {
             AnalyticsProvider
-                .readFromRoute(true)
-                .trackPrefix('/Popup');
-            $routeProvider
-                .when('/', {
-                templateUrl: '/SectionApp/sections/Default/Default.tpl',
-                name: 'Меню',
+                .trackPrefix('/Popup')
+                .setPageEvent('$stateChangeSuccess');
+            $urlRouterProvider.otherwise('/');
+            $stateProvider
+                .state('home', {
+                url: '/',
+                templateUrl: "/SectionApp/sections/Default/Default.tpl"
             })
-                .when('/NewFriends', {
-                templateUrl: '/SectionApp/sections/NewFriends/NewFriends.tpl',
+                .state('requests', {
+                url: '/requests',
+                templateUrl: "/SectionApp/sections/NewFriends/NewFriends.tpl"
             })
-                .when('/NewMess', {
-                templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
+                .state('dialogs', {
+                url: '/dialogs',
+                templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl"
             })
-                .when('/NewMess/:peer_id', {
-                templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
-            })
-                .otherwise({
-                redirectTo: '/'
+                .state('dialogs.chat', {
+                url: '/{peer_id:int}',
+                templateUrl: "/SectionApp/sections/NewMess/NewMess.chat.tpl",
             });
         }
     ])
@@ -40,6 +41,7 @@ var SectionsApp;
         }
     }); }; })
         .service('messMap', SectionsApp.MessMapService)
+        .controller('ChatCtrl', SectionsApp.ChatCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
         .controller('SectionsCtrl', SectionsApp.SectionsCtrl);
 })(SectionsApp || (SectionsApp = {}));

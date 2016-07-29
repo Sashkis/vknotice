@@ -1,31 +1,52 @@
 /// <reference path="../../all.d.ts"/>
 module SectionsApp {
 
-	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ngRoute', 'DeamonApp'])
+	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp'])
 
-		.config(['$routeProvider', 'AnalyticsProvider',
-			function($routeProvider: angular.route.IRouteProvider, AnalyticsProvider: any) {
+		.config(['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider',
+			function($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, AnalyticsProvider: any) {
 				AnalyticsProvider
-					.readFromRoute(true)
-					.trackPrefix('/Popup');
+				// .readFromRoute(true)
+					.trackPrefix('/Popup')
+					.setPageEvent('$stateChangeSuccess');
 
-				$routeProvider
-					.when('/', {
-						templateUrl: '/SectionApp/sections/Default/Default.tpl',
-						name: 'Меню',
-					})
-					.when('/NewFriends', {
-						templateUrl: '/SectionApp/sections/NewFriends/NewFriends.tpl',
-					})
-					.when('/NewMess', {
-						templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
-					})
-					.when('/NewMess/:peer_id', {
-						templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
-					})
-					.otherwise({
-						redirectTo: '/'
-					});
+					$urlRouterProvider.otherwise('/');
+
+					$stateProvider
+						.state('home', {
+							url: '/',
+							templateUrl: "/SectionApp/sections/Default/Default.tpl"
+						})
+						.state('requests', {
+							url: '/requests',
+							templateUrl: "/SectionApp/sections/NewFriends/NewFriends.tpl"
+						})
+						.state('dialogs', {
+							url: '/dialogs',
+							templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl"
+						})
+						.state('dialogs.chat', {
+							url: '/{peer_id:int}',
+							templateUrl: "/SectionApp/sections/NewMess/NewMess.chat.tpl",
+						})
+
+				// $routeProvider
+				// 	.when('/', {
+				// 		templateUrl: '/SectionApp/sections/Default/Default.tpl',
+				// 		name: 'Меню',
+				// 	})
+				// 	.when('/NewFriends', {
+				// 		templateUrl: '/SectionApp/sections/NewFriends/NewFriends.tpl',
+				// 	})
+				// 	.when('/NewMess', {
+				// 		templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
+				// 	})
+				// 	.when('/NewMess/:peer_id', {
+				// 		templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
+				// 	})
+				// 	.otherwise({
+				// 		redirectTo: '/'
+				// 	});
 			}
 		])
 
@@ -48,6 +69,7 @@ module SectionsApp {
 
 		.service('messMap', MessMapService)
 
+		.controller('ChatCtrl', ChatCtrl)
 		.controller('NewMessCtrl', NewMessCtrl)
 		.controller('SectionsCtrl', SectionsCtrl)
 		;

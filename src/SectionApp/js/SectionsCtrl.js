@@ -1,33 +1,27 @@
 var SectionsApp;
 (function (SectionsApp) {
     var SectionsCtrl = (function () {
-        function SectionsCtrl(storage, Analytics, $location, $window, $scope) {
+        function SectionsCtrl(storage, Analytics, $state, $scope) {
             var _this = this;
             this.storage = storage;
-            this.Analytics = Analytics;
-            this.$location = $location;
-            this.$window = $window;
             storage.ready.then(function (stg) {
                 Analytics.set('&uid', stg.user_id);
-                if (stg.currentSection !== '/') {
-                    $location.url(stg.currentSection);
-                }
+                $state.go(stg.state.name, stg.state.params);
             });
-            $scope.$on('$locationChangeStart', function () { return _this.saveSection(); });
+            $scope.$on('$stateChangeSuccess', function ($event, toState, toParams) { return _this.saveSection(toState, toParams); });
         }
-        SectionsCtrl.prototype.isNoRoot = function () {
-            return this.$location.url() !== '/';
-        };
-        SectionsCtrl.prototype.saveSection = function () {
+        SectionsCtrl.prototype.saveSection = function (toState, toParams) {
             this.storage.set({
-                currentSection: this.$location.url()
+                state: {
+                    name: toState.name,
+                    params: toParams
+                }
             });
         };
         SectionsCtrl.$inject = [
             'storage',
             'Analytics',
-            '$location',
-            '$window',
+            '$state',
             '$scope',
         ];
         return SectionsCtrl;

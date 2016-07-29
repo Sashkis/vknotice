@@ -1,23 +1,23 @@
 var SectionsApp;
 (function (SectionsApp) {
     var MessMapService = (function () {
-        function MessMapService(storage, $routeParams) {
+        function MessMapService(storage, $stateParams) {
             var _this = this;
-            this.$routeParams = $routeParams;
+            this.$stateParams = $stateParams;
             this.stg = {};
             storage.ready.then(function (stg) {
                 _this.maps = stg.dialogs.map(function (d) { return { peer_id: d.peer_id, isMore: false, items: [] }; });
             });
         }
         MessMapService.prototype.getMessMap = function (peer_id) {
-            if (peer_id === void 0) { peer_id = +this.$routeParams.peer_id; }
+            if (peer_id === void 0) { peer_id = +this.$stateParams.peer_id; }
             if (!peer_id)
                 return;
             return this.maps.find(function (d) { return peer_id === d.peer_id; });
         };
-        MessMapService.prototype.insertMessages = function (peer_id, messages, clearBeforInsert, prepend) {
-            if (clearBeforInsert === void 0) { clearBeforInsert = true; }
+        MessMapService.prototype.insertMessages = function (peer_id, messages, prepend, clearBeforInsert) {
             if (prepend === void 0) { prepend = false; }
+            if (clearBeforInsert === void 0) { clearBeforInsert = false; }
             var targetMessMap = this.getMessMap(peer_id);
             if (!targetMessMap)
                 return;
@@ -39,7 +39,7 @@ var SectionsApp;
         };
         MessMapService.$inject = [
             'storage',
-            '$routeParams',
+            '$stateParams',
         ];
         return MessMapService;
     }());
