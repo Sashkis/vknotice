@@ -1,9 +1,9 @@
 <header ng-controller="HeaderCtrl as head" class="flex">
-	<a ng-hide="main.isNoRoot()" class="navbar-brand" ng-href="https://vk.com/vknotice">
+	<a ng-show="head.isHome()" class="navbar-brand" ng-href="https://vk.com/vknotice">
 		<span class="fa fa-vk fa-3x"></span>
 		<translate>Информер</translate>
 	</a>
-	<a ng-show="main.isNoRoot()" class="navbar-brand" ng-href="#/">
+	<a ng-hide="head.isHome()" class="navbar-brand" ui-sref="home">
 		<span class="fa fa-angle-left fa-3x"></span>
 		<translate>Назад</translate>
 	</a>

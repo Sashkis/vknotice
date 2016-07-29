@@ -127,13 +127,19 @@ module SectionsApp {
 				// console.log(event);
 				switch (event[0]) {
 
-					case 4 : const [event_code, message_id, flags, peer_id] = event;
+					case 4 : {
+						const [event_code, message_id, flags, peer_id] = event;
 						const message = API.messages.items.find((m: IMessage) => m.id === message_id);
 						this.messMap.insertMessages(peer_id, [message], true );
-					break;
+					} break;
+					case 6 : case 7 : {
+						const [event_code, peer_id , local_id] = event;
+						const messMap = this.messMap.getMessMap(peer_id);
+						if (messMap) messMap.items.filter(m => m.out === (event_code === 6 ? 0 : 1) && m.id <= local_id ).map(m => m.read_state = 1);
+					} break;
 
 					default:
-						console.log(event);
+						// console.log(event);
 				}
 			});
 
@@ -150,7 +156,6 @@ module SectionsApp {
 				message,
 				peer_id,
 			})).then((API) => {
-				console.log(API);
 				this.message = '';
 			});
 		}

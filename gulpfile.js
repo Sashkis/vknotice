@@ -65,19 +65,22 @@ gulp.task('copy', ['clean'], function () {
 });
 
 gulp.task('build', ['copy', 'sass'], function () {
-	var useref		 = require('gulp-useref');
-	var uglify		 = require('gulp-uglify');
-	var cleanCSS	 = require('gulp-clean-css');
-	var filter		 = require('gulp-filter');
+	var useref   = require('gulp-useref');
+	var uglify   = require('gulp-uglify');
+	var cleanCSS = require('gulp-clean-css');
+	var filter   = require('gulp-filter');
+	var replace  = require('gulp-replace');
 
 	var js = filter(['**/*.js'], {restore: true});
 	var css = filter(['**/*.css'], {restore: true});
 	return gulp.src(['src/+(OptionsApp|BackgroundApp|PopupApp)/*.html'])
-				.pipe(useref())
-				.pipe(js).pipe(uglify()).pipe(js.restore)
-				.pipe(css).pipe(cleanCSS()).pipe(css.restore)
-				.pipe(gulp.dest('build'))
-				;
+		.pipe(useref())
+		.pipe(js).pipe(uglify()).pipe(js.restore)
+		.pipe(css).pipe(cleanCSS()).pipe(css.restore)
+		.pipe(replace('UA-71609511-3', 'UA-71609511-2', {skipBinary: true}))
+		.pipe(gulp.dest('build'))
+		;
+	// return gulp.src(['build/libs/Helpers.js']).pipe(gulp.dest('build/libs/Helpers.js'));;
 });
 
 gulp.task('clean', function () {
@@ -88,7 +91,7 @@ gulp.task('clean', function () {
 gulp.task('bower', function () {
 	var wiredep		= require('wiredep').stream;
 
-	gulp.src('src/**/*.html')
+	return gulp.src('src/**/*.html')
 		.pipe(wiredep({
 			overrides: {
 					"linkifyjs": {

@@ -8,9 +8,9 @@
 		<li>
 			<a ng-href="https://vk.com/friends" >
 				<translate>Друзья</translate>
-				<a class="counter" href="#NewFriends" ng-if="sidebar.stg.counter.friends">
-					{{'+'+sidebar.stg.counter.friends}}
-				</a>
+			</a>
+			<a class="counter" ui-sref="requests" ng-if="sidebar.stg.counter.friends">
+				{{'+'+sidebar.stg.counter.friends}}
 			</a>
 		</li>
 		<li>
@@ -34,7 +34,7 @@
 			<a ng-href="https://vk.com/im" >
 				<translate>Сообщения</translate>
 			</a>
-			<a class="counter" href="#NewMess">
+			<a class="counter" ui-sref="dialogs">
 				{{sidebar.stg.counter.messages ? '+'+sidebar.stg.counter.messages : '+'}}
 			</a>
 		</li>

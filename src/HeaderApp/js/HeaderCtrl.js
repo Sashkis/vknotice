@@ -6,9 +6,8 @@ var HeaderApp;
             this.storage = storage;
             this.Analytics = Analytics;
             this.$state = $state;
-            this.optionUrl = chrome.extension.getURL('OptionsApp/index.html');
             this.shareUrl = 'https://vk.com/share.php?' + $httpParamSerializer({
-                'url': 'http://vk.com/note45421694_12011424',
+                'url': 'https://vk.com/note45421694_12011424',
                 'title': gettextCatalog.getString('Информер Вконтакте'),
                 'description': gettextCatalog.getString('Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!'),
                 'image': 'https://pp.vk.me/c628716/v628716694/2c20c/f3gq0pcaqHI.jpg',
@@ -28,6 +27,7 @@ var HeaderApp;
                 user_id: 0,
                 access_token: '',
             });
+            chrome.browserAction.setBadgeText({ text: '' });
         };
         HeaderCtrl.prototype.trackActivity = function (activity) {
             this.Analytics.trackEvent('Activity', activity, 'dropdown-menu');
@@ -35,6 +35,9 @@ var HeaderApp;
         HeaderCtrl.prototype.isHome = function () {
             var isHome = this.$state.is('home');
             return isHome === undefined ? true : isHome;
+        };
+        HeaderCtrl.prototype.openOptionsPage = function () {
+            chrome.runtime.openOptionsPage();
         };
         HeaderCtrl.$inject = [
             'storage',

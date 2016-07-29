@@ -27,9 +27,7 @@
 			<li><a ng-click="head.trackActivity('share')" ng-href="{{head.shareUrl}}" translate>Рассказать друзьям</a></li>
 			<li><a ng-click="head.trackActivity('review')" ng-href="{{head.reviewUrl}}" translate>Оставить отзыв</a></li>
 			<li class="divider"></li>
-			<li><a ng-href="{{head.optionUrl}}" translate>
-				Настройки
-			</a></li>
+			<li><a ng-click="head.openOptionsPage()" translate>Настройки</a></li>
 			<li><a href="#" ng-click="head.logout($event)" translate>Выйти</a></li>
 		</ul>
 	</span>

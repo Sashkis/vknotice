@@ -39,11 +39,7 @@ var OptionsApp;
         };
         ;
         OptionsCtrl.prototype.onStorageClear = function () {
-            var windows = chrome.extension.getViews();
-            console.log(windows);
-            for (var i = 0; i < windows.length; i++) {
-                windows[i].location.reload();
-            }
+            chrome.runtime.reload();
         };
         OptionsCtrl.$inject = [
             'storage',

@@ -48,11 +48,7 @@ module OptionsApp {
 		};
 
 		private onStorageClear() {
-			const windows = chrome.extension.getViews();
-			console.log(windows);
-			for (let i = 0; i < windows.length; i++) {
-				windows[i].location.reload();
-			}
+			chrome.runtime.reload();
 		}
 	}
 }

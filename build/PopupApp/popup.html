@@ -11,11 +11,9 @@
 
 </head>
 <body>
-	<div preloader ng-if="false" class="preloader"></div>
-	<div id="alert"><table></table></div>
 	<div class="container" ng-controller="SectionsCtrl as main">
 		<vk-header></vk-header>
-		<ng-view></ng-view>
+		<section ui-view></section>
 	</div>
 	<script src="/vendors/js/vendors.js"></script>
 	<script src="/Translations/all.js"></script>

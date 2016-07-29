@@ -30,7 +30,7 @@ module BgApp {
 			this.cacheProfiles(stg.users, stg.groups);
 
 			if (stg.profiles && stg.profiles.length) this.storage.clearProfiles( this.Config.profilesLimit );
-			
+
 			if (stg.counter) this.setBadge();
 
 			this.$vk.auth().then(() => {

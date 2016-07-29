@@ -74,12 +74,22 @@ var SectionsApp;
             angular.forEach(API.history, function (event) {
                 switch (event[0]) {
                     case 4:
-                        var event_code = event[0], message_id_1 = event[1], flags = event[2], peer_id = event[3];
-                        var message = API.messages.items.find(function (m) { return m.id === message_id_1; });
-                        _this.messMap.insertMessages(peer_id, [message], true);
+                        {
+                            var event_code = event[0], message_id_1 = event[1], flags = event[2], peer_id = event[3];
+                            var message = API.messages.items.find(function (m) { return m.id === message_id_1; });
+                            _this.messMap.insertMessages(peer_id, [message], true);
+                        }
+                        break;
+                    case 6:
+                    case 7:
+                        {
+                            var event_code_1 = event[0], peer_id = event[1], local_id_1 = event[2];
+                            var messMap = _this.messMap.getMessMap(peer_id);
+                            if (messMap)
+                                messMap.items.filter(function (m) { return m.out === (event_code_1 === 6 ? 0 : 1) && m.id <= local_id_1; }).map(function (m) { return m.read_state = 1; });
+                        }
                         break;
                     default:
-                        console.log(event);
                 }
             });
             return true;
@@ -95,7 +105,6 @@ var SectionsApp;
                 message: message,
                 peer_id: peer_id,
             }); }).then(function (API) {
-                console.log(API);
                 _this.message = '';
             });
         };

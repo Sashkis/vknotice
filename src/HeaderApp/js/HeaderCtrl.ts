@@ -23,10 +23,9 @@ module HeaderApp {
 			$httpParamSerializer: ng.IHttpParamSerializer,
 			gettextCatalog: any,
 		) {
-			this.optionUrl = chrome.extension.getURL('OptionsApp/index.html');
 
 			this.shareUrl = 'https://vk.com/share.php?' + $httpParamSerializer({
-				'url'         : 'http://vk.com/note45421694_12011424',
+				'url'         : 'https://vk.com/note45421694_12011424',
 				'title'       : gettextCatalog.getString('Информер Вконтакте'),
 				'description' : gettextCatalog.getString('Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!'),
 				'image'       : 'https://pp.vk.me/c628716/v628716694/2c20c/f3gq0pcaqHI.jpg',
@@ -49,6 +48,7 @@ module HeaderApp {
 				user_id: 0,
 				access_token: '',
 			});
+			chrome.browserAction.setBadgeText({text: ''});
 		}
 
 		trackActivity (activity: string) {
@@ -58,6 +58,9 @@ module HeaderApp {
 		isHome() {
 			const isHome = this.$state.is('home');
 			return isHome === undefined ? true : isHome;
+		}
+		openOptionsPage() {
+			chrome.runtime.openOptionsPage();
 		}
 
 	}

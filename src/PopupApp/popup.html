@@ -22,9 +22,14 @@
 
 </head>
 <body>
-	<div class="container" ng-controller="SectionsCtrl as main">
-		<vk-header></vk-header>
-		<section ui-view></section>
+	<div class="container" ng-controller="ContainerCtrl as main">
+		<vk-header ng-if="main.stg.access_token && main.stg.user_id"></vk-header>
+		<section ng-if="main.stg.access_token && main.stg.user_id" ng-controller="SectionsCtrl as vm" ui-view></section>
+
+		<div ng-if="!main.stg.access_token || !main.stg.user_id" ng-click="main.auth()" class="login">
+			<i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+			<translate>Нажмите чтобы авторизоватся</translate>
+		</div>
 	</div>
 	<!-- build:js /vendors/js/vendors.js -->
 	<!-- bower:js -->
@@ -55,6 +60,7 @@
 	<script src="../libs/helpers/Helpers.js"></script>
 	<!-- endbuild -->
 	<!-- build:js /PopupApp/PopupApp.js -->
+	<script src="js/ContainerCtrl.js"></script>
 	<script src="js/PopupApp.js"></script>
 	<script src="js/PreloaderDirective.js"></script>
 	<!-- endbuild -->
@@ -81,6 +87,7 @@
 	<script src="../SectionApp/sections/Default/js/SidebarCtrl.js"></script>
 	<script src="../SectionApp/sections/Default/js/FriendsCtrl.js"></script>
 	<script src="../SectionApp/sections/NewFriends/js/NewFriendsCtrl.js"></script>
+
 	<!-- endbuild -->
 
 </body>
