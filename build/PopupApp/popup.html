@@ -11,9 +11,14 @@
 
 </head>
 <body>
-	<div class="container" ng-controller="SectionsCtrl as main">
-		<vk-header></vk-header>
-		<section ui-view></section>
+	<div class="container" ng-controller="ContainerCtrl as main">
+		<vk-header ng-if="main.stg.access_token && main.stg.user_id"></vk-header>
+		<section ng-if="main.stg.access_token && main.stg.user_id" ng-controller="SectionsCtrl as vm" ui-view></section>
+
+		<div ng-if="!main.stg.access_token || !main.stg.user_id" ng-click="main.auth()" class="login">
+			<i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+			<translate>Нажмите чтобы авторизоватся</translate>
+		</div>
 	</div>
 	<script src="/vendors/js/vendors.js"></script>
 	<script src="/Translations/all.js"></script>

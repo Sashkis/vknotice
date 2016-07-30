@@ -53,6 +53,10 @@ var VkApp;
                         ready.resolve();
                     }
                     else {
+                        _this.storage.set({
+                            user_id: 0,
+                            access_token: '',
+                        });
                         chrome.tabs.create({
                             url: _this.authUrl,
                             active: true,

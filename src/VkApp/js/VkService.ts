@@ -85,6 +85,12 @@ module VkApp {
 					if (isAuth) {
 						ready.resolve();
 					} else {
+						
+						this.storage.set({
+							user_id:      0,
+							access_token: '',
+						});
+
 						chrome.tabs.create({
 							url:    this.authUrl,
 							active: true,
