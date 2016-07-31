@@ -8,17 +8,17 @@ gulp.task('pot', function () {
 	return gulp.src(['src/**/*.html', 'src/**/*.tpl', 'src/**/*.js'])
 			.pipe(gettext.extract('all.pot', {
 				extensions: {
-					htm: 'html',
-					html: 'html',
-					php: 'html',
+					htm:   'html',
+					html:  'html',
+					php:   'html',
 					phtml: 'html',
-					tml: 'html',
-					ejs: 'html',
-					erb: 'html',
-					js: 'js',
-					tag: 'html',
-					jsp: 'html',
-					tpl: 'html',
+					tml:   'html',
+					ejs:   'html',
+					erb:   'html',
+					js:    'js',
+					tag:   'html',
+					jsp:   'html',
+					tpl:   'html',
 				}
 			}))
 			.pipe(gulp.dest('po/'));
@@ -63,6 +63,14 @@ gulp.task('copy', ['clean'], function () {
 			.pipe(json).pipe(jsonminify()).pipe(json.restore)
 			.pipe(gulp.dest('build'))
 });
+
+gulp.task('zip', ['build'], function () {
+	const zip = require('gulp-zip');
+	return gulp.src('build/*')
+        .pipe(zip('laters-build.zip'))
+        .pipe(gulp.dest('build'));
+});
+
 
 gulp.task('build', ['copy', 'sass'], function () {
 	var useref   = require('gulp-useref');
