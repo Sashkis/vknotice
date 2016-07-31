@@ -47,8 +47,10 @@ module HeaderApp {
 			this.storage.set({
 				user_id: 0,
 				access_token: '',
+			}, true, () => {
+				this.Analytics.trackEvent('OAuth', 'logout');
+				chrome.browserAction.setBadgeText({text: ''});
 			});
-			chrome.browserAction.setBadgeText({text: ''});
 		}
 
 		trackActivity (activity: string) {

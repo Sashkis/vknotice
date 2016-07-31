@@ -3,11 +3,12 @@ module PopupApp {
 		public static $inject = [
 			'$vk',
 			'storage',
+			'Analytics',
 		];
 
 		stg: IStorageData;
 
-		constructor(private $vk: VkApp.VkService, private storage: StorageApp.StorageService) {
+		constructor(private $vk: VkApp.VkService, private storage: StorageApp.StorageService, private Analytics: any) {
 			storage.ready.then(stg => this.stg = stg);
 		}
 
@@ -16,8 +17,8 @@ module PopupApp {
 		}
 
 		auth() {
+			this.Analytics.trackEvent('OAuth', 'login');
 			chrome.runtime.reload();
-			// return this.$vk.auth();
 		}
 	}
 }

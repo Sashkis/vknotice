@@ -22,12 +22,15 @@ var HeaderApp;
             });
         }
         HeaderCtrl.prototype.logout = function ($event) {
+            var _this = this;
             $event.preventDefault();
             this.storage.set({
                 user_id: 0,
                 access_token: '',
+            }, true, function () {
+                _this.Analytics.trackEvent('OAuth', 'logout');
+                chrome.browserAction.setBadgeText({ text: '' });
             });
-            chrome.browserAction.setBadgeText({ text: '' });
         };
         HeaderCtrl.prototype.trackActivity = function (activity) {
             this.Analytics.trackEvent('Activity', activity, 'dropdown-menu');
