@@ -75,6 +75,9 @@ header {
 	.dropdown {
 		&.open {
 			background-color: rgba(0, 0, 0, 0.11);
+			.profile .caret {
+				opacity: 1;
+			}
 		}
 		.dropdown-menu {
 			left: auto;
