@@ -1,13 +1,14 @@
 var SectionsApp;
 (function (SectionsApp) {
     var ChatCtrl = (function () {
-        function ChatCtrl(storage, $vk, $scope, deamon, messMap) {
+        function ChatCtrl(storage, $vk, $scope, deamon, messMap, $stateParams) {
             var _this = this;
             this.storage = storage;
             this.$vk = $vk;
             this.$scope = $scope;
             this.deamon = deamon;
             this.messMap = messMap;
+            this.$stateParams = $stateParams;
             this.isMore = false;
             storage.ready.then(function (stg) {
                 _this.currentMessMap = messMap.getMessMap();
@@ -42,6 +43,15 @@ var SectionsApp;
                 }
             });
         }
+        ChatCtrl.prototype.isGroup = function () {
+            var peer_id = +this.$stateParams.peer_id;
+            if (!peer_id)
+                return false;
+            var dialog = this.storage.stg.dialogs.find(function (d) { return d.peer_id === peer_id; });
+            if (!dialog)
+                return false;
+            return dialog.type === 1;
+        };
         ChatCtrl.prototype.loadHistory = function (peer_id, offset, count) {
             if (offset === void 0) { offset = 0; }
             if (count === void 0) { count = 20; }
@@ -114,6 +124,7 @@ var SectionsApp;
             '$scope',
             'deamon',
             'messMap',
+            '$stateParams',
         ];
         return ChatCtrl;
     }());

@@ -7,7 +7,7 @@ module SectionsApp {
 		items: IMessage[],
 	}
 
-	interface IDialogRouteParams extends angular.route.IRouteParamsService {
+	export interface IDialogRouteParams extends angular.route.IRouteParamsService {
 		peer_id: string,
 	}
 

@@ -40,6 +40,7 @@ module SectionsApp {
 			'$scope',
 			'deamon',
 			'messMap',
+			'$stateParams',
 		];
 
 		constructor(
@@ -47,7 +48,8 @@ module SectionsApp {
 			private $vk: VkApp.VkService,
 			private $scope: ng.IScope,
 			private deamon: DeamonApp.DeamonService,
-			private messMap: MessMapService
+			private messMap: MessMapService,
+			private $stateParams: IDialogRouteParams
 		) {
 			storage.ready.then((stg) => {
 
@@ -87,6 +89,15 @@ module SectionsApp {
 					});
 				}
 			});
+		}
+
+		isGroup() {
+			const peer_id = +this.$stateParams.peer_id;
+			if (!peer_id) return false;
+
+			const dialog = this.storage.stg.dialogs.find(d => d.peer_id === peer_id);
+			if (!dialog) return false;
+			return dialog.type === 1;
 		}
 
 		loadHistory(peer_id: number, offset = 0, count = 20) {
