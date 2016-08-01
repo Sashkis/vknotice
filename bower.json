@@ -2,10 +2,9 @@
   "name": "vk-informer",
   "version": "5.1.3",
   "authors": [
-    "Alex Kozack <cawa-93@yandex.ru>"
+    "Alex Kozack <kozackunisoft@gmail.com>"
   ],
   "description": "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!",
-  "main": "src/*",
   "keywords": [
     "ВК",
     "Вконтакте"
