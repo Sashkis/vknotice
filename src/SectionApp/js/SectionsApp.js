@@ -23,7 +23,6 @@ var SectionsApp;
                 .state('dialogs.chat', {
                 url: '/{peer_id:int}',
                 templateUrl: "/SectionApp/sections/NewMess/NewMess.chat.tpl",
-								pageTrack: '/dialogs'
             });
         }
     ])
@@ -42,6 +41,7 @@ var SectionsApp;
         }
     }); }; })
         .service('messMap', SectionsApp.MessMapService)
+        .controller('SidebarCtrl', SectionsApp.SidebarCtrl)
         .controller('ChatCtrl', SectionsApp.ChatCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
         .controller('SectionsCtrl', SectionsApp.SectionsCtrl);

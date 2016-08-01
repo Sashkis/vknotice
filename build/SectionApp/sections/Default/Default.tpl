@@ -1,7 +1,7 @@
 <section class="flex">
 	<aside ng-controller="SidebarCtrl as sidebar">
 		<li>
-			<a ng-href="https://vk.com/" >
+			<a ng-href="https://vk.com/id{{sidebar.stg.user_id}}" >
 				<translate>Моя Страница</translate>
 			</a>
 		</li>

@@ -1,11 +1,15 @@
-angular.module('SectionsApp')
+module SectionsApp {
+	export class SidebarCtrl {
+		public static $inject = [
+			'storage',
+		];
 
-	.controller('SidebarCtrl', ['storage',
-		function (storage) {
-			const vm = this;
-
-			storage.ready.then(function (stg) {
-				vm.stg = stg;
+		stg: IStorageData;
+		
+		constructor(storage: StorageApp.StorageService) {
+			storage.ready.then((stg) => {
+				this.stg = stg;
 			});
-		},
-	]);
+		}
+	}
+}

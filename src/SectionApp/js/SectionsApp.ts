@@ -69,6 +69,7 @@ module SectionsApp {
 
 		.service('messMap', MessMapService)
 
+		.controller('SidebarCtrl', SidebarCtrl)
 		.controller('ChatCtrl', ChatCtrl)
 		.controller('NewMessCtrl', NewMessCtrl)
 		.controller('SectionsCtrl', SectionsCtrl)
