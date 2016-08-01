@@ -66,7 +66,7 @@ gulp.task('copy', ['clean'], function () {
 
 gulp.task('zip', ['build'], function () {
 	const zip = require('gulp-zip');
-	return gulp.src('build/*')
+	return gulp.src('build/**')
         .pipe(zip('laters-build.zip'))
         .pipe(gulp.dest('build'));
 });
