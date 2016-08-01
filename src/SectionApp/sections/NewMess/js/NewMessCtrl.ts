@@ -24,5 +24,9 @@ module SectionsApp {
 				});
 			});
 		}
+
+		openVk($event: any) {
+			console.log($event);
+		}
 	}
 }

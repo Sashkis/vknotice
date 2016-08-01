@@ -12,6 +12,7 @@ var PopupApp;
             });
         }
     ])
+        .directive('vkHref', PopupApp.vkHrefDirective)
         .controller('ContainerCtrl', PopupApp.ContainerCtrl);
 })(PopupApp || (PopupApp = {}));
 //# sourceMappingURL=PopupApp.js.map

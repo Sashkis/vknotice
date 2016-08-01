@@ -10,5 +10,6 @@ module PopupApp {
 				)
 			)
 		])
+		.directive('vkHref', vkHrefDirective)
 		.controller('ContainerCtrl', ContainerCtrl);
 }

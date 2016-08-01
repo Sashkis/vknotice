@@ -28,16 +28,16 @@ module SectionsApp {
 				this.type = DialogType.Chat;
 				this.peer_id = 2000000000 + dialog.message.chat_id;
 				this.photo_50 = dialog.message.photo_50;
-				this.url = `https://vk.com/im?sel=c${dialog.message.chat_id}`;
 				if (dialog.message.chat_active && angular.isArray(dialog.message.chat_active)) {
 					this.profiles = dialog.message.chat_active.slice(0,4);
 				}
 			} else {
 				this.peer_id = dialog.message.user_id;
-				this.url = `https://vk.com/im?sel=${this.peer_id}`;
 				this.type = this.peer_id > 0 ? DialogType.User : DialogType.Group;
 				this.profiles = [ dialog.message.user_id ]
 			}
+			
+			this.url = `https://vk.com/im?sel=${this.peer_id}`;
 
 		}
 	}

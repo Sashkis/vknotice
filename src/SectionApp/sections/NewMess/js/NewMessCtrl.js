@@ -17,6 +17,9 @@ var SectionsApp;
                 });
             });
         };
+        NewMessCtrl.prototype.openVk = function ($event) {
+            console.log($event);
+        };
         NewMessCtrl.$inject = [
             '$vk',
             'storage',
