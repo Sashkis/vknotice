@@ -21,7 +21,7 @@ interface IStorageData {
 	notifyLast_viewed: number;
 	state: {
 		name: string,
-		params: Object,
+		params: any,
 	}
 }
 
