@@ -23,7 +23,7 @@ module SectionsApp {
 
 		constructor(storage: StorageApp.StorageService, private $stateParams: IDialogRouteParams) {
 			storage.ready.then((stg) => {
-				this.maps = stg.dialogs.map(d => { return {peer_id: d.peer_id, isMore: false, items: []}});
+				this.maps = stg.dialogs.map(d => ({peer_id: d.peer_id, isMore: false, items: []}));
 			});
 		}
 
@@ -36,14 +36,9 @@ module SectionsApp {
 			const targetMessMap = this.getMessMap(peer_id);
 			if (!targetMessMap) return;
 
+			if (clearBeforInsert) targetMessMap.items = [];
 			messages = messages.map((m: IMessage) => new Message(m));
-			if (clearBeforInsert) {
-				targetMessMap.items = [];
-			}
-
-			if (!prepend) targetMessMap.items = targetMessMap.items.concat(messages);
-			else targetMessMap.items = messages.concat(targetMessMap.items);
-			return targetMessMap.items.length;
+			return targetMessMap.items[prepend ? 'unshift' : 'push'](...messages);
 		}
 
 		setMore(peer_id: number, count: number) {

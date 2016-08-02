@@ -45,7 +45,7 @@ var BgApp;
             return this;
         };
         BgClass.prototype.setNegativeID = function (profile) {
-            profile.id = profile.id * -1;
+            profile.id = -profile.id;
             return profile;
         };
         BgClass.prototype.setBadge = function () {

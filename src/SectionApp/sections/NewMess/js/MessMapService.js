@@ -6,7 +6,7 @@ var SectionsApp;
             this.$stateParams = $stateParams;
             this.stg = {};
             storage.ready.then(function (stg) {
-                _this.maps = stg.dialogs.map(function (d) { return { peer_id: d.peer_id, isMore: false, items: [] }; });
+                _this.maps = stg.dialogs.map(function (d) { return ({ peer_id: d.peer_id, isMore: false, items: [] }); });
             });
         }
         MessMapService.prototype.getMessMap = function (peer_id) {
@@ -21,15 +21,11 @@ var SectionsApp;
             var targetMessMap = this.getMessMap(peer_id);
             if (!targetMessMap)
                 return;
-            messages = messages.map(function (m) { return new SectionsApp.Message(m); });
-            if (clearBeforInsert) {
+            if (clearBeforInsert)
                 targetMessMap.items = [];
-            }
-            if (!prepend)
-                targetMessMap.items = targetMessMap.items.concat(messages);
-            else
-                targetMessMap.items = messages.concat(targetMessMap.items);
-            return targetMessMap.items.length;
+            messages = messages.map(function (m) { return new SectionsApp.Message(m); });
+            return (_a = targetMessMap.items)[prepend ? 'unshift' : 'push'].apply(_a, messages);
+            var _a;
         };
         MessMapService.prototype.setMore = function (peer_id, count) {
             var targetMessMap = this.getMessMap(peer_id);

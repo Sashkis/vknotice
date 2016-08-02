@@ -52,7 +52,7 @@ module BgApp {
 		}
 
 		setNegativeID(profile: IProfile) {
-			profile.id = profile.id * -1;
+			profile.id = -profile.id;
 			return profile;
 		}
 
