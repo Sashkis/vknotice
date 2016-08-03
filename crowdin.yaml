@@ -1,4 +1,14 @@
 files:
   - 
-    source: /
+    source: '/src/**'
+    ignore:
+      - '*.json'
+      - '*.js'
+      - '*.css'
+      - '*.scss'
+      - '*.d.ts'
+      - '*.map'
+      - /src/bower_component
+      - '**/img'
+      - '**/audio'
     translation: '/po/%two_letters_code%.po'
