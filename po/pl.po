@@ -1,21 +1,26 @@
-The MIT License (MIT)
+# Информер Вконтакте
 
-Copyright (c) 2015 Alex Kozack <cawa-93@yandex.ru>
+#### Расширение для браузеров
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Данное расширение не заходя на сайт позволит вам: - просмотреть заявки в друзья; - получать уведомления о отметках на фото и видео; - прочитать входящие сообщения; - отвечать на входящие сообщения; - получать уведомления об ответах на ваши комментарии. Кроме того, вы всегда будете видеть 6 ближайших друзей, которые сейчас online.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+*Замечание: Используя расширение, вы НЕ появляетесь online.*
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+#### Как собрать из репозитория
+
+Для сборки вам понадобится менеджер пакетов npm. Далее последовательно выполните установку всех компонентов
+
+```bash
+npm install -g bower
+npm install -g gulp-cli
+npm install
+bower install
+gulp bower
+gulp build
+```
+
+По завершении появится директория **./build/**
+
+Более подробную информацию вы можете найти в [группе Вконтакте](https://vk.com/vknotice).
+
+Данное ПО распространяется под MIT License.
