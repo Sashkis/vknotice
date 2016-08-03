@@ -1,35 +1,36 @@
 {
-  "name":"linkifyjs",
-  "main":"linkify.js",
-  "version":"2.0.5",
+  "name":"roboto-font",
+  "homepage":"https:\/\/github.com\/cawa-93\/vknotice",
   "authors":[
-    "SoapBox Innovations Inc. <dev@soapboxhq.com>"
+    "Alex Kozack <kozackunisoft@gmail.com>"
   ],
-  "description":"Intelligent link recognition, made easy",
+  "description":"Roboto font-face css",
+  "main":"css\/roboto.css",
   "keywords":[
-    "node",
-    "js",
-    "jquery",
-    "link",
-    "autolink",
-    "text",
-    "url",
-    "email",
-    "hashtag",
-    "hashtags",
-    "mention",
-    "mentions"
+    "roboto",
+    "font"
   ],
   "license":"MIT",
-  "homepage":"http:\/\/soapbox.github.io\/linkifyjs\/",
   "ignore":[
+    ".git",
     "**\/.*",
     "node_modules",
     "bower_components",
+    "src\/bower_components",
     "test",
     "tests"
   ],
-  "dependencies":{
-    "jquery":">=1.7.0"
-  }
+  "repository":{
+    "type":"git",
+    "url":"git:\/\/github.com\/cawa-93\/roboto-font.git"
+  },
+  "_release":"d7d18e4d76",
+  "_resolution":{
+    "type":"branch",
+    "branch":"master",
+    "commit":"d7d18e4d76b3ccdc3a2699241095172111d7cb46"
+  },
+  "_source":"git@github.com:cawa-93\/roboto-font.git",
+  "_target":"*",
+  "_originalSource":"git@github.com:cawa-93\/roboto-font.git"
 }
