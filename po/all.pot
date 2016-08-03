@@ -55,6 +55,7 @@ msgid "Задать вопрос"
 msgstr ""
 
 #: PopupApp/alert.tpl:8
+msgctxt "Всплывающее сообщение"
 msgid "Закрыть"
 msgstr ""
 

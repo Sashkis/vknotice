@@ -5,6 +5,6 @@
 		<img ng-if="alert.img" ng-src="{{alert.img}}">
 		<div ng-if="alert.text">{{alert.text}}</div>
 		<b ng-if="alert.ancor">{{alert.ancor}}</b>
-		<span ng-if="alert.isClose !== false" translate ng-click="close($event)">Закрыть</span>
+		<span ng-if="alert.isClose !== false" translate ng-click="close($event)" translate-context="Всплывающее сообщение">Закрыть</span>
 	</a>
 </div>
