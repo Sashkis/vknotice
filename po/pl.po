@@ -1,34 +1,41 @@
 {
-  "authors":[
-    "Julien Bouquillon <julien@revolunet.com> (https:\/\/github.com\/revolunet)",
+  "name":"angular-google-analytics",
+  "description":"Angular Google Analytics - Easy tracking for your AngularJS application",
+  "version":"1.1.7",
+  "homepage":"http:\/\/github.com\/revolunet\/angular-google-analytics",
+  "author":"Julien Bouquillon <julien@revolunet.com> (https:\/\/github.com\/revolunet)",
+  "contributors":[
+    "Julien Bouquillon (https:\/\/github.com\/revolunet)",
     "Justin Saunders (https:\/\/github.com\/justinsa)",
     "Chris Esplin (https:\/\/github.com\/deltaepsilon)",
     "Adam Misiorny (https:\/\/github.com\/adam187)"
   ],
-  "name":"angular-google-analytics",
-  "description":"Easy Analytics for your AngularJS application",
-  "keywords":[
-    "analytics",
-    "angular",
-    "angularjs",
-    "angular-js",
-    "google-analytics",
-    "tracking",
-    "visitor-tracking",
-    "universal-analytics"
-  ],
-  "homepage":"https:\/\/github.com\/revolunet\/angular-google-analytics",
-  "license":"MIT",
+  "main":"index.js",
   "repository":{
     "type":"git",
     "url":"git:\/\/github.com\/revolunet\/angular-google-analytics.git"
   },
-  "main":".\/dist\/angular-google-analytics.min.js",
-  "dependencies":{
-    "angular":">=1"
+  "engines":{
+    "node":"*",
+    "npm":"*"
   },
+  "license":"MIT",
+  "dependencies":[
+    
+  ],
   "devDependencies":{
-    "angular-mocks":">=1",
-    "angular-scenario":">=1"
+    "bower":"*",
+    "karma":"*",
+    "karma-chrome-launcher":"*",
+    "karma-jasmine":"*",
+    "grunt":"*",
+    "grunt-cli":"*",
+    "grunt-contrib-concat":"*",
+    "grunt-contrib-jshint":"*",
+    "grunt-contrib-uglify":"*"
+  },
+  "scripts":{
+    "test":"karma start test\/karma.conf.js --single-run --browsers Chrome",
+    "test-server":"karma start test\/karma.conf.js --browsers Chrome"
   }
 }
