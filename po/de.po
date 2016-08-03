@@ -1,37 +1,839 @@
 {
-  "manifest_version":"2",
-  "name":"__MSG_extName__",
-  "description":"__MSG_extDesc__",
-  "short_name":"Vk notice",
-  "version":"5.1.4",
-  "default_locale":"ru",
-  "homepage_url":"https:\/\/vk.com\/club90041499",
-  "author":"Александр Козак",
-  "developer":{
-    "name":"Александр Козак",
-    "url":"https:\/\/vk.com\/id45421694"
+  "My Profile":{
+    "0":"Моя Страница",
+    "1":"Моя Cторінка",
+    "2":"Мая Старонка",
+    "6":"Mein Profil",
+    "15":"Moja Strona",
+    "54":"Pagina mea",
+    "61":"Mijn Pagina"
   },
-  "icons":{
-    "128":"BackgroundApp\/img\/icon128.png"
+  "Friends":{
+    "0":"Друзья",
+    "1":"Друзі",
+    "2":"Сябры",
+    "6":"Freunde",
+    "15":"Znajomi",
+    "54":"Prietenii",
+    "61":"Vrienden"
   },
-  "options_page":"OptionsApp\/index.html",
-  "background":{
-    "page":"BackgroundApp\/background.html"
+  "Photos":{
+    "0":"Фотографии",
+    "1":"Фотографії",
+    "2":"Фотаздымкі",
+    "6":"Fotos",
+    "15":"Zdjęcia",
+    "54":"Fotografiile",
+    "61":"Foto's"
   },
-  "browser_action":{
-    "default_title":"__MSG_extName__",
-    "default_icon":"BackgroundApp\/img\/icon38-off.png",
-    "default_popup":"PopupApp\/popup.html"
+  "Videos":{
+    "0":"Видеозаписи",
+    "1":"Відеозаписи",
+    "2":"Відэазапісы",
+    "6":"Videos",
+    "15":"Filmy",
+    "54":"Video",
+    "61":"Video's"
   },
-  "permissions":[
-    "*:\/\/vk.com\/",
-    "*:\/\/vk.com\/*",
-    "*:\/\/*.vk.com\/*",
-    "background",
-    "storage",
-    "alarms",
-    "tabs"
-  ],
-  "incognito":"split",
-  "content_security_policy":"script-src 'self' https:\/\/www.google-analytics.com; object-src 'self'"
+  "Music":{
+    "0":"Аудиозаписи",
+    "1":"Аудiозаписи",
+    "2":"Аўдыязапісы",
+    "6":"Musik",
+    "15":"Muzyka",
+    "54":"Audio",
+    "61":"Muziek"
+  },
+  "Messages":{
+    "0":"Сообщения",
+    "1":"Повiдомлення",
+    "2":"Паведамленні",
+    "6":"Nachrichten",
+    "15":"Wiadomości",
+    "54":"Mesajele",
+    "61":"Berichten"
+  },
+  "Communities":{
+    "0":"Группы",
+    "1":"Спільноти",
+    "2":"Суполкі",
+    "6":"Communities",
+    "15":"Grupy",
+    "54":"Grupurile",
+    "61":"Groepen"
+  },
+  "News":{
+    "0":"Новости",
+    "1":"Новини",
+    "2":"Навіны",
+    "6":"Neuigkeiten",
+    "15":"Odpowiedzi",
+    "54":"Noutăţile",
+    "61":"Nieuws"
+  },
+  "Comments":{
+    "0":"Комментарии",
+    "1":"Коментарі",
+    "2":"Каментары",
+    "6":"Kommentare",
+    "15":"Komentarze",
+    "54":"Comentarii",
+    "61":"Commentaren"
+  },
+  "Informer":{
+    "0":"Информер",
+    "1":"Інформер",
+    "2":"Інформар",
+    "6":"Informer",
+    "15":"Informatorem",
+    "54":"Informator",
+    "61":"Informer"
+  },
+  "Ask question":{
+    "0":"Задать вопрос",
+    "1":"Задати питання",
+    "2":"Задаць пытанне",
+    "6":"die Frage",
+    "15":"Zadaj pytanie",
+    "54":"Pune o întrebare",
+    "61":"Vraag stellen"
+  },
+  "Leave offer":{
+    "0":"Оставить предложение",
+    "1":"Залишити пропозицію",
+    "2":"Пакінуць прапанову",
+    "6":"Lassen Angebot",
+    "15":"Zostawić oferta",
+    "54":"Lasa oferta",
+    "61":"Laten bieden"
+  },
+  "Report error":{
+    "0":"Сообщить об ошибке",
+    "1":"Повідомити про помилку",
+    "2":"Паведаміць пра памылку",
+    "6":"Fehler Melden",
+    "15":"Zgłoś błąd",
+    "54":"Raportarea",
+    "61":"Fout rapporteren"
+  },
+  "Tell your friends":{
+    "0":"Рассказать друзьям",
+    "1":"Розповісти друзям",
+    "2":"Распавесці сябрам",
+    "6":"Teilen",
+    "15":"Poleć znajomemu",
+    "54":"Spune prietenilor tăi",
+    "61":"Vertel het je vrienden"
+  },
+  "Leave a review":{
+    "0":"Оставить отзыв",
+    "1":"Залишити відгук",
+    "2":"Пакінуць водгук",
+    "6":"Feedback",
+    "15":"napisz recenzję",
+    "54":"Lasă un comentariu",
+    "61":"Laat een review"
+  },
+  "Settings":{
+    "0":"Настройки",
+    "1":"Налаштування",
+    "2":"Налады",
+    "6":"Konfiguration",
+    "15":"Ustawienia",
+    "54":"Setări",
+    "61":"Instellingen"
+  },
+  "Logout":{
+    "0":"Выйти",
+    "1":"Вийти",
+    "2":"Выхад",
+    "6":"Logout",
+    "15":"Wyjście",
+    "54":"Ieșire",
+    "61":"Afmelden"
+  },
+  "Notification settings":{
+    "0":"Настройки уведомлений",
+    "1":"Налаштування сповіщень",
+    "2":"Налады апавяшчэнняў",
+    "6":"Die Einstellungen für Benachrichtigungen",
+    "15":"Ustawienia powiadomień",
+    "54":"Setările de notificare",
+    "61":"Instellingen voor meldingen"
+  },
+  "Settings Informer":{
+    "0":"Настройки Информера",
+    "1":"Налаштування Інформера",
+    "2":"Налады Інформэра",
+    "6":"Einstellungen Informer",
+    "15":"Ustawienia Informator",
+    "54":"Setări Informatorului",
+    "61":"Instellingen Informer"
+  },
+  "Inform about new friends":{
+    "0":"Сообщать о заявках в друзья",
+    "1":"Повідомляти про заявки в друзі",
+    "2":"Паведамляць аб заяўках у сябры",
+    "6":"Zu berichten über die Anmeldungen der Freunde",
+    "15":"Poinformować o nowych znajomych",
+    "54":"Să raporteze cu privire la cererile de la prieteni",
+    "61":"Tot het melden van eventuele verzoeken aan vrienden"
+  },
+  "Inform about photos with me":{
+    "0":"Сообщать об отметках на фотографиях",
+    "1":"Повідомляти про відмітки на фото",
+    "2":"Паведамляць аб адзнаках на фотаздымках",
+    "6":"Melden Markierungen auf den Fotos",
+    "15":"Poinformować o zdjęciach ze mną",
+    "54":"Să raporteze cu privire la altitudini de fotografii",
+    "61":"Te weten te komen over de markeringen op de foto's"
+  },
+  "Inform about videos with me":{
+    "0":"Сообщать об отметках в видеозаписях",
+    "1":"Повідомляти про відмітки у відео",
+    "2":"Паведамляць аб адзнаках у відэазапісах",
+    "6":"Melden Erhebungen in Videoaufnahmen",
+    "15":"Zgłaszać markierach w filmach",
+    "54":"Să raporteze cu privire la altitudini de inregistrari video",
+    "61":"Om u te informeren over de timestamps in de video"
+  },
+  "Inform about private messages":{
+    "0":"Сообщать о личных сообщениях",
+    "1":"Повідомляти про особисті повідомлення",
+    "2":"Паведамляць аб асабістых паведамленнях",
+    "6":"Melden persönlichen Mitteilungen",
+    "15":"Poinformować o prywatnych wiadomościach",
+    "54":"De a raporta mesaje private",
+    "61":"Verslag prive berichten"
+  },
+  "Inform about invitations to community":{
+    "0":"Сообщать о приглашениях в группы",
+    "1":"Повідомляти про запрошення у групи",
+    "2":"Паведамляць аб запрашэнні ў супольнасці",
+    "6":"Melden Einladung in die Community",
+    "15":"Poinformować o zaproszeniach w społeczności",
+    "54":"Să raporteze invitații în grup",
+    "61":"Om een verslag over de groep uitnodigingen"
+  },
+  "Inform about replies":{
+    "0":"Сообщать об ответах",
+    "1":"Повідомляти про відповіді",
+    "2":"Паведамляць аб адказах",
+    "6":"Melden Antworten",
+    "15":"Poinformować o odpowiedziach",
+    "54":"Să raporteze cu privire la răspunsurile",
+    "61":"Om verslag uit over de reacties"
+  },
+  "Inform about new comments":{
+    "0":"Сообщать о новых комментариях",
+    "1":"Повідомляти про нові коментарі",
+    "2":"Паведамляць аб новых каментарах",
+    "6":"Berichten über neue Kommentare",
+    "15":"Informować o nowych komentarzach",
+    "54":"Să informeze despre noile comentarii",
+    "61":"Om u te informeren over nieuwe reacties"
+  },
+  "Sound notifications":{
+    "0":"Звуковые уведомления",
+    "1":"Звукові сповіщення",
+    "2":"Sound-Benachrichtigungen",
+    "6":"Sound-Benachrichtigungen",
+    "15":"Powiadomienia dźwiękowe",
+    "54":"Sunet de notificare",
+    "61":"Geluid meldingen"
+  },
+  "Your private messages will be displayed here.":{
+    "0":"Здесь будет выводиться список Ваших сообщений.",
+    "1":"Тут буде виводитися список Ваших повідомлень.",
+    "2":"Тут будзе выводзіцца спіс Вашых паведамленняў.",
+    "6":"Hier werden Ihre persönlichen Nachrichten angezeigt.",
+    "15":"Tutaj będzie pojawiała się lista Twoich wiadomości.",
+    "54":"Aici va fi afișată lista cu mesajele Dvs.",
+    "61":"Hier ziet u de lijst met Uw berichten."
+  },
+  "Accept":{
+    "0":"Принять",
+    "1":"Прийняти",
+    "2":"Прыняць",
+    "6":"Akzeptieren",
+    "15":"Akceptuj",
+    "54":"Accepta",
+    "61":"Accepteren"
+  },
+  "Reject":{
+    "0":"Отклонить",
+    "1":"Відхилити",
+    "2":"Адхіліць",
+    "6":"Ablehnen",
+    "15":"Odrzucić",
+    "54":"Respinge",
+    "61":"Weigeren"
+  },
+  "Photo":{
+    "0":"Фотография",
+    "1":"Фотографія",
+    "2":"Фатаграфія",
+    "6":"Foto",
+    "15":"Zdjęcia",
+    "54":"Fotografie",
+    "61":"Foto"
+  },
+  "Post":{
+    "0":"Запись",
+    "1":"Запис",
+    "2":"Запіс",
+    "6":"Eintrag",
+    "15":"Zapis",
+    "54":"Însemnare",
+    "61":"Invoer"
+  },
+  "Gift":{
+    "0":"Подарок",
+    "1":"Подарунок",
+    "2":"Падарунак",
+    "6":"Geschenk",
+    "15":"Prezent",
+    "54":"Cadou",
+    "61":"Cadeau"
+  },
+  "Sticker":{
+    "0":"Стикер",
+    "1":"Стікер",
+    "2":"Стыкер",
+    "6":"Sticker",
+    "15":"Naklejki",
+    "54":"Sticker",
+    "61":"Sticker"
+  },
+  "Map":{
+    "0":"Карта",
+    "1":"Карта",
+    "2":"Карта",
+    "6":"Karte",
+    "15":"Mapa",
+    "54":"Hartă",
+    "61":"Kaart"
+  },
+  "Comment":{
+    "0":"Комментарий",
+    "1":"Коментар",
+    "2":"Каментар",
+    "6":"Kommentar",
+    "15":"Komentarz",
+    "54":"Comentariu",
+    "61":"Commentaar"
+  },
+  "Attachment":{
+    "0":"Вложение",
+    "1":"Вкладення",
+    "2":"Ўкладанне",
+    "6":"Anlage",
+    "15":"Załącznik",
+    "54":"Fișier atașat",
+    "61":"Bijlage"
+  },
+  "forwarded messages":{
+    "3":[
+      "forwarded&nbsp;message",
+      "forwarded&nbsp;messages",
+      "forwarded&nbsp;messages"
+    ],
+    "0":[
+      "пересланное&nbsp;сообщение",
+      "пересланных&nbsp;сообщения",
+      "пересланных&nbsp;сообщений"
+    ],
+    "1":[
+      "переслане&nbsp;повідомлення",
+      "пересланих&nbsp;повідомлення",
+      "пересланих&nbsp;повідомлень"
+    ],
+    "2":[
+      "пересланное&nbsp;паведамленне",
+      "пераслаць&nbsp;паведамленні",
+      "пераслаць&nbsp;паведамленняў"
+    ],
+    "6":[
+      "weitergeleitete&nbsp;Nachricht&nbsp;Antworten",
+      "Weiterleitung&nbsp;von&nbsp;Nachrichten",
+      "Weiterleitung&nbsp;von&nbsp;Nachrichten"
+    ],
+    "15":[
+      "wiadomość&nbsp;przekazywana",
+      "przesłanych&nbsp;dalej&nbsp;wiadomości",
+      "przesłanych&nbsp;dalej&nbsp;wiadomości"
+    ],
+    "54":[
+      "remisă&nbsp;mesaj",
+      "mesajele&nbsp;redirecționate",
+      "mesajele&nbsp;redirecționate"
+    ],
+    "61":[
+      "doorgestuurd&nbsp;bericht",
+      "doorgestuurde&nbsp;berichten",
+      "doorgestuurde&nbsp;berichten"
+    ]
+  },
+  "Chat":{
+    "0":"Беседа",
+    "1":"Бесіда",
+    "2":"Размова",
+    "6":"Gespräch",
+    "15":"Rozmowa",
+    "54":"Chat",
+    "61":"Chat"
+  },
+  "More":{
+    "0":"Больше",
+    "1":"Більше",
+    "2":"Больш",
+    "6":"Mehr",
+    "15":"Więcej",
+    "54":"Mai mult",
+    "61":"Meer"
+  },
+  "chat_photo_update":{
+    "3":"Changed conversation cover",
+    "0":"Обновил фотографию беседы",
+    "1":"Оновив фотографію бесіди",
+    "2":"Абнавіў фотаздымак размовы",
+    "6":"Das Cover der Konversation geändert",
+    "15":"Zaktualizował zdjęcie rozmowy",
+    "54":"Schimbat-o conversație coperta",
+    "61":"Gewijzigd gesprek cover"
+  },
+  "chat_photo_remove":{
+    "3":"Deleted conversation cover",
+    "0":"Удалил фотографию беседы",
+    "1":"Видалив фотографію бесіди",
+    "2":"Выдаліў фотаздымак размовы",
+    "6":"Das Cover der Konversation gelöscht",
+    "15":"Usunął zdjęcie rozmowy",
+    "54":"Eliminat conversație coperta",
+    "61":"Verwijderd gesprek cover"
+  },
+  "chat_create":{
+    "3":"Create conversation",
+    "0":"Создал беседу",
+    "1":"Створив бесіду",
+    "2":"Стварыў размову",
+    "6":"Erstellen Gespräch",
+    "15":"Stworzył rozmowę",
+    "54":"Pentru a crea o conversație",
+    "61":"Maak gesprek"
+  },
+  "chat_title_update":{
+    "3":"Changed the conversation name",
+    "0":"Изменил название беседы",
+    "1":"Змінив назву бесіди",
+    "2":"Змяніў назву размовы",
+    "6":"Den Namen der Konversation geändert",
+    "15":"Zmienił nazwę rozmowy",
+    "54":"Conversația a schimbat numele",
+    "61":"Veranderd het gesprek naam"
+  },
+  "chat_invite_user":{
+    "3":"Invited user",
+    "0":"Пригласил пользователя",
+    "1":"Запросив користувача",
+    "2":"Запрасіў карыстальніка",
+    "6":"Eingeladen Benutzer",
+    "15":"Zaprosił użytkownika",
+    "54":"Invitat de utilizator",
+    "61":"Uitgenodigde gebruiker"
+  },
+  "chat_kick_user":{
+    "3":"Kicked user",
+    "0":"Исключил пользователя",
+    "1":"Виключив користувача",
+    "2":"Выключыў карыстальніка",
+    "6":"Entfernt Benutzer",
+    "15":"Zamknął użytkownika",
+    "54":"Exclus de utilizator",
+    "61":"Uitgesloten gebruiker"
+  },
+  "Type your text here..":{
+    "0":"Введите Ваше сообщение..",
+    "1":"Введіть Ваше повідомлення..",
+    "2":"Увядзіце Вашае паведамленне..",
+    "6":"Geben Sie hier Ihre Nachricht ein...",
+    "15":"Napisz swoją wiadomość..",
+    "54":"Scrieţi mesajul Dvs..",
+    "61":"Voer je bericht in.."
+  },
+  "Login":{
+    "0":"Войти",
+    "1":"Увійти",
+    "2":"Увайсці",
+    "6":"Anmelden",
+    "15":"Zalogować",
+    "54":"Fii autentificat",
+    "61":"Inloggen"
+  },
+  "Help us to become better":{
+    "0":"Помогите нам стать лучше",
+    "1":"Допоможіть нам стати краще",
+    "2":"Дапамажыце нам стаць лепш",
+    "6":"Helfen Sie uns besser zu werden",
+    "15":"Pomóż nam stać się lepszym",
+    "54":"Ajuta-ne sa devenim mai buni",
+    "61":"Help ons beter te worden"
+  },
+  "Participate to the polls in our group":{
+    "0":"Участвуйте в опросах в нашей группе",
+    "1":"Беріть участь в опитуваннях у нашій групі",
+    "2":"Удзельнічайце ў апытаннях ў нашай групе",
+    "6":"Nehmen Sie an den Umfragen in unserer Gruppe",
+    "15":"Udziału w wyborach w naszej grupie",
+    "54":"Participă la vot în grupul nostru",
+    "61":"Neem deel aan de peilingen in onze groep"
+  },
+  "To thank the author":{
+    "0":"Поблагодарить автора",
+    "1":"Подякувати автору",
+    "2":"Падзякаваць аўтара",
+    "6":"Danken Autor",
+    "15":"Podziękować autora",
+    "54":"Mulțumesc autorului",
+    "61":"Met dank aan de auteur"
+  },
+  "Close":{
+    "0":"Закрыть",
+    "1":"Закрити",
+    "2":"Зачыніць",
+    "6":"Schließen",
+    "15":"Zamknij",
+    "54":"Închide",
+    "61":"Sluiten"
+  },
+  "Try for you":{
+    "0":"Стараемся для вас",
+    "1":"Стараємося для вас",
+    "2":"Стараемся для вас",
+    "6":"Versuchen für Sie",
+    "15":"Staramy się dla ciebie",
+    "54":"Încerca pentru tine",
+    "61":"Probeer voor u"
+  },
+  "Access error":{
+    "0":"Ошибка доступа",
+    "1":"Помилка доступу",
+    "2":"Памылка доступу",
+    "6":"Fehler beim Zugriff auf",
+    "15":"Błąd dostępu",
+    "54":"Eroare de acces",
+    "61":"Fout bij toegang tot"
+  },
+  "Check your Internet connection":{
+    "0":"Проверьте интернет соединение",
+    "1":"Перевірте інтернет з'єднання",
+    "2":"Калі ласка, праверце інтэрнэт-злучэнне",
+    "6":"Überprüfen Sie die Internet-Verbindung",
+    "15":"Sprawdź połączenie z internetem",
+    "54":"Verificați conexiunea la internet",
+    "61":"Controleer uw Internet verbinding"
+  },
+  "Unknown error occurred":{
+    "0":"Произошла неизвестная ошибка",
+    "1":"Невідома помилка",
+    "2":"Невядомая памылка",
+    "6":"Ein unbekannter Fehler ist aufgetreten",
+    "15":"Wystąpił nieznany błąd",
+    "54":"A apărut o eroare necunoscută",
+    "61":"Er is een onbekende fout opgetreden"
+  },
+  "Please inform the developers.":{
+    "0":"Пожалуйста сообщите разработчикам.",
+    "1":"Будь ласка, повідомте розробників.",
+    "2":"Калі ласка паведаміце распрацоўнікам.",
+    "6":"Bitte informieren Sie die Entwickler.",
+    "15":"Proszę zgłoś.",
+    "54":"Vă rugăm să informați dezvoltatorilor.",
+    "61":"Informeer je de ontwikkelaars."
+  },
+  "at":{
+    "0":"в",
+    "1":"о",
+    "2":"ў",
+    "6":"um",
+    "15":"w",
+    "54":"la orele",
+    "61":"om"
+  },
+  "just now":{
+    "0":"только что",
+    "1":"тільки що",
+    "2":"толькі што",
+    "6":"nur dass",
+    "15":"tylko że",
+    "54":"numai că",
+    "61":"gewoon"
+  },
+  "ago":{
+    "0":"назад",
+    "1":"тому",
+    "2":"таму",
+    "6":"alt",
+    "15":"temu",
+    "54":"în urmă",
+    "61":"geleden"
+  },
+  "today":{
+    "0":"сегодня",
+    "1":"сьогодні",
+    "2":"сення",
+    "6":"heute",
+    "15":"dziś",
+    "54":"astăzi",
+    "61":"vandaag"
+  },
+  "tomorrow":{
+    "0":"вчера",
+    "1":"вчора",
+    "2":"учора",
+    "6":"gestern",
+    "15":"wczoraj",
+    "54":"ieri",
+    "61":"gisteren"
+  },
+  "seconds":{
+    "3":[
+      "second",
+      "seconds",
+      "seconds"
+    ],
+    "0":[
+      "секунду",
+      "секунды",
+      "секунд"
+    ],
+    "1":[
+      "секунду",
+      "секунди",
+      "секунд"
+    ],
+    "2":[
+      "секунду",
+      "секунды",
+      "секунд"
+    ],
+    "6":[
+      "sekunde",
+      "sekunden",
+      "sekunden"
+    ],
+    "15":[
+      "sekundę",
+      "sekundy",
+      "sekund"
+    ],
+    "54":[
+      "secundă",
+      "de secunde",
+      "de secunde"
+    ],
+    "61":[
+      "tweede",
+      "seconden",
+      "seconden"
+    ]
+  },
+  "minutes":{
+    "3":[
+      "minute",
+      "minutes",
+      "minutes"
+    ],
+    "0":[
+      "минуту",
+      "минуты",
+      "минут"
+    ],
+    "1":[
+      "хвилину",
+      "хвилини",
+      "хвилин"
+    ],
+    "2":[
+      "хвіліну",
+      "хвіліны",
+      "хвілін"
+    ],
+    "6":[
+      "minute",
+      "minuten",
+      "minuten"
+    ],
+    "15":[
+      "minutę",
+      "minuty",
+      "minut"
+    ],
+    "54":[
+      "un minut",
+      "de minute",
+      "de minute"
+    ],
+    "61":[
+      "minuut",
+      "minute",
+      "minuten"
+    ]
+  },
+  "hours":{
+    "3":[
+      "hour",
+      "hours",
+      "hours"
+    ],
+    "0":[
+      "час",
+      "часа",
+      "часов"
+    ],
+    "1":[
+      "годину",
+      "години",
+      "годин"
+    ],
+    "2":[
+      "гадзіну",
+      "гадзіны",
+      "гадзін"
+    ],
+    "6":[
+      "stunde",
+      "stunden",
+      "stunden"
+    ],
+    "15":[
+      "godzinę",
+      "godziny",
+      "godzin"
+    ],
+    "54":[
+      "oră",
+      "de ore",
+      "de ore"
+    ],
+    "61":[
+      "uur per dag",
+      "uren",
+      "uur"
+    ]
+  },
+  "months":{
+    "3":[
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec"
+    ],
+    "0":[
+      "янв",
+      "фев",
+      "мар",
+      "апр",
+      "май",
+      "июн",
+      "июл",
+      "авг",
+      "сен",
+      "окт",
+      "ноя",
+      "дек"
+    ],
+    "1":[
+      "січ",
+      "лют",
+      "бер",
+      "кві",
+      "тра",
+      "чер",
+      "лип",
+      "сер",
+      "вер",
+      "жов",
+      "лис",
+      "гру"
+    ],
+    "2":[
+      "сту",
+      "лют",
+      "сак",
+      "май",
+      "май",
+      "чэр",
+      "ліп",
+      "жні",
+      "вер",
+      "кас",
+      "ліс",
+      "сне"
+    ],
+    "6":[
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "mai",
+      "jun",
+      "jul",
+      "aug",
+      "sen",
+      "okt",
+      "nov",
+      "dez"
+    ],
+    "15":[
+      "sty",
+      "lut",
+      "mar",
+      "kwi",
+      "maj",
+      "cze",
+      "lip",
+      "sie",
+      "wrz",
+      "paź",
+      "lis",
+      "gru"
+    ],
+    "54":[
+      "ian",
+      "feb",
+      "mar",
+      "apr",
+      "mai",
+      "iun",
+      "iul",
+      "aug",
+      "sai",
+      "oct",
+      "noe",
+      "dec"
+    ],
+    "61":[
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec"
+    ]
+  }
 }
