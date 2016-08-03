@@ -70,4 +70,23 @@ module Helpers {
 		.setRemoveRegExp(/[0-9]+/)
 		.setHybridMobileSupport(true);
 	}
+
+	export function getReviewUrl () {
+		return /(opera|opr|Yandex|YaBrowser)/i.test(navigator.userAgent)
+			? 'https://addons.opera.com/extensions/details/app_id/ephejldckfopeihjfhfajiflkjkjbnin#feedback-container'
+			: 'https://chrome.google.com/webstore/detail/jlokilojbcmfijbgbioojlnhejhnikhn/reviews';
+	}
+
+	export function getShareUrl () {
+		const injector = angular.injector(['ng', 'gettext']);
+		const $httpParamSerializer = injector.get('$httpParamSerializer');
+		const gettextCatalog: any = injector.get('gettextCatalog');
+		return 'https://vk.com/share.php?' + $httpParamSerializer({
+			'url'         : 'https://vk.com/note45421694_12011424',
+			'title'       : gettextCatalog.getString('Информер Вконтакте'),
+			'description' : gettextCatalog.getString('Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!'),
+			'image'       : 'https://pp.vk.me/c628716/v628716694/2c20c/f3gq0pcaqHI.jpg',
+			'noparse'     : 'true',
+		});
+	}
 }

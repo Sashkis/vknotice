@@ -10,6 +10,7 @@ module BgApp {
 			'deamon',
 			'Config',
 			'Analytics',
+			'gettextCatalog',
 		];
 
 		constructor(
@@ -17,10 +18,13 @@ module BgApp {
 			private $vk: VkApp.VkService,
 			private deamon: DeamonApp.DeamonService,
 			private Config: {profilesLimit: number},
-			private Analytics: any
+			private Analytics: any,
+			private gettextCatalog: any
 		) {
 			storage.ready.then((stg) => this.StgReady(stg));
 			storage.onChanged((changes) => this.StgChanged(changes));
+			chrome.runtime.onInstalled.addListener((details) => this.onInstalled(details));
+			chrome.alarms.onAlarm.addListener((alarm) => this.onAlarm(alarm));
 		}
 
 		StgReady(stg: IStorageData) : this {
@@ -169,6 +173,49 @@ module BgApp {
 			return this;
 		}
 
+		pushAlert(alert: IAlert) {
+			this.stg.alerts.push(alert);
+			this.storage.set({
+				alerts: this.stg.alerts
+			});
+		}
+
+		onInstalled(details: chrome.runtime.InstalledDetails) {
+			if (details.reason === 'install') {
+				chrome.alarms.create('get_review', { delayInMinutes: 60*24*5 });
+				chrome.alarms.create('say_thanks', { delayInMinutes: 60*24*10 });
+			}
+		}
+
+		onAlarm(alarm: chrome.alarms.Alarm) {
+			let alert: IAlert | undefined;
+			switch (alarm.name) {
+				case 'get_review':
+					alert = {
+						'id':    'get_review',
+						'type':  'simple',
+						'img':   'https://vk.com/images/stickers/644/128.png',
+						'text':  this.gettextCatalog.getString('Помогите нам стать лучше'),
+						'ancor': this.gettextCatalog.getString('Оставьте свой отзыв'),
+						'url':   Helpers.getReviewUrl(),
+					};
+				break;
+				case 'say_thanks':
+					alert = {
+						'id':    'say_thanks',
+						'type':  'simple',
+						'img':   'https://vk.com/images/stickers/630/128.png',
+						'text':  this.gettextCatalog.getString('Мы старались для вас'),
+						'ancor': this.gettextCatalog.getString('Скажите авторам «Спасибо»'),
+						'url':   Helpers.getShareUrl(),
+					};
+				break;
+			}
+
+			if (alert) {
+				this.pushAlert(alert);
+			}
+		}
 	}
 }
 

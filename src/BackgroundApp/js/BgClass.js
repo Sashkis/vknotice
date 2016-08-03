@@ -1,17 +1,20 @@
 var BgApp;
 (function (BgApp) {
     var BgClass = (function () {
-        function BgClass(storage, $vk, deamon, Config, Analytics) {
+        function BgClass(storage, $vk, deamon, Config, Analytics, gettextCatalog) {
             var _this = this;
             this.storage = storage;
             this.$vk = $vk;
             this.deamon = deamon;
             this.Config = Config;
             this.Analytics = Analytics;
+            this.gettextCatalog = gettextCatalog;
             this.stg = {};
             this.badge = 0;
             storage.ready.then(function (stg) { return _this.StgReady(stg); });
             storage.onChanged(function (changes) { return _this.StgChanged(changes); });
+            chrome.runtime.onInstalled.addListener(function (details) { return _this.onInstalled(details); });
+            chrome.alarms.onAlarm.addListener(function (alarm) { return _this.onAlarm(alarm); });
         }
         BgClass.prototype.StgReady = function (stg) {
             var _this = this;
@@ -153,12 +156,53 @@ var BgApp;
             this.storage.set(newStg, false);
             return this;
         };
+        BgClass.prototype.pushAlert = function (alert) {
+            this.stg.alerts.push(alert);
+            this.storage.set({
+                alerts: this.stg.alerts
+            });
+        };
+        BgClass.prototype.onInstalled = function (details) {
+            if (details.reason === 'install') {
+                chrome.alarms.create('get_review', { delayInMinutes: 60 * 24 * 5 });
+                chrome.alarms.create('say_thanks', { delayInMinutes: 60 * 24 * 10 });
+            }
+        };
+        BgClass.prototype.onAlarm = function (alarm) {
+            var alert;
+            switch (alarm.name) {
+                case 'get_review':
+                    alert = {
+                        'id': 'get_review',
+                        'type': 'simple',
+                        'img': 'https://vk.com/images/stickers/644/128.png',
+                        'text': this.gettextCatalog.getString('Помогите нам стать лучше'),
+                        'ancor': this.gettextCatalog.getString('Оставьте свой отзыв'),
+                        'url': Helpers.getReviewUrl(),
+                    };
+                    break;
+                case 'say_thanks':
+                    alert = {
+                        'id': 'say_thanks',
+                        'type': 'simple',
+                        'img': 'https://vk.com/images/stickers/630/128.png',
+                        'text': this.gettextCatalog.getString('Мы старались для вас'),
+                        'ancor': this.gettextCatalog.getString('Скажите авторам «Спасибо»'),
+                        'url': Helpers.getShareUrl(),
+                    };
+                    break;
+            }
+            if (alert) {
+                this.pushAlert(alert);
+            }
+        };
         BgClass.$inject = [
             'storage',
             '$vk',
             'deamon',
             'Config',
             'Analytics',
+            'gettextCatalog',
         ];
         return BgClass;
     }());
