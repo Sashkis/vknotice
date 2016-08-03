@@ -1,16 +1,105 @@
-# Linkify
-
-Shim repository for Linkify. All issues with this plugin should be directed to http://github.com/SoapBox/linkifyjs/
-
-## Package Managers
-
-### [Bower](http://bower.io/)
-
-    bower install linkifyjs
-    
-
-### [NPM](https://npmjs.com/)
-
-See the [main repository](https://github.com/SoapBox/linkifyjs/blob/master/README.md) for usage with Node.js/Browserify.
-
-    npm install linkifyjs
+{
+  "env":{
+    "browser":"1",
+    "es6":"1"
+  },
+  "extends":[
+    "eslint:recommended",
+    "angular"
+  ],
+  "globals":{
+    "chrome":"1"
+  },
+  "parserOptions":{
+    "sourceType":"module"
+  },
+  "rules":{
+    "block-spacing":"1",
+    "brace-style":"1",
+    "comma-spacing":[
+      "1",
+      {
+        "before":"",
+        "after":"1"
+      }
+    ],
+    "keyword-spacing":"1",
+    "max-len":[
+      "1",
+      "120",
+      {
+        "ignoreUrls":"1"
+      }
+    ],
+    "max-statements-per-line":[
+      "1",
+      {
+        "max":"2"
+      }
+    ],
+    "newline-after-var":"1",
+    "newline-before-return":"1",
+    "no-multiple-empty-lines":[
+      "1",
+      {
+        "max":"2"
+      }
+    ],
+    "no-unneeded-ternary":"1",
+    "object-property-newline":"1",
+    "one-var":[
+      "1",
+      "never"
+    ],
+    "operator-linebreak":[
+      "1",
+      "before"
+    ],
+    "semi-spacing":"1",
+    "space-before-function-paren":[
+      "error",
+      {
+        "anonymous":"always",
+        "named":"never"
+      }
+    ],
+    "new-parens":"2",
+    "no-bitwise":"2",
+    "no-whitespace-before-property":"2",
+    "operator-assignment":[
+      "2",
+      "always"
+    ],
+    "angular\/di":[
+      "error",
+      "array"
+    ],
+    "angular\/controller-name":[
+      "error",
+      "\/[A-Z].*Ctrl\/"
+    ],
+    "angular\/document-service":"0",
+    "no-var":"1",
+    "no-else-return":"1",
+    "comma-dangle":[
+      "1",
+      "always-multiline"
+    ],
+    "indent":[
+      "error",
+      "tab"
+    ],
+    "linebreak-style":[
+      "error",
+      "unix"
+    ],
+    "quotes":[
+      "error",
+      "single"
+    ],
+    "semi":[
+      "error",
+      "always"
+    ]
+  }
+}
