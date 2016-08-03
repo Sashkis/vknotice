@@ -1,25 +1,34 @@
 {
-  "name":"VkNotice",
+  "name":"vk-informer",
   "version":"5.1.4",
-  "author":"Alex Kozack <cawa-93@yandex.ru>",
-  "description":"Browser extension",
+  "authors":[
+    "Alex Kozack <kozackunisoft@gmail.com>"
+  ],
+  "description":"Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!",
+  "keywords":[
+    "ВК",
+    "Вконтакте"
+  ],
+  "license":"MIT",
   "homepage":"https:\/\/vk.com\/vknotice",
-  "devDependencies":{
-    "del":"^2.2.1",
-    "gulp":"^3.9.1",
-    "gulp-angular-gettext":"^2.2.0",
-    "gulp-bump":"~2.2.0",
-    "gulp-clean-css":"^2.0.10",
-    "gulp-debug":"~2.1.2",
-    "gulp-filter":"~4.0.0",
-    "gulp-jsonminify":"^1.0.0",
-    "gulp-replace":"^0.5.4",
-    "gulp-sass":"^2.3.2",
-    "gulp-sourcemaps":"^1.6.0",
-    "gulp-uglify":"^1.5.3",
-    "gulp-useref":"^3.1.0",
-    "gulp-zip":"^3.2.0",
-    "wiredep":"^4.0.0",
-    "yargs":"~4.7.1"
-  }
+  "ignore":[
+    "**\/.*",
+    "node_modules",
+    "bower_components",
+    "src\/bower_components\/",
+    "test",
+    "tests"
+  ],
+  "dependencies":{
+    "angular":"^1.5.5",
+    "angular-gettext":"^2.2.1",
+    "angular-google-analytics":"^1.1.7",
+    "components-font-awesome":"^4.6.3",
+    "roboto-font":"git@github.com:cawa-93\/roboto-font.git",
+    "linkifyjs":"^2.0.5",
+    "angular-ui-router":"^0.3.1"
+  },
+  "devDependencies":[
+    
+  ]
 }
