@@ -4,7 +4,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-03 12:50-0400\n"
+"PO-Revision-Date: 2016-08-03 13:29-0400\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "X-Generator: crowdin.com\n"
@@ -19,89 +19,89 @@ msgstr ""
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
 msgid_plural "{{$count}} Пересланных сообщений"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{$count}} Forwarded message"
+msgstr[1] "{{$count}} Forwarded messages"
 
 #: SectionApp/sections/Default/Default.tpl:30
 msgid "Аудиозаписи"
-msgstr ""
+msgstr "Audios"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
-msgstr ""
+msgstr "Type your text here"
 
 #: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
-msgstr ""
+msgstr "Videos"
 
 #: SectionApp/sections/NewMess/attachment.tpl:69
 msgid "Вложение"
-msgstr ""
+msgstr "Attachment"
 
 #: OptionsApp/index.html:91
 msgid "Всегда"
-msgstr ""
+msgstr "Always"
 
 #: HeaderApp/Header.tpl:31
 msgid "Выйти"
-msgstr ""
+msgstr "Log out"
 
 #: OptionsApp/index.html:81
 msgid "Выключить"
-msgstr ""
+msgstr "Disabled"
 
 #: SectionApp/sections/Default/Default.tpl:43
 msgid "Группы"
-msgstr ""
+msgstr "Communities"
 
 #: SectionApp/sections/Default/Default.tpl:10
 msgid "Друзья"
-msgstr ""
+msgstr "Friends"
 
 #: SectionApp/sections/NewFriends/request.tpl:9
 msgid "Заблокировать"
-msgstr ""
+msgstr "Block"
 
 #: HeaderApp/Header.tpl:23
 msgid "Задать вопрос"
-msgstr ""
+msgstr "Ask question"
 
 #: PopupApp/alert.tpl:8
 msgctxt "Всплывающее сообщение"
 msgid "Закрыть"
-msgstr ""
+msgstr "Cancel"
 
 #: SectionApp/sections/NewMess/attachment.tpl:20
 msgid "Запись"
-msgstr ""
+msgstr "Post"
 
 #: OptionsApp/index.html:77
 msgid "Звуковые уведомления"
-msgstr ""
+msgstr "Sound notifications"
 
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
-msgstr ""
+msgstr "Informer"
 
 #: PopupApp/popup.html:4 libs/helpers/Helpers.js:98
 msgid "Информер Вконтакте"
-msgstr ""
+msgstr "VK Informer"
 
 #: BackgroundApp/js/BgClass.js:181
 msgid "Информер обновлен до версии {{version}}"
-msgstr ""
+msgstr "The informer is updated to version {{version}}"
 
 #: SectionApp/sections/Default/Default.tpl:54
 msgid "Комментарии"
-msgstr ""
+msgstr "Comments"
 
 #: SectionApp/sections/NewMess/attachment.tpl:25
 msgid "Комментарий"
-msgstr ""
+msgstr "Comment"
 
 #: SectionApp/sections/Default/Default.tpl:5
 msgid "Моя Страница"
-msgstr ""
+msgstr "My Profile"
 
 #: BackgroundApp/js/BgClass.js:207
 msgid "Мы старались для вас"
@@ -113,51 +113,51 @@ msgstr ""
 
 #: HeaderApp/Header.tpl:8
 msgid "Назад"
-msgstr ""
+msgstr "Back"
 
 #: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
 msgid "Настройки"
-msgstr ""
+msgstr "Settings"
 
 #: OptionsApp/index.html:27
 msgid "Настройки уведомлений"
-msgstr ""
+msgstr "Notifications settings"
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
-msgstr ""
+msgstr "News"
 
 #: HeaderApp/Header.tpl:28
 msgid "Оставить отзыв"
-msgstr ""
+msgstr "Leave Feedback"
 
 #: HeaderApp/Header.tpl:24
 msgid "Оставить предложение"
-msgstr ""
+msgstr "Leave a suggestion"
 
 #: BackgroundApp/js/BgClass.js:198
 msgid "Оставьте свой отзыв"
-msgstr ""
+msgstr "Give us your feedback"
 
 #: SectionApp/sections/NewFriends/request.tpl:8
 msgid "Отклонить"
-msgstr ""
+msgstr "Disagree"
 
 #: SectionApp/sections/NewFriends/NewFriends.tpl:3
 msgid "Отклонить все"
-msgstr ""
+msgstr "Disagree All"
 
 #: libs/helpers/Helpers.js:99
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
-msgstr ""
+msgstr "Displays the number of unread messages and allows you to answer without going into VK!"
 
 #: SectionApp/sections/NewMess/NewMess.tpl:11
 msgid "Пожалуйста, выберите диалог"
-msgstr ""
+msgstr "Please select a dialog"
 
 #: BackgroundApp/js/BgClass.js:197
 msgid "Помогите нам стать лучше"
-msgstr ""
+msgstr "Help us get better"
 
 #: OptionsApp/index.html:86
 msgid "При закрытом ВК"
@@ -165,19 +165,19 @@ msgstr ""
 
 #: SectionApp/sections/NewFriends/request.tpl:7
 msgid "Принять"
-msgstr ""
+msgstr "Agree"
 
 #: HeaderApp/Header.tpl:27
 msgid "Рассказать друзьям"
-msgstr ""
+msgstr "Share application"
 
 #: BackgroundApp/js/BgClass.js:208
 msgid "Скажите авторам «Спасибо»"
-msgstr ""
+msgstr "Say \"thank you\" authors"
 
 #: BackgroundApp/js/BgClass.js:182
 msgid "Смотрите подробности в нашей группе"
-msgstr ""
+msgstr "See details in our group"
 
 #: OptionsApp/index.html:51
 msgid "Сообщать о записях"
@@ -225,48 +225,48 @@ msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:35
 msgid "Сообщения"
-msgstr ""
+msgstr "Messages"
 
 #: HeaderApp/Header.tpl:25
 msgid "Сообщить об ошибке"
-msgstr ""
+msgstr "Report bug"
 
 #: OptionsApp/index.html:99
 msgid "Сохранено"
-msgstr ""
+msgstr "Saved"
 
 #: OptionsApp/index.html:100
 msgid "Сохранить"
-msgstr ""
+msgstr "Save"
 
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
-msgstr ""
+msgstr "Remove all extension data"
 
 #: SectionApp/sections/Default/Default.tpl:18
 msgid "Фотографии"
-msgstr ""
+msgstr "Photos"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
-msgstr ""
+msgstr "changed the conversation name to"
 
 #: SectionApp/sections/NewMess/message.tpl:41
 msgid "исключил"
-msgstr ""
+msgstr "kicked"
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
-msgstr ""
+msgstr "changed conversation cover"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
-msgstr ""
+msgstr "invited"
 
 #: SectionApp/sections/NewMess/message.tpl:21
 msgid "создал беседу"
-msgstr ""
+msgstr "created the conversation"
 
 #: SectionApp/sections/NewMess/message.tpl:37
 msgid "удалил фотографию беседы"
-msgstr ""
+msgstr "deleted conversation cover"
