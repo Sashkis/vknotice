@@ -1,2 +1,141 @@
-#X-Generator: crowdin.com
-.buttons-conteiner=.clear:not(:disabled),.buttons-conteiner .save:not(:disabled),label{cursor:pointer}.buttons-conteiner .clear,.buttons-conteiner .save{padding:7px 16px 8px;margin:0;font-size:12px;font-family:Open Sans,Helvetica Neue,sans-serif;text-align:center;border:0;border-radius:2px;box-sizing:border-box;vertical-align:top}.panel,body{font-size:15px}.buttons-conteiner .clear:not(:disabled):active,.buttons-conteiner .save:not(:disabled):active{padding-top:8px;padding-bottom:7px}.buttons-conteiner .clear:focus,.buttons-conteiner .save:focus{outline:0}body{color:#000;font-family:-apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;line-height:1.5;font-weight:400;background:#edeef0;margin:0 auto;box-sizing:border-box}.wrapper,header{max-width:1200px;margin:0 auto}.header-container{background:#507299;display:block}.wrapper{display:flex}.option-panels{flex:5}.widget{flex:3}.widget.box{margin-left:0}.box{margin:20px}.panel{border-radius:3px;background:#fff;padding:0 25px 13px;overflow:hidden;box-shadow:0 0 0 1px rgba(4,47,89,.12) inset;color:#2b2f33;font-weight:100}.panel .header{border-bottom:1px solid #e7e8ec;font-size:120%;margin-bottom:16px;padding:16px 0}.audioOption>.content{display:flex;justify-content:space-between}.audioOption>.content label{flex-grow:1;text-align:center;color:rgba(0,0,0,.3)}.audioOption>.content label:hover{color:#7b99ba}.audioOption>.content label.active{color:#507299}.audioOption>.content label .fa{color:inherit;display:block;margin:auto;font-size:300%;line-height:normal}label{position:relative;display:block}label input{display:none}label .fa-stack{font-size:60%}label .fa-stack .fa-square{color:#567ca4}label input.ng-empty+.fa-stack{opacity:.1}[class*=" icon-"],[class^=icon-]{font-size:1.5em;vertical-align:middle}.buttons-conteiner{display:flex}.buttons-conteiner .save{background-color:#6287ae;color:#fff}.buttons-conteiner .save:disabled{background-color:#c7d4e2}.buttons-conteiner .save:not(:disabled):active{background-color:#547aa3!important}.buttons-conteiner .save:not(:disabled):hover{background-color:#7394b7}.buttons-conteiner .clear{background-color:#dc4040;color:#fff;margin-left:auto}.buttons-conteiner .clear:disabled{background-color:#f4c1c1}.buttons-conteiner .clear:not(:disabled):active{background-color:#d82a2a!important}.buttons-conteiner .clear:not(:disabled):hover{background-color:#e05656}
+<!DOCTYPE html>
+<html ng-app="OptionsApp">
+<head>
+	<title ng-bind="'Настройки'|translate">Настройки</title>
+	<meta charset="UTF-8">
+	<!-- build:css /vendors/css/fonts.css -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="../bower_components/roboto-font/css/roboto.css" />
+	<!-- endbower -->
+	<!-- endbuild -->
+	<!-- build:css /HeaderApp/HeaderApp.css -->
+	<link rel="stylesheet" href="../HeaderApp/css/header.css">
+	<!-- endbuild -->
+	<!-- build:css /OptionsApp/OptionsApp.css -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- endbuild -->
+
+</head>
+<body>
+	<div class="header-container">
+		<vk-header></vk-header>
+	</div>
+	<div class="wrapper" ng-controller="OptionsCtrl as vm">
+		<div class="option-panels">
+			<div class="panel noty box">
+				<div class="header" translate>Настройки уведомлений</div>
+				<div class="content">
+					<label>
+						<checkbox-option param="vm.options.friends"></checkbox-option>
+						<translate>Сообщать о заявках в друзья</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.photos"></checkbox-option>
+						<translate>Сообщать об отметках на фотографиях</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.videos"></checkbox-option>
+						<translate>Сообщать об отметках в видеозаписях</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.messages"></checkbox-option>
+						<translate>Сообщать о личных сообщениях</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.groups"></checkbox-option>
+						<translate>Сообщать о приглашениях в группы</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.wall"></checkbox-option>
+						<translate>Сообщать о записях</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.mentions"></checkbox-option>
+						<translate>Сообщать об упоминаниях в записях, в комментариях или в обсуждениях</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.comments"></checkbox-option>
+						<translate>Сообщать о комментариях к записям, фотографиям и видеозаписям</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.likes"></checkbox-option>
+						<translate>Сообщать об отметках «Мне нравится»</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.reposts"></checkbox-option>
+						<translate>Сообщать о скопированных записях, фотографиях и видеозаписях</translate>
+					</label>
+					<label>
+						<checkbox-option param="vm.options.followers"></checkbox-option>
+						<translate>Сообщать о новых подписчиках</translate>
+					</label>
+				</div>
+			</div>
+
+			<div class="panel audioOption box">
+				<div class="header" translate>Звуковые уведомления</div>
+				<div class="content">
+					<label ng-class="{'active': vm.options.audio == 0}">
+						<i class="fa fa-volume-off"></i>
+						<translate>Выключить</translate>
+						<input ng-model="vm.options.audio" type="radio" ng-value="0"/>
+					</label>
+					<label ng-class="{'active': vm.options.audio == 1}">
+						<i class="fa fa-volume-down"></i>
+						<translate>При закрытом ВК</translate>
+						<input ng-model="vm.options.audio" type="radio" ng-value="1"/>
+					</label>
+					<label ng-class="{'active': vm.options.audio == 2}">
+						<i class="fa fa-volume-up"></i>
+						<translate>Всегда</translate>
+						<input ng-model="vm.options.audio" type="radio" ng-value="2"/>
+					</label>
+				</div>
+			</div>
+
+			<div class="buttons-conteiner box">
+				<button ng-disabled="vm.isOptionSaved()" ng-click="vm.saveOptions()" class="save">
+					<translate ng-show="vm.isOptionSaved()">Сохранено</translate>
+					<translate ng-hide="vm.isOptionSaved()">Сохранить</translate>
+				</button>
+				<button ng-click="vm.clearData()" class="clear"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить все данные расширения</translate></button>
+			</div>
+		</div>
+		<div class="widget box" id="vk_groups"></div>
+	</div>
+	<!-- build:js /vendors/js/vendors.js -->
+	<!-- bower:js -->
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-gettext/dist/angular-gettext.js"></script>
+	<script src="../bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+	<script src="../bower_components/linkifyjs/linkify.js"></script>
+	<script src="../bower_components/linkifyjs/linkify-string.js"></script>
+	<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+	<!-- build:js /Translations/all.js -->
+	<script src="../Translations/uk.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /StorageApp/StorageApp.js -->
+	<script src="../StorageApp/StorageService.js"></script>
+	<script src="../StorageApp/StorageApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /VkApp/VkApp.js -->
+	<script src="../VkApp/js/VkService.js"></script>
+	<script src="../VkApp/js/VkApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /HeaderApp/HeaderApp.js -->
+	<script src="../HeaderApp/js/HeaderCtrl.js"></script>
+	<script src="../HeaderApp/js/HeaderApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /libs/Helpers.js -->
+	<script src="../libs/helpers/Helpers.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /OptionsApp/OptionsApp.js -->
+	<script src="../libs/vk/openapi.js"></script>
+	<script src="./js/OptionsCtrl.js"></script>
+	<script src="./js/OptionsApp.js"></script>
+	<!-- endbuild -->
+</body>
+</html>
