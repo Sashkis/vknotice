@@ -4,7 +4,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-03 10:16-0400\n"
+"PO-Revision-Date: 2016-08-03 13:29-0400\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "X-Generator: crowdin.com\n"
@@ -25,15 +25,15 @@ msgstr[2] ""
 
 #: SectionApp/sections/Default/Default.tpl:30
 msgid "Аудиозаписи"
-msgstr ""
+msgstr "Pliki audio"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
-msgstr ""
+msgstr "Wprowadź wiadomość tutaj"
 
 #: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
-msgstr ""
+msgstr "Pliki Wideo"
 
 #: SectionApp/sections/NewMess/attachment.tpl:69
 msgid "Вложение"
@@ -53,11 +53,11 @@ msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:43
 msgid "Группы"
-msgstr ""
+msgstr "Grupy"
 
 #: SectionApp/sections/Default/Default.tpl:10
 msgid "Друзья"
-msgstr ""
+msgstr "Znajomi"
 
 #: SectionApp/sections/NewFriends/request.tpl:9
 msgid "Заблокировать"
@@ -94,15 +94,15 @@ msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:54
 msgid "Комментарии"
-msgstr ""
+msgstr "Komentarze"
 
 #: SectionApp/sections/NewMess/attachment.tpl:25
 msgid "Комментарий"
-msgstr ""
+msgstr "Komentarz"
 
 #: SectionApp/sections/Default/Default.tpl:5
 msgid "Моя Страница"
-msgstr ""
+msgstr "Moja strona"
 
 #: BackgroundApp/js/BgClass.js:207
 msgid "Мы старались для вас"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
 msgid "Настройки"
-msgstr ""
+msgstr "Ustawienia"
 
 #: OptionsApp/index.html:27
 msgid "Настройки уведомлений"
@@ -126,7 +126,7 @@ msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
-msgstr ""
+msgstr "Nowości"
 
 #: HeaderApp/Header.tpl:28
 msgid "Оставить отзыв"
@@ -246,7 +246,7 @@ msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:18
 msgid "Фотографии"
-msgstr ""
+msgstr "Zdjęcia"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
