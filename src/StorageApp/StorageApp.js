@@ -30,7 +30,8 @@ var StorageApp;
         state: {
             name: 'home',
             params: {},
-        }
+        },
+        alerts: []
     };
     angular.module('StorageApp', [])
         .constant('DefaultStorage', DefaultStorage)

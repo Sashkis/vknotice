@@ -1,7 +1,7 @@
 /// <reference path="../../all.d.ts"/>
 module BgApp {
 
-	angular.module('BgApp', ['DeamonApp', 'angular-google-analytics'])
+	angular.module('BgApp', ['DeamonApp', 'angular-google-analytics', 'gettext'])
 
 	.constant('Config', {
 		profilesLimit: 100,

@@ -13,6 +13,7 @@ var PopupApp;
         }
     ])
         .directive('vkHref', PopupApp.vkHrefDirective)
+        .directive('alert', PopupApp.alertDirective)
         .controller('ContainerCtrl', PopupApp.ContainerCtrl);
 })(PopupApp || (PopupApp = {}));
 //# sourceMappingURL=PopupApp.js.map

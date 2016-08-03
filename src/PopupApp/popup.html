@@ -24,12 +24,14 @@
 <body>
 	<div class="container" ng-controller="ContainerCtrl as main">
 		<vk-header ng-if="main.stg.access_token && main.stg.user_id"></vk-header>
-		<section ng-if="main.stg.access_token && main.stg.user_id" ng-controller="SectionsCtrl as vm" ui-view></section>
+		<section ng-if="main.stg.access_token && main.stg.user_id && !main.stg.alerts[0]" ng-controller="SectionsCtrl as vm" ui-view></section>
 
 		<div ng-if="!main.stg.access_token || !main.stg.user_id" ng-click="main.auth()" class="login">
 			<i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
 			<translate>Нажмите чтобы авторизоватся</translate>
 		</div>
+
+		<div ng-if="main.stg.access_token && main.stg.user_id && main.stg.alerts[0]" alert="main.stg.alerts[0]"></div>
 	</div>
 	<!-- build:js /vendors/js/vendors.js -->
 	<!-- bower:js -->
@@ -61,6 +63,7 @@
 	<!-- endbuild -->
 	<!-- build:js /PopupApp/PopupApp.js -->
 	<script src="js/vkHerefDirective.js"></script>
+	<script src="js/alertDirective.js"></script>
 	<script src="js/ContainerCtrl.js"></script>
 	<script src="js/PopupApp.js"></script>
 	<script src="js/PreloaderDirective.js"></script>
