@@ -1,14 +1,24 @@
 {
-  "name":"components-font-awesome",
-  "description":"Font Awesome, the iconic font designed for use with Twitter Bootstrap.",
-  "version":"4.6.3",
-  "repository":{
-    "type":"git",
-    "url":"git:\/\/github.com\/components\/font-awesome.git"
+  "name":"angular-ui-router",
+  "version":"0.3.1",
+  "license":"MIT",
+  "main":".\/release\/angular-ui-router.js",
+  "dependencies":{
+    "angular":"^1.0.8"
   },
-  "main":"css\/font-awesome.css",
-  "license":[
-    "MIT",
-    "OFL-1.1"
+  "ignore":[
+    "**\/.*",
+    "node_modules",
+    "bower_components",
+    "component.json",
+    "package.json",
+    "lib",
+    "config",
+    "sample",
+    "test",
+    "tests",
+    "ngdoc_assets",
+    "Gruntfile.js",
+    "files.js"
   ]
 }
