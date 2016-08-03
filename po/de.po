@@ -1,16 +1,35 @@
-# Linkify
-
-Shim repository for Linkify. All issues with this plugin should be directed to http://github.com/SoapBox/linkifyjs/
-
-## Package Managers
-
-### [Bower](http://bower.io/)
-
-    bower install linkifyjs
-    
-
-### [NPM](https://npmjs.com/)
-
-See the [main repository](https://github.com/SoapBox/linkifyjs/blob/master/README.md) for usage with Node.js/Browserify.
-
-    npm install linkifyjs
+{
+  "name":"linkifyjs",
+  "main":"linkify.js",
+  "version":"2.0.5",
+  "authors":[
+    "SoapBox Innovations Inc. <dev@soapboxhq.com>"
+  ],
+  "description":"Intelligent link recognition, made easy",
+  "keywords":[
+    "node",
+    "js",
+    "jquery",
+    "link",
+    "autolink",
+    "text",
+    "url",
+    "email",
+    "hashtag",
+    "hashtags",
+    "mention",
+    "mentions"
+  ],
+  "license":"MIT",
+  "homepage":"http:\/\/soapbox.github.io\/linkifyjs\/",
+  "ignore":[
+    "**\/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies":{
+    "jquery":">=1.7.0"
+  }
+}
