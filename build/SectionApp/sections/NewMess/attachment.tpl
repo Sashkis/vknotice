@@ -33,14 +33,14 @@
 
 	<a ng-switch-when="doc" ng-href="{{attachment.doc.url}}">
 		<i class="fa fa-lg" ng-class="{
-			'file-text-o':	attachment.doc.type === 1,
-			'file-zip-o':	 attachment.doc.type === 2,
+			'file-text-o':  attachment.doc.type === 1,
+			'file-zip-o':   attachment.doc.type === 2,
 			'file-video-o': attachment.doc.type === 3,
 			'file-photo-o': attachment.doc.type === 4,
 			'file-audio-o': attachment.doc.type === 5,
 			'file-video-o': attachment.doc.type === 6,
-			'file-pdf-o':	 attachment.doc.type === 7,
-			'file-o':			 attachment.doc.type === 8,
+			'file-pdf-o':   attachment.doc.type === 7,
+			'file-o':       attachment.doc.type === 8,
 		}"></i>
 		{{attachment.doc.title}}
 	</a>

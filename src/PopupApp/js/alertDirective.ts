@@ -10,12 +10,12 @@ module PopupApp {
 			scope: {
 				alert: '='
 			},
-			controller: function ($scope: IAlertScope) {
+			controller: ['$scope', function ($scope: IAlertScope) {
 				$scope.close = function ($event: ng.IAngularEvent) {
 					$event.preventDefault();
 					$scope.$emit('onAlertClick', $scope.alert, false);
 				}
-			}
+			}]
 		}
 	}
 }

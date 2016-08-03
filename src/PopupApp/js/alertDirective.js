@@ -7,12 +7,12 @@ var PopupApp;
             scope: {
                 alert: '='
             },
-            controller: function ($scope) {
-                $scope.close = function ($event) {
-                    $event.preventDefault();
-                    $scope.$emit('onAlertClick', $scope.alert, false);
-                };
-            }
+            controller: ['$scope', function ($scope) {
+                    $scope.close = function ($event) {
+                        $event.preventDefault();
+                        $scope.$emit('onAlertClick', $scope.alert, false);
+                    };
+                }]
         };
     }
     PopupApp.alertDirective = alertDirective;
