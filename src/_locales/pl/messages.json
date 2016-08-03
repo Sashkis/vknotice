@@ -1,8 +1,8 @@
 {
   "extName":{
-    "message":"VK Informatorem"
+    "message":"Информер Вконтакте"
   },
   "extDesc":{
-    "message":"Wyświetla liczbę nieprzeczytanych wiadomości i pozwala odpowiedzieć nie wchodząc w VK!"
+    "message":"Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
   }
 }
