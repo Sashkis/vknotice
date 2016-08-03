@@ -1,38 +1,15 @@
 <!DOCTYPE html>
-<html ng-app="PopupApp">
+<html ng-app="BgApp">
 <head>
-	<title ng-bind="'Информер Вконтакте'|translate">Информер Вконтакте</title>
+	<title>Background process</title>
 	<meta charset="UTF-8">
-	<base target="_blank">
-
-	<!-- build:css /HeaderApp/HeaderApp.css -->
-	<link rel="stylesheet" href="../HeaderApp/css/header.css">
-	<link rel="stylesheet" href="../SectionApp/css/section.css">
-	<!-- endbuild -->
-	<!-- build:css /PopupApp/PopupApp.css -->
-	<link rel="stylesheet" href="css/popup.css">
-	<!-- endbuild -->
-	<!-- build:css /vendors/css/fonts.css -->
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	<!-- bower:css -->
-	<link rel='stylesheet' href='../bower_components/components-font-awesome/css/font-awesome.css' />
-	<link rel='stylesheet' href='../bower_components/roboto-font/css/roboto.css' />
-	<!-- endbower -->
-	<!-- endbuild -->
-
 </head>
-<body>
-	<div class="container" ng-controller="ContainerCtrl as main">
-		<vk-header ng-if="main.stg.access_token && main.stg.user_id"></vk-header>
-		<section ng-if="main.stg.access_token && main.stg.user_id && !main.stg.alerts[0]" ng-controller="SectionsCtrl as vm" ui-view></section>
-
-		<div ng-if="!main.stg.access_token || !main.stg.user_id" ng-click="main.auth()" class="login">
-			<i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-			<translate>Нажмите чтобы авторизоватся</translate>
-		</div>
-
-		<div ng-if="main.stg.access_token && main.stg.user_id && main.stg.alerts[0]" alert="main.stg.alerts[0]"></div>
-	</div>
+<body ng-controller="Bg">
+	<audio id="audio">
+		<source src="audio/vk.ogg" type="audio/ogg">
+		<source src="audio/vk.mp3" type="audio/mpeg">
+		<source src="audio/vk.wav" type="audio/wav">
+	</audio>
 	<!-- build:js /vendors/js/vendors.js -->
 	<!-- bower:js -->
 	<script src="../bower_components/angular/angular.js"></script>
@@ -54,46 +31,17 @@
 	<script src="../VkApp/js/VkService.js"></script>
 	<script src="../VkApp/js/VkApp.js"></script>
 	<!-- endbuild -->
-	<!-- build:js /HeaderApp/HeaderApp.js -->
-	<script src="../HeaderApp/js/HeaderCtrl.js"></script>
-	<script src="../HeaderApp/js/HeaderApp.js"></script>
-	<!-- endbuild -->
-	<!-- build:js /libs/Helpers.js -->
-	<script src="../libs/helpers/Helpers.js"></script>
-	<!-- endbuild -->
-	<!-- build:js /PopupApp/PopupApp.js -->
-	<script src="js/vkHerefDirective.js"></script>
-	<script src="js/alertDirective.js"></script>
-	<script src="js/ContainerCtrl.js"></script>
-	<script src="js/PopupApp.js"></script>
-	<script src="js/PreloaderDirective.js"></script>
-	<!-- endbuild -->
 	<!-- build:js /DeamonApp/DeamonApp.js -->
 	<script src="../DeamonApp/js/DeamonService.js"></script>
 	<script src="../DeamonApp/js/DeamonApp.js"></script>
 	<!-- endbuild -->
-	<!-- build:js /SectionApp/SectionApp.js -->
-	<script src="../SectionApp/sections/NewMess/js/DialogDirective.js"></script>
-	<script src="../SectionApp/sections/NewMess/js/Emoji.js"></script>
-	<script src="../SectionApp/sections/NewMess/js/AttachmentDirective.js"></script>
-	<script src="../SectionApp/js/userAvaDirective.js"></script>
-	<script src="../SectionApp/js/userNameDirective.js"></script>
-
-	<script src="../SectionApp/sections/NewMess/js/MessageDirective.js"></script>
-	<script src="../SectionApp/sections/NewMess/js/Message.class.js"></script>
-	<script src="../SectionApp/sections/NewMess/js/MessMapService.js"></script>
-	<script src="../SectionApp/sections/NewMess/js/ChatCtrl.js"></script>
-
-	<script src="../SectionApp/sections/NewMess/js/NewMessCtrl.js"></script>
-
-	<script src="../SectionApp/sections/Default/js/SidebarCtrl.js"></script>
-
-	<script src="../SectionApp/js/SectionsCtrl.js"></script>
-	<script src="../SectionApp/js/SectionsApp.js"></script>
-
-	<script src="../SectionApp/sections/Default/js/FriendsCtrl.js"></script>
-	<script src="../SectionApp/sections/NewFriends/js/NewFriendsCtrl.js"></script>
+	<!-- build:js /libs/Helpers.js -->
+	<script src="../libs/helpers/Helpers.js"></script>
 	<!-- endbuild -->
-
+	<!-- build:js /BackgroundApp/BackgroundApp.js -->
+	<script src="../SectionApp/sections/NewMess/js/Dialog.class.js"></script>
+	<script src="./js/BgClass.js"></script>
+	<script src="./js/BackgroundApp.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
