@@ -5,7 +5,6 @@ var SectionsApp;
             var _this = this;
             this.storage = storage;
             storage.ready.then(function (stg) {
-                Analytics.set('&uid', stg.user_id);
                 if (stg.state.params.peer_id) {
                     var targetDialog = stg.dialogs.find(function (d) { return d.peer_id === stg.state.params.peer_id; });
                     if (!targetDialog) {

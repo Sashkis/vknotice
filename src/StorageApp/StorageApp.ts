@@ -1,6 +1,5 @@
 /// <reference path="../all.d.ts"/>
 module StorageApp {
-// eslint-disable-next-line angular/no-service-method
 	const DefaultStorage: IStorageData = {
 		access_token: '',
 		user_id: 0,
@@ -31,7 +30,8 @@ module StorageApp {
 		state: {
 			name: 'home',
 			params: {},
-		}
+		},
+		alerts: []
 	};
 	angular.module('StorageApp', [])
 		.constant('DefaultStorage', DefaultStorage)

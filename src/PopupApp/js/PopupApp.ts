@@ -11,5 +11,6 @@ module PopupApp {
 			)
 		])
 		.directive('vkHref', vkHrefDirective)
+		.directive('alert', alertDirective)
 		.controller('ContainerCtrl', ContainerCtrl);
 }

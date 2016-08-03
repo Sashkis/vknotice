@@ -22,9 +22,22 @@ interface IStorageData {
 	state: {
 		name: string,
 		params: any,
-	}
+	},
+	alerts: IAlert[];
 }
 
+type IAlert = IAlert_Simple;
+
+interface IAlert_Simple {
+	id: string;
+	type: string;
+	ancor: string;
+	url: string;
+	isClose?: boolean;
+	header?: string;
+	text?: string;
+	img?: string;
+}
 
 declare enum AudioOptionStatus {
 	Never,
