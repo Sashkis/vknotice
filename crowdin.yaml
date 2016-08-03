@@ -1,0 +1,4 @@
+files:
+  - 
+    source: /po/ru.po
+    translation: '/po/%two_letters_code%.po'
