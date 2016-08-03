@@ -92,6 +92,7 @@ gulp.task('build', ['copy', 'sass'], function () {
 		.pipe(js).pipe(uglify()).pipe(js.restore)
 		.pipe(css).pipe(cleanCSS()).pipe(css.restore)
 		.pipe(replace('UA-71609511-3', 'UA-71609511-2', {skipBinary: true}))
+		.pipe(replace('gettextCatalog.debug = true', 'gettextCatalog.debug = false', {skipBinary: true}))
 		.pipe(gulp.dest('build'))
 		;
 	// return gulp.src(['build/libs/Helpers.js']).pipe(gulp.dest('build/libs/Helpers.js'));;

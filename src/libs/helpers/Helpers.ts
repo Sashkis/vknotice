@@ -19,13 +19,13 @@ module Helpers {
 		const [gettextCatalog, storage] = dependency;
 
 		gettextCatalog.debug = true;
+		gettextCatalog.baseLanguage = 'ru';
+		gettextCatalog.currentLanguage = 'ru';
 
 		storage.ready.then((stg: IStorageData) => {
 			const lang = getLang(stg.lang);
 
-			if (lang !== 'ru') {
-				gettextCatalog.setCurrentLanguage(lang);
-			}
+			gettextCatalog.setCurrentLanguage(lang);
 			console.info(`Current Language set as "${lang}"`);
 		});
 

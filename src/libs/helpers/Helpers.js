@@ -27,11 +27,11 @@ var Helpers;
         }
         var gettextCatalog = dependency[0], storage = dependency[1];
         gettextCatalog.debug = true;
+        gettextCatalog.baseLanguage = 'ru';
+        gettextCatalog.currentLanguage = 'ru';
         storage.ready.then(function (stg) {
             var lang = getLang(stg.lang);
-            if (lang !== 'ru') {
-                gettextCatalog.setCurrentLanguage(lang);
-            }
+            gettextCatalog.setCurrentLanguage(lang);
             console.info("Current Language set as \"" + lang + "\"");
         });
     }
