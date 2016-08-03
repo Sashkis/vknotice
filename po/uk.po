@@ -1,20 +1,20 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: Александр <kozackunisoft@gmail.com>\n"
-"Language-Team: \n"
-"Language: uk\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Poedit-Basepath: ../src\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: bower_components\n"
+"Project-Id-Version: vknotify\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-08-03 10:06-0400\n"
+"Language-Team: Ukrainian\n"
+"MIME-Version: 1.0\n"
+"X-Generator: crowdin.com\n"
+"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: uk\n"
+"X-Crowdin-Project: vknotify\n"
+"X-Crowdin-Language: uk\n"
+"X-Crowdin-File: /develop/po/ru.po\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -114,7 +114,7 @@ msgstr "Натисніть, щоб авторизуватись"
 
 #: HeaderApp/Header.tpl:8
 msgid "Назад"
-msgstr "Назад"
+msgstr ""
 
 #: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
 msgid "Настройки"
@@ -149,12 +149,8 @@ msgid "Отклонить все"
 msgstr "Відхилити всі"
 
 #: libs/helpers/Helpers.js:99
-msgid ""
-"Отображает количество непрочитанных сообщений и позволяет ответить не заходя "
-"в ВК!"
-msgstr ""
-"Відображає кількість непрочитаних повідомлень і дозволяє відповісти не "
-"заходячи в ВК!"
+msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
+msgstr "Відображає кількість непрочитаних повідомлень і дозволяє відповісти не заходячи в ВК!"
 
 #: SectionApp/sections/NewMess/NewMess.tpl:11
 msgid "Пожалуйста, выберите диалог"
@@ -275,9 +271,3 @@ msgstr "створив бесіду"
 #: SectionApp/sections/NewMess/message.tpl:37
 msgid "удалил фотографию беседы"
 msgstr "видалив фотографію бесіди"
-
-#~ msgid "Пересланное сообщение"
-#~ msgid_plural "{{$count}} Пересланных сообщений"
-#~ msgstr[0] "{{$count}} Переслане повідомлення"
-#~ msgstr[1] "{{$count}} Пересланих повідомлення"
-#~ msgstr[2] "{{$count}} Пересланих повідомлень"
