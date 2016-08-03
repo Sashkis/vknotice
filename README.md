@@ -1,4 +1,5 @@
 # Информер Вконтакте
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/vknotify/localized.svg)](https://crowdin.com/project/vknotify)
 #### Расширение для браузеров
 Данное расширение не заходя на сайт позволит вам:
 - просмотреть заявки в друзья;
