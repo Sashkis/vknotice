@@ -18,15 +18,15 @@ module Helpers {
 	export function setCurrentLanguage (...dependency: Array<any>) {
 		const [gettextCatalog, storage] = dependency;
 
-		gettextCatalog.debug = false;
+		gettextCatalog.debug = true;
 
 		storage.ready.then((stg: IStorageData) => {
 			const lang = getLang(stg.lang);
 
 			if (lang !== 'ru') {
-				console.info('Current Language set as "' + lang + '"');
 				gettextCatalog.setCurrentLanguage(lang);
 			}
+			console.info(`Current Language set as "${lang}"`);
 		});
 
 	}
