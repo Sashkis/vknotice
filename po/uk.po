@@ -1,223 +1,47 @@
-msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: uk\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: SectionApp/sections/NewMess/attachment.tpl:63
-msgid "{{$count}} Пересланное сообщение"
-msgid_plural "{{$count}} Пересланных сообщений"
-msgstr[0] "{{$count}} Переслане повідомлення"
-msgstr[1] "{{$count}} Пересланих повідомлення"
-msgstr[2] "{{$count}} Пересланих повідомлень"
-
-#: SectionApp/sections/Default/Default.tpl:30
-msgid "Аудиозаписи"
-msgstr "Аудiозаписи"
-
-#: SectionApp/sections/NewMess/NewMess.tpl:26
-msgid "Введите ваше сообщение"
-msgstr "Введіть ваше повідомлення"
-
-#: SectionApp/sections/Default/Default.tpl:24
-msgid "Видеозаписи"
-msgstr "Відеозаписи"
-
-#: SectionApp/sections/NewMess/attachment.tpl:69
-msgid "Вложение"
-msgstr "Вкладення"
-
-#: OptionsApp/index.html:102
-msgid "Всегда"
-msgstr "Завжди"
-
-#: HeaderApp/Header.tpl:33
-msgid "Выйти"
-msgstr "Вийти"
-
-#: OptionsApp/index.html:92
-msgid "Выключить"
-msgstr "Вимкнути"
-
-#: SectionApp/sections/Default/Default.tpl:43
-msgid "Группы"
-msgstr "Спільноти"
-
-#: SectionApp/sections/Default/Default.tpl:10
-msgid "Друзья"
-msgstr "Друзі"
-
-#: SectionApp/sections/NewFriends/request.tpl:9
-msgid "Заблокировать"
-msgstr "Заблокувати"
-
-#: HeaderApp/Header.tpl:23
-msgid "Задать вопрос"
-msgstr "Задати питання"
-
-#: SectionApp/sections/NewMess/attachment.tpl:20
-msgid "Запись"
-msgstr "Запис"
-
-#: OptionsApp/index.html:88
-msgid "Звуковые уведомления"
-msgstr "Звукові сповіщення"
-
-#: HeaderApp/Header.tpl:4
-msgid "Информер"
-msgstr "Інформер"
-
-#: HeaderApp/js/HeaderCtrl.js:11 PopupApp/popup.html:4
-msgid "Информер Вконтакте"
-msgstr "Інформер Вконтакте"
-
-#: SectionApp/sections/Default/Default.tpl:54
-msgid "Комментарии"
-msgstr "Коментарі"
-
-#: SectionApp/sections/NewMess/attachment.tpl:25
-msgid "Комментарий"
-msgstr "Коментар"
-
-#: SectionApp/sections/Default/Default.tpl:5
-msgid "Моя Страница"
-msgstr "Моя Cторінка"
-
-#: HeaderApp/Header.tpl:8
-msgid "Назад"
-msgstr "Назад"
-
-#: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
-msgid "Настройки"
-msgstr "Налаштування"
-
-#: OptionsApp/index.html:27
-msgid "Настройки уведомлений"
-msgstr "Налаштування сповіщень"
-
-#: SectionApp/sections/Default/Default.tpl:49
-msgid "Новости"
-msgstr "Новини"
-
-#: HeaderApp/Header.tpl:28
-msgid "Оставить отзыв"
-msgstr "Залишити відгук"
-
-#: HeaderApp/Header.tpl:24
-msgid "Оставить предложение"
-msgstr "Залишити пропозицію"
-
-#: SectionApp/sections/NewFriends/request.tpl:8
-msgid "Отклонить"
-msgstr "Відмовити"
-
-#: SectionApp/sections/NewFriends/NewFriends.tpl:3
-msgid "Отклонить все"
-msgstr "Відхилити всі"
-
-#: HeaderApp/js/HeaderCtrl.js:12
-msgid ""
-"Отображает количество непрочитанных сообщений и позволяет ответить не заходя "
-"в ВК!"
-msgstr ""
-"Відображає кількість непрочитаних повідомлень і дозволяє відповісти не "
-"заходячи в ВК!"
-
-#: SectionApp/sections/NewMess/NewMess.tpl:33
-msgid "Пожалуйста, выберите диалог"
-msgstr "Будь ласка, виберіть діалог"
-
-#: OptionsApp/index.html:97
-msgid "При закрытом ВК"
-msgstr "При закритому ВК"
-
-#: SectionApp/sections/NewFriends/request.tpl:7
-msgid "Принять"
-msgstr "Прийняти"
-
-#: HeaderApp/Header.tpl:27
-msgid "Рассказать друзьям"
-msgstr "Розповісти друзям"
-
-#: OptionsApp/index.html:57
-msgid "Сообщать о записях"
-msgstr "Повідомляти про записи"
-
-#: OptionsApp/index.html:32
-msgid "Сообщать о заявках в друзья"
-msgstr ""
-
-#: OptionsApp/index.html:67
-msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
-msgstr ""
-
-#: OptionsApp/index.html:47
-msgid "Сообщать о личных сообщениях"
-msgstr ""
-
-#: OptionsApp/index.html:82
-msgid "Сообщать о новых подписчиках"
-msgstr ""
-
-#: OptionsApp/index.html:52
-msgid "Сообщать о приглашениях в группы"
-msgstr ""
-
-#: OptionsApp/index.html:77
-msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
-msgstr ""
-
-#: OptionsApp/index.html:62
-msgid "Сообщать о упоминаниях в записях, в комментариях или в обсуждениях"
-msgstr ""
-
-#: OptionsApp/index.html:72
-msgid "Сообщать об отметках «Мне нравится»"
-msgstr ""
-
-#: OptionsApp/index.html:42
-msgid "Сообщать об отметках в видеозаписях"
-msgstr ""
-
-#: OptionsApp/index.html:37
-msgid "Сообщать об отметках на фотографиях"
-msgstr ""
-
-#: SectionApp/sections/Default/Default.tpl:35
-msgid "Сообщения"
-msgstr "Повiдомлення"
-
-#: HeaderApp/Header.tpl:25
-msgid "Сообщить об ошибке"
-msgstr "Повідомити про помилку"
-
-#: OptionsApp/index.html:110
-msgid "Сохранено"
-msgstr "Збережено"
-
-#: OptionsApp/index.html:111
-msgid "Сохранить"
-msgstr "Зберегти"
-
-#: OptionsApp/index.html:113
-msgid "Удалить все данные расширения"
-msgstr "Видалити всі дані розширення"
-
-#: SectionApp/sections/Default/Default.tpl:18
-msgid "Фотографии"
-msgstr "Фотографії"
-
-#~ msgid "Пересланное сообщение"
-#~ msgid_plural "{{$count}} Пересланных сообщений"
-#~ msgstr[0] "{{$count}} Переслане повідомлення"
-#~ msgstr[1] "{{$count}} Пересланих повідомлення"
-#~ msgstr[2] "{{$count}} Пересланих повідомлень"
+<!DOCTYPE html>
+<html ng-app="BgApp">
+<head>
+	<title>Background process</title>
+	<meta charset="UTF-8">
+</head>
+<body ng-controller="Bg">
+	<audio id="audio">
+		<source src="audio/vk.ogg" type="audio/ogg">
+		<source src="audio/vk.mp3" type="audio/mpeg">
+		<source src="audio/vk.wav" type="audio/wav">
+	</audio>
+	<!-- build:js /vendors/js/vendors.js -->
+	<!-- bower:js -->
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-gettext/dist/angular-gettext.js"></script>
+	<script src="../bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+	<script src="../bower_components/linkifyjs/linkify.js"></script>
+	<script src="../bower_components/linkifyjs/linkify-string.js"></script>
+	<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+	<!-- build:js /Translations/all.js -->
+	<script src="../Translations/uk.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /StorageApp/StorageApp.js -->
+	<script src="../StorageApp/StorageService.js"></script>
+	<script src="../StorageApp/StorageApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /VkApp/VkApp.js -->
+	<script src="../VkApp/js/VkService.js"></script>
+	<script src="../VkApp/js/VkApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /DeamonApp/DeamonApp.js -->
+	<script src="../DeamonApp/js/DeamonService.js"></script>
+	<script src="../DeamonApp/js/DeamonApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /libs/Helpers.js -->
+	<script src="../libs/helpers/Helpers.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /BackgroundApp/BackgroundApp.js -->
+	<script src="../SectionApp/sections/NewMess/js/Dialog.class.js"></script>
+	<script src="./js/BgClass.js"></script>
+	<script src="./js/BackgroundApp.js"></script>
+	<!-- endbuild -->
+</body>
+</html>
