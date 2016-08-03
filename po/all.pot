@@ -14,7 +14,7 @@ msgstr[1] ""
 msgid "Аудиозаписи"
 msgstr ""
 
-#: SectionApp/sections/NewMess/NewMess.tpl:26
+#: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
 msgstr ""
 
@@ -26,15 +26,15 @@ msgstr ""
 msgid "Вложение"
 msgstr ""
 
-#: OptionsApp/index.html:102
+#: OptionsApp/index.html:91
 msgid "Всегда"
 msgstr ""
 
-#: HeaderApp/Header.tpl:33
+#: HeaderApp/Header.tpl:31
 msgid "Выйти"
 msgstr ""
 
-#: OptionsApp/index.html:92
+#: OptionsApp/index.html:81
 msgid "Выключить"
 msgstr ""
 
@@ -54,11 +54,15 @@ msgstr ""
 msgid "Задать вопрос"
 msgstr ""
 
+#: PopupApp/alert.tpl:8
+msgid "Закрыть"
+msgstr ""
+
 #: SectionApp/sections/NewMess/attachment.tpl:20
 msgid "Запись"
 msgstr ""
 
-#: OptionsApp/index.html:88
+#: OptionsApp/index.html:77
 msgid "Звуковые уведомления"
 msgstr ""
 
@@ -66,9 +70,13 @@ msgstr ""
 msgid "Информер"
 msgstr ""
 
-#: HeaderApp/js/HeaderCtrl.js:11
 #: PopupApp/popup.html:4
+#: libs/helpers/Helpers.js:98
 msgid "Информер Вконтакте"
+msgstr ""
+
+#: BackgroundApp/js/BgClass.js:181
+msgid "Информер обновлен до версии {{version}}"
 msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:54
@@ -81,6 +89,14 @@ msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:5
 msgid "Моя Страница"
+msgstr ""
+
+#: BackgroundApp/js/BgClass.js:207
+msgid "Мы старались для вас"
+msgstr ""
+
+#: PopupApp/popup.html:31
+msgid "Нажмите чтобы авторизоватся"
 msgstr ""
 
 #: HeaderApp/Header.tpl:8
@@ -108,6 +124,10 @@ msgstr ""
 msgid "Оставить предложение"
 msgstr ""
 
+#: BackgroundApp/js/BgClass.js:198
+msgid "Оставьте свой отзыв"
+msgstr ""
+
 #: SectionApp/sections/NewFriends/request.tpl:8
 msgid "Отклонить"
 msgstr ""
@@ -116,15 +136,19 @@ msgstr ""
 msgid "Отклонить все"
 msgstr ""
 
-#: HeaderApp/js/HeaderCtrl.js:12
+#: libs/helpers/Helpers.js:99
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr ""
 
-#: SectionApp/sections/NewMess/NewMess.tpl:33
+#: SectionApp/sections/NewMess/NewMess.tpl:11
 msgid "Пожалуйста, выберите диалог"
 msgstr ""
 
-#: OptionsApp/index.html:97
+#: BackgroundApp/js/BgClass.js:197
+msgid "Помогите нам стать лучше"
+msgstr ""
+
+#: OptionsApp/index.html:86
 msgid "При закрытом ВК"
 msgstr ""
 
@@ -136,48 +160,56 @@ msgstr ""
 msgid "Рассказать друзьям"
 msgstr ""
 
-#: OptionsApp/index.html:57
+#: BackgroundApp/js/BgClass.js:208
+msgid "Скажите авторам «Спасибо»"
+msgstr ""
+
+#: BackgroundApp/js/BgClass.js:182
+msgid "Смотрите подробности в нашей группе"
+msgstr ""
+
+#: OptionsApp/index.html:51
 msgid "Сообщать о записях"
 msgstr ""
 
-#: OptionsApp/index.html:32
+#: OptionsApp/index.html:31
 msgid "Сообщать о заявках в друзья"
 msgstr ""
 
-#: OptionsApp/index.html:67
+#: OptionsApp/index.html:59
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
 msgstr ""
 
-#: OptionsApp/index.html:47
+#: OptionsApp/index.html:43
 msgid "Сообщать о личных сообщениях"
 msgstr ""
 
-#: OptionsApp/index.html:82
+#: OptionsApp/index.html:71
 msgid "Сообщать о новых подписчиках"
 msgstr ""
 
-#: OptionsApp/index.html:52
+#: OptionsApp/index.html:47
 msgid "Сообщать о приглашениях в группы"
 msgstr ""
 
-#: OptionsApp/index.html:77
+#: OptionsApp/index.html:67
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
 msgstr ""
 
-#: OptionsApp/index.html:62
-msgid "Сообщать о упоминаниях в записях, в комментариях или в обсуждениях"
-msgstr ""
-
-#: OptionsApp/index.html:72
+#: OptionsApp/index.html:63
 msgid "Сообщать об отметках «Мне нравится»"
 msgstr ""
 
-#: OptionsApp/index.html:42
+#: OptionsApp/index.html:39
 msgid "Сообщать об отметках в видеозаписях"
 msgstr ""
 
-#: OptionsApp/index.html:37
+#: OptionsApp/index.html:35
 msgid "Сообщать об отметках на фотографиях"
+msgstr ""
+
+#: OptionsApp/index.html:55
+msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:35
@@ -188,18 +220,42 @@ msgstr ""
 msgid "Сообщить об ошибке"
 msgstr ""
 
-#: OptionsApp/index.html:110
+#: OptionsApp/index.html:99
 msgid "Сохранено"
 msgstr ""
 
-#: OptionsApp/index.html:111
+#: OptionsApp/index.html:100
 msgid "Сохранить"
 msgstr ""
 
-#: OptionsApp/index.html:113
+#: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
 msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:18
 msgid "Фотографии"
+msgstr ""
+
+#: SectionApp/sections/NewMess/message.tpl:27
+msgid "изменил название беседы на"
+msgstr ""
+
+#: SectionApp/sections/NewMess/message.tpl:41
+msgid "исключил"
+msgstr ""
+
+#: SectionApp/sections/NewMess/message.tpl:33
+msgid "обновил фотографию беседы"
+msgstr ""
+
+#: SectionApp/sections/NewMess/message.tpl:46
+msgid "пригласил"
+msgstr ""
+
+#: SectionApp/sections/NewMess/message.tpl:21
+msgid "создал беседу"
+msgstr ""
+
+#: SectionApp/sections/NewMess/message.tpl:37
+msgid "удалил фотографию беседы"
 msgstr ""

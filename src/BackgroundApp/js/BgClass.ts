@@ -182,29 +182,48 @@ module BgApp {
 
 		onInstalled(details: chrome.runtime.InstalledDetails) {
 			if (details.reason === 'install') {
-				chrome.alarms.create('get_review', { delayInMinutes: 60*24*5 });
-				chrome.alarms.create('say_thanks', { delayInMinutes: 60*24*10 });
+				chrome.alarms.create('get-review', { delayInMinutes: 60*24*5 });
+				chrome.alarms.create('say-thanks', { delayInMinutes: 60*24*10 });
+			} else if (details.reason === 'update' && details.previousVersion) {
+
+				let [major, minor, patch] = details.previousVersion.split('.');
+				const previos = {major, minor, patch};
+
+				const version = chrome.runtime.getManifest().version;
+				[major, minor, patch] = version.split('.');
+				const current = {major, minor, patch};
+
+				if (+current.major > +previos.major || +current.minor > +previos.minor) {
+					this.pushAlert({
+						id: 'update-alert',
+						type: 'simple',
+						img: 'https://vk.com/images/stickers/2077/128.png',
+						text: this.gettextCatalog.getString('Информер обновлен до версии {{version}}', {version}),
+						ancor: this.gettextCatalog.getString('Смотрите подробности в нашей группе'),
+						url: 'https://vk.com/club90041499',
+					});
+				}
 			}
 		}
 
 		onAlarm(alarm: chrome.alarms.Alarm) {
 			let alert: IAlert | undefined;
 			switch (alarm.name) {
-				case 'get_review':
+				case 'get-review':
 					alert = {
-						'id':    'get_review',
+						'id':    'get-review',
 						'type':  'simple',
-						'img':   'https://vk.com/images/stickers/644/128.png',
+						'img':   'https://vk.com/images/stickers/2073/128.png',
 						'text':  this.gettextCatalog.getString('Помогите нам стать лучше'),
 						'ancor': this.gettextCatalog.getString('Оставьте свой отзыв'),
 						'url':   Helpers.getReviewUrl(),
 					};
 				break;
-				case 'say_thanks':
+				case 'say-thanks':
 					alert = {
-						'id':    'say_thanks',
+						'id':    'say-thanks',
 						'type':  'simple',
-						'img':   'https://vk.com/images/stickers/630/128.png',
+						'img':   'https://vk.com/images/stickers/2074/128.png',
 						'text':  this.gettextCatalog.getString('Мы старались для вас'),
 						'ancor': this.gettextCatalog.getString('Скажите авторам «Спасибо»'),
 						'url':   Helpers.getShareUrl(),
