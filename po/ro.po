@@ -3,6 +3,6 @@
     "message":"VK Informer"
   },
   "extDesc":{
-    "message":"Displays the number of unread messages and allows you to reply without going into VK!"
+    "message":"Zeigt die Anzahl der ungelesenen E-Mails und können Sie beantworten, ohne in VK!"
   }
 }
