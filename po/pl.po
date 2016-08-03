@@ -1,34 +1,8 @@
 {
-  "name":"vk-informer",
-  "version":"5.1.4",
-  "authors":[
-    "Alex Kozack <kozackunisoft@gmail.com>"
-  ],
-  "description":"Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!",
-  "keywords":[
-    "ВК",
-    "Вконтакте"
-  ],
-  "license":"MIT",
-  "homepage":"https:\/\/vk.com\/vknotice",
-  "ignore":[
-    "**\/.*",
-    "node_modules",
-    "bower_components",
-    "src\/bower_components\/",
-    "test",
-    "tests"
-  ],
-  "dependencies":{
-    "angular":"^1.5.5",
-    "angular-gettext":"^2.2.1",
-    "angular-google-analytics":"^1.1.7",
-    "components-font-awesome":"^4.6.3",
-    "roboto-font":"git@github.com:cawa-93\/roboto-font.git",
-    "linkifyjs":"^2.0.5",
-    "angular-ui-router":"^0.3.1"
+  "extName":{
+    "message":"Інформер Вконтакте"
   },
-  "devDependencies":[
-    
-  ]
+  "extDesc":{
+    "message":"Відображає кількість непрочитаних повідомлень і дозволяє відповісти не заходячи в ВК!"
+  }
 }
