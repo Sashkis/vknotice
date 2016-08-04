@@ -80,7 +80,7 @@ msgstr ""
 msgid "Информер Вконтакте"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:181
+#: BackgroundApp/js/BgClass.js:182
 msgid "Информер обновлен до версии {{version}}"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Моя Страница"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:207
+#: BackgroundApp/js/BgClass.js:208
 msgid "Мы работаем для вас"
 msgstr ""
 
@@ -117,6 +117,10 @@ msgstr ""
 msgid "Настройки уведомлений"
 msgstr ""
 
+#: SectionApp/sections/NewFriends/NewFriends.tpl:6
+msgid "Нет новых заявок в друзья"
+msgstr ""
+
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
 msgstr ""
@@ -129,7 +133,7 @@ msgstr ""
 msgid "Оставить предложение"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:199
 msgid "Оставьте свой отзыв"
 msgstr ""
 
@@ -145,7 +149,7 @@ msgstr ""
 msgid "Пожалуйста, выберите диалог"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:197
+#: BackgroundApp/js/BgClass.js:198
 msgid "Помогите нам стать лучше"
 msgstr ""
 
@@ -161,11 +165,11 @@ msgstr ""
 msgid "Рассказать друзьям"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
 msgstr ""
 
