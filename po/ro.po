@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 04:20-0400\n"
+"PO-Revision-Date: 2016-08-04 04:48-0400\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro\n"
@@ -28,7 +28,7 @@ msgstr "Audio"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
-msgstr "Introduceți mesajul dvs."
+msgstr "Introduceți mesajul dvs"
 
 #: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
