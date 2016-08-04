@@ -1,27 +1,26 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-03 13:47-0400\n"
-"Language-Team: Polish\n"
-"MIME-Version: 1.0\n"
-"X-Generator: crowdin.com\n"
+"PO-Revision-Date: 2016-08-04 04:20-0400\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language-Team: Polish\n"
 "Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: crowdin.com\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: pl\n"
 "X-Crowdin-File: /develop/po/ru.po\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
 msgid_plural "{{$count}} Пересланных сообщений"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{$count}} przekazane wiadomości"
+msgstr[1] "{{$count}} przekazane wiadomości"
+msgstr[2] "{{$count}} przekazane wiadomości"
 
 #: SectionApp/sections/Default/Default.tpl:30
 msgid "Аудиозаписи"
@@ -37,19 +36,19 @@ msgstr "Pliki Wideo"
 
 #: SectionApp/sections/NewMess/attachment.tpl:69
 msgid "Вложение"
-msgstr ""
+msgstr "Załącznik"
 
 #: OptionsApp/index.html:91
 msgid "Всегда"
-msgstr ""
+msgstr "Zawsze"
 
 #: HeaderApp/Header.tpl:31
 msgid "Выйти"
-msgstr ""
+msgstr "Sign out"
 
 #: OptionsApp/index.html:81
 msgid "Выключить"
-msgstr ""
+msgstr "Wyłączyć"
 
 #: SectionApp/sections/Default/Default.tpl:43
 msgid "Группы"
@@ -61,36 +60,36 @@ msgstr "Znajomi"
 
 #: SectionApp/sections/NewFriends/request.tpl:9
 msgid "Заблокировать"
-msgstr ""
+msgstr "Zablokować"
 
 #: HeaderApp/Header.tpl:23
 msgid "Задать вопрос"
-msgstr ""
+msgstr "Zadaj pytanie"
 
 #: PopupApp/alert.tpl:8
 msgctxt "Всплывающее сообщение"
 msgid "Закрыть"
-msgstr ""
+msgstr "Zamknij"
 
 #: SectionApp/sections/NewMess/attachment.tpl:20
 msgid "Запись"
-msgstr ""
+msgstr "Wpis"
 
 #: OptionsApp/index.html:77
 msgid "Звуковые уведомления"
-msgstr ""
+msgstr "Dźwiękowe powiadomienia"
 
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
-msgstr ""
+msgstr "Pogody"
 
 #: PopupApp/popup.html:4 libs/helpers/Helpers.js:98
 msgid "Информер Вконтакте"
-msgstr ""
+msgstr "Pogody Vkontakte"
 
 #: BackgroundApp/js/BgClass.js:181
 msgid "Информер обновлен до версии {{version}}"
-msgstr ""
+msgstr "Pogody zaktualizowany do wersji {{version}}"
 
 #: SectionApp/sections/Default/Default.tpl:54
 msgid "Комментарии"
@@ -105,16 +104,16 @@ msgid "Моя Страница"
 msgstr "Moja strona"
 
 #: BackgroundApp/js/BgClass.js:207
-msgid "Мы старались для вас"
-msgstr ""
+msgid "Мы работаем для вас"
+msgstr "Pracujemy dla ciebie"
 
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
-msgstr ""
+msgstr "Kliknij, aby zalogować się"
 
 #: HeaderApp/Header.tpl:8
 msgid "Назад"
-msgstr ""
+msgstr "Temu"
 
 #: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
 msgid "Настройки"
@@ -122,7 +121,7 @@ msgstr "Ustawienia"
 
 #: OptionsApp/index.html:27
 msgid "Настройки уведомлений"
-msgstr ""
+msgstr "Ustawienia powiadomień"
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
@@ -130,119 +129,115 @@ msgstr "Nowości"
 
 #: HeaderApp/Header.tpl:28
 msgid "Оставить отзыв"
-msgstr ""
+msgstr "Zostawić opinię"
 
 #: HeaderApp/Header.tpl:24
 msgid "Оставить предложение"
-msgstr ""
+msgstr "Zostawić sugestie"
 
 #: BackgroundApp/js/BgClass.js:198
 msgid "Оставьте свой отзыв"
-msgstr ""
+msgstr "Wyraż swoją opinię"
 
 #: SectionApp/sections/NewFriends/request.tpl:8
 msgid "Отклонить"
-msgstr ""
-
-#: SectionApp/sections/NewFriends/NewFriends.tpl:3
-msgid "Отклонить все"
-msgstr ""
+msgstr "Odrzucić"
 
 #: libs/helpers/Helpers.js:99
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
-msgstr ""
+msgstr "Wyświetla liczbę nieprzeczytanych wiadomości i pozwala odpowiedzieć nie wchodząc w VC!"
 
 #: SectionApp/sections/NewMess/NewMess.tpl:11
 msgid "Пожалуйста, выберите диалог"
-msgstr ""
+msgstr "Proszę, wybierz okno dialogowe"
 
 #: BackgroundApp/js/BgClass.js:197
 msgid "Помогите нам стать лучше"
-msgstr ""
+msgstr "Pomóż nam stać się lepszym"
 
 #: OptionsApp/index.html:86
 msgid "При закрытом ВК"
-msgstr ""
+msgstr "Przy zamkniętym VC"
 
 #: SectionApp/sections/NewFriends/request.tpl:7
 msgid "Принять"
-msgstr ""
+msgstr "Brać"
 
 #: HeaderApp/Header.tpl:27
 msgid "Рассказать друзьям"
-msgstr ""
+msgstr "Poleć znajomemu"
 
 #: BackgroundApp/js/BgClass.js:208
 msgid "Скажите авторам «Спасибо»"
-msgstr ""
+msgstr "Mówi autorów \"Dziękuję\""
 
 #: BackgroundApp/js/BgClass.js:182
 msgid "Смотрите подробности в нашей группе"
-msgstr ""
+msgstr "Zobacz szczegóły w naszej grupie"
 
 #: OptionsApp/index.html:51
 msgid "Сообщать о записях"
-msgstr ""
+msgstr "Informować o zapisach"
 
 #: OptionsApp/index.html:31
 msgid "Сообщать о заявках в друзья"
-msgstr ""
+msgstr "Zgłaszania wniosków do znajomych"
 
 #: OptionsApp/index.html:59
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
-msgstr ""
+msgstr "Informować o komentarzach do wpisów, zdjęć i filmów wideo"
 
 #: OptionsApp/index.html:43
 msgid "Сообщать о личных сообщениях"
-msgstr ""
+msgstr "Informować o prywatnych wiadomościach"
 
 #: OptionsApp/index.html:71
 msgid "Сообщать о новых подписчиках"
-msgstr ""
+msgstr "Zgłaszanie nowych abonentów"
 
 #: OptionsApp/index.html:47
 msgid "Сообщать о приглашениях в группы"
-msgstr ""
+msgstr "Informować o zaproszeniach do grupy"
 
 #: OptionsApp/index.html:67
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
-msgstr ""
+msgstr "Zgłaszać skopiowanych nagrań, zdjęć i filmów"
 
 #: OptionsApp/index.html:63
 msgid "Сообщать об отметках «Мне нравится»"
-msgstr ""
+msgstr "Informować o wysokościach \"lubię to\""
 
 #: OptionsApp/index.html:39
 msgid "Сообщать об отметках в видеозаписях"
-msgstr ""
+msgstr "Zgłaszać markierach w filmach"
 
 #: OptionsApp/index.html:35
 msgid "Сообщать об отметках на фотографиях"
-msgstr ""
+msgstr "Zgłaszać markierach na zdjęciach"
 
 #: OptionsApp/index.html:55
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
-msgstr ""
+msgstr "Zgłaszania informacji w rekordach, w komentarzach lub w dyskusjach"
 
 #: SectionApp/sections/Default/Default.tpl:35
 msgid "Сообщения"
-msgstr ""
+msgstr "Wiadomości"
 
 #: HeaderApp/Header.tpl:25
 msgid "Сообщить об ошибке"
-msgstr ""
+msgstr "Zgłoś błąd"
 
 #: OptionsApp/index.html:99
 msgid "Сохранено"
-msgstr ""
+msgstr "Zapisano"
 
 #: OptionsApp/index.html:100
 msgid "Сохранить"
-msgstr ""
+msgstr "Zapisz"
 
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
-msgstr ""
+msgstr "Usunąć wszystkie dane rozszerzenie"
 
 #: SectionApp/sections/Default/Default.tpl:18
 msgid "Фотографии"
@@ -250,24 +245,24 @@ msgstr "Zdjęcia"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
-msgstr ""
+msgstr "zmienił nazwę na rozmowy"
 
 #: SectionApp/sections/NewMess/message.tpl:41
 msgid "исключил"
-msgstr ""
+msgstr "wykluczył"
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
-msgstr ""
+msgstr "zaktualizowałem zdjęcie rozmowy"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
-msgstr ""
+msgstr "zaprosił"
 
 #: SectionApp/sections/NewMess/message.tpl:21
 msgid "создал беседу"
-msgstr ""
+msgstr "stworzył rozmowę"
 
 #: SectionApp/sections/NewMess/message.tpl:37
 msgid "удалил фотографию беседы"
-msgstr ""
+msgstr "usunąłem zdjęcie rozmowy"

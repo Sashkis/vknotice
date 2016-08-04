@@ -1,20 +1,19 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-03 13:47-0400\n"
-"Language-Team: English\n"
-"MIME-Version: 1.0\n"
-"X-Generator: crowdin.com\n"
+"PO-Revision-Date: 2016-08-04 04:20-0400\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: English\n"
 "Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: crowdin.com\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: en\n"
 "X-Crowdin-File: /develop/po/ru.po\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -104,12 +103,12 @@ msgid "Моя Страница"
 msgstr "My Profile"
 
 #: BackgroundApp/js/BgClass.js:207
-msgid "Мы старались для вас"
-msgstr ""
+msgid "Мы работаем для вас"
+msgstr "We work for you"
 
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
-msgstr ""
+msgstr "Click to login"
 
 #: HeaderApp/Header.tpl:8
 msgid "Назад"
@@ -143,10 +142,6 @@ msgstr "Give us your feedback"
 msgid "Отклонить"
 msgstr "Disagree"
 
-#: SectionApp/sections/NewFriends/NewFriends.tpl:3
-msgid "Отклонить все"
-msgstr "Disagree All"
-
 #: libs/helpers/Helpers.js:99
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Displays the number of unread messages and allows you to answer without going into VK!"
@@ -161,7 +156,7 @@ msgstr "Help us get better"
 
 #: OptionsApp/index.html:86
 msgid "При закрытом ВК"
-msgstr ""
+msgstr "When VK closed"
 
 #: SectionApp/sections/NewFriends/request.tpl:7
 msgid "Принять"
@@ -181,47 +176,47 @@ msgstr "See details in our group"
 
 #: OptionsApp/index.html:51
 msgid "Сообщать о записях"
-msgstr ""
+msgstr "Notify about posts"
 
 #: OptionsApp/index.html:31
 msgid "Сообщать о заявках в друзья"
-msgstr ""
+msgstr "Notify about friend requests"
 
 #: OptionsApp/index.html:59
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
-msgstr ""
+msgstr "Notify about comments to wall posts, photos, and videos"
 
 #: OptionsApp/index.html:43
 msgid "Сообщать о личных сообщениях"
-msgstr ""
+msgstr "Notify about private messages"
 
 #: OptionsApp/index.html:71
 msgid "Сообщать о новых подписчиках"
-msgstr ""
+msgstr "Notify about new followers"
 
 #: OptionsApp/index.html:47
 msgid "Сообщать о приглашениях в группы"
-msgstr ""
+msgstr "Notify about invitations to groups"
 
 #: OptionsApp/index.html:67
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
-msgstr ""
+msgstr "Notify about wall posts, photos, and videos that are copied"
 
 #: OptionsApp/index.html:63
 msgid "Сообщать об отметках «Мне нравится»"
-msgstr ""
+msgstr "Notify about likes"
 
 #: OptionsApp/index.html:39
 msgid "Сообщать об отметках в видеозаписях"
-msgstr ""
+msgstr "Notify about elevations in videos"
 
 #: OptionsApp/index.html:35
 msgid "Сообщать об отметках на фотографиях"
-msgstr ""
+msgstr "Notify about marks on the photos"
 
 #: OptionsApp/index.html:55
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
-msgstr ""
+msgstr "Notify about mentions in wall posts, comments, or topics"
 
 #: SectionApp/sections/Default/Default.tpl:35
 msgid "Сообщения"
