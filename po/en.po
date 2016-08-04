@@ -1,20 +1,19 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 04:10-0400\n"
-"Language-Team: English\n"
-"MIME-Version: 1.0\n"
-"X-Generator: crowdin.com\n"
+"PO-Revision-Date: 2016-08-04 04:15-0400\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: English\n"
 "Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: crowdin.com\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: en\n"
 "X-Crowdin-File: /develop/po/ru.po\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -104,8 +103,8 @@ msgid "Моя Страница"
 msgstr "My Profile"
 
 #: BackgroundApp/js/BgClass.js:207
-msgid "Мы старались для вас"
-msgstr "We tried for you"
+msgid "Мы работаем для вас"
+msgstr ""
 
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
@@ -142,10 +141,6 @@ msgstr "Give us your feedback"
 #: SectionApp/sections/NewFriends/request.tpl:8
 msgid "Отклонить"
 msgstr "Disagree"
-
-#: SectionApp/sections/NewFriends/NewFriends.tpl:3
-msgid "Отклонить все"
-msgstr "Disagree All"
 
 #: libs/helpers/Helpers.js:99
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
