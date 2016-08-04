@@ -23,6 +23,7 @@ module BgApp {
 		) {
 			storage.ready.then((stg) => this.StgReady(stg));
 			storage.onChanged((changes) => this.StgChanged(changes));
+			chrome.browserAction.setBadgeBackgroundColor({color: '#ff4136'});
 			chrome.runtime.onInstalled.addListener((details) => this.onInstalled(details));
 			chrome.alarms.onAlarm.addListener((alarm) => this.onAlarm(alarm));
 		}

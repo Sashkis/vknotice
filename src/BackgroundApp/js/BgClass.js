@@ -13,6 +13,7 @@ var BgApp;
             this.badge = 0;
             storage.ready.then(function (stg) { return _this.StgReady(stg); });
             storage.onChanged(function (changes) { return _this.StgChanged(changes); });
+            chrome.browserAction.setBadgeBackgroundColor({ color: '#ff4136' });
             chrome.runtime.onInstalled.addListener(function (details) { return _this.onInstalled(details); });
             chrome.alarms.onAlarm.addListener(function (alarm) { return _this.onAlarm(alarm); });
         }
