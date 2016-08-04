@@ -4,7 +4,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-03 15:41-0400\n"
+"PO-Revision-Date: 2016-08-04 04:00-0400\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "X-Generator: crowdin.com\n"
@@ -109,7 +109,7 @@ msgstr ""
 
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
-msgstr ""
+msgstr "Click to login"
 
 #: HeaderApp/Header.tpl:8
 msgid "Назад"
@@ -161,7 +161,7 @@ msgstr "Help us get better"
 
 #: OptionsApp/index.html:86
 msgid "При закрытом ВК"
-msgstr ""
+msgstr "When VK closed"
 
 #: SectionApp/sections/NewFriends/request.tpl:7
 msgid "Принять"
@@ -181,11 +181,11 @@ msgstr "See details in our group"
 
 #: OptionsApp/index.html:51
 msgid "Сообщать о записях"
-msgstr ""
+msgstr "Notify about posts"
 
 #: OptionsApp/index.html:31
 msgid "Сообщать о заявках в друзья"
-msgstr ""
+msgstr "Notify about new friends"
 
 #: OptionsApp/index.html:59
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
