@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-04 11:52-0400\n"
+"PO-Revision-Date: 2016-08-04 12:10-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -90,7 +90,7 @@ msgstr "Informer"
 msgid "Информер Вконтакте"
 msgstr "VK Informer"
 
-#: BackgroundApp/js/BgClass.js:181
+#: BackgroundApp/js/BgClass.js:182
 msgid "Информер обновлен до версии {{version}}"
 msgstr "The informer is updated to version {{version}}"
 
@@ -106,7 +106,7 @@ msgstr "Comment"
 msgid "Моя Страница"
 msgstr "My Profile"
 
-#: BackgroundApp/js/BgClass.js:207
+#: BackgroundApp/js/BgClass.js:208
 msgid "Мы работаем для вас"
 msgstr "We work for you"
 
@@ -127,6 +127,10 @@ msgstr "Settings"
 msgid "Настройки уведомлений"
 msgstr "Notifications settings"
 
+#: SectionApp/sections/NewFriends/NewFriends.tpl:6
+msgid "Нет новых заявок в друзья"
+msgstr ""
+
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
 msgstr "News"
@@ -139,7 +143,7 @@ msgstr "Leave Feedback"
 msgid "Оставить предложение"
 msgstr "Leave a suggestion"
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:199
 msgid "Оставьте свой отзыв"
 msgstr "Give us your feedback"
 
@@ -155,7 +159,7 @@ msgstr "Displays the number of unread messages and allows you to answer without 
 msgid "Пожалуйста, выберите диалог"
 msgstr "Please select a dialog"
 
-#: BackgroundApp/js/BgClass.js:197
+#: BackgroundApp/js/BgClass.js:198
 msgid "Помогите нам стать лучше"
 msgstr "Help us get better"
 
@@ -171,11 +175,11 @@ msgstr "Agree"
 msgid "Рассказать друзьям"
 msgstr "Share application"
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
 msgstr "Say \"thank you\" authors"
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
 msgstr "See details in our group"
 
