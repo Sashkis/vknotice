@@ -1,6 +1,6 @@
 files:
   - 
-    source: /po/ru.po
+    source: '/po/*.pot'
     translation: '/po/%two_letters_code%.po'
   - 
     source: /src/_locales/ru/messages.json
