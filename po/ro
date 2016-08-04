@@ -1,0 +1,273 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: vknotify\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: vknotify\n"
+"X-Crowdin-Language: ro\n"
+"X-Crowdin-File: /develop/po/all.pot\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
+"Language-Team: Romanian\n"
+"Language: ro_RO\n"
+"PO-Revision-Date: 2016-08-04 11:48-0400\n"
+
+#: SectionApp/sections/NewMess/attachment.tpl:63
+msgid "{{$count}} Пересланное сообщение"
+msgid_plural "{{$count}} Пересланных сообщений"
+msgstr[0] "{{$count}} Remisă mesaj"
+msgstr[1] "{{$count}} Пересланных mesaje"
+msgstr[2] ""
+
+#: SectionApp/sections/Default/Default.tpl:30
+msgid "Аудиозаписи"
+msgstr "Audio"
+
+#: SectionApp/sections/NewMess/NewMess.chat.tpl:9
+msgid "Введите ваше сообщение"
+msgstr "Introduceți mesajul dvs."
+
+#: SectionApp/sections/Default/Default.tpl:24
+msgid "Видеозаписи"
+msgstr "Video"
+
+#: SectionApp/sections/NewMess/attachment.tpl:69
+msgid "Вложение"
+msgstr "Atașament"
+
+#: OptionsApp/index.html:91
+msgid "Всегда"
+msgstr "Întotdeauna"
+
+#: HeaderApp/Header.tpl:31
+msgid "Выйти"
+msgstr "Ieși"
+
+#: OptionsApp/index.html:81
+msgid "Выключить"
+msgstr "Opriți"
+
+#: SectionApp/sections/Default/Default.tpl:43
+msgid "Группы"
+msgstr "Grup"
+
+#: SectionApp/sections/Default/Default.tpl:10
+msgid "Друзья"
+msgstr "Prieteni"
+
+#: SectionApp/sections/NewFriends/request.tpl:9
+msgid "Заблокировать"
+msgstr "Pentru a bloca"
+
+#: SectionApp/sections/NewMess/NewMess.chat.tpl:5
+msgid "Загрузить ещё"
+msgstr "Descărcați din"
+
+#: HeaderApp/Header.tpl:23
+msgid "Задать вопрос"
+msgstr "Pune o întrebare"
+
+#: PopupApp/alert.tpl:8
+msgctxt "Всплывающее сообщение"
+msgid "Закрыть"
+msgstr "Închide"
+
+#: SectionApp/sections/NewMess/attachment.tpl:20
+msgid "Запись"
+msgstr "Înregistrarea"
+
+#: OptionsApp/index.html:77
+msgid "Звуковые уведомления"
+msgstr "Sunet de notificare"
+
+#: HeaderApp/Header.tpl:4
+msgid "Информер"
+msgstr "Informator"
+
+#: PopupApp/popup.html:4
+#: libs/helpers/Helpers.js:98
+msgid "Информер Вконтакте"
+msgstr "Informator Vkontakte"
+
+#: BackgroundApp/js/BgClass.js:181
+msgid "Информер обновлен до версии {{version}}"
+msgstr "Informator a fost actualizat la versiunea {{version}}"
+
+#: SectionApp/sections/Default/Default.tpl:54
+msgid "Комментарии"
+msgstr "Comentarii"
+
+#: SectionApp/sections/NewMess/attachment.tpl:25
+msgid "Комментарий"
+msgstr "Comentariu"
+
+#: SectionApp/sections/Default/Default.tpl:5
+msgid "Моя Страница"
+msgstr "Pagina Mea"
+
+#: BackgroundApp/js/BgClass.js:207
+msgid "Мы работаем для вас"
+msgstr "Noi lucram pentru tine"
+
+#: PopupApp/popup.html:31
+msgid "Нажмите чтобы авторизоватся"
+msgstr "Faceți clic pentru a авторизоватся"
+
+#: HeaderApp/Header.tpl:8
+msgid "Назад"
+msgstr "În urmă"
+
+#: HeaderApp/Header.tpl:30
+#: OptionsApp/index.html:4
+msgid "Настройки"
+msgstr "Setări"
+
+#: OptionsApp/index.html:27
+msgid "Настройки уведомлений"
+msgstr "Setări de notificare"
+
+#: SectionApp/sections/Default/Default.tpl:49
+msgid "Новости"
+msgstr "Stiri"
+
+#: HeaderApp/Header.tpl:28
+msgid "Оставить отзыв"
+msgstr "Recenzie"
+
+#: HeaderApp/Header.tpl:24
+msgid "Оставить предложение"
+msgstr "Lasa oferta"
+
+#: BackgroundApp/js/BgClass.js:198
+msgid "Оставьте свой отзыв"
+msgstr "Lăsați feedback-ul dumneavoastră"
+
+#: SectionApp/sections/NewFriends/request.tpl:8
+msgid "Отклонить"
+msgstr "Respinge"
+
+#: libs/helpers/Helpers.js:99
+msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
+msgstr "Afișează numărul de mesaje necitite și vă permite să răspundeți fără a intra în CV!"
+
+#: SectionApp/sections/NewMess/NewMess.tpl:11
+msgid "Пожалуйста, выберите диалог"
+msgstr "Vă rugăm să selectați un dialog"
+
+#: BackgroundApp/js/BgClass.js:197
+msgid "Помогите нам стать лучше"
+msgstr "Ajuta-ne sa devenim mai buni"
+
+#: OptionsApp/index.html:86
+msgid "При закрытом ВК"
+msgstr "Când este închis, CV"
+
+#: SectionApp/sections/NewFriends/request.tpl:7
+msgid "Принять"
+msgstr "Ia"
+
+#: HeaderApp/Header.tpl:27
+msgid "Рассказать друзьям"
+msgstr "Să le spui prietenilor tăi"
+
+#: BackgroundApp/js/BgClass.js:208
+msgid "Скажите авторам «Спасибо»"
+msgstr "Spune-autorilor \"Mulțumesc\""
+
+#: BackgroundApp/js/BgClass.js:182
+msgid "Смотрите подробности в нашей группе"
+msgstr "Vezi detalii în grupul nostru"
+
+#: OptionsApp/index.html:51
+msgid "Сообщать о записях"
+msgstr "De a raporta cu privire la înregistrările"
+
+#: OptionsApp/index.html:31
+msgid "Сообщать о заявках в друзья"
+msgstr "De a raporta cu privire la cererile de la prieteni"
+
+#: OptionsApp/index.html:59
+msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
+msgstr "De a raporta comentariile de la înregistrări, fotografii și fișiere video"
+
+#: OptionsApp/index.html:43
+msgid "Сообщать о личных сообщениях"
+msgstr "De a raporta mesaje private"
+
+#: OptionsApp/index.html:71
+msgid "Сообщать о новых подписчиках"
+msgstr "De a raporta despre noi подписчиках"
+
+#: OptionsApp/index.html:47
+msgid "Сообщать о приглашениях в группы"
+msgstr "De a raporta despre invitații în grup"
+
+#: OptionsApp/index.html:67
+msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
+msgstr "Să raporteze copiate înregistrările, fotografiile și înregistrările video"
+
+#: OptionsApp/index.html:63
+msgid "Сообщать об отметках «Мне нравится»"
+msgstr "De a raporta cu privire la altitudini de \"Îmi place\""
+
+#: OptionsApp/index.html:39
+msgid "Сообщать об отметках в видеозаписях"
+msgstr "De a raporta cu privire la altitudini în înregistrările video"
+
+#: OptionsApp/index.html:35
+msgid "Сообщать об отметках на фотографиях"
+msgstr "De a raporta cu privire la altitudini de fotografii"
+
+#: OptionsApp/index.html:55
+msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
+msgstr "Să raporteze referiri în cartea, în comentarii sau în discuții"
+
+#: SectionApp/sections/Default/Default.tpl:35
+msgid "Сообщения"
+msgstr "Mesaje"
+
+#: HeaderApp/Header.tpl:25
+msgid "Сообщить об ошибке"
+msgstr "Raportarea"
+
+#: OptionsApp/index.html:99
+msgid "Сохранено"
+msgstr "Salvat"
+
+#: OptionsApp/index.html:100
+msgid "Сохранить"
+msgstr "Salvați"
+
+#: OptionsApp/index.html:102
+msgid "Удалить все данные расширения"
+msgstr "Șterge toate datele de expansiune"
+
+#: SectionApp/sections/Default/Default.tpl:18
+msgid "Фотографии"
+msgstr "Fotografii"
+
+#: SectionApp/sections/NewMess/message.tpl:27
+msgid "изменил название беседы на"
+msgstr "și-a schimbat numele de conversație pe"
+
+#: SectionApp/sections/NewMess/message.tpl:41
+msgid "исключил"
+msgstr "exclus"
+
+#: SectionApp/sections/NewMess/message.tpl:33
+msgid "обновил фотографию беседы"
+msgstr "și-a actualizat fotografia de conversație"
+
+#: SectionApp/sections/NewMess/message.tpl:46
+msgid "пригласил"
+msgstr "l-a invitat pe"
+
+#: SectionApp/sections/NewMess/message.tpl:21
+msgid "создал беседу"
+msgstr "a creat o conversație"
+
+#: SectionApp/sections/NewMess/message.tpl:37
+msgid "удалил фотографию беседы"
+msgstr "a șters fotografia de conversație"
