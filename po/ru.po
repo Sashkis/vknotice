@@ -60,6 +60,10 @@ msgstr ""
 msgid "Заблокировать"
 msgstr ""
 
+#: SectionApp/sections/NewMess/NewMess.chat.tpl:5
+msgid "Загрузить ещё"
+msgstr ""
+
 #: HeaderApp/Header.tpl:23
 msgid "Задать вопрос"
 msgstr ""
