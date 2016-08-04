@@ -38,3 +38,7 @@
     	}
     }
 }
+
+.empty-requests {
+	@extend %empty-section-plug;
+}
