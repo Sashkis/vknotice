@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 04:15-0400\n"
+"PO-Revision-Date: 2016-08-04 04:20-0400\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -104,7 +104,7 @@ msgstr "Meine Seite"
 
 #: BackgroundApp/js/BgClass.js:207
 msgid "Мы работаем для вас"
-msgstr ""
+msgstr "Wir arbeiten für Sie"
 
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
@@ -160,108 +160,108 @@ msgstr "Bei geschlossenem VC"
 
 #: SectionApp/sections/NewFriends/request.tpl:7
 msgid "Принять"
-msgstr ""
+msgstr "Nehmen"
 
 #: HeaderApp/Header.tpl:27
 msgid "Рассказать друзьям"
-msgstr ""
+msgstr "Erzählen Sie Ihren Freunden"
 
 #: BackgroundApp/js/BgClass.js:208
 msgid "Скажите авторам «Спасибо»"
-msgstr ""
+msgstr "Sagen Sie die Autoren «Danke»"
 
 #: BackgroundApp/js/BgClass.js:182
 msgid "Смотрите подробности в нашей группе"
-msgstr ""
+msgstr "Sehen Sie die Einzelheiten in unserer Gruppe"
 
 #: OptionsApp/index.html:51
 msgid "Сообщать о записях"
-msgstr ""
+msgstr "Berichten über Einträge"
 
 #: OptionsApp/index.html:31
 msgid "Сообщать о заявках в друзья"
-msgstr ""
+msgstr "Zu berichten über die Bewerbungen in Freunde"
 
 #: OptionsApp/index.html:59
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
-msgstr ""
+msgstr "Melden den Kommentaren zu den Beiträgen, Fotos und Videos"
 
 #: OptionsApp/index.html:43
 msgid "Сообщать о личных сообщениях"
-msgstr ""
+msgstr "Melden über private Nachrichten"
 
 #: OptionsApp/index.html:71
 msgid "Сообщать о новых подписчиках"
-msgstr ""
+msgstr "Berichten über neue Abonnenten"
 
 #: OptionsApp/index.html:47
 msgid "Сообщать о приглашениях в группы"
-msgstr ""
+msgstr "Berichten über Einladungen in Gruppen"
 
 #: OptionsApp/index.html:67
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
-msgstr ""
+msgstr "Melden kopierten Aufzeichnungen, Bilder und Videos"
 
 #: OptionsApp/index.html:63
 msgid "Сообщать об отметках «Мне нравится»"
-msgstr ""
+msgstr "Melden bei «gefällt Mir»"
 
 #: OptionsApp/index.html:39
 msgid "Сообщать об отметках в видеозаписях"
-msgstr ""
+msgstr "Melden bei Videoaufnahmen in"
 
 #: OptionsApp/index.html:35
 msgid "Сообщать об отметках на фотографиях"
-msgstr ""
+msgstr "Berichten über Markierungen auf Fotos"
 
 #: OptionsApp/index.html:55
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
-msgstr ""
+msgstr "Melden Erwähnungen in Beiträgen, in den Kommentaren oder in Diskussionen"
 
 #: SectionApp/sections/Default/Default.tpl:35
 msgid "Сообщения"
-msgstr ""
+msgstr "Nachrichten"
 
 #: HeaderApp/Header.tpl:25
 msgid "Сообщить об ошибке"
-msgstr ""
+msgstr "Fehler melden"
 
 #: OptionsApp/index.html:99
 msgid "Сохранено"
-msgstr ""
+msgstr "Gespeichert"
 
 #: OptionsApp/index.html:100
 msgid "Сохранить"
-msgstr ""
+msgstr "Speichern"
 
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
-msgstr ""
+msgstr "Alle Daten löschen-Erweiterungen"
 
 #: SectionApp/sections/Default/Default.tpl:18
 msgid "Фотографии"
-msgstr ""
+msgstr "Fotos"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
-msgstr ""
+msgstr "änderte den Namen auf Gespräche"
 
 #: SectionApp/sections/NewMess/message.tpl:41
 msgid "исключил"
-msgstr ""
+msgstr "ausgeschlossen"
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
-msgstr ""
+msgstr "wurde das Foto und die Gespräche"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
-msgstr ""
+msgstr "eingeladen"
 
 #: SectionApp/sections/NewMess/message.tpl:21
 msgid "создал беседу"
-msgstr ""
+msgstr "schuf Gespräch"
 
 #: SectionApp/sections/NewMess/message.tpl:37
 msgid "удалил фотографию беседы"
-msgstr ""
+msgstr "löschte das Foto und Gespräch"
