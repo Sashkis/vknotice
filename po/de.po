@@ -1,19 +1,18 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: vknotify\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 05:10-0400\n"
-"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
-"Language-Team: German\n"
-"Language: de\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"Project-Id-Version: vknotify\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: de\n"
-"X-Crowdin-File: /develop/po/ru.po\n"
+"X-Crowdin-File: /develop/po/all.pot\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"PO-Revision-Date: 2016-08-04 11:49-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -86,7 +85,8 @@ msgstr "Sound-Benachrichtigungen"
 msgid "Информер"
 msgstr "Informer"
 
-#: PopupApp/popup.html:4 libs/helpers/Helpers.js:98
+#: PopupApp/popup.html:4
+#: libs/helpers/Helpers.js:98
 msgid "Информер Вконтакте"
 msgstr "Informer Facebook"
 
@@ -118,7 +118,8 @@ msgstr "Klicken Sie um авторизоватся"
 msgid "Назад"
 msgstr "Zurück"
 
-#: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
+#: HeaderApp/Header.tpl:30
+#: OptionsApp/index.html:4
 msgid "Настройки"
 msgstr "Einstellungen"
 
