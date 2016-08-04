@@ -224,7 +224,7 @@ module BgApp {
 						'id':    'say-thanks',
 						'type':  'simple',
 						'img':   'https://vk.com/images/stickers/2074/128.png',
-						'text':  this.gettextCatalog.getString('Мы старались для вас'),
+						'text':  this.gettextCatalog.getString('Мы работаем для вас'),
 						'ancor': this.gettextCatalog.getString('Скажите авторам «Спасибо»'),
 						'url':   Helpers.getShareUrl(),
 					};

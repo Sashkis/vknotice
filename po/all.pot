@@ -93,7 +93,7 @@ msgid "Моя Страница"
 msgstr ""
 
 #: BackgroundApp/js/BgClass.js:207
-msgid "Мы старались для вас"
+msgid "Мы работаем для вас"
 msgstr ""
 
 #: PopupApp/popup.html:31
@@ -131,10 +131,6 @@ msgstr ""
 
 #: SectionApp/sections/NewFriends/request.tpl:8
 msgid "Отклонить"
-msgstr ""
-
-#: SectionApp/sections/NewFriends/NewFriends.tpl:3
-msgid "Отклонить все"
 msgstr ""
 
 #: libs/helpers/Helpers.js:99
