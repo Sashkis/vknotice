@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 05:00-0400\n"
+"PO-Revision-Date: 2016-08-04 05:10-0400\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be\n"
@@ -64,7 +64,7 @@ msgstr "Заблакаваць"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:5
 msgid "Загрузить ещё"
-msgstr ""
+msgstr "Загрузіць яшчэ"
 
 #: HeaderApp/Header.tpl:23
 msgid "Задать вопрос"
