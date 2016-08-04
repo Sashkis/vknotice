@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vknotify\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 04:15-0400\n"
+"PO-Revision-Date: 2016-08-04 04:20-0400\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -105,7 +105,7 @@ msgstr "Моя Cторінка"
 
 #: BackgroundApp/js/BgClass.js:207
 msgid "Мы работаем для вас"
-msgstr ""
+msgstr "Ми працюємо для вас"
 
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
