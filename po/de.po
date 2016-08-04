@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2016-08-04 11:52-0400\n"
+"PO-Revision-Date: 2016-08-04 12:10-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -90,7 +90,7 @@ msgstr "Informer"
 msgid "Информер Вконтакте"
 msgstr "Informer Facebook"
 
-#: BackgroundApp/js/BgClass.js:181
+#: BackgroundApp/js/BgClass.js:182
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Widget aktualisiert auf Version {{version}}"
 
@@ -106,7 +106,7 @@ msgstr "Kommentar"
 msgid "Моя Страница"
 msgstr "Meine Seite"
 
-#: BackgroundApp/js/BgClass.js:207
+#: BackgroundApp/js/BgClass.js:208
 msgid "Мы работаем для вас"
 msgstr "Wir arbeiten für Sie"
 
@@ -127,6 +127,10 @@ msgstr "Einstellungen"
 msgid "Настройки уведомлений"
 msgstr "Benachrichtigungseinstellungen"
 
+#: SectionApp/sections/NewFriends/NewFriends.tpl:6
+msgid "Нет новых заявок в друзья"
+msgstr "Keine neue Zulassungsanträge für Freunde in"
+
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
 msgstr "News"
@@ -139,7 +143,7 @@ msgstr "Hinterlassen Sie eine Bewertung"
 msgid "Оставить предложение"
 msgstr "Verlassen Angebot"
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:199
 msgid "Оставьте свой отзыв"
 msgstr "Geben Sie uns Ihr Feedback"
 
@@ -155,7 +159,7 @@ msgstr "Zeigt die Anzahl der ungelesenen Nachrichten und Antworten können ohne 
 msgid "Пожалуйста, выберите диалог"
 msgstr "Bitte wählen Sie den Dialog"
 
-#: BackgroundApp/js/BgClass.js:197
+#: BackgroundApp/js/BgClass.js:198
 msgid "Помогите нам стать лучше"
 msgstr "Helfen Sie uns besser zu werden"
 
@@ -171,11 +175,11 @@ msgstr "Nehmen"
 msgid "Рассказать друзьям"
 msgstr "Erzählen Sie Ihren Freunden"
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
 msgstr "Sagen Sie die Autoren «Danke»"
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
 msgstr "Sehen Sie die Einzelheiten in unserer Gruppe"
 
