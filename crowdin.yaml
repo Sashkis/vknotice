@@ -1,7 +1,7 @@
 files:
   - 
     source: '/po/*.pot'
-    translation: '/po/%two_letters_code%'
+    translation: '/po/%two_letters_code%.po'
   - 
     source: /src/_locales/ru/messages.json
     translation: '/src/_locales/%two_letters_code%/messages.json'
