@@ -1,19 +1,18 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: vknotify\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 05:10-0400\n"
-"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
-"Language-Team: German\n"
-"Language: de\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"Project-Id-Version: vknotify\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: de\n"
-"X-Crowdin-File: /develop/po/ru.po\n"
+"X-Crowdin-File: /develop/po/all.pot\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"PO-Revision-Date: 2016-08-04 12:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -86,11 +85,12 @@ msgstr "Sound-Benachrichtigungen"
 msgid "Информер"
 msgstr "Informer"
 
-#: PopupApp/popup.html:4 libs/helpers/Helpers.js:98
+#: PopupApp/popup.html:4
+#: libs/helpers/Helpers.js:98
 msgid "Информер Вконтакте"
 msgstr "Informer Facebook"
 
-#: BackgroundApp/js/BgClass.js:181
+#: BackgroundApp/js/BgClass.js:182
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Widget aktualisiert auf Version {{version}}"
 
@@ -106,7 +106,7 @@ msgstr "Kommentar"
 msgid "Моя Страница"
 msgstr "Meine Seite"
 
-#: BackgroundApp/js/BgClass.js:207
+#: BackgroundApp/js/BgClass.js:208
 msgid "Мы работаем для вас"
 msgstr "Wir arbeiten für Sie"
 
@@ -118,13 +118,18 @@ msgstr "Klicken Sie um авторизоватся"
 msgid "Назад"
 msgstr "Zurück"
 
-#: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
+#: HeaderApp/Header.tpl:30
+#: OptionsApp/index.html:4
 msgid "Настройки"
 msgstr "Einstellungen"
 
 #: OptionsApp/index.html:27
 msgid "Настройки уведомлений"
 msgstr "Benachrichtigungseinstellungen"
+
+#: SectionApp/sections/NewFriends/NewFriends.tpl:6
+msgid "Нет новых заявок в друзья"
+msgstr "Keine neue Zulassungsanträge für Freunde in"
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
@@ -138,7 +143,7 @@ msgstr "Hinterlassen Sie eine Bewertung"
 msgid "Оставить предложение"
 msgstr "Verlassen Angebot"
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:199
 msgid "Оставьте свой отзыв"
 msgstr "Geben Sie uns Ihr Feedback"
 
@@ -154,7 +159,7 @@ msgstr "Zeigt die Anzahl der ungelesenen Nachrichten und Antworten können ohne 
 msgid "Пожалуйста, выберите диалог"
 msgstr "Bitte wählen Sie den Dialog"
 
-#: BackgroundApp/js/BgClass.js:197
+#: BackgroundApp/js/BgClass.js:198
 msgid "Помогите нам стать лучше"
 msgstr "Helfen Sie uns besser zu werden"
 
@@ -170,11 +175,11 @@ msgstr "Nehmen"
 msgid "Рассказать друзьям"
 msgstr "Erzählen Sie Ihren Freunden"
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
 msgstr "Sagen Sie die Autoren «Danke»"
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
 msgstr "Sehen Sie die Einzelheiten in unserer Gruppe"
 

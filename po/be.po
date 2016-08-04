@@ -1,19 +1,18 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: vknotify\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-08-04 05:10-0400\n"
-"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
-"Language-Team: Belarusian\n"
-"Language: be\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"Project-Id-Version: vknotify\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: be\n"
-"X-Crowdin-File: /develop/po/ru.po\n"
+"X-Crowdin-File: /develop/po/all.pot\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
+"Language-Team: Belarusian\n"
+"Language: be_BY\n"
+"PO-Revision-Date: 2016-08-04 12:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -87,11 +86,12 @@ msgstr "Гукавыя апавяшчэння"
 msgid "Информер"
 msgstr "Інформар"
 
-#: PopupApp/popup.html:4 libs/helpers/Helpers.js:98
+#: PopupApp/popup.html:4
+#: libs/helpers/Helpers.js:98
 msgid "Информер Вконтакте"
 msgstr "Інформар Вконтакте"
 
-#: BackgroundApp/js/BgClass.js:181
+#: BackgroundApp/js/BgClass.js:182
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Інформар абноўлены да версіі {{version}}"
 
@@ -107,7 +107,7 @@ msgstr "Каментар"
 msgid "Моя Страница"
 msgstr "Мая Старонка"
 
-#: BackgroundApp/js/BgClass.js:207
+#: BackgroundApp/js/BgClass.js:208
 msgid "Мы работаем для вас"
 msgstr "Мы працуем для вас"
 
@@ -119,13 +119,18 @@ msgstr "Націсніце каб авторизоватся"
 msgid "Назад"
 msgstr "Таму"
 
-#: HeaderApp/Header.tpl:30 OptionsApp/index.html:4
+#: HeaderApp/Header.tpl:30
+#: OptionsApp/index.html:4
 msgid "Настройки"
 msgstr "Налады"
 
 #: OptionsApp/index.html:27
 msgid "Настройки уведомлений"
 msgstr "Налады апавяшчэнняў"
+
+#: SectionApp/sections/NewFriends/NewFriends.tpl:6
+msgid "Нет новых заявок в друзья"
+msgstr "Няма новых заявак у сябры"
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
@@ -139,7 +144,7 @@ msgstr "Пакінуць водгук"
 msgid "Оставить предложение"
 msgstr "Пакінуць прапанову"
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:199
 msgid "Оставьте свой отзыв"
 msgstr "Пакіньце свой водгук"
 
@@ -155,7 +160,7 @@ msgstr "Адлюстроўвае колькасць непрачытаных п�
 msgid "Пожалуйста, выберите диалог"
 msgstr "Калі ласка, абярыце дыялог"
 
-#: BackgroundApp/js/BgClass.js:197
+#: BackgroundApp/js/BgClass.js:198
 msgid "Помогите нам стать лучше"
 msgstr "Дапамажыце нам стаць лепш"
 
@@ -171,11 +176,11 @@ msgstr "Прыняць"
 msgid "Рассказать друзьям"
 msgstr "Распавесці сябрам"
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
 msgstr "Скажыце аўтарам «Дзякуй»"
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
 msgstr "Глядзіце падрабязнасьці ў нашай групе"
 
