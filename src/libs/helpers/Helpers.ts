@@ -19,8 +19,9 @@ module Helpers {
 		const [gettextCatalog, storage] = dependency;
 
 		gettextCatalog.debug = true;
-		gettextCatalog.baseLanguage = 'ru';
-		gettextCatalog.currentLanguage = 'ru';
+		console.log(gettextCatalog);
+		gettextCatalog.baseLanguage = 'ru_RU';
+		// gettextCatalog.currentLanguage = 'ru_RU';
 
 		storage.ready.then((stg: IStorageData) => {
 			const lang = getLang(stg.lang);
@@ -34,21 +35,21 @@ module Helpers {
 	function getLang(lang_code: number) {
 		switch (lang_code) {
 			case 0: case 97: case 100: case 777:
-			return 'ru'; // Русский
+			return 'ru_RU'; // Русский
 			case 1:
-			return 'uk'; // Украинский
+			return 'uk_UA'; // Украинский
 			case 2:  case 114:
-			return 'be'; // Белорусский
+			return 'be_BY'; // Белорусский
 			case 6:
-			return 'de'; // Немецкий
+			return 'de_DE'; // Немецкий
 			case 15:
-			return 'pl'; // Польский
+			return 'pl_PL'; // Польский
 			case 54: case 66:
-			return 'ro'; // Румынский
+			return 'ro_RO'; // Румынский
 			case 61:
-			return 'nl'; // Нидерландский
+			return 'nl_NL'; // Нидерландский
 			default:
-			return 'en'; // Английский
+			return 'en_US'; // Английский
 		}
 	}
 

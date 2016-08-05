@@ -27,8 +27,8 @@ var Helpers;
         }
         var gettextCatalog = dependency[0], storage = dependency[1];
         gettextCatalog.debug = true;
-        gettextCatalog.baseLanguage = 'ru';
-        gettextCatalog.currentLanguage = 'ru';
+        console.log(gettextCatalog);
+        gettextCatalog.baseLanguage = 'ru_RU';
         storage.ready.then(function (stg) {
             var lang = getLang(stg.lang);
             gettextCatalog.setCurrentLanguage(lang);
@@ -42,23 +42,23 @@ var Helpers;
             case 97:
             case 100:
             case 777:
-                return 'ru';
+                return 'ru_RU';
             case 1:
-                return 'uk';
+                return 'uk_UA';
             case 2:
             case 114:
-                return 'be';
+                return 'be_BY';
             case 6:
-                return 'de';
+                return 'de_DE';
             case 15:
-                return 'pl';
+                return 'pl_PL';
             case 54:
             case 66:
-                return 'ro';
+                return 'ro_RO';
             case 61:
-                return 'nl';
+                return 'nl_NL';
             default:
-                return 'en';
+                return 'en_US';
         }
     }
     function setAnaliticSetting() {

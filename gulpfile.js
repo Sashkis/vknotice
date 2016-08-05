@@ -29,8 +29,10 @@ gulp.task('translations', function () {
 	var inject  = require('gulp-inject');
 
 	var gettext = gulp.src(['po/**/*.po', '!po/**/ru.po'])
-		.pipe(gettext.compile())
-		.pipe(gulp.dest('src/Translations/'));
+		.pipe(gettext.compile({
+			defaultLanguage: 'ru_RU',
+		}))
+		.pipe(gulp.dest('src/Translations'));
 
 		return gulp.src(['src/*/*.html'])
 			.pipe(inject(gettext, {relative: true}))
