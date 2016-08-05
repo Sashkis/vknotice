@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
-"PO-Revision-Date: 2016-08-05 05:46-0400\n"
+"PO-Revision-Date: 2016-08-05 05:49-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -31,7 +31,7 @@ msgstr "Introduceți mesajul dvs"
 
 #: HeaderApp/Header.tpl:8
 msgid "Вернуться"
-msgstr ""
+msgstr "Pentru a reveni"
 
 #: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
