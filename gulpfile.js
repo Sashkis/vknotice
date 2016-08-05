@@ -28,7 +28,7 @@ gulp.task('translations', function () {
 	var gettext = require('gulp-angular-gettext');
 	var inject  = require('gulp-inject');
 
-	var gettext = gulp.src(['po/**/*.po', '!po/**/ru.po'])
+	var gettext = gulp.src(['po/**/*.po'])
 		.pipe(gettext.compile({
 			defaultLanguage: 'ru_RU',
 		}))
