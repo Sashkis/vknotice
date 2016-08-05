@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-08-04 12:20-0400\n"
+"PO-Revision-Date: 2016-08-05 05:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -63,7 +63,7 @@ msgstr "Заблокувати"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:5
 msgid "Загрузить ещё"
-msgstr "Завантажити"
+msgstr "Завантажити ще"
 
 #: HeaderApp/Header.tpl:23
 msgid "Задать вопрос"
