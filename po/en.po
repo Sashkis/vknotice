@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-04 12:20-0400\n"
+"PO-Revision-Date: 2016-08-05 05:49-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -27,6 +27,10 @@ msgstr "Audios"
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
 msgstr "Type your text here"
+
+#: HeaderApp/Header.tpl:8
+msgid "Вернуться"
+msgstr "Back"
 
 #: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
@@ -58,7 +62,7 @@ msgstr "Friends"
 
 #: SectionApp/sections/NewFriends/request.tpl:9
 msgid "Заблокировать"
-msgstr "Block"
+msgstr "Ban"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:5
 msgid "Загрузить ещё"
@@ -92,7 +96,7 @@ msgstr "VK Informer"
 
 #: BackgroundApp/js/BgClass.js:182
 msgid "Информер обновлен до версии {{version}}"
-msgstr "The informer is updated to version {{version}}"
+msgstr "Informer has been updated to version {{version}}"
 
 #: SectionApp/sections/Default/Default.tpl:54
 msgid "Комментарии"
@@ -114,10 +118,6 @@ msgstr "We work for you"
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Click to login"
 
-#: HeaderApp/Header.tpl:8
-msgid "Назад"
-msgstr "Back"
-
 #: HeaderApp/Header.tpl:30
 #: OptionsApp/index.html:4
 msgid "Настройки"
@@ -129,7 +129,7 @@ msgstr "Notifications settings"
 
 #: SectionApp/sections/NewFriends/NewFriends.tpl:6
 msgid "Нет новых заявок в друзья"
-msgstr "No new applications to friends"
+msgstr "No new requests to be friends"
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
@@ -177,7 +177,7 @@ msgstr "Share application"
 
 #: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
-msgstr "Say \"thank you\" authors"
+msgstr "Say \"thank you\" to the authors"
 
 #: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
@@ -189,7 +189,7 @@ msgstr "Notify about posts"
 
 #: OptionsApp/index.html:31
 msgid "Сообщать о заявках в друзья"
-msgstr "Notify about friend requests"
+msgstr "Notify about new requests to be friends"
 
 #: OptionsApp/index.html:59
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
@@ -217,7 +217,7 @@ msgstr "Notify about likes"
 
 #: OptionsApp/index.html:39
 msgid "Сообщать об отметках в видеозаписях"
-msgstr "Notify about elevations in videos"
+msgstr "Notify about marks in the video"
 
 #: OptionsApp/index.html:35
 msgid "Сообщать об отметках на фотографиях"
@@ -233,7 +233,7 @@ msgstr "Messages"
 
 #: HeaderApp/Header.tpl:25
 msgid "Сообщить об ошибке"
-msgstr "Report bug"
+msgstr "Report a bug"
 
 #: OptionsApp/index.html:99
 msgid "Сохранено"

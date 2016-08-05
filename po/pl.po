@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
-"PO-Revision-Date: 2016-08-04 12:20-0400\n"
+"PO-Revision-Date: 2016-08-05 05:49-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -28,6 +28,10 @@ msgstr "Pliki audio"
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
 msgstr "Wprowadź wiadomość tutaj"
+
+#: HeaderApp/Header.tpl:8
+msgid "Вернуться"
+msgstr "Powrót"
 
 #: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
@@ -114,10 +118,6 @@ msgstr "Pracujemy dla ciebie"
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Kliknij, aby zalogować się"
-
-#: HeaderApp/Header.tpl:8
-msgid "Назад"
-msgstr "Temu"
 
 #: HeaderApp/Header.tpl:30
 #: OptionsApp/index.html:4
