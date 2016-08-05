@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-04 12:20-0400\n"
+"PO-Revision-Date: 2016-08-05 05:30-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -58,7 +58,7 @@ msgstr "Friends"
 
 #: SectionApp/sections/NewFriends/request.tpl:9
 msgid "Заблокировать"
-msgstr "Block"
+msgstr "Ban"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:5
 msgid "Загрузить ещё"
@@ -92,7 +92,7 @@ msgstr "VK Informer"
 
 #: BackgroundApp/js/BgClass.js:182
 msgid "Информер обновлен до версии {{version}}"
-msgstr "The informer is updated to version {{version}}"
+msgstr "Informer has been updated to version {{version}}"
 
 #: SectionApp/sections/Default/Default.tpl:54
 msgid "Комментарии"
@@ -129,7 +129,7 @@ msgstr "Notifications settings"
 
 #: SectionApp/sections/NewFriends/NewFriends.tpl:6
 msgid "Нет новых заявок в друзья"
-msgstr "No new applications to friends"
+msgstr "No new requests to be friends"
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
@@ -177,7 +177,7 @@ msgstr "Share application"
 
 #: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
-msgstr "Say \"thank you\" authors"
+msgstr "Say \"thank you\" to the authors"
 
 #: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
