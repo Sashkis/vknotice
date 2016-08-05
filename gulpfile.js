@@ -78,7 +78,7 @@ gulp.task('zip', ['build'], function () {
 });
 
 
-gulp.task('build', ['copy', 'sass'], function () {
+gulp.task('build', ['copy', 'sass', 'translations'], function () {
 	var useref   = require('gulp-useref');
 	var uglify   = require('gulp-uglify');
 	var cleanCSS = require('gulp-clean-css');
