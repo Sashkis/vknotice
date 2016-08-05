@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-05 05:30-0400\n"
+"PO-Revision-Date: 2016-08-05 05:40-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -189,7 +189,7 @@ msgstr "Notify about posts"
 
 #: OptionsApp/index.html:31
 msgid "Сообщать о заявках в друзья"
-msgstr "Notify about friend requests"
+msgstr "Notify about new requests to be friends"
 
 #: OptionsApp/index.html:59
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
@@ -217,7 +217,7 @@ msgstr "Notify about likes"
 
 #: OptionsApp/index.html:39
 msgid "Сообщать об отметках в видеозаписях"
-msgstr "Notify about elevations in videos"
+msgstr "Notify about marks in the video"
 
 #: OptionsApp/index.html:35
 msgid "Сообщать об отметках на фотографиях"
@@ -233,7 +233,7 @@ msgstr "Messages"
 
 #: HeaderApp/Header.tpl:25
 msgid "Сообщить об ошибке"
-msgstr "Report bug"
+msgstr "Report a bug"
 
 #: OptionsApp/index.html:99
 msgid "Сохранено"
