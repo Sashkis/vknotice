@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-08-05 05:20-0400\n"
+"PO-Revision-Date: 2016-08-05 05:30-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -117,7 +117,7 @@ msgstr "Натисніть, щоб авторизуватись"
 
 #: HeaderApp/Header.tpl:8
 msgid "Назад"
-msgstr "Тому"
+msgstr "Назад"
 
 #: HeaderApp/Header.tpl:30
 #: OptionsApp/index.html:4
@@ -130,7 +130,7 @@ msgstr "Налаштування сповіщень"
 
 #: SectionApp/sections/NewFriends/NewFriends.tpl:6
 msgid "Нет новых заявок в друзья"
-msgstr "Немає нових заявок в друзі"
+msgstr "Немає нових заявок у друзі"
 
 #: SectionApp/sections/Default/Default.tpl:49
 msgid "Новости"
@@ -178,7 +178,7 @@ msgstr "Розповісти друзям"
 
 #: BackgroundApp/js/BgClass.js:209
 msgid "Скажите авторам «Спасибо»"
-msgstr "Скадіть авторам «Спасибо»"
+msgstr "Скажіть авторам «Дякую»"
 
 #: BackgroundApp/js/BgClass.js:183
 msgid "Смотрите подробности в нашей группе"
@@ -206,7 +206,7 @@ msgstr "Повідомляти про нових підписників"
 
 #: OptionsApp/index.html:47
 msgid "Сообщать о приглашениях в группы"
-msgstr "Повідомляти про запрошення у групи"
+msgstr "Повідомляти про запрошення до спільнот"
 
 #: OptionsApp/index.html:67
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
