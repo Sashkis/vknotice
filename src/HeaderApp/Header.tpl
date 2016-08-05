@@ -5,7 +5,7 @@
 	</a>
 	<a ng-hide="head.isHome()" class="navbar-brand" ui-sref="home">
 		<span class="fa fa-angle-left fa-3x"></span>
-		<translate>Назад</translate>
+		<translate>Вернуться</translate>
 	</a>
 
 	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">

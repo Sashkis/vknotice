@@ -18,6 +18,10 @@ msgstr ""
 msgid "Введите ваше сообщение"
 msgstr ""
 
+#: HeaderApp/Header.tpl:8
+msgid "Вернуться"
+msgstr ""
+
 #: SectionApp/sections/Default/Default.tpl:24
 msgid "Видеозаписи"
 msgstr ""
@@ -102,10 +106,6 @@ msgstr ""
 
 #: PopupApp/popup.html:31
 msgid "Нажмите чтобы авторизоватся"
-msgstr ""
-
-#: HeaderApp/Header.tpl:8
-msgid "Назад"
 msgstr ""
 
 #: HeaderApp/Header.tpl:30
