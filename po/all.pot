@@ -46,6 +46,12 @@ msgstr ""
 msgid "Группы"
 msgstr ""
 
+#: OptionsApp/js/OptionsCtrl.js:36
+msgid ""
+"Данное действие удалит весь кэш и сбросит настройки.\n"
+"Вы уверены, что хотите сделать это?"
+msgstr ""
+
 #: SectionApp/sections/Default/Default.tpl:10
 msgid "Друзья"
 msgstr ""

@@ -1,11 +1,12 @@
 var OptionsApp;
 (function (OptionsApp) {
     var OptionsCtrl = (function () {
-        function OptionsCtrl(storage, $scope, Analytics) {
+        function OptionsCtrl(storage, $scope, Analytics, gettextCatalog) {
             var _this = this;
             this.storage = storage;
             this.$scope = $scope;
             this.Analytics = Analytics;
+            this.gettextCatalog = gettextCatalog;
             this.stg = {};
             storage.ready.then(function (stg) {
                 _this.stg = stg;
@@ -28,23 +29,21 @@ var OptionsApp;
         };
         ;
         OptionsCtrl.prototype.isOptionNotSaved = function () {
-            var res = !angular.equals(this.options, this.stg.options);
-            return res;
+            return !angular.equals(this.options, this.stg.options);
         };
         ;
         OptionsCtrl.prototype.clearData = function () {
-            var _this = this;
-            this.Analytics.trackEvent('Activity', 'ClearData');
-            this.storage.clear(function () { return _this.onStorageClear(); });
+            if (confirm(this.gettextCatalog.getString('Данное действие удалит весь кэш и сбросит настройки.\nВы уверены, что хотите сделать это?'))) {
+                this.Analytics.trackEvent('Activity', 'ClearData');
+                this.storage.clear(function () { return chrome.runtime.reload(); });
+            }
         };
         ;
-        OptionsCtrl.prototype.onStorageClear = function () {
-            chrome.runtime.reload();
-        };
         OptionsCtrl.$inject = [
             'storage',
             '$scope',
             'Analytics',
+            'gettextCatalog',
         ];
         return OptionsCtrl;
     }());

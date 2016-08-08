@@ -14,9 +14,15 @@ module OptionsApp {
 			'storage',
 			'$scope',
 			'Analytics',
+			'gettextCatalog',
 		];
 
-		constructor (private storage: StorageApp.StorageService, private $scope: IOptionScope, private Analytics: any) {
+		constructor (
+			private storage: StorageApp.StorageService,
+			private $scope: IOptionScope,
+			private Analytics: any,
+			private gettextCatalog: any
+		) {
 			storage.ready.then((stg) => {
 				this.stg = stg;
 				this.options = angular.copy(stg.options);
@@ -39,17 +45,15 @@ module OptionsApp {
 		};
 
 		isOptionNotSaved () {
-			const res = !angular.equals(this.options, this.stg.options);
-			return res;
+			return !angular.equals(this.options, this.stg.options);
 		};
 
 		clearData () {
-			this.Analytics.trackEvent('Activity', 'ClearData');
-			this.storage.clear(() => this.onStorageClear());
+			if (confirm(this.gettextCatalog.getString('Данное действие удалит весь кэш и сбросит настройки.\nВы уверены, что хотите сделать это?'))) {
+				this.Analytics.trackEvent('Activity', 'ClearData');
+				this.storage.clear(() => chrome.runtime.reload());
+			}
 		};
 
-		private onStorageClear() {
-			chrome.runtime.reload();
-		}
 	}
 }
