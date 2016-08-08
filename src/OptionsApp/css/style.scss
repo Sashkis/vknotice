@@ -1,0 +1,133 @@
+@import "../../libs/helpers/_variables";
+@import "../../libs/helpers/_mixins";
+
+body {
+	color: #000;
+	font-size: 15px;
+	font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	background: #edeef0;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+header, .wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.header-container {
+	background: $mainColor;
+	display: block;
+}
+
+
+.wrapper {
+	display: flex;
+}
+
+.option-panels {
+	flex: 5;
+}
+
+.widget {
+	flex: 3;
+	&.box {
+		margin-left: 0;
+	}
+
+}
+
+.box {
+	margin: 20px;
+}
+
+.panel {
+	border-radius: 3px;
+	background: #fff;
+	padding: 0 25px 13px 25px;
+	overflow: hidden;
+	box-shadow: 0 0 0 1px rgba(4,47,89,.12) inset;
+	font-size: 15px;
+	color: #2b2f33;
+	font-weight: 100;
+	.header {
+		border-bottom: 1px solid #e7e8ec;
+		font-size: 120%;
+		margin-bottom: 16px;
+		padding: 16px 0;
+	}
+}
+
+
+.audioOption > .content {
+	display: flex;
+	justify-content: space-between;
+	label {
+		flex-grow: 1;
+		text-align: center;
+		color: rgba(0,0,0,0.3);
+		&:hover { color: lighten($mainColor, 15%); }
+
+		&.active { color: $mainColor; }
+
+		.fa {
+			color: inherit;
+			display: block;
+			margin: auto;
+			font-size: 300%;
+			line-height: normal;
+		}
+
+	}
+
+}
+
+
+label {
+	position: relative;
+	display: block;
+	cursor: pointer;
+	input {
+		display: none;
+	}
+
+	.fa-stack {
+		font-size: 60%;
+		.fa-square {
+			color: #567ca4;
+		}
+	}
+
+	input.ng-empty + .fa-stack {
+		opacity: .1;
+	}
+
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-size: 1.5em;
+	vertical-align: middle;
+}
+
+.buttons-conteiner {
+	display: flex;
+	button {
+		display: none;
+	}
+	.save {
+		@extend %btn;
+		@include btnColor(#6287ae);
+		display: block;
+	}
+
+
+	.clear {
+		@extend %btn;
+		@include btnColor(#dc4040);
+		display: block;
+		margin-left: auto;
+	}
+
+}

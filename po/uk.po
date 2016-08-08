@@ -1,0 +1,283 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: vknotify\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: vknotify\n"
+"X-Crowdin-Language: uk\n"
+"X-Crowdin-File: /develop/po/all.pot\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"PO-Revision-Date: 2016-08-08 04:58-0400\n"
+
+#: SectionApp/sections/NewMess/attachment.tpl:63
+msgid "{{$count}} Пересланное сообщение"
+msgid_plural "{{$count}} Пересланных сообщений"
+msgstr[0] "{{$count}} Переслане повідомлення"
+msgstr[1] "{{$count}} Пересланих повідомлення"
+msgstr[2] "{{$count}} Пересланих повідомлень"
+
+#: SectionApp/sections/Default/Default.tpl:30
+msgid "Аудиозаписи"
+msgstr "Аудiозаписи"
+
+#: SectionApp/sections/NewMess/NewMess.chat.tpl:9
+msgid "Введите ваше сообщение"
+msgstr "Введіть ваше повідомлення"
+
+#: HeaderApp/Header.tpl:8
+msgid "Вернуться"
+msgstr "Повернутися"
+
+#: SectionApp/sections/Default/Default.tpl:24
+msgid "Видеозаписи"
+msgstr "Відеозаписи"
+
+#: SectionApp/sections/NewMess/attachment.tpl:69
+msgid "Вложение"
+msgstr "Вкладення"
+
+#: OptionsApp/index.html:91
+msgid "Всегда"
+msgstr "Завжди"
+
+#: HeaderApp/Header.tpl:31
+msgid "Выйти"
+msgstr "Вийти"
+
+#: OptionsApp/index.html:81
+msgid "Выключить"
+msgstr "Вимкнути"
+
+#: SectionApp/sections/Default/Default.tpl:43
+msgid "Группы"
+msgstr "Спільноти"
+
+#: OptionsApp/js/OptionsCtrl.js:36
+msgid "Данное действие удалит весь кэш и сбросит настройки.\n"
+"Вы уверены, что хотите сделать это?"
+msgstr "Ця дія вилучить весь кеш і скине налаштування.\n"
+"Ви впевнені, що хочете зробити це?"
+
+#: SectionApp/sections/Default/Default.tpl:10
+msgid "Друзья"
+msgstr "Друзі"
+
+#: SectionApp/sections/NewFriends/request.tpl:9
+msgid "Заблокировать"
+msgstr "Заблокувати"
+
+#: SectionApp/sections/NewMess/NewMess.chat.tpl:5
+msgid "Загрузить ещё"
+msgstr "Завантажити ще"
+
+#: HeaderApp/Header.tpl:23
+msgid "Задать вопрос"
+msgstr "Задати питання"
+
+#: PopupApp/alert.tpl:8
+msgctxt "Всплывающее сообщение"
+msgid "Закрыть"
+msgstr "Закрити"
+
+#: SectionApp/sections/NewMess/attachment.tpl:20
+msgid "Запись"
+msgstr "Запис"
+
+#: OptionsApp/index.html:77
+msgid "Звуковые уведомления"
+msgstr "Звукові сповіщення"
+
+#: HeaderApp/Header.tpl:4
+msgid "Информер"
+msgstr "Інформер"
+
+#: PopupApp/popup.html:4
+#: libs/helpers/Helpers.js:98
+msgid "Информер Вконтакте"
+msgstr "Інформер Вконтакте"
+
+#: BackgroundApp/js/BgClass.js:182
+msgid "Информер обновлен до версии {{version}}"
+msgstr "Інформер оновлено до версії {{version}}"
+
+#: SectionApp/sections/Default/Default.tpl:54
+msgid "Комментарии"
+msgstr "Коментарі"
+
+#: SectionApp/sections/NewMess/attachment.tpl:25
+msgid "Комментарий"
+msgstr "Коментар"
+
+#: SectionApp/sections/Default/Default.tpl:5
+msgid "Моя Страница"
+msgstr "Моя Cторінка"
+
+#: BackgroundApp/js/BgClass.js:208
+msgid "Мы работаем для вас"
+msgstr "Ми працюємо для вас"
+
+#: PopupApp/popup.html:31
+msgid "Нажмите чтобы авторизоватся"
+msgstr "Натисніть, щоб авторизуватись"
+
+#: HeaderApp/Header.tpl:30
+#: OptionsApp/index.html:4
+msgid "Настройки"
+msgstr "Налаштування"
+
+#: OptionsApp/index.html:27
+msgid "Настройки уведомлений"
+msgstr "Налаштування сповіщень"
+
+#: SectionApp/sections/NewFriends/NewFriends.tpl:6
+msgid "Нет новых заявок в друзья"
+msgstr "Немає нових заявок у друзі"
+
+#: SectionApp/sections/Default/Default.tpl:49
+msgid "Новости"
+msgstr "Новини"
+
+#: HeaderApp/Header.tpl:28
+msgid "Оставить отзыв"
+msgstr "Залишити відгук"
+
+#: HeaderApp/Header.tpl:24
+msgid "Оставить предложение"
+msgstr "Залишити пропозицію"
+
+#: BackgroundApp/js/BgClass.js:199
+msgid "Оставьте свой отзыв"
+msgstr "Залиште свій відгук"
+
+#: SectionApp/sections/NewFriends/request.tpl:8
+msgid "Отклонить"
+msgstr "Відмовити"
+
+#: libs/helpers/Helpers.js:99
+msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
+msgstr "Відображає кількість непрочитаних повідомлень і дозволяє відповісти не заходячи в ВК!"
+
+#: SectionApp/sections/NewMess/NewMess.tpl:11
+msgid "Пожалуйста, выберите диалог"
+msgstr "Будь ласка, виберіть діалог"
+
+#: BackgroundApp/js/BgClass.js:198
+msgid "Помогите нам стать лучше"
+msgstr "Допоможіть нам стати краще"
+
+#: OptionsApp/index.html:86
+msgid "При закрытом ВК"
+msgstr "При закритому ВК"
+
+#: SectionApp/sections/NewFriends/request.tpl:7
+msgid "Принять"
+msgstr "Прийняти"
+
+#: HeaderApp/Header.tpl:27
+msgid "Рассказать друзьям"
+msgstr "Розповісти друзям"
+
+#: BackgroundApp/js/BgClass.js:209
+msgid "Скажите авторам «Спасибо»"
+msgstr "Скажіть авторам «Дякую»"
+
+#: BackgroundApp/js/BgClass.js:183
+msgid "Смотрите подробности в нашей группе"
+msgstr "Дивіться подробиці у нашій групі"
+
+#: OptionsApp/index.html:51
+msgid "Сообщать о записях"
+msgstr "Повідомляти про записи"
+
+#: OptionsApp/index.html:31
+msgid "Сообщать о заявках в друзья"
+msgstr "Повідомляти про заявки у друзі"
+
+#: OptionsApp/index.html:59
+msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
+msgstr "Повідомляти про коментарі до записів, фотографій та відеозаписів"
+
+#: OptionsApp/index.html:43
+msgid "Сообщать о личных сообщениях"
+msgstr "Повідомляти про особисті повідомлення"
+
+#: OptionsApp/index.html:71
+msgid "Сообщать о новых подписчиках"
+msgstr "Повідомляти про нових підписників"
+
+#: OptionsApp/index.html:47
+msgid "Сообщать о приглашениях в группы"
+msgstr "Повідомляти про запрошення до спільнот"
+
+#: OptionsApp/index.html:67
+msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
+msgstr "Повідомляти про скопійовані записи, фотографії та відеозаписи"
+
+#: OptionsApp/index.html:63
+msgid "Сообщать об отметках «Мне нравится»"
+msgstr "Повідомляти про відмітки «Мені подобається»"
+
+#: OptionsApp/index.html:39
+msgid "Сообщать об отметках в видеозаписях"
+msgstr "Повідомляти про відмітки у відеозаписах"
+
+#: OptionsApp/index.html:35
+msgid "Сообщать об отметках на фотографиях"
+msgstr "Повідомляти про відмітки на фотографіях"
+
+#: OptionsApp/index.html:55
+msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
+msgstr "Повідомляти про згадки в записах, в коментарях або в обговореннях"
+
+#: SectionApp/sections/Default/Default.tpl:35
+msgid "Сообщения"
+msgstr "Повiдомлення"
+
+#: HeaderApp/Header.tpl:25
+msgid "Сообщить об ошибке"
+msgstr "Повідомити про помилку"
+
+#: OptionsApp/index.html:99
+msgid "Сохранено"
+msgstr "Збережено"
+
+#: OptionsApp/index.html:100
+msgid "Сохранить"
+msgstr "Зберегти"
+
+#: OptionsApp/index.html:102
+msgid "Удалить все данные расширения"
+msgstr "Видалити всі дані розширення"
+
+#: SectionApp/sections/Default/Default.tpl:18
+msgid "Фотографии"
+msgstr "Фотографії"
+
+#: SectionApp/sections/NewMess/message.tpl:27
+msgid "изменил название беседы на"
+msgstr "змінив назву бесіди на"
+
+#: SectionApp/sections/NewMess/message.tpl:41
+msgid "исключил"
+msgstr "виключив"
+
+#: SectionApp/sections/NewMess/message.tpl:33
+msgid "обновил фотографию беседы"
+msgstr "оновив фотографію бесіди"
+
+#: SectionApp/sections/NewMess/message.tpl:46
+msgid "пригласил"
+msgstr "запросив"
+
+#: SectionApp/sections/NewMess/message.tpl:21
+msgid "создал беседу"
+msgstr "створив бесіду"
+
+#: SectionApp/sections/NewMess/message.tpl:37
+msgid "удалил фотографию беседы"
+msgstr "видалив фотографію бесіди"

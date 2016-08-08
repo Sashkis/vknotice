@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="BgApp">
+<head>
+	<title>Background process</title>
+	<meta charset="UTF-8">
+</head>
+<body ng-controller="Bg">
+	<audio id="audio">
+		<source src="audio/vk.ogg" type="audio/ogg">
+		<source src="audio/vk.mp3" type="audio/mpeg">
+		<source src="audio/vk.wav" type="audio/wav">
+	</audio>
+	<!-- build:js /vendors/js/vendors.js -->
+	<!-- bower:js -->
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-gettext/dist/angular-gettext.js"></script>
+	<script src="../bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+	<script src="../bower_components/linkifyjs/linkify.js"></script>
+	<script src="../bower_components/linkifyjs/linkify-string.js"></script>
+	<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="../bower_components/ng-focus-if/focusIf.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+	<!-- build:js /Translations/all.js -->
+	<!-- inject:js -->
+	<script src="../Translations/be.js"></script>
+	<script src="../Translations/de.js"></script>
+	<script src="../Translations/en.js"></script>
+	<script src="../Translations/nl.js"></script>
+	<script src="../Translations/pl.js"></script>
+	<script src="../Translations/ro.js"></script>
+	<script src="../Translations/uk.js"></script>
+	<!-- endinject -->
+	<!-- endbuild -->
+	<!-- build:js /StorageApp/StorageApp.js -->
+	<script src="../StorageApp/StorageService.js"></script>
+	<script src="../StorageApp/StorageApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /VkApp/VkApp.js -->
+	<script src="../VkApp/js/VkService.js"></script>
+	<script src="../VkApp/js/VkApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /DeamonApp/DeamonApp.js -->
+	<script src="../DeamonApp/js/DeamonService.js"></script>
+	<script src="../DeamonApp/js/DeamonApp.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /libs/Helpers.js -->
+	<script src="../libs/helpers/Helpers.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /BackgroundApp/BackgroundApp.js -->
+	<script src="../SectionApp/sections/NewMess/js/Dialog.class.js"></script>
+	<script src="./js/BgClass.js"></script>
+	<script src="./js/BackgroundApp.js"></script>
+	<!-- endbuild -->
+</body>
+</html>

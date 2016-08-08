@@ -3,7 +3,7 @@
 	"name": "__MSG_extName__",
 	"description": "__MSG_extDesc__",
 	"short_name": "Vk notice",
-	"version": "5.0.2",
+	"version": "5.1.5",
 
 	"default_locale": "ru",
 
@@ -15,21 +15,17 @@
 	},
 
 	"icons": {
-		"128": "img/icon128.png"
+		"128": "BackgroundApp/img/icon128.png"
 	},
 
-	"options_page": "options/index.html",
+	"options_page": "OptionsApp/index.html",
 	"background": {
-		"page": "background.html"
+		"page": "BackgroundApp/background.html"
 	},
-	"content_scripts": [{
-		"matches": ["*://oauth.vk.com/blank.html"],
-		"js": ["get_token.js"]
-	}],
 	"browser_action": {
 		"default_title": "__MSG_extName__",
-		"default_icon": "img/icon38-off.png",
-		"default_popup": "popup/popup.html"
+		"default_icon": "BackgroundApp/img/icon38-off.png",
+		"default_popup": "PopupApp/popup.html"
 	},
 
 	"permissions": [
@@ -42,5 +38,5 @@
 		"tabs"
 	],
 	"incognito": "split",
-	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com/ga.js; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
 }

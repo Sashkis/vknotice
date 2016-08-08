@@ -1,0 +1,1 @@
+{"version":3,"file":"PreloaderDirective.js","sourceRoot":"","sources":["PreloaderDirective.ts"],"names":[],"mappings":"AAAA,OAAO,CAAC,MAAM,CAAC,UAAU,CAAC;KACxB,SAAS,CAAC,WAAW,EAAE;IACvB,MAAM,CAAC;QACN,QAAQ,EAAE,KAAK;QACf,QAAQ,EAAE,uBAAuB;cAC1B,6BAA6B;cAC7B,6BAA6B;cAC7B,6BAA6B;cAC9B,QAAQ;KACd,CAAC;AACH,CAAC,CAAC,CAAC"}

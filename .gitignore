@@ -6,9 +6,7 @@
 
 # ---- ДИРЕКТОРИИ ----
 .sass-cache
-/dist/**
 /img/*
-/.cache/*
 /node_modules/*
 /Архив/*
 /bower_components/*

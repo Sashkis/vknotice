@@ -1,29 +1,33 @@
 {
-  "name": "Информер Вконтакте",
-  "version": "5.0.0",
+  "name": "vk-informer",
+  "version": "5.1.5",
   "authors": [
-    "Alex Kozack <cawa-93@yandex.ru>"
+    "Alex Kozack <kozackunisoft@gmail.com>"
   ],
   "description": "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!",
-  "main": "ext/*",
   "keywords": [
     "ВК",
     "Вконтакте"
   ],
   "license": "MIT",
-  "homepage": "https://vk.com/vknotice",
+  "homepage": "https://vk.com/club90041499",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "ext/bower_components/",
+    "src/bower_components/",
     "test",
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "malihu-custom-scrollbar-plugin": "~3",
-    "linkifyjs": "~2"
+    "angular": "^1.5.5",
+    "angular-gettext": "^2.2.1",
+    "angular-google-analytics": "^1.1.7",
+    "components-font-awesome": "^4.6.3",
+    "roboto-font": "git@github.com:cawa-93/roboto-font.git",
+    "linkifyjs": "^2.0.5",
+    "angular-ui-router": "^0.3.1",
+    "ng-focus-if": "^1.0.7"
   },
   "devDependencies": {}
 }

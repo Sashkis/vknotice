@@ -1,0 +1,528 @@
+@import "../../../../libs/helpers/_variables";
+@import "../../../../libs/helpers/_mixins";
+
+%badge {
+	display: block;
+	position: absolute;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 9px;
+	text-align: center;
+	z-index: 5;
+}
+%ava-full {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+}
+%ava-half {
+	width: 18px;
+	height: 36px;
+	object-fit: cover;
+}
+%ava-quarter {
+	width: 18px;
+	height: 18px;
+}
+
+#newmess {
+	display: flex;
+	background-color: #f3f5f7;
+	$DialogBg: #fff;
+	$DialogBgHover: #f5f7fa;
+	$DialogBgActive: #7293b6;
+	#dialogs-list {
+		background-color: $DialogBg;
+		border-right: 1px solid #e7e8ec;
+		.dialog-item {
+			display: block;
+			padding: 6px;
+			position: relative;
+			z-index: 2;
+			&:hover {
+	    	background: $DialogBgHover;
+				&::after,
+				&::before {
+					opacity: 1;
+				}
+				.ava-container {
+					border-color: $DialogBgHover;
+				}
+				.marlAsRead {
+					opacity: 1 !important;
+				}
+			}
+			&.active {
+		    background: $DialogBgActive;
+				.ava-container {
+					border-color: $DialogBgActive;
+				}
+			}
+			@mixin tooltip {
+				position: absolute;
+				top: 50%;
+				opacity: 0;
+				transition: opacity .15s;
+				transform: translate(0, -50%);
+				pointer-events: none;
+			}
+			$tooltipColor: rgba(0, 0, 0, 0.8);
+			&::after {
+				@include tooltip;
+				content: attr(data-title);
+		    display: inline;
+		    left: 53px;
+		    font-weight: 700;
+		    padding: 0.5em 0.8em;
+		    background: $tooltipColor;
+		    color: #fff;
+		    border-radius: 6px;
+			}
+			&::before {
+				@include tooltip;
+				content: '';
+				display: block;
+				left: 43px;
+				width: 0;
+				height: 0;
+				border: solid transparent 5px;
+				border-right-color: $tooltipColor;
+			}
+			.ava-container {
+				position: relative;
+				border-color: $DialogBg;
+				img {
+					display: block;
+			    border-radius: 0;
+				}
+				&.ava-count-1 {
+					&.online:after {
+						@extend %badge;
+				    border: 2px solid;
+					  border-color: inherit;
+						background-color: #62b245;
+						content: '';
+						bottom: 2%;
+						right: 2%;
+						height: 7px;
+						width: 7px;
+					}
+					img {
+						@extend %ava-full;
+					}
+				}
+				&.ava-count-2,
+				&.ava-count-3,
+				&.ava-count-4 {
+					display: flex;
+					width: 36px;
+					border-radius: 50%;
+					overflow: hidden;
+				}
+				&.ava-count-2 {
+					img {
+						@extend %ava-half;
+					}
+				}
+				&.ava-count-3 {
+					flex-direction: column;
+					flex-wrap: wrap;
+					height: 36px;
+					img:nth-of-type(1) {
+						@extend %ava-half;
+					}
+					img:nth-of-type(2),
+					img:nth-of-type(3) {
+						@extend %ava-quarter;
+					}
+				}
+				&.ava-count-4 {
+					flex-wrap: wrap;
+					img {
+						@extend %ava-quarter;
+					}
+				}
+			}
+			.unread {
+				@extend %badge;
+				padding: 1px 4px;
+				height: 11px;
+				line-height: 12px;
+				top: 5px;
+				left: 5px;
+				background-color: #ff734c;
+			}
+			.marlAsRead {
+				@extend %badge;
+				background-color: rgba(0, 0, 0, .7);;
+				width: 14px;
+				line-height: 14px;
+				opacity: 0;
+				right: 5px;
+				font-size: 10px;
+				color: rgba(255, 255, 255, .7);
+				transition: opacity 0.15s ease;
+				&:hover {
+					color: rgba(255, 255, 255, 1);
+				}
+			}
+		}
+	}
+
+	#messages-list {
+		height: 252px;
+		overflow: auto;
+		flex:1;
+		display: flex;
+    flex-direction: column-reverse;
+		.message-item-container {
+	    padding: 4px 12px 4px 8px;
+			display: flex;
+			&.unread {
+		    background-color: #e6ecf2;
+			}
+			&.out {
+		    flex-direction: row-reverse;
+				.message-item {
+					background-color: #d4e7fa;
+					border-color: #cad8e6;
+				}
+				.message-date {
+					margin-left: auto;
+					margin-right: 5px;
+			    text-align: right;
+				}
+			}
+			&.action {
+				font-size: 13px;
+				display: block;
+				color: #777;
+				text-align: center;
+				padding: 15px 10px;
+			}
+			.message-item {
+				display: inline-block;
+				padding: 5px 10px;
+				background: #fff;
+				border: 1px solid #e1e4e8;
+				border-radius: 4px;
+				box-sizing: border-box;
+				overflow: hidden;
+		    word-break: break-word;
+				font-size: 13px;
+				.emoji {
+					vertical-align: middle;
+				}
+				b {
+					display: block;
+			    color: #42648b;
+			    font-weight: 700;
+			    -webkit-font-smoothing: antialiased;
+			    max-width: 200px;
+			    white-space: nowrap;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+				}
+			}
+			.message-date {
+				padding-top: 6px;
+				flex-basis: 30%;
+				margin-left: 5px;
+		    color: hsla(0,0%,58%,.6);
+			}
+			.ava {
+				margin-right: 5px;
+				height: 25px;
+				width: auto;
+				display: block;
+			}
+			.space {
+				width: 30px;
+			}
+		}
+	}
+}
+.messages-list-container {
+	flex-direction: column;
+	flex: 1;
+	.loadMore button {
+		@extend %btn;
+		@include btnColor(#e5ebf1, #55677d);
+		margin: 10px auto;
+		display: block;
+		font-size: 90%;
+	}
+	form {
+		display: flex;
+		border-top: 1px solid #e7e8ec;
+		background: #fff;
+		input, button {
+			margin: 0;
+			padding: 10px 20px;
+			border: none;
+			background: none;
+			outline: none;
+		}
+		input {
+			flex: 1;
+		}
+		button {
+			cursor: pointer;
+			color: rgba(148, 148, 148, 0.6);
+			&:hover {
+				color: #6d8cb0;
+			}
+		}
+	}
+}
+
+.empty-messages-list-container {
+	@extend %empty-section-plug;
+}
+
+// .emoji {
+// 	display: inline;
+// 	width: 16px;
+// 	height: 16px;
+// 	vertical-align: top;
+// 	margin: 0px 1px;
+// 	&.sticker {
+// 		height: 32px;
+// 		width: auto;
+// 	}
+// }
+
+// #newmess {
+// 	overflow: auto;
+// 	padding: 0;
+// 	.dialog {
+// 		display: block;
+// 		cursor: pointer;
+// 		overflow: hidden;
+// 		padding: 5px;
+// 		word-break: break-word;
+// 		& + .dialog {
+// 			border-top: 1px solid rgba($mainColor, 0.15);
+// 		}
+// 		&:hover,
+// 		&.open,
+// 		&.dialog-unread {
+// 			& + .dialog {
+// 				border-color: rgba($mainColor, 0.3);
+// 			}
+// 			border-color: rgba($mainColor, 0.22);
+// 			background: rgba($mainColor, 0.1);
+// 			.name .date {
+// 				color: #879BB0;
+// 			}
+// 			.online:before {
+// 				border-color:rgb(238, 242, 246);
+// 			}
+// 		}
+// 		&.dialog-answer-unread {
+// 			.mess-container message {
+// 				padding: 5px;
+// 				background: rgba($mainColor, 0.1);
+// 			}
+// 			.online:before {
+// 				border-color: rgb(238, 242, 246);
+// 			}
+// 		}
+// 		&.open {
+// 			background-color:#7293b6;
+// 			.header, .header *,
+// 			.mess-container, .mess-container *,
+// 			.name .date {
+// 				color:#fff;
+// 			}
+// 			.online:before {
+// 				border-color:#7293b6;
+// 			}
+// 		}
+// 		/* Диалог с Администрацией */
+// 		&#dialog-100 .name {
+// 			color: #2E7B27;
+// 			font-weight: bold;
+// 		}
+// 		&.dialog-unread {
+// 			.markAsRead {
+// 				display: block;
+// 			}
+// 		}
+// 		&.dialog-group .photo {
+// 		    border-radius: 30px;
+//     		overflow: hidden;
+//     		img {
+//     			border-radius:0;
+//     		}
+// 		}
+// 		.header {
+// 			padding-left: 60px;
+// 		}
+// 		.photo {
+// 			margin-left: -60px;
+// 			float: left;
+// 		}
+
+// 		.ava-half {
+// 			width: 23px;
+// 			height: 50px;
+// 			overflow: hidden;
+// 			margin: 0 4px 0 0;
+// 			float: left;
+// 			&:nth-of-type(2) {
+// 				margin-right: 0;
+// 			}
+// 			img {
+// 				margin: 0px -12px;
+// 			}
+// 		}
+// 		.ava-quarter {
+// 			width: 23px;
+// 			height: 23px;
+// 			overflow: hidden;
+// 			margin: 0 4px 4px 0;
+// 			&:nth-of-type(1),
+// 			&:nth-of-type(3) {
+// 				float: left;
+// 			}
+// 			&:nth-of-type(3),
+// 			&:nth-of-type(4) {
+// 				margin-bottom: 0;
+// 			}
+// 		}
+
+// 		.name {
+// 			display: block;
+// 			margin-bottom: 2px;
+// 			font-size: 11px;
+// 		}
+// 		.date {
+// 			font-weight: normal;
+// 			color: #999999;
+// 			font-size: 0.9em;
+// 			margin-left: 5px;
+// 			opacity:0.7;
+// 		}
+// 		.markAsRead {
+// 			display: none;
+// 		}
+// 		.markAsRead,
+// 		.history {
+// 			@extend %dialog-icon;
+// 		}
+// 		.mess-container {
+// 			display: block;
+// 			overflow: hidden;
+// 			padding-left: 10px;
+// 			color: #000;
+// 			.system {
+// 				font-style: italic;
+// 				opacity: 0.5;
+// 			}
+// 			.ava img {
+// 				margin-right: 5px;
+// 			}
+// 		}
+// 		a {
+// 			display: inline;
+// 			&:hover {
+// 				text-decoration: underline;
+// 			}
+// 		}
+// 		.ans {
+// 			clear: both;
+// 			padding-top: 10px;
+// 			display: none;
+// 			margin: -5px -5px -8px -5px ;
+// 			textarea {
+// 				width: 100%;
+// 				box-sizing: border-box;
+// 				resize: vertical;
+// 				height: 100%;
+// 				min-height: 35px;
+// 				overflow: hidden;
+// 				border:none;
+// 				border-top: solid 1px #e4e6e9;
+// 				padding: 7px;
+// 				font: inherit;
+// 				&:focus {
+// 					outline: none;
+// 				}
+// 				&.error {
+// 					border-color: #7293B6;
+// 					box-shadow: 0px 0px 5px red inset;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	message {
+// 		display: block;
+// 		overflow: hidden;
+// 		margin-bottom: 5px;
+// 	}
+// }
+//
+//
+
+// .online {
+// 	position: relative;
+// 	&:before {
+// 	    content: "";
+//         border-radius: 50%;
+// 		width: 8px;
+// 		height: 8px;
+// 		background: #8ac176;
+// 		border: solid 2px #fff;
+// 		position: absolute;
+// 	    left: 37px;
+// 	    top: 35px;
+// 	}
+// }
+
+// #history {
+// 	overflow: auto;
+// 	padding: 0;
+// 	.ava img {
+// 		margin-right: 5px;
+// 	}
+// 	.mCSB_container:empty {
+// 		cursor: wait;
+// 		min-height: 229px;
+// 		text-align: center;
+// 		padding-top: 85px;
+// 		box-sizing: border-box;
+// 		&::before {
+// 			-webkit-animation: spin 2s infinite linear;
+// 			animation: spin 2s infinite linear;
+// 			display: inline-block;
+// 			color: #2B587A;
+// 			font-size: 40px;
+// 			content: '\e805';
+// 			font-family: "fontello";
+// 		}
+// 	}
+// 	.dialog {
+// 		cursor: default;
+// 		display: block;
+// 		overflow: hidden;
+// 		padding: 5px;
+// 		word-break: break-word;
+// 		& + .dialog {
+// 			border-top: 1px solid rgba($mainColor, 0.15);
+// 		}
+// 		&:hover,
+// 		&.open {
+// 			& + .dialog {
+// 				border-color: rgba($mainColor, 0.3);
+// 			}
+// 			border-color: rgba($mainColor, 0.22);
+// 			background: rgba($mainColor, 0.1);
+// 		}
+
+// 	}
+// 	.more {
+// 		cursor: pointer;
+// 		text-align: center;
+// 	}
+// }
