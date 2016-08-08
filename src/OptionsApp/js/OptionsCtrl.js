@@ -7,7 +7,6 @@ var OptionsApp;
             this.$scope = $scope;
             this.Analytics = Analytics;
             this.stg = {};
-            this.options = {};
             storage.ready.then(function (stg) {
                 _this.stg = stg;
                 _this.options = angular.copy(stg.options);
@@ -28,8 +27,9 @@ var OptionsApp;
             }, true, function () { return _this.$scope.$apply(); });
         };
         ;
-        OptionsCtrl.prototype.isOptionSaved = function () {
-            return angular.equals(this.options, this.stg.options);
+        OptionsCtrl.prototype.isOptionNotSaved = function () {
+            var res = !angular.equals(this.options, this.stg.options);
+            return res;
         };
         ;
         OptionsCtrl.prototype.clearData = function () {

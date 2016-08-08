@@ -8,7 +8,7 @@ module OptionsApp {
 
 	export class OptionsCtrl {
 		stg = <IStorageData>{};
-		options = <IOptions>{};
+		options: IOptions;
 
 		public static $inject = [
 			'storage',
@@ -38,8 +38,9 @@ module OptionsApp {
 			}, true, () => this.$scope.$apply() );
 		};
 
-		isOptionSaved () {
-			return angular.equals(this.options, this.stg.options);
+		isOptionNotSaved () {
+			const res = !angular.equals(this.options, this.stg.options);
+			return res;
 		};
 
 		clearData () {

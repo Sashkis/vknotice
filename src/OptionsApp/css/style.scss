@@ -99,7 +99,7 @@ label {
 			color: #567ca4;
 		}
 	}
-	
+
 	input.ng-empty + .fa-stack {
 		opacity: .1;
 	}
@@ -113,15 +113,20 @@ label {
 
 .buttons-conteiner {
 	display: flex;
+	button {
+		display: none;
+	}
 	.save {
 		@extend %btn;
 		@include btnColor(#6287ae);
+		display: block;
 	}
 
 
 	.clear {
 		@extend %btn;
 		@include btnColor(#dc4040);
+		display: block;
 		margin-left: auto;
 	}
 
