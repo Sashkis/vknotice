@@ -204,6 +204,9 @@ module BgApp {
 						url: 'https://vk.com/club90041499',
 					});
 				}
+
+				// Удалить данные при обновлении на версию 5.1.6
+				this.storage.clear(() => chrome.runtime.reload());
 			}
 		}
 
