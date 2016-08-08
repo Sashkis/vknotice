@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-05 05:49-0400\n"
+"PO-Revision-Date: 2016-08-08 04:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -55,6 +55,11 @@ msgstr "Disabled"
 #: SectionApp/sections/Default/Default.tpl:43
 msgid "Группы"
 msgstr "Communities"
+
+#: OptionsApp/js/OptionsCtrl.js:36
+msgid "Данное действие удалит весь кэш и сбросит настройки.\n"
+"Вы уверены, что хотите сделать это?"
+msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:10
 msgid "Друзья"
