@@ -86,9 +86,9 @@
 			</div>
 
 			<div class="buttons-conteiner box">
-				<button ng-disabled="vm.isOptionSaved()" ng-click="vm.saveOptions()" class="save">
-					<translate ng-show="vm.isOptionSaved()">Сохранено</translate>
-					<translate ng-hide="vm.isOptionSaved()">Сохранить</translate>
+				<button ng-disabled="!vm.isOptionNotSaved()" ng-click="vm.saveOptions()" ng-class="'save'" disabled="disabled" >
+					<translate ng-hide="vm.isOptionNotSaved()">Сохранено</translate>
+					<translate ng-show="vm.isOptionNotSaved()">Сохранить</translate>
 				</button>
 				<button ng-click="vm.clearData()" class="clear"><i class="fa fa-trash-o fa-lg"></i> <translate>Удалить все данные расширения</translate></button>
 			</div>

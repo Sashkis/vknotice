@@ -6,6 +6,6 @@
 	</div>
 
 	<form class="sendMess" ng-submit="vm.sendMessage()">
-		<input type="text" ng-model="vm.message" placeholder="{{'Введите ваше сообщение'|translate}}" autofocus>
+		<input type="text" ng-model="vm.message" placeholder="{{'Введите ваше сообщение'|translate}}" focus-if>
 		<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 	</form>
