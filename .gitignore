@@ -1,5 +1,12 @@
-*.log
+# ---- ФАЙЛЫ ----
+*.zip
+*.sublime-project
+*.sublime-workspace
+/Архив
+
+# ---- ДИРЕКТОРИИ ----
 .sass-cache
 /img/*
 /node_modules/*
-build/*.zip
+/Архив/*
+/bower_components/*
