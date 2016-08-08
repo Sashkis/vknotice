@@ -1,7 +1,7 @@
 /// <reference path="../../all.d.ts"/>
 module SectionsApp {
 
-	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp'])
+	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp', 'focus-if'])
 
 		.config(['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider',
 			function($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, AnalyticsProvider: any) {

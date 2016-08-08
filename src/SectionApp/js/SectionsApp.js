@@ -1,6 +1,6 @@
 var SectionsApp;
 (function (SectionsApp) {
-    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp'])
+    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp', 'focus-if'])
         .config(['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider',
         function ($stateProvider, $urlRouterProvider, AnalyticsProvider) {
             AnalyticsProvider
