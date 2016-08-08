@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-08-05 05:49-0400\n"
+"PO-Revision-Date: 2016-08-08 04:58-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -56,6 +56,12 @@ msgstr "Вимкнути"
 #: SectionApp/sections/Default/Default.tpl:43
 msgid "Группы"
 msgstr "Спільноти"
+
+#: OptionsApp/js/OptionsCtrl.js:36
+msgid "Данное действие удалит весь кэш и сбросит настройки.\n"
+"Вы уверены, что хотите сделать это?"
+msgstr "Ця дія вилучить весь кеш і скине налаштування.\n"
+"Ви впевнені, що хочете зробити це?"
 
 #: SectionApp/sections/Default/Default.tpl:10
 msgid "Друзья"
