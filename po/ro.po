@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
-"PO-Revision-Date: 2016-08-08 04:58-0400\n"
+"PO-Revision-Date: 2016-08-09 06:03-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -117,7 +117,7 @@ msgstr "Comentariu"
 msgid "Моя Страница"
 msgstr "Pagina Mea"
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:211
 msgid "Мы работаем для вас"
 msgstr "Noi lucram pentru tine"
 
@@ -150,7 +150,7 @@ msgstr "Recenzie"
 msgid "Оставить предложение"
 msgstr "Lasa oferta"
 
-#: BackgroundApp/js/BgClass.js:199
+#: BackgroundApp/js/BgClass.js:202
 msgid "Оставьте свой отзыв"
 msgstr "Lăsați feedback-ul dumneavoastră"
 
@@ -166,7 +166,7 @@ msgstr "Afișează numărul de mesaje necitite și vă permite să răspundeți 
 msgid "Пожалуйста, выберите диалог"
 msgstr "Vă rugăm să selectați un dialog"
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:201
 msgid "Помогите нам стать лучше"
 msgstr "Ajuta-ne sa devenim mai buni"
 
@@ -182,7 +182,7 @@ msgstr "Ia"
 msgid "Рассказать друзьям"
 msgstr "Să le spui prietenilor tăi"
 
-#: BackgroundApp/js/BgClass.js:209
+#: BackgroundApp/js/BgClass.js:212
 msgid "Скажите авторам «Спасибо»"
 msgstr "Spune-autorilor \"Mulțumesc\""
 
