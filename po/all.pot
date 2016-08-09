@@ -106,7 +106,7 @@ msgstr ""
 msgid "Моя Страница"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:211
 msgid "Мы работаем для вас"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "Оставить предложение"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:199
+#: BackgroundApp/js/BgClass.js:202
 msgid "Оставьте свой отзыв"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Пожалуйста, выберите диалог"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:201
 msgid "Помогите нам стать лучше"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgstr ""
 msgid "Рассказать друзьям"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:209
+#: BackgroundApp/js/BgClass.js:212
 msgid "Скажите авторам «Спасибо»"
 msgstr ""
 
