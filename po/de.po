@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2016-08-09 06:05-0400\n"
+"PO-Revision-Date: 2016-08-09 06:08-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -23,6 +23,10 @@ msgstr[1] ""
 #: SectionApp/sections/Default/Default.tpl:30
 msgid "Аудиозаписи"
 msgstr "Audio-Aufnahmen"
+
+#: BackgroundApp/js/BgClass.js:233
+msgid "Вам нравится Информер?"
+msgstr "Sie möchten Informant?"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
@@ -100,7 +104,7 @@ msgstr "Informer"
 msgid "Информер Вконтакте"
 msgstr "Informer Facebook"
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:184
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Widget aktualisiert auf Version {{version}}"
 
@@ -116,7 +120,7 @@ msgstr "Kommentar"
 msgid "Моя Страница"
 msgstr "Meine Seite"
 
-#: BackgroundApp/js/BgClass.js:211
+#: BackgroundApp/js/BgClass.js:223
 msgid "Мы работаем для вас"
 msgstr "Wir arbeiten für Sie"
 
@@ -149,7 +153,11 @@ msgstr "Hinterlassen Sie eine Bewertung"
 msgid "Оставить предложение"
 msgstr "Verlassen Angebot"
 
-#: BackgroundApp/js/BgClass.js:202
+#: BackgroundApp/js/BgClass.js:214
+msgid "Оставьте отзыв о новой версии"
+msgstr "Bewertungen über neue Version"
+
+#: BackgroundApp/js/BgClass.js:204
 msgid "Оставьте свой отзыв"
 msgstr "Geben Sie uns Ihr Feedback"
 
@@ -165,7 +173,12 @@ msgstr "Zeigt die Anzahl der ungelesenen Nachrichten und Antworten können ohne 
 msgid "Пожалуйста, выберите диалог"
 msgstr "Bitte wählen Sie den Dialog"
 
-#: BackgroundApp/js/BgClass.js:201
+#: BackgroundApp/js/BgClass.js:234
+msgid "Помогите ему и дальше развиваться для вас"
+msgstr ""
+
+#: BackgroundApp/js/BgClass.js:203
+#: BackgroundApp/js/BgClass.js:213
 msgid "Помогите нам стать лучше"
 msgstr "Helfen Sie uns besser zu werden"
 
@@ -181,11 +194,11 @@ msgstr "Nehmen"
 msgid "Рассказать друзьям"
 msgstr "Erzählen Sie Ihren Freunden"
 
-#: BackgroundApp/js/BgClass.js:212
+#: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
 msgstr "Sagen Sie die Autoren «Danke»"
 
-#: BackgroundApp/js/BgClass.js:183
+#: BackgroundApp/js/BgClass.js:185
 msgid "Смотрите подробности в нашей группе"
 msgstr "Sehen Sie die Einzelheiten in unserer Gruppe"
 
