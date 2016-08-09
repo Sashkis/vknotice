@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
-"PO-Revision-Date: 2016-08-08 04:58-0400\n"
+"PO-Revision-Date: 2016-08-09 06:03-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -117,7 +117,7 @@ msgstr "Каментар"
 msgid "Моя Страница"
 msgstr "Мая Старонка"
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:211
 msgid "Мы работаем для вас"
 msgstr "Мы працуем для вас"
 
@@ -150,7 +150,7 @@ msgstr "Пакінуць водгук"
 msgid "Оставить предложение"
 msgstr "Пакінуць прапанову"
 
-#: BackgroundApp/js/BgClass.js:199
+#: BackgroundApp/js/BgClass.js:202
 msgid "Оставьте свой отзыв"
 msgstr "Пакіньце свой водгук"
 
@@ -166,7 +166,7 @@ msgstr "Адлюстроўвае колькасць непрачытаных п�
 msgid "Пожалуйста, выберите диалог"
 msgstr "Калі ласка, абярыце дыялог"
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:201
 msgid "Помогите нам стать лучше"
 msgstr "Дапамажыце нам стаць лепш"
 
@@ -182,7 +182,7 @@ msgstr "Прыняць"
 msgid "Рассказать друзьям"
 msgstr "Распавесці сябрам"
 
-#: BackgroundApp/js/BgClass.js:209
+#: BackgroundApp/js/BgClass.js:212
 msgid "Скажите авторам «Спасибо»"
 msgstr "Скажыце аўтарам «Дзякуй»"
 
