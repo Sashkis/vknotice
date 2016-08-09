@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-08-09 06:08-0400\n"
+"PO-Revision-Date: 2016-08-09 06:11-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -27,7 +27,7 @@ msgstr "Аудiозаписи"
 
 #: BackgroundApp/js/BgClass.js:233
 msgid "Вам нравится Информер?"
-msgstr ""
+msgstr "Вам подобається Інформер?"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
@@ -156,7 +156,7 @@ msgstr "Залишити пропозицію"
 
 #: BackgroundApp/js/BgClass.js:214
 msgid "Оставьте отзыв о новой версии"
-msgstr ""
+msgstr "Залишіть відгук про нову версії"
 
 #: BackgroundApp/js/BgClass.js:204
 msgid "Оставьте свой отзыв"
@@ -176,7 +176,7 @@ msgstr "Будь ласка, виберіть діалог"
 
 #: BackgroundApp/js/BgClass.js:234
 msgid "Помогите ему и дальше развиваться для вас"
-msgstr ""
+msgstr "Допоможіть йому і далі розвиватися для вас"
 
 #: BackgroundApp/js/BgClass.js:203
 #: BackgroundApp/js/BgClass.js:213
