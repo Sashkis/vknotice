@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
-"PO-Revision-Date: 2016-08-09 06:05-0400\n"
+"PO-Revision-Date: 2016-08-09 06:08-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -23,6 +23,10 @@ msgstr[1] ""
 #: SectionApp/sections/Default/Default.tpl:30
 msgid "Аудиозаписи"
 msgstr "Audio"
+
+#: BackgroundApp/js/BgClass.js:233
+msgid "Вам нравится Информер?"
+msgstr "Je houdt van de informant?"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
@@ -100,7 +104,7 @@ msgstr "Informer"
 msgid "Информер Вконтакте"
 msgstr "Widget Vkontakte"
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:184
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Widget bijgewerkt naar versie {{version}}"
 
@@ -116,7 +120,7 @@ msgstr "Review"
 msgid "Моя Страница"
 msgstr "Mijn Pagina"
 
-#: BackgroundApp/js/BgClass.js:211
+#: BackgroundApp/js/BgClass.js:223
 msgid "Мы работаем для вас"
 msgstr "Wij werken voor u"
 
@@ -149,7 +153,11 @@ msgstr "Laat een review"
 msgid "Оставить предложение"
 msgstr "Laten bieden"
 
-#: BackgroundApp/js/BgClass.js:202
+#: BackgroundApp/js/BgClass.js:214
+msgid "Оставьте отзыв о новой версии"
+msgstr "Schrijf een review over de nieuwe versie"
+
+#: BackgroundApp/js/BgClass.js:204
 msgid "Оставьте свой отзыв"
 msgstr "Laat uw review"
 
@@ -165,7 +173,12 @@ msgstr "Toont het aantal ongelezen berichten en kunt u het antwoord zonder in te
 msgid "Пожалуйста, выберите диалог"
 msgstr "Selecteer de dialoog"
 
-#: BackgroundApp/js/BgClass.js:201
+#: BackgroundApp/js/BgClass.js:234
+msgid "Помогите ему и дальше развиваться для вас"
+msgstr "Help hem verder te ontwikkelen voor u"
+
+#: BackgroundApp/js/BgClass.js:203
+#: BackgroundApp/js/BgClass.js:213
 msgid "Помогите нам стать лучше"
 msgstr "Help ons beter te worden"
 
@@ -181,11 +194,11 @@ msgstr "Maken"
 msgid "Рассказать друзьям"
 msgstr "Vertel het je vrienden"
 
-#: BackgroundApp/js/BgClass.js:212
+#: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
 msgstr "Vertel sponsors \"Dank u\""
 
-#: BackgroundApp/js/BgClass.js:183
+#: BackgroundApp/js/BgClass.js:185
 msgid "Смотрите подробности в нашей группе"
 msgstr "Zie de details in onze groep"
 
