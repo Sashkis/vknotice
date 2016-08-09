@@ -14,6 +14,10 @@ msgstr[1] ""
 msgid "Аудиозаписи"
 msgstr ""
 
+#: BackgroundApp/js/BgClass.js:233
+msgid "Вам нравится Информер?"
+msgstr ""
+
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
 msgstr ""
@@ -90,7 +94,7 @@ msgstr ""
 msgid "Информер Вконтакте"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:184
 msgid "Информер обновлен до версии {{version}}"
 msgstr ""
 
@@ -106,7 +110,7 @@ msgstr ""
 msgid "Моя Страница"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:223
 msgid "Мы работаем для вас"
 msgstr ""
 
@@ -139,7 +143,11 @@ msgstr ""
 msgid "Оставить предложение"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:199
+#: BackgroundApp/js/BgClass.js:214
+msgid "Оставьте отзыв о новой версии"
+msgstr ""
+
+#: BackgroundApp/js/BgClass.js:204
 msgid "Оставьте свой отзыв"
 msgstr ""
 
@@ -155,7 +163,12 @@ msgstr ""
 msgid "Пожалуйста, выберите диалог"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:234
+msgid "Помогите ему и дальше развиваться для вас"
+msgstr ""
+
+#: BackgroundApp/js/BgClass.js:203
+#: BackgroundApp/js/BgClass.js:213
 msgid "Помогите нам стать лучше"
 msgstr ""
 
@@ -171,11 +184,11 @@ msgstr ""
 msgid "Рассказать друзьям"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:209
+#: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
 msgstr ""
 
-#: BackgroundApp/js/BgClass.js:183
+#: BackgroundApp/js/BgClass.js:185
 msgid "Смотрите подробности в нашей группе"
 msgstr ""
 

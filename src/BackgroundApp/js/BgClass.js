@@ -167,14 +167,16 @@ var BgApp;
             if (details.reason === 'install') {
                 chrome.alarms.create('get-review', { delayInMinutes: 60 * 24 * 5 });
                 chrome.alarms.create('say-thanks', { delayInMinutes: 60 * 24 * 10 });
+                chrome.alarms.create('donate', { delayInMinutes: 60 * 24 * 30 });
             }
             else if (details.reason === 'update' && details.previousVersion) {
-                var _a = details.previousVersion.split('.'), major = _a[0], minor = _a[1], patch = _a[2];
+                var _a = details.previousVersion.split('.').map(function (n) { return +n; }), major = _a[0], minor = _a[1], patch = _a[2];
                 var previos = { major: major, minor: minor, patch: patch };
                 var version = chrome.runtime.getManifest().version;
-                _b = version.split('.'), major = _b[0], minor = _b[1], patch = _b[2];
+                _b = version.split('.').map(function (n) { return +n; }), major = _b[0], minor = _b[1], patch = _b[2];
                 var current = { major: major, minor: minor, patch: patch };
-                if (+current.major > +previos.major || +current.minor > +previos.minor) {
+                if (current.major > previos.major || current.minor > previos.minor) {
+                    chrome.alarms.create('get-new-review', { delayInMinutes: 60 * 24 * 15 });
                     this.pushAlert({
                         id: 'update-alert',
                         type: 'simple',
@@ -184,7 +186,7 @@ var BgApp;
                         url: 'https://vk.com/club90041499',
                     });
                 }
-                if (+previos.major < 5 || (+previos.major === 5 && +previos.minor < 1)) {
+                if (previos.major < 5 || (previos.major === 5 && previos.minor < 1)) {
                     this.storage.clear(function () { return chrome.runtime.reload(); });
                 }
             }
@@ -195,7 +197,7 @@ var BgApp;
             switch (alarm.name) {
                 case 'get-review':
                     alert = {
-                        'id': 'get-review',
+                        'id': alarm.name,
                         'type': 'simple',
                         'img': 'https://vk.com/images/stickers/2073/128.png',
                         'text': this.gettextCatalog.getString('Помогите нам стать лучше'),
@@ -203,14 +205,34 @@ var BgApp;
                         'url': Helpers.getReviewUrl(),
                     };
                     break;
+                case 'get-new-review':
+                    alert = {
+                        'id': alarm.name,
+                        'type': 'simple',
+                        'img': 'https://vk.com/images/stickers/2073/128.png',
+                        'text': this.gettextCatalog.getString('Помогите нам стать лучше'),
+                        'ancor': this.gettextCatalog.getString('Оставьте отзыв о новой версии'),
+                        'url': Helpers.getReviewUrl(),
+                    };
+                    break;
                 case 'say-thanks':
                     alert = {
-                        'id': 'say-thanks',
+                        'id': alarm.name,
                         'type': 'simple',
                         'img': 'https://vk.com/images/stickers/2074/128.png',
                         'text': this.gettextCatalog.getString('Мы работаем для вас'),
                         'ancor': this.gettextCatalog.getString('Скажите авторам «Спасибо»'),
                         'url': Helpers.getShareUrl(),
+                    };
+                    break;
+                case 'donate':
+                    alert = {
+                        'id': alarm.name,
+                        'type': 'simple',
+                        'img': 'https://new.vk.com/images/stickers/2080/128.png',
+                        'text': this.gettextCatalog.getString('Вам нравится Информер?'),
+                        'ancor': this.gettextCatalog.getString('Помогите ему и дальше развиваться для вас'),
+                        'url': 'https://www.liqpay.com/ru/checkout/card/vknotify',
                     };
                     break;
             }

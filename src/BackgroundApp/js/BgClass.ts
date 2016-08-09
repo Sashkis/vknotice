@@ -185,16 +185,18 @@ module BgApp {
 			if (details.reason === 'install') {
 				chrome.alarms.create('get-review', { delayInMinutes: 60*24*5 });
 				chrome.alarms.create('say-thanks', { delayInMinutes: 60*24*10 });
+				chrome.alarms.create('donate', { delayInMinutes: 60*24*30 });
 			} else if (details.reason === 'update' && details.previousVersion) {
 
-				let [major, minor, patch] = details.previousVersion.split('.');
+				let [major, minor, patch] = details.previousVersion.split('.').map(n => +n);
 				const previos = {major, minor, patch};
 
 				const version = chrome.runtime.getManifest().version;
-				[major, minor, patch] = version.split('.');
+				[major, minor, patch] = version.split('.').map(n => +n);
 				const current = {major, minor, patch};
 
-				if (+current.major > +previos.major || +current.minor > +previos.minor) {
+				if (current.major > previos.major || current.minor > previos.minor) {
+					chrome.alarms.create('get-new-review', { delayInMinutes: 60*24*15 });
 					this.pushAlert({
 						id: 'update-alert',
 						type: 'simple',
@@ -205,8 +207,8 @@ module BgApp {
 					});
 				}
 
-				// Удалить данные при обновлении на версию 5.1.6
-				if (+previos.major < 5 || (+previos.major === 5 && +previos.minor < 1) ) {
+				// Удалить данные при обновлении на версию 5.1.*
+				if (previos.major < 5 || (previos.major === 5 && previos.minor < 1) ) {
 					this.storage.clear(() => chrome.runtime.reload());
 				}
 			}
@@ -217,7 +219,7 @@ module BgApp {
 			switch (alarm.name) {
 				case 'get-review':
 					alert = {
-						'id':    'get-review',
+						'id':    alarm.name,
 						'type':  'simple',
 						'img':   'https://vk.com/images/stickers/2073/128.png',
 						'text':  this.gettextCatalog.getString('Помогите нам стать лучше'),
@@ -225,14 +227,34 @@ module BgApp {
 						'url':   Helpers.getReviewUrl(),
 					};
 				break;
+				case 'get-new-review':
+					alert = {
+						'id':    alarm.name,
+						'type':  'simple',
+						'img':   'https://vk.com/images/stickers/2073/128.png',
+						'text':  this.gettextCatalog.getString('Помогите нам стать лучше'),
+						'ancor': this.gettextCatalog.getString('Оставьте отзыв о новой версии'),
+						'url':   Helpers.getReviewUrl(),
+					};
+				break;
 				case 'say-thanks':
 					alert = {
-						'id':    'say-thanks',
+						'id':    alarm.name,
 						'type':  'simple',
 						'img':   'https://vk.com/images/stickers/2074/128.png',
 						'text':  this.gettextCatalog.getString('Мы работаем для вас'),
 						'ancor': this.gettextCatalog.getString('Скажите авторам «Спасибо»'),
 						'url':   Helpers.getShareUrl(),
+					};
+				break;
+				case 'donate':
+					alert = {
+						'id':    alarm.name,
+						'type':  'simple',
+						'img':   'https://new.vk.com/images/stickers/2080/128.png',
+						'text':  this.gettextCatalog.getString('Вам нравится Информер?'),
+						'ancor': this.gettextCatalog.getString('Помогите ему и дальше развиваться для вас'),
+						'url':   'https://www.liqpay.com/ru/checkout/card/vknotify',
 					};
 				break;
 			}

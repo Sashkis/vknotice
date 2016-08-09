@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-08 04:58-0400\n"
+"PO-Revision-Date: 2016-08-09 06:11-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -23,6 +23,10 @@ msgstr[1] "{{$count}} Forwarded messages"
 #: SectionApp/sections/Default/Default.tpl:30
 msgid "Аудиозаписи"
 msgstr "Audios"
+
+#: BackgroundApp/js/BgClass.js:233
+msgid "Вам нравится Информер?"
+msgstr "You like the informer?"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
@@ -100,7 +104,7 @@ msgstr "Informer"
 msgid "Информер Вконтакте"
 msgstr "VK Informer"
 
-#: BackgroundApp/js/BgClass.js:182
+#: BackgroundApp/js/BgClass.js:184
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Informer has been updated to version {{version}}"
 
@@ -116,7 +120,7 @@ msgstr "Comment"
 msgid "Моя Страница"
 msgstr "My Profile"
 
-#: BackgroundApp/js/BgClass.js:208
+#: BackgroundApp/js/BgClass.js:223
 msgid "Мы работаем для вас"
 msgstr "We work for you"
 
@@ -149,7 +153,11 @@ msgstr "Leave Feedback"
 msgid "Оставить предложение"
 msgstr "Leave a suggestion"
 
-#: BackgroundApp/js/BgClass.js:199
+#: BackgroundApp/js/BgClass.js:214
+msgid "Оставьте отзыв о новой версии"
+msgstr "Write a review about the new version"
+
+#: BackgroundApp/js/BgClass.js:204
 msgid "Оставьте свой отзыв"
 msgstr "Give us your feedback"
 
@@ -165,7 +173,12 @@ msgstr "Displays the number of unread messages and allows you to answer without 
 msgid "Пожалуйста, выберите диалог"
 msgstr "Please select a dialog"
 
-#: BackgroundApp/js/BgClass.js:198
+#: BackgroundApp/js/BgClass.js:234
+msgid "Помогите ему и дальше развиваться для вас"
+msgstr "Help him continue to develop for you"
+
+#: BackgroundApp/js/BgClass.js:203
+#: BackgroundApp/js/BgClass.js:213
 msgid "Помогите нам стать лучше"
 msgstr "Help us get better"
 
@@ -181,11 +194,11 @@ msgstr "Agree"
 msgid "Рассказать друзьям"
 msgstr "Share application"
 
-#: BackgroundApp/js/BgClass.js:209
+#: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
 msgstr "Say \"thank you\" to the authors"
 
-#: BackgroundApp/js/BgClass.js:183
+#: BackgroundApp/js/BgClass.js:185
 msgid "Смотрите подробности в нашей группе"
 msgstr "See details in our group"
 
