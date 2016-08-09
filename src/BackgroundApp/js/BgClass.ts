@@ -206,7 +206,9 @@ module BgApp {
 				}
 
 				// Удалить данные при обновлении на версию 5.1.6
-				this.storage.clear(() => chrome.runtime.reload());
+				if (+previos.major < 5 || (+previos.major === 5 && +previos.minor < 1) ) {
+					this.storage.clear(() => chrome.runtime.reload());
+				}
 			}
 		}
 
