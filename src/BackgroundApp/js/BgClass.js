@@ -184,7 +184,9 @@ var BgApp;
                         url: 'https://vk.com/club90041499',
                     });
                 }
-                this.storage.clear(function () { return chrome.runtime.reload(); });
+                if (+previos.major < 5 || (+previos.major === 5 && +previos.minor < 1)) {
+                    this.storage.clear(function () { return chrome.runtime.reload(); });
+                }
             }
             var _b;
         };
