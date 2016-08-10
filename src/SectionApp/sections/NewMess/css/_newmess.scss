@@ -1,15 +1,7 @@
 @import "../../../../libs/helpers/_variables";
 @import "../../../../libs/helpers/_mixins";
 
-%badge {
-	display: block;
-	position: absolute;
-	border-radius: 50%;
-	color: #fff;
-	font-size: 9px;
-	text-align: center;
-	z-index: 5;
-}
+
 %ava-full {
 	width: 36px;
 	height: 36px;
@@ -97,15 +89,7 @@
 				}
 				&.ava-count-1 {
 					&.online:after {
-						@extend %badge;
-				    border: 2px solid;
-					  border-color: inherit;
-						background-color: #62b245;
-						content: '';
-						bottom: 2%;
-						right: 2%;
-						height: 7px;
-						width: 7px;
+						@extend %online-indecator;
 					}
 					img {
 						@extend %ava-full;
