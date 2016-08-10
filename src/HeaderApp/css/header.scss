@@ -1,13 +1,15 @@
 @import "../../libs/helpers/_variables";
+@import "../../libs/helpers/_mixins";
 $height: 42px;
 @import 'variables';
 @import 'mixins';
 @import 'dropdowns';
 
+
 header {
 	height: $height;
 	color: #fff;
-	background: #507299;
+	background: $mainColor;
 	display: flex;
 	.navbar-brand,
 	> span,
@@ -94,6 +96,13 @@ header {
 		float: right;
 		font-weight: 700;
 		font-size:12.5px;
+		position: relative;
+		border-color: $mainColor;
+		.online-indicator {
+			@extend %online-indecator;
+			bottom: 5px;
+			right: 16px;
+		}
 		img {
 		    width: 28px;
 		    height: 28px;

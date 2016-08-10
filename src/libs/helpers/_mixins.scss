@@ -60,3 +60,25 @@
 		margin-bottom: 10px;
 	}
 }
+
+%badge {
+	display: block;
+	position: absolute;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 9px;
+	text-align: center;
+	z-index: 5;
+}
+
+%online-indecator {
+	@extend %badge;
+	border: 2px solid;
+	border-color: inherit;
+	background-color: #62b245;
+	content: '';
+	bottom: 2%;
+	right: 2%;
+	height: 7px;
+	width: 7px;
+}
