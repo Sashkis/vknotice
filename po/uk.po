@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-08-09 06:11-0400\n"
+"PO-Revision-Date: 2016-08-11 07:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -21,7 +21,7 @@ msgstr[0] "{{$count}} Переслане повідомлення"
 msgstr[1] "{{$count}} Пересланих повідомлення"
 msgstr[2] "{{$count}} Пересланих повідомлень"
 
-#: SectionApp/sections/Default/Default.tpl:30
+#: SectionApp/sections/Default/Default.tpl:46
 msgid "Аудиозаписи"
 msgstr "Аудiозаписи"
 
@@ -37,7 +37,7 @@ msgstr "Введіть ваше повідомлення"
 msgid "Вернуться"
 msgstr "Повернутися"
 
-#: SectionApp/sections/Default/Default.tpl:24
+#: SectionApp/sections/Default/Default.tpl:52
 msgid "Видеозаписи"
 msgstr "Відеозаписи"
 
@@ -49,7 +49,7 @@ msgstr "Вкладення"
 msgid "Всегда"
 msgstr "Завжди"
 
-#: HeaderApp/Header.tpl:31
+#: HeaderApp/Header.tpl:32
 msgid "Выйти"
 msgstr "Вийти"
 
@@ -57,7 +57,7 @@ msgstr "Вийти"
 msgid "Выключить"
 msgstr "Вимкнути"
 
-#: SectionApp/sections/Default/Default.tpl:43
+#: SectionApp/sections/Default/Default.tpl:32
 msgid "Группы"
 msgstr "Спільноти"
 
@@ -67,7 +67,7 @@ msgid "Данное действие удалит весь кэш и сброс�
 msgstr "Ця дія вилучить весь кеш і скине налаштування.\n"
 "Ви впевнені, що хочете зробити це?"
 
-#: SectionApp/sections/Default/Default.tpl:10
+#: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
 msgstr "Друзі"
 
@@ -79,7 +79,7 @@ msgstr "Заблокувати"
 msgid "Загрузить ещё"
 msgstr "Завантажити ще"
 
-#: HeaderApp/Header.tpl:23
+#: HeaderApp/Header.tpl:24
 msgid "Задать вопрос"
 msgstr "Задати питання"
 
@@ -96,12 +96,16 @@ msgstr "Запис"
 msgid "Звуковые уведомления"
 msgstr "Звукові сповіщення"
 
+#: SectionApp/sections/Default/Default.tpl:59
+msgid "Игры"
+msgstr "Ігри"
+
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
 msgstr "Інформер"
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:98
+#: libs/helpers/Helpers.js:97
 msgid "Информер Вконтакте"
 msgstr "Інформер Вконтакте"
 
@@ -109,15 +113,11 @@ msgstr "Інформер Вконтакте"
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Інформер оновлено до версії {{version}}"
 
-#: SectionApp/sections/Default/Default.tpl:54
-msgid "Комментарии"
-msgstr "Коментарі"
-
 #: SectionApp/sections/NewMess/attachment.tpl:25
 msgid "Комментарий"
 msgstr "Коментар"
 
-#: SectionApp/sections/Default/Default.tpl:5
+#: SectionApp/sections/Default/Default.tpl:6
 msgid "Моя Страница"
 msgstr "Моя Cторінка"
 
@@ -125,11 +125,11 @@ msgstr "Моя Cторінка"
 msgid "Мы работаем для вас"
 msgstr "Ми працюємо для вас"
 
-#: PopupApp/popup.html:31
+#: PopupApp/popup.html:33
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Натисніть, щоб авторизуватись"
 
-#: HeaderApp/Header.tpl:30
+#: HeaderApp/Header.tpl:31
 #: OptionsApp/index.html:4
 msgid "Настройки"
 msgstr "Налаштування"
@@ -142,15 +142,15 @@ msgstr "Налаштування сповіщень"
 msgid "Нет новых заявок в друзья"
 msgstr "Немає нових заявок у друзі"
 
-#: SectionApp/sections/Default/Default.tpl:49
+#: SectionApp/sections/Default/Default.tpl:12
 msgid "Новости"
 msgstr "Новини"
 
-#: HeaderApp/Header.tpl:28
+#: HeaderApp/Header.tpl:29
 msgid "Оставить отзыв"
 msgstr "Залишити відгук"
 
-#: HeaderApp/Header.tpl:24
+#: HeaderApp/Header.tpl:25
 msgid "Оставить предложение"
 msgstr "Залишити пропозицію"
 
@@ -166,7 +166,7 @@ msgstr "Залиште свій відгук"
 msgid "Отклонить"
 msgstr "Відмовити"
 
-#: libs/helpers/Helpers.js:99
+#: libs/helpers/Helpers.js:98
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Відображає кількість непрочитаних повідомлень і дозволяє відповісти не заходячи в ВК!"
 
@@ -191,7 +191,7 @@ msgstr "При закритому ВК"
 msgid "Принять"
 msgstr "Прийняти"
 
-#: HeaderApp/Header.tpl:27
+#: HeaderApp/Header.tpl:28
 msgid "Рассказать друзьям"
 msgstr "Розповісти друзям"
 
@@ -247,11 +247,11 @@ msgstr "Повідомляти про відмітки на фотографія
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr "Повідомляти про згадки в записах, в коментарях або в обговореннях"
 
-#: SectionApp/sections/Default/Default.tpl:35
+#: SectionApp/sections/Default/Default.tpl:18
 msgid "Сообщения"
 msgstr "Повiдомлення"
 
-#: HeaderApp/Header.tpl:25
+#: HeaderApp/Header.tpl:26
 msgid "Сообщить об ошибке"
 msgstr "Повідомити про помилку"
 
@@ -267,7 +267,7 @@ msgstr "Зберегти"
 msgid "Удалить все данные расширения"
 msgstr "Видалити всі дані розширення"
 
-#: SectionApp/sections/Default/Default.tpl:18
+#: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
 msgstr "Фотографії"
 
