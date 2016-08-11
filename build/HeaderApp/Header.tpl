@@ -13,8 +13,9 @@
 	</a>
 
 	<span ng-class="['dropdown navbar-right',{open: head.isDropdownOpen}]" ng-click="head.isDropdownOpen = !head.isDropdownOpen">
-		<a class="profile">
+		<a class="profile" ng-class="{online: head.current_user.online}">
 			{{head.current_user.first_name}}
+			<div class="online-indicator" ng-if="head.current_user.online"></div>
 			<img class="ava" ng-src="{{head.current_user.photo_50}}" width="28px" height="28px">
 			<i class="caret"></i>
 		</a>

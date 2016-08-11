@@ -1,6 +1,6 @@
 {
   "name": "VkNotice",
-  "version": "5.1.9",
+  "version": "5.1.9.1",
   "author": "Alex Kozack <cawa-93@yandex.ru>",
   "description": "Browser extension",
   "homepage": "https://vk.com/club90041499",
@@ -9,7 +9,7 @@
     "gulp": "^3.9.1",
     "gulp-angular-gettext": "^2.2.0",
     "gulp-bump": "~2.2.0",
-    "gulp-clean-css": "^2.0.10",
+    "gulp-clean-css": "^2.0.12",
     "gulp-debug": "~2.1.2",
     "gulp-filter": "~4.0.0",
     "gulp-inject": "^4.1.0",

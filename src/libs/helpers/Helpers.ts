@@ -19,7 +19,6 @@ module Helpers {
 		const [gettextCatalog, storage] = dependency;
 
 		gettextCatalog.debug = true;
-		console.log(gettextCatalog);
 		gettextCatalog.baseLanguage = 'ru_RU';
 		// gettextCatalog.currentLanguage = 'ru_RU';
 

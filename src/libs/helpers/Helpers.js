@@ -27,7 +27,6 @@ var Helpers;
         }
         var gettextCatalog = dependency[0], storage = dependency[1];
         gettextCatalog.debug = true;
-        console.log(gettextCatalog);
         gettextCatalog.baseLanguage = 'ru_RU';
         storage.ready.then(function (stg) {
             var lang = getLang(stg.lang);
