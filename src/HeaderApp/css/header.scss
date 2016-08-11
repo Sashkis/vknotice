@@ -1,13 +1,12 @@
 @import "../../libs/helpers/_variables";
 @import "../../libs/helpers/_mixins";
-$height: 42px;
 @import 'variables';
 @import 'mixins';
 @import 'dropdowns';
 
 
 header {
-	height: $height;
+	height: $headerHeight;
 	color: #fff;
 	background: $mainColor;
 	display: flex;
@@ -16,7 +15,7 @@ header {
 	> a {
 		cursor: pointer;
 		color: #fff;
-		line-height: $height;
+		line-height: $headerHeight;
 		font-size: 17px;
 		padding: 0 13px;
 		position: relative;
@@ -38,7 +37,7 @@ header {
 		    margin-right: 10px;
 				&.fa-vk {
 					font-size: 30px;
-					line-height: $height - 4;
+					line-height: $headerHeight - 4;
 				}
 	    }
 	}
