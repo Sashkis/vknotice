@@ -10,7 +10,7 @@ msgid_plural "{{$count}} Пересланных сообщений"
 msgstr[0] ""
 msgstr[1] ""
 
-#: SectionApp/sections/Default/Default.tpl:30
+#: SectionApp/sections/Default/Default.tpl:46
 msgid "Аудиозаписи"
 msgstr ""
 
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Вернуться"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:24
+#: SectionApp/sections/Default/Default.tpl:52
 msgid "Видеозаписи"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Выключить"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:43
+#: SectionApp/sections/Default/Default.tpl:32
 msgid "Группы"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgid ""
 "Вы уверены, что хотите сделать это?"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:10
+#: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
 msgstr ""
 
@@ -85,12 +85,16 @@ msgstr ""
 msgid "Звуковые уведомления"
 msgstr ""
 
+#: SectionApp/sections/Default/Default.tpl:59
+msgid "Игры"
+msgstr ""
+
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
 msgstr ""
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:98
+#: libs/helpers/Helpers.js:97
 msgid "Информер Вконтакте"
 msgstr ""
 
@@ -98,15 +102,11 @@ msgstr ""
 msgid "Информер обновлен до версии {{version}}"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:54
-msgid "Комментарии"
-msgstr ""
-
 #: SectionApp/sections/NewMess/attachment.tpl:25
 msgid "Комментарий"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:5
+#: SectionApp/sections/Default/Default.tpl:6
 msgid "Моя Страница"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Нет новых заявок в друзья"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:49
+#: SectionApp/sections/Default/Default.tpl:12
 msgid "Новости"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Отклонить"
 msgstr ""
 
-#: libs/helpers/Helpers.js:99
+#: libs/helpers/Helpers.js:98
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr ""
 
@@ -236,7 +236,7 @@ msgstr ""
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:35
+#: SectionApp/sections/Default/Default.tpl:18
 msgid "Сообщения"
 msgstr ""
 
@@ -256,7 +256,7 @@ msgstr ""
 msgid "Удалить все данные расширения"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:18
+#: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
 msgstr ""
 
