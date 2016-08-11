@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-09 06:11-0400\n"
+"PO-Revision-Date: 2016-08-11 07:10-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -20,7 +20,7 @@ msgid_plural "{{$count}} Пересланных сообщений"
 msgstr[0] "{{$count}} Forwarded message"
 msgstr[1] "{{$count}} Forwarded messages"
 
-#: SectionApp/sections/Default/Default.tpl:30
+#: SectionApp/sections/Default/Default.tpl:46
 msgid "Аудиозаписи"
 msgstr "Audios"
 
@@ -36,7 +36,7 @@ msgstr "Type your text here"
 msgid "Вернуться"
 msgstr "Back"
 
-#: SectionApp/sections/Default/Default.tpl:24
+#: SectionApp/sections/Default/Default.tpl:52
 msgid "Видеозаписи"
 msgstr "Videos"
 
@@ -48,7 +48,7 @@ msgstr "Attachment"
 msgid "Всегда"
 msgstr "Always"
 
-#: HeaderApp/Header.tpl:31
+#: HeaderApp/Header.tpl:32
 msgid "Выйти"
 msgstr "Log out"
 
@@ -56,7 +56,7 @@ msgstr "Log out"
 msgid "Выключить"
 msgstr "Disabled"
 
-#: SectionApp/sections/Default/Default.tpl:43
+#: SectionApp/sections/Default/Default.tpl:32
 msgid "Группы"
 msgstr "Communities"
 
@@ -66,7 +66,7 @@ msgid "Данное действие удалит весь кэш и сброс�
 msgstr "This will delete the entire cache and reset the settings.\n"
 "You sure you want to do this?"
 
-#: SectionApp/sections/Default/Default.tpl:10
+#: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
 msgstr "Friends"
 
@@ -78,7 +78,7 @@ msgstr "Ban"
 msgid "Загрузить ещё"
 msgstr "Load more"
 
-#: HeaderApp/Header.tpl:23
+#: HeaderApp/Header.tpl:24
 msgid "Задать вопрос"
 msgstr "Ask question"
 
@@ -95,12 +95,16 @@ msgstr "Post"
 msgid "Звуковые уведомления"
 msgstr "Sound notifications"
 
+#: SectionApp/sections/Default/Default.tpl:59
+msgid "Игры"
+msgstr ""
+
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
 msgstr "Informer"
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:98
+#: libs/helpers/Helpers.js:97
 msgid "Информер Вконтакте"
 msgstr "VK Informer"
 
@@ -108,15 +112,11 @@ msgstr "VK Informer"
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Informer has been updated to version {{version}}"
 
-#: SectionApp/sections/Default/Default.tpl:54
-msgid "Комментарии"
-msgstr "Comments"
-
 #: SectionApp/sections/NewMess/attachment.tpl:25
 msgid "Комментарий"
 msgstr "Comment"
 
-#: SectionApp/sections/Default/Default.tpl:5
+#: SectionApp/sections/Default/Default.tpl:6
 msgid "Моя Страница"
 msgstr "My Profile"
 
@@ -124,11 +124,11 @@ msgstr "My Profile"
 msgid "Мы работаем для вас"
 msgstr "We work for you"
 
-#: PopupApp/popup.html:31
+#: PopupApp/popup.html:33
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Click to login"
 
-#: HeaderApp/Header.tpl:30
+#: HeaderApp/Header.tpl:31
 #: OptionsApp/index.html:4
 msgid "Настройки"
 msgstr "Settings"
@@ -141,15 +141,15 @@ msgstr "Notifications settings"
 msgid "Нет новых заявок в друзья"
 msgstr "No new requests to be friends"
 
-#: SectionApp/sections/Default/Default.tpl:49
+#: SectionApp/sections/Default/Default.tpl:12
 msgid "Новости"
 msgstr "News"
 
-#: HeaderApp/Header.tpl:28
+#: HeaderApp/Header.tpl:29
 msgid "Оставить отзыв"
 msgstr "Leave Feedback"
 
-#: HeaderApp/Header.tpl:24
+#: HeaderApp/Header.tpl:25
 msgid "Оставить предложение"
 msgstr "Leave a suggestion"
 
@@ -165,7 +165,7 @@ msgstr "Give us your feedback"
 msgid "Отклонить"
 msgstr "Disagree"
 
-#: libs/helpers/Helpers.js:99
+#: libs/helpers/Helpers.js:98
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Displays the number of unread messages and allows you to answer without going into VK!"
 
@@ -190,7 +190,7 @@ msgstr "When VK closed"
 msgid "Принять"
 msgstr "Agree"
 
-#: HeaderApp/Header.tpl:27
+#: HeaderApp/Header.tpl:28
 msgid "Рассказать друзьям"
 msgstr "Share application"
 
@@ -246,11 +246,11 @@ msgstr "Notify about marks on the photos"
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr "Notify about mentions in wall posts, comments, or topics"
 
-#: SectionApp/sections/Default/Default.tpl:35
+#: SectionApp/sections/Default/Default.tpl:18
 msgid "Сообщения"
 msgstr "Messages"
 
-#: HeaderApp/Header.tpl:25
+#: HeaderApp/Header.tpl:26
 msgid "Сообщить об ошибке"
 msgstr "Report a bug"
 
@@ -266,7 +266,7 @@ msgstr "Save"
 msgid "Удалить все данные расширения"
 msgstr "Remove all extension data"
 
-#: SectionApp/sections/Default/Default.tpl:18
+#: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
 msgstr "Photos"
 
