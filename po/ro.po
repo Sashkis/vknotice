@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
-"PO-Revision-Date: 2016-08-09 06:11-0400\n"
+"PO-Revision-Date: 2016-08-11 07:10-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -21,7 +21,7 @@ msgstr[0] "{{$count}} Remisă mesaj"
 msgstr[1] "{{$count}} Пересланных mesaje"
 msgstr[2] ""
 
-#: SectionApp/sections/Default/Default.tpl:30
+#: SectionApp/sections/Default/Default.tpl:46
 msgid "Аудиозаписи"
 msgstr "Audio"
 
@@ -37,7 +37,7 @@ msgstr "Introduceți mesajul dvs"
 msgid "Вернуться"
 msgstr "Pentru a reveni"
 
-#: SectionApp/sections/Default/Default.tpl:24
+#: SectionApp/sections/Default/Default.tpl:52
 msgid "Видеозаписи"
 msgstr "Video"
 
@@ -49,7 +49,7 @@ msgstr "Atașament"
 msgid "Всегда"
 msgstr "Întotdeauna"
 
-#: HeaderApp/Header.tpl:31
+#: HeaderApp/Header.tpl:32
 msgid "Выйти"
 msgstr "Ieși"
 
@@ -57,7 +57,7 @@ msgstr "Ieși"
 msgid "Выключить"
 msgstr "Opriți"
 
-#: SectionApp/sections/Default/Default.tpl:43
+#: SectionApp/sections/Default/Default.tpl:32
 msgid "Группы"
 msgstr "Grup"
 
@@ -67,7 +67,7 @@ msgid "Данное действие удалит весь кэш и сброс�
 msgstr "Această acțiune va șterge toată memoria cache și va reseta setările.\n"
 "Sigur doriți să faceți acest lucru?"
 
-#: SectionApp/sections/Default/Default.tpl:10
+#: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
 msgstr "Prieteni"
 
@@ -79,7 +79,7 @@ msgstr "Pentru a bloca"
 msgid "Загрузить ещё"
 msgstr "Descărcați din"
 
-#: HeaderApp/Header.tpl:23
+#: HeaderApp/Header.tpl:24
 msgid "Задать вопрос"
 msgstr "Pune o întrebare"
 
@@ -96,12 +96,16 @@ msgstr "Înregistrarea"
 msgid "Звуковые уведомления"
 msgstr "Sunet de notificare"
 
+#: SectionApp/sections/Default/Default.tpl:59
+msgid "Игры"
+msgstr ""
+
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
 msgstr "Informator"
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:98
+#: libs/helpers/Helpers.js:97
 msgid "Информер Вконтакте"
 msgstr "Informator Vkontakte"
 
@@ -109,15 +113,11 @@ msgstr "Informator Vkontakte"
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Informator a fost actualizat la versiunea {{version}}"
 
-#: SectionApp/sections/Default/Default.tpl:54
-msgid "Комментарии"
-msgstr "Comentarii"
-
 #: SectionApp/sections/NewMess/attachment.tpl:25
 msgid "Комментарий"
 msgstr "Comentariu"
 
-#: SectionApp/sections/Default/Default.tpl:5
+#: SectionApp/sections/Default/Default.tpl:6
 msgid "Моя Страница"
 msgstr "Pagina Mea"
 
@@ -125,11 +125,11 @@ msgstr "Pagina Mea"
 msgid "Мы работаем для вас"
 msgstr "Noi lucram pentru tine"
 
-#: PopupApp/popup.html:31
+#: PopupApp/popup.html:33
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Faceți clic pentru a авторизоватся"
 
-#: HeaderApp/Header.tpl:30
+#: HeaderApp/Header.tpl:31
 #: OptionsApp/index.html:4
 msgid "Настройки"
 msgstr "Setări"
@@ -142,15 +142,15 @@ msgstr "Setări de notificare"
 msgid "Нет новых заявок в друзья"
 msgstr "Nu noi cereri de la prieteni"
 
-#: SectionApp/sections/Default/Default.tpl:49
+#: SectionApp/sections/Default/Default.tpl:12
 msgid "Новости"
 msgstr "Stiri"
 
-#: HeaderApp/Header.tpl:28
+#: HeaderApp/Header.tpl:29
 msgid "Оставить отзыв"
 msgstr "Recenzie"
 
-#: HeaderApp/Header.tpl:24
+#: HeaderApp/Header.tpl:25
 msgid "Оставить предложение"
 msgstr "Lasa oferta"
 
@@ -166,7 +166,7 @@ msgstr "Lăsați feedback-ul dumneavoastră"
 msgid "Отклонить"
 msgstr "Respinge"
 
-#: libs/helpers/Helpers.js:99
+#: libs/helpers/Helpers.js:98
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Afișează numărul de mesaje necitite și vă permite să răspundeți fără a intra în CV!"
 
@@ -191,7 +191,7 @@ msgstr "Când este închis, CV"
 msgid "Принять"
 msgstr "Ia"
 
-#: HeaderApp/Header.tpl:27
+#: HeaderApp/Header.tpl:28
 msgid "Рассказать друзьям"
 msgstr "Să le spui prietenilor tăi"
 
@@ -247,11 +247,11 @@ msgstr "De a raporta cu privire la altitudini de fotografii"
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr "Să raporteze referiri în cartea, în comentarii sau în discuții"
 
-#: SectionApp/sections/Default/Default.tpl:35
+#: SectionApp/sections/Default/Default.tpl:18
 msgid "Сообщения"
 msgstr "Mesaje"
 
-#: HeaderApp/Header.tpl:25
+#: HeaderApp/Header.tpl:26
 msgid "Сообщить об ошибке"
 msgstr "Raportarea"
 
@@ -267,7 +267,7 @@ msgstr "Salvați"
 msgid "Удалить все данные расширения"
 msgstr "Șterge toate datele de expansiune"
 
-#: SectionApp/sections/Default/Default.tpl:18
+#: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
 msgstr "Fotografii"
 
