@@ -2,10 +2,11 @@
 
 aside {
 	padding: 0;
-	flex-basis: 138px;
+	flex-basis: 169px;
 	display: flex;
 	flex-flow: column nowrap;
-	min-height: 220px;
+	min-height: 230px;
+	font-size: 12px;
 	li {
 		display: flex;
 		flex: 1;

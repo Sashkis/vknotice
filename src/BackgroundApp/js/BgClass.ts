@@ -93,7 +93,7 @@ module BgApp {
 				options: '',
 				notifyFilters: '',
 				notifyLast_viewed: this.stg.notifyLast_viewed,
-				func_v: 2,
+				func_v: 3,
 			};
 
 			if (this.stg.options.friends)   apiOptions.options += 'friends,';
