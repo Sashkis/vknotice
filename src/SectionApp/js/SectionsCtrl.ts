@@ -15,7 +15,7 @@ module SectionsApp {
 		) {
 			storage.ready.then((stg) => {
 				if (stg.state.params.peer_id) {
-					const targetDialog = stg.dialogs.find((d) => d.peer_id === stg.state.params.peer_id);
+					const targetDialog = stg.dialogs.find((d) => d.peer_id === +stg.state.params.peer_id);
 					if (!targetDialog) {
 						stg.state.name = 'dialogs';
 						delete stg.state.params.peer_id;

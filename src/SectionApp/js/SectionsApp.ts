@@ -26,7 +26,7 @@ module SectionsApp {
 							templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl"
 						})
 						.state('dialogs.chat', {
-							url: '/{peer_id:int}',
+							url: '/{peer_id}',
 							templateUrl: "/SectionApp/sections/NewMess/NewMess.chat.tpl",
 						})
 

@@ -13,14 +13,15 @@
 	</a>
 
 	<span ng-class="['dropdown navbar-right',{open: head.isDropdownOpen}]" ng-click="head.isDropdownOpen = !head.isDropdownOpen">
-		<a class="profile">
+		<a class="profile" ng-class="{online: head.current_user.online}">
 			{{head.current_user.first_name}}
+			<div class="online-indicator" ng-if="head.current_user.online"></div>
 			<img class="ava" ng-src="{{head.current_user.photo_50}}" width="28px" height="28px">
 			<i class="caret"></i>
 		</a>
 
 		<ul class="dropdown-menu">
-			<li><a href="https://vk.com/club90041499?w=page-90041499_50788371" translate>Задать вопрос</a></li>
+			<li><a href="https://vk.com/club90041499?w=page-90041499_50788371" translate>Помощь</a></li>
 			<li><a href="https://vk.com/topic-90041499_31898043" translate>Оставить предложение</a></li>
 			<li><a href="https://vk.com/im?sel=-90041499" translate>Сообщить об ошибке</a></li>
 			<li class="divider"></li>

@@ -2,57 +2,61 @@
 	<aside ng-controller="SidebarCtrl as sidebar">
 		<li>
 			<a ng-href="https://vk.com/id{{sidebar.stg.user_id}}" >
+				<i class="left_icon l_pr" aria-hidden="true"></i>
 				<translate>Моя Страница</translate>
 			</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/friends" >
-				<translate>Друзья</translate>
-			</a>
-			<a class="counter" ui-sref="requests" ng-if="sidebar.stg.counter.friends">
-				{{'+'+sidebar.stg.counter.friends}}
+			<a ng-href="https://vk.com/feed" >
+				<i class="left_icon l_nwsf" aria-hidden="true"></i>
+				<translate>Новости</translate>
 			</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/albums" >
-				<translate>Фотографии</translate>
-				<span class="counter" ng-if="sidebar.stg.counter.photos">{{'+'+sidebar.stg.counter.photos}}</span>
-			</a>
-		</li>
-		<li>
-			<a ng-href="https://vk.com/video" >
-				<translate>Видеозаписи</translate>
-				<span class="counter" ng-if="sidebar.stg.counter.videos">{{'+'+sidebar.stg.counter.videos}}</span>
-			</a>
-		</li>
-		<li>
-			<a ng-href="https://vk.com/audio" >
-				<translate>Аудиозаписи</translate>
-			</a>
-		</li>
-		<li>
-			<a ng-href="https://vk.com/im" >
+			<a vk-href="https://vk.com/im" ui-sref="dialogs">
+				<i class="left_icon l_msg" aria-hidden="true"></i>
 				<translate>Сообщения</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.messages">{{'+'+sidebar.stg.counter.messages}}</span>
 			</a>
-			<a class="counter" ui-sref="dialogs">
-				{{sidebar.stg.counter.messages ? '+'+sidebar.stg.counter.messages : '+'}}
+		</li>
+		<li>
+			<a vk-href="https://vk.com/friends" ui-sref="requests">
+				<i class="left_icon l_fr" aria-hidden="true"></i>
+				<translate>Друзья</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.friends">{{'+'+sidebar.stg.counter.friends}}</span>
 			</a>
 		</li>
 		<li>
 			<a ng-href="https://vk.com/groups" >
+				<i class="left_icon l_gr" aria-hidden="true"></i>
 				<translate>Группы</translate>
 				<span class="counter" ng-if="sidebar.stg.counter.groups">{{'+'+sidebar.stg.counter.groups}}</span>
 			</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/feed" >
-				<translate>Новости</translate>
+			<a ng-href="https://vk.com/albums" >
+				<i class="left_icon l_ph" aria-hidden="true"></i>
+				<translate>Фотографии</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.photos">{{'+'+sidebar.stg.counter.photos}}</span>
 			</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/feed?section=comments" >
-				<translate>Комментарии</translate>
-				<span class="counter" ng-if="sidebar.stg.counter.comments">{{'+'+sidebar.stg.counter.comments}}</span>
+			<a ng-href="https://vk.com/audio" >
+				<i class="left_icon l_aud" aria-hidden="true"></i>
+				<translate>Аудиозаписи</translate>
+			</a>
+		</li>
+		<li>
+			<a ng-href="https://vk.com/video" >
+				<i class="left_icon l_vid" aria-hidden="true"></i>
+				<translate>Видеозаписи</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.videos">{{'+'+sidebar.stg.counter.videos}}</span>
+			</a>
+		</li>
+		<li>
+			<a ng-href="https://vk.com/apps" >
+				<i class="left_icon l_ap" aria-hidden="true"></i>
+				<translate>Игры</translate>
 			</a>
 		</li>
 	</aside>

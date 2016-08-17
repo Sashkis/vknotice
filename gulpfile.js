@@ -5,7 +5,7 @@ var gulp = require('gulp');
 
 gulp.task('pot', function () {
 	var gettext = require('gulp-angular-gettext');
-	return gulp.src(['src/**/*.html', 'src/**/*.tpl', 'src/**/*.js'])
+	return gulp.src(['src/**/*.html', 'src/**/*.tpl', 'src/**/*.js', '!src/bower_components/**/*'])
 			.pipe(gettext.extract('all.pot', {
 				extensions: {
 					htm:   'html',
