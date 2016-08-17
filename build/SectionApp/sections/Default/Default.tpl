@@ -13,18 +13,18 @@
 			</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/im" >
+			<a vk-href="https://vk.com/im" ui-sref="dialogs">
 				<i class="left_icon l_msg" aria-hidden="true"></i>
 				<translate>Сообщения</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.messages">{{'+'+sidebar.stg.counter.messages}}</span>
 			</a>
-			<a class="counter" ui-sref="dialogs">{{sidebar.stg.counter.messages ? '+'+sidebar.stg.counter.messages : '+'}}</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/friends" >
+			<a vk-href="https://vk.com/friends" ui-sref="requests">
 				<i class="left_icon l_fr" aria-hidden="true"></i>
 				<translate>Друзья</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.friends">{{'+'+sidebar.stg.counter.friends}}</span>
 			</a>
-			<a class="counter" ui-sref="requests" ng-if="sidebar.stg.counter.friends">{{'+'+sidebar.stg.counter.friends}}</a>
 		</li>
 		<li>
 			<a ng-href="https://vk.com/groups" >
