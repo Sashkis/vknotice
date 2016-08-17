@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-11 07:20-0400\n"
+"PO-Revision-Date: 2016-08-17 04:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -78,10 +78,6 @@ msgstr "Ban"
 msgid "Загрузить ещё"
 msgstr "Load more"
 
-#: HeaderApp/Header.tpl:24
-msgid "Задать вопрос"
-msgstr "Ask question"
-
 #: PopupApp/alert.tpl:8
 msgctxt "Всплывающее сообщение"
 msgid "Закрыть"
@@ -97,7 +93,7 @@ msgstr "Sound notifications"
 
 #: SectionApp/sections/Default/Default.tpl:59
 msgid "Игры"
-msgstr "Game"
+msgstr "Games"
 
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
@@ -169,7 +165,7 @@ msgstr "Disagree"
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Displays the number of unread messages and allows you to answer without going into VK!"
 
-#: SectionApp/sections/NewMess/NewMess.tpl:11
+#: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
 msgstr "Please select a dialog"
 
@@ -181,6 +177,10 @@ msgstr "Help him continue to develop for you"
 #: BackgroundApp/js/BgClass.js:213
 msgid "Помогите нам стать лучше"
 msgstr "Help us get better"
+
+#: HeaderApp/Header.tpl:24
+msgid "Помощь"
+msgstr "Help"
 
 #: OptionsApp/index.html:86
 msgid "При закрытом ВК"
