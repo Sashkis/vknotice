@@ -34,9 +34,9 @@ var SectionsApp;
                                 deamon.stop();
                             });
                             $scope.$on('$stateChangeSuccess', function ($event, toState, toParams) {
-                                _this.currentMessMap = messMap.getMessMap(toParams.peer_id);
+                                _this.currentMessMap = messMap.getMessMap(+toParams.peer_id);
                                 if (toParams.peer_id)
-                                    _this.loadMore(toParams.peer_id);
+                                    _this.loadMore(+toParams.peer_id);
                             });
                         });
                     });

@@ -6,7 +6,7 @@ var SectionsApp;
             this.storage = storage;
             storage.ready.then(function (stg) {
                 if (stg.state.params.peer_id) {
-                    var targetDialog = stg.dialogs.find(function (d) { return d.peer_id === stg.state.params.peer_id; });
+                    var targetDialog = stg.dialogs.find(function (d) { return d.peer_id === +stg.state.params.peer_id; });
                     if (!targetDialog) {
                         stg.state.name = 'dialogs';
                         delete stg.state.params.peer_id;
