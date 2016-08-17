@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
-"PO-Revision-Date: 2016-08-11 07:20-0400\n"
+"PO-Revision-Date: 2016-08-17 04:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -78,10 +78,6 @@ msgstr "Zablokować"
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:5
 msgid "Загрузить ещё"
 msgstr "Pobierz jeszcze"
-
-#: HeaderApp/Header.tpl:24
-msgid "Задать вопрос"
-msgstr "Zadaj pytanie"
 
 #: PopupApp/alert.tpl:8
 msgctxt "Всплывающее сообщение"
@@ -170,7 +166,7 @@ msgstr "Odrzucić"
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Wyświetla liczbę nieprzeczytanych wiadomości i pozwala odpowiedzieć nie wchodząc w VC!"
 
-#: SectionApp/sections/NewMess/NewMess.tpl:11
+#: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
 msgstr "Proszę, wybierz okno dialogowe"
 
@@ -182,6 +178,10 @@ msgstr "Pomóż mu i dalej rozwijać dla ciebie"
 #: BackgroundApp/js/BgClass.js:213
 msgid "Помогите нам стать лучше"
 msgstr "Pomóż nam stać się lepszym"
+
+#: HeaderApp/Header.tpl:24
+msgid "Помощь"
+msgstr ""
 
 #: OptionsApp/index.html:86
 msgid "При закрытом ВК"
