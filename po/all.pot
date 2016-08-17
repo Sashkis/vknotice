@@ -68,10 +68,6 @@ msgstr ""
 msgid "Загрузить ещё"
 msgstr ""
 
-#: HeaderApp/Header.tpl:24
-msgid "Задать вопрос"
-msgstr ""
-
 #: PopupApp/alert.tpl:8
 msgctxt "Всплывающее сообщение"
 msgid "Закрыть"
@@ -159,7 +155,7 @@ msgstr ""
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr ""
 
-#: SectionApp/sections/NewMess/NewMess.tpl:11
+#: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
 msgstr ""
 
@@ -170,6 +166,10 @@ msgstr ""
 #: BackgroundApp/js/BgClass.js:203
 #: BackgroundApp/js/BgClass.js:213
 msgid "Помогите нам стать лучше"
+msgstr ""
+
+#: HeaderApp/Header.tpl:24
+msgid "Помощь"
 msgstr ""
 
 #: OptionsApp/index.html:86

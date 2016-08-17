@@ -80,9 +80,9 @@ module SectionsApp {
 									deamon.stop();
 								});
 
-								$scope.$on('$stateChangeSuccess', ($event, toState, toParams) => {
-									this.currentMessMap = messMap.getMessMap(toParams.peer_id);
-									if (toParams.peer_id) this.loadMore(toParams.peer_id)
+								$scope.$on('$stateChangeSuccess', ($event: ng.IAngularEvent, toState: string, toParams: {peer_id: string}) => {
+									this.currentMessMap = messMap.getMessMap(+toParams.peer_id);
+									if (toParams.peer_id) this.loadMore(+toParams.peer_id)
 								});
 
 						});
