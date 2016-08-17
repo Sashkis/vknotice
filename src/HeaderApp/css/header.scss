@@ -1,20 +1,21 @@
 @import "../../libs/helpers/_variables";
-$height: 42px;
+@import "../../libs/helpers/_mixins";
 @import 'variables';
 @import 'mixins';
 @import 'dropdowns';
 
+
 header {
-	height: $height;
+	height: $headerHeight;
 	color: #fff;
-	background: #507299;
+	background: $mainColor;
 	display: flex;
 	.navbar-brand,
 	> span,
 	> a {
 		cursor: pointer;
 		color: #fff;
-		line-height: $height;
+		line-height: $headerHeight;
 		font-size: 17px;
 		padding: 0 13px;
 		position: relative;
@@ -36,7 +37,7 @@ header {
 		    margin-right: 10px;
 				&.fa-vk {
 					font-size: 30px;
-					line-height: $height - 4;
+					line-height: $headerHeight - 4;
 				}
 	    }
 	}
@@ -94,6 +95,13 @@ header {
 		float: right;
 		font-weight: 700;
 		font-size:12.5px;
+		position: relative;
+		border-color: $mainColor;
+		.online-indicator {
+			@extend %online-indecator;
+			bottom: 5px;
+			right: 16px;
+		}
 		img {
 		    width: 28px;
 		    height: 28px;

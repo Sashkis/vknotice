@@ -93,7 +93,7 @@ module BgApp {
 				options: '',
 				notifyFilters: '',
 				notifyLast_viewed: this.stg.notifyLast_viewed,
-				func_v: 2,
+				func_v: 3,
 			};
 
 			if (this.stg.options.friends)   apiOptions.options += 'friends,';
@@ -251,7 +251,7 @@ module BgApp {
 					alert = {
 						'id':    alarm.name,
 						'type':  'simple',
-						'img':   'https://new.vk.com/images/stickers/2080/128.png',
+						'img':   'https://vk.com/images/stickers/2080/128.png',
 						'text':  this.gettextCatalog.getString('Вам нравится Информер?'),
 						'ancor': this.gettextCatalog.getString('Помогите ему и дальше развиваться для вас'),
 						'url':   'https://www.liqpay.com/ru/checkout/card/vknotify',
@@ -265,40 +265,3 @@ module BgApp {
 		}
 	}
 }
-
-// 	chrome.runtime.onInstalled.addListener(details => {
-// 		// При установке
-// 		if (details.reason === 'install') {
-// 			chrome.alarms.create('say_thanks', { 'when': $.now() + 86400000 * 7 });	// Через 7 дней
-// 			chrome.alarms.create('get_review', { 'when': $.now() + 3600000 });		// Через 1 час
-// 			chrome.storage.local.set({
-// 				'lastOpenComment': parseInt($.now()/1000)
-// 			});
-// 		}
-// 	});
-
-// 	chrome.alarms.onAlarm.addListener(alarm => {
-// 		const app = new App();
-// 		if (alarm.name === 'get_review') {
-// 			Informer.saveAlert({
-// 				'header': 'Try for you',
-// 				'footer': 'Close',
-// 				'body': {
-// 					'img'	 : 'https://vk.com/images/stickers/644/128.png',
-// 					'text'	 : 'Help us to become better',
-// 					'ancor'	 : 'Leave a review',
-// 					'url'	 : app.comment
-// 				}
-// 			});
-// 		} else if (alarm.name === 'say_thanks') {
-// 			Informer.saveAlert({
-// 				'header': 'Try for you',
-// 				'footer': 'Close',
-// 				'body': {
-// 					'img'	 : 'https://vk.com/images/stickers/630/128.png',
-// 					'ancor'	 : 'To thank the author',
-// 					'url'	 : app.share,
-// 				}
-// 			});
-// 		}
-// 	});

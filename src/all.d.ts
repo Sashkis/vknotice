@@ -3,6 +3,13 @@
 /// <reference path="./libs/angular-ui-router/angular-ui-router.d.ts"/>
 /// <reference path="./libs/vk/openapi.d.ts"/>
 /// <reference path="./libs/helpers/helpers.d.ts"/>
+/// <reference path="./libs/helpers/Helpers.ts"/>
 /// <reference path="./libs/linkifyjs/linkifyjs.d.ts"/>
 /// <reference path="./StorageApp/storage.d.ts"/>
+/// <reference path="./StorageApp/StorageService.ts"/>
+/// <reference path="./DeamonApp/js/DeamonService.ts"/>
+/// <reference path="./VkApp/js/Vk.d.ts"/>
 /// <reference path="./VkApp/js/VkService.ts"/>
+/// <reference path="./SectionApp/sections/NewMess/js/AttachmentDirective.ts"/>
+/// <reference path="./SectionApp/sections/NewMess/js/ChatCtrl.ts"/>
+/// <reference path="./SectionApp/sections/NewMess/js/Dialog.class.ts"/>
