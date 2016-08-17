@@ -5,4 +5,5 @@
 /// <reference path="./libs/helpers/helpers.d.ts"/>
 /// <reference path="./libs/linkifyjs/linkifyjs.d.ts"/>
 /// <reference path="./StorageApp/storage.d.ts"/>
+/// <reference path="./StorageApp/StorageService.ts"/>
 /// <reference path="./VkApp/js/VkService.ts"/>
