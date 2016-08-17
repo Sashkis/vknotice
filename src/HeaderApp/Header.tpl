@@ -21,7 +21,7 @@
 		</a>
 
 		<ul class="dropdown-menu">
-			<li><a href="https://vk.com/club90041499?w=page-90041499_50788371" translate>Задать вопрос</a></li>
+			<li><a href="https://vk.com/club90041499?w=page-90041499_50788371" translate>Помощь</a></li>
 			<li><a href="https://vk.com/topic-90041499_31898043" translate>Оставить предложение</a></li>
 			<li><a href="https://vk.com/im?sel=-90041499" translate>Сообщить об ошибке</a></li>
 			<li class="divider"></li>
