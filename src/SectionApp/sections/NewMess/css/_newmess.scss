@@ -26,6 +26,25 @@
 	#dialogs-list {
 		background-color: $DialogBg;
 		border-right: 1px solid #e7e8ec;
+		height: 288px;
+		overflow: hidden;
+		position: relative;
+		&:before,
+		&:after {
+			content: "";
+			display: none;
+			position: absolute;
+			height: 25px;
+			width: 100%;
+			z-index: 20;
+			pointer-events: none;
+		}
+		&:before { top: 0; background: linear-gradient(to bottom, rgba(255,255,255,1) 50%,rgba(255, 255, 255, 0) 100%); }
+		&:after { bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255, 255, 255, 1) 50%); }
+		&.can-move-bottom:after { display: block; }
+		&.can-move-top:before { display: block; }
+		.scroller { transition: margin-top .3s; }
+
 		.dialog-item {
 			display: block;
 			padding: 6px;
