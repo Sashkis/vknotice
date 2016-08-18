@@ -229,7 +229,7 @@ var BgApp;
                     alert = {
                         'id': alarm.name,
                         'type': 'simple',
-                        'img': 'https://new.vk.com/images/stickers/2080/128.png',
+                        'img': 'https://vk.com/images/stickers/2080/128.png',
                         'text': this.gettextCatalog.getString('Вам нравится Информер?'),
                         'ancor': this.gettextCatalog.getString('Помогите ему и дальше развиваться для вас'),
                         'url': 'https://www.liqpay.com/ru/checkout/card/vknotify',

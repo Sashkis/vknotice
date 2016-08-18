@@ -1,4 +1,5 @@
 /// <reference path="../../all.d.ts"/>
+/// <reference path="BgClass.ts"/>
 module BgApp {
 
 	angular.module('BgApp', ['DeamonApp', 'angular-google-analytics', 'gettext'])
@@ -7,7 +8,7 @@ module BgApp {
 		profilesLimit: 100,
 	})
 
-	.config(['AnalyticsProvider', Helpers.setAnaliticSetting])
-	.run(['Analytics', 'storage', Helpers.trackPage])
+	.config(Helpers.setAnaliticSetting)
+	.run(Helpers.trackPage)
 	.controller('Bg', BgClass);
 }

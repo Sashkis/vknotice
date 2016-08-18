@@ -1,12 +1,14 @@
+/// <reference path="../../all.d.ts" />
+
 module Helpers {
-	export function trackPage (...dependency: Array<any>) {
-		const [Analytics, storage] = dependency;
+	export function trackPage (Analytics: any, storage: StorageApp.StorageService) {
 		storage.ready.then((stg: IStorageData) => {
 			stg.user_id && Analytics.set('&uid', stg.user_id);
 			let path = getPageTrackUrl();
 			Analytics.trackPage(path);
 		});
 	}
+	trackPage.$inject = ['Analytics', 'storage'];
 
 	export function getPageTrackUrl () {
 		switch (location.pathname) {
@@ -14,13 +16,12 @@ module Helpers {
 			case "/BackgroundApp/background.html" : return '/Background/';
 		}
 	}
+	getPageTrackUrl.$inject = [];
 
-	export function setCurrentLanguage (...dependency: Array<any>) {
-		const [gettextCatalog, storage] = dependency;
-
+	setCurrentLanguage.$inject = ['gettextCatalog', 'storage'];
+	export function setCurrentLanguage (gettextCatalog: ng.gettext.gettextCatalog, storage: StorageApp.StorageService) {
 		gettextCatalog.debug = true;
 		gettextCatalog.baseLanguage = 'ru_RU';
-		// gettextCatalog.currentLanguage = 'ru_RU';
 
 		storage.ready.then((stg: IStorageData) => {
 			const lang = getLang(stg.lang);
@@ -28,7 +29,6 @@ module Helpers {
 			gettextCatalog.setCurrentLanguage(lang);
 			console.info(`Current Language set as "${lang}"`);
 		});
-
 	}
 
 	function getLang(lang_code: number) {
@@ -52,9 +52,8 @@ module Helpers {
 		}
 	}
 
-	export function setAnaliticSetting (...dependency: Array<any>) {
-		const [AnalyticsProvider] = dependency;
-
+	setCurrentLanguage.$inject = ['AnalyticsProvider'];
+	export function setAnaliticSetting (AnalyticsProvider: ng.google.analytics.AnalyticsProvider) {
 		AnalyticsProvider.setAccount({
 			tracker: 'UA-71609511-3',
 			trackEvent: true,

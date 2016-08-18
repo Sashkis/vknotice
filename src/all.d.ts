@@ -1,6 +1,4 @@
-/// <reference path="./libs/chrome/chrome.d.ts"/>
-/// <reference path='./libs/angularjs/angular.d.ts' />
-/// <reference path="./libs/angular-ui-router/angular-ui-router.d.ts"/>
+/// <reference path="../typings/index.d.ts"/>
 /// <reference path="./libs/vk/openapi.d.ts"/>
 /// <reference path="./libs/helpers/helpers.d.ts"/>
 /// <reference path="./libs/helpers/Helpers.ts"/>
