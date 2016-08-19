@@ -90,7 +90,7 @@ msgid "Информер"
 msgstr ""
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:97
+#: libs/helpers/Helpers.js:86
 msgid "Информер Вконтакте"
 msgstr ""
 
@@ -151,7 +151,7 @@ msgstr ""
 msgid "Отклонить"
 msgstr ""
 
-#: libs/helpers/Helpers.js:98
+#: libs/helpers/Helpers.js:87
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr ""
 

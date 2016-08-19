@@ -98,7 +98,11 @@ var VkApp;
             if (params === void 0) { params = {}; }
             var ready = this.$q.defer();
             params.v = this.apiConfig.version;
-            this.$http.get("https://api.vk.com/method/" + method, { params: params })
+            this.$http.get("https://api.vk.com/method/" + method, {
+                params: params,
+                timeout: 4000,
+                cache: false,
+            })
                 .then(function (API) {
                 if (_this.isResponseSuccess(API.data)) {
                     ready.resolve(API.data.response);
@@ -116,7 +120,8 @@ var VkApp;
                         ready.reject('api_error');
                     }
                 }
-            }, function () {
+            }, function (e) {
+                console.error(e);
                 ready.reject('connect_error');
             });
             return ready.promise;
