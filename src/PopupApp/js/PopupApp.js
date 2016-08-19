@@ -1,8 +1,8 @@
 var PopupApp;
 (function (PopupApp) {
     angular.module('PopupApp', ['HeaderApp', 'SectionsApp', 'gettext', 'angular-google-analytics'])
-        .config(['AnalyticsProvider', Helpers.setAnaliticSetting])
-        .run(['gettextCatalog', 'storage', Helpers.setCurrentLanguage])
+        .config(Helpers.setAnaliticSetting)
+        .run(Helpers.setCurrentLanguage)
         .run(['storage',
         function (storage) {
             return storage.onChanged(function (changes) {

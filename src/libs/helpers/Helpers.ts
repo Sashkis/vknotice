@@ -1,6 +1,7 @@
 /// <reference path="../../all.d.ts" />
 
 module Helpers {
+	trackPage.$inject = ['Analytics', 'storage'];
 	export function trackPage (Analytics: any, storage: StorageApp.StorageService) {
 		storage.ready.then((stg: IStorageData) => {
 			stg.user_id && Analytics.set('&uid', stg.user_id);
@@ -8,15 +9,14 @@ module Helpers {
 			Analytics.trackPage(path);
 		});
 	}
-	trackPage.$inject = ['Analytics', 'storage'];
 
+	getPageTrackUrl.$inject = [];
 	export function getPageTrackUrl () {
 		switch (location.pathname) {
 			case "/OptionsApp/index.html" : return '/Options/';
 			case "/BackgroundApp/background.html" : return '/Background/';
 		}
 	}
-	getPageTrackUrl.$inject = [];
 
 	setCurrentLanguage.$inject = ['gettextCatalog', 'storage'];
 	export function setCurrentLanguage (gettextCatalog: ng.gettext.gettextCatalog, storage: StorageApp.StorageService) {
@@ -52,7 +52,7 @@ module Helpers {
 		}
 	}
 
-	setCurrentLanguage.$inject = ['AnalyticsProvider'];
+	setAnaliticSetting.$inject = ['AnalyticsProvider'];
 	export function setAnaliticSetting (AnalyticsProvider: ng.google.analytics.AnalyticsProvider) {
 		AnalyticsProvider.setAccount({
 			tracker: 'UA-71609511-3',

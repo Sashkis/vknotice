@@ -1,5 +1,6 @@
 var Helpers;
 (function (Helpers) {
+    trackPage.$inject = ['Analytics', 'storage'];
     function trackPage(Analytics, storage) {
         storage.ready.then(function (stg) {
             stg.user_id && Analytics.set('&uid', stg.user_id);
@@ -8,7 +9,7 @@ var Helpers;
         });
     }
     Helpers.trackPage = trackPage;
-    trackPage.$inject = ['Analytics', 'storage'];
+    getPageTrackUrl.$inject = [];
     function getPageTrackUrl() {
         switch (location.pathname) {
             case "/OptionsApp/index.html": return '/Options/';
@@ -16,7 +17,6 @@ var Helpers;
         }
     }
     Helpers.getPageTrackUrl = getPageTrackUrl;
-    getPageTrackUrl.$inject = [];
     setCurrentLanguage.$inject = ['gettextCatalog', 'storage'];
     function setCurrentLanguage(gettextCatalog, storage) {
         gettextCatalog.debug = true;
@@ -53,7 +53,7 @@ var Helpers;
                 return 'en_US';
         }
     }
-    setCurrentLanguage.$inject = ['AnalyticsProvider'];
+    setAnaliticSetting.$inject = ['AnalyticsProvider'];
     function setAnaliticSetting(AnalyticsProvider) {
         AnalyticsProvider.setAccount({
             tracker: 'UA-71609511-3',
