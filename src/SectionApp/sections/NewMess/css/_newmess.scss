@@ -281,6 +281,8 @@
 
 .empty-messages-list-container {
 	@extend %empty-section-plug;
+	width: auto;
+	flex: 1;
 }
 
 // .emoji {

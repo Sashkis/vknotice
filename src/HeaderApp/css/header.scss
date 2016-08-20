@@ -81,13 +81,52 @@ header {
 			}
 		}
 		.dropdown-menu {
+			top: 45px;
 			left: auto;
 			right: 0;
-			a:hover, a:focus {
-				background-color: rgba($mainColor, 0.09);
+			box-shadow: 0 1px 3px rgba(0,0,0,.1);
+			border: 1px solid #c5d0db;
+			font-size: 12.5px;
+			border-radius: 3px;
+			padding: 2px 0;
+			&%arrow {
+				display: block;
+				position: absolute;
+				pointer-events: none;
+				border: solid transparent;
+				content: '';
+				height: 0;
+				width: 0;
+				bottom: 100%;
+				right: 42px;
+			}
+			&:before {
+				@extend %arrow;
+				border-width: 6px;
+				margin: 0 -6px;
+				border-bottom-color: #c5d0db;
+			}
+			&:after {
+				@extend %arrow;
+				border-width: 5px;
+				margin: 0 -5px;
+				border-bottom-color: #fff;
+			}
+			a {
+				display: block;
+				white-space: nowrap;
+				position: relative;
+				line-height: 25px;
+				padding: 0 15px;
+				color: #2a5885;
+				&:hover, &:focus {
+					color: #2a5885;
+					background-color: rgba($mainColor, 0.09);
+				}
 			}
 			.divider {
-			    margin: 5px 0;
+					margin: 4px 13px;
+					background-color: #dbe4ec;
 			}
 		}
 	}
