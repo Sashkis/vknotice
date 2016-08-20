@@ -66,7 +66,7 @@ module Helpers {
 			},
 		})
 		.ignoreFirstPageLoad(true)
-		.setRemoveRegExp(/[0-9]+/)
+		.setRemoveRegExp(/\/-?[0-9]+/)
 		.setHybridMobileSupport(true);
 	}
 

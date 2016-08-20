@@ -23,7 +23,7 @@ module SectionsApp {
 						})
 						.state('dialogs', {
 							url: '/dialogs',
-							templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl"
+							templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl",
 						})
 						.state('dialogs.chat', {
 							url: '/{peer_id}',

@@ -67,7 +67,7 @@ var Helpers;
             },
         })
             .ignoreFirstPageLoad(true)
-            .setRemoveRegExp(/[0-9]+/)
+            .setRemoveRegExp(/\/-?[0-9]+/)
             .setHybridMobileSupport(true);
     }
     Helpers.setAnaliticSetting = setAnaliticSetting;
