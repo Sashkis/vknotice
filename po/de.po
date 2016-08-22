@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2016-08-17 05:00-0400\n"
+"PO-Revision-Date: 2016-08-22 07:10-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -56,6 +56,10 @@ msgstr "Gehen"
 msgid "Выключить"
 msgstr "Deaktivieren"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:21
+msgid "Город:"
+msgstr "Stadt:"
+
 #: SectionApp/sections/Default/Default.tpl:32
 msgid "Группы"
 msgstr "Gruppe"
@@ -65,6 +69,10 @@ msgid "Данное действие удалит весь кэш и сброс�
 "Вы уверены, что хотите сделать это?"
 msgstr "Diese Aktion löscht den gesamten Cache und Einstellungen zurückgesetzt.\n"
 "Sind Sie sicher, dass Sie das wollen?"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:19
+msgid "День рождения:"
+msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
@@ -100,7 +108,7 @@ msgid "Информер"
 msgstr "Informer"
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:97
+#: libs/helpers/Helpers.js:86
 msgid "Информер Вконтакте"
 msgstr "Informer Facebook"
 
@@ -161,7 +169,7 @@ msgstr "Geben Sie uns Ihr Feedback"
 msgid "Отклонить"
 msgstr "Ablehnen"
 
-#: libs/helpers/Helpers.js:98
+#: libs/helpers/Helpers.js:87
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Zeigt die Anzahl der ungelesenen Nachrichten und Antworten können ohne in der VK!"
 
@@ -193,6 +201,10 @@ msgstr "Nehmen"
 #: HeaderApp/Header.tpl:28
 msgid "Рассказать друзьям"
 msgstr "Erzählen Sie Ihren Freunden"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:23
+msgid "Семейное положение:"
+msgstr ""
 
 #: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
@@ -262,6 +274,10 @@ msgstr "Gespeichert"
 msgid "Сохранить"
 msgstr "Speichern"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:20
+msgid "Страна:"
+msgstr ""
+
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
 msgstr "Alle Daten löschen-Erweiterungen"
@@ -269,6 +285,54 @@ msgstr "Alle Daten löschen-Erweiterungen"
 #: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
 msgstr "Fotos"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:55
+msgid "в активном поиске"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:59
+msgid "влюблена"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:60
+msgid "влюблена в"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:61
+msgid "влюблён"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:62
+msgid "влюблён в"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:51
+msgid "всё сложно"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:32
+msgid "есть друг"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:33
+msgid "есть подруга"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:46
+msgid "женат"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:47
+msgid "женат на"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:44
+msgid "замужем"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:45
+msgid "замужем за"
+msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
@@ -278,9 +342,33 @@ msgstr "änderte den Namen auf Gespräche"
 msgid "исключил"
 msgstr "ausgeschlossen"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:28
+msgid "не женат"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:27
+msgid "не замужем"
+msgstr ""
+
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
 msgstr "wurde das Foto und die Gespräche"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:39
+msgid "помолвлен"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:40
+msgid "помолвлен c"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:37
+msgid "помолвлена"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:38
+msgid "помолвлена c"
+msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
