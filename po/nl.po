@@ -12,13 +12,17 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
-"PO-Revision-Date: 2016-08-22 07:20-0400\n"
+"PO-Revision-Date: 2016-08-22 12:30-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
 msgid_plural "{{$count}} Пересланных сообщений"
 msgstr[0] "{{$count}} Doorgestuurd bericht"
 msgstr[1] ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:135
+msgid "Аудио"
+msgstr "Audio"
 
 #: SectionApp/sections/Default/Default.tpl:46
 msgid "Аудиозаписи"
@@ -35,6 +39,10 @@ msgstr "Voer uw bericht in"
 #: HeaderApp/Header.tpl:8
 msgid "Вернуться"
 msgstr "Terug"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:131
+msgid "Видео"
+msgstr "Video"
 
 #: SectionApp/sections/Default/Default.tpl:52
 msgid "Видеозаписи"
@@ -56,7 +64,7 @@ msgstr "Uit"
 msgid "Выключить"
 msgstr "Uit"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:21
+#: SectionApp/sections/UserPage/UserPage.tpl:50
 msgid "Город:"
 msgstr "Stad:"
 
@@ -70,9 +78,13 @@ msgid "Данное действие удалит весь кэш и сброс�
 msgstr "Hiermee verwijdert u de hele cache en reset de instellingen.\n"
 "U zeker, dat u dit wilt doen?"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:19
+#: SectionApp/sections/UserPage/UserPage.tpl:23
 msgid "День рождения:"
 msgstr "Verjaardag:"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:119
+msgid "Друзей"
+msgstr "Vrienden"
 
 #: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
@@ -108,7 +120,7 @@ msgid "Информер"
 msgstr "Informer"
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:86
+#: libs/helpers/Helpers.js:85
 msgid "Информер Вконтакте"
 msgstr "Widget Vkontakte"
 
@@ -149,6 +161,10 @@ msgstr "Geen nieuwe toepassingen vrienden"
 msgid "Новости"
 msgstr "Nieuws"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:115
+msgid "Общих друзей"
+msgstr ""
+
 #: HeaderApp/Header.tpl:29
 msgid "Оставить отзыв"
 msgstr "Laat een review"
@@ -169,9 +185,13 @@ msgstr "Laat uw review"
 msgid "Отклонить"
 msgstr "Weigeren"
 
-#: libs/helpers/Helpers.js:87
+#: libs/helpers/Helpers.js:86
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Toont het aantal ongelezen berichten en kunt u het antwoord zonder in te gaan op VK!"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:123
+msgid "Подписчиков"
+msgstr ""
 
 #: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
@@ -202,7 +222,7 @@ msgstr "Maken"
 msgid "Рассказать друзьям"
 msgstr "Vertel het je vrienden"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:23
+#: SectionApp/sections/UserPage/UserPage.tpl:56
 msgid "Семейное положение:"
 msgstr "Burgerlijke staat:"
 
@@ -274,7 +294,7 @@ msgstr "Opgeslagen"
 msgid "Сохранить"
 msgstr "Opslaan"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:20
+#: SectionApp/sections/UserPage/UserPage.tpl:44
 msgid "Страна:"
 msgstr "Land:"
 
@@ -282,55 +302,71 @@ msgstr "Land:"
 msgid "Удалить все данные расширения"
 msgstr "Verwijder alle van de gegevens extensies"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:127
+msgid "Фото"
+msgstr ""
+
 #: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
 msgstr "Foto ' s"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:55
+#: SectionApp/sections/UserPage/UserPage.tpl:34
+msgid "августа"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:30
+msgid "апреля"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:88
 msgid "в активном поиске"
 msgstr "in de actieve zoektocht"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:59
+#: SectionApp/sections/UserPage/UserPage.tpl:92
 msgid "влюблена"
 msgstr "in liefde"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:60
+#: SectionApp/sections/UserPage/UserPage.tpl:93
 msgid "влюблена в"
 msgstr "verliefd"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:61
+#: SectionApp/sections/UserPage/UserPage.tpl:94
 msgid "влюблён"
 msgstr "liefde"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:62
+#: SectionApp/sections/UserPage/UserPage.tpl:95
 msgid "влюблён в"
 msgstr "verliefd"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:51
+#: SectionApp/sections/UserPage/UserPage.tpl:84
 msgid "всё сложно"
 msgstr "het is ingewikkeld"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:32
+#: SectionApp/sections/UserPage/UserPage.tpl:38
+msgid "декабря"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:65
 msgid "есть друг"
 msgstr "een vriend"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:33
+#: SectionApp/sections/UserPage/UserPage.tpl:66
 msgid "есть подруга"
 msgstr "een vriend"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:46
+#: SectionApp/sections/UserPage/UserPage.tpl:79
 msgid "женат"
 msgstr "getrouwd"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:47
+#: SectionApp/sections/UserPage/UserPage.tpl:80
 msgid "женат на"
 msgstr "getrouwd met"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:44
+#: SectionApp/sections/UserPage/UserPage.tpl:77
 msgid "замужем"
 msgstr "getrouwd"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:45
+#: SectionApp/sections/UserPage/UserPage.tpl:78
 msgid "замужем за"
 msgstr "getrouwd"
 
@@ -342,37 +378,65 @@ msgstr "veranderde de naam van het gesprek op"
 msgid "исключил"
 msgstr "uitgesloten"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:28
+#: SectionApp/sections/UserPage/UserPage.tpl:33
+msgid "июля"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:32
+msgid "июня"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:29
+msgid "марта"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:31
+msgid "мая"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:61
 msgid "не женат"
 msgstr "niet getrouwd"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:27
+#: SectionApp/sections/UserPage/UserPage.tpl:60
 msgid "не замужем"
 msgstr "niet getrouwd"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:37
+msgid "ноября"
+msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
 msgstr "bijgewerkte foto van het gesprek"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:39
+#: SectionApp/sections/UserPage/UserPage.tpl:36
+msgid "октября"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:72
 msgid "помолвлен"
 msgstr "betrokken"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:40
+#: SectionApp/sections/UserPage/UserPage.tpl:73
 msgid "помолвлен c"
 msgstr "bezig c"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:37
+#: SectionApp/sections/UserPage/UserPage.tpl:70
 msgid "помолвлена"
 msgstr "betrokken"
 
-#: SectionApp/sections/UserPage/UserPage.tpl:38
+#: SectionApp/sections/UserPage/UserPage.tpl:71
 msgid "помолвлена c"
 msgstr "bezig c"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
 msgstr "uitgenodigd"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:35
+msgid "сентября"
+msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:21
 msgid "создал беседу"
@@ -381,3 +445,11 @@ msgstr "gemaakt conversatie"
 #: SectionApp/sections/NewMess/message.tpl:37
 msgid "удалил фотографию беседы"
 msgstr "verwijderd de foto van het gesprek"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:28
+msgid "февраля"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:27
+msgid "января"
+msgstr ""
