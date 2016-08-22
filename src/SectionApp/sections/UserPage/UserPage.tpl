@@ -16,9 +16,39 @@
 		</div>
 
 		<main>
-			<item ng-if="vm.user.bdate"><translate class="title">День рождения:</translate><span class="value">{{vm.user.bdate}}</span></item>
-			<item ng-if="vm.user.country"><translate class="title">Страна: </translate><span class="value">{{vm.user.country.title}}</span></item>
-			<item ng-if="vm.user.city"><translate class="title">Город:</translate><span class="value">{{vm.user.city.title}}</span></item>
+			<item ng-if="vm.user.bdate">
+				<translate class="title">День рождения:</translate>
+				<a class="value" ng-href="https://vk.com/search?c[section]=people&c[bday]={{vm.user.bdate_obj.bday}}&c[bmonth]={{vm.user.bdate_obj.bmonth}}&c[byear]={{vm.user.bdate_obj.byear}}">
+					{{vm.user.bdate_obj.bday}}
+					<span ng-switch="vm.user.bdate_obj.bmonth">
+						<translate ng-switch-when="1">января</translate>
+						<translate ng-switch-when="2">февраля</translate>
+						<translate ng-switch-when="3">марта</translate>
+						<translate ng-switch-when="4">апреля</translate>
+						<translate ng-switch-when="5">мая</translate>
+						<translate ng-switch-when="6">июня</translate>
+						<translate ng-switch-when="7">июля</translate>
+						<translate ng-switch-when="8">августа</translate>
+						<translate ng-switch-when="9">сентября</translate>
+						<translate ng-switch-when="10">октября</translate>
+						<translate ng-switch-when="11">ноября</translate>
+						<translate ng-switch-when="12">декабря</translate>
+					</span>
+					<span ng-if="vm.user.bdate_obj.byear">{{vm.user.bdate_obj.byear}}</span>
+				</a>
+			</item>
+			<item ng-if="vm.user.country">
+				<translate class="title">Страна:</translate>
+				<a class="value" ng-href="https://vk.com/search?c[section]=people&c[country]={{vm.user.country.id}}">
+					{{vm.user.country.title}}
+				</a>
+			</item>
+			<item ng-if="vm.user.city">
+				<translate class="title">Город:</translate>
+				<a class="value" ng-href="https://vk.com/search?c[section]=people&c[country]={{vm.user.country.id}}&c[city]={{vm.user.city.id}}">
+					{{vm.user.city.title}}
+				</a>
+			</item>
 			<item ng-if="vm.user.relation">
 				<translate class="title">Семейное положение:</translate>
 

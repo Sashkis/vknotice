@@ -46,7 +46,7 @@ msgstr ""
 msgid "Выключить"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:21
+#: SectionApp/sections/UserPage/UserPage.tpl:47
 msgid "Город:"
 msgstr ""
 
@@ -60,7 +60,7 @@ msgid ""
 "Вы уверены, что хотите сделать это?"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:19
+#: SectionApp/sections/UserPage/UserPage.tpl:20
 msgid "День рождения:"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Рассказать друзьям"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:23
+#: SectionApp/sections/UserPage/UserPage.tpl:53
 msgid "Семейное положение:"
 msgstr ""
 
@@ -264,7 +264,7 @@ msgstr ""
 msgid "Сохранить"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:20
+#: SectionApp/sections/UserPage/UserPage.tpl:41
 msgid "Страна:"
 msgstr ""
 
@@ -276,51 +276,63 @@ msgstr ""
 msgid "Фотографии"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:55
+#: SectionApp/sections/UserPage/UserPage.tpl:31
+msgid "августа"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:27
+msgid "апреля"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:85
 msgid "в активном поиске"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:59
+#: SectionApp/sections/UserPage/UserPage.tpl:89
 msgid "влюблена"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:60
+#: SectionApp/sections/UserPage/UserPage.tpl:90
 msgid "влюблена в"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:61
+#: SectionApp/sections/UserPage/UserPage.tpl:91
 msgid "влюблён"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:62
+#: SectionApp/sections/UserPage/UserPage.tpl:92
 msgid "влюблён в"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:51
+#: SectionApp/sections/UserPage/UserPage.tpl:81
 msgid "всё сложно"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:32
+#: SectionApp/sections/UserPage/UserPage.tpl:35
+msgid "декабря"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:62
 msgid "есть друг"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:33
+#: SectionApp/sections/UserPage/UserPage.tpl:63
 msgid "есть подруга"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:46
+#: SectionApp/sections/UserPage/UserPage.tpl:76
 msgid "женат"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:47
+#: SectionApp/sections/UserPage/UserPage.tpl:77
 msgid "женат на"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:44
+#: SectionApp/sections/UserPage/UserPage.tpl:74
 msgid "замужем"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:45
+#: SectionApp/sections/UserPage/UserPage.tpl:75
 msgid "замужем за"
 msgstr ""
 
@@ -332,36 +344,64 @@ msgstr ""
 msgid "исключил"
 msgstr ""
 
+#: SectionApp/sections/UserPage/UserPage.tpl:30
+msgid "июля"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:29
+msgid "июня"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:26
+msgid "марта"
+msgstr ""
+
 #: SectionApp/sections/UserPage/UserPage.tpl:28
+msgid "мая"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:58
 msgid "не женат"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:27
+#: SectionApp/sections/UserPage/UserPage.tpl:57
 msgid "не замужем"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:34
+msgid "ноября"
 msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:39
+#: SectionApp/sections/UserPage/UserPage.tpl:33
+msgid "октября"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:69
 msgid "помолвлен"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:40
+#: SectionApp/sections/UserPage/UserPage.tpl:70
 msgid "помолвлен c"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:37
+#: SectionApp/sections/UserPage/UserPage.tpl:67
 msgid "помолвлена"
 msgstr ""
 
-#: SectionApp/sections/UserPage/UserPage.tpl:38
+#: SectionApp/sections/UserPage/UserPage.tpl:68
 msgid "помолвлена c"
 msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:32
+msgid "сентября"
 msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:21
@@ -370,4 +410,12 @@ msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:37
 msgid "удалил фотографию беседы"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:25
+msgid "февраля"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:24
+msgid "января"
 msgstr ""
