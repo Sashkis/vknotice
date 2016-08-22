@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
-"PO-Revision-Date: 2016-08-17 05:00-0400\n"
+"PO-Revision-Date: 2016-08-22 07:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -57,6 +57,10 @@ msgstr "Ieși"
 msgid "Выключить"
 msgstr "Opriți"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:21
+msgid "Город:"
+msgstr "City:"
+
 #: SectionApp/sections/Default/Default.tpl:32
 msgid "Группы"
 msgstr "Grup"
@@ -66,6 +70,10 @@ msgid "Данное действие удалит весь кэш и сброс�
 "Вы уверены, что хотите сделать это?"
 msgstr "Această acțiune va șterge toată memoria cache și va reseta setările.\n"
 "Sigur doriți să faceți acest lucru?"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:19
+msgid "День рождения:"
+msgstr "Ziua de nastere:"
 
 #: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
@@ -101,7 +109,7 @@ msgid "Информер"
 msgstr "Informator"
 
 #: PopupApp/popup.html:4
-#: libs/helpers/Helpers.js:97
+#: libs/helpers/Helpers.js:86
 msgid "Информер Вконтакте"
 msgstr "Informator Vkontakte"
 
@@ -162,7 +170,7 @@ msgstr "Lăsați feedback-ul dumneavoastră"
 msgid "Отклонить"
 msgstr "Respinge"
 
-#: libs/helpers/Helpers.js:98
+#: libs/helpers/Helpers.js:87
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Afișează numărul de mesaje necitite și vă permite să răspundeți fără a intra în CV!"
 
@@ -194,6 +202,10 @@ msgstr "Ia"
 #: HeaderApp/Header.tpl:28
 msgid "Рассказать друзьям"
 msgstr "Să le spui prietenilor tăi"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:23
+msgid "Семейное положение:"
+msgstr "Situația familială:"
 
 #: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
@@ -263,6 +275,10 @@ msgstr "Salvat"
 msgid "Сохранить"
 msgstr "Salvați"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:20
+msgid "Страна:"
+msgstr "Tara:"
+
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
 msgstr "Șterge toate datele de expansiune"
@@ -270,6 +286,54 @@ msgstr "Șterge toate datele de expansiune"
 #: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
 msgstr "Fotografii"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:55
+msgid "в активном поиске"
+msgstr "în căutare activă pentru"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:59
+msgid "влюблена"
+msgstr "o pasiune"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:60
+msgid "влюблена в"
+msgstr "o pasiune"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:61
+msgid "влюблён"
+msgstr "în dragoste"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:62
+msgid "влюблён в"
+msgstr "în dragoste cu"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:51
+msgid "всё сложно"
+msgstr "tot greu"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:32
+msgid "есть друг"
+msgstr "un prieten"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:33
+msgid "есть подруга"
+msgstr "o prietena"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:46
+msgid "женат"
+msgstr "căsătorit"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:47
+msgid "женат на"
+msgstr "este căsătorit cu"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:44
+msgid "замужем"
+msgstr "căsătorit"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:45
+msgid "замужем за"
+msgstr "căsătorită cu"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
@@ -279,9 +343,33 @@ msgstr "și-a schimbat numele de conversație pe"
 msgid "исключил"
 msgstr "exclus"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:28
+msgid "не женат"
+msgstr "nu este căsătorit"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:27
+msgid "не замужем"
+msgstr "nu este căsătorit"
+
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
 msgstr "și-a actualizat fotografia de conversație"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:39
+msgid "помолвлен"
+msgstr "angajată"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:40
+msgid "помолвлен c"
+msgstr "angajată c"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:37
+msgid "помолвлена"
+msgstr "angajat să se căsătorească"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:38
+msgid "помолвлена c"
+msgstr "angajat să se căsătorească c"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
