@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-22 07:10-0400\n"
+"PO-Revision-Date: 2016-08-22 07:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -72,7 +72,7 @@ msgstr "This will delete the entire cache and reset the settings.\n"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:19
 msgid "День рождения:"
-msgstr ""
+msgstr "Birthday:"
 
 #: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
@@ -204,7 +204,7 @@ msgstr "Share application"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:23
 msgid "Семейное положение:"
-msgstr ""
+msgstr "Marital status:"
 
 #: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
@@ -276,7 +276,7 @@ msgstr "Save"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:20
 msgid "Страна:"
-msgstr ""
+msgstr "Country:"
 
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
@@ -288,51 +288,51 @@ msgstr "Photos"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:55
 msgid "в активном поиске"
-msgstr ""
+msgstr "in active search"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:59
 msgid "влюблена"
-msgstr ""
+msgstr "in love"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:60
 msgid "влюблена в"
-msgstr ""
+msgstr "in love with"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:61
 msgid "влюблён"
-msgstr ""
+msgstr "love"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:62
 msgid "влюблён в"
-msgstr ""
+msgstr "in love with"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:51
 msgid "всё сложно"
-msgstr ""
+msgstr "it's complicated"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:32
 msgid "есть друг"
-msgstr ""
+msgstr "a friend"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:33
 msgid "есть подруга"
-msgstr ""
+msgstr "a friend"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:46
 msgid "женат"
-msgstr ""
+msgstr "married"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:47
 msgid "женат на"
-msgstr ""
+msgstr "married to"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:44
 msgid "замужем"
-msgstr ""
+msgstr "married"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:45
 msgid "замужем за"
-msgstr ""
+msgstr "married"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
@@ -344,11 +344,11 @@ msgstr "kicked"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:28
 msgid "не женат"
-msgstr ""
+msgstr "not married"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:27
 msgid "не замужем"
-msgstr ""
+msgstr "not married"
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
@@ -356,19 +356,19 @@ msgstr "changed conversation cover"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:39
 msgid "помолвлен"
-msgstr ""
+msgstr "engaged"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:40
 msgid "помолвлен c"
-msgstr ""
+msgstr "engaged c"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:37
 msgid "помолвлена"
-msgstr ""
+msgstr "engaged"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:38
 msgid "помолвлена c"
-msgstr ""
+msgstr "engaged c"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
