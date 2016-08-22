@@ -19,7 +19,6 @@ var Helpers;
     Helpers.getPageTrackUrl = getPageTrackUrl;
     setCurrentLanguage.$inject = ['gettextCatalog', 'storage'];
     function setCurrentLanguage(gettextCatalog, storage) {
-        gettextCatalog.debug = true;
         gettextCatalog.baseLanguage = 'ru_RU';
         storage.ready.then(function (stg) {
             var lang = getLang(stg.lang);
