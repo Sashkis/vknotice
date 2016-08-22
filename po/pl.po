@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
-"PO-Revision-Date: 2016-08-22 12:30-0400\n"
+"PO-Revision-Date: 2016-08-22 12:40-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -23,7 +23,7 @@ msgstr[2] "{{$count}} przekazane wiadomości"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:135
 msgid "Аудио"
-msgstr ""
+msgstr "Audio"
 
 #: SectionApp/sections/Default/Default.tpl:46
 msgid "Аудиозаписи"
@@ -43,7 +43,7 @@ msgstr "Powrót"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:131
 msgid "Видео"
-msgstr ""
+msgstr "Wideo"
 
 #: SectionApp/sections/Default/Default.tpl:52
 msgid "Видеозаписи"
@@ -85,7 +85,7 @@ msgstr "Urodziny:"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:119
 msgid "Друзей"
-msgstr ""
+msgstr "Przyjaciół"
 
 #: SectionApp/sections/Default/Default.tpl:25
 msgid "Друзья"
@@ -164,7 +164,7 @@ msgstr "Nowości"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:115
 msgid "Общих друзей"
-msgstr ""
+msgstr "Wspólnych znajomych"
 
 #: HeaderApp/Header.tpl:29
 msgid "Оставить отзыв"
@@ -192,7 +192,7 @@ msgstr "Wyświetla liczbę nieprzeczytanych wiadomości i pozwala odpowiedzieć 
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
 msgid "Подписчиков"
-msgstr ""
+msgstr "Członkowie"
 
 #: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
@@ -305,7 +305,7 @@ msgstr "Usunąć wszystkie dane rozszerzenie"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:127
 msgid "Фото"
-msgstr ""
+msgstr "Zdjęcia"
 
 #: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
@@ -313,11 +313,11 @@ msgstr "Zdjęcia"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:34
 msgid "августа"
-msgstr ""
+msgstr "sierpnia"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:30
 msgid "апреля"
-msgstr ""
+msgstr "kwietnia"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:88
 msgid "в активном поиске"
@@ -345,7 +345,7 @@ msgstr "wszystkie trudne"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:38
 msgid "декабря"
-msgstr ""
+msgstr "grudnia"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:65
 msgid "есть друг"
@@ -381,19 +381,19 @@ msgstr "wykluczył"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:33
 msgid "июля"
-msgstr ""
+msgstr "lipca"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:32
 msgid "июня"
-msgstr ""
+msgstr "czerwca"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:29
 msgid "марта"
-msgstr ""
+msgstr "marca"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:31
 msgid "мая"
-msgstr ""
+msgstr "maja"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:61
 msgid "не женат"
@@ -405,7 +405,7 @@ msgstr "nie ma męża"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:37
 msgid "ноября"
-msgstr ""
+msgstr "listopada"
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
@@ -413,7 +413,7 @@ msgstr "zaktualizowałem zdjęcie rozmowy"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:36
 msgid "октября"
-msgstr ""
+msgstr "października"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:72
 msgid "помолвлен"
@@ -437,7 +437,7 @@ msgstr "zaprosił"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:35
 msgid "сентября"
-msgstr ""
+msgstr "września"
 
 #: SectionApp/sections/NewMess/message.tpl:21
 msgid "создал беседу"
@@ -449,8 +449,8 @@ msgstr "usunąłem zdjęcie rozmowy"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:28
 msgid "февраля"
-msgstr ""
+msgstr "lutego"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:27
 msgid "января"
-msgstr ""
+msgstr "stycznia"
