@@ -24,6 +24,7 @@ var SectionsApp;
             this.$vk = $vk;
             $vk.auth().then(function () {
                 $vk.api('users.get', {
+                    access_token: $vk.stg.access_token,
                     user_ids: $stateParams.user_id,
                     fields: [
                         'bdate',
@@ -34,7 +35,7 @@ var SectionsApp;
                         'country',
                         'friend_status',
                         'online',
-                        'photo_200_orig',
+                        'photo_100',
                         'relation',
                         'sex',
                         'status',
@@ -42,6 +43,13 @@ var SectionsApp;
                     ].join(',')
                 }).then(function (API) {
                     _this.user = API[0];
+                    if (_this.user.sex === 0)
+                        _this.user.sex = 1;
+                    if (_this.user.bdate) {
+                        var _a = _this.user.bdate.split('.'), bday = _a[0], bmonth = _a[1], byear = _a[2];
+                        _this.user.bdate_obj = { bday: bday, bmonth: bmonth, byear: byear };
+                    }
+                    console.log(_this.user);
                 });
             });
         }

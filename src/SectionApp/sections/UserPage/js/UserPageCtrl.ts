@@ -26,6 +26,11 @@ module SectionsApp {
 		first_name: string;
 		last_name: string;
 		bdate?: string;
+		bdate_obj?: {
+			bday: string | undefined;
+			bmonth: string | undefined;
+			byear: string | undefined;
+		};
 		can_send_friend_request: number;
 		can_write_private_message: number;
 		city?: {
@@ -52,7 +57,7 @@ module SectionsApp {
 		},
 		friend_status: Friend_Status;
 		online: number;
-		photo_200_orig: string;
+		photo_100: string;
 		relation: Relation;
 		sex: number;
 		status: string;
@@ -71,6 +76,7 @@ module SectionsApp {
 		constructor(private $vk: VkApp.VkService, $stateParams: IUserPageStateParams) {
 			$vk.auth().then(() => {
 				$vk.api('users.get', {
+					access_token: $vk.stg.access_token,
 					user_ids: $stateParams.user_id,
 					fields: [
 						'bdate',
@@ -81,7 +87,7 @@ module SectionsApp {
 						'country',
 						'friend_status',
 						'online',
-						'photo_200_orig',
+						'photo_100',
 						'relation',
 						'sex',
 						'status',
@@ -89,6 +95,14 @@ module SectionsApp {
 					].join(',')
 				}).then((API: IUser[]) => {
 					this.user = API[0];
+
+					if (this.user.sex === 0) this.user.sex = 1;
+					if (this.user.bdate) {
+						const [bday, bmonth, byear] = this.user.bdate.split('.');
+						this.user.bdate_obj = {bday, bmonth, byear};
+					}
+
+					console.log(this.user);
 				})
 			});
 		}
