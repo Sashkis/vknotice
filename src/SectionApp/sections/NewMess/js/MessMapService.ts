@@ -7,7 +7,7 @@ module SectionsApp {
 		items: IMessage[],
 	}
 
-	export interface IDialogRouteParams extends angular.route.IRouteParamsService {
+	export interface IDialogRouteParams extends ng.ui.IStateService {
 		peer_id: string,
 	}
 
@@ -29,7 +29,16 @@ module SectionsApp {
 
 		getMessMap(peer_id = +this.$stateParams.peer_id ) {
 			if (!peer_id) return;
-			return this.maps.find((d) => peer_id === d.peer_id);
+			let map = this.maps.find((d) => peer_id === d.peer_id);
+			if (!map) {
+				map = {
+					peer_id,
+					isMore: false,
+					items: [],
+				};
+				this.maps.push(map);
+			}
+			return map;
 		}
 
 		insertMessages(peer_id: number, messages: IMessage[], prepend = false, clearBeforInsert = false ) {
