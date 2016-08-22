@@ -46,6 +46,10 @@ msgstr ""
 msgid "Выключить"
 msgstr ""
 
+#: SectionApp/sections/UserPage/UserPage.tpl:21
+msgid "Город:"
+msgstr ""
+
 #: SectionApp/sections/Default/Default.tpl:32
 msgid "Группы"
 msgstr ""
@@ -54,6 +58,10 @@ msgstr ""
 msgid ""
 "Данное действие удалит весь кэш и сбросит настройки.\n"
 "Вы уверены, что хотите сделать это?"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:19
+msgid "День рождения:"
 msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:25
@@ -184,6 +192,10 @@ msgstr ""
 msgid "Рассказать друзьям"
 msgstr ""
 
+#: SectionApp/sections/UserPage/UserPage.tpl:23
+msgid "Семейное положение:"
+msgstr ""
+
 #: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
 msgstr ""
@@ -252,12 +264,64 @@ msgstr ""
 msgid "Сохранить"
 msgstr ""
 
+#: SectionApp/sections/UserPage/UserPage.tpl:20
+msgid "Страна:"
+msgstr ""
+
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
 msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:55
+msgid "в активном поиске"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:59
+msgid "влюблена"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:60
+msgid "влюблена в"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:61
+msgid "влюблён"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:62
+msgid "влюблён в"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:51
+msgid "всё сложно"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:32
+msgid "есть друг"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:33
+msgid "есть подруга"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:46
+msgid "женат"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:47
+msgid "женат на"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:44
+msgid "замужем"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:45
+msgid "замужем за"
 msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:27
@@ -268,8 +332,32 @@ msgstr ""
 msgid "исключил"
 msgstr ""
 
+#: SectionApp/sections/UserPage/UserPage.tpl:28
+msgid "не женат"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:27
+msgid "не замужем"
+msgstr ""
+
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:39
+msgid "помолвлен"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:40
+msgid "помолвлен c"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:37
+msgid "помолвлена"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:38
+msgid "помолвлена c"
 msgstr ""
 
 #: SectionApp/sections/NewMess/message.tpl:46
