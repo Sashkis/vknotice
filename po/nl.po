@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
-"PO-Revision-Date: 2016-08-22 12:30-0400\n"
+"PO-Revision-Date: 2016-08-22 12:40-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -163,7 +163,7 @@ msgstr "Nieuws"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:115
 msgid "Общих друзей"
-msgstr ""
+msgstr "Wederzijdse vrienden"
 
 #: HeaderApp/Header.tpl:29
 msgid "Оставить отзыв"
@@ -191,7 +191,7 @@ msgstr "Toont het aantal ongelezen berichten en kunt u het antwoord zonder in te
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
 msgid "Подписчиков"
-msgstr ""
+msgstr "Abonnees"
 
 #: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
@@ -304,7 +304,7 @@ msgstr "Verwijder alle van de gegevens extensies"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:127
 msgid "Фото"
-msgstr ""
+msgstr "Foto"
 
 #: SectionApp/sections/Default/Default.tpl:39
 msgid "Фотографии"
@@ -312,11 +312,11 @@ msgstr "Foto ' s"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:34
 msgid "августа"
-msgstr ""
+msgstr "Aug"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:30
 msgid "апреля"
-msgstr ""
+msgstr "APR"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:88
 msgid "в активном поиске"
@@ -344,7 +344,7 @@ msgstr "het is ingewikkeld"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:38
 msgid "декабря"
-msgstr ""
+msgstr "Dec"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:65
 msgid "есть друг"
@@ -380,19 +380,19 @@ msgstr "uitgesloten"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:33
 msgid "июля"
-msgstr ""
+msgstr "Juli"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:32
 msgid "июня"
-msgstr ""
+msgstr "Jun"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:29
 msgid "марта"
-msgstr ""
+msgstr "Mrt"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:31
 msgid "мая"
-msgstr ""
+msgstr "mei"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:61
 msgid "не женат"
@@ -404,7 +404,7 @@ msgstr "niet getrouwd"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:37
 msgid "ноября"
-msgstr ""
+msgstr "Nov"
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
@@ -412,7 +412,7 @@ msgstr "bijgewerkte foto van het gesprek"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:36
 msgid "октября"
-msgstr ""
+msgstr "Okt"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:72
 msgid "помолвлен"
@@ -436,7 +436,7 @@ msgstr "uitgenodigd"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:35
 msgid "сентября"
-msgstr ""
+msgstr "Sep"
 
 #: SectionApp/sections/NewMess/message.tpl:21
 msgid "создал беседу"
@@ -448,8 +448,8 @@ msgstr "verwijderd de foto van het gesprek"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:28
 msgid "февраля"
-msgstr ""
+msgstr "Mrt"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:27
 msgid "января"
-msgstr ""
+msgstr "Jan"
