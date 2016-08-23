@@ -72,6 +72,10 @@ msgstr ""
 msgid "День рождения:"
 msgstr ""
 
+#: SectionApp/sections/UserPage/UserPage.tpl:144
+msgid "Добавить в друзья"
+msgstr ""
+
 #: SectionApp/sections/UserPage/UserPage.tpl:119
 msgid "Друзей"
 msgstr ""
@@ -81,6 +85,7 @@ msgid "Друзья"
 msgstr ""
 
 #: SectionApp/sections/NewFriends/request.tpl:9
+#: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
 msgstr ""
 
@@ -134,6 +139,10 @@ msgstr ""
 msgid "Нажмите чтобы авторизоватся"
 msgstr ""
 
+#: SectionApp/sections/UserPage/UserPage.tpl:140
+msgid "Написать"
+msgstr ""
+
 #: HeaderApp/Header.tpl:31
 #: OptionsApp/index.html:4
 msgid "Настройки"
@@ -172,11 +181,24 @@ msgid "Оставьте свой отзыв"
 msgstr ""
 
 #: SectionApp/sections/NewFriends/request.tpl:8
+#: SectionApp/sections/UserPage/UserPage.tpl:153
 msgid "Отклонить"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:149
+msgid "Отменить заявку"
 msgstr ""
 
 #: libs/helpers/Helpers.js:86
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:148
+msgid "Отписаться"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:143
+msgid "Подписаться"
 msgstr ""
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
@@ -205,6 +227,7 @@ msgid "При закрытом ВК"
 msgstr ""
 
 #: SectionApp/sections/NewFriends/request.tpl:7
+#: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
 msgstr ""
 
@@ -290,6 +313,10 @@ msgstr ""
 
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
+msgstr ""
+
+#: SectionApp/sections/UserPage/UserPage.tpl:156
+msgid "Удалить из друзей"
 msgstr ""
 
 #: SectionApp/sections/UserPage/UserPage.tpl:127

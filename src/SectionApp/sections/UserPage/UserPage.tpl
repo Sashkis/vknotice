@@ -3,9 +3,9 @@
 
 	<div ng-if="vm.user" id="user-page">
 		<div class="user-info-container">
-			<div class="avatar-container">
+			<a class="avatar-container" ng-href="{{vm.user.photo_max_orig}}">
 				<img ng-src="{{vm.user.photo_100}}" />
-			</div>
+			</a>
 			<div class="user-info">
 			<div class="header">
 				<div class="top">
@@ -110,32 +110,52 @@
 		</div>
 		</div>
 		<div class="counters">
-			<a class="counter" ng-if="vm.user.counters.mutual_friends">
+			<a class="counter" ng-if="vm.user.counters.mutual_friends" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=common">
 				<span class="number">{{vm.user.counters.mutual_friends}}</span>
 				<translate>Общих друзей</translate>
 			</a>
-			<a class="counter" ng-if="vm.user.counters.friends">
+			<a class="counter" ng-if="vm.user.counters.friends" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=all">
 				<span class="number">{{vm.user.counters.friends}}</span>
 				<translate>Друзей</translate>
 			</a>
-			<a class="counter" ng-if="vm.user.counters.followers">
+			<a class="counter" ng-if="vm.user.counters.followers" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=subscribers">
 				<span class="number">{{vm.user.counters.followers}}</span>
 				<translate>Подписчиков</translate>
 			</a>
-			<a class="counter" ng-if="vm.user.counters.photos">
+			<a class="counter" ng-if="vm.user.counters.photos" ng-href="https://vk.com/photos{{vm.user.id}}">
 				<span class="number">{{vm.user.counters.photos}}</span>
 				<translate>Фото</translate>
 			</a>
-			<a class="counter" ng-if="vm.user.counters.videos">
+			<a class="counter" ng-if="vm.user.counters.videos" ng-href="https://vk.com/videos{{vm.user.id}}">
 				<span class="number">{{vm.user.counters.videos}}</span>
 				<translate>Видео</translate>
 			</a>
-			<a class="counter" ng-if="vm.user.counters.audios">
+			<a class="counter" ng-if="vm.user.counters.audios" ng-href="https://vk.com/audios{{vm.user.id}}">
 				<span class="number">{{vm.user.counters.audios}}</span>
 				<translate>Аудио</translate>
 			</a>
 		</div>
-		{{vm.user.counters | json}}
+
+		<div class="buttons">
+			<a class="btn" ng-if="vm.user.can_write_private_message" ui-sref="dialogs.chat({peer_id: vm.user.id})" translate>Написать</a>
+
+			<button ng-if="vm.user.friend_status == 0" ng-switch="vm.user.can_send_friend_request" ng-click="vm.action('add', vm.user.id)">
+				<translate ng-switch-when="0">Подписаться</translate>
+				<translate ng-switch-when="1">Добавить в друзья</translate>
+			</button>
+
+			<button ng-if="vm.user.friend_status == 1" ng-switch="vm.user.can_send_friend_request" ng-click="vm.action('delete', vm.user.id)">
+				<translate ng-switch-when="0">Отписаться</translate>
+				<translate ng-switch-when="1">Отменить заявку</translate>
+			</button>
+
+			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('add', vm.user.id)" translate>Принять</button>
+			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('delete', vm.user.id)" translate>Отклонить</button>
+			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('ban', vm.user.id)" translate>Заблокировать</button>
+
+			<button class="simple" ng-if="vm.user.friend_status == 3" ng-click="vm.action('delete', vm.user.id)" translate>Удалить из друзей</button>
+		</div>
+		<!-- <pre style="    text-overflow: ellipsis; overflow: hidden;   max-width: 460px;">{{vm.user|json}}</pre> -->
 	</div>
 
 </div>
