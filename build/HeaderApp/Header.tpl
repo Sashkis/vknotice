@@ -3,12 +3,12 @@
 		<span class="fa fa-vk fa-3x"></span>
 		<translate>Информер</translate>
 	</a>
-	<a ng-hide="head.isHome()" class="navbar-brand" ui-sref="home">
+	<a ng-hide="head.isHome()" class="navbar-brand" ng-click="head.back()">
 		<span class="fa fa-angle-left fa-3x"></span>
 		<translate>Вернуться</translate>
 	</a>
 
-	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
+	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications|kFilter}}" ng-href="https://vk.com/feed?section=notifications">
 		<i class="fa fa-bell"></i>
 	</a>
 

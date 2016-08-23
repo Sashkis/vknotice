@@ -1,12 +1,13 @@
 <a
-	ui-sref=".chat({peer_id: dialog.peer_id})"
 	class="dialog-item"
+	ui-sref=".chat({peer_id: dialog.peer_id})"
+	ui-sref-opts="{location: 'replace'}"
 	ng-class="{active: vm.stateParams.peer_id == dialog.peer_id}"
 	data-title="{{dialog.title || dialog.profiles[0].first_name || dialog.profiles[0].name || ''}}"
 	href="{{dialog.url}}"
 	vk-href="{{dialog.url}}"
 >
-	<div class="unread" ng-if="dialog.unread">{{dialog.unread}}</div>
+	<div class="unread" ng-if="dialog.unread">{{dialog.unread|kFilter}}</div>
 	<div class="marlAsRead" ng-click="vm.markAsRead(dialog.peer_id)"><i class="fa fa-eye"></i></div>
 	<div
 		class="ava-container"
