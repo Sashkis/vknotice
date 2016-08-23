@@ -58,6 +58,7 @@ module SectionsApp {
 		friend_status: Friend_Status;
 		online: number;
 		photo_100: string;
+		photo_max_orig: string;
 		relation: Relation;
 		sex: number;
 		status: string;
@@ -73,38 +74,52 @@ module SectionsApp {
 
 		user: IUser;
 
-		constructor(private $vk: VkApp.VkService, $stateParams: IUserPageStateParams) {
-			$vk.auth().then(() => {
-				$vk.api('users.get', {
-					access_token: $vk.stg.access_token,
-					user_ids: $stateParams.user_id,
-					fields: [
-						'bdate',
-						'can_send_friend_request',
-						'can_write_private_message',
-						'city',
-						'counters',
-						'country',
-						'friend_status',
-						'online',
-						'photo_100',
-						'relation',
-						'sex',
-						'status',
-						'verified',
-					].join(',')
-				}).then((API: IUser[]) => {
-					this.user = API[0];
+		constructor(private $vk: VkApp.VkService, private $stateParams: IUserPageStateParams) {
+			$vk.auth().then(() => this.updateUser());
+		}
 
-					if (this.user.sex === 0) this.user.sex = 1;
-					if (this.user.bdate) {
-						const [bday, bmonth, byear] = this.user.bdate.split('.');
-						this.user.bdate_obj = {bday, bmonth, byear};
-					}
+		action(method: string, user_id: number) {
+			if (method === 'ban') method = 'account.banUser';
+			else method = `friends.${method}`;
 
-					console.log(this.user);
-				})
-			});
+			this.$vk.api(method, {
+				access_token: this.$vk.stg.access_token,
+				user_id
+			})
+				.then(() => this.updateUser());
+		}
+
+		updateUser(user_id = this.$stateParams.user_id) {
+			return this.$vk.api('users.get', {
+				access_token: this.$vk.stg.access_token,
+				user_ids: user_id,
+				fields: [
+					'bdate',
+					'can_send_friend_request',
+					'can_write_private_message',
+					'city',
+					'counters',
+					'country',
+					'friend_status',
+					'online',
+					'photo_100',
+					'photo_max_orig',
+					'relation',
+					'sex',
+					'status',
+					'verified',
+				].join(',')
+			}).then((API: IUser[]) => {
+				this.user = API[0];
+
+				if (this.user.sex === 0) this.user.sex = 1;
+				if (this.user.bdate) {
+					const [bday, bmonth, byear] = this.user.bdate.split('.');
+					this.user.bdate_obj = {bday, bmonth, byear};
+				}
+				console.log(this.user);
+				return API;
+			})
 		}
 
 	}

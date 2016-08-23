@@ -71,5 +71,41 @@
 .counters {
 	padding: 10px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
+	text-align: center;
+	border-bottom: 1px solid #e7e8ec;
+	.counter {
+		> translate {
+			display: block;
+			color: #828282;
+			line-height: 15px;
+		}
+		> span {
+			display: block;
+			font-size: 19px;
+			color: #42648b;
+			padding-bottom: 3px;
+			line-height: 21px
+		}
+	}
+	.counter:hover {
+		> translate {
+			color: #42648b;
+		}
+	}
+}
+
+.buttons {
+	padding: 10px;
+	display: flex;
+	button, .btn {
+		flex: 1;
+		@extend %btn;
+		@include btnColor(#6287ae);
+		padding-left: 0;
+		padding-right: 0;
+		& + button {
+			margin-left: 10px;
+		}
+	}
 }
