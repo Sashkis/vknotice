@@ -111,27 +111,27 @@
 		</div>
 		<div class="counters">
 			<a class="counter" ng-if="vm.user.counters.mutual_friends" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=common">
-				<span class="number">{{vm.user.counters.mutual_friends}}</span>
+				<span class="number">{{vm.user.counters.mutual_friends | kFilter}}</span>
 				<translate>Общих друзей</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.friends" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=all">
-				<span class="number">{{vm.user.counters.friends}}</span>
+				<span class="number">{{vm.user.counters.friends | kFilter}}</span>
 				<translate>Друзей</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.followers" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=subscribers">
-				<span class="number">{{vm.user.counters.followers}}</span>
+				<span class="number">{{vm.user.counters.followers | kFilter}}</span>
 				<translate>Подписчиков</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.photos" ng-href="https://vk.com/photos{{vm.user.id}}">
-				<span class="number">{{vm.user.counters.photos}}</span>
+				<span class="number">{{vm.user.counters.photos | kFilter}}</span>
 				<translate>Фото</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.videos" ng-href="https://vk.com/videos{{vm.user.id}}">
-				<span class="number">{{vm.user.counters.videos}}</span>
+				<span class="number">{{vm.user.counters.videos | kFilter}}</span>
 				<translate>Видео</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.audios" ng-href="https://vk.com/audios{{vm.user.id}}">
-				<span class="number">{{vm.user.counters.audios}}</span>
+				<span class="number">{{vm.user.counters.audios | kFilter}}</span>
 				<translate>Аудио</translate>
 			</a>
 		</div>

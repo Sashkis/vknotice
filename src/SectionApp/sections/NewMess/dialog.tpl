@@ -6,7 +6,7 @@
 	href="{{dialog.url}}"
 	vk-href="{{dialog.url}}"
 >
-	<div class="unread" ng-if="dialog.unread">{{dialog.unread}}</div>
+	<div class="unread" ng-if="dialog.unread">{{dialog.unread|kFilter}}</div>
 	<div class="marlAsRead" ng-click="vm.markAsRead(dialog.peer_id)"><i class="fa fa-eye"></i></div>
 	<div
 		class="ava-container"

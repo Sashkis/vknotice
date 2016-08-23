@@ -8,7 +8,7 @@
 		<translate>Вернуться</translate>
 	</a>
 
-	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications}}" ng-href="https://vk.com/feed?section=notifications">
+	<a ng-class="['notifications', {empty: !head.stg.counter.notifications}]" ng-attr-data-badge="{{head.stg.counter.notifications|kFilter}}" ng-href="https://vk.com/feed?section=notifications">
 		<i class="fa fa-bell"></i>
 	</a>
 
