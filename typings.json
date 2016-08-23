@@ -1,0 +1,22 @@
+{
+  "globalDevDependencies": {
+    "del": "registry:dt/del#2.2.0+20160317120654",
+    "gulp": "registry:dt/gulp#3.8.0+20160724062653",
+    "gulp-debug": "registry:dt/gulp-debug#2.0.1+20160316155526",
+    "gulp-filter": "registry:dt/gulp-filter#3.0.1+20160316155526",
+    "gulp-inject": "registry:dt/gulp-inject#0.0.0+20160316155526",
+    "gulp-replace": "registry:dt/gulp-replace#0.0.0+20160316155526",
+    "gulp-sass": "registry:dt/gulp-sass#0.0.0+20160316155526",
+    "gulp-sourcemaps": "registry:dt/gulp-sourcemaps#0.0.0+20160316155526",
+    "gulp-uglify": "registry:dt/gulp-uglify#0.0.0+20160316155526",
+    "gulp-useref": "registry:dt/gulp-useref#3.0.0+20160316155526",
+    "wiredep": "registry:dt/wiredep#3.0.0+20160317120654",
+    "yargs": "registry:dt/yargs#0.0.0+20160808125142"
+  },
+  "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160809151918",
+    "angular-gettext": "registry:dt/angular-gettext#0.0.0+20160317120654",
+    "angular-google-analytics": "registry:dt/angular-google-analytics#1.1.0+20160317120654",
+    "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160810191828"
+  }
+}

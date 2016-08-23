@@ -23,11 +23,15 @@ module SectionsApp {
 						})
 						.state('dialogs', {
 							url: '/dialogs',
-							templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl"
+							templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl",
 						})
 						.state('dialogs.chat', {
 							url: '/{peer_id}',
 							templateUrl: "/SectionApp/sections/NewMess/NewMess.chat.tpl",
+						})
+						.state('user', {
+							url: '/user/{user_id}',
+							templateUrl: "/SectionApp/sections/UserPage/UserPage.tpl",
 						})
 
 				// $routeProvider
@@ -69,6 +73,7 @@ module SectionsApp {
 
 		.service('messMap', MessMapService)
 
+		.controller('UserPageCtrl', UserPageCtrl)
 		.controller('SidebarCtrl', SidebarCtrl)
 		.controller('ChatCtrl', ChatCtrl)
 		.controller('NewMessCtrl', NewMessCtrl)

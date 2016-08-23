@@ -13,7 +13,16 @@ var SectionsApp;
             if (peer_id === void 0) { peer_id = +this.$stateParams.peer_id; }
             if (!peer_id)
                 return;
-            return this.maps.find(function (d) { return peer_id === d.peer_id; });
+            var map = this.maps.find(function (d) { return peer_id === d.peer_id; });
+            if (!map) {
+                map = {
+                    peer_id: peer_id,
+                    isMore: false,
+                    items: [],
+                };
+                this.maps.push(map);
+            }
+            return map;
         };
         MessMapService.prototype.insertMessages = function (peer_id, messages, prepend, clearBeforInsert) {
             if (prepend === void 0) { prepend = false; }

@@ -1,11 +1,7 @@
 var Helpers;
 (function (Helpers) {
-    function trackPage() {
-        var dependency = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            dependency[_i - 0] = arguments[_i];
-        }
-        var Analytics = dependency[0], storage = dependency[1];
+    trackPage.$inject = ['Analytics', 'storage'];
+    function trackPage(Analytics, storage) {
         storage.ready.then(function (stg) {
             stg.user_id && Analytics.set('&uid', stg.user_id);
             var path = getPageTrackUrl();
@@ -13,6 +9,7 @@ var Helpers;
         });
     }
     Helpers.trackPage = trackPage;
+    getPageTrackUrl.$inject = [];
     function getPageTrackUrl() {
         switch (location.pathname) {
             case "/OptionsApp/index.html": return '/Options/';
@@ -20,13 +17,8 @@ var Helpers;
         }
     }
     Helpers.getPageTrackUrl = getPageTrackUrl;
-    function setCurrentLanguage() {
-        var dependency = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            dependency[_i - 0] = arguments[_i];
-        }
-        var gettextCatalog = dependency[0], storage = dependency[1];
-        gettextCatalog.debug = true;
+    setCurrentLanguage.$inject = ['gettextCatalog', 'storage'];
+    function setCurrentLanguage(gettextCatalog, storage) {
         gettextCatalog.baseLanguage = 'ru_RU';
         storage.ready.then(function (stg) {
             var lang = getLang(stg.lang);
@@ -60,12 +52,8 @@ var Helpers;
                 return 'en_US';
         }
     }
-    function setAnaliticSetting() {
-        var dependency = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            dependency[_i - 0] = arguments[_i];
-        }
-        var AnalyticsProvider = dependency[0];
+    setAnaliticSetting.$inject = ['AnalyticsProvider'];
+    function setAnaliticSetting(AnalyticsProvider) {
         AnalyticsProvider.setAccount({
             tracker: 'UA-71609511-3',
             trackEvent: true,
@@ -78,7 +66,7 @@ var Helpers;
             },
         })
             .ignoreFirstPageLoad(true)
-            .setRemoveRegExp(/[0-9]+/)
+            .setRemoveRegExp(/\/-?[0-9]+/)
             .setHybridMobileSupport(true);
     }
     Helpers.setAnaliticSetting = setAnaliticSetting;

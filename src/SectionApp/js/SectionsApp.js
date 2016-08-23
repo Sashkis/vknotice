@@ -18,11 +18,15 @@ var SectionsApp;
             })
                 .state('dialogs', {
                 url: '/dialogs',
-                templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl"
+                templateUrl: "/SectionApp/sections/NewMess/NewMess.tpl",
             })
                 .state('dialogs.chat', {
                 url: '/{peer_id}',
                 templateUrl: "/SectionApp/sections/NewMess/NewMess.chat.tpl",
+            })
+                .state('user', {
+                url: '/user/{user_id}',
+                templateUrl: "/SectionApp/sections/UserPage/UserPage.tpl",
             });
         }
     ])
@@ -41,6 +45,7 @@ var SectionsApp;
         }
     }); }; })
         .service('messMap', SectionsApp.MessMapService)
+        .controller('UserPageCtrl', SectionsApp.UserPageCtrl)
         .controller('SidebarCtrl', SectionsApp.SidebarCtrl)
         .controller('ChatCtrl', SectionsApp.ChatCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)

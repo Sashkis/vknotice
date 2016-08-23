@@ -1,6 +1,6 @@
 var VkApp;
 (function (VkApp) {
-    const API_VERSION = '5.52';
+    var API_VERSION = '5.53';
     angular.module('VkApp', ['StorageApp'])
         .constant('apiConfig', {
         version: API_VERSION,

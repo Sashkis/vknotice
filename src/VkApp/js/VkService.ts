@@ -85,7 +85,7 @@ module VkApp {
 					if (isAuth) {
 						ready.resolve();
 					} else {
-						
+
 						this.storage.set({
 							user_id:      0,
 							access_token: '',
@@ -142,7 +142,11 @@ module VkApp {
 			const ready = this.$q.defer();
 
 			params.v = this.apiConfig.version;
-			this.$http.get(`https://api.vk.com/method/${method}`, {params})
+			this.$http.get(`https://api.vk.com/method/${method}`, {
+				params,
+				timeout: 4000,
+				cache: false,
+			})
 				.then((API: IVkResponse) => {
 					if (this.isResponseSuccess(API.data)) {
 						ready.resolve(API.data.response);
@@ -158,7 +162,8 @@ module VkApp {
 							ready.reject('api_error');
 						}
 					}
-				}, () => {
+				}, (e: any) => {
+					console.error(e);
 					ready.reject('connect_error');
 				});
 

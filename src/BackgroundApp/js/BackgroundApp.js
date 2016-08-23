@@ -4,8 +4,8 @@ var BgApp;
         .constant('Config', {
         profilesLimit: 100,
     })
-        .config(['AnalyticsProvider', Helpers.setAnaliticSetting])
-        .run(['Analytics', 'storage', Helpers.trackPage])
+        .config(Helpers.setAnaliticSetting)
+        .run(Helpers.trackPage)
         .controller('Bg', BgApp.BgClass);
 })(BgApp || (BgApp = {}));
 //# sourceMappingURL=BackgroundApp.js.map
