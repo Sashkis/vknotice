@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
-"PO-Revision-Date: 2016-08-23 06:10-0400\n"
+"PO-Revision-Date: 2016-08-23 06:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -206,11 +206,11 @@ msgstr "Адлюстроўвае колькасць непрачытаных п�
 
 #: SectionApp/sections/UserPage/UserPage.tpl:148
 msgid "Отписаться"
-msgstr ""
+msgstr "Адпісацца"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:143
 msgid "Подписаться"
-msgstr ""
+msgstr "Падпісацца"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
 msgid "Подписчиков"
@@ -328,7 +328,7 @@ msgstr "Выдаліць усе дадзеныя пашырэння"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:156
 msgid "Удалить из друзей"
-msgstr ""
+msgstr "Выдаліць з сяброў"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:127
 msgid "Фото"
