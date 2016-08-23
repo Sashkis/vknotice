@@ -84,7 +84,7 @@ var BgApp;
                 options: '',
                 notifyFilters: '',
                 notifyLast_viewed: this.stg.notifyLast_viewed,
-                func_v: 3,
+                func_v: 4,
             };
             if (this.stg.options.friends)
                 apiOptions.options += 'friends,';

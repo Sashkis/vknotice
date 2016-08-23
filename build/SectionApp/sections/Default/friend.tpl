@@ -5,5 +5,6 @@
 	href="https://vk.com/im?sel={{user.id}}"
 	vk-href="https://vk.com/im?sel={{user.id}}"
 >
+	<div class="online-indicator ng-scope" ng-if="user.online"></div>
 	<user-ava src="user.photo_50"></user-ava>
 </a>
