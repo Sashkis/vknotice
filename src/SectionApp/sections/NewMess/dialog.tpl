@@ -1,6 +1,7 @@
 <a
-	ui-sref=".chat({peer_id: dialog.peer_id})"
 	class="dialog-item"
+	ui-sref=".chat({peer_id: dialog.peer_id})"
+	ui-sref-opts="{location: 'replace'}"
 	ng-class="{active: vm.stateParams.peer_id == dialog.peer_id}"
 	data-title="{{dialog.title || dialog.profiles[0].first_name || dialog.profiles[0].name || ''}}"
 	href="{{dialog.url}}"

@@ -67,7 +67,6 @@ var SectionsApp;
                     var _a = _this.user.bdate.split('.'), bday = _a[0], bmonth = _a[1], byear = _a[2];
                     _this.user.bdate_obj = { bday: bday, bmonth: bmonth, byear: byear };
                 }
-                console.log(_this.user);
                 return API;
             });
         };

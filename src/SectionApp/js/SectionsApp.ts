@@ -4,7 +4,7 @@ module SectionsApp {
 	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp', 'focus-if'])
 
 		.config(['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider',
-			function($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, AnalyticsProvider: any) {
+			function($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, AnalyticsProvider: ng.google.analytics.AnalyticsProvider) {
 				AnalyticsProvider
 				// .readFromRoute(true)
 					.trackPrefix('/Popup')

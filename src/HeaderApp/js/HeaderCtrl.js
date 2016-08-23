@@ -34,6 +34,9 @@ var HeaderApp;
         HeaderCtrl.prototype.openOptionsPage = function () {
             chrome.runtime.openOptionsPage();
         };
+        HeaderCtrl.prototype.back = function () {
+            window.history.back();
+        };
         HeaderCtrl.$inject = [
             'storage',
             'Analytics',

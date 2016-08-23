@@ -4,14 +4,8 @@ var SectionsApp;
         function SectionsCtrl(storage, Analytics, $state, $scope) {
             var _this = this;
             this.storage = storage;
+            history.pushState({}, 'home', '/PopupApp/popup.html#/');
             storage.ready.then(function (stg) {
-                if (stg.state.params.peer_id) {
-                    var targetDialog = stg.dialogs.find(function (d) { return d.peer_id === +stg.state.params.peer_id; });
-                    if (!targetDialog) {
-                        stg.state.name = 'dialogs';
-                        delete stg.state.params.peer_id;
-                    }
-                }
                 $state.go(stg.state.name, stg.state.params);
             });
             $scope.$on('$stateChangeSuccess', function ($event, toState, toParams) { return _this.saveSection(toState, toParams); });

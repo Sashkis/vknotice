@@ -3,7 +3,7 @@
 		<span class="fa fa-vk fa-3x"></span>
 		<translate>Информер</translate>
 	</a>
-	<a ng-hide="head.isHome()" class="navbar-brand" ui-sref="home">
+	<a ng-hide="head.isHome()" class="navbar-brand" ng-click="head.back()">
 		<span class="fa fa-angle-left fa-3x"></span>
 		<translate>Вернуться</translate>
 	</a>

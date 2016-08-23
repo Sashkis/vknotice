@@ -66,7 +66,6 @@ var Helpers;
                 forceSSL: true,
             },
         })
-            .ignoreFirstPageLoad(true)
             .setRemoveRegExp(/\/-?[0-9]+/)
             .setHybridMobileSupport(true);
     }
