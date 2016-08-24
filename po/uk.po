@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-08-23 06:20-0400\n"
+"PO-Revision-Date: 2016-08-24 12:30-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -206,15 +206,15 @@ msgstr "Відображає кількість непрочитаних пов�
 
 #: SectionApp/sections/UserPage/UserPage.tpl:148
 msgid "Отписаться"
-msgstr "Відписатися"
+msgstr "Відписатись"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:143
 msgid "Подписаться"
-msgstr "Підписатися"
+msgstr "Підписатись"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
 msgid "Подписчиков"
-msgstr "Передплатників"
+msgstr "Підписників"
 
 #: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
@@ -248,7 +248,7 @@ msgstr "Розповісти друзям"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:56
 msgid "Семейное положение:"
-msgstr "Сімейне положення:"
+msgstr "Сімейний стан:"
 
 #: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
@@ -376,7 +376,7 @@ msgstr "грудня"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:65
 msgid "есть друг"
-msgstr "є один"
+msgstr "є друг"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:66
 msgid "есть подруга"
@@ -388,7 +388,7 @@ msgstr "одружений"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:80
 msgid "женат на"
-msgstr "одружений"
+msgstr "одружений на"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:77
 msgid "замужем"
@@ -396,7 +396,7 @@ msgstr "заміжня"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:78
 msgid "замужем за"
-msgstr "одружена"
+msgstr "одружена з"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
@@ -448,7 +448,7 @@ msgstr "заручений"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:73
 msgid "помолвлен c"
-msgstr "заручений c"
+msgstr "заручений з"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:70
 msgid "помолвлена"
@@ -456,7 +456,7 @@ msgstr "заручена"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:71
 msgid "помолвлена c"
-msgstr "заручена c"
+msgstr "заручена з"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
