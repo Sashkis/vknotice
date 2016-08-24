@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-22 12:40-0400\n"
+"PO-Revision-Date: 2016-08-23 06:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -82,6 +82,10 @@ msgstr "This will delete the entire cache and reset the settings.\n"
 msgid "День рождения:"
 msgstr "Birthday:"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:144
+msgid "Добавить в друзья"
+msgstr "Add to friends"
+
 #: SectionApp/sections/UserPage/UserPage.tpl:119
 msgid "Друзей"
 msgstr "Friends"
@@ -91,6 +95,7 @@ msgid "Друзья"
 msgstr "Friends"
 
 #: SectionApp/sections/NewFriends/request.tpl:9
+#: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
 msgstr "Ban"
 
@@ -144,6 +149,10 @@ msgstr "We work for you"
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Click to login"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:140
+msgid "Написать"
+msgstr "Write"
+
 #: HeaderApp/Header.tpl:31
 #: OptionsApp/index.html:4
 msgid "Настройки"
@@ -182,12 +191,25 @@ msgid "Оставьте свой отзыв"
 msgstr "Give us your feedback"
 
 #: SectionApp/sections/NewFriends/request.tpl:8
+#: SectionApp/sections/UserPage/UserPage.tpl:153
 msgid "Отклонить"
 msgstr "Disagree"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:149
+msgid "Отменить заявку"
+msgstr "To cancel the order"
 
 #: libs/helpers/Helpers.js:86
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Displays the number of unread messages and allows you to answer without going into VK!"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:148
+msgid "Отписаться"
+msgstr "To unsubscribe"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:143
+msgid "Подписаться"
+msgstr "Subscribe"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
 msgid "Подписчиков"
@@ -215,6 +237,7 @@ msgid "При закрытом ВК"
 msgstr "When VK closed"
 
 #: SectionApp/sections/NewFriends/request.tpl:7
+#: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
 msgstr "Agree"
 
@@ -301,6 +324,10 @@ msgstr "Country:"
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
 msgstr "Remove all extension data"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:156
+msgid "Удалить из друзей"
+msgstr "Remove from friends"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:127
 msgid "Фото"

@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-08-22 12:40-0400\n"
+"PO-Revision-Date: 2016-08-23 06:20-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -83,6 +83,10 @@ msgstr "Ця дія вилучить весь кеш і скине налашт�
 msgid "День рождения:"
 msgstr "День народження:"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:144
+msgid "Добавить в друзья"
+msgstr "Додати в друзі"
+
 #: SectionApp/sections/UserPage/UserPage.tpl:119
 msgid "Друзей"
 msgstr "Друзів"
@@ -92,6 +96,7 @@ msgid "Друзья"
 msgstr "Друзі"
 
 #: SectionApp/sections/NewFriends/request.tpl:9
+#: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
 msgstr "Заблокувати"
 
@@ -145,6 +150,10 @@ msgstr "Ми працюємо для вас"
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Натисніть, щоб авторизуватись"
 
+#: SectionApp/sections/UserPage/UserPage.tpl:140
+msgid "Написать"
+msgstr "Написати"
+
 #: HeaderApp/Header.tpl:31
 #: OptionsApp/index.html:4
 msgid "Настройки"
@@ -183,12 +192,25 @@ msgid "Оставьте свой отзыв"
 msgstr "Залиште свій відгук"
 
 #: SectionApp/sections/NewFriends/request.tpl:8
+#: SectionApp/sections/UserPage/UserPage.tpl:153
 msgid "Отклонить"
 msgstr "Відмовити"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:149
+msgid "Отменить заявку"
+msgstr "Скасувати заявку"
 
 #: libs/helpers/Helpers.js:86
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
 msgstr "Відображає кількість непрочитаних повідомлень і дозволяє відповісти не заходячи в ВК!"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:148
+msgid "Отписаться"
+msgstr "Відписатися"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:143
+msgid "Подписаться"
+msgstr "Підписатися"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
 msgid "Подписчиков"
@@ -216,6 +238,7 @@ msgid "При закрытом ВК"
 msgstr "При закритому ВК"
 
 #: SectionApp/sections/NewFriends/request.tpl:7
+#: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
 msgstr "Прийняти"
 
@@ -302,6 +325,10 @@ msgstr "Країна:"
 #: OptionsApp/index.html:102
 msgid "Удалить все данные расширения"
 msgstr "Видалити всі дані розширення"
+
+#: SectionApp/sections/UserPage/UserPage.tpl:156
+msgid "Удалить из друзей"
+msgstr "Видалити із друзів"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:127
 msgid "Фото"
