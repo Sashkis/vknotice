@@ -33,7 +33,7 @@ var SectionsApp;
         .directive('userAva', SectionsApp.userAvaDirective)
         .directive('userName', SectionsApp.userNameDirective)
         .directive('vkDialog', SectionsApp.DialogDirective)
-        .directive('message', SectionsApp.MessageDirective)
+        .directive('vkMessage', SectionsApp.MessageDirective)
         .directive('attachment', SectionsApp.AttachmentDirective)
         .filter('emoji', ['$sce', function ($sce) { return function (text) { return $sce.trustAsHtml(new SectionsApp.Emoji().emojiToHTML(text)); }; }])
         .filter('linkify', function () { return function (text) { return linkifyStr(text, {

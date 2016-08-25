@@ -25,6 +25,7 @@
 
 </head>
 <body>
+	<toast></toast>
 	<div class="container" ng-controller="ContainerCtrl as main">
 		<vk-header ng-if="main.stg.access_token && main.stg.user_id"></vk-header>
 		<section ng-if="main.stg.access_token && main.stg.user_id && !main.stg.alerts[0]" ng-controller="SectionsCtrl as vm" ui-view></section>

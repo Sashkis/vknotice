@@ -10,6 +10,7 @@ module VkApp {
 			'apiConfig',
 			'authConfig',
 			'$httpParamSerializer',
+			'ngToast',
 		];
 
 		constructor (
@@ -18,7 +19,8 @@ module VkApp {
 			private storage: StorageApp.StorageService,
 			private apiConfig: { version: string },
 			private authConfig: {},
-			$httpParamSerializer: ng.IHttpParamSerializer
+			$httpParamSerializer: ng.IHttpParamSerializer,
+			private ngToast: any
 		) {
 			this.authUrl = `https://oauth.vk.com/authorize?${$httpParamSerializer(authConfig)}`;
 		}
@@ -159,6 +161,8 @@ module VkApp {
 							}, 2000);
 						} else {
 							console.error(API.data.error);
+							if (API.data.error.error_msg)
+								this.ngToast.danger(API.data.error.error_msg);
 							ready.reject('api_error');
 						}
 					}
