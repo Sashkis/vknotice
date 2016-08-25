@@ -1,12 +1,13 @@
 var VkApp;
 (function (VkApp) {
     var VkService = (function () {
-        function VkService($q, $http, storage, apiConfig, authConfig, $httpParamSerializer) {
+        function VkService($q, $http, storage, apiConfig, authConfig, $httpParamSerializer, ngToast) {
             this.$q = $q;
             this.$http = $http;
             this.storage = storage;
             this.apiConfig = apiConfig;
             this.authConfig = authConfig;
+            this.ngToast = ngToast;
             this.stg = {};
             this.authUrl = "https://oauth.vk.com/authorize?" + $httpParamSerializer(authConfig);
         }
@@ -117,6 +118,8 @@ var VkApp;
                     }
                     else {
                         console.error(API.data.error);
+                        if (API.data.error.error_msg)
+                            _this.ngToast.danger(API.data.error.error_msg);
                         ready.reject('api_error');
                     }
                 }
@@ -136,6 +139,7 @@ var VkApp;
             'apiConfig',
             'authConfig',
             '$httpParamSerializer',
+            'ngToast',
         ];
         return VkService;
     }());

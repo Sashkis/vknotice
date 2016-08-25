@@ -1,6 +1,6 @@
 module VkApp {
 	const API_VERSION = '5.53';
-	angular.module('VkApp', ['StorageApp'])
+	angular.module('VkApp', ['StorageApp', 'ngToast'])
 		.constant('apiConfig', {
 			version: API_VERSION,
 		})
@@ -14,6 +14,15 @@ module VkApp {
 			'v':             API_VERSION,
 			'state':         'vknotice',
 		})
+
+		.config(['ngToastProvider', function (ngToastProvider: any) {
+			ngToastProvider.configure({
+				animation: 'slide',
+				horizontalPosition: 'center',
+				maxNumber: 2,
+				newestOnTop: false,
+			});
+		}])
 
 		.service('$vk', VkService);
 }
