@@ -104,8 +104,12 @@
 		@include btnColor(#6287ae);
 		padding-left: 0;
 		padding-right: 0;
+		&.simple {
+			@extend %btn;
+			@include btnColor(#e5ebf1, #55677d);
+		}
 		& + button {
-			margin-left: 10px;
+			margin-left: 10px !important;
 		}
 	}
 }

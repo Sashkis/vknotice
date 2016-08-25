@@ -144,14 +144,14 @@
 				<translate ng-switch-when="1">Добавить в друзья</translate>
 			</button>
 
-			<button ng-if="vm.user.friend_status == 1" ng-switch="vm.user.can_send_friend_request" ng-click="vm.action('delete', vm.user.id)">
+			<button class="simple" ng-if="vm.user.friend_status == 1" ng-switch="vm.user.can_send_friend_request" ng-click="vm.action('delete', vm.user.id)">
 				<translate ng-switch-when="0">Отписаться</translate>
 				<translate ng-switch-when="1">Отменить заявку</translate>
 			</button>
 
 			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('add', vm.user.id)" translate>Принять</button>
-			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('delete', vm.user.id)" translate>Отклонить</button>
-			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('ban', vm.user.id)" translate>Заблокировать</button>
+			<button class="simple" ng-if="vm.user.friend_status == 2" ng-click="vm.action('delete', vm.user.id)" translate>Отклонить</button>
+			<button class="simple" ng-if="vm.user.friend_status == 2" ng-click="vm.action('ban', vm.user.id)" translate>Заблокировать</button>
 
 			<button class="simple" ng-if="vm.user.friend_status == 3" ng-click="vm.action('delete', vm.user.id)" translate>Удалить из друзей</button>
 		</div>
