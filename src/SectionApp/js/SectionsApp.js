@@ -49,6 +49,7 @@ var SectionsApp;
         .controller('SidebarCtrl', SectionsApp.SidebarCtrl)
         .controller('ChatCtrl', SectionsApp.ChatCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
-        .controller('SectionsCtrl', SectionsApp.SectionsCtrl);
+        .controller('SectionsCtrl', SectionsApp.SectionsCtrl)
+        .controller('AllFriendsCtrl', SectionsApp.AllFriendsCtrl);
 })(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsApp.js.map

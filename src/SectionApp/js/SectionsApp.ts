@@ -33,24 +33,6 @@ module SectionsApp {
 							url: '/user/{user_id}',
 							templateUrl: "/SectionApp/sections/UserPage/UserPage.tpl",
 						})
-
-				// $routeProvider
-				// 	.when('/', {
-				// 		templateUrl: '/SectionApp/sections/Default/Default.tpl',
-				// 		name: 'Меню',
-				// 	})
-				// 	.when('/NewFriends', {
-				// 		templateUrl: '/SectionApp/sections/NewFriends/NewFriends.tpl',
-				// 	})
-				// 	.when('/NewMess', {
-				// 		templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
-				// 	})
-				// 	.when('/NewMess/:peer_id', {
-				// 		templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
-				// 	})
-				// 	.otherwise({
-				// 		redirectTo: '/'
-				// 	});
 			}
 		])
 
@@ -78,5 +60,6 @@ module SectionsApp {
 		.controller('ChatCtrl', ChatCtrl)
 		.controller('NewMessCtrl', NewMessCtrl)
 		.controller('SectionsCtrl', SectionsCtrl)
+		.controller('AllFriendsCtrl', AllFriendsCtrl)
 		;
 }

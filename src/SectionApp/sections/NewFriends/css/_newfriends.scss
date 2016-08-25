@@ -3,7 +3,7 @@
 	flex: 1;
 	flex-direction: column;
 	background: #fff;
-
+	min-height: 230px;
 	> :first-child {
 		padding: 3px;
 		text-align: right;
@@ -40,6 +40,9 @@
 	}
 }
 
-.empty-requests {
-	@extend %empty-section-plug;
+#friends-online.all {
+	// height: 230px;
+	height: 220px;
+	overflow: auto;
+	justify-content: space-between;
 }
