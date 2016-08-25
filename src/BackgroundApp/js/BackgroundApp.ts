@@ -8,6 +8,7 @@ module BgApp {
 		profilesLimit: 100,
 	})
 
+	.run(Helpers.setCurrentLanguage)
 	.config(Helpers.setAnaliticSetting)
 	.run(Helpers.trackPage)
 	.controller('Bg', BgClass);
