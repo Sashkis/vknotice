@@ -27,7 +27,8 @@
     "roboto-font": "git@github.com:cawa-93/roboto-font.git",
     "linkifyjs": "^2.0.5",
     "angular-ui-router": "^0.3.1",
-    "ng-focus-if": "^1.0.7"
+    "ng-focus-if": "^1.0.7",
+    "angular-elastic": "^2.5.1"
   },
   "devDependencies": {}
 }
