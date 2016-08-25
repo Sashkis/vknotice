@@ -1,7 +1,7 @@
 /// <reference path="../../../../all.d.ts"/>
 module SectionsApp {
 
-	interface IMessageMap {
+	export interface IMessageMap {
 		isMore: boolean,
 		peer_id: number,
 		items: IMessage[],

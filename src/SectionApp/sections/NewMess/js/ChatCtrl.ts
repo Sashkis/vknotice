@@ -17,12 +17,6 @@ module SectionsApp {
 		unread?: number
 	}
 
-	interface IMessageMap {
-		isMore: boolean,
-		peer_id: number,
-		items: IMessage[],
-	}
-
 	export class ChatCtrl {
 		currentMessMap: IMessageMap | undefined;
 		message: string;
