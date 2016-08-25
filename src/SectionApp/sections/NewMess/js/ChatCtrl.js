@@ -104,10 +104,15 @@ var SectionsApp;
             });
             return true;
         };
-        ChatCtrl.prototype.sendMessage = function () {
+        ChatCtrl.prototype.sendMessage = function ($event) {
             var _this = this;
-            if (!this.currentMessMap)
+            if (!this.currentMessMap || !this.message)
                 return;
+            if ($event.ctrlKey) {
+                this.message += "\n";
+                return;
+            }
+            $event.preventDefault();
             var peer_id = this.currentMessMap.peer_id;
             var message = this.message;
             this.$vk.auth().then(function () { return _this.$vk.api('messages.send', {
