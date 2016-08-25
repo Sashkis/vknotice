@@ -24,5 +24,5 @@ module PopupApp {
 
 		      return (input / Math.pow(1000, exp)).toFixed(decimals) + suffixes[exp - 1];
 		    };
-		  });;
+		  });
 }
