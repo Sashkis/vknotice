@@ -14,7 +14,7 @@ msgstr[1] ""
 msgid "Аудио"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:46
+#: SectionApp/sections/Default/Default.tpl:50
 msgid "Аудиозаписи"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Видео"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:52
+#: SectionApp/sections/Default/Default.tpl:56
 msgid "Видеозаписи"
 msgstr ""
 
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Вложение"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:81
+#: SectionApp/sections/Default/Default.tpl:85
 #: SectionApp/sections/Friends/all.tpl:18
 #: SectionApp/sections/Friends/tabs.tpl:23
 msgid "Все друзья"
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Город:"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:32
+#: SectionApp/sections/Default/Default.tpl:36
 msgid "Группы"
 msgstr ""
 
@@ -87,6 +87,7 @@ msgid "Друзей"
 msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:25
+#: SectionApp/sections/Default/Default.tpl:29
 msgid "Друзья"
 msgstr ""
 
@@ -113,7 +114,7 @@ msgstr ""
 msgid "Звуковые уведомления"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:59
+#: SectionApp/sections/Default/Default.tpl:63
 msgid "Игры"
 msgstr ""
 
@@ -332,7 +333,7 @@ msgstr ""
 msgid "Фото"
 msgstr ""
 
-#: SectionApp/sections/Default/Default.tpl:39
+#: SectionApp/sections/Default/Default.tpl:43
 msgid "Фотографии"
 msgstr ""
 
