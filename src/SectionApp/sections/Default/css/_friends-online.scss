@@ -1,4 +1,4 @@
-#friends-online {
+#friends-list {
   padding: 5px;
   flex: 1;
   display: flex;
@@ -15,7 +15,7 @@
 		display:block;
 		position: relative;
 	    &:hover {
-	    	text-decoration:underline;
+	    	text-decoration:none;
 				.overlay {
 					transform: scale(1);
 				}
@@ -55,4 +55,16 @@
 			transform: scale(0);
 		}
 	}
+  .item .next {
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    color: #a4b6c6;
+    background-color: #d8e0e8;
+    border-radius: 50px;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+  }
 }

@@ -57,6 +57,7 @@ var SectionsApp;
         .service('messMap', SectionsApp.MessMapService)
         .controller('UserPageCtrl', SectionsApp.UserPageCtrl)
         .controller('SidebarCtrl', SectionsApp.SidebarCtrl)
+        .controller('FriendsCtrl', SectionsApp.FriendsCtrl)
         .controller('ChatCtrl', SectionsApp.ChatCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
         .controller('SectionsCtrl', SectionsApp.SectionsCtrl)

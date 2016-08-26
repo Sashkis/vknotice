@@ -1,26 +1,21 @@
-angular.module('SectionsApp')
+module SectionsApp {
+	export class FriendsCtrl {
 
-	.controller('FriendsCtrl', ['storage',
-		function (storage) {
-			const vm = this;
+		public static $inject = ['storage'];
 
-			storage.ready.then(function (stg) {
-				vm.stg = stg;
-			});
-
-		},
-	])
-
-	.directive('friend', ['storage', function (storage) {
-		return {
-			restrict: 'E',
-			replace: 'true',
-			templateUrl:'../SectionApp/sections/Default/friend.tpl',
-			scope: {
-				id: '=',
-			},
-			link: function ($scope) {
-				$scope.user = storage.getProfile($scope.id);
-			},
+		friends: {
+			count: number;
+			items: (IProfile | {})[];
 		};
-	}]);
+
+		constructor (storage: StorageApp.StorageService) {
+			storage.ready.then((stg) => {
+				const friends = angular.copy(stg.friends);
+				this.friends = {
+					count: friends.count,
+					items: friends.items.map((id) => storage.getProfile(id)),
+				}
+			});
+		}
+	}
+}

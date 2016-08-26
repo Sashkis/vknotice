@@ -42,6 +42,8 @@ msgstr ""
 msgid "Вложение"
 msgstr ""
 
+#: SectionApp/sections/Default/Default.tpl:81
+#: SectionApp/sections/Friends/all.tpl:18
 #: SectionApp/sections/Friends/tabs.tpl:23
 msgid "Все друзья"
 msgstr ""

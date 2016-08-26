@@ -67,6 +67,7 @@ module SectionsApp {
 
 		.controller('UserPageCtrl', UserPageCtrl)
 		.controller('SidebarCtrl', SidebarCtrl)
+		.controller('FriendsCtrl', FriendsCtrl)
 		.controller('ChatCtrl', ChatCtrl)
 		.controller('NewMessCtrl', NewMessCtrl)
 		.controller('SectionsCtrl', SectionsCtrl)
