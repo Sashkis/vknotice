@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
-"PO-Revision-Date: 2016-08-26 05:40-0400\n"
+"PO-Revision-Date: 2016-08-26 05:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -57,7 +57,7 @@ msgstr "Atașament"
 #: SectionApp/sections/Friends/all.tpl:18
 #: SectionApp/sections/Friends/tabs.tpl:23
 msgid "Все друзья"
-msgstr ""
+msgstr "Toți prietenii"
 
 #: OptionsApp/index.html:92
 msgid "Всегда"
@@ -177,7 +177,7 @@ msgstr "Stiri"
 
 #: SectionApp/sections/Friends/tabs.tpl:24
 msgid "Новые заявки"
-msgstr ""
+msgstr "Noi cereri"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:115
 msgid "Общих друзей"
