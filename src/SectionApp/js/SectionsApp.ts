@@ -17,9 +17,18 @@ module SectionsApp {
 							url: '/',
 							templateUrl: "/SectionApp/sections/Default/Default.tpl"
 						})
-						.state('requests', {
+						.state('friends', {
+							url: '/friends',
+							templateUrl: "/SectionApp/sections/Friends/tabs.tpl",
+							abstract: true,
+						})
+						.state('friends.all', {
+							url: '/all',
+							templateUrl: "/SectionApp/sections/Friends/all.tpl",
+						})
+						.state('friends.requests', {
 							url: '/requests',
-							templateUrl: "/SectionApp/sections/NewFriends/NewFriends.tpl"
+							templateUrl: "/SectionApp/sections/Friends/requests.tpl",
 						})
 						.state('dialogs', {
 							url: '/dialogs',
@@ -42,6 +51,7 @@ module SectionsApp {
 		.directive('vkDialog', DialogDirective)
 		.directive('vkMessage', MessageDirective)
 		.directive('attachment', AttachmentDirective)
+		.directive('request', RequestDirective)
 
 		.filter('emoji', ['$sce', ($sce: ng.ISCEService) => (text: string) => $sce.trustAsHtml(new Emoji().emojiToHTML(text))])
 		.filter('linkify', () => (text: string) => linkifyStr(text, {
@@ -57,9 +67,12 @@ module SectionsApp {
 
 		.controller('UserPageCtrl', UserPageCtrl)
 		.controller('SidebarCtrl', SidebarCtrl)
+		.controller('FriendsCtrl', FriendsCtrl)
 		.controller('ChatCtrl', ChatCtrl)
 		.controller('NewMessCtrl', NewMessCtrl)
 		.controller('SectionsCtrl', SectionsCtrl)
-		.controller('AllFriendsCtrl', AllFriendsCtrl)
+		.controller('TabCtrl', TabCtrl)
+		.controller('NewFriendsCtrl', NewFriendsCtrl)
+		// .controller('AllFriendsCtrl', AllFriendsCtrl)
 		;
 }

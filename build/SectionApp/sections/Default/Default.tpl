@@ -20,10 +20,14 @@
 			</a>
 		</li>
 		<li>
-			<a vk-href="https://vk.com/friends" ui-sref="requests">
+			<a ng-if="!sidebar.stg.counter.friends" vk-href="https://vk.com/friends" ui-sref="friends.all">
 				<i class="left_icon l_fr" aria-hidden="true"></i>
 				<translate>Друзья</translate>
-				<span class="counter" ng-if="sidebar.stg.counter.friends">+{{sidebar.stg.counter.friends|kFilter}}</span>
+			</a>
+			<a ng-if="sidebar.stg.counter.friends" vk-href="https://vk.com/friends?section=all_requests" ui-sref="friends.requests">
+				<i class="left_icon l_fr" aria-hidden="true"></i>
+				<translate>Друзья</translate>
+				<span class="counter">+{{sidebar.stg.counter.friends|kFilter}}</span>
 			</a>
 		</li>
 		<li>
@@ -61,7 +65,29 @@
 		</li>
 	</aside>
 
-	<div id="friends-online" ng-controller="FriendsCtrl as friend">
-		<friend id="user_id" ng-repeat="user_id in friend.stg.friends"></friend>
+	<div id="friends-list" ng-controller="FriendsCtrl as vm">
+		<a
+			ng-repeat="user in vm.friends.items | limitTo : (vm.friends.count > 20 ? 19 : 20)"
+			class="item"
+			title="{{user.first_name}} {{user.last_name}}"
+			ui-sref="dialogs.chat({peer_id: user.id})"
+			href="https://vk.com/im?sel={{user.id}}"
+			vk-href="https://vk.com/im?sel={{user.id}}"
+		>
+			<div class="overlay"><i class="fa fa-comment"></i></div>
+			<user-ava src="user.photo_50"></user-ava>
+			<div class="online-indicator ng-scope" ng-if="user.online"></div>
+		</a>
+
+		<a
+			ng-if="vm.friends.count > 20"
+			class="item next"
+			title="{{'Все друзья' | translate}}"
+			ui-sref="friends.all"
+			href="https://vk.com/friends"
+			vk-href="https://vk.com/friends"
+		>
+			<div class="next"><i class="fa fa-arrow-right"></i></div>
+		</a>
 	</div>
 </section>

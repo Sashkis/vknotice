@@ -146,7 +146,7 @@ module VkApp {
 			params.v = this.apiConfig.version;
 			this.$http.get(`https://api.vk.com/method/${method}`, {
 				params,
-				timeout: 4000,
+				timeout: 6000,
 				cache: false,
 			})
 				.then((API: IVkResponse) => {
