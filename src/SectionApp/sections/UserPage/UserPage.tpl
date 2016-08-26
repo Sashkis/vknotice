@@ -150,7 +150,7 @@
 			</button>
 
 			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('add', vm.user.id)" translate>Принять</button>
-			<button class="simple" ng-if="vm.user.friend_status == 2" ng-click="vm.action('delete', vm.user.id)" translate>Отклонить</button>
+			<button class="simple" ng-if="vm.user.friend_status == 2" ng-click="vm.action('delete', vm.user.id)" translate>Скрыть</button>
 			<button class="simple" ng-if="vm.user.friend_status == 2" ng-click="vm.action('ban', vm.user.id)" translate>Заблокировать</button>
 
 			<button class="simple" ng-if="vm.user.friend_status == 3" ng-click="vm.action('delete', vm.user.id)" translate>Удалить из друзей</button>

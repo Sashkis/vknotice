@@ -6,5 +6,5 @@
 	</div>
 </a>
 <div class="fa fa-check" title="{{'Принять'|translate}}" ng-click="vm.mark($event, 'add', user.id)"></div>
-<div class="fa fa-times" title="{{'Отклонить'|translate}}" ng-click="vm.mark($event, 'delete', user.id)"></div>
+<div class="fa fa-times" title="{{'Скрыть'|translate}}" ng-click="vm.mark($event, 'delete', user.id)"></div>
 <div class="fa fa-ban" title="{{'Заблокировать'|translate}}" ng-click="vm.mark($event, 'ban', user.id)"></div>
