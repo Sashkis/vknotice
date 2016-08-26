@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
-"PO-Revision-Date: 2016-08-26 05:50-0400\n"
+"PO-Revision-Date: 2016-08-26 09:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -103,7 +103,6 @@ msgid "Друзья"
 msgstr "Сябры"
 
 #: SectionApp/sections/Friends/request.tpl:10
-#: SectionApp/sections/NewFriends/request.tpl:9
 #: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
 msgstr "Заблакаваць"
@@ -199,12 +198,6 @@ msgstr "Пакіньце водгук аб новай версіі"
 msgid "Оставьте свой отзыв"
 msgstr "Пакіньце свой водгук"
 
-#: SectionApp/sections/Friends/request.tpl:9
-#: SectionApp/sections/NewFriends/request.tpl:8
-#: SectionApp/sections/UserPage/UserPage.tpl:153
-msgid "Отклонить"
-msgstr "Адхіліць"
-
 #: SectionApp/sections/UserPage/UserPage.tpl:149
 msgid "Отменить заявку"
 msgstr "Адмяніць заяўку"
@@ -247,7 +240,6 @@ msgid "При закрытом ВК"
 msgstr "Пры закрытым УК"
 
 #: SectionApp/sections/Friends/request.tpl:8
-#: SectionApp/sections/NewFriends/request.tpl:7
 #: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
 msgstr "Прыняць"
@@ -263,6 +255,11 @@ msgstr "Сямейнае становішча:"
 #: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
 msgstr "Скажыце аўтарам «Дзякуй»"
+
+#: SectionApp/sections/Friends/request.tpl:9
+#: SectionApp/sections/UserPage/UserPage.tpl:153
+msgid "Скрыть"
+msgstr "Схаваць"
 
 #: BackgroundApp/js/BgClass.js:185
 msgid "Смотрите подробности в нашей группе"

@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
-"PO-Revision-Date: 2016-08-26 05:50-0400\n"
+"PO-Revision-Date: 2016-08-26 09:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -102,7 +102,6 @@ msgid "Друзья"
 msgstr "Vrienden"
 
 #: SectionApp/sections/Friends/request.tpl:10
-#: SectionApp/sections/NewFriends/request.tpl:9
 #: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
 msgstr "Blok"
@@ -198,12 +197,6 @@ msgstr "Schrijf een review over de nieuwe versie"
 msgid "Оставьте свой отзыв"
 msgstr "Laat uw review"
 
-#: SectionApp/sections/Friends/request.tpl:9
-#: SectionApp/sections/NewFriends/request.tpl:8
-#: SectionApp/sections/UserPage/UserPage.tpl:153
-msgid "Отклонить"
-msgstr "Weigeren"
-
 #: SectionApp/sections/UserPage/UserPage.tpl:149
 msgid "Отменить заявку"
 msgstr "Om de bestelling te annuleren"
@@ -246,7 +239,6 @@ msgid "При закрытом ВК"
 msgstr "Wanneer het gesloten is, VC"
 
 #: SectionApp/sections/Friends/request.tpl:8
-#: SectionApp/sections/NewFriends/request.tpl:7
 #: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
 msgstr "Maken"
@@ -262,6 +254,11 @@ msgstr "Burgerlijke staat:"
 #: BackgroundApp/js/BgClass.js:224
 msgid "Скажите авторам «Спасибо»"
 msgstr "Vertel sponsors \"Dank u\""
+
+#: SectionApp/sections/Friends/request.tpl:9
+#: SectionApp/sections/UserPage/UserPage.tpl:153
+msgid "Скрыть"
+msgstr "Verbergen"
 
 #: BackgroundApp/js/BgClass.js:185
 msgid "Смотрите подробности в нашей группе"
