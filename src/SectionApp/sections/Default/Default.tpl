@@ -20,7 +20,7 @@
 			</a>
 		</li>
 		<li>
-			<a vk-href="https://vk.com/friends" ui-sref="requests">
+			<a vk-href="https://vk.com/friends" ui-sref="friends.all">
 				<i class="left_icon l_fr" aria-hidden="true"></i>
 				<translate>Друзья</translate>
 				<span class="counter" ng-if="sidebar.stg.counter.friends">+{{sidebar.stg.counter.friends|kFilter}}</span>

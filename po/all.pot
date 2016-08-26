@@ -42,7 +42,11 @@ msgstr ""
 msgid "Вложение"
 msgstr ""
 
-#: OptionsApp/index.html:91
+#: SectionApp/sections/Friends/tabs.tpl:23
+msgid "Все друзья"
+msgstr ""
+
+#: OptionsApp/index.html:92
 msgid "Всегда"
 msgstr ""
 
@@ -50,7 +54,7 @@ msgstr ""
 msgid "Выйти"
 msgstr ""
 
-#: OptionsApp/index.html:81
+#: OptionsApp/index.html:82
 msgid "Выключить"
 msgstr ""
 
@@ -84,6 +88,7 @@ msgstr ""
 msgid "Друзья"
 msgstr ""
 
+#: SectionApp/sections/Friends/request.tpl:10
 #: SectionApp/sections/NewFriends/request.tpl:9
 #: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
@@ -102,7 +107,7 @@ msgstr ""
 msgid "Запись"
 msgstr ""
 
-#: OptionsApp/index.html:77
+#: OptionsApp/index.html:78
 msgid "Звуковые уведомления"
 msgstr ""
 
@@ -135,7 +140,7 @@ msgstr ""
 msgid "Мы работаем для вас"
 msgstr ""
 
-#: PopupApp/popup.html:33
+#: PopupApp/popup.html:35
 msgid "Нажмите чтобы авторизоватся"
 msgstr ""
 
@@ -148,16 +153,16 @@ msgstr ""
 msgid "Настройки"
 msgstr ""
 
-#: OptionsApp/index.html:27
+#: OptionsApp/index.html:28
 msgid "Настройки уведомлений"
-msgstr ""
-
-#: SectionApp/sections/NewFriends/NewFriends.tpl:6
-msgid "Нет новых заявок в друзья"
 msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:12
 msgid "Новости"
+msgstr ""
+
+#: SectionApp/sections/Friends/tabs.tpl:24
+msgid "Новые заявки"
 msgstr ""
 
 #: SectionApp/sections/UserPage/UserPage.tpl:115
@@ -180,6 +185,7 @@ msgstr ""
 msgid "Оставьте свой отзыв"
 msgstr ""
 
+#: SectionApp/sections/Friends/request.tpl:9
 #: SectionApp/sections/NewFriends/request.tpl:8
 #: SectionApp/sections/UserPage/UserPage.tpl:153
 msgid "Отклонить"
@@ -222,10 +228,11 @@ msgstr ""
 msgid "Помощь"
 msgstr ""
 
-#: OptionsApp/index.html:86
+#: OptionsApp/index.html:87
 msgid "При закрытом ВК"
 msgstr ""
 
+#: SectionApp/sections/Friends/request.tpl:8
 #: SectionApp/sections/NewFriends/request.tpl:7
 #: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
@@ -247,47 +254,47 @@ msgstr ""
 msgid "Смотрите подробности в нашей группе"
 msgstr ""
 
-#: OptionsApp/index.html:51
+#: OptionsApp/index.html:52
 msgid "Сообщать о записях"
 msgstr ""
 
-#: OptionsApp/index.html:31
+#: OptionsApp/index.html:32
 msgid "Сообщать о заявках в друзья"
 msgstr ""
 
-#: OptionsApp/index.html:59
+#: OptionsApp/index.html:60
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
 msgstr ""
 
-#: OptionsApp/index.html:43
+#: OptionsApp/index.html:44
 msgid "Сообщать о личных сообщениях"
 msgstr ""
 
-#: OptionsApp/index.html:71
+#: OptionsApp/index.html:72
 msgid "Сообщать о новых подписчиках"
 msgstr ""
 
-#: OptionsApp/index.html:47
+#: OptionsApp/index.html:48
 msgid "Сообщать о приглашениях в группы"
 msgstr ""
 
-#: OptionsApp/index.html:67
+#: OptionsApp/index.html:68
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
 msgstr ""
 
-#: OptionsApp/index.html:63
+#: OptionsApp/index.html:64
 msgid "Сообщать об отметках «Мне нравится»"
 msgstr ""
 
-#: OptionsApp/index.html:39
+#: OptionsApp/index.html:40
 msgid "Сообщать об отметках в видеозаписях"
 msgstr ""
 
-#: OptionsApp/index.html:35
+#: OptionsApp/index.html:36
 msgid "Сообщать об отметках на фотографиях"
 msgstr ""
 
-#: OptionsApp/index.html:55
+#: OptionsApp/index.html:56
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr ""
 
@@ -299,11 +306,11 @@ msgstr ""
 msgid "Сообщить об ошибке"
 msgstr ""
 
-#: OptionsApp/index.html:99
+#: OptionsApp/index.html:100
 msgid "Сохранено"
 msgstr ""
 
-#: OptionsApp/index.html:100
+#: OptionsApp/index.html:101
 msgid "Сохранить"
 msgstr ""
 
@@ -311,7 +318,7 @@ msgstr ""
 msgid "Страна:"
 msgstr ""
 
-#: OptionsApp/index.html:102
+#: OptionsApp/index.html:103
 msgid "Удалить все данные расширения"
 msgstr ""
 

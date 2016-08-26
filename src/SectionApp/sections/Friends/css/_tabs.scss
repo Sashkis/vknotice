@@ -1,0 +1,28 @@
+// @import "newfriends.scss";
+@import '_newfriends.scss';
+.container {
+	background-color: #fff;
+}
+
+.tabs {
+	position: relative;
+	border-bottom: 1px solid #e7e8ec;
+	padding: 0 10px;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	li {
+		color: #656565;
+		-o-transition: color 0.2s ease;
+		transition: color 0.2s ease;
+		cursor: pointer;
+		display: block;
+		padding: 16px 6px 15px;
+		margin: 0 4px -1px;
+		outline: none;
+		&.active {
+			border-bottom: 2px solid #6387ac;
+			padding-bottom: 13px;
+		}
+	}
+}
