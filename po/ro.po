@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
-"PO-Revision-Date: 2016-08-23 06:20-0400\n"
+"PO-Revision-Date: 2016-08-26 05:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -25,7 +25,7 @@ msgstr[2] ""
 msgid "Аудио"
 msgstr "Audio"
 
-#: SectionApp/sections/Default/Default.tpl:46
+#: SectionApp/sections/Default/Default.tpl:50
 msgid "Аудиозаписи"
 msgstr "Audio"
 
@@ -45,7 +45,7 @@ msgstr "Pentru a reveni"
 msgid "Видео"
 msgstr "Video"
 
-#: SectionApp/sections/Default/Default.tpl:52
+#: SectionApp/sections/Default/Default.tpl:56
 msgid "Видеозаписи"
 msgstr "Video"
 
@@ -53,7 +53,13 @@ msgstr "Video"
 msgid "Вложение"
 msgstr "Atașament"
 
-#: OptionsApp/index.html:91
+#: SectionApp/sections/Default/Default.tpl:85
+#: SectionApp/sections/Friends/all.tpl:18
+#: SectionApp/sections/Friends/tabs.tpl:23
+msgid "Все друзья"
+msgstr "Toți prietenii"
+
+#: OptionsApp/index.html:92
 msgid "Всегда"
 msgstr "Întotdeauna"
 
@@ -61,7 +67,7 @@ msgstr "Întotdeauna"
 msgid "Выйти"
 msgstr "Ieși"
 
-#: OptionsApp/index.html:81
+#: OptionsApp/index.html:82
 msgid "Выключить"
 msgstr "Opriți"
 
@@ -69,7 +75,7 @@ msgstr "Opriți"
 msgid "Город:"
 msgstr "City:"
 
-#: SectionApp/sections/Default/Default.tpl:32
+#: SectionApp/sections/Default/Default.tpl:36
 msgid "Группы"
 msgstr "Grup"
 
@@ -92,9 +98,11 @@ msgid "Друзей"
 msgstr "Prieteni"
 
 #: SectionApp/sections/Default/Default.tpl:25
+#: SectionApp/sections/Default/Default.tpl:29
 msgid "Друзья"
 msgstr "Prieteni"
 
+#: SectionApp/sections/Friends/request.tpl:10
 #: SectionApp/sections/NewFriends/request.tpl:9
 #: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
@@ -113,11 +121,11 @@ msgstr "Închide"
 msgid "Запись"
 msgstr "Înregistrarea"
 
-#: OptionsApp/index.html:77
+#: OptionsApp/index.html:78
 msgid "Звуковые уведомления"
 msgstr "Sunet de notificare"
 
-#: SectionApp/sections/Default/Default.tpl:59
+#: SectionApp/sections/Default/Default.tpl:63
 msgid "Игры"
 msgstr "Jocuri"
 
@@ -146,7 +154,7 @@ msgstr "Pagina Mea"
 msgid "Мы работаем для вас"
 msgstr "Noi lucram pentru tine"
 
-#: PopupApp/popup.html:33
+#: PopupApp/popup.html:35
 msgid "Нажмите чтобы авторизоватся"
 msgstr "Faceți clic pentru a авторизоватся"
 
@@ -159,17 +167,17 @@ msgstr "Scrie"
 msgid "Настройки"
 msgstr "Setări"
 
-#: OptionsApp/index.html:27
+#: OptionsApp/index.html:28
 msgid "Настройки уведомлений"
 msgstr "Setări de notificare"
-
-#: SectionApp/sections/NewFriends/NewFriends.tpl:6
-msgid "Нет новых заявок в друзья"
-msgstr "Nu noi cereri de la prieteni"
 
 #: SectionApp/sections/Default/Default.tpl:12
 msgid "Новости"
 msgstr "Stiri"
+
+#: SectionApp/sections/Friends/tabs.tpl:24
+msgid "Новые заявки"
+msgstr "Noi cereri"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:115
 msgid "Общих друзей"
@@ -191,6 +199,7 @@ msgstr "Lăsați feedback-ul cu privire la noua versiune"
 msgid "Оставьте свой отзыв"
 msgstr "Lăsați feedback-ul dumneavoastră"
 
+#: SectionApp/sections/Friends/request.tpl:9
 #: SectionApp/sections/NewFriends/request.tpl:8
 #: SectionApp/sections/UserPage/UserPage.tpl:153
 msgid "Отклонить"
@@ -233,10 +242,11 @@ msgstr "Ajuta-ne sa devenim mai buni"
 msgid "Помощь"
 msgstr "Ajutor"
 
-#: OptionsApp/index.html:86
+#: OptionsApp/index.html:87
 msgid "При закрытом ВК"
 msgstr "Când este închis, CV"
 
+#: SectionApp/sections/Friends/request.tpl:8
 #: SectionApp/sections/NewFriends/request.tpl:7
 #: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
@@ -258,47 +268,47 @@ msgstr "Spune-autorilor \"Mulțumesc\""
 msgid "Смотрите подробности в нашей группе"
 msgstr "Vezi detalii în grupul nostru"
 
-#: OptionsApp/index.html:51
+#: OptionsApp/index.html:52
 msgid "Сообщать о записях"
 msgstr "De a raporta cu privire la înregistrările"
 
-#: OptionsApp/index.html:31
+#: OptionsApp/index.html:32
 msgid "Сообщать о заявках в друзья"
 msgstr "De a raporta cu privire la cererile de la prieteni"
 
-#: OptionsApp/index.html:59
+#: OptionsApp/index.html:60
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
 msgstr "De a raporta comentariile de la înregistrări, fotografii și fișiere video"
 
-#: OptionsApp/index.html:43
+#: OptionsApp/index.html:44
 msgid "Сообщать о личных сообщениях"
 msgstr "De a raporta mesaje private"
 
-#: OptionsApp/index.html:71
+#: OptionsApp/index.html:72
 msgid "Сообщать о новых подписчиках"
 msgstr "De a raporta despre noi подписчиках"
 
-#: OptionsApp/index.html:47
+#: OptionsApp/index.html:48
 msgid "Сообщать о приглашениях в группы"
 msgstr "De a raporta despre invitații în grup"
 
-#: OptionsApp/index.html:67
+#: OptionsApp/index.html:68
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
 msgstr "Să raporteze copiate înregistrările, fotografiile și înregistrările video"
 
-#: OptionsApp/index.html:63
+#: OptionsApp/index.html:64
 msgid "Сообщать об отметках «Мне нравится»"
 msgstr "De a raporta cu privire la altitudini de \"Îmi place\""
 
-#: OptionsApp/index.html:39
+#: OptionsApp/index.html:40
 msgid "Сообщать об отметках в видеозаписях"
 msgstr "De a raporta cu privire la altitudini în înregistrările video"
 
-#: OptionsApp/index.html:35
+#: OptionsApp/index.html:36
 msgid "Сообщать об отметках на фотографиях"
 msgstr "De a raporta cu privire la altitudini de fotografii"
 
-#: OptionsApp/index.html:55
+#: OptionsApp/index.html:56
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr "Să raporteze referiri în cartea, în comentarii sau în discuții"
 
@@ -310,11 +320,11 @@ msgstr "Mesaje"
 msgid "Сообщить об ошибке"
 msgstr "Raportarea"
 
-#: OptionsApp/index.html:99
+#: OptionsApp/index.html:100
 msgid "Сохранено"
 msgstr "Salvat"
 
-#: OptionsApp/index.html:100
+#: OptionsApp/index.html:101
 msgid "Сохранить"
 msgstr "Salvați"
 
@@ -322,7 +332,7 @@ msgstr "Salvați"
 msgid "Страна:"
 msgstr "Tara:"
 
-#: OptionsApp/index.html:102
+#: OptionsApp/index.html:103
 msgid "Удалить все данные расширения"
 msgstr "Șterge toate datele de expansiune"
 
@@ -334,7 +344,7 @@ msgstr "Eliminați de la prieteni"
 msgid "Фото"
 msgstr "Foto"
 
-#: SectionApp/sections/Default/Default.tpl:39
+#: SectionApp/sections/Default/Default.tpl:43
 msgid "Фотографии"
 msgstr "Fotografii"
 
