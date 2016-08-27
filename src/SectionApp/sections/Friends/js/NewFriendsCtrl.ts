@@ -1,10 +1,10 @@
 module SectionsApp {
 	export class NewFriendsCtrl {
-		public static $inject = ['storage', '$vk'];
+		public static $inject = ['$scope', 'storage', '$vk'];
 
 		stg: IStorageData;
 
-		constructor (private storage: StorageApp.StorageService, private $vk: VkApp.VkService) {
+		constructor (private $scope: ng.IScope, private storage: StorageApp.StorageService, private $vk: VkApp.VkService) {
 			storage.ready.then((stg) => {
 				this.stg = stg;
 			});
@@ -27,6 +27,8 @@ module SectionsApp {
 					this.$vk.api(method, {
 						user_id:      user_id,
 						access_token: this.$vk.stg.access_token,
+					}).then(() => {
+						this.$scope.$broadcast('requestRemoved');
 					});
 				});
 			}

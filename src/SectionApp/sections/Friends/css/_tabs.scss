@@ -18,12 +18,11 @@
 		transition: color 0.2s ease;
 		cursor: pointer;
 		display: block;
-		padding: 16px 6px 15px;
+    padding: 10px 5px;
 		margin: 0 4px -1px;
 		outline: none;
 		&.active {
 			border-bottom: 2px solid #6387ac;
-			padding-bottom: 13px;
 		}
 	}
 }

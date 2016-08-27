@@ -1,8 +1,9 @@
 var SectionsApp;
 (function (SectionsApp) {
     var NewFriendsCtrl = (function () {
-        function NewFriendsCtrl(storage, $vk) {
+        function NewFriendsCtrl($scope, storage, $vk) {
             var _this = this;
+            this.$scope = $scope;
             this.storage = storage;
             this.$vk = $vk;
             storage.ready.then(function (stg) {
@@ -30,11 +31,13 @@ var SectionsApp;
                     _this.$vk.api(method, {
                         user_id: user_id,
                         access_token: _this.$vk.stg.access_token,
+                    }).then(function () {
+                        _this.$scope.$broadcast('requestRemoved');
                     });
                 });
             }
         };
-        NewFriendsCtrl.$inject = ['storage', '$vk'];
+        NewFriendsCtrl.$inject = ['$scope', 'storage', '$vk'];
         return NewFriendsCtrl;
     }());
     SectionsApp.NewFriendsCtrl = NewFriendsCtrl;
