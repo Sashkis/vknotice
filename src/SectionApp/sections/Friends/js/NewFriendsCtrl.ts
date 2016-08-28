@@ -28,7 +28,7 @@ module SectionsApp {
 						user_id:      user_id,
 						access_token: this.$vk.stg.access_token,
 					}).then(() => {
-						this.$scope.$broadcast('requestRemoved');
+						this.$scope.$emit('requestRemoved');
 					});
 				});
 			}

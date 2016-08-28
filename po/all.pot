@@ -44,7 +44,7 @@ msgstr ""
 
 #: SectionApp/sections/Default/Default.tpl:85
 #: SectionApp/sections/Friends/all.tpl:18
-#: SectionApp/sections/Friends/tabs.tpl:23
+#: SectionApp/sections/Friends/tabs.tpl:3
 msgid "Все друзья"
 msgstr ""
 
@@ -163,7 +163,7 @@ msgstr ""
 msgid "Новости"
 msgstr ""
 
-#: SectionApp/sections/Friends/tabs.tpl:24
+#: SectionApp/sections/Friends/tabs.tpl:4
 msgid "Новые заявки"
 msgstr ""
 

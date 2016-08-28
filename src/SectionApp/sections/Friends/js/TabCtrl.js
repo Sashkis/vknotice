@@ -5,10 +5,12 @@ var SectionsApp;
             var _this = this;
             storage.ready.then(function (stg) {
                 _this.stg = stg;
+                _this.requests = stg.newfriends.length;
             });
             $scope.$on('requestRemoved', function () {
-                if (_this.stg && _this.stg.newfriends && _this.stg.newfriends.length === 1 && $state.is('friends.requests')) {
-                    $state.go('friends.all');
+                _this.requests--;
+                if ($state.is('friends.requests') && _this.requests === 0) {
+                    $state.go('friends.all', null, { location: 'replace' });
                 }
             });
         }

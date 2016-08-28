@@ -32,7 +32,7 @@ var SectionsApp;
                         user_id: user_id,
                         access_token: _this.$vk.stg.access_token,
                     }).then(function () {
-                        _this.$scope.$broadcast('requestRemoved');
+                        _this.$scope.$emit('requestRemoved');
                     });
                 });
             }
