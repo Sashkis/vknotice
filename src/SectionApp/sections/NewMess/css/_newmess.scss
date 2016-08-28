@@ -20,6 +20,7 @@
 #newmess {
 	display: flex;
 	background-color: #f3f5f7;
+	overflow: hidden;
 	$DialogBg: #fff;
 	$DialogBgHover: #f5f7fa;
 	$DialogBgActive: #7293b6;
@@ -27,7 +28,6 @@
 		background-color: $DialogBg;
 		border-right: 1px solid #e7e8ec;
 		height: 288px;
-		overflow: hidden;
 		position: relative;
 		&:before,
 		&:after {
