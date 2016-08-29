@@ -11,7 +11,10 @@ interface IStorageData {
 		notifications?: number;
 	};
 	currentSection: string;
-	friends: number[];
+	friends: {
+		count: number;
+		items: number[];
+	};
 	newfriends: number[];
 	dialogs: IDialog[];
 	groups: IProfile[];

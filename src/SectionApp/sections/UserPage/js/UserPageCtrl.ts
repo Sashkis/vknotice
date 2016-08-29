@@ -117,7 +117,7 @@ module SectionsApp {
 					const [bday, bmonth, byear] = this.user.bdate.split('.');
 					this.user.bdate_obj = {bday, bmonth, byear};
 				}
-				console.log(this.user);
+				// console.log(this.user);
 				return API;
 			})
 		}

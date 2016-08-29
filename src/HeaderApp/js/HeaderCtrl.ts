@@ -48,8 +48,19 @@ module HeaderApp {
 			const isHome = this.$state.is('home');
 			return isHome === undefined ? true : isHome;
 		}
+
 		openOptionsPage() {
 			chrome.runtime.openOptionsPage();
+		}
+
+		back() {
+			// const old = location.href;
+
+			// if (window.history.length > 1) {
+				window.history.back();
+				// window.history.length--;
+			// }
+			// else this.$state.go('home');
 		}
 
 	}

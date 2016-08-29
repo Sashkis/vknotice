@@ -20,7 +20,7 @@ module Helpers {
 
 	setCurrentLanguage.$inject = ['gettextCatalog', 'storage'];
 	export function setCurrentLanguage (gettextCatalog: ng.gettext.gettextCatalog, storage: StorageApp.StorageService) {
-		// gettextCatalog.debug = true;
+		gettextCatalog.debug = true;
 		gettextCatalog.baseLanguage = 'ru_RU';
 
 		storage.ready.then((stg: IStorageData) => {
@@ -65,7 +65,7 @@ module Helpers {
 				forceSSL: true,
 			},
 		})
-		.ignoreFirstPageLoad(true)
+		// .ignoreFirstPageLoad(true)
 		.setRemoveRegExp(/\/-?[0-9]+/)
 		.setHybridMobileSupport(true);
 	}

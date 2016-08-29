@@ -20,6 +20,7 @@
 #newmess {
 	display: flex;
 	background-color: #f3f5f7;
+	overflow: hidden;
 	$DialogBg: #fff;
 	$DialogBgHover: #f5f7fa;
 	$DialogBgActive: #7293b6;
@@ -27,7 +28,6 @@
 		background-color: $DialogBg;
 		border-right: 1px solid #e7e8ec;
 		height: 288px;
-		overflow: hidden;
 		position: relative;
 		&:before,
 		&:after {
@@ -173,7 +173,6 @@
 	}
 
 	#messages-list {
-		height: 252px;
 		overflow: auto;
 		flex:1;
 		display: flex;
@@ -248,6 +247,7 @@
 .messages-list-container {
 	flex-direction: column;
 	flex: 1;
+	height: 288px;
 	.loadMore button {
 		@extend %btn;
 		@include btnColor(#e5ebf1, #55677d);
@@ -259,15 +259,19 @@
 		display: flex;
 		border-top: 1px solid #e7e8ec;
 		background: #fff;
-		input, button {
+		textarea, button {
 			margin: 0;
 			padding: 10px 20px;
 			border: none;
 			background: none;
 			outline: none;
 		}
-		input {
+		textarea {
 			flex: 1;
+			resize: none;
+			max-height: 90px;
+			overflow: auto !important;
+	    font-family: inherit;
 		}
 		button {
 			cursor: pointer;

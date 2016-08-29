@@ -4,6 +4,7 @@ var BgApp;
         .constant('Config', {
         profilesLimit: 100,
     })
+        .run(Helpers.setCurrentLanguage)
         .config(Helpers.setAnaliticSetting)
         .run(Helpers.trackPage)
         .controller('Bg', BgApp.BgClass);

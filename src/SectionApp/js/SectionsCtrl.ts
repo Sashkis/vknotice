@@ -13,14 +13,8 @@ module SectionsApp {
 			$state: ng.ui.IStateService,
 			$scope: ng.IScope
 		) {
+			history.pushState({}, 'home', '/PopupApp/popup.html#/');
 			storage.ready.then((stg) => {
-				if (stg.state.params.peer_id) {
-					const targetDialog = stg.dialogs.find((d) => d.peer_id === +stg.state.params.peer_id);
-					if (!targetDialog) {
-						stg.state.name = 'dialogs';
-						delete stg.state.params.peer_id;
-					}
-				}
 				$state.go(stg.state.name, stg.state.params);
 			});
 

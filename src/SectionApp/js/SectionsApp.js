@@ -1,6 +1,6 @@
 var SectionsApp;
 (function (SectionsApp) {
-    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp', 'focus-if'])
+    angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp', 'focus-if', 'monospaced.elastic'])
         .config(['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider',
         function ($stateProvider, $urlRouterProvider, AnalyticsProvider) {
             AnalyticsProvider
@@ -12,9 +12,18 @@ var SectionsApp;
                 url: '/',
                 templateUrl: "/SectionApp/sections/Default/Default.tpl"
             })
-                .state('requests', {
+                .state('friends', {
+                url: '/friends',
+                templateUrl: "/SectionApp/sections/Friends/tabs.tpl",
+                abstract: true,
+            })
+                .state('friends.all', {
+                url: '/all',
+                templateUrl: "/SectionApp/sections/Friends/all.tpl",
+            })
+                .state('friends.requests', {
                 url: '/requests',
-                templateUrl: "/SectionApp/sections/NewFriends/NewFriends.tpl"
+                templateUrl: "/SectionApp/sections/Friends/requests.tpl",
             })
                 .state('dialogs', {
                 url: '/dialogs',
@@ -33,8 +42,9 @@ var SectionsApp;
         .directive('userAva', SectionsApp.userAvaDirective)
         .directive('userName', SectionsApp.userNameDirective)
         .directive('vkDialog', SectionsApp.DialogDirective)
-        .directive('message', SectionsApp.MessageDirective)
+        .directive('vkMessage', SectionsApp.MessageDirective)
         .directive('attachment', SectionsApp.AttachmentDirective)
+        .directive('request', SectionsApp.RequestDirective)
         .filter('emoji', ['$sce', function ($sce) { return function (text) { return $sce.trustAsHtml(new SectionsApp.Emoji().emojiToHTML(text)); }; }])
         .filter('linkify', function () { return function (text) { return linkifyStr(text, {
         format: function (value, type) {
@@ -47,8 +57,11 @@ var SectionsApp;
         .service('messMap', SectionsApp.MessMapService)
         .controller('UserPageCtrl', SectionsApp.UserPageCtrl)
         .controller('SidebarCtrl', SectionsApp.SidebarCtrl)
+        .controller('FriendsCtrl', SectionsApp.FriendsCtrl)
         .controller('ChatCtrl', SectionsApp.ChatCtrl)
         .controller('NewMessCtrl', SectionsApp.NewMessCtrl)
-        .controller('SectionsCtrl', SectionsApp.SectionsCtrl);
+        .controller('SectionsCtrl', SectionsApp.SectionsCtrl)
+        .controller('TabCtrl', SectionsApp.TabCtrl)
+        .controller('NewFriendsCtrl', SectionsApp.NewFriendsCtrl);
 })(SectionsApp || (SectionsApp = {}));
 //# sourceMappingURL=SectionsApp.js.map

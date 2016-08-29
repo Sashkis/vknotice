@@ -1,10 +1,10 @@
 /// <reference path="../../all.d.ts"/>
 module SectionsApp {
 
-	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp', 'focus-if'])
+	angular.module('SectionsApp', ['VkApp', 'StorageApp', 'ui.router', 'DeamonApp', 'focus-if', 'monospaced.elastic'])
 
 		.config(['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider',
-			function($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, AnalyticsProvider: any) {
+			function($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, AnalyticsProvider: ng.google.analytics.AnalyticsProvider) {
 				AnalyticsProvider
 				// .readFromRoute(true)
 					.trackPrefix('/Popup')
@@ -17,9 +17,18 @@ module SectionsApp {
 							url: '/',
 							templateUrl: "/SectionApp/sections/Default/Default.tpl"
 						})
-						.state('requests', {
+						.state('friends', {
+							url: '/friends',
+							templateUrl: "/SectionApp/sections/Friends/tabs.tpl",
+							abstract: true,
+						})
+						.state('friends.all', {
+							url: '/all',
+							templateUrl: "/SectionApp/sections/Friends/all.tpl",
+						})
+						.state('friends.requests', {
 							url: '/requests',
-							templateUrl: "/SectionApp/sections/NewFriends/NewFriends.tpl"
+							templateUrl: "/SectionApp/sections/Friends/requests.tpl",
 						})
 						.state('dialogs', {
 							url: '/dialogs',
@@ -33,24 +42,6 @@ module SectionsApp {
 							url: '/user/{user_id}',
 							templateUrl: "/SectionApp/sections/UserPage/UserPage.tpl",
 						})
-
-				// $routeProvider
-				// 	.when('/', {
-				// 		templateUrl: '/SectionApp/sections/Default/Default.tpl',
-				// 		name: 'Меню',
-				// 	})
-				// 	.when('/NewFriends', {
-				// 		templateUrl: '/SectionApp/sections/NewFriends/NewFriends.tpl',
-				// 	})
-				// 	.when('/NewMess', {
-				// 		templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
-				// 	})
-				// 	.when('/NewMess/:peer_id', {
-				// 		templateUrl: '/SectionApp/sections/NewMess/NewMess.tpl',
-				// 	})
-				// 	.otherwise({
-				// 		redirectTo: '/'
-				// 	});
 			}
 		])
 
@@ -58,8 +49,9 @@ module SectionsApp {
 		.directive('userAva', userAvaDirective)
 		.directive('userName', userNameDirective)
 		.directive('vkDialog', DialogDirective)
-		.directive('message', MessageDirective)
+		.directive('vkMessage', MessageDirective)
 		.directive('attachment', AttachmentDirective)
+		.directive('request', RequestDirective)
 
 		.filter('emoji', ['$sce', ($sce: ng.ISCEService) => (text: string) => $sce.trustAsHtml(new Emoji().emojiToHTML(text))])
 		.filter('linkify', () => (text: string) => linkifyStr(text, {
@@ -75,8 +67,12 @@ module SectionsApp {
 
 		.controller('UserPageCtrl', UserPageCtrl)
 		.controller('SidebarCtrl', SidebarCtrl)
+		.controller('FriendsCtrl', FriendsCtrl)
 		.controller('ChatCtrl', ChatCtrl)
 		.controller('NewMessCtrl', NewMessCtrl)
 		.controller('SectionsCtrl', SectionsCtrl)
+		.controller('TabCtrl', TabCtrl)
+		.controller('NewFriendsCtrl', NewFriendsCtrl)
+		// .controller('AllFriendsCtrl', AllFriendsCtrl)
 		;
 }

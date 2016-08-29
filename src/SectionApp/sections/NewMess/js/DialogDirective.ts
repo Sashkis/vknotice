@@ -17,6 +17,7 @@ module SectionsApp {
 			templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
 			replace: true,
 			link: function($scope: IDialogScope) {
+				$scope.dialog = angular.copy($scope.dialog);
         $scope.dialog.profiles = $scope.dialog.profiles.map(getProfile);
       }
 		};

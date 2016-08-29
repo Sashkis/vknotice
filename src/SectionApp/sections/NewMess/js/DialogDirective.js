@@ -9,6 +9,7 @@ var SectionsApp;
             templateUrl: '/SectionApp/sections/NewMess/dialog.tpl',
             replace: true,
             link: function ($scope) {
+                $scope.dialog = angular.copy($scope.dialog);
                 $scope.dialog.profiles = $scope.dialog.profiles.map(getProfile);
             }
         };

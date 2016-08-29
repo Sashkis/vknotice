@@ -111,27 +111,27 @@
 		</div>
 		<div class="counters">
 			<a class="counter" ng-if="vm.user.counters.mutual_friends" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=common">
-				<span class="number">{{vm.user.counters.mutual_friends}}</span>
+				<span class="number">{{vm.user.counters.mutual_friends | kFilter}}</span>
 				<translate>Общих друзей</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.friends" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=all">
-				<span class="number">{{vm.user.counters.friends}}</span>
+				<span class="number">{{vm.user.counters.friends | kFilter}}</span>
 				<translate>Друзей</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.followers" ng-href="https://vk.com/friends?id={{vm.user.id}}&section=subscribers">
-				<span class="number">{{vm.user.counters.followers}}</span>
+				<span class="number">{{vm.user.counters.followers | kFilter}}</span>
 				<translate>Подписчиков</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.photos" ng-href="https://vk.com/photos{{vm.user.id}}">
-				<span class="number">{{vm.user.counters.photos}}</span>
+				<span class="number">{{vm.user.counters.photos | kFilter}}</span>
 				<translate>Фото</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.videos" ng-href="https://vk.com/videos{{vm.user.id}}">
-				<span class="number">{{vm.user.counters.videos}}</span>
+				<span class="number">{{vm.user.counters.videos | kFilter}}</span>
 				<translate>Видео</translate>
 			</a>
 			<a class="counter" ng-if="vm.user.counters.audios" ng-href="https://vk.com/audios{{vm.user.id}}">
-				<span class="number">{{vm.user.counters.audios}}</span>
+				<span class="number">{{vm.user.counters.audios | kFilter}}</span>
 				<translate>Аудио</translate>
 			</a>
 		</div>
@@ -144,14 +144,14 @@
 				<translate ng-switch-when="1">Добавить в друзья</translate>
 			</button>
 
-			<button ng-if="vm.user.friend_status == 1" ng-switch="vm.user.can_send_friend_request" ng-click="vm.action('delete', vm.user.id)">
+			<button class="simple" ng-if="vm.user.friend_status == 1" ng-switch="vm.user.can_send_friend_request" ng-click="vm.action('delete', vm.user.id)">
 				<translate ng-switch-when="0">Отписаться</translate>
 				<translate ng-switch-when="1">Отменить заявку</translate>
 			</button>
 
 			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('add', vm.user.id)" translate>Принять</button>
-			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('delete', vm.user.id)" translate>Отклонить</button>
-			<button ng-if="vm.user.friend_status == 2" ng-click="vm.action('ban', vm.user.id)" translate>Заблокировать</button>
+			<button class="simple" ng-if="vm.user.friend_status == 2" ng-click="vm.action('delete', vm.user.id)" translate>Скрыть</button>
+			<button class="simple" ng-if="vm.user.friend_status == 2" ng-click="vm.action('ban', vm.user.id)" translate>Заблокировать</button>
 
 			<button class="simple" ng-if="vm.user.friend_status == 3" ng-click="vm.action('delete', vm.user.id)" translate>Удалить из друзей</button>
 		</div>

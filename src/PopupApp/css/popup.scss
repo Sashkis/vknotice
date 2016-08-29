@@ -1,5 +1,6 @@
 @import "../../libs/helpers/_variables";
-@import "../../libs/helpers/_mixins.scss";
+@import "../../libs/helpers/_mixins";
+@import "../../libs/helpers/_alerts";
 @import 'preloader';
 
 body {
@@ -72,6 +73,7 @@ img.ava, .ava-container img {
 			}
 		}
 }
+
 // %top-block {
 // 	display: none;
 // 	height: 100%;

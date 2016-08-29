@@ -17,12 +17,6 @@ module SectionsApp {
 		unread?: number
 	}
 
-	interface IMessageMap {
-		isMore: boolean,
-		peer_id: number,
-		items: IMessage[],
-	}
-
 	export class ChatCtrl {
 		currentMessMap: IMessageMap | undefined;
 		message: string;
@@ -157,8 +151,15 @@ module SectionsApp {
 			return true;
 		}
 
-		sendMessage() {
-			if (!this.currentMessMap) return;
+		sendMessage($event: KeyboardEvent) {
+			if (!this.currentMessMap || !this.message) return;
+			if ($event.ctrlKey) {
+				this.message += "\n";
+				return;
+			}
+			
+			$event.preventDefault();
+
 			const peer_id = this.currentMessMap.peer_id;
 			const message = this.message;
 
