@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
-"PO-Revision-Date: 2016-08-26 09:50-0400\n"
+"PO-Revision-Date: 2016-08-29 03:40-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -55,7 +55,7 @@ msgstr "Załącznik"
 
 #: SectionApp/sections/Default/Default.tpl:85
 #: SectionApp/sections/Friends/all.tpl:18
-#: SectionApp/sections/Friends/tabs.tpl:23
+#: SectionApp/sections/Friends/tabs.tpl:3
 msgid "Все друзья"
 msgstr "Wszyscy przyjaciele"
 
@@ -174,7 +174,7 @@ msgstr "Ustawienia powiadomień"
 msgid "Новости"
 msgstr "Nowości"
 
-#: SectionApp/sections/Friends/tabs.tpl:24
+#: SectionApp/sections/Friends/tabs.tpl:4
 msgid "Новые заявки"
 msgstr "Nowe zgłoszenia"
 
