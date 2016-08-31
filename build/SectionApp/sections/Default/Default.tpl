@@ -20,14 +20,11 @@
 			</a>
 		</li>
 		<li>
-			<a ng-if="!sidebar.stg.counter.friends" vk-href="https://vk.com/friends" ui-sref="friends.all">
+			<a vk-href="{{sidebar.stg.counter.friends ? 'https://vk.com/friends?section=all_requests' : 'https://vk.com/friends'}}"
+			   ui-sref="{{sidebar.stg.counter.friends ? 'friends.requests' : 'friends.all'}}">
 				<i class="left_icon l_fr" aria-hidden="true"></i>
 				<translate>Друзья</translate>
-			</a>
-			<a ng-if="sidebar.stg.counter.friends" vk-href="https://vk.com/friends?section=all_requests" ui-sref="friends.requests">
-				<i class="left_icon l_fr" aria-hidden="true"></i>
-				<translate>Друзья</translate>
-				<span class="counter">+{{sidebar.stg.counter.friends|kFilter}}</span>
+				<span class="counter" ng-if="sidebar.stg.counter.friends">+{{sidebar.stg.counter.friends|kFilter}}</span>
 			</a>
 		</li>
 		<li>
@@ -58,9 +55,10 @@
 			</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/apps" >
+			<a ng-href="{{sidebar.stg.counter.app_requests ? 'https://vk.com/apps?tab=notifications' : 'https://vk.com/apps'}}" >
 				<i class="left_icon l_ap" aria-hidden="true"></i>
 				<translate>Игры</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.app_requests">+{{sidebar.stg.counter.app_requests|kFilter}}</span>
 			</a>
 		</li>
 	</aside>
