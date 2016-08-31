@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
-"PO-Revision-Date: 2016-08-31 11:20-0400\n"
+"PO-Revision-Date: 2016-08-31 11:30-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -291,7 +291,7 @@ msgstr "Informować o zaproszeniach do grupy"
 
 #: OptionsApp/index.html:52
 msgid "Сообщать о приглашениях в игры"
-msgstr ""
+msgstr "Informować o zaproszeniach do gry"
 
 #: OptionsApp/index.html:72
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
