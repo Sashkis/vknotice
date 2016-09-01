@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-08-26 09:50-0400\n"
+"PO-Revision-Date: 2016-08-31 11:30-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -28,7 +28,7 @@ msgstr "Audio"
 msgid "Аудиозаписи"
 msgstr "Audios"
 
-#: BackgroundApp/js/BgClass.js:233
+#: BackgroundApp/js/BgClass.js:235
 msgid "Вам нравится Информер?"
 msgstr "You like the informer?"
 
@@ -52,13 +52,13 @@ msgstr "Videos"
 msgid "Вложение"
 msgstr "Attachment"
 
-#: SectionApp/sections/Default/Default.tpl:85
+#: SectionApp/sections/Default/Default.tpl:86
 #: SectionApp/sections/Friends/all.tpl:18
-#: SectionApp/sections/Friends/tabs.tpl:23
+#: SectionApp/sections/Friends/tabs.tpl:3
 msgid "Все друзья"
 msgstr "All friends"
 
-#: OptionsApp/index.html:92
+#: OptionsApp/index.html:96
 msgid "Всегда"
 msgstr "Always"
 
@@ -66,7 +66,7 @@ msgstr "Always"
 msgid "Выйти"
 msgstr "Log out"
 
-#: OptionsApp/index.html:82
+#: OptionsApp/index.html:86
 msgid "Выключить"
 msgstr "Disabled"
 
@@ -119,7 +119,7 @@ msgstr "Cancel"
 msgid "Запись"
 msgstr "Post"
 
-#: OptionsApp/index.html:78
+#: OptionsApp/index.html:82
 msgid "Звуковые уведомления"
 msgstr "Sound notifications"
 
@@ -136,7 +136,7 @@ msgstr "Informer"
 msgid "Информер Вконтакте"
 msgstr "VK Informer"
 
-#: BackgroundApp/js/BgClass.js:184
+#: BackgroundApp/js/BgClass.js:186
 msgid "Информер обновлен до версии {{version}}"
 msgstr "Informer has been updated to version {{version}}"
 
@@ -148,7 +148,7 @@ msgstr "Comment"
 msgid "Моя Страница"
 msgstr "My Profile"
 
-#: BackgroundApp/js/BgClass.js:223
+#: BackgroundApp/js/BgClass.js:225
 msgid "Мы работаем для вас"
 msgstr "We work for you"
 
@@ -173,7 +173,7 @@ msgstr "Notifications settings"
 msgid "Новости"
 msgstr "News"
 
-#: SectionApp/sections/Friends/tabs.tpl:24
+#: SectionApp/sections/Friends/tabs.tpl:4
 msgid "Новые заявки"
 msgstr "New applications"
 
@@ -189,11 +189,11 @@ msgstr "Leave Feedback"
 msgid "Оставить предложение"
 msgstr "Leave a suggestion"
 
-#: BackgroundApp/js/BgClass.js:214
+#: BackgroundApp/js/BgClass.js:216
 msgid "Оставьте отзыв о новой версии"
 msgstr "Write a review about the new version"
 
-#: BackgroundApp/js/BgClass.js:204
+#: BackgroundApp/js/BgClass.js:206
 msgid "Оставьте свой отзыв"
 msgstr "Give us your feedback"
 
@@ -221,12 +221,12 @@ msgstr "Subscribers"
 msgid "Пожалуйста, выберите диалог"
 msgstr "Please select a dialog"
 
-#: BackgroundApp/js/BgClass.js:234
+#: BackgroundApp/js/BgClass.js:236
 msgid "Помогите ему и дальше развиваться для вас"
 msgstr "Help him continue to develop for you"
 
-#: BackgroundApp/js/BgClass.js:203
-#: BackgroundApp/js/BgClass.js:213
+#: BackgroundApp/js/BgClass.js:205
+#: BackgroundApp/js/BgClass.js:215
 msgid "Помогите нам стать лучше"
 msgstr "Help us get better"
 
@@ -234,7 +234,7 @@ msgstr "Help us get better"
 msgid "Помощь"
 msgstr "Help"
 
-#: OptionsApp/index.html:87
+#: OptionsApp/index.html:91
 msgid "При закрытом ВК"
 msgstr "When VK closed"
 
@@ -251,7 +251,7 @@ msgstr "Share application"
 msgid "Семейное положение:"
 msgstr "Relationship status:"
 
-#: BackgroundApp/js/BgClass.js:224
+#: BackgroundApp/js/BgClass.js:226
 msgid "Скажите авторам «Спасибо»"
 msgstr "Say \"thank you\" to the authors"
 
@@ -260,11 +260,11 @@ msgstr "Say \"thank you\" to the authors"
 msgid "Скрыть"
 msgstr "Hide"
 
-#: BackgroundApp/js/BgClass.js:185
+#: BackgroundApp/js/BgClass.js:187
 msgid "Смотрите подробности в нашей группе"
 msgstr "See details in our group"
 
-#: OptionsApp/index.html:52
+#: OptionsApp/index.html:56
 msgid "Сообщать о записях"
 msgstr "Notify about posts"
 
@@ -272,7 +272,7 @@ msgstr "Notify about posts"
 msgid "Сообщать о заявках в друзья"
 msgstr "Notify about new requests to be friends"
 
-#: OptionsApp/index.html:60
+#: OptionsApp/index.html:64
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
 msgstr "Notify about comments to wall posts, photos, and videos"
 
@@ -280,7 +280,7 @@ msgstr "Notify about comments to wall posts, photos, and videos"
 msgid "Сообщать о личных сообщениях"
 msgstr "Notify about private messages"
 
-#: OptionsApp/index.html:72
+#: OptionsApp/index.html:76
 msgid "Сообщать о новых подписчиках"
 msgstr "Notify about new followers"
 
@@ -288,11 +288,15 @@ msgstr "Notify about new followers"
 msgid "Сообщать о приглашениях в группы"
 msgstr "Notify about invitations to groups"
 
-#: OptionsApp/index.html:68
+#: OptionsApp/index.html:52
+msgid "Сообщать о приглашениях в игры"
+msgstr "To announce the invitations to the games"
+
+#: OptionsApp/index.html:72
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
 msgstr "Notify about wall posts, photos, and videos that are copied"
 
-#: OptionsApp/index.html:64
+#: OptionsApp/index.html:68
 msgid "Сообщать об отметках «Мне нравится»"
 msgstr "Notify about likes"
 
@@ -304,7 +308,7 @@ msgstr "Notify about marks in the video"
 msgid "Сообщать об отметках на фотографиях"
 msgstr "Notify about marks on the photos"
 
-#: OptionsApp/index.html:56
+#: OptionsApp/index.html:60
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
 msgstr "Notify about mentions in wall posts, comments, or topics"
 
@@ -316,11 +320,11 @@ msgstr "Messages"
 msgid "Сообщить об ошибке"
 msgstr "Report a bug"
 
-#: OptionsApp/index.html:100
+#: OptionsApp/index.html:104
 msgid "Сохранено"
 msgstr "Saved"
 
-#: OptionsApp/index.html:101
+#: OptionsApp/index.html:105
 msgid "Сохранить"
 msgstr "Save"
 
@@ -328,7 +332,7 @@ msgstr "Save"
 msgid "Страна:"
 msgstr "Country:"
 
-#: OptionsApp/index.html:103
+#: OptionsApp/index.html:107
 msgid "Удалить все данные расширения"
 msgstr "Remove all extension data"
 
