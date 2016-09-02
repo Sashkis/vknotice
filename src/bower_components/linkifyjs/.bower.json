@@ -1,7 +1,7 @@
 {
   "name": "linkifyjs",
   "main": "linkify.js",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "authors": [
     "SoapBox Innovations Inc. <dev@soapboxhq.com>"
   ],
@@ -32,14 +32,13 @@
   "dependencies": {
     "jquery": ">=1.7.0"
   },
-  "_release": "2.0.5",
+  "_release": "2.1.0",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.5",
-    "commit": "762f462d9b84af92c846e9ca5d9ba35b4af38ac0"
+    "tag": "v2.1.0",
+    "commit": "2178e0f88aedbd8bcb3ac512e5f219bf93a7d95f"
   },
   "_source": "https://github.com/nfrasser/linkify-shim.git",
   "_target": "^2.0.5",
-  "_originalSource": "linkifyjs",
-  "_direct": true
+  "_originalSource": "linkifyjs"
 }
