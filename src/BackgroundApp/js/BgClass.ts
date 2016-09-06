@@ -96,11 +96,12 @@ module BgApp {
 				func_v: 4,
 			};
 
-			if (this.stg.options.friends)   apiOptions.options += 'friends,';
-			if (this.stg.options.photos)    apiOptions.options += 'photos,';
-			if (this.stg.options.videos)    apiOptions.options += 'videos,';
-			if (this.stg.options.messages)  apiOptions.options += 'messages,';
-			if (this.stg.options.groups)    apiOptions.options += 'groups,';
+			if (this.stg.options.friends)      apiOptions.options += 'friends,';
+			if (this.stg.options.photos)       apiOptions.options += 'photos,';
+			if (this.stg.options.videos)       apiOptions.options += 'videos,';
+			if (this.stg.options.messages)     apiOptions.options += 'messages,';
+			if (this.stg.options.groups)       apiOptions.options += 'groups,';
+			if (this.stg.options.app_requests) apiOptions.options += 'app_requests,';
 
 			if (this.stg.options.wall)      apiOptions.notifyFilters += 'wall,';
 			if (this.stg.options.mentions)  apiOptions.notifyFilters += 'mentions,';

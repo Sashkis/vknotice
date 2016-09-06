@@ -54,6 +54,7 @@ interface IOptions {
 	videos: boolean;
 	messages: boolean;
 	groups: boolean;
+	app_requests: boolean;
 	wall: boolean,
 	mentions: boolean,
 	comments: boolean,

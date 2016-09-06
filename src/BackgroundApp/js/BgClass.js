@@ -96,6 +96,8 @@ var BgApp;
                 apiOptions.options += 'messages,';
             if (this.stg.options.groups)
                 apiOptions.options += 'groups,';
+            if (this.stg.options.app_requests)
+                apiOptions.options += 'app_requests,';
             if (this.stg.options.wall)
                 apiOptions.notifyFilters += 'wall,';
             if (this.stg.options.mentions)

@@ -58,9 +58,10 @@
 			</a>
 		</li>
 		<li>
-			<a ng-href="https://vk.com/apps" >
+			<a ng-href="{{sidebar.stg.counter.app_requests ? 'https://vk.com/apps?tab=notifications' : 'https://vk.com/apps'}}" >
 				<i class="left_icon l_ap" aria-hidden="true"></i>
 				<translate>Игры</translate>
+				<span class="counter" ng-if="sidebar.stg.counter.app_requests">+{{sidebar.stg.counter.app_requests|kFilter}}</span>
 			</a>
 		</li>
 	</aside>
