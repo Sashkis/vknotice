@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2016-10-13 06:52-0400\n"
+"PO-Revision-Date: 2016-10-16 05:41-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -154,7 +154,7 @@ msgstr "Wir arbeiten für Sie"
 
 #: PopupApp/popup.html:35
 msgid "Нажмите чтобы авторизоватся"
-msgstr "Klicken Sie um авторизоватся"
+msgstr "Klicken Sie um einzuloggen"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:140
 msgid "Написать"
