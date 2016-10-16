@@ -3,492 +3,491 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: vknotify\n"
-"X-Crowdin-Language: uk\n"
+"X-Crowdin-Language: de\n"
 "X-Crowdin-File: /develop/po/all.pot\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"PO-Revision-Date: 2016-09-05 15:30-0400\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"PO-Revision-Date: 2016-10-16 05:41-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
 msgid_plural "{{$count}} Пересланных сообщений"
-msgstr[0] "{{$count}} Переслане повідомлення"
-msgstr[1] "{{$count}} Пересланих повідомлення"
-msgstr[2] "{{$count}} Пересланих повідомлень"
+msgstr[0] "{{$count}} Weitergeleitete Nachricht"
+msgstr[1] ""
 
 #: SectionApp/sections/UserPage/UserPage.tpl:135
 msgid "Аудио"
-msgstr "Аудіо"
+msgstr "Audio"
 
 #: SectionApp/sections/Default/Default.tpl:50
 msgid "Аудиозаписи"
-msgstr "Аудiозаписи"
+msgstr "Audio-Aufnahmen"
 
 #: BackgroundApp/js/BgClass.js:235
 msgid "Вам нравится Информер?"
-msgstr "Вам подобається Інформер?"
+msgstr "Sie möchten Informant?"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:9
 msgid "Введите ваше сообщение"
-msgstr "Введіть ваше повідомлення"
+msgstr "Geben Sie Ihre Nachricht"
 
 #: HeaderApp/Header.tpl:8
 msgid "Вернуться"
-msgstr "Повернутися"
+msgstr "Zurück"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:131
 msgid "Видео"
-msgstr "Відео"
+msgstr "Video"
 
 #: SectionApp/sections/Default/Default.tpl:56
 msgid "Видеозаписи"
-msgstr "Відеозаписи"
+msgstr "Videos"
 
 #: SectionApp/sections/NewMess/attachment.tpl:69
 msgid "Вложение"
-msgstr "Вкладення"
+msgstr "Anhang"
 
 #: SectionApp/sections/Default/Default.tpl:86
 #: SectionApp/sections/Friends/all.tpl:18
 #: SectionApp/sections/Friends/tabs.tpl:3
 msgid "Все друзья"
-msgstr "Всі друзі"
+msgstr "Alle Freunde"
 
 #: OptionsApp/index.html:96
 msgid "Всегда"
-msgstr "Завжди"
+msgstr "Immer"
 
 #: HeaderApp/Header.tpl:32
 msgid "Выйти"
-msgstr "Вийти"
+msgstr "Gehen"
 
 #: OptionsApp/index.html:86
 msgid "Выключить"
-msgstr "Вимкнути"
+msgstr "Deaktivieren"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:50
 msgid "Город:"
-msgstr "Місто:"
+msgstr "Stadt:"
 
 #: SectionApp/sections/Default/Default.tpl:36
 msgid "Группы"
-msgstr "Спільноти"
+msgstr "Gruppe"
 
 #: OptionsApp/js/OptionsCtrl.js:36
 msgid "Данное действие удалит весь кэш и сбросит настройки.\n"
 "Вы уверены, что хотите сделать это?"
-msgstr "Ця дія вилучить весь кеш і скине налаштування.\n"
-"Ви впевнені, що хочете зробити це?"
+msgstr "Diese Aktion löscht den gesamten Cache und Einstellungen zurückgesetzt.\n"
+"Sind Sie sicher, dass Sie das wollen?"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:23
 msgid "День рождения:"
-msgstr "День народження:"
+msgstr "Geburtstag:"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:144
 msgid "Добавить в друзья"
-msgstr "Додати в друзі"
+msgstr "Freund hinzufügen"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:119
 msgid "Друзей"
-msgstr "Друзів"
+msgstr "Freunde"
 
 #: SectionApp/sections/Default/Default.tpl:25
 #: SectionApp/sections/Default/Default.tpl:29
 msgid "Друзья"
-msgstr "Друзі"
+msgstr "Freunde"
 
 #: SectionApp/sections/Friends/request.tpl:10
 #: SectionApp/sections/UserPage/UserPage.tpl:154
 msgid "Заблокировать"
-msgstr "Заблокувати"
+msgstr "Sperren"
 
 #: SectionApp/sections/NewMess/NewMess.chat.tpl:5
 msgid "Загрузить ещё"
-msgstr "Завантажити ще"
+msgstr "Laden Sie noch"
 
 #: PopupApp/alert.tpl:8
 msgctxt "Всплывающее сообщение"
 msgid "Закрыть"
-msgstr "Закрити"
+msgstr "Schließen"
 
 #: SectionApp/sections/NewMess/attachment.tpl:20
 msgid "Запись"
-msgstr "Запис"
+msgstr "Eintrag"
 
 #: OptionsApp/index.html:82
 msgid "Звуковые уведомления"
-msgstr "Звукові сповіщення"
+msgstr "Sound-Benachrichtigungen"
 
 #: SectionApp/sections/Default/Default.tpl:63
 msgid "Игры"
-msgstr "Ігри"
+msgstr "Spiele"
 
 #: HeaderApp/Header.tpl:4
 msgid "Информер"
-msgstr "Інформер"
+msgstr "Informer"
 
 #: PopupApp/popup.html:4
 #: libs/helpers/Helpers.js:85
 msgid "Информер Вконтакте"
-msgstr "Інформер Вконтакте"
+msgstr "Informer Facebook"
 
 #: BackgroundApp/js/BgClass.js:186
 msgid "Информер обновлен до версии {{version}}"
-msgstr "Інформер оновлено до версії {{version}}"
+msgstr "Widget aktualisiert auf Version {{version}}"
 
 #: SectionApp/sections/NewMess/attachment.tpl:25
 msgid "Комментарий"
-msgstr "Коментар"
+msgstr "Kommentar"
 
 #: SectionApp/sections/Default/Default.tpl:6
 msgid "Моя Страница"
-msgstr "Моя Cторінка"
+msgstr "Meine Seite"
 
 #: BackgroundApp/js/BgClass.js:225
 msgid "Мы работаем для вас"
-msgstr "Ми працюємо для вас"
+msgstr "Wir arbeiten für Sie"
 
 #: PopupApp/popup.html:35
 msgid "Нажмите чтобы авторизоватся"
-msgstr "Натисніть, щоб авторизуватись"
+msgstr "Klicken Sie um einzuloggen"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:140
 msgid "Написать"
-msgstr "Написати"
+msgstr "Schreiben"
 
 #: HeaderApp/Header.tpl:31
 #: OptionsApp/index.html:4
 msgid "Настройки"
-msgstr "Налаштування"
+msgstr "Einstellungen"
 
 #: OptionsApp/index.html:28
 msgid "Настройки уведомлений"
-msgstr "Налаштування сповіщень"
+msgstr "Benachrichtigungseinstellungen"
 
 #: SectionApp/sections/Default/Default.tpl:12
 msgid "Новости"
-msgstr "Новини"
+msgstr "News"
 
 #: SectionApp/sections/Friends/tabs.tpl:4
 msgid "Новые заявки"
-msgstr "Нові заявки"
+msgstr "Neue Anträge"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:115
 msgid "Общих друзей"
-msgstr "Спільних друзів"
+msgstr "Gemeinsame Freunde"
 
 #: HeaderApp/Header.tpl:29
 msgid "Оставить отзыв"
-msgstr "Залишити відгук"
+msgstr "Hinterlassen Sie eine Bewertung"
 
 #: HeaderApp/Header.tpl:25
 msgid "Оставить предложение"
-msgstr "Залишити пропозицію"
+msgstr "Verlassen Angebot"
 
 #: BackgroundApp/js/BgClass.js:216
 msgid "Оставьте отзыв о новой версии"
-msgstr "Залишіть відгук про нову версії"
+msgstr "Bewertungen über neue Version"
 
 #: BackgroundApp/js/BgClass.js:206
 msgid "Оставьте свой отзыв"
-msgstr "Залиште свій відгук"
+msgstr "Geben Sie uns Ihr Feedback"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:149
 msgid "Отменить заявку"
-msgstr "Скасувати заявку"
+msgstr "Um Ihren Auftrag zu stornieren"
 
 #: libs/helpers/Helpers.js:86
 msgid "Отображает количество непрочитанных сообщений и позволяет ответить не заходя в ВК!"
-msgstr "Відображає кількість непрочитаних повідомлень і дозволяє відповісти не заходячи в ВК!"
+msgstr "Zeigt die Anzahl der ungelesenen Nachrichten und Antworten können ohne in der VK!"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:148
 msgid "Отписаться"
-msgstr "Відписатись"
+msgstr "Abmelden"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:143
 msgid "Подписаться"
-msgstr "Підписатись"
+msgstr "Abonnieren"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:123
 msgid "Подписчиков"
-msgstr "Підписників"
+msgstr "Abonnenten"
 
 #: SectionApp/sections/NewMess/NewMess.tpl:13
 msgid "Пожалуйста, выберите диалог"
-msgstr "Будь ласка, виберіть діалог"
+msgstr "Bitte wählen Sie den Dialog"
 
 #: BackgroundApp/js/BgClass.js:236
 msgid "Помогите ему и дальше развиваться для вас"
-msgstr "Допоможіть йому і далі розвиватися для вас"
+msgstr "Helfen Sie ihm, sich weiter zu entwickeln, um Sie"
 
 #: BackgroundApp/js/BgClass.js:205
 #: BackgroundApp/js/BgClass.js:215
 msgid "Помогите нам стать лучше"
-msgstr "Допоможіть нам стати краще"
+msgstr "Helfen Sie uns besser zu werden"
 
 #: HeaderApp/Header.tpl:24
 msgid "Помощь"
-msgstr "Допомога"
+msgstr "Hilfe"
 
 #: OptionsApp/index.html:91
 msgid "При закрытом ВК"
-msgstr "При закритому ВК"
+msgstr "Bei geschlossenem VC"
 
 #: SectionApp/sections/Friends/request.tpl:8
 #: SectionApp/sections/UserPage/UserPage.tpl:152
 msgid "Принять"
-msgstr "Прийняти"
+msgstr "Nehmen"
 
 #: HeaderApp/Header.tpl:28
 msgid "Рассказать друзьям"
-msgstr "Розповісти друзям"
+msgstr "Erzählen Sie Ihren Freunden"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:56
 msgid "Семейное положение:"
-msgstr "Сімейний стан:"
+msgstr "Familienstand:"
 
 #: BackgroundApp/js/BgClass.js:226
 msgid "Скажите авторам «Спасибо»"
-msgstr "Скажіть авторам «Дякую»"
+msgstr "Sagen Sie die Autoren «Danke»"
 
 #: SectionApp/sections/Friends/request.tpl:9
 #: SectionApp/sections/UserPage/UserPage.tpl:153
 msgid "Скрыть"
-msgstr "Приховати"
+msgstr "Ausblenden"
 
 #: BackgroundApp/js/BgClass.js:187
 msgid "Смотрите подробности в нашей группе"
-msgstr "Дивіться подробиці у нашій групі"
+msgstr "Sehen Sie die Einzelheiten in unserer Gruppe"
 
 #: OptionsApp/index.html:56
 msgid "Сообщать о записях"
-msgstr "Повідомляти про записи"
+msgstr "Berichten über Einträge"
 
 #: OptionsApp/index.html:32
 msgid "Сообщать о заявках в друзья"
-msgstr "Повідомляти про заявки у друзі"
+msgstr "Zu berichten über die Bewerbungen in Freunde"
 
 #: OptionsApp/index.html:64
 msgid "Сообщать о комментариях к записям, фотографиям и видеозаписям"
-msgstr "Повідомляти про коментарі до записів, фотографій та відеозаписів"
+msgstr "Melden den Kommentaren zu den Beiträgen, Fotos und Videos"
 
 #: OptionsApp/index.html:44
 msgid "Сообщать о личных сообщениях"
-msgstr "Повідомляти про особисті повідомлення"
+msgstr "Melden über private Nachrichten"
 
 #: OptionsApp/index.html:76
 msgid "Сообщать о новых подписчиках"
-msgstr "Повідомляти про нових підписників"
+msgstr "Berichten über neue Abonnenten"
 
 #: OptionsApp/index.html:48
 msgid "Сообщать о приглашениях в группы"
-msgstr "Повідомляти про запрошення до спільнот"
+msgstr "Berichten über Einladungen in Gruppen"
 
 #: OptionsApp/index.html:52
 msgid "Сообщать о приглашениях в игры"
-msgstr "Повідомляти про запрошення в ігри"
+msgstr "Melden Einladungen im Spiel"
 
 #: OptionsApp/index.html:72
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
-msgstr "Повідомляти про скопійовані записи, фотографії та відеозаписи"
+msgstr "Melden kopierten Aufzeichnungen, Bilder und Videos"
 
 #: OptionsApp/index.html:68
 msgid "Сообщать об отметках «Мне нравится»"
-msgstr "Повідомляти про відмітки «Мені подобається»"
+msgstr "Melden bei «gefällt Mir»"
 
 #: OptionsApp/index.html:40
 msgid "Сообщать об отметках в видеозаписях"
-msgstr "Повідомляти про відмітки у відеозаписах"
+msgstr "Melden bei Videoaufnahmen in"
 
 #: OptionsApp/index.html:36
 msgid "Сообщать об отметках на фотографиях"
-msgstr "Повідомляти про відмітки на фотографіях"
+msgstr "Berichten über Markierungen auf Fotos"
 
 #: OptionsApp/index.html:60
 msgid "Сообщать об упоминаниях в записях, в комментариях или в обсуждениях"
-msgstr "Повідомляти про згадки в записах, в коментарях або в обговореннях"
+msgstr "Melden Erwähnungen in Beiträgen, in den Kommentaren oder in Diskussionen"
 
 #: SectionApp/sections/Default/Default.tpl:18
 msgid "Сообщения"
-msgstr "Повiдомлення"
+msgstr "Nachrichten"
 
 #: HeaderApp/Header.tpl:26
 msgid "Сообщить об ошибке"
-msgstr "Повідомити про помилку"
+msgstr "Fehler melden"
 
 #: OptionsApp/index.html:104
 msgid "Сохранено"
-msgstr "Збережено"
+msgstr "Gespeichert"
 
 #: OptionsApp/index.html:105
 msgid "Сохранить"
-msgstr "Зберегти"
+msgstr "Speichern"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:44
 msgid "Страна:"
-msgstr "Країна:"
+msgstr "Land:"
 
 #: OptionsApp/index.html:107
 msgid "Удалить все данные расширения"
-msgstr "Видалити всі дані розширення"
+msgstr "Alle Daten löschen-Erweiterungen"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:156
 msgid "Удалить из друзей"
-msgstr "Видалити із друзів"
+msgstr "Entfernen von Freunden"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:127
 msgid "Фото"
-msgstr "Фото"
+msgstr "Foto"
 
 #: SectionApp/sections/Default/Default.tpl:43
 msgid "Фотографии"
-msgstr "Фотографії"
+msgstr "Fotos"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:34
 msgid "августа"
-msgstr "серпня"
+msgstr "August"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:30
 msgid "апреля"
-msgstr "квітня"
+msgstr "April"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:88
 msgid "в активном поиске"
-msgstr "в активному пошуку"
+msgstr "in der aktiven Suche nach"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:92
 msgid "влюблена"
-msgstr "закохана"
+msgstr "verliebt"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:93
 msgid "влюблена в"
-msgstr "закохана в"
+msgstr "verliebt in"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:94
 msgid "влюблён"
-msgstr "закоханий"
+msgstr "verliebt"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:95
 msgid "влюблён в"
-msgstr "закоханий у"
+msgstr "verliebt in"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:84
 msgid "всё сложно"
-msgstr "все складно"
+msgstr "alles schwierig"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:38
 msgid "декабря"
-msgstr "грудня"
+msgstr "Dezember"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:65
 msgid "есть друг"
-msgstr "є друг"
+msgstr "einen Freund"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:66
 msgid "есть подруга"
-msgstr "є подруга"
+msgstr "eine Freundin"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:79
 msgid "женат"
-msgstr "одружений"
+msgstr "verheiratet"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:80
 msgid "женат на"
-msgstr "одружений на"
+msgstr "verheiratet"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:77
 msgid "замужем"
-msgstr "заміжня"
+msgstr "verheiratet"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:78
 msgid "замужем за"
-msgstr "одружена з"
+msgstr "verheiratet"
 
 #: SectionApp/sections/NewMess/message.tpl:27
 msgid "изменил название беседы на"
-msgstr "змінив назву бесіди на"
+msgstr "änderte den Namen auf Gespräche"
 
 #: SectionApp/sections/NewMess/message.tpl:41
 msgid "исключил"
-msgstr "виключив"
+msgstr "ausgeschlossen"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:33
 msgid "июля"
-msgstr "липня"
+msgstr "Juli"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:32
 msgid "июня"
-msgstr "червня"
+msgstr "Juni"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:29
 msgid "марта"
-msgstr "березня"
+msgstr "März"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:31
 msgid "мая"
-msgstr "травня"
+msgstr "Mai"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:61
 msgid "не женат"
-msgstr "не одружений"
+msgstr "nicht verheiratet"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:60
 msgid "не замужем"
-msgstr "не заміжня"
+msgstr "nicht verheiratet"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:37
 msgid "ноября"
-msgstr "листопада"
+msgstr "November"
 
 #: SectionApp/sections/NewMess/message.tpl:33
 msgid "обновил фотографию беседы"
-msgstr "оновив фотографію бесіди"
+msgstr "wurde das Foto und die Gespräche"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:36
 msgid "октября"
-msgstr "жовтня"
+msgstr "Oktober"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:72
 msgid "помолвлен"
-msgstr "заручений"
+msgstr "verlobt"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:73
 msgid "помолвлен c"
-msgstr "заручений з"
+msgstr "verlobt c"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:70
 msgid "помолвлена"
-msgstr "заручена"
+msgstr "verlobt"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:71
 msgid "помолвлена c"
-msgstr "заручена з"
+msgstr "verlobt c"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
-msgstr "запросив"
+msgstr "eingeladen"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:35
 msgid "сентября"
-msgstr "вересня"
+msgstr "September"
 
 #: SectionApp/sections/NewMess/message.tpl:21
 msgid "создал беседу"
-msgstr "створив бесіду"
+msgstr "schuf Gespräch"
 
 #: SectionApp/sections/NewMess/message.tpl:37
 msgid "удалил фотографию беседы"
-msgstr "видалив фотографію бесіди"
+msgstr "löschte das Foto und Gespräch"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:28
 msgid "февраля"
-msgstr "лютого"
+msgstr "Februar"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:27
 msgid "января"
-msgstr "січня"
+msgstr "Januar"
