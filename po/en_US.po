@@ -8,11 +8,10 @@ msgstr ""
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: en\n"
 "X-Crowdin-File: /develop/po/all.pot\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
-"PO-Revision-Date: 2016-10-13 06:52-0400\n"
+"PO-Revision-Date: 2017-11-03 07:00-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -491,3 +490,4 @@ msgstr "February"
 #: SectionApp/sections/UserPage/UserPage.tpl:27
 msgid "января"
 msgstr "January"
+
