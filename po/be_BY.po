@@ -8,11 +8,10 @@ msgstr ""
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: be\n"
 "X-Crowdin-File: /develop/po/all.pot\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
-"PO-Revision-Date: 2016-10-13 06:52-0400\n"
+"PO-Revision-Date: 2017-11-03 07:50-0400\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
@@ -23,7 +22,7 @@ msgstr[2] "{{$count}} Пераслаць паведамленняў"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:135
 msgid "Аудио"
-msgstr "Аўдые"
+msgstr "Аўдыя"
 
 #: SectionApp/sections/Default/Default.tpl:50
 msgid "Аудиозаписи"
@@ -91,7 +90,7 @@ msgstr "Дзень нараджэння:"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:144
 msgid "Добавить в друзья"
-msgstr "Дадаць у сябры"
+msgstr "Дадаць да сяброў"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:119
 msgid "Друзей"
@@ -291,7 +290,7 @@ msgstr "Паведамляць аб запрашэннях ў групы"
 
 #: OptionsApp/index.html:52
 msgid "Сообщать о приглашениях в игры"
-msgstr "Паведамляць аб запрашэннях ў гульні"
+msgstr "Паведамляць пра запрашэнні ў гульні"
 
 #: OptionsApp/index.html:72
 msgid "Сообщать о скопированных записях, фотографиях и видеозаписях"
@@ -459,7 +458,7 @@ msgstr "заручаны"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:73
 msgid "помолвлен c"
-msgstr "заручаны c"
+msgstr "заручаны з"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:70
 msgid "помолвлена"
@@ -467,7 +466,7 @@ msgstr "заручана"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:71
 msgid "помолвлена c"
-msgstr "заручана c"
+msgstr "заручана з"
 
 #: SectionApp/sections/NewMess/message.tpl:46
 msgid "пригласил"
@@ -492,3 +491,4 @@ msgstr "лютага"
 #: SectionApp/sections/UserPage/UserPage.tpl:27
 msgid "января"
 msgstr "студзеня"
+
