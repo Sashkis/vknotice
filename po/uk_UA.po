@@ -3,23 +3,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: vknotify\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: vknotify\n"
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: /develop/po/all.pot\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Last-Translator: kozackunisoft <kozackunisoft@gmail.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2016-09-05 15:30-0400\n"
+"PO-Revision-Date: 2019-01-23 09:13\n"
 
 #: SectionApp/sections/NewMess/attachment.tpl:63
 msgid "{{$count}} Пересланное сообщение"
 msgid_plural "{{$count}} Пересланных сообщений"
 msgstr[0] "{{$count}} Переслане повідомлення"
 msgstr[1] "{{$count}} Пересланих повідомлення"
-msgstr[2] "{{$count}} Пересланих повідомлень"
+msgstr[2] ""
+msgstr[3] "{{$count}} Пересланих повідомлень"
 
 #: SectionApp/sections/UserPage/UserPage.tpl:135
 msgid "Аудио"
@@ -492,3 +492,4 @@ msgstr "лютого"
 #: SectionApp/sections/UserPage/UserPage.tpl:27
 msgid "января"
 msgstr "січня"
+
